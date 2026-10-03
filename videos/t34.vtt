@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+The dot product.
+
+2
+00:00:02.200 --> 00:00:05.871
+It is the raw score hiding inside attention and vector search.
+
+3
+00:00:05.871 --> 00:00:07.233
+Let's see how it works.
+
+4
+00:00:08.433 --> 00:00:13.267
+The dot product multiplies matching entries of two vectors and adds everything up.
+
+5
+00:00:13.567 --> 00:00:16.833
+The answer is a single number, telling you how aligned they are.
+
+6
+00:00:17.133 --> 00:00:19.575
+Positive means the same general way.
+
+7
+00:00:19.575 --> 00:00:22.967
+Zero means orthogonal, and negative means opposed.
+
+8
+00:00:24.167 --> 00:00:25.467
+Here is the recipe.
+
+9
+00:00:25.767 --> 00:00:28.000
+Line up the two vectors entry by entry.
+
+10
+00:00:28.300 --> 00:00:29.600
+Multiply each pair.
+
+11
+00:00:29.900 --> 00:00:31.233
+Add the products together.
+
+12
+00:00:31.533 --> 00:00:33.600
+And you are left with one alignment score.
+
+13
+00:00:34.800 --> 00:00:39.333
+Let's test it on a satellite flying at seven point five kilometers per second.
+
+14
+00:00:39.633 --> 00:00:43.967
+Thrust along the orbit gives a big positive score, twenty two point five.
+
+15
+00:00:44.267 --> 00:00:47.303
+Thrust at a right angle gives exactly zero.
+
+16
+00:00:47.303 --> 00:00:49.633
+No relationship along those axes.
+
+17
+00:00:49.933 --> 00:00:53.453
+And a retrograde burn gives minus twenty two point five.
+
+18
+00:00:53.453 --> 00:00:54.333
+Fully opposed.
+
+19
+00:00:55.533 --> 00:00:59.667
+One common confusion: dot product versus cosine similarity.
+
+20
+00:00:59.967 --> 00:01:03.086
+The dot product mixes in how long the vectors are.
+
+21
+00:01:03.086 --> 00:01:04.833
+Cosine only keeps the angle.
+
+22
+00:01:05.133 --> 00:01:09.633
+Cosine is just the dot product after scaling both vectors to length one.
+
+23
+00:01:09.933 --> 00:01:14.300
+So if your embeddings are already normalized, both rank things the same way.
+
+24
+00:01:15.500 --> 00:01:17.667
+In NumPy, it takes one operator.
+
+25
+00:01:17.967 --> 00:01:20.033
+This is the satellite's velocity.
+
+26
+00:01:20.333 --> 00:01:22.400
+And three possible thrust directions.
+
+27
+00:01:22.700 --> 00:01:27.833
+The at sign gives the dot product: twenty two point five for the thrust along the orbit.
+
+28
+00:01:29.033 --> 00:01:30.500
+Here is why this matters.
+
+29
+00:01:30.800 --> 00:01:39.233
+When Mission Control RAG retrieves its top fifty chunks, the vector database dots your query against millions of stored embeddings and sorts.
+
+30
+00:01:39.533 --> 00:01:45.815
+And inside the language model, attention computes a query key dot product for every token pair.
+
+31
+00:01:45.815 --> 00:01:47.600
+Same operation, two layers.
+
+32
+00:01:48.800 --> 00:01:49.566
+Let's recap.
+
+33
+00:01:49.566 --> 00:01:52.500
+Multiply entries, then sum, to get one number.
+
+34
+00:01:52.800 --> 00:01:56.867
+Its sign tells you whether vectors agree, are unrelated, or oppose.
+
+35
+00:01:57.167 --> 00:02:00.100
+Cosine is the same thing on normalized vectors.
+
+36
+00:02:00.400 --> 00:02:03.178
+And it powers attention and vector search.
+
+37
+00:02:03.178 --> 00:02:04.567
+Next up: eigenvalues.

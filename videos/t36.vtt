@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+Eigenvectors.
+
+2
+00:00:02.233 --> 00:00:04.746
+They are the special directions behind PCA.
+
+3
+00:00:04.746 --> 00:00:07.667
+Let's see what they are and why you will use them.
+
+4
+00:00:08.867 --> 00:00:12.633
+An eigenvector is a direction that survives a transformation.
+
+5
+00:00:12.933 --> 00:00:16.267
+The matrix only changes its length, by the eigenvalue.
+
+6
+00:00:16.567 --> 00:00:21.167
+So the eigenvalue says how much, and the eigenvector says along which axis.
+
+7
+00:00:22.367 --> 00:00:27.000
+Imagine measurements that are correlated, so the cloud is stretched along a diagonal.
+
+8
+00:00:27.300 --> 00:00:30.033
+Most of the variation happens along one line.
+
+9
+00:00:30.333 --> 00:00:34.484
+That line is the top eigenvector of the data's covariance matrix.
+
+10
+00:00:34.484 --> 00:00:36.400
+It captures the most variance.
+
+11
+00:00:37.600 --> 00:00:39.767
+This is exactly what PCA does.
+
+12
+00:00:40.067 --> 00:00:41.133
+Center the data.
+
+13
+00:00:41.433 --> 00:00:43.200
+Compute the covariance matrix.
+
+14
+00:00:43.500 --> 00:00:46.359
+Take its eigenvectors, ranked by eigenvalue.
+
+15
+00:00:46.359 --> 00:00:51.233
+Since covariance is symmetric, they are perpendicular, a fresh set of axes.
+
+16
+00:00:51.533 --> 00:00:53.400
+Then keep the top few directions.
+
+17
+00:00:54.600 --> 00:00:55.800
+Here it is in code.
+
+18
+00:00:56.100 --> 00:00:59.467
+We make five hundred correlated samples and center the cloud.
+
+19
+00:00:59.767 --> 00:01:01.833
+Then compute the covariance matrix.
+
+20
+00:01:02.133 --> 00:01:05.857
+And take the eigenvector with the largest eigenvalue.
+
+21
+00:01:05.857 --> 00:01:08.667
+That is PCA's first principal component.
+
+22
+00:01:09.867 --> 00:01:11.300
+Here is a classic use.
+
+23
+00:01:11.600 --> 00:01:15.433
+You have fifteen thirty six dimensional embeddings from a RAG system.
+
+24
+00:01:15.733 --> 00:01:17.718
+Project them to two dimensions.
+
+25
+00:01:17.718 --> 00:01:20.600
+Those plot axes are the top two eigenvectors.
+
+26
+00:01:20.900 --> 00:01:23.969
+Propulsion reports should cluster away from crew logs.
+
+27
+00:01:23.969 --> 00:01:27.833
+If they smear together, suspect your chunking before your retriever.
+
+28
+00:01:29.033 --> 00:01:29.781
+Let's recap.
+
+29
+00:01:29.781 --> 00:01:33.333
+Eigenvectors keep their direction under a transformation.
+
+30
+00:01:33.633 --> 00:01:37.500
+The largest eigenvalue marks the direction of most variance.
+
+31
+00:01:37.800 --> 00:01:43.100
+PCA components are eigenvectors of the covariance matrix, and they are orthogonal.
+
+32
+00:01:43.400 --> 00:01:45.933
+Next up: singular value decomposition.

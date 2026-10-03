@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Eigenvalues.
+
+2
+00:00:02.200 --> 00:00:05.171
+Most vectors get knocked off course by a matrix.
+
+3
+00:00:05.171 --> 00:00:06.719
+A few special ones don't.
+
+4
+00:00:06.719 --> 00:00:08.700
+Let's find out why that matters.
+
+5
+00:00:09.900 --> 00:00:13.500
+When a matrix transforms a vector, the vector usually turns.
+
+6
+00:00:13.800 --> 00:00:17.542
+But along special directions, the matrix acts as pure scaling.
+
+7
+00:00:17.542 --> 00:00:19.533
+Same direction, different length.
+
+8
+00:00:20.733 --> 00:00:22.667
+Here is a matrix, and three arrows.
+
+9
+00:00:22.967 --> 00:00:26.100
+Two of them sit on special directions, and one does not.
+
+10
+00:00:26.400 --> 00:00:27.464
+Apply the matrix.
+
+11
+00:00:27.464 --> 00:00:31.030
+The green arrow stays on its line, stretched three times.
+
+12
+00:00:31.030 --> 00:00:34.033
+The blue one stays on its line, stretched twice.
+
+13
+00:00:34.333 --> 00:00:37.151
+The orange arrow gets knocked off its direction.
+
+14
+00:00:37.151 --> 00:00:38.267
+It was not special.
+
+15
+00:00:39.467 --> 00:00:40.767
+Here is the equation.
+
+16
+00:00:41.067 --> 00:00:43.230
+A times v equals lambda times v.
+
+17
+00:00:43.230 --> 00:00:45.800
+The vector v is the special direction.
+
+18
+00:00:46.100 --> 00:00:49.867
+And lambda is the eigenvalue, the pure scale factor along it.
+
+19
+00:00:50.167 --> 00:00:54.133
+Along that direction, the whole matrix collapses into a single number.
+
+20
+00:00:55.333 --> 00:00:57.433
+In NumPy, one call finds them.
+
+21
+00:00:57.733 --> 00:01:02.367
+We hand the matrix to eig, and it returns the eigenvalues and eigenvectors.
+
+22
+00:01:02.667 --> 00:01:05.042
+Then we check the equation for each pair.
+
+23
+00:01:05.042 --> 00:01:06.200
+It holds every time.
+
+24
+00:01:06.500 --> 00:01:08.500
+And the scale factors are three and two.
+
+25
+00:01:09.700 --> 00:01:13.667
+The eigenvalues summarize what a matrix fundamentally does.
+
+26
+00:01:13.967 --> 00:01:16.533
+A big one means that direction is amplified.
+
+27
+00:01:16.833 --> 00:01:18.567
+A small one means it is dampened.
+
+28
+00:01:18.867 --> 00:01:20.433
+And a negative one flips it.
+
+29
+00:01:21.633 --> 00:01:22.633
+Now a real use.
+
+30
+00:01:22.633 --> 00:01:26.700
+A satellite streams sixty four correlated telemetry channels.
+
+31
+00:01:27.000 --> 00:01:34.486
+Compute the eigenvalues of the covariance matrix and you typically see three or four big ones, then a long tail near zero.
+
+32
+00:01:34.486 --> 00:01:40.500
+The spacecraft state really lives in about four dimensions, so you know how much you can compress.
+
+33
+00:01:41.700 --> 00:01:42.480
+Let's recap.
+
+34
+00:01:42.480 --> 00:01:45.533
+Along special directions, a matrix just scales.
+
+35
+00:01:45.833 --> 00:01:48.033
+The eigenvalue is that scale factor.
+
+36
+00:01:48.333 --> 00:01:52.300
+Its size and sign say whether it amplifies, dampens, or flips.
+
+37
+00:01:52.600 --> 00:01:56.142
+And the whole spectrum shows how many dimensions matter.
+
+38
+00:01:56.142 --> 00:01:57.533
+Next up: eigenvectors.

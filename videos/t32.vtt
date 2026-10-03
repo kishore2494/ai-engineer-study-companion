@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+Matrices.
+
+2
+00:00:02.067 --> 00:00:03.686
+Forget tables of numbers.
+
+3
+00:00:03.686 --> 00:00:08.867
+A matrix is a machine that moves vectors, and every neural network layer is one.
+
+4
+00:00:10.067 --> 00:00:14.367
+A matrix is a grid of numbers, but what it does matters more than how it looks.
+
+5
+00:00:14.667 --> 00:00:20.100
+Multiply a vector by it, and the vector gets rotated, stretched, sheared or projected.
+
+6
+00:00:20.400 --> 00:00:23.019
+It can even change the number of dimensions.
+
+7
+00:00:23.019 --> 00:00:27.067
+And the weights of a neural network layer are exactly such a matrix.
+
+8
+00:00:28.267 --> 00:00:32.933
+Here is the plain grid, with two arrows along the x axis and the y axis.
+
+9
+00:00:33.233 --> 00:00:36.467
+Now we multiply everything by a rotation matrix.
+
+10
+00:00:36.767 --> 00:00:41.033
+The whole grid turns forty five degrees, and every vector on it turns too.
+
+11
+00:00:42.233 --> 00:00:43.900
+Now look inside the matrix.
+
+12
+00:00:44.200 --> 00:00:48.733
+The first column tells you where the x axis arrow lands: up and to the right.
+
+13
+00:00:49.033 --> 00:00:52.265
+The second column tells you where the y axis lands.
+
+14
+00:00:52.265 --> 00:00:55.433
+Those two columns decide the whole transformation.
+
+15
+00:00:56.633 --> 00:00:58.600
+Here is that rotation in NumPy.
+
+16
+00:00:58.900 --> 00:01:03.467
+We build a two by two matrix from sine and cosine of forty five degrees.
+
+17
+00:01:03.767 --> 00:01:05.867
+Then we place a probe on the x axis.
+
+18
+00:01:06.167 --> 00:01:12.419
+The at sign applies the matrix, and the probe moves to zero point seven, zero point seven.
+
+19
+00:01:12.419 --> 00:01:14.433
+Rotated, exactly as promised.
+
+20
+00:01:15.633 --> 00:01:17.700
+Here is where it shows up in real work.
+
+21
+00:01:18.000 --> 00:01:21.700
+Your exoplanet classifier takes a planet as twelve features.
+
+22
+00:01:22.000 --> 00:01:26.733
+The first dense layer multiplies it by a twelve by sixty four weight matrix.
+
+23
+00:01:27.033 --> 00:01:32.095
+Out comes a sixty four dimensional version where the classes are easier to separate.
+
+24
+00:01:32.095 --> 00:01:34.867
+Training just nudges the numbers in that grid.
+
+25
+00:01:36.067 --> 00:01:36.894
+Let's recap.
+
+26
+00:01:36.894 --> 00:01:40.133
+A matrix is a transformation, not just a table.
+
+27
+00:01:40.433 --> 00:01:43.067
+Its columns show where the basis vectors land.
+
+28
+00:01:43.367 --> 00:01:45.367
+It can change the number of dimensions.
+
+29
+00:01:45.667 --> 00:01:49.731
+And neural network weights are matrices doing exactly this.
+
+30
+00:01:49.731 --> 00:01:51.867
+Next up: matrix multiplication.
