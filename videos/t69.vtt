@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+LightGBM.
+
+2
+00:00:02.300 --> 00:00:06.563
+On big tabular data, it is usually the fastest strong option.
+
+3
+00:00:06.563 --> 00:00:08.100
+Two ideas explain why.
+
+4
+00:00:09.300 --> 00:00:11.600
+The first idea is histogram binning.
+
+5
+00:00:11.900 --> 00:00:14.600
+Continuous features start as raw values.
+
+6
+00:00:14.900 --> 00:00:19.967
+LightGBM pre-buckets them into about two hundred fifty five bins, once.
+
+7
+00:00:20.267 --> 00:00:24.833
+Finding the best split now means scanning bins, instead of sorting raw values.
+
+8
+00:00:26.033 --> 00:00:28.367
+The second idea is how the tree grows.
+
+9
+00:00:28.667 --> 00:00:33.995
+Level-wise growth expands every level evenly, as XGBoost classically did.
+
+10
+00:00:33.995 --> 00:00:38.667
+LightGBM always splits the leaf with the biggest loss reduction.
+
+11
+00:00:38.967 --> 00:00:41.067
+That makes deeper, lopsided trees.
+
+12
+00:00:41.367 --> 00:00:45.633
+Which spend each split where it helps the most, so you get more accuracy per split.
+
+13
+00:00:45.933 --> 00:00:48.500
+Leaf-wise simply chases the biggest wins.
+
+14
+00:00:49.700 --> 00:00:51.267
+Here is what that looks like.
+
+15
+00:00:51.567 --> 00:00:53.000
+The root splits into two.
+
+16
+00:00:53.300 --> 00:00:58.970
+Only the branch that reduces loss the most keeps growing, while the other stays a single leaf.
+
+17
+00:00:58.970 --> 00:01:02.167
+The result is deep on one side, shallow on the other.
+
+18
+00:01:03.367 --> 00:01:04.433
+Let's race them.
+
+19
+00:01:04.733 --> 00:01:06.433
+Both get five hundred trees.
+
+20
+00:01:06.733 --> 00:01:07.933
+We time each fit.
+
+21
+00:01:08.233 --> 00:01:12.305
+Then check the AUC, to confirm accuracy is about equal.
+
+22
+00:01:12.305 --> 00:01:15.267
+LightGBM is often several times quicker.
+
+23
+00:01:16.467 --> 00:01:17.967
+Here is why speed matters.
+
+24
+00:01:18.267 --> 00:01:27.333
+Scale the exoplanet classifier from five thousand confirmed planets to two hundred thousand Kepler objects of interest, with forty features each.
+
+25
+00:01:27.633 --> 00:01:30.648
+XGBoost takes minutes per experiment.
+
+26
+00:01:30.648 --> 00:01:34.967
+LightGBM's bins cut that to seconds, at the same AUC.
+
+27
+00:01:35.267 --> 00:01:38.968
+So you test five feature ideas an hour instead of one.
+
+28
+00:01:38.968 --> 00:01:41.367
+Speed becomes accuracy, indirectly.
+
+29
+00:01:42.567 --> 00:01:43.672
+There is a trade.
+
+30
+00:01:43.672 --> 00:01:46.467
+Leaf-wise trees can overfit small datasets.
+
+31
+00:01:46.767 --> 00:01:51.033
+The knobs to respect are the number of leaves and the minimum data in a leaf.
+
+32
+00:01:52.233 --> 00:01:53.159
+Let's recap.
+
+33
+00:01:53.159 --> 00:01:56.167
+LightGBM is boosting rebuilt for speed.
+
+34
+00:01:56.467 --> 00:01:58.367
+Histogram bins replace sorting.
+
+35
+00:01:58.667 --> 00:02:00.800
+Leaf-wise growth makes deeper trees.
+
+36
+00:02:01.100 --> 00:02:03.764
+Watch the number of leaves on small data.
+
+37
+00:02:03.764 --> 00:02:04.933
+Next up: CatBoost.

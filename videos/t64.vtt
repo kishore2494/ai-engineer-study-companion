@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Linear regression.
+
+2
+00:00:02.200 --> 00:00:06.800
+It is simple, readable, and the baseline every fancier model has to beat.
+
+3
+00:00:08.000 --> 00:00:12.800
+Linear regression fits a line, or in many dimensions a hyperplane, through your data.
+
+4
+00:00:13.100 --> 00:00:16.300
+The prediction is a weight times the input, plus a bias.
+
+5
+00:00:16.600 --> 00:00:21.495
+It picks the line that minimizes the squared error between predictions and targets.
+
+6
+00:00:21.495 --> 00:00:23.500
+And its coefficients are readable.
+
+7
+00:00:24.700 --> 00:00:27.000
+Picture temperature against stellar flux.
+
+8
+00:00:27.300 --> 00:00:28.667
+Each dot is a planet.
+
+9
+00:00:28.967 --> 00:00:31.472
+The fitted line passes through the cloud.
+
+10
+00:00:31.472 --> 00:00:35.200
+The vertical gaps between dots and line are called residuals.
+
+11
+00:00:35.500 --> 00:00:38.340
+Square them and add them up, and you have the loss.
+
+12
+00:00:38.340 --> 00:00:40.233
+The best line makes that smallest.
+
+13
+00:00:41.433 --> 00:00:44.567
+Here is the surprise: no gradient descent is needed.
+
+14
+00:00:44.867 --> 00:00:48.967
+The best weights come from a closed form solution, called the normal equation.
+
+15
+00:00:49.267 --> 00:00:52.200
+One piece is the inverse of X transpose X.
+
+16
+00:00:52.500 --> 00:00:55.185
+The other is X transpose times the targets.
+
+17
+00:00:55.185 --> 00:00:57.433
+Solve it directly, and you are done.
+
+18
+00:00:58.633 --> 00:00:59.967
+Here it is both ways.
+
+19
+00:01:00.267 --> 00:01:04.667
+We add a column of ones for the bias, and solve the normal equation directly.
+
+20
+00:01:04.967 --> 00:01:12.267
+Scikit-learn's linear regression lands on the same numbers: about one eighty for the intercept, and ninety five for the slope.
+
+21
+00:01:13.467 --> 00:01:16.200
+Before getting fancy, fit the simple baseline.
+
+22
+00:01:16.500 --> 00:01:19.700
+Regress temperature on stellar flux and orbital period.
+
+23
+00:01:20.000 --> 00:01:27.433
+The flux coefficient is about ninety five kelvin per Earth flux, a number an astronomer can sanity check against physics.
+
+24
+00:01:27.733 --> 00:01:34.100
+Later, when XGBoost beats it by eight percent, you know exactly what the extra complexity bought.
+
+25
+00:01:35.300 --> 00:01:36.033
+Let's recap.
+
+26
+00:01:36.033 --> 00:01:38.600
+Linear regression minimizes squared error.
+
+27
+00:01:38.900 --> 00:01:40.600
+Its coefficients are readable.
+
+28
+00:01:40.900 --> 00:01:43.367
+It has a closed form, the normal equation.
+
+29
+00:01:43.667 --> 00:01:45.660
+And it is the baseline to beat.
+
+30
+00:01:45.660 --> 00:01:49.002
+If a plain line ties your deep model, ship the line.
+
+31
+00:01:49.002 --> 00:01:50.867
+Next up: logistic regression.

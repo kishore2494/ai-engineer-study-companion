@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Random forest.
+
+2
+00:00:02.200 --> 00:00:03.437
+One tree memorizes.
+
+3
+00:00:03.437 --> 00:00:07.800
+A whole forest of differently wrong trees cancels its own mistakes.
+
+4
+00:00:09.000 --> 00:00:11.667
+A single tree memorizes its training data.
+
+5
+00:00:11.967 --> 00:00:16.067
+A forest trains many trees, and makes each one overfit in a different way.
+
+6
+00:00:16.367 --> 00:00:19.800
+Then it averages their votes, and the errors largely cancel.
+
+7
+00:00:21.000 --> 00:00:23.000
+Here is the recipe, called bagging.
+
+8
+00:00:23.300 --> 00:00:24.833
+Start with the training table.
+
+9
+00:00:25.133 --> 00:00:28.833
+Each tree gets a bootstrap sample, rows drawn with replacement.
+
+10
+00:00:29.133 --> 00:00:33.867
+Each tree also considers only a random subset of features at every split.
+
+11
+00:00:34.167 --> 00:00:38.233
+So the trees come out diverse, and their votes are averaged into one answer.
+
+12
+00:00:39.433 --> 00:00:43.033
+That is why it is the reliable default for tabular data.
+
+13
+00:00:43.333 --> 00:00:45.233
+It is strong with almost no tuning.
+
+14
+00:00:45.533 --> 00:00:48.967
+The trees are independent, so training spreads across cores.
+
+15
+00:00:49.267 --> 00:00:52.767
+And you get feature importances and out of bag error for free.
+
+16
+00:00:53.967 --> 00:00:55.833
+Let's compare them in scikit-learn.
+
+17
+00:00:56.133 --> 00:00:58.133
+First, a single unlimited tree.
+
+18
+00:00:58.433 --> 00:01:00.300
+Then a forest of two hundred trees.
+
+19
+00:01:00.600 --> 00:01:02.135
+Same data, same split.
+
+20
+00:01:02.135 --> 00:01:05.067
+The forest usually wins by a clear margin.
+
+21
+00:01:06.267 --> 00:01:09.100
+Here is the exoplanet classifier's first version.
+
+22
+00:01:09.400 --> 00:01:13.833
+It ships on a two hundred tree forest, with no tuning beyond the number of trees.
+
+23
+00:01:14.133 --> 00:01:18.933
+It reaches zero point nine AUC on four features, and trains in seconds.
+
+24
+00:01:19.233 --> 00:01:23.867
+The feature importances double as the explanation slide for the science team.
+
+25
+00:01:25.067 --> 00:01:25.827
+Let's recap.
+
+26
+00:01:25.827 --> 00:01:28.233
+Train many trees on bootstrap samples.
+
+27
+00:01:28.533 --> 00:01:30.933
+Random feature subsets add diversity.
+
+28
+00:01:31.233 --> 00:01:33.467
+Averaging the votes reduces variance.
+
+29
+00:01:33.767 --> 00:01:37.325
+It is the reliable default for tabular data.
+
+30
+00:01:37.325 --> 00:01:38.700
+Next up: XGBoost.
