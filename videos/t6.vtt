@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.500
+Loops.
+
+2
+00:00:01.800 --> 00:00:04.741
+Python's for loop works on far more than ranges.
+
+3
+00:00:04.741 --> 00:00:07.867
+Let's see how, and when to reach for while instead.
+
+4
+00:00:09.067 --> 00:00:10.433
+Two loops, two jobs.
+
+5
+00:00:10.733 --> 00:00:16.767
+A for loop walks any iterable: lists, dictionary keys, file lines, even live network streams.
+
+6
+00:00:17.067 --> 00:00:20.967
+A while loop handles ends you can't predict, like retries and polling.
+
+7
+00:00:22.167 --> 00:00:24.067
+Every loop follows the same cycle.
+
+8
+00:00:24.367 --> 00:00:25.600
+Fetch the next item.
+
+9
+00:00:25.900 --> 00:00:27.500
+Check whether anything is left.
+
+10
+00:00:27.800 --> 00:00:32.300
+If so, run the body, then go around again, until the iterable is empty.
+
+11
+00:00:33.500 --> 00:00:36.100
+Idiomatic Python avoids index juggling.
+
+12
+00:00:36.400 --> 00:00:39.733
+Enumerate gives you the position, starting wherever you like.
+
+13
+00:00:40.033 --> 00:00:44.233
+Zip walks two lists side by side, pairing each planet with its gravity.
+
+14
+00:00:44.533 --> 00:00:47.233
+But zip stops at the shorter list without any warning.
+
+15
+00:00:48.433 --> 00:00:51.267
+Now a while loop that retries a flaky service.
+
+16
+00:00:51.567 --> 00:00:53.300
+We count attempts, up to three.
+
+17
+00:00:53.600 --> 00:00:56.300
+If the call succeeds, break leaves the loop early.
+
+18
+00:00:56.600 --> 00:01:00.200
+The else clause runs only if the loop finished without a break.
+
+19
+00:01:00.200 --> 00:01:01.800
+That means every try failed.
+
+20
+00:01:03.000 --> 00:01:05.000
+You'll see both loops in real systems.
+
+21
+00:01:05.300 --> 00:01:08.367
+DONKI is the flakiest API your agent calls.
+
+22
+00:01:08.667 --> 00:01:13.433
+The retry loop we just saw is copied almost verbatim into its space-weather tool.
+
+23
+00:01:13.733 --> 00:01:20.200
+And when FastAPI streams an LLM answer, the reader is just a for loop over a live network stream.
+
+24
+00:01:21.400 --> 00:01:22.189
+Let's recap.
+
+25
+00:01:22.189 --> 00:01:23.900
+For iterates any iterable.
+
+26
+00:01:24.200 --> 00:01:27.000
+Prefer enumerate and zip to index juggling.
+
+27
+00:01:27.300 --> 00:01:29.333
+Use while when you can't predict the end.
+
+28
+00:01:29.633 --> 00:01:32.164
+And remember, zip stops at the shortest.
+
+29
+00:01:32.164 --> 00:01:33.367
+Next up: functions.

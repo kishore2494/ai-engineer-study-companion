@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.433
+Sets.
+
+2
+00:00:01.733 --> 00:00:07.333
+A set removes duplicates automatically, and lets you compare collections with simple operators.
+
+3
+00:00:08.533 --> 00:00:11.267
+A set is an unordered bag of unique items.
+
+4
+00:00:11.567 --> 00:00:14.033
+Building one removes repeats instantly.
+
+5
+00:00:14.333 --> 00:00:17.367
+And checking membership is fast, because the set hashes.
+
+6
+00:00:18.567 --> 00:00:20.267
+First, why sets are fast.
+
+7
+00:00:20.567 --> 00:00:24.367
+Asking whether an item is in a list means scanning it one by one.
+
+8
+00:00:24.667 --> 00:00:29.067
+A set hashes the item and jumps straight to the answer, however big the set is.
+
+9
+00:00:30.267 --> 00:00:32.353
+Now the real power: set algebra.
+
+10
+00:00:32.353 --> 00:00:34.700
+Two surveys saw different asteroids.
+
+11
+00:00:35.000 --> 00:00:38.667
+Ampersand gives the intersection: objects both surveys saw.
+
+12
+00:00:38.967 --> 00:00:42.400
+The pipe gives the union: five unique objects overall.
+
+13
+00:00:42.700 --> 00:00:45.900
+Minus gives the difference: seen by A and not by B.
+
+14
+00:00:46.200 --> 00:00:49.433
+And caret gives objects seen by exactly one survey.
+
+15
+00:00:50.633 --> 00:00:51.933
+Here it is in Python.
+
+16
+00:00:52.233 --> 00:00:54.167
+Curly braces build the two sets.
+
+17
+00:00:54.467 --> 00:00:58.333
+Each operator reads aloud: both, either, or only in the first.
+
+18
+00:00:58.633 --> 00:01:02.733
+And wrapping a list of ids in set leaves just three unique values.
+
+19
+00:01:03.933 --> 00:01:06.000
+Here's how it pays off in a RAG system.
+
+20
+00:01:06.300 --> 00:01:10.933
+Keyword search and vector search run in parallel, each returning chunk ids.
+
+21
+00:01:11.233 --> 00:01:15.611
+Intersection finds chunks both retrievers loved, worth boosting.
+
+22
+00:01:15.611 --> 00:01:17.800
+Union gives a deduplicated list.
+
+23
+00:01:18.100 --> 00:01:20.967
+So you never pay the reranker twice for the same chunk.
+
+24
+00:01:22.167 --> 00:01:24.133
+One catch: sets have no order.
+
+25
+00:01:24.433 --> 00:01:28.600
+If order matters, dedupe with list of dict dot fromkeys instead.
+
+26
+00:01:29.800 --> 00:01:30.618
+Let's recap.
+
+27
+00:01:30.618 --> 00:01:32.867
+Sets hold unique, hashable items.
+
+28
+00:01:33.167 --> 00:01:35.067
+Membership checks are constant time.
+
+29
+00:01:35.367 --> 00:01:39.967
+The four operators do intersection, union, difference, and symmetric difference.
+
+30
+00:01:40.267 --> 00:01:42.051
+Just remember, no order.
+
+31
+00:01:42.051 --> 00:01:43.167
+Next up: loops.

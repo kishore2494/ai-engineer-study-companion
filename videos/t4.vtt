@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+Dictionaries.
+
+2
+00:00:02.000 --> 00:00:08.933
+Every API response, model config, and tool call you meet as an AI engineer arrives as a dictionary.
+
+3
+00:00:10.133 --> 00:00:15.500
+A dictionary maps keys to values, and looking one up is fast, constant time on average.
+
+4
+00:00:15.800 --> 00:00:20.333
+Keys must be hashable, so strings, numbers, and tuples work, but lists don't.
+
+5
+00:00:20.633 --> 00:00:24.900
+Since Python three seven, dictionaries also remember insertion order.
+
+6
+00:00:26.100 --> 00:00:27.667
+Why is lookup so fast?
+
+7
+00:00:27.967 --> 00:00:29.033
+You give it a key.
+
+8
+00:00:29.333 --> 00:00:31.267
+Python hashes the key into a number.
+
+9
+00:00:31.567 --> 00:00:33.467
+That number points straight to one slot.
+
+10
+00:00:33.767 --> 00:00:35.661
+And the value is sitting right there.
+
+11
+00:00:35.661 --> 00:00:36.633
+Nothing is scanned.
+
+12
+00:00:37.833 --> 00:00:41.533
+Real JSON is dictionaries nested inside dictionaries.
+
+13
+00:00:41.833 --> 00:00:44.533
+The top object has a name and a hazard flag.
+
+14
+00:00:44.833 --> 00:00:46.833
+And a nested diameter dictionary.
+
+15
+00:00:47.133 --> 00:00:50.433
+To reach the number, you just chain the keys, level by level.
+
+16
+00:00:51.633 --> 00:00:53.200
+Here are the habits that matter.
+
+17
+00:00:53.500 --> 00:00:57.233
+Dot get with a default survives a missing key instead of crashing.
+
+18
+00:00:57.533 --> 00:01:02.433
+A dict comprehension reshapes a list of records into a name to size map.
+
+19
+00:01:02.733 --> 00:01:06.300
+And dot items lets you loop over keys and values together.
+
+20
+00:01:07.500 --> 00:01:09.500
+Four tools cover most daily work.
+
+21
+00:01:09.800 --> 00:01:12.233
+Get with a default, for inconsistent data.
+
+22
+00:01:12.533 --> 00:01:13.833
+Items, for looping.
+
+23
+00:01:14.133 --> 00:01:16.067
+Comprehensions, for reshaping.
+
+24
+00:01:16.367 --> 00:01:19.333
+And the pipe operator, which merges two dictionaries.
+
+25
+00:01:20.533 --> 00:01:22.133
+Here's where this keeps you safe.
+
+26
+00:01:22.433 --> 00:01:26.733
+The DONKI service returns flare entries where some fields are simply missing.
+
+27
+00:01:27.033 --> 00:01:30.433
+Chained gets with defaults keep your agent's tool from crashing.
+
+28
+00:01:30.733 --> 00:01:37.233
+And the arguments an LLM sends to a tool are a dictionary too, so the same discipline validates them.
+
+29
+00:01:38.433 --> 00:01:39.172
+Let's recap.
+
+30
+00:01:39.172 --> 00:01:42.433
+A dictionary is a hash map with constant time lookup.
+
+31
+00:01:42.733 --> 00:01:44.800
+All JSON becomes a dictionary.
+
+32
+00:01:45.100 --> 00:01:47.867
+Use get defaults, items, and comprehensions.
+
+33
+00:01:48.167 --> 00:01:50.452
+And remember keys must be hashable.
+
+34
+00:01:50.452 --> 00:01:51.367
+Next up: sets.
