@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Tuples.
+
+2
+00:00:01.833 --> 00:00:07.733
+They look like lists, but one small difference unlocks dictionary keys and multiple return values.
+
+3
+00:00:08.933 --> 00:00:12.833
+A tuple is ordered like a list, but it can't change once it's created.
+
+4
+00:00:13.133 --> 00:00:14.573
+That isn't a limitation.
+
+5
+00:00:14.573 --> 00:00:17.633
+It's the feature, because immutable means hashable.
+
+6
+00:00:17.933 --> 00:00:21.567
+And note, it's the comma that makes a tuple, not the parentheses.
+
+7
+00:00:22.767 --> 00:00:24.600
+Here's why hashability matters.
+
+8
+00:00:24.900 --> 00:00:28.133
+A tuple never changes, so its hash never changes.
+
+9
+00:00:28.433 --> 00:00:31.200
+A list could mutate, so its hash would keep shifting.
+
+10
+00:00:31.500 --> 00:00:36.600
+That means a tuple works as a dictionary key, and a list crashes with an unhashable error.
+
+11
+00:00:37.800 --> 00:00:42.200
+Tuples are also the hidden machinery behind multiple return values.
+
+12
+00:00:42.500 --> 00:00:47.233
+When a function returns two values with a comma, Python packs them into one tuple.
+
+13
+00:00:47.533 --> 00:00:49.967
+That single tuple travels back to the caller.
+
+14
+00:00:50.267 --> 00:00:52.650
+And the caller unpacks it into two names.
+
+15
+00:00:52.650 --> 00:00:54.800
+Even the classic swap works this way.
+
+16
+00:00:56.000 --> 00:00:58.233
+Here it is in code, with Halley's comet.
+
+17
+00:00:58.533 --> 00:01:03.333
+The function computes the closest and farthest distance from the sun, and returns both.
+
+18
+00:01:03.633 --> 00:01:05.567
+We unpack the pair into p and a.
+
+19
+00:01:05.867 --> 00:01:10.133
+Halley swings from point five nine to thirty five astronomical units.
+
+20
+00:01:11.333 --> 00:01:13.133
+Here's a place you'll use this daily.
+
+21
+00:01:13.433 --> 00:01:16.667
+Your agent keeps asking for the same natural event lookups.
+
+22
+00:01:16.967 --> 00:01:22.367
+It caches them under a key made of latitude, longitude, and radius, which is a tuple.
+
+23
+00:01:22.667 --> 00:01:26.383
+A repeat question hits the cache instead of the API.
+
+24
+00:01:26.383 --> 00:01:30.100
+Reranker pairs of chunk id and score are tuples too.
+
+25
+00:01:31.300 --> 00:01:34.167
+One trap: immutable does not mean deep-frozen.
+
+26
+00:01:34.467 --> 00:01:38.267
+The tuple's slots are sealed, but a list inside it can still change.
+
+27
+00:01:39.467 --> 00:01:40.295
+Let's recap.
+
+28
+00:01:40.295 --> 00:01:42.433
+Tuples are immutable sequences.
+
+29
+00:01:42.733 --> 00:01:46.033
+Immutable means hashable, so they can be dictionary keys.
+
+30
+00:01:46.333 --> 00:01:49.167
+Multiple return values are really one tuple.
+
+31
+00:01:49.467 --> 00:01:50.966
+And the comma makes it.
+
+32
+00:01:50.966 --> 00:01:52.400
+Next up: dictionaries.
