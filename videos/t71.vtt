@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+Support vector machines.
+
+2
+00:00:02.533 --> 00:00:04.642
+Not just any separating boundary.
+
+3
+00:00:04.642 --> 00:00:05.600
+The widest one.
+
+4
+00:00:06.800 --> 00:00:09.286
+Many lines can separate two classes.
+
+5
+00:00:09.286 --> 00:00:12.600
+An SVM asks for the one with the maximum margin.
+
+6
+00:00:12.900 --> 00:00:17.900
+The margin is the distance from the boundary to the nearest training points of either class.
+
+7
+00:00:18.200 --> 00:00:20.533
+The dashed lines mark the margin edges.
+
+8
+00:00:20.833 --> 00:00:23.517
+The points touching them are the support vectors.
+
+9
+00:00:23.517 --> 00:00:28.500
+They alone define the boundary, and every other point could be deleted without changing it.
+
+10
+00:00:29.700 --> 00:00:30.847
+Why does it matter?
+
+11
+00:00:30.847 --> 00:00:34.833
+Fat margins generalize better than boundaries that graze the data.
+
+12
+00:00:35.133 --> 00:00:36.867
+Only the support vectors matter.
+
+13
+00:00:37.167 --> 00:00:39.733
+A boundary hugging the training points is fragile.
+
+14
+00:00:40.933 --> 00:00:43.273
+For curved data, a straight line fails.
+
+15
+00:00:43.273 --> 00:00:44.833
+The kernel trick fixes it.
+
+16
+00:00:45.133 --> 00:00:47.867
+Start with data no straight line can separate.
+
+17
+00:00:48.167 --> 00:00:53.467
+Implicitly map the points into a higher dimensional space, without ever computing that mapping.
+
+18
+00:00:53.767 --> 00:00:55.867
+There, a linear boundary separates them.
+
+19
+00:00:56.167 --> 00:00:59.723
+Back in the original space, it appears as a smooth curve.
+
+20
+00:00:59.723 --> 00:01:02.967
+The RBF kernel does this with a similarity function.
+
+21
+00:01:04.167 --> 00:01:06.400
+Let's test it on two interleaved moons.
+
+22
+00:01:06.700 --> 00:01:08.600
+We generate the moons with some noise.
+
+23
+00:01:08.900 --> 00:01:14.933
+Each model scales the features first, because SVMs are distance based, then fits an SVC.
+
+24
+00:01:15.233 --> 00:01:18.679
+The linear kernel scores about zero point eight eight.
+
+25
+00:01:18.679 --> 00:01:21.933
+The RBF kernel reaches about zero point nine seven.
+
+26
+00:01:23.133 --> 00:01:24.533
+Now a real scenario.
+
+27
+00:01:24.833 --> 00:01:33.971
+Plot exoplanets by log period and radius, and hot Jupiters and rocky planets form two curved lobes that no straight line separates.
+
+28
+00:01:33.971 --> 00:01:36.900
+A linear SVC scores zero point eight four.
+
+29
+00:01:37.200 --> 00:01:43.222
+The RBF kernel wraps a smooth boundary around each lobe and hits zero point nine five.
+
+30
+00:01:43.222 --> 00:01:45.532
+Same margin maximizing machinery.
+
+31
+00:01:45.532 --> 00:01:48.333
+The kernel just changed what line means.
+
+32
+00:01:49.533 --> 00:01:50.454
+Let's recap.
+
+33
+00:01:50.454 --> 00:01:53.600
+An SVM finds the maximum margin boundary.
+
+34
+00:01:53.900 --> 00:01:55.867
+Support vectors alone define it.
+
+35
+00:01:56.167 --> 00:01:58.100
+The kernel trick bends the boundary.
+
+36
+00:01:58.400 --> 00:02:00.941
+And always scale your features first.
+
+37
+00:02:00.941 --> 00:02:01.833
+Next up: KNN.

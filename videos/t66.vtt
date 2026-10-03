@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Decision trees.
+
+2
+00:00:02.200 --> 00:00:07.300
+A tree is just a stack of if and else questions, so you can read exactly why it decided.
+
+3
+00:00:08.500 --> 00:00:11.567
+At every node, the tree picks a feature and a threshold.
+
+4
+00:00:11.867 --> 00:00:18.700
+It chooses the split that makes the two child groups as pure as possible, measured by Gini impurity or entropy.
+
+5
+00:00:19.000 --> 00:00:20.867
+Then it repeats inside each child.
+
+6
+00:00:22.067 --> 00:00:23.467
+Here is a depth two tree.
+
+7
+00:00:23.767 --> 00:00:26.000
+The first question is about temperature.
+
+8
+00:00:26.300 --> 00:00:29.800
+If it is cool enough, we ask a second question, about radius.
+
+9
+00:00:30.100 --> 00:00:33.510
+Prediction is just walking a path from the root to a leaf.
+
+10
+00:00:33.510 --> 00:00:35.333
+Cool and small means candidate.
+
+11
+00:00:36.533 --> 00:00:37.667
+But there is a catch.
+
+12
+00:00:37.967 --> 00:00:41.100
+Grown to full depth, a tree memorizes the training set.
+
+13
+00:00:41.400 --> 00:00:46.271
+Training accuracy climbs toward perfect, while test accuracy falls behind.
+
+14
+00:00:46.271 --> 00:00:49.167
+Depth limits and minimum leaf sizes tame it.
+
+15
+00:00:50.367 --> 00:00:51.933
+Here it is in scikit-learn.
+
+16
+00:00:52.233 --> 00:00:56.233
+We limit the depth to three, and export the tree as plain text rules.
+
+17
+00:00:56.533 --> 00:01:00.668
+Then we grow one with no limit, and compare train and test scores.
+
+18
+00:01:00.668 --> 00:01:01.733
+Expect a big gap.
+
+19
+00:01:02.933 --> 00:01:06.033
+Here is why trees matter even when they are mediocre.
+
+20
+00:01:06.333 --> 00:01:09.333
+A domain scientist will not trust the model said so.
+
+21
+00:01:09.633 --> 00:01:17.700
+So you hand them the printed depth three tree: temperature under three fifty kelvin, radius under one point eight Earths, means candidate.
+
+22
+00:01:18.000 --> 00:01:20.720
+They recognize a crude habitable zone rule.
+
+23
+00:01:20.720 --> 00:01:23.567
+That trust lets the random forest replace it.
+
+24
+00:01:24.767 --> 00:01:25.512
+Let's recap.
+
+25
+00:01:25.512 --> 00:01:27.500
+A tree is recursive if and else.
+
+26
+00:01:27.800 --> 00:01:29.633
+Each split makes the groups purer.
+
+27
+00:01:29.933 --> 00:01:31.733
+Prediction walks from root to leaf.
+
+28
+00:01:32.033 --> 00:01:35.142
+Deep trees memorize, and ensembles fix that.
+
+29
+00:01:35.142 --> 00:01:36.767
+Next up: random forest.

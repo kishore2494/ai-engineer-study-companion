@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+XGBoost.
+
+2
+00:00:02.300 --> 00:00:07.700
+The library that ruled tabular competitions for a decade, built on one clever idea.
+
+3
+00:00:08.900 --> 00:00:12.400
+A forest builds its trees in parallel and averages them.
+
+4
+00:00:12.700 --> 00:00:15.367
+Gradient boosting builds them one after another.
+
+5
+00:00:15.667 --> 00:00:19.767
+Each new tree is trained on the errors the ensemble has left so far.
+
+6
+00:00:20.067 --> 00:00:24.700
+Dozens to thousands of small corrections compound into a very strong model.
+
+7
+00:00:25.900 --> 00:00:26.900
+Here is the loop.
+
+8
+00:00:27.200 --> 00:00:29.300
+Predict with the trees you have so far.
+
+9
+00:00:29.600 --> 00:00:32.300
+Measure the residuals, meaning what is still wrong.
+
+10
+00:00:32.600 --> 00:00:34.467
+Fit a small new tree to those errors.
+
+11
+00:00:34.767 --> 00:00:37.555
+And add it in, scaled by a small learning rate.
+
+12
+00:00:37.555 --> 00:00:38.267
+Then repeat.
+
+13
+00:00:39.467 --> 00:00:41.967
+The knob that matters most is early stopping.
+
+14
+00:00:42.267 --> 00:00:44.533
+Training loss keeps falling with every round.
+
+15
+00:00:44.833 --> 00:00:47.724
+But validation loss bottoms out and then rises.
+
+16
+00:00:47.724 --> 00:00:51.967
+Stop there, and the model picks its own size instead of you guessing.
+
+17
+00:00:53.167 --> 00:00:54.367
+Here it is in code.
+
+18
+00:00:54.667 --> 00:00:57.633
+We allow up to two thousand trees, only as a cap.
+
+19
+00:00:57.933 --> 00:01:00.200
+Each step is small, with shallow trees.
+
+20
+00:01:00.500 --> 00:01:03.267
+Stop after fifty rounds with no improvement.
+
+21
+00:01:03.567 --> 00:01:06.133
+And we hand it a validation set to watch.
+
+22
+00:01:07.333 --> 00:01:09.967
+Now the result on our exoplanet features.
+
+23
+00:01:10.267 --> 00:01:13.343
+The forest plateaus at zero point nine AUC.
+
+24
+00:01:13.343 --> 00:01:20.282
+XGBoost with early stopping reaches zero point nine three, stopping at round four hundred twelve.
+
+25
+00:01:20.282 --> 00:01:25.933
+Those three points mean fewer wasted follow up observations per real candidate.
+
+26
+00:01:27.133 --> 00:01:27.879
+Let's recap.
+
+27
+00:01:27.879 --> 00:01:30.367
+Boosting builds trees one after another.
+
+28
+00:01:30.667 --> 00:01:32.800
+Each tree fixes the residual errors.
+
+29
+00:01:33.100 --> 00:01:36.000
+XGBoost adds regularization and speed.
+
+30
+00:01:36.300 --> 00:01:39.311
+And early stopping picks the model size.
+
+31
+00:01:39.311 --> 00:01:40.667
+Next up: LightGBM.
