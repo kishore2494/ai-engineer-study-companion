@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+Derivatives.
+
+2
+00:00:02.033 --> 00:00:05.670
+This is the single most important idea in the whole volume.
+
+3
+00:00:05.670 --> 00:00:06.533
+Let's see why.
+
+4
+00:00:07.733 --> 00:00:10.800
+The derivative is the instantaneous rate of change.
+
+5
+00:00:11.100 --> 00:00:15.342
+Zoom in far enough on any smooth curve and it looks like a straight line.
+
+6
+00:00:15.342 --> 00:00:17.433
+The derivative is that line's slope.
+
+7
+00:00:17.733 --> 00:00:22.533
+Where the slope is zero, you have a flat spot: a minimum, a maximum, or a saddle.
+
+8
+00:00:23.733 --> 00:00:25.300
+Here is the curve x squared.
+
+9
+00:00:25.600 --> 00:00:27.333
+Pick the point x equals three.
+
+10
+00:00:27.633 --> 00:00:30.917
+The dashed tangent line just touches the curve there.
+
+11
+00:00:30.917 --> 00:00:33.333
+Its slope is six, which is two times x.
+
+12
+00:00:34.533 --> 00:00:36.249
+How do we compute that slope?
+
+13
+00:00:36.249 --> 00:00:36.900
+By nudging.
+
+14
+00:00:37.200 --> 00:00:41.112
+Change x by a tiny amount h, and see how much f changes.
+
+15
+00:00:41.112 --> 00:00:42.300
+That is the rise.
+
+16
+00:00:42.600 --> 00:00:43.892
+Divide by the run, h.
+
+17
+00:00:43.892 --> 00:00:47.400
+The smaller h gets, the closer you get to the true slope.
+
+18
+00:00:48.600 --> 00:00:49.867
+Let's do it in Python.
+
+19
+00:00:50.167 --> 00:00:51.700
+The function is x squared.
+
+20
+00:00:52.000 --> 00:00:54.033
+We try smaller and smaller nudges.
+
+21
+00:00:54.333 --> 00:00:58.433
+And the slope converges on six, just as the rule two x predicts.
+
+22
+00:00:59.633 --> 00:01:01.333
+Why does this matter for training?
+
+23
+00:01:01.633 --> 00:01:07.700
+If the slope of the loss with respect to a weight is positive, then decreasing the weight decreases the loss.
+
+24
+00:01:08.000 --> 00:01:09.779
+So that is exactly what we do.
+
+25
+00:01:09.779 --> 00:01:12.033
+Compute the slope, step the other way.
+
+26
+00:01:13.233 --> 00:01:14.800
+Here is a practical use.
+
+27
+00:01:15.100 --> 00:01:20.400
+You write a custom loss for the exoplanet classifier, weighting false negatives more heavily.
+
+28
+00:01:20.700 --> 00:01:26.033
+Before trusting autograd, nudge one weight by h and compare against what backward reports.
+
+29
+00:01:26.333 --> 00:01:30.353
+A mismatch means a non differentiable kink or a detached tensor.
+
+30
+00:01:30.353 --> 00:01:33.933
+You catch it in minutes, not after a wasted training run.
+
+31
+00:01:35.133 --> 00:01:35.878
+Let's recap.
+
+32
+00:01:35.878 --> 00:01:38.300
+The derivative is the slope at a point.
+
+33
+00:01:38.600 --> 00:01:40.700
+You can estimate it with a tiny nudge.
+
+34
+00:01:41.000 --> 00:01:43.000
+Zero slope marks flat spots.
+
+35
+00:01:43.300 --> 00:01:47.265
+And training is just the slope of the loss, then a step downhill.
+
+36
+00:01:47.265 --> 00:01:49.033
+Next up: partial derivatives.

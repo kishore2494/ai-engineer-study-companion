@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Partial derivatives.
+
+2
+00:00:02.400 --> 00:00:04.503
+Real models have millions of knobs.
+
+3
+00:00:04.503 --> 00:00:07.267
+Here is how we ask each one which way to turn.
+
+4
+00:00:08.467 --> 00:00:12.133
+A partial derivative is a slope with respect to one variable.
+
+5
+00:00:12.433 --> 00:00:14.100
+We nudge just that one input.
+
+6
+00:00:14.400 --> 00:00:16.333
+Everything else holds perfectly still.
+
+7
+00:00:16.633 --> 00:00:19.054
+Then we watch how the function responds.
+
+8
+00:00:19.054 --> 00:00:21.233
+The symbol is a curly d, called del.
+
+9
+00:00:22.433 --> 00:00:25.433
+Take a tiny model that predicts a planet's radius.
+
+10
+00:00:25.733 --> 00:00:27.167
+It has a weight, w.
+
+11
+00:00:27.467 --> 00:00:28.600
+And a bias, b.
+
+12
+00:00:28.900 --> 00:00:30.174
+Both feed one loss.
+
+13
+00:00:30.174 --> 00:00:34.667
+So the loss has two partial derivatives, one slope along each axis.
+
+14
+00:00:35.867 --> 00:00:37.167
+Here it is in Python.
+
+15
+00:00:37.467 --> 00:00:41.267
+One planet with mass two, and a true radius of one point four.
+
+16
+00:00:41.567 --> 00:00:44.300
+First we nudge only w, keeping b still.
+
+17
+00:00:44.600 --> 00:00:45.967
+Then we nudge only b.
+
+18
+00:00:46.267 --> 00:00:49.738
+The slopes are twenty two point four and eleven point two.
+
+19
+00:00:49.738 --> 00:00:51.533
+Each knob gets its own answer.
+
+20
+00:00:52.733 --> 00:00:54.300
+Compare them side by side.
+
+21
+00:00:54.600 --> 00:00:57.607
+The loss is twice as sensitive to w as to b.
+
+22
+00:00:57.607 --> 00:01:01.367
+Both are positive, so both knobs should be turned down.
+
+23
+00:01:02.567 --> 00:01:03.410
+Now scale up.
+
+24
+00:01:03.410 --> 00:01:07.367
+A light curve CNN has about four hundred thousand parameters.
+
+25
+00:01:08.567 --> 00:01:14.500
+One call to loss dot backward fills every parameter's grad with its own partial derivative.
+
+26
+00:01:14.800 --> 00:01:21.833
+When you inspect the gradient norm per layer to hunt vanishing gradients, you are reading statistics over these partials.
+
+27
+00:01:23.033 --> 00:01:23.778
+Let's recap.
+
+28
+00:01:23.778 --> 00:01:27.067
+A partial derivative is the slope along one variable.
+
+29
+00:01:27.367 --> 00:01:28.933
+All the others are held still.
+
+30
+00:01:29.233 --> 00:01:30.867
+Each weight gets its own slope.
+
+31
+00:01:31.167 --> 00:01:33.457
+And backward computes them all at once.
+
+32
+00:01:33.457 --> 00:01:34.867
+Next up: the chain rule.

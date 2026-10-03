@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+The chain rule.
+
+2
+00:00:02.033 --> 00:00:04.562
+This single rule is how a network learns.
+
+3
+00:00:04.562 --> 00:00:06.967
+Let's see how rates of change multiply.
+
+4
+00:00:08.167 --> 00:00:09.900
+Imagine a chain of two steps.
+
+5
+00:00:10.200 --> 00:00:11.233
+Start with x.
+
+6
+00:00:11.533 --> 00:00:13.733
+If u changes twice as fast as x.
+
+7
+00:00:14.033 --> 00:00:19.919
+And y changes three times as fast as u, then y changes six times as fast as x.
+
+8
+00:00:19.919 --> 00:00:22.333
+Rates of change simply multiply.
+
+9
+00:00:23.533 --> 00:00:25.667
+Here is the rule for nested functions.
+
+10
+00:00:25.967 --> 00:00:29.833
+Take the slope of the outer function, evaluated at the inner value.
+
+11
+00:00:30.133 --> 00:00:32.867
+Then multiply by the slope of the inner function.
+
+12
+00:00:33.167 --> 00:00:35.700
+Every layer contributes one local factor.
+
+13
+00:00:36.900 --> 00:00:38.300
+Let's test it in Python.
+
+14
+00:00:38.600 --> 00:00:41.300
+The function is the sine of x squared, nested.
+
+15
+00:00:41.600 --> 00:00:45.767
+By the chain rule, the slope is cosine of x squared, times two x.
+
+16
+00:00:46.067 --> 00:00:49.432
+We compare against a tiny nudge, and the answer is True.
+
+17
+00:00:49.432 --> 00:00:50.333
+The rule holds.
+
+18
+00:00:51.533 --> 00:00:54.967
+A neural network is nothing but deeply nested functions.
+
+19
+00:00:55.267 --> 00:00:56.800
+The loss wraps a softmax.
+
+20
+00:00:57.100 --> 00:00:58.533
+Which wraps the last layer.
+
+21
+00:00:58.833 --> 00:01:00.699
+Which wraps the one before it.
+
+22
+00:01:00.699 --> 00:01:05.300
+Backprop multiplies local derivatives from the outside in, layer by layer.
+
+23
+00:01:06.500 --> 00:01:08.339
+Now a real debugging story.
+
+24
+00:01:08.339 --> 00:01:12.833
+A twelve layer CNN with sigmoids stopped learning after epoch two.
+
+25
+00:01:13.133 --> 00:01:16.048
+Sigmoid's slope is at most zero point two five.
+
+26
+00:01:16.048 --> 00:01:21.567
+Multiply that through twelve layers and you get roughly six times ten to the minus eight.
+
+27
+00:01:21.867 --> 00:01:24.334
+The early layers' gradients had vanished.
+
+28
+00:01:24.334 --> 00:01:28.367
+ReLU has slope one for active units, and skip connections fixed it.
+
+29
+00:01:28.667 --> 00:01:30.733
+All of that was chain rule arithmetic.
+
+30
+00:01:31.933 --> 00:01:32.695
+Let's recap.
+
+31
+00:01:32.695 --> 00:01:35.233
+Rates of change multiply through layers.
+
+32
+00:01:35.533 --> 00:01:38.533
+Backpropagation is the chain rule applied backward.
+
+33
+00:01:38.833 --> 00:01:42.533
+Long chains of small factors vanish, and large ones explode.
+
+34
+00:01:42.833 --> 00:01:44.333
+Next up: gradients.

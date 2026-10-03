@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.733
+Singular value decomposition.
+
+2
+00:00:03.033 --> 00:00:07.728
+One factorization works on any matrix, and it explains why LoRA works.
+
+3
+00:00:07.728 --> 00:00:08.667
+Let's see how.
+
+4
+00:00:09.867 --> 00:00:13.200
+Any matrix, square or not, factors into three pieces.
+
+5
+00:00:13.500 --> 00:00:16.700
+Reading right to left, V transpose is a rotation.
+
+6
+00:00:17.000 --> 00:00:20.745
+Sigma is a diagonal matrix that stretches along each axis.
+
+7
+00:00:20.745 --> 00:00:25.200
+Its entries are the singular values, sorted from biggest to smallest.
+
+8
+00:00:25.500 --> 00:00:27.367
+And U is a second rotation.
+
+9
+00:00:28.567 --> 00:00:31.967
+So any transformation is just a three step pipeline.
+
+10
+00:00:32.267 --> 00:00:33.467
+A vector comes in.
+
+11
+00:00:33.767 --> 00:00:36.967
+It is rotated into the matrix's natural axes.
+
+12
+00:00:37.267 --> 00:00:39.000
+Stretched by the singular values.
+
+13
+00:00:39.300 --> 00:00:41.633
+And rotated again into the output space.
+
+14
+00:00:42.833 --> 00:00:44.400
+Here is the killer property.
+
+15
+00:00:44.700 --> 00:00:48.051
+In real data the singular values fall off quickly.
+
+16
+00:00:48.051 --> 00:00:54.083
+Keep only the top k and drop the rest, and you get the best possible rank k approximation.
+
+17
+00:00:54.083 --> 00:00:57.300
+That is why most matrices are secretly low rank.
+
+18
+00:00:58.500 --> 00:01:00.433
+In NumPy it takes a few lines.
+
+19
+00:01:00.733 --> 00:01:05.600
+We factor a matrix of two hundred timesteps by sixty four telemetry channels.
+
+20
+00:01:05.900 --> 00:01:08.533
+Then keep only the five strongest directions.
+
+21
+00:01:08.833 --> 00:01:10.655
+And measure how much we lost.
+
+22
+00:01:10.655 --> 00:01:13.167
+For real telemetry, that error is small.
+
+23
+00:01:14.367 --> 00:01:16.500
+This is the intuition behind LoRA.
+
+24
+00:01:16.800 --> 00:01:22.867
+Fine tuning a model means a weight change of four thousand ninety six by four thousand ninety six.
+
+25
+00:01:23.167 --> 00:01:28.067
+LoRA bets that it is roughly rank sixteen, so it trains two skinny matrices instead.
+
+26
+00:01:28.367 --> 00:01:31.074
+That is under one percent of the parameters.
+
+27
+00:01:31.074 --> 00:01:34.767
+It works because singular values of real updates decay fast.
+
+28
+00:01:35.967 --> 00:01:36.772
+Let's recap.
+
+29
+00:01:36.772 --> 00:01:40.667
+Any matrix is a rotation, a stretch, and another rotation.
+
+30
+00:01:40.967 --> 00:01:43.933
+Sigma holds the singular values, largest first.
+
+31
+00:01:44.233 --> 00:01:47.700
+Keeping the top k gives the best low rank approximation.
+
+32
+00:01:48.000 --> 00:01:50.343
+And that is the idea behind LoRA.
+
+33
+00:01:50.343 --> 00:01:51.833
+Next up: derivatives.

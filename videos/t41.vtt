@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+Gradients.
+
+2
+00:00:01.933 --> 00:00:05.177
+Stack the slopes into one arrow, then walk the other way.
+
+3
+00:00:05.177 --> 00:00:06.600
+That is how models learn.
+
+4
+00:00:07.800 --> 00:00:11.300
+The gradient stacks all the partial derivatives into one vector.
+
+5
+00:00:11.600 --> 00:00:17.333
+That vector points in the direction where the function climbs fastest, and its length tells you how steep it is.
+
+6
+00:00:17.633 --> 00:00:21.133
+Which means the opposite direction is the fastest way down.
+
+7
+00:00:22.333 --> 00:00:24.000
+Here is the whole update rule.
+
+8
+00:00:24.300 --> 00:00:27.100
+Compute the gradient of the loss, which points uphill.
+
+9
+00:00:27.400 --> 00:00:29.200
+Scale it by the learning rate, eta.
+
+10
+00:00:29.500 --> 00:00:31.220
+Subtract it from the weights.
+
+11
+00:00:31.220 --> 00:00:35.133
+That is gradient descent, repeated until the loss stops improving.
+
+12
+00:00:36.333 --> 00:00:37.900
+Watch it on a simple bowl.
+
+13
+00:00:38.200 --> 00:00:41.267
+The ball starts high on the curve and steps against the slope.
+
+14
+00:00:41.567 --> 00:00:45.233
+As it nears the bottom the slope flattens, so the steps get smaller.
+
+15
+00:00:46.433 --> 00:00:47.833
+The learning rate needs care.
+
+16
+00:00:48.133 --> 00:00:50.367
+Too small, and you crawl toward the minimum.
+
+17
+00:00:50.667 --> 00:00:54.467
+Too large, and you overshoot the valley wall, so the loss can blow up.
+
+18
+00:00:54.767 --> 00:00:57.567
+That is why it is the classic first hyperparameter.
+
+19
+00:00:58.767 --> 00:01:00.133
+Here it is in NumPy.
+
+20
+00:01:00.433 --> 00:01:02.833
+We start at three, four, high on the bowl.
+
+21
+00:01:03.133 --> 00:01:07.667
+The gradient of x squared plus y squared is simply two times the position.
+
+22
+00:01:07.967 --> 00:01:11.953
+We step against it, twenty five times, and land near zero, zero.
+
+23
+00:01:11.953 --> 00:01:12.700
+The minimum.
+
+24
+00:01:13.900 --> 00:01:17.067
+Every loss curve in TensorBoard is a trace of this walk.
+
+25
+00:01:17.367 --> 00:01:20.733
+If the loss explodes to NaN, the learning rate was too high.
+
+26
+00:01:21.033 --> 00:01:24.867
+If it plateaus early, it may be too low, or you are on a flat region.
+
+27
+00:01:25.167 --> 00:01:30.233
+And schedulers like warmup and cosine decay just modulate eta along the way.
+
+28
+00:01:31.433 --> 00:01:32.172
+Let's recap.
+
+29
+00:01:32.172 --> 00:01:33.833
+The gradient points uphill.
+
+30
+00:01:34.133 --> 00:01:35.867
+Training steps the opposite way.
+
+31
+00:01:36.167 --> 00:01:38.133
+The learning rate sets the step size.
+
+32
+00:01:38.433 --> 00:01:41.299
+And every loss curve is a trace of this walk.
+
+33
+00:01:41.299 --> 00:01:42.700
+Next up: the Jacobian.
