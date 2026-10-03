@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+Conditional probability.
+
+2
+00:00:02.633 --> 00:00:06.970
+A language model predicts the next token given all the previous ones.
+
+3
+00:00:06.970 --> 00:00:09.233
+That word, given, is the whole idea.
+
+4
+00:00:10.433 --> 00:00:13.033
+Conditional probability is a simple move.
+
+5
+00:00:13.333 --> 00:00:14.767
+You learn that B happened.
+
+6
+00:00:15.067 --> 00:00:17.833
+So you throw away every outcome where B did not.
+
+7
+00:00:18.133 --> 00:00:21.500
+Then you re-measure how likely A is, inside what is left.
+
+8
+00:00:22.700 --> 00:00:26.733
+Here are all thirty six outcomes of rolling two dice, showing their sums.
+
+9
+00:00:27.033 --> 00:00:29.734
+Now suppose we learn the first die is three.
+
+10
+00:00:29.734 --> 00:00:32.067
+Only this row of six outcomes remains.
+
+11
+00:00:32.367 --> 00:00:35.469
+Inside that row, just one cell has a sum of eight.
+
+12
+00:00:35.469 --> 00:00:39.067
+So the probability of eight, given a three, is one in six.
+
+13
+00:00:40.267 --> 00:00:41.500
+Here is the formula.
+
+14
+00:00:41.800 --> 00:00:45.033
+On top, the overlap: cases where both A and B happen.
+
+15
+00:00:45.333 --> 00:00:48.367
+Underneath, the new universe, which is everything in B.
+
+16
+00:00:48.667 --> 00:00:52.100
+So the conditional probability is the overlap's share of B.
+
+17
+00:00:53.300 --> 00:00:55.167
+We can check this by simulation.
+
+18
+00:00:55.467 --> 00:00:57.867
+Roll two dice a hundred thousand times.
+
+19
+00:00:58.167 --> 00:01:00.667
+Keep only the rolls where the first die is three.
+
+20
+00:01:00.967 --> 00:01:03.182
+And measure how often the sum is eight.
+
+21
+00:01:03.182 --> 00:01:05.000
+It comes out close to one sixth.
+
+22
+00:01:06.200 --> 00:01:07.933
+Two cautions before moving on.
+
+23
+00:01:08.233 --> 00:01:10.359
+Conditioning is not causation.
+
+24
+00:01:10.359 --> 00:01:16.100
+A can be likely given B because B causes A, A causes B, or something causes both.
+
+25
+00:01:16.400 --> 00:01:21.167
+And if the probability does not change when you condition, the events are independent.
+
+26
+00:01:22.367 --> 00:01:23.700
+Here is a real case.
+
+27
+00:01:24.000 --> 00:01:29.000
+Your agent reads flare events and is asked about a geomagnetic storm this weekend.
+
+28
+00:01:29.300 --> 00:01:33.200
+The honest answer conditions on the evidence, a fresh M class flare.
+
+29
+00:01:33.500 --> 00:01:38.933
+Quote the unconditional base rate when evidence exists, and the answer is confidently useless.
+
+30
+00:01:40.133 --> 00:01:40.888
+Let's recap.
+
+31
+00:01:40.888 --> 00:01:44.033
+Conditional probability shrinks the universe to B.
+
+32
+00:01:44.333 --> 00:01:47.767
+It is the overlap divided by the probability of B.
+
+33
+00:01:48.067 --> 00:01:52.007
+If it equals the plain probability, the events are independent.
+
+34
+00:01:52.007 --> 00:01:53.633
+It never proves causation.
+
+35
+00:01:53.933 --> 00:01:55.833
+Next up: random variables.

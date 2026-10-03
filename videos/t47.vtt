@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.433
+Probability distributions.
+
+2
+00:00:02.733 --> 00:00:07.267
+They describe which values are how likely, and they show up everywhere in AI.
+
+3
+00:00:08.467 --> 00:00:13.333
+A distribution fully describes a random variable: which values are how likely.
+
+4
+00:00:13.633 --> 00:00:19.200
+For discrete variables, it is a pmf: a bar for each value, with bars summing to one.
+
+5
+00:00:19.500 --> 00:00:24.700
+For continuous ones, it is a pdf, a curve where area, not height, is probability.
+
+6
+00:00:25.000 --> 00:00:28.767
+And the cdf answers: what fraction falls at or below x?
+
+7
+00:00:29.967 --> 00:00:31.200
+Here is a pmf.
+
+8
+00:00:31.500 --> 00:00:38.371
+This is the chance of detecting a signal on each count, over ten passes with a thirty percent chance each time.
+
+9
+00:00:38.371 --> 00:00:41.900
+Three is the most likely, and all the bars add up to one.
+
+10
+00:00:43.100 --> 00:00:45.100
+Continuous variables work differently.
+
+11
+00:00:45.400 --> 00:00:48.500
+Any single exact value has zero probability.
+
+12
+00:00:48.800 --> 00:00:51.833
+What matters is the area under the curve across a range.
+
+13
+00:00:53.033 --> 00:00:56.033
+Here is a bell shaped pdf, like thermal noise.
+
+14
+00:00:56.333 --> 00:01:00.802
+The shaded area between minus one and one is about sixty eight percent.
+
+15
+00:01:00.802 --> 00:01:04.200
+That area is the probability of landing in that range.
+
+16
+00:01:05.400 --> 00:01:07.700
+In NumPy, each one is a single call.
+
+17
+00:01:08.000 --> 00:01:11.133
+Uniform gives a flat pdf, like sensor jitter.
+
+18
+00:01:11.433 --> 00:01:13.867
+Normal gives a bell, like thermal noise.
+
+19
+00:01:14.167 --> 00:01:18.029
+And binomial gives a pmf, like detections per ten passes.
+
+20
+00:01:18.029 --> 00:01:20.400
+Each has its own mean and variance.
+
+21
+00:01:21.600 --> 00:01:24.333
+Here is a distribution you control every day.
+
+22
+00:01:24.633 --> 00:01:28.625
+At temperature zero point two, the next token pmf sharpens.
+
+23
+00:01:28.625 --> 00:01:33.833
+Probability piles onto the top few tokens, good for facts about mission logs.
+
+24
+00:01:34.133 --> 00:01:37.896
+At one point two, it flattens and tail tokens get sampled.
+
+25
+00:01:37.896 --> 00:01:41.400
+Good for brainstorming, terrible for citing telemetry.
+
+26
+00:01:41.700 --> 00:01:43.800
+Same model, different distribution.
+
+27
+00:01:45.000 --> 00:01:45.767
+Let's recap.
+
+28
+00:01:45.767 --> 00:01:48.833
+A distribution says which values are how likely.
+
+29
+00:01:49.133 --> 00:01:54.600
+A pmf uses bars, a pdf uses area, and a cdf is a running total.
+
+30
+00:01:54.900 --> 00:01:58.567
+A softmax output is a pmf, and temperature reshapes it.
+
+31
+00:01:58.867 --> 00:02:01.100
+Next up: the Gaussian distribution.

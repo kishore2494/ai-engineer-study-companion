@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+Bayes theorem.
+
+2
+00:00:02.033 --> 00:00:06.100
+A very accurate detector can still raise mostly false alarms.
+
+3
+00:00:06.100 --> 00:00:07.367
+Bayes explains why.
+
+4
+00:00:08.567 --> 00:00:11.300
+Bayes is a way of updating beliefs with evidence.
+
+5
+00:00:11.600 --> 00:00:14.467
+You start with a prior: how common is the thing at all?
+
+6
+00:00:14.767 --> 00:00:16.367
+Then you observe some evidence.
+
+7
+00:00:16.667 --> 00:00:19.700
+And you end with a posterior: how likely is it now?
+
+8
+00:00:20.900 --> 00:00:22.200
+Here is the equation.
+
+9
+00:00:22.500 --> 00:00:26.467
+On the left, the posterior: the probability of A once we have seen B.
+
+10
+00:00:26.767 --> 00:00:31.133
+On top, the likelihood, how well the evidence fits A, times the prior.
+
+11
+00:00:31.433 --> 00:00:33.733
+Prior is how common A was to begin with.
+
+12
+00:00:34.033 --> 00:00:37.200
+And we divide by how common the evidence is overall.
+
+13
+00:00:38.400 --> 00:00:39.165
+Let's count.
+
+14
+00:00:39.165 --> 00:00:43.183
+Imagine ten thousand stars, and only one percent have a planet.
+
+15
+00:00:43.183 --> 00:00:44.267
+That's a hundred.
+
+16
+00:00:44.567 --> 00:00:46.953
+The detector catches ninety five of them.
+
+17
+00:00:46.953 --> 00:00:48.233
+These are true alarms.
+
+18
+00:00:48.533 --> 00:00:53.375
+But five percent of the other nine thousand nine hundred stars also trigger it.
+
+19
+00:00:53.375 --> 00:00:56.133
+That's four hundred ninety five false alarms.
+
+20
+00:00:57.333 --> 00:00:58.567
+Now compare the two.
+
+21
+00:00:58.867 --> 00:01:01.496
+The false alarms dwarf the real planets.
+
+22
+00:01:01.496 --> 00:01:06.228
+Out of five hundred ninety signals, only about sixteen percent are real.
+
+23
+00:01:06.228 --> 00:01:08.200
+That is the base-rate fallacy.
+
+24
+00:01:09.400 --> 00:01:11.833
+Here is the same calculation in Python.
+
+25
+00:01:12.133 --> 00:01:16.133
+We set the prior, the detector sensitivity, and the false alarm rate.
+
+26
+00:01:16.433 --> 00:01:20.900
+Then we compute the overall chance of seeing a signal, adding up both cases.
+
+27
+00:01:21.200 --> 00:01:25.933
+And Bayes gives the posterior: sixteen point one percent, not ninety five.
+
+28
+00:01:27.133 --> 00:01:29.300
+This matters when you ship a classifier.
+
+29
+00:01:29.600 --> 00:01:35.133
+Your exoplanet model has ninety five percent recall and five percent false positives.
+
+30
+00:01:35.433 --> 00:01:38.833
+But true transits are only about one percent of candidates.
+
+31
+00:01:39.133 --> 00:01:41.774
+So only sixteen percent of alerts are real.
+
+32
+00:01:41.774 --> 00:01:46.133
+Tune the threshold on precision at the real base rate, not on accuracy.
+
+33
+00:01:47.333 --> 00:01:48.125
+Let's recap.
+
+34
+00:01:48.125 --> 00:01:50.500
+Bayes updates beliefs with evidence.
+
+35
+00:01:50.800 --> 00:01:54.300
+Posterior equals likelihood times prior, over evidence.
+
+36
+00:01:54.600 --> 00:01:57.100
+When the event is rare, the prior dominates.
+
+37
+00:01:57.400 --> 00:02:00.286
+So judge classifiers at the real base rate.
+
+38
+00:02:00.286 --> 00:02:02.500
+Next up: conditional probability.

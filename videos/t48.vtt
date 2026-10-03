@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Gaussian distribution.
+
+2
+00:00:02.500 --> 00:00:06.630
+From sensor noise to neural network weights, one shape keeps showing up.
+
+3
+00:00:06.630 --> 00:00:07.433
+Let's see why.
+
+4
+00:00:08.633 --> 00:00:10.814
+A Gaussian is the famous bell curve.
+
+5
+00:00:10.814 --> 00:00:12.933
+It's described by just two numbers.
+
+6
+00:00:13.233 --> 00:00:15.834
+Mu is the mean, where the bell is centered.
+
+7
+00:00:15.834 --> 00:00:19.100
+Sigma is the standard deviation, how spread out it is.
+
+8
+00:00:19.400 --> 00:00:23.467
+The standard normal is the simplest case: mean zero, spread one.
+
+9
+00:00:24.667 --> 00:00:26.533
+Here are two bells with the same mean.
+
+10
+00:00:26.833 --> 00:00:28.567
+Mu decides where the bell sits.
+
+11
+00:00:28.867 --> 00:00:30.911
+Sigma decides how wide it is.
+
+12
+00:00:30.911 --> 00:00:33.166
+Bigger sigma, flatter and wider.
+
+13
+00:00:33.166 --> 00:00:35.633
+That's the entire parameterization.
+
+14
+00:00:36.833 --> 00:00:38.548
+So why is the bell everywhere?
+
+15
+00:00:38.548 --> 00:00:40.033
+The Central Limit Theorem.
+
+16
+00:00:40.333 --> 00:00:44.533
+Take many small, independent effects, whatever their individual shapes.
+
+17
+00:00:44.833 --> 00:00:46.500
+Add them up, or average them.
+
+18
+00:00:46.800 --> 00:00:48.778
+The result tends toward a Gaussian.
+
+19
+00:00:48.778 --> 00:00:52.000
+That's why averaging many measurements is so trustworthy.
+
+20
+00:00:53.200 --> 00:00:54.567
+Let's prove it in Python.
+
+21
+00:00:54.867 --> 00:00:59.867
+We average one thousand uniform noise readings, and repeat that ten thousand times.
+
+22
+00:01:00.167 --> 00:01:03.932
+The averages center on zero point five, with a tiny spread.
+
+23
+00:01:03.932 --> 00:01:07.633
+Plot them and a bell curve appears, from flat ingredients.
+
+24
+00:01:08.833 --> 00:01:11.167
+You'll meet Gaussians in three big places.
+
+25
+00:01:11.467 --> 00:01:15.600
+Sensor noise, because each reading blends many small physical effects.
+
+26
+00:01:15.900 --> 00:01:19.200
+Aggregated returns, which are sums of many small moves.
+
+27
+00:01:19.500 --> 00:01:24.200
+And weight initialization, where deep learning starts from a scaled Gaussian by default.
+
+28
+00:01:25.400 --> 00:01:28.100
+Here's how it plays out in a telemetry pipeline.
+
+29
+00:01:28.400 --> 00:01:34.467
+Each satellite temperature reading blends thousands of tiny effects, so its noise is nearly Gaussian.
+
+30
+00:01:34.767 --> 00:01:40.500
+So the anomaly detector models each channel as a Gaussian and flags anything beyond three sigma.
+
+31
+00:01:40.800 --> 00:01:48.800
+The same distribution helps training: initial weights are drawn from a scaled Gaussian, so activations neither vanish nor explode.
+
+32
+00:01:50.000 --> 00:01:50.788
+Let's recap.
+
+33
+00:01:50.788 --> 00:01:54.533
+A Gaussian is defined by its mean and standard deviation.
+
+34
+00:01:54.833 --> 00:01:58.800
+The Central Limit Theorem says sums of many small effects become a bell.
+
+35
+00:01:59.100 --> 00:02:03.078
+That's why noise models and weight initialization default to it.
+
+36
+00:02:03.078 --> 00:02:05.067
+Next up: Bernoulli distribution.
