@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+Decorators.
+
+2
+00:00:02.067 --> 00:00:06.714
+Every annotation you will meet in Python frameworks is secretly the same trick.
+
+3
+00:00:06.714 --> 00:00:08.067
+Let's see how it works.
+
+4
+00:00:09.267 --> 00:00:13.894
+A decorator is a function that takes a function, and returns a replacement.
+
+5
+00:00:13.894 --> 00:00:16.300
+Usually, that replacement is a wrapper.
+
+6
+00:00:16.600 --> 00:00:19.393
+The at timed line above a def is just sugar.
+
+7
+00:00:19.393 --> 00:00:21.804
+It means: fetch equals timed of fetch.
+
+8
+00:00:21.804 --> 00:00:24.533
+The name now points at the wrapped version.
+
+9
+00:00:24.833 --> 00:00:28.000
+The wrapper remembers the original function through a closure.
+
+10
+00:00:29.200 --> 00:00:32.167
+Here's what happens when you call a decorated function.
+
+11
+00:00:32.467 --> 00:00:36.733
+The caller uses the same name as always, but now it reaches the wrapper.
+
+12
+00:00:37.033 --> 00:00:38.514
+First, code runs before.
+
+13
+00:00:38.514 --> 00:00:39.933
+Here, we start a timer.
+
+14
+00:00:40.233 --> 00:00:43.233
+Then the wrapper calls the original function, untouched.
+
+15
+00:00:43.533 --> 00:00:45.175
+Afterwards, code runs again.
+
+16
+00:00:45.175 --> 00:00:46.700
+We print how long it took.
+
+17
+00:00:47.000 --> 00:00:49.567
+And the original result goes back to the caller.
+
+18
+00:00:50.767 --> 00:00:52.767
+Here is a timing decorator in full.
+
+19
+00:00:53.067 --> 00:00:57.967
+The inner wrapper takes any arguments, calls the original, and measures the time around it.
+
+20
+00:00:58.267 --> 00:01:02.267
+The wraps line copies the original name and docstring onto the wrapper.
+
+21
+00:01:02.567 --> 00:01:06.533
+Then one line, at timed, applies it to our NEO feed function.
+
+22
+00:01:06.833 --> 00:01:10.300
+Calling it prints the time, about zero point four seconds.
+
+23
+00:01:11.500 --> 00:01:13.400
+Here's where decorators earn their keep.
+
+24
+00:01:13.700 --> 00:01:18.100
+An agent has four API tools, and each one needs retry logic.
+
+25
+00:01:18.400 --> 00:01:23.133
+Instead of pasting it four times, you write retry once and stack it on each function.
+
+26
+00:01:23.433 --> 00:01:25.768
+Your FastAPI routes work the same way.
+
+27
+00:01:25.768 --> 00:01:29.700
+The app dot get line registers your function with the framework.
+
+28
+00:01:30.900 --> 00:01:33.362
+The classic mistake is forgetting wraps.
+
+29
+00:01:33.362 --> 00:01:38.900
+Then every decorated function is anonymously called wrapper, and your logs become useless.
+
+30
+00:01:39.200 --> 00:01:40.507
+The fix is one line.
+
+31
+00:01:40.507 --> 00:01:44.167
+Use functools wraps, and the original identity survives.
+
+32
+00:01:45.367 --> 00:01:46.139
+Let's recap.
+
+33
+00:01:46.139 --> 00:01:49.033
+A decorator wraps a function and replaces it.
+
+34
+00:01:49.333 --> 00:01:52.067
+The at sign is just sugar for reassigning the name.
+
+35
+00:01:52.367 --> 00:01:54.067
+Always use functools wraps.
+
+36
+00:01:54.367 --> 00:01:57.344
+And write a policy once, apply it everywhere.
+
+37
+00:01:57.344 --> 00:01:58.667
+Next up: generators.

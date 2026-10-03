@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+Multithreading.
+
+2
+00:00:02.067 --> 00:00:07.365
+Python has a global lock, yet threads can still make waiting code ten times faster.
+
+3
+00:00:07.365 --> 00:00:08.067
+Here's how.
+
+4
+00:00:09.267 --> 00:00:12.395
+A thread is a line of execution inside one process.
+
+5
+00:00:12.395 --> 00:00:15.400
+Threads share memory, and they're cheap to start.
+
+6
+00:00:15.700 --> 00:00:17.727
+Sharing is convenient, but risky.
+
+7
+00:00:17.727 --> 00:00:18.833
+More on that soon.
+
+8
+00:00:19.133 --> 00:00:23.467
+And Python's GIL lets only one thread run bytecode at any instant.
+
+9
+00:00:24.667 --> 00:00:26.167
+So can threads ever help?
+
+10
+00:00:26.467 --> 00:00:28.133
+For heavy computation, no.
+
+11
+00:00:28.433 --> 00:00:34.100
+But a thread waiting on a socket, a disk, or a sleep releases the lock, and another thread runs.
+
+12
+00:00:35.300 --> 00:00:37.800
+Picture ten downloads from a slow server.
+
+13
+00:00:38.100 --> 00:00:40.148
+One after another costs ten waits.
+
+14
+00:00:40.148 --> 00:00:43.400
+With ten threads the waits overlap, so it's about one.
+
+15
+00:00:44.600 --> 00:00:46.933
+Before choosing a tool, ask one question.
+
+16
+00:00:47.233 --> 00:00:49.233
+Is the CPU waiting, or working?
+
+17
+00:00:49.533 --> 00:00:51.500
+Waiting means network and disk.
+
+18
+00:00:51.500 --> 00:00:53.467
+Working means math and parsing.
+
+19
+00:00:53.767 --> 00:00:56.294
+Waiting calls for threads or asyncio.
+
+20
+00:00:56.294 --> 00:00:59.300
+Working calls for processes, the next topic.
+
+21
+00:01:00.500 --> 00:01:01.700
+Here it is in code.
+
+22
+00:01:02.000 --> 00:01:05.233
+Fetch only waits on the network, so the lock is released.
+
+23
+00:01:05.533 --> 00:01:08.637
+Pool dot map fans the days out over ten threads.
+
+24
+00:01:08.637 --> 00:01:10.900
+Total time is about one round trip.
+
+25
+00:01:12.100 --> 00:01:13.167
+Here's the payoff.
+
+26
+00:01:13.467 --> 00:01:17.833
+Mission Control RAG downloads forty report PDFs every morning.
+
+27
+00:01:18.133 --> 00:01:20.633
+One at a time takes about thirty eight seconds.
+
+28
+00:01:20.933 --> 00:01:25.000
+With ten threads, about four, because every thread spends its life waiting.
+
+29
+00:01:26.200 --> 00:01:28.082
+Shared memory cuts both ways.
+
+30
+00:01:28.082 --> 00:01:31.067
+Two threads mutating one dictionary is a race.
+
+31
+00:01:31.367 --> 00:01:32.810
+The fix: share nothing.
+
+32
+00:01:32.810 --> 00:01:34.567
+Each thread returns a value.
+
+33
+00:01:35.767 --> 00:01:36.511
+Let's recap.
+
+34
+00:01:36.511 --> 00:01:40.233
+Threads share memory, but the GIL blocks parallel computing.
+
+35
+00:01:40.533 --> 00:01:42.567
+Waiting on IO releases the lock.
+
+36
+00:01:42.867 --> 00:01:45.771
+So use a thread pool for IO-bound work.
+
+37
+00:01:45.771 --> 00:01:47.633
+Next up: multiprocessing.

@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+Iterators.
+
+2
+00:00:01.967 --> 00:00:04.845
+Underneath every for loop is a small protocol.
+
+3
+00:00:04.845 --> 00:00:08.600
+Once you see it, a whole class of confusing bugs disappears.
+
+4
+00:00:09.800 --> 00:00:12.033
+Here's the machinery under every for loop.
+
+5
+00:00:12.333 --> 00:00:15.567
+Python calls iter on your object to get an iterator.
+
+6
+00:00:15.867 --> 00:00:19.700
+Then it calls next again and again, until StopIteration is raised.
+
+7
+00:00:20.900 --> 00:00:22.200
+Let's trace one loop.
+
+8
+00:00:22.500 --> 00:00:24.300
+First, iter gets an iterator.
+
+9
+00:00:24.600 --> 00:00:27.100
+Then each pass calls next to ask for a value.
+
+10
+00:00:27.400 --> 00:00:30.200
+The body runs with that value, then we ask again.
+
+11
+00:00:30.500 --> 00:00:33.433
+When there's nothing left, StopIteration ends the loop.
+
+12
+00:00:34.633 --> 00:00:36.067
+Two words that sound alike.
+
+13
+00:00:36.367 --> 00:00:38.433
+An iterable has iter, like a list.
+
+14
+00:00:38.733 --> 00:00:41.833
+An iterator also has next, and it's consumed once.
+
+15
+00:00:42.133 --> 00:00:47.467
+Generators are iterators that Python writes for you, so a second loop over one yields nothing.
+
+16
+00:00:48.667 --> 00:00:50.000
+Let's write one by hand.
+
+17
+00:00:50.300 --> 00:00:52.967
+The iter method returns the object itself.
+
+18
+00:00:53.267 --> 00:00:56.900
+The next method raises StopIteration when the count hits zero.
+
+19
+00:00:57.200 --> 00:01:00.233
+Now an ordinary for loop counts down three, two, one.
+
+20
+00:01:01.433 --> 00:01:02.800
+Here's the classic bug.
+
+21
+00:01:03.100 --> 00:01:07.833
+A vector database client returns a lazy iterator over result pages.
+
+22
+00:01:08.133 --> 00:01:12.233
+A teammate loops once to count results, then loops again to process them.
+
+23
+00:01:12.533 --> 00:01:16.800
+The second loop processes nothing, because the iterator was already consumed.
+
+24
+00:01:18.000 --> 00:01:20.633
+The mistake is treating an iterator like a list.
+
+25
+00:01:20.933 --> 00:01:24.167
+The fix is a single line: wrap it in list, and loop that.
+
+26
+00:01:25.367 --> 00:01:26.140
+Let's recap.
+
+27
+00:01:26.140 --> 00:01:28.267
+A for loop calls iter, then next.
+
+28
+00:01:28.567 --> 00:01:30.133
+StopIteration ends it.
+
+29
+00:01:30.433 --> 00:01:34.000
+Iterators are consumed once, and generators are iterators.
+
+30
+00:01:34.300 --> 00:01:36.333
+Next up: context managers.

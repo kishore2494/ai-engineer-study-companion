@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Multiprocessing.
+
+2
+00:00:02.300 --> 00:00:05.596
+When the work is pure computation, threads can't help.
+
+3
+00:00:05.596 --> 00:00:07.000
+Separate processes can.
+
+4
+00:00:08.200 --> 00:00:13.033
+A process is a separate Python interpreter, with its own memory and its own GIL.
+
+5
+00:00:13.333 --> 00:00:16.933
+That's how Python gets true parallelism across CPU cores.
+
+6
+00:00:17.233 --> 00:00:22.400
+It's the tool for CPU-bound work, like feature extraction and number crunching.
+
+7
+00:00:23.600 --> 00:00:26.833
+Processes don't share memory, so data has to travel.
+
+8
+00:00:27.133 --> 00:00:28.800
+It starts in your main process.
+
+9
+00:00:29.100 --> 00:00:32.200
+Each argument is pickled: serialized and shipped.
+
+10
+00:00:32.500 --> 00:00:34.433
+A worker computes on its own core.
+
+11
+00:00:34.733 --> 00:00:36.800
+Then the result is pickled and shipped back.
+
+12
+00:00:38.000 --> 00:00:39.333
+So when is it worth it?
+
+13
+00:00:39.633 --> 00:00:41.475
+Ten million numbers wins big.
+
+14
+00:00:41.475 --> 00:00:43.633
+Ten numbers loses to a plain loop.
+
+15
+00:00:43.933 --> 00:00:46.100
+Startup eats the gain on small jobs.
+
+16
+00:00:46.400 --> 00:00:48.767
+The rule: compute must dwarf the transfer.
+
+17
+00:00:49.967 --> 00:00:51.167
+Here it is in code.
+
+18
+00:00:51.467 --> 00:00:55.033
+The function receives a file path and loads the array itself.
+
+19
+00:00:55.333 --> 00:01:01.067
+The main guard is required on macOS and Windows, because workers re-import your module.
+
+20
+00:01:01.367 --> 00:01:04.867
+Then Pool dot map splits the paths across eight processes.
+
+21
+00:01:06.067 --> 00:01:07.300
+Now a real job.
+
+22
+00:01:07.600 --> 00:01:13.003
+Your exoplanet classifier needs FFT features from a hundred thousand light curves.
+
+23
+00:01:13.003 --> 00:01:16.033
+Pure CPU work, where threads would be useless.
+
+24
+00:01:16.333 --> 00:01:22.067
+Eight processes, with workers loading their own arrays, so almost nothing pays the pickling tax.
+
+25
+00:01:22.367 --> 00:01:24.500
+Fifty five minutes drops to about eight.
+
+26
+00:01:25.700 --> 00:01:26.438
+Let's recap.
+
+27
+00:01:26.438 --> 00:01:28.900
+Processes have their own memory and GIL.
+
+28
+00:01:29.200 --> 00:01:31.433
+Use them for CPU-bound work.
+
+29
+00:01:31.733 --> 00:01:38.457
+Startup and pickling cost real time, so the compute must be big, and you should send paths, not arrays.
+
+30
+00:01:38.457 --> 00:01:39.567
+Next up: asyncio.
