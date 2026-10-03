@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Functions.
+
+2
+00:00:01.900 --> 00:00:05.033
+In Python a function is a value like any other.
+
+3
+00:00:05.033 --> 00:00:09.767
+That one fact powers decorators, callbacks, and every agent tool table.
+
+4
+00:00:10.967 --> 00:00:13.600
+Python functions are first-class objects.
+
+5
+00:00:13.900 --> 00:00:18.700
+You can assign them to names, store them in dictionaries, and hand them to other functions.
+
+6
+00:00:19.000 --> 00:00:21.800
+Remember this, because a whole toolbox grows from it.
+
+7
+00:00:23.000 --> 00:00:24.733
+Think of a function as a machine.
+
+8
+00:00:25.033 --> 00:00:26.200
+Arguments go in.
+
+9
+00:00:26.500 --> 00:00:28.067
+It does one transformation.
+
+10
+00:00:28.367 --> 00:00:30.035
+And a return value comes out.
+
+11
+00:00:30.035 --> 00:00:32.567
+The machine itself can be passed around too.
+
+12
+00:00:33.767 --> 00:00:35.300
+Signatures are flexible.
+
+13
+00:00:35.600 --> 00:00:39.200
+Star args gathers extra positional arguments into a tuple.
+
+14
+00:00:39.500 --> 00:00:43.833
+Double star kwargs gathers keyword arguments into a dict.
+
+15
+00:00:44.133 --> 00:00:46.867
+On the calling side, the same stars unpack.
+
+16
+00:00:47.167 --> 00:00:51.693
+And default values are evaluated just once, when the function is defined.
+
+17
+00:00:51.693 --> 00:00:52.933
+That one has a trap.
+
+18
+00:00:54.133 --> 00:00:55.533
+Here's the trap in code.
+
+19
+00:00:55.833 --> 00:00:59.700
+The empty list default is created once and shared by every call.
+
+20
+00:01:00.000 --> 00:01:03.633
+So the second call returns both readings, which is a surprise.
+
+21
+00:01:04.833 --> 00:01:07.367
+Here's first-class functions at work in an agent.
+
+22
+00:01:07.667 --> 00:01:11.700
+A LangGraph agent keeps its tools in a dictionary, name to function.
+
+23
+00:01:12.000 --> 00:01:16.333
+When the model emits a tool call, it gives a name and an argument dictionary.
+
+24
+00:01:16.633 --> 00:01:20.644
+The loop picks the function by name and unpacks the arguments into it.
+
+25
+00:01:20.644 --> 00:01:22.133
+That's the whole dispatch.
+
+26
+00:01:23.333 --> 00:01:25.967
+The mistake is a mutable default argument.
+
+27
+00:01:26.267 --> 00:01:31.700
+The fix is the None sentinel pattern: default to None, then create a fresh list inside.
+
+28
+00:01:32.900 --> 00:01:33.700
+Let's recap.
+
+29
+00:01:33.700 --> 00:01:35.967
+Functions are first-class objects.
+
+30
+00:01:36.267 --> 00:01:39.367
+Star args and kwargs gather and unpack.
+
+31
+00:01:39.667 --> 00:01:42.233
+Defaults run once, so use the None sentinel.
+
+32
+00:01:42.533 --> 00:01:43.833
+Next up: classes.

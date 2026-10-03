@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+Encapsulation.
+
+2
+00:00:02.267 --> 00:00:05.964
+Python trusts you, but it still lets a class guard its own data.
+
+3
+00:00:05.964 --> 00:00:06.600
+Here's how.
+
+4
+00:00:07.800 --> 00:00:09.733
+Python has no private keyword.
+
+5
+00:00:10.033 --> 00:00:14.733
+Instead, a leading underscore says: this is internal, touch it at your own risk.
+
+6
+00:00:15.033 --> 00:00:18.067
+And for real protection, there's the property decorator.
+
+7
+00:00:18.367 --> 00:00:22.733
+Callers see a plain attribute, while your validation sits invisibly behind it.
+
+8
+00:00:23.933 --> 00:00:25.333
+Here's how the gate works.
+
+9
+00:00:25.633 --> 00:00:28.800
+A caller assigns to what looks like a normal attribute.
+
+10
+00:00:29.100 --> 00:00:32.667
+Python quietly routes that through the setter, which checks the value.
+
+11
+00:00:32.967 --> 00:00:36.333
+Valid values pass through into the internal attribute.
+
+12
+00:00:36.633 --> 00:00:39.033
+Bad values bounce back as a ValueError.
+
+13
+00:00:40.233 --> 00:00:42.600
+Why not write getters and setters like Java?
+
+14
+00:00:42.900 --> 00:00:46.000
+Python starts with a plain attribute, no boilerplate.
+
+15
+00:00:46.300 --> 00:00:49.233
+Callers always just read and write the attribute.
+
+16
+00:00:49.533 --> 00:00:53.667
+So next month you can add a guard, and not a single caller needs to change.
+
+17
+00:00:54.867 --> 00:00:57.500
+Here's a cryostat that cools a space telescope.
+
+18
+00:00:57.800 --> 00:01:02.600
+Even the constructor assigns through the setter, so validation applies from the start.
+
+19
+00:01:02.900 --> 00:01:06.100
+The getter simply returns the internal underscore value.
+
+20
+00:01:06.400 --> 00:01:09.500
+And the setter refuses anything below absolute zero.
+
+21
+00:01:10.700 --> 00:01:13.000
+Here's a guard saving a real project.
+
+22
+00:01:13.300 --> 00:01:19.433
+A RAG service exposes chunk size as a property, allowed from one hundred to two thousand tokens.
+
+23
+00:01:19.733 --> 00:01:22.233
+A teammate sets it to zero in an experiment.
+
+24
+00:01:22.533 --> 00:01:27.733
+They get an immediate, readable error, instead of silently poisoning retrieval for a week.
+
+25
+00:01:28.933 --> 00:01:29.809
+Let's recap.
+
+26
+00:01:29.809 --> 00:01:31.633
+Privacy is by convention.
+
+27
+00:01:31.933 --> 00:01:34.800
+Property hides a guard behind a plain attribute.
+
+28
+00:01:35.100 --> 00:01:37.667
+You can upgrade later without changing callers.
+
+29
+00:01:37.967 --> 00:01:40.412
+So skip the getter and setter ritual.
+
+30
+00:01:40.412 --> 00:01:41.800
+Next up: inheritance.

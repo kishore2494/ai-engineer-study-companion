@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+Classes.
+
+2
+00:00:01.867 --> 00:00:07.200
+A class bundles data and behavior together, so your code can model real things clearly.
+
+3
+00:00:08.400 --> 00:00:11.700
+A class bundles state and behavior into one blueprint.
+
+4
+00:00:12.000 --> 00:00:15.667
+The init method runs at construction and sets up the new instance.
+
+5
+00:00:15.967 --> 00:00:17.663
+And self is that instance.
+
+6
+00:00:17.663 --> 00:00:20.533
+Python passes it to every method explicitly.
+
+7
+00:00:21.733 --> 00:00:23.433
+Here's the life of an object.
+
+8
+00:00:23.733 --> 00:00:25.200
+The class is the blueprint.
+
+9
+00:00:25.500 --> 00:00:27.900
+Each time you call it, Python runs init.
+
+10
+00:00:28.200 --> 00:00:31.133
+And out comes a new instance with its own attributes.
+
+11
+00:00:32.333 --> 00:00:36.033
+Dunder methods connect your objects to Python's built-in features.
+
+12
+00:00:36.333 --> 00:00:38.600
+Repr controls what debugging shows you.
+
+13
+00:00:38.900 --> 00:00:42.367
+And eq defines what double equals means for your objects.
+
+14
+00:00:43.567 --> 00:00:44.800
+Here's a small class.
+
+15
+00:00:45.100 --> 00:00:47.667
+Init stores the name and diameter on self.
+
+16
+00:00:47.967 --> 00:00:51.633
+Repr returns a readable string, instead of a memory address.
+
+17
+00:00:51.933 --> 00:00:54.533
+Now printing an asteroid shows something useful.
+
+18
+00:00:55.733 --> 00:00:59.967
+Build two asteroids with identical data, and one more idea appears.
+
+19
+00:01:00.267 --> 00:01:04.267
+Once eq is defined, double equals compares the data, and says True.
+
+20
+00:01:04.567 --> 00:01:08.867
+But is checks identity, and those are two separate objects, so it says False.
+
+21
+00:01:10.067 --> 00:01:12.200
+Here's why this matters in a RAG system.
+
+22
+00:01:12.500 --> 00:01:17.467
+Every retrieved passage is a Chunk object with text, source, page, and score.
+
+23
+00:01:17.767 --> 00:01:22.500
+A good repr turns debug logs into readable lines, not memory addresses.
+
+24
+00:01:22.800 --> 00:01:26.600
+And eq lets your tests assert exactly which chunks were retrieved.
+
+25
+00:01:27.800 --> 00:01:28.577
+Let's recap.
+
+26
+00:01:28.577 --> 00:01:30.067
+A class is a blueprint.
+
+27
+00:01:30.367 --> 00:01:32.400
+Init and self set up each instance.
+
+28
+00:01:32.700 --> 00:01:35.167
+Dunder methods hook into Python's built-ins.
+
+29
+00:01:35.467 --> 00:01:39.563
+And double equals compares value while is compares identity.
+
+30
+00:01:39.563 --> 00:01:41.133
+Next up: encapsulation.

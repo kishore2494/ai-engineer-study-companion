@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+Inheritance.
+
+2
+00:00:02.033 --> 00:00:06.367
+A subclass can reuse a parent's code and change only the parts that differ.
+
+3
+00:00:07.567 --> 00:00:11.267
+A subclass inherits every attribute and method from its parent.
+
+4
+00:00:11.567 --> 00:00:13.833
+It can override the ones it wants to change.
+
+5
+00:00:14.133 --> 00:00:18.367
+And it reaches the parent's version through super, most often in the constructor.
+
+6
+00:00:19.567 --> 00:00:20.867
+Here's the family tree.
+
+7
+00:00:21.167 --> 00:00:24.367
+Everything in Python ultimately descends from object.
+
+8
+00:00:24.667 --> 00:00:26.767
+SpaceProbe is the general parent.
+
+9
+00:00:27.067 --> 00:00:32.600
+Lander and Orbiter are specialized children that reuse what works and override what differs.
+
+10
+00:00:33.800 --> 00:00:37.567
+When you call a method, Python walks a lookup order called the MRO.
+
+11
+00:00:37.867 --> 00:00:40.167
+It checks the instance's own class first.
+
+12
+00:00:40.467 --> 00:00:41.433
+Then the parent.
+
+13
+00:00:41.733 --> 00:00:43.009
+And finally object.
+
+14
+00:00:43.009 --> 00:00:46.367
+The first match wins, which is why overrides work.
+
+15
+00:00:47.567 --> 00:00:49.067
+Here's the pattern in code.
+
+16
+00:00:49.367 --> 00:00:52.833
+Lander lists SpaceProbe in parentheses, so it inherits from it.
+
+17
+00:00:53.133 --> 00:00:56.833
+Its constructor calls super, so the parent still sets up the name.
+
+18
+00:00:57.133 --> 00:00:59.900
+Then it overrides describe with its own version.
+
+19
+00:01:01.100 --> 00:01:03.567
+Here's inheritance in a retrieval system.
+
+20
+00:01:03.867 --> 00:01:06.867
+A base retriever class defines a retrieve method.
+
+21
+00:01:07.167 --> 00:01:11.600
+The vector and keyword retrievers subclass it, overriding only the search.
+
+22
+00:01:11.900 --> 00:01:15.070
+So one evaluation harness can score any retriever.
+
+23
+00:01:15.070 --> 00:01:17.733
+LangChain's source is built like this too.
+
+24
+00:01:18.933 --> 00:01:20.967
+The common mistake is going too deep.
+
+25
+00:01:21.267 --> 00:01:26.000
+Keep hierarchies shallow, and prefer composition when you're tempted to add more levels.
+
+26
+00:01:27.200 --> 00:01:28.041
+Let's recap.
+
+27
+00:01:28.041 --> 00:01:30.633
+Subclasses reuse and extend a parent.
+
+28
+00:01:30.933 --> 00:01:34.100
+Override what differs, and call super to cooperate.
+
+29
+00:01:34.400 --> 00:01:37.067
+Python finds methods in MRO order.
+
+30
+00:01:37.367 --> 00:01:38.489
+Keep it shallow.
+
+31
+00:01:38.489 --> 00:01:40.033
+Next up: polymorphism.
