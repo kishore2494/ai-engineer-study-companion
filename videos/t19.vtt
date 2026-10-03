@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Asyncio.
+
+2
+00:00:01.900 --> 00:00:07.733
+The core skill for LLM engineering, because LLM systems spend nearly all their time waiting.
+
+3
+00:00:08.933 --> 00:00:12.467
+Asyncio is single-threaded, cooperative concurrency.
+
+4
+00:00:12.767 --> 00:00:15.821
+A function defined with async def is a coroutine.
+
+5
+00:00:15.821 --> 00:00:19.000
+It runs until it awaits something that isn't ready.
+
+6
+00:00:19.300 --> 00:00:21.367
+Then it hands control to the event loop.
+
+7
+00:00:22.567 --> 00:00:23.833
+Here's the loop at work.
+
+8
+00:00:24.133 --> 00:00:26.800
+It runs a task until that task hits an await.
+
+9
+00:00:27.100 --> 00:00:29.767
+The task is parked while its network call is out.
+
+10
+00:00:30.067 --> 00:00:32.567
+Meanwhile the loop runs the next ready task.
+
+11
+00:00:32.867 --> 00:00:36.833
+When the response lands, the parked task resumes right after its await.
+
+12
+00:00:38.033 --> 00:00:39.933
+Three tools cover most of the work.
+
+13
+00:00:40.233 --> 00:00:43.467
+Gather fans out many awaits and collects every result.
+
+14
+00:00:43.767 --> 00:00:48.633
+A semaphore caps how many run at once, so five hundred calls don't melt a rate limit.
+
+15
+00:00:48.933 --> 00:00:50.500
+And wait for adds a timeout.
+
+16
+00:00:51.700 --> 00:00:53.200
+Here's the pattern in code.
+
+17
+00:00:53.500 --> 00:00:56.700
+The semaphore allows only five requests out at a time.
+
+18
+00:00:57.000 --> 00:00:59.900
+The await parks the task while the response travels.
+
+19
+00:01:00.200 --> 00:01:02.064
+Gather launches a task per day.
+
+20
+00:01:02.064 --> 00:01:05.733
+Twenty calls finish in about four round trips, on one thread.
+
+21
+00:01:06.933 --> 00:01:09.903
+Never call blocking code inside a coroutine.
+
+22
+00:01:09.903 --> 00:01:12.400
+One blocking call freezes every task.
+
+23
+00:01:12.700 --> 00:01:16.433
+Use the async versions, and push heavy computing to an executor.
+
+24
+00:01:17.633 --> 00:01:18.633
+Why it matters.
+
+25
+00:01:18.933 --> 00:01:22.633
+The research agent's question needs three different APIs.
+
+26
+00:01:22.933 --> 00:01:26.233
+One by one, you wait for all three latencies added up.
+
+27
+00:01:26.533 --> 00:01:28.800
+With gather, you wait only for the slowest.
+
+28
+00:01:30.000 --> 00:01:30.760
+Let's recap.
+
+29
+00:01:30.760 --> 00:01:33.800
+Await means: park me, loop, go run someone else.
+
+30
+00:01:34.100 --> 00:01:36.533
+Gather fans out and a semaphore limits.
+
+31
+00:01:36.833 --> 00:01:39.061
+And never block inside a coroutine.
+
+32
+00:01:39.061 --> 00:01:40.333
+Next up: type hints.
