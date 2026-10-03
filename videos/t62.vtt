@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+Standardization.
+
+2
+00:00:02.267 --> 00:00:06.733
+It puts every feature on the same footing, but only if you do it in the right order.
+
+3
+00:00:07.933 --> 00:00:12.400
+Standardization rescales each feature to zero mean and unit variance.
+
+4
+00:00:12.700 --> 00:00:15.767
+Subtract the mean, and the feature is centered on zero.
+
+5
+00:00:16.067 --> 00:00:19.333
+Divide by the standard deviation, so its spread is one.
+
+6
+00:00:19.633 --> 00:00:21.967
+Now every feature gets an equal vote.
+
+7
+00:00:23.167 --> 00:00:24.400
+Here is the formula.
+
+8
+00:00:24.700 --> 00:00:25.933
+We subtract the mean.
+
+9
+00:00:26.233 --> 00:00:28.333
+And divide by the standard deviation.
+
+10
+00:00:28.633 --> 00:00:34.367
+Unlike min-max, the result is unbounded, but one outlier no longer owns the whole range.
+
+11
+00:00:35.567 --> 00:00:36.236
+Why bother?
+
+12
+00:00:36.236 --> 00:00:39.033
+Think about K nearest neighbors on exoplanets.
+
+13
+00:00:39.333 --> 00:00:43.834
+Temperature is in the thousands, while radius is a single digit number.
+
+14
+00:00:43.834 --> 00:00:49.667
+About ninety nine percent of the distance is temperature, so radius might as well not exist.
+
+15
+00:00:50.867 --> 00:00:53.967
+Now the rule that separates professionals from tutorials.
+
+16
+00:00:54.267 --> 00:00:55.567
+Take the training data.
+
+17
+00:00:55.867 --> 00:00:59.900
+Fit the scaler on it alone, learning its mean and standard deviation.
+
+18
+00:01:00.200 --> 00:01:02.233
+Apply those numbers to the training set.
+
+19
+00:01:02.533 --> 00:01:05.569
+And reuse the very same numbers on the test set.
+
+20
+00:01:05.569 --> 00:01:06.833
+Never refit on test.
+
+21
+00:01:08.033 --> 00:01:09.367
+Here is the safe way.
+
+22
+00:01:09.667 --> 00:01:12.933
+We put the scaler and the model together in one pipeline.
+
+23
+00:01:13.233 --> 00:01:19.633
+Cross validation then refits the scaler on each training fold only, so the test folds never leak in.
+
+24
+00:01:20.833 --> 00:01:22.300
+Back to our exoplanets.
+
+25
+00:01:22.600 --> 00:01:27.200
+Temperature runs in the thousands, radius mostly from half an Earth to fifteen.
+
+26
+00:01:27.500 --> 00:01:29.733
+Wrap a standard scaler into the pipeline.
+
+27
+00:01:30.033 --> 00:01:35.833
+K nearest neighbors goes from coin flip to competitive, because every feature now votes equally.
+
+28
+00:01:37.033 --> 00:01:40.699
+The classic mistake is scaling everything before you split.
+
+29
+00:01:40.699 --> 00:01:46.167
+The test set's statistics leak into training, and your evaluation is quietly optimistic.
+
+30
+00:01:46.467 --> 00:01:51.000
+The fix is a pipeline, which enforces fit on train only, automatically.
+
+31
+00:01:52.200 --> 00:01:53.006
+Let's recap.
+
+32
+00:01:53.006 --> 00:01:56.367
+Standardization gives zero mean and unit variance.
+
+33
+00:01:56.667 --> 00:01:59.533
+Distance based and gradient based models need it.
+
+34
+00:01:59.833 --> 00:02:01.533
+Fit on the training data only.
+
+35
+00:02:01.833 --> 00:02:04.128
+And use a pipeline to guarantee it.
+
+36
+00:02:04.128 --> 00:02:05.833
+Next up: one-hot encoding.

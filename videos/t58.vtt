@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+Feature selection.
+
+2
+00:00:02.233 --> 00:00:05.477
+Every useless column is noise your model can overfit on.
+
+3
+00:00:05.477 --> 00:00:06.867
+Let's learn to cut them.
+
+4
+00:00:08.067 --> 00:00:11.933
+Feature selection drops columns that add noise instead of signal.
+
+5
+00:00:12.233 --> 00:00:15.533
+Fewer columns means faster training and cheaper inference.
+
+6
+00:00:15.833 --> 00:00:17.833
+It also means less to overfit on.
+
+7
+00:00:18.133 --> 00:00:20.933
+And a shorter explanation to give your stakeholders.
+
+8
+00:00:22.133 --> 00:00:25.200
+There are three families of methods, in increasing cost.
+
+9
+00:00:25.500 --> 00:00:27.759
+Filters score each feature on its own.
+
+10
+00:00:27.759 --> 00:00:30.433
+They are cheap, but they ignore interactions.
+
+11
+00:00:30.733 --> 00:00:33.819
+Wrappers train on many subsets and keep the best.
+
+12
+00:00:33.819 --> 00:00:36.400
+Expensive, but they respect interactions.
+
+13
+00:00:36.700 --> 00:00:43.533
+Embedded methods let the model choose while it trains, like tree importances or L1 coefficients pushed to zero.
+
+14
+00:00:44.733 --> 00:00:46.467
+In practice you run a funnel.
+
+15
+00:00:46.767 --> 00:00:48.167
+Start with every feature.
+
+16
+00:00:48.467 --> 00:00:49.967
+Rank them by importance.
+
+17
+00:00:50.267 --> 00:00:51.800
+Keep only the top slice.
+
+18
+00:00:52.100 --> 00:00:53.314
+Retrain and compare.
+
+19
+00:00:53.314 --> 00:00:55.500
+Often the score doesn't drop at all.
+
+20
+00:00:56.700 --> 00:00:59.467
+Here is the embedded approach with a random forest.
+
+21
+00:00:59.767 --> 00:01:02.100
+First we train a forest on every feature.
+
+22
+00:01:02.400 --> 00:01:05.967
+Then we rank the columns by importance and keep the top five.
+
+23
+00:01:06.267 --> 00:01:09.867
+Finally we retrain on just those five and compare the scores.
+
+24
+00:01:11.067 --> 00:01:13.133
+Selection is not only about speed.
+
+25
+00:01:13.433 --> 00:01:17.692
+On the exoplanet classifier, catalog version lands in the top three.
+
+26
+00:01:17.692 --> 00:01:21.200
+That is suspicious, since it says nothing about planets.
+
+27
+00:01:21.500 --> 00:01:26.767
+It turns out confirmed planets were re-catalogued later, so the version number leaks the answer.
+
+28
+00:01:27.067 --> 00:01:30.867
+Reading the importance ranking is how you catch a leak before it ships.
+
+29
+00:01:32.067 --> 00:01:32.875
+Let's recap.
+
+30
+00:01:32.875 --> 00:01:35.500
+Selection drops columns that add noise.
+
+31
+00:01:35.800 --> 00:01:39.600
+Filter, wrapper and embedded methods go from cheap to costly.
+
+32
+00:01:39.900 --> 00:01:42.233
+Rank, keep the top slice, and retrain.
+
+33
+00:01:42.533 --> 00:01:44.750
+And importances can expose leaks.
+
+34
+00:01:44.750 --> 00:01:46.900
+Next up: missing value handling.

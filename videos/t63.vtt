@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+One-hot encoding.
+
+2
+00:00:02.300 --> 00:00:06.561
+Models can't do math on strings, so categories must become numbers.
+
+3
+00:00:06.561 --> 00:00:07.833
+The question is how.
+
+4
+00:00:09.033 --> 00:00:14.833
+The naive fix is to number the categories: Kepler one, TESS two, JWST three.
+
+5
+00:00:15.133 --> 00:00:17.108
+But that invents an order.
+
+6
+00:00:17.108 --> 00:00:19.767
+Is JWST somehow three times Kepler?
+
+7
+00:00:20.067 --> 00:00:22.193
+One-hot encoding avoids this.
+
+8
+00:00:22.193 --> 00:00:25.567
+Each category gets its own zero or one column.
+
+9
+00:00:25.867 --> 00:00:30.333
+There is no false ordering, and linear models learn a separate weight per category.
+
+10
+00:00:31.533 --> 00:00:32.900
+Here is a small table.
+
+11
+00:00:33.200 --> 00:00:36.900
+The first row says kepler, so only the kepler column is a one.
+
+12
+00:00:37.200 --> 00:00:42.230
+The third row says jwst, so only the jwst column is hot.
+
+13
+00:00:42.230 --> 00:00:45.733
+Exactly one column is hot in every row.
+
+14
+00:00:46.933 --> 00:00:49.367
+There is a breaking point: high cardinality.
+
+15
+00:00:49.667 --> 00:00:55.300
+One thousand cities would mean a thousand nearly empty columns, each with almost no examples.
+
+16
+00:00:55.600 --> 00:01:01.100
+Then reach for target encoding, which replaces each category with its historical target mean.
+
+17
+00:01:01.400 --> 00:01:04.400
+Or for learned embeddings, which come later in the course.
+
+18
+00:01:05.600 --> 00:01:07.367
+In pandas, it is one call.
+
+19
+00:01:07.667 --> 00:01:11.067
+We start with a telescope name column and a radius column.
+
+20
+00:01:11.367 --> 00:01:16.800
+Get dummies replaces the text column with one column per telescope, and leaves the number alone.
+
+21
+00:01:18.000 --> 00:01:19.800
+Here is the exoplanet case.
+
+22
+00:01:20.100 --> 00:01:23.700
+One-hot on telescope, with a handful of values, works great.
+
+23
+00:01:24.000 --> 00:01:29.897
+But discovery facility has over three hundred observatories, most with fewer than five planets.
+
+24
+00:01:29.897 --> 00:01:33.000
+One-hot would give three hundred columns of noise.
+
+25
+00:01:33.300 --> 00:01:35.864
+So that one column gets target encoding.
+
+26
+00:01:35.864 --> 00:01:39.133
+Encoding is a per-column choice, not a global rule.
+
+27
+00:01:40.333 --> 00:01:41.133
+Let's recap.
+
+28
+00:01:41.133 --> 00:01:43.333
+Models need numbers, not strings.
+
+29
+00:01:43.633 --> 00:01:47.467
+One-hot gives each category its own zero or one column.
+
+30
+00:01:47.767 --> 00:01:49.367
+It adds no false ordering.
+
+31
+00:01:49.667 --> 00:01:52.803
+For high cardinality, switch to target encoding.
+
+32
+00:01:52.803 --> 00:01:54.567
+Next up: linear regression.

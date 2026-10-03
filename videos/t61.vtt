@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Normalization.
+
+2
+00:00:02.200 --> 00:00:07.167
+Squeezing a feature into zero to one is simple, but it has one dangerous weakness.
+
+3
+00:00:08.367 --> 00:00:14.433
+Normalization, also called min-max scaling, squeezes a feature into the range zero to one.
+
+4
+00:00:14.733 --> 00:00:19.000
+On top, we subtract the minimum, so the smallest value becomes zero.
+
+5
+00:00:19.300 --> 00:00:23.633
+Underneath, we divide by the range, so the largest value becomes one.
+
+6
+00:00:23.933 --> 00:00:26.633
+Everything else lands proportionally in between.
+
+7
+00:00:27.833 --> 00:00:32.900
+Here are five planets with orbital periods from three point five to four hundred days.
+
+8
+00:00:33.200 --> 00:00:35.033
+The shortest orbit becomes zero.
+
+9
+00:00:35.333 --> 00:00:38.667
+The longest becomes one, and the rest spread out in between.
+
+10
+00:00:39.867 --> 00:00:42.367
+Now watch what one extreme outlier does.
+
+11
+00:00:42.667 --> 00:00:48.000
+A single planet with a hundred thousand day orbit becomes the new maximum, so it sits at one.
+
+12
+00:00:48.300 --> 00:00:53.300
+Every normal planet is crushed into the range zero to point zero zero four.
+
+13
+00:00:53.300 --> 00:00:55.767
+The feature is effectively destroyed.
+
+14
+00:00:56.967 --> 00:00:58.633
+Here is the same thing in code.
+
+15
+00:00:58.933 --> 00:01:02.233
+By hand, subtract the minimum and divide by the range.
+
+16
+00:01:02.533 --> 00:01:05.833
+The scikit-learn scaler gives exactly the same numbers.
+
+17
+00:01:06.133 --> 00:01:09.933
+But add the rogue orbit, and the real planets all collapse near zero.
+
+18
+00:01:11.133 --> 00:01:12.333
+This really happens.
+
+19
+00:01:12.633 --> 00:01:18.367
+One directly imaged planet in the exoplanet table has an orbit of a hundred thousand days.
+
+20
+00:01:18.667 --> 00:01:25.867
+After min-max scaling, orbital period looks constant for nearly every row, and a nearest neighbor baseline ignores it.
+
+21
+00:01:26.167 --> 00:01:29.867
+The fix is to take the log first, or to standardize instead.
+
+22
+00:01:31.067 --> 00:01:31.882
+Let's recap.
+
+23
+00:01:31.882 --> 00:01:34.600
+Min-max maps a feature into zero to one.
+
+24
+00:01:34.900 --> 00:01:37.600
+It suits bounded inputs and distance metrics.
+
+25
+00:01:37.900 --> 00:01:40.033
+But one outlier crushes everyone else.
+
+26
+00:01:40.333 --> 00:01:42.994
+So know your minimum and maximum first.
+
+27
+00:01:42.994 --> 00:01:44.700
+Next up: standardization.
