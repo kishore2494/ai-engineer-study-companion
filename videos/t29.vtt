@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Seaborn.
+
+2
+00:00:01.833 --> 00:00:04.933
+The speed tool for exploring data before you model it.
+
+3
+00:00:06.133 --> 00:00:09.433
+Seaborn is statistical plotting on top of matplotlib.
+
+4
+00:00:09.733 --> 00:00:12.633
+Heatmap draws annotated correlation matrices.
+
+5
+00:00:12.933 --> 00:00:15.600
+Pairplot plots every feature against every other.
+
+6
+00:00:15.900 --> 00:00:18.933
+Histograms and density plots show distributions.
+
+7
+00:00:19.233 --> 00:00:21.167
+And box plots compare groups.
+
+8
+00:00:21.167 --> 00:00:25.033
+Each is one line from a DataFrame, with sensible defaults.
+
+9
+00:00:26.233 --> 00:00:27.500
+Here's the key idea.
+
+10
+00:00:27.800 --> 00:00:29.900
+At the bottom, the matplotlib figure.
+
+11
+00:00:30.200 --> 00:00:33.567
+Seaborn draws onto a matplotlib Axes and returns it.
+
+12
+00:00:33.867 --> 00:00:40.233
+So everything from the matplotlib topic still applies: pass ax, tweak titles, and save with savefig.
+
+13
+00:00:41.433 --> 00:00:42.867
+Here's what a heatmap shows.
+
+14
+00:00:43.167 --> 00:00:48.133
+Each cell is the correlation between two features, and the diagonal is always one.
+
+15
+00:00:48.433 --> 00:00:52.819
+Transit depth and estimated radius correlate at zero point nine six.
+
+16
+00:00:52.819 --> 00:00:54.367
+They're near-duplicates.
+
+17
+00:00:54.667 --> 00:00:58.400
+Period barely relates to either, so it carries separate information.
+
+18
+00:00:59.600 --> 00:01:00.867
+In code, it's short.
+
+19
+00:01:01.167 --> 00:01:03.067
+Select the numeric feature columns.
+
+20
+00:01:03.367 --> 00:01:09.100
+One heatmap call draws their correlations, annotated, centered at zero, onto our axes.
+
+21
+00:01:09.400 --> 00:01:12.933
+Then we set a title and save, just like any matplotlib plot.
+
+22
+00:01:14.133 --> 00:01:15.100
+A real case.
+
+23
+00:01:15.400 --> 00:01:20.333
+Before training the exoplanet classifier, the correlation heatmap is your first slide.
+
+24
+00:01:20.633 --> 00:01:24.867
+It shows transit depth and radius estimate at zero point nine six.
+
+25
+00:01:25.167 --> 00:01:26.233
+Drop one of them.
+
+26
+00:01:26.233 --> 00:01:34.200
+One line of seaborn surfaced a modeling decision that would otherwise appear weeks later as mysterious coefficient instability.
+
+27
+00:01:35.400 --> 00:01:36.242
+Let's recap.
+
+28
+00:01:36.242 --> 00:01:39.400
+Seaborn is statistical sugar over matplotlib.
+
+29
+00:01:39.700 --> 00:01:42.300
+One line per plot, straight from a DataFrame.
+
+30
+00:01:42.600 --> 00:01:45.700
+It draws on an Axes, so matplotlib still applies.
+
+31
+00:01:46.000 --> 00:01:48.625
+And it's your speed tool for exploration.
+
+32
+00:01:48.625 --> 00:01:50.033
+Next up: scikit-learn.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Matplotlib.
+
+2
+00:00:02.167 --> 00:00:04.809
+The real way to use it is its object model.
+
+3
+00:00:04.809 --> 00:00:08.067
+Let's meet the pieces, starting with the page itself.
+
+4
+00:00:09.267 --> 00:00:11.700
+Matplotlib has a simple hierarchy.
+
+5
+00:00:12.000 --> 00:00:14.300
+The Figure is the canvas, the whole page.
+
+6
+00:00:14.600 --> 00:00:17.300
+Each Axes is one plot living on that figure.
+
+7
+00:00:17.600 --> 00:00:21.500
+And every line, label, legend, and title hangs off an Axes.
+
+8
+00:00:22.700 --> 00:00:23.900
+There are two styles.
+
+9
+00:00:24.200 --> 00:00:27.833
+The plt dot plot state machine is fine for a throwaway.
+
+10
+00:00:28.133 --> 00:00:30.233
+But it relies on hidden global state.
+
+11
+00:00:30.533 --> 00:00:34.067
+The Axes API is explicit, and gives you full control.
+
+12
+00:00:34.067 --> 00:00:35.600
+Use it when it matters.
+
+13
+00:00:36.800 --> 00:00:38.367
+Here's a learning curve in code.
+
+14
+00:00:38.667 --> 00:00:42.033
+One call to subplots hands you the figure and the axes.
+
+15
+00:00:42.333 --> 00:00:45.800
+We plot training and validation loss on the same axes.
+
+16
+00:00:46.100 --> 00:00:48.667
+Then we label the axes and add a legend.
+
+17
+00:00:48.967 --> 00:00:52.800
+And save the figure as an image, at a hundred and fifty dots per inch.
+
+18
+00:00:54.000 --> 00:00:55.300
+Here's why this matters.
+
+19
+00:00:55.600 --> 00:01:00.267
+You plot train and validation loss on the same Axes after every run.
+
+20
+00:01:00.567 --> 00:01:05.600
+Around epoch twelve, validation loss starts rising while training keeps falling.
+
+21
+00:01:05.600 --> 00:01:09.250
+The picture says overfitting faster than any metric table.
+
+22
+00:01:09.250 --> 00:01:11.200
+These numbers are illustrative.
+
+23
+00:01:12.400 --> 00:01:13.600
+One more benefit.
+
+24
+00:01:13.900 --> 00:01:19.667
+Because the plot is scripted with the Axes API, every experiment gets the same styling.
+
+25
+00:01:19.967 --> 00:01:21.633
+All fifty plots look alike.
+
+26
+00:01:21.933 --> 00:01:24.367
+So they're instantly comparable in your run log.
+
+27
+00:01:25.567 --> 00:01:26.322
+Let's recap.
+
+28
+00:01:26.322 --> 00:01:29.467
+The Figure is the canvas and the Axes is the plot.
+
+29
+00:01:29.767 --> 00:01:31.333
+Subplots returns both.
+
+30
+00:01:31.633 --> 00:01:33.933
+Use the Axes API for control.
+
+31
+00:01:34.233 --> 00:01:36.454
+And savefig makes the artifact.
+
+32
+00:01:36.454 --> 00:01:37.600
+Next up: Plotly.

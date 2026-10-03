@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Pandas.
+
+2
+00:00:01.833 --> 00:00:05.327
+Before you evaluate any model, your data lands in a table.
+
+3
+00:00:05.327 --> 00:00:07.133
+Let's learn to interrogate it.
+
+4
+00:00:08.333 --> 00:00:11.267
+A DataFrame is a table with labeled columns.
+
+5
+00:00:11.567 --> 00:00:18.767
+Underneath, column operations are vectorized NumPy, so the same instinct applies: whole columns, never loops.
+
+6
+00:00:19.967 --> 00:00:22.100
+Four moves cover most of what you'll do.
+
+7
+00:00:22.400 --> 00:00:24.567
+Filtering rows with a boolean mask.
+
+8
+00:00:24.867 --> 00:00:26.800
+Group by, to summarize groups.
+
+9
+00:00:27.100 --> 00:00:29.200
+Merge, for joins between frames.
+
+10
+00:00:29.500 --> 00:00:31.100
+And handling missing values.
+
+11
+00:00:32.300 --> 00:00:34.133
+Group by deserves a closer look.
+
+12
+00:00:34.433 --> 00:00:38.000
+First, split the rows into groups by a key, such as the date.
+
+13
+00:00:38.300 --> 00:00:42.233
+Then apply an aggregate to each group: a count, a max, a mean.
+
+14
+00:00:42.533 --> 00:00:45.600
+Finally combine the answers into one small table.
+
+15
+00:00:46.800 --> 00:00:48.167
+Here they all are in code.
+
+16
+00:00:48.467 --> 00:00:51.533
+A boolean mask keeps only the large asteroids.
+
+17
+00:00:51.833 --> 00:00:56.367
+Group by date, aggregate a count and a max, and reset the index to combine.
+
+18
+00:00:56.667 --> 00:01:00.900
+Then merge in a second table, and fill any missing flare values with quiet.
+
+19
+00:01:02.100 --> 00:01:03.933
+Here's what one groupby can tell you.
+
+20
+00:01:04.233 --> 00:01:08.666
+Your eval run lands in a DataFrame, with one row per test question.
+
+21
+00:01:08.666 --> 00:01:12.900
+Grouping by question type and averaging faithfulness gives this.
+
+22
+00:01:13.200 --> 00:01:19.759
+Numeric lookup questions score zero point six one, while everything else sits above zero point eight five.
+
+23
+00:01:19.759 --> 00:01:22.420
+That's exactly where the system needs work.
+
+24
+00:01:22.420 --> 00:01:25.267
+The bars for the other types are illustrative.
+
+25
+00:01:26.467 --> 00:01:27.322
+Let's recap.
+
+26
+00:01:27.322 --> 00:01:29.533
+A DataFrame is a labeled table.
+
+27
+00:01:29.833 --> 00:01:31.533
+Filter with a boolean mask.
+
+28
+00:01:31.833 --> 00:01:34.033
+Group by is split, apply, combine.
+
+29
+00:01:34.333 --> 00:01:37.427
+Merge joins frames, and fillna repairs gaps.
+
+30
+00:01:37.427 --> 00:01:38.833
+Next up: matplotlib.

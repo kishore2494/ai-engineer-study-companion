@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Plotly.
+
+2
+00:00:01.900 --> 00:00:03.878
+Some charts are meant to be read.
+
+3
+00:00:03.878 --> 00:00:05.795
+Others are meant to be explored.
+
+4
+00:00:05.795 --> 00:00:07.233
+Plotly is for exploring.
+
+5
+00:00:08.433 --> 00:00:12.633
+Plotly renders charts as interactive HTML and JavaScript.
+
+6
+00:00:12.933 --> 00:00:19.567
+Hover for per-point detail, zoom and pan into dense regions, and click legend entries to toggle series.
+
+7
+00:00:19.867 --> 00:00:27.133
+Plotly express gives one-liner figures from a DataFrame, and graph objects is the control layer for when you outgrow it.
+
+8
+00:00:28.333 --> 00:00:29.800
+Here's the interactivity.
+
+9
+00:00:30.100 --> 00:00:32.267
+Hover over any point to see its details.
+
+10
+00:00:32.567 --> 00:00:34.867
+Zoom and pan into crowded regions.
+
+11
+00:00:35.167 --> 00:00:38.133
+And click the legend to toggle whole series on or off.
+
+12
+00:00:39.333 --> 00:00:40.533
+So which should you use?
+
+13
+00:00:40.833 --> 00:00:42.400
+It depends on the audience.
+
+14
+00:00:42.700 --> 00:00:45.482
+A human exploring results wants Plotly.
+
+15
+00:00:45.482 --> 00:00:50.333
+A paper, a README, or a CI artifact wants a static matplotlib image.
+
+16
+00:00:50.633 --> 00:00:52.233
+Pick the tool for the audience.
+
+17
+00:00:53.433 --> 00:00:54.600
+Here's one in code.
+
+18
+00:00:54.900 --> 00:01:01.867
+Plotly express takes a DataFrame, picks the columns for each axis, colors by a flag, and uses a log scale.
+
+19
+00:01:02.167 --> 00:01:06.300
+The hover name and hover data decide what appears when you point at a dot.
+
+20
+00:01:06.600 --> 00:01:11.733
+Then write html produces one file anyone can open, no Python required.
+
+21
+00:01:12.933 --> 00:01:13.900
+A real case.
+
+22
+00:01:14.200 --> 00:01:18.600
+In the weekly Mission Control review, the team opens your asteroid scatter.
+
+23
+00:01:18.900 --> 00:01:24.667
+They hover for names, and zoom into the corner closer than the moon, where the interesting objects hide.
+
+24
+00:01:24.967 --> 00:01:27.700
+Nobody asks you to re-run it with labels.
+
+25
+00:01:27.700 --> 00:01:31.167
+The same chart is embedded in the FastAPI dashboard.
+
+26
+00:01:32.367 --> 00:01:33.185
+Let's recap.
+
+27
+00:01:33.185 --> 00:01:35.367
+Plotly makes interactive charts.
+
+28
+00:01:35.667 --> 00:01:39.100
+Express gives one-liners, graph objects gives control.
+
+29
+00:01:39.400 --> 00:01:41.800
+Write html makes a shareable file.
+
+30
+00:01:42.100 --> 00:01:44.164
+And pick the tool by audience.
+
+31
+00:01:44.164 --> 00:01:45.333
+Next up: Seaborn.

@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Scikit-learn.
+
+2
+00:00:02.133 --> 00:00:07.667
+It's a classical machine learning library, but the lasting lesson is its API contract.
+
+3
+00:00:08.867 --> 00:00:11.500
+Every scikit-learn object follows one rhythm.
+
+4
+00:00:11.800 --> 00:00:13.267
+Estimators learn with fit.
+
+5
+00:00:13.567 --> 00:00:14.967
+They answer with predict.
+
+6
+00:00:15.267 --> 00:00:18.922
+And preprocessors reshape data with transform.
+
+7
+00:00:18.922 --> 00:00:24.167
+XGBoost, LightGBM, and many wrappers imitate this exact interface.
+
+8
+00:00:25.367 --> 00:00:29.700
+A Pipeline chains preprocessing and a model into a single estimator.
+
+9
+00:00:30.000 --> 00:00:31.700
+Training data goes in first.
+
+10
+00:00:32.000 --> 00:00:34.467
+The scaler is fitted on that training data only.
+
+11
+00:00:34.767 --> 00:00:37.300
+The model then learns from the scaled features.
+
+12
+00:00:37.600 --> 00:00:40.467
+Unseen data flows through the same fitted steps.
+
+13
+00:00:41.667 --> 00:00:44.279
+This quietly fixes the classic leakage bug.
+
+14
+00:00:44.279 --> 00:00:49.200
+If you scale before splitting, information from the test set leaks into training.
+
+15
+00:00:49.500 --> 00:00:56.000
+With a pipeline, the scaler only ever sees training data, automatically, even inside cross-validation.
+
+16
+00:00:57.200 --> 00:00:58.733
+Here's the full thing in code.
+
+17
+00:00:59.033 --> 00:01:02.067
+First we hold out twenty percent of the data for testing.
+
+18
+00:01:02.367 --> 00:01:06.433
+Then we chain a scaler and a logistic regression into one pipeline.
+
+19
+00:01:06.733 --> 00:01:11.467
+One fit call trains the whole chain, and score evaluates it on the held-out data.
+
+20
+00:01:12.667 --> 00:01:14.367
+Here's why a baseline matters.
+
+21
+00:01:14.667 --> 00:01:22.051
+Before the light-curve CNN exists, your exoplanet classifier is exactly this pipeline over tabular features.
+
+22
+00:01:22.051 --> 00:01:25.333
+It scores zero point eight nine in an afternoon.
+
+23
+00:01:25.633 --> 00:01:31.546
+When the CNN reaches zero point nine one, you know the extra complexity earns its keep.
+
+24
+00:01:31.546 --> 00:01:37.867
+Both expose fit and predict style interfaces, so your eval harness runs them interchangeably.
+
+25
+00:01:39.067 --> 00:01:39.826
+Let's recap.
+
+26
+00:01:39.826 --> 00:01:42.800
+Fit, predict, transform: learn the rhythm once.
+
+27
+00:01:43.100 --> 00:01:45.533
+Many other tools imitate this interface.
+
+28
+00:01:45.833 --> 00:01:47.533
+A pipeline prevents leakage.
+
+29
+00:01:47.833 --> 00:01:49.965
+And always build a baseline first.
+
+30
+00:01:49.965 --> 00:01:52.033
+That wraps up Python foundations.

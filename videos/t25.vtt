@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+NumPy.
+
+2
+00:00:01.900 --> 00:00:05.233
+Every shape error you'll ever debug in deep learning starts here.
+
+3
+00:00:06.433 --> 00:00:09.933
+A NumPy array is a typed, contiguous block of memory.
+
+4
+00:00:10.233 --> 00:00:16.833
+Operations on it run as compiled C loops, routinely ten to a hundred times faster than Python loops.
+
+5
+00:00:17.133 --> 00:00:20.038
+The mental shift is to think in whole arrays.
+
+6
+00:00:20.038 --> 00:00:25.267
+Dividing one array by another handles every pair at once, with no index in sight.
+
+7
+00:00:26.467 --> 00:00:31.167
+The concept to truly master is broadcasting: how mismatched shapes stretch to fit.
+
+8
+00:00:31.467 --> 00:00:33.533
+First, align the shapes from the right.
+
+9
+00:00:33.833 --> 00:00:38.633
+Each dimension must be equal, or one, which stretches, or missing, which is added.
+
+10
+00:00:38.933 --> 00:00:41.100
+If neither holds, you get a shape error.
+
+11
+00:00:42.300 --> 00:00:43.533
+Let's watch it happen.
+
+12
+00:00:43.833 --> 00:00:45.982
+This column has shape three by one.
+
+13
+00:00:45.982 --> 00:00:47.333
+It stretches sideways.
+
+14
+00:00:47.633 --> 00:00:49.525
+This row has shape one by four.
+
+15
+00:00:49.525 --> 00:00:50.867
+It stretches downward.
+
+16
+00:00:51.167 --> 00:00:54.200
+They meet at three by four, with every pairing computed.
+
+17
+00:00:55.400 --> 00:00:56.600
+Here it is in code.
+
+18
+00:00:56.900 --> 00:01:00.400
+Two arrays hold asteroid diameters and miss distances.
+
+19
+00:01:00.700 --> 00:01:03.333
+One division handles all four pairs at once.
+
+20
+00:01:03.633 --> 00:01:08.233
+And a column plus a row broadcasts to shape three by four, just as we drew.
+
+21
+00:01:09.433 --> 00:01:10.400
+A real case.
+
+22
+00:01:10.700 --> 00:01:16.533
+Mission Control RAG keeps its chunk embeddings in a ten thousand by fifteen thirty six matrix.
+
+23
+00:01:16.833 --> 00:01:21.832
+Scoring a query against the whole corpus is one matrix multiply, milliseconds.
+
+24
+00:01:21.832 --> 00:01:25.100
+The loop version is about two hundred times slower.
+
+25
+00:01:25.400 --> 00:01:27.990
+And normalizing the rows is broadcasting.
+
+26
+00:01:27.990 --> 00:01:32.033
+This is vector search before you ever install a vector database.
+
+27
+00:01:33.233 --> 00:01:34.117
+Let's recap.
+
+28
+00:01:34.117 --> 00:01:36.400
+Arrays run as compiled C loops.
+
+29
+00:01:36.700 --> 00:01:38.467
+Think in whole arrays, not loops.
+
+30
+00:01:38.767 --> 00:01:41.067
+Broadcasting aligns shapes from the right.
+
+31
+00:01:41.367 --> 00:01:44.476
+And PyTorch follows exactly the same rules.
+
+32
+00:01:44.476 --> 00:01:45.633
+Next up: pandas.
