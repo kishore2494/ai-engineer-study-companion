@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.300
+Hierarchical clustering.
+
+2
+00:00:02.600 --> 00:00:06.367
+Instead of guessing how many clusters, build every clustering at once.
+
+3
+00:00:07.567 --> 00:00:11.300
+Hierarchical clustering produces a tree called a dendrogram.
+
+4
+00:00:11.600 --> 00:00:15.033
+The height of each branch records how different the merged groups were.
+
+5
+00:00:15.333 --> 00:00:17.900
+Cut the tree at any height, and you get a clustering.
+
+6
+00:00:19.100 --> 00:00:20.767
+Here is how the tree gets built.
+
+7
+00:00:21.067 --> 00:00:23.367
+Start with every point as its own cluster.
+
+8
+00:00:23.667 --> 00:00:25.567
+Merge the two closest clusters.
+
+9
+00:00:25.867 --> 00:00:28.314
+Repeat until only one cluster remains.
+
+10
+00:00:28.314 --> 00:00:30.633
+The merge history is the dendrogram.
+
+11
+00:00:31.833 --> 00:00:33.700
+Now the payoff: cutting the tree.
+
+12
+00:00:34.000 --> 00:00:36.067
+At the top, everything is one group.
+
+13
+00:00:36.367 --> 00:00:38.667
+Cut high, and you get two big branches.
+
+14
+00:00:38.967 --> 00:00:42.486
+Cut lower, and propulsion splits into finer topics.
+
+15
+00:00:42.486 --> 00:00:43.867
+Same tree, no refit.
+
+16
+00:00:45.067 --> 00:00:49.833
+One main knob is linkage, which decides how to measure distance between clusters.
+
+17
+00:00:50.133 --> 00:00:53.267
+Ward minimizes variance, and is the usual default.
+
+18
+00:00:53.567 --> 00:00:56.633
+Single linkage looks at nearest members, so it chains.
+
+19
+00:00:56.933 --> 00:01:00.267
+Complete linkage looks at farthest members, so it compacts.
+
+20
+00:01:01.467 --> 00:01:02.800
+In code, it is short.
+
+21
+00:01:03.100 --> 00:01:06.233
+We build the full merge tree once, using ward linkage.
+
+22
+00:01:06.533 --> 00:01:10.200
+Then we cut it into two clusters, or six, without fitting again.
+
+23
+00:01:11.400 --> 00:01:12.733
+Here is a real use.
+
+24
+00:01:13.033 --> 00:01:16.133
+You cluster embeddings of two thousand mission log chunks.
+
+25
+00:01:16.433 --> 00:01:23.433
+Cut high for propulsion versus avionics, or lower for fuel systems, thruster burns, and pressure anomalies.
+
+26
+00:01:23.733 --> 00:01:28.667
+The dendrogram becomes your browsing taxonomy, and you never guessed the number of topics.
+
+27
+00:01:29.867 --> 00:01:30.627
+Let's recap.
+
+28
+00:01:30.627 --> 00:01:33.033
+Keep merging the closest two clusters.
+
+29
+00:01:33.333 --> 00:01:35.700
+The dendrogram shows structure at every scale.
+
+30
+00:01:36.000 --> 00:01:38.295
+Cut at any height, no refit needed.
+
+31
+00:01:38.295 --> 00:01:40.000
+Ward is the usual linkage.
+
+32
+00:01:40.300 --> 00:01:41.833
+Next up: PCA.

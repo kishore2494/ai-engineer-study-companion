@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+Accuracy.
+
+2
+00:00:01.967 --> 00:00:06.633
+It is the first metric everyone learns, and on rare events, the most misleading.
+
+3
+00:00:07.833 --> 00:00:11.133
+Accuracy is the fraction of predictions that were correct.
+
+4
+00:00:11.433 --> 00:00:14.167
+Add the true positives, the positives we caught.
+
+5
+00:00:14.467 --> 00:00:17.433
+Plus the true negatives, the negatives we rejected.
+
+6
+00:00:17.733 --> 00:00:20.233
+And divide by the total number of predictions.
+
+7
+00:00:21.433 --> 00:00:23.025
+Imagine a thousand rows.
+
+8
+00:00:23.025 --> 00:00:27.800
+Nine hundred ninety are negative, and ten are habitable zone candidates.
+
+9
+00:00:28.100 --> 00:00:29.930
+A lazy model always says no.
+
+10
+00:00:29.930 --> 00:00:33.067
+It gets all nine hundred ninety negatives right.
+
+11
+00:00:33.367 --> 00:00:35.767
+But it misses every one of the ten candidates.
+
+12
+00:00:36.967 --> 00:00:37.919
+And the score?
+
+13
+00:00:37.919 --> 00:00:41.795
+Ninety nine percent accuracy, with zero candidates found.
+
+14
+00:00:41.795 --> 00:00:43.767
+Stellar accuracy, zero value.
+
+15
+00:00:44.967 --> 00:00:46.533
+Here it is in scikit-learn.
+
+16
+00:00:46.833 --> 00:00:50.500
+A dummy classifier that always predicts the most frequent class.
+
+17
+00:00:50.800 --> 00:00:54.467
+Its accuracy is zero point nine nine, which looks amazing.
+
+18
+00:00:54.767 --> 00:00:55.982
+Its recall is zero.
+
+19
+00:00:55.982 --> 00:00:57.133
+It caught nothing.
+
+20
+00:00:58.333 --> 00:00:59.667
+So when can you trust it?
+
+21
+00:00:59.967 --> 00:01:03.767
+Only when classes are roughly balanced and all errors cost the same.
+
+22
+00:01:04.067 --> 00:01:07.322
+And always compare against the majority class baseline.
+
+23
+00:01:07.322 --> 00:01:10.933
+If it scores point nine nine too, your model learned nothing.
+
+24
+00:01:12.133 --> 00:01:13.500
+Here is a real story.
+
+25
+00:01:13.800 --> 00:01:18.300
+Habitable zone candidates are about one percent of the exoplanet table.
+
+26
+00:01:18.600 --> 00:01:21.833
+A demo proudly reports ninety nine percent accuracy.
+
+27
+00:01:22.133 --> 00:01:25.692
+Then you show the dummy baseline also scores ninety nine.
+
+28
+00:01:25.692 --> 00:01:29.000
+From then on, accuracy is banned from the slide deck.
+
+29
+00:01:30.200 --> 00:01:31.000
+Let's recap.
+
+30
+00:01:31.000 --> 00:01:33.867
+Accuracy is correct predictions over total.
+
+31
+00:01:34.167 --> 00:01:36.267
+On rare classes, it is deceptive.
+
+32
+00:01:36.567 --> 00:01:38.567
+Always check the majority baseline.
+
+33
+00:01:38.867 --> 00:01:40.200
+Next up: precision.

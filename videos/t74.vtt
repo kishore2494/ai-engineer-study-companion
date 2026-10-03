@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+DBSCAN.
+
+2
+00:00:02.100 --> 00:00:06.000
+A clustering method that needs no k, and knows what an outlier is.
+
+3
+00:00:07.200 --> 00:00:11.333
+DBSCAN clusters by density, not by distance to a centroid.
+
+4
+00:00:11.633 --> 00:00:13.067
+There is no k to choose.
+
+5
+00:00:13.367 --> 00:00:17.700
+And points in sparse regions are labeled noise, with the label minus one.
+
+6
+00:00:18.900 --> 00:00:20.133
+Here is how it works.
+
+7
+00:00:20.433 --> 00:00:23.967
+For each point, count its neighbors within a radius called eps.
+
+8
+00:00:24.267 --> 00:00:27.067
+If there are at least min samples, it is a core point.
+
+9
+00:00:27.367 --> 00:00:30.000
+Core points within reach of each other chain together.
+
+10
+00:00:30.300 --> 00:00:32.933
+And the chain becomes a cluster, whatever its shape.
+
+11
+00:00:34.133 --> 00:00:36.000
+Let's see it on two crescent moons.
+
+12
+00:00:36.300 --> 00:00:39.700
+Density chains follow each curve, so each moon stays whole.
+
+13
+00:00:40.000 --> 00:00:42.269
+The three isolated points join nothing.
+
+14
+00:00:42.269 --> 00:00:45.933
+They are declared noise instead of being forced into a cluster.
+
+15
+00:00:47.133 --> 00:00:48.433
+So how does it compare?
+
+16
+00:00:48.733 --> 00:00:50.281
+K-Means asks for k.
+
+17
+00:00:50.281 --> 00:00:53.867
+DBSCAN asks for eps and min samples instead.
+
+18
+00:00:54.167 --> 00:00:58.167
+K-Means likes round blobs, while DBSCAN follows any shape.
+
+19
+00:00:58.467 --> 00:01:03.767
+And K-Means forces every point into a cluster, but DBSCAN admits what is noise.
+
+20
+00:01:04.067 --> 00:01:07.600
+The cost is that one eps struggles when densities differ a lot.
+
+21
+00:01:08.800 --> 00:01:10.367
+Here it is in scikit-learn.
+
+22
+00:01:10.667 --> 00:01:14.333
+We set the radius to zero point two, and need five neighbors.
+
+23
+00:01:14.633 --> 00:01:18.933
+Then we count clusters, leaving out the noise label, and count the noise points.
+
+24
+00:01:20.133 --> 00:01:21.500
+Here is a clever use.
+
+25
+00:01:21.800 --> 00:01:27.067
+Satellite telemetry forms dense blobs for healthy modes, like downlink or eclipse.
+
+26
+00:01:27.367 --> 00:01:29.635
+Run DBSCAN and ignore the clusters.
+
+27
+00:01:29.635 --> 00:01:32.033
+The noise points are the deliverable.
+
+28
+00:01:32.333 --> 00:01:36.867
+A reading too sparse for any known mode is exactly what an anomaly looks like.
+
+29
+00:01:38.067 --> 00:01:38.965
+Let's recap.
+
+30
+00:01:38.965 --> 00:01:42.033
+DBSCAN clusters by density, in any shape.
+
+31
+00:01:42.333 --> 00:01:44.767
+No k, but you tune eps and min samples.
+
+32
+00:01:45.067 --> 00:01:48.500
+Sparse points are noise, and that is your anomaly detector.
+
+33
+00:01:48.800 --> 00:01:50.933
+Next up: hierarchical clustering.
