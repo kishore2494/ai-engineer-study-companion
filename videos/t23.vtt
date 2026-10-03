@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+Unit testing basics.
+
+2
+00:00:02.533 --> 00:00:05.433
+This habit separates engineers from notebook users.
+
+3
+00:00:06.633 --> 00:00:09.000
+Every unit test has the same skeleton.
+
+4
+00:00:09.300 --> 00:00:11.067
+Arrange: set up the inputs.
+
+5
+00:00:11.367 --> 00:00:13.133
+Act: run the code under test.
+
+6
+00:00:13.433 --> 00:00:14.900
+Assert: check the result.
+
+7
+00:00:16.100 --> 00:00:17.733
+Good tests share three traits.
+
+8
+00:00:18.033 --> 00:00:21.167
+They're isolated, with no shared state between tests.
+
+9
+00:00:21.467 --> 00:00:25.833
+They're deterministic: no live network, and no randomness without a seed.
+
+10
+00:00:26.133 --> 00:00:28.867
+And they're named after the behavior they pin down.
+
+11
+00:00:30.067 --> 00:00:34.200
+Test the contract, not the implementation, and always cover the edges.
+
+12
+00:00:34.500 --> 00:00:36.133
+Take a hazard score function.
+
+13
+00:00:36.433 --> 00:00:39.833
+A normal case: a big, close asteroid scores high.
+
+14
+00:00:40.133 --> 00:00:43.567
+An edge case: zero diameter scores exactly zero.
+
+15
+00:00:43.867 --> 00:00:47.400
+And an error case: a negative distance must raise an error.
+
+16
+00:00:48.600 --> 00:00:51.967
+Here they are in code, using the built-in unittest module.
+
+17
+00:00:52.267 --> 00:00:54.133
+The first checks the normal case.
+
+18
+00:00:54.433 --> 00:00:56.733
+The second pins down the zero edge case.
+
+19
+00:00:57.033 --> 00:01:01.367
+The third uses assertRaises to demand a ValueError for bad input.
+
+20
+00:01:02.567 --> 00:01:03.533
+A real case.
+
+21
+00:01:03.833 --> 00:01:13.433
+Your RAG chunker has three testable contracts: never exceed max tokens, never split mid-sentence, and return an empty list for an empty document.
+
+22
+00:01:13.733 --> 00:01:19.367
+The week those tests were skipped, a whitespace edge case silently corrupted twelve thousand chunks.
+
+23
+00:01:19.667 --> 00:01:24.200
+Retrieval bugs are far harder to see downstream than a red test up front.
+
+24
+00:01:25.400 --> 00:01:26.251
+Let's recap.
+
+25
+00:01:26.251 --> 00:01:28.733
+Every test is arrange, act, assert.
+
+26
+00:01:29.033 --> 00:01:32.333
+Keep tests isolated, deterministic, and well named.
+
+27
+00:01:32.633 --> 00:01:38.467
+Test the contract, not the implementation, and always cover zero, empty, and invalid input.
+
+28
+00:01:38.767 --> 00:01:42.133
+Next up: pytest, which makes all of this much nicer.

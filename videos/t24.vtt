@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Pytest.
+
+2
+00:00:01.900 --> 00:00:05.077
+Every serious Python AI repo you'll touch runs it.
+
+3
+00:00:05.077 --> 00:00:05.967
+Let's see why.
+
+4
+00:00:07.167 --> 00:00:09.433
+Pytest is the de facto test runner.
+
+5
+00:00:09.733 --> 00:00:14.367
+You write plain assert statements, and pytest shows you both sides when one fails.
+
+6
+00:00:14.667 --> 00:00:17.167
+It discovers every test file automatically.
+
+7
+00:00:17.467 --> 00:00:19.500
+Fixtures declare shared setup once.
+
+8
+00:00:19.800 --> 00:00:23.033
+And parametrize runs one test over many cases.
+
+9
+00:00:24.233 --> 00:00:25.633
+Here's how fixtures work.
+
+10
+00:00:25.933 --> 00:00:29.367
+You declare the setup once, in a function marked as a fixture.
+
+11
+00:00:29.667 --> 00:00:31.867
+Any test that names it as a parameter...
+
+12
+00:00:32.167 --> 00:00:34.356
+receives the value automatically.
+
+13
+00:00:34.356 --> 00:00:39.000
+Fixtures can be composed and scoped to a function, module, or session.
+
+14
+00:00:40.200 --> 00:00:43.467
+Parametrize turns a table of inputs into separate tests.
+
+15
+00:00:43.767 --> 00:00:46.633
+The first row: a zero diameter scores zero.
+
+16
+00:00:46.933 --> 00:00:49.833
+The second: a big, close asteroid scores high.
+
+17
+00:00:50.133 --> 00:00:53.495
+The third: tiny and far away scores almost nothing.
+
+18
+00:00:53.495 --> 00:00:55.933
+Each row is reported as its own case.
+
+19
+00:00:57.133 --> 00:00:58.033
+And in code.
+
+20
+00:00:58.333 --> 00:01:01.767
+The fixture returns a close approach for the asteroid Apophis.
+
+21
+00:01:02.067 --> 00:01:05.033
+The test simply names it as a parameter, and gets it.
+
+22
+00:01:05.333 --> 00:01:10.933
+Parametrize runs one body over every input and expected pair, using approx for floats.
+
+23
+00:01:12.133 --> 00:01:13.100
+A real case.
+
+24
+00:01:13.400 --> 00:01:18.633
+Your RAG regression suite is one parametrized test over forty golden questions.
+
+25
+00:01:18.933 --> 00:01:22.167
+CI runs it after every prompt or chunking change.
+
+26
+00:01:22.467 --> 00:01:28.520
+A failure names the exact question that regressed, instead of a vague note that the eval got worse.
+
+27
+00:01:28.520 --> 00:01:33.167
+Fixtures hold a mocked vector store, so nothing touches live infrastructure.
+
+28
+00:01:34.367 --> 00:01:35.139
+Let's recap.
+
+29
+00:01:35.139 --> 00:01:39.067
+Pytest uses plain asserts and finds your tests automatically.
+
+30
+00:01:39.367 --> 00:01:41.067
+Fixtures share setup by name.
+
+31
+00:01:41.367 --> 00:01:44.433
+Parametrize runs one body over many cases.
+
+32
+00:01:44.733 --> 00:01:49.012
+Built-ins like monkeypatch and tmp path cover most mocking.
+
+33
+00:01:49.012 --> 00:01:50.100
+Next up: NumPy.

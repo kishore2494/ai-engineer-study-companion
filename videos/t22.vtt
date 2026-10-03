@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.067
+Packaging with pyproject dot toml.
+
+2
+00:00:03.367 --> 00:00:06.733
+This is how loose scripts become real, installable code.
+
+3
+00:00:07.933 --> 00:00:12.167
+A pyproject dot toml file describes your project in one place.
+
+4
+00:00:12.467 --> 00:00:15.367
+Name, version, dependencies, and the build backend.
+
+5
+00:00:15.667 --> 00:00:21.267
+It turns code into an installable unit, and it ends the old habit of hacking sys dot path.
+
+6
+00:00:22.467 --> 00:00:23.700
+Here is a real one.
+
+7
+00:00:24.000 --> 00:00:29.533
+The project table holds the name, version, Python requirement, and runtime dependencies.
+
+8
+00:00:29.833 --> 00:00:35.433
+Optional dependency groups keep tools like pytest and mypy out of production installs.
+
+9
+00:00:35.733 --> 00:00:38.600
+And the build system names the backend that builds it.
+
+10
+00:00:39.800 --> 00:00:40.867
+Now the magic.
+
+11
+00:00:41.167 --> 00:00:45.300
+With a pyproject in your repo, you run pip install dash e dot.
+
+12
+00:00:45.600 --> 00:00:47.100
+That's an editable install.
+
+13
+00:00:47.400 --> 00:00:52.767
+Your package is now importable from anywhere on the machine, and edits take effect immediately.
+
+14
+00:00:53.967 --> 00:00:55.167
+Two more habits help.
+
+15
+00:00:55.467 --> 00:00:58.867
+Install the dev group on demand with the extras syntax.
+
+16
+00:00:59.167 --> 00:01:04.233
+And use a src layout, so you can't import your code by accident without installing it.
+
+17
+00:01:05.433 --> 00:01:06.733
+Here's a real story.
+
+18
+00:01:07.033 --> 00:01:13.533
+The same API client code was copy-pasted into the agent repo and the FastAPI repo.
+
+19
+00:01:13.833 --> 00:01:16.633
+Until a pagination bug had to be fixed twice.
+
+20
+00:01:16.933 --> 00:01:24.100
+Extracted as orbital tools, one fix reaches both, and the editable install keeps iteration friction at zero.
+
+21
+00:01:25.300 --> 00:01:26.130
+Let's recap.
+
+22
+00:01:26.130 --> 00:01:28.967
+Pyproject dot toml declares your package.
+
+23
+00:01:29.267 --> 00:01:32.300
+An editable install makes it importable everywhere.
+
+24
+00:01:32.600 --> 00:01:35.133
+Optional groups keep dev tools out of production.
+
+25
+00:01:35.433 --> 00:01:38.805
+And one package means one fix for every consumer.
+
+26
+00:01:38.805 --> 00:01:40.800
+Next up: unit testing basics.

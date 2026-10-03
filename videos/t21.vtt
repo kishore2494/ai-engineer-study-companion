@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+Virtual environments.
+
+2
+00:00:02.533 --> 00:00:06.591
+Every Python project deserves its own private set of packages.
+
+3
+00:00:06.591 --> 00:00:07.900
+Here's why, and how.
+
+4
+00:00:09.100 --> 00:00:15.067
+A virtual environment is a per-project interpreter with its own folder of installed packages.
+
+5
+00:00:15.367 --> 00:00:19.600
+Activating it simply points your shell's PATH at that project's python and pip.
+
+6
+00:00:19.900 --> 00:00:23.100
+The iron rule: never install into the system Python.
+
+7
+00:00:24.300 --> 00:00:25.367
+Here's the payoff.
+
+8
+00:00:25.667 --> 00:00:29.967
+Project A keeps numpy one point twenty six in its own environment.
+
+9
+00:00:30.267 --> 00:00:32.767
+Project B keeps numpy two point one.
+
+10
+00:00:33.067 --> 00:00:36.367
+They coexist peacefully, because neither can see the other.
+
+11
+00:00:37.567 --> 00:00:39.300
+The lifecycle has four steps.
+
+12
+00:00:39.600 --> 00:00:42.933
+Create the environment as a folder named dot venv.
+
+13
+00:00:43.233 --> 00:00:46.100
+Activate it, so your shell uses its python and pip.
+
+14
+00:00:46.400 --> 00:00:49.833
+Anything you install now lives only inside that folder.
+
+15
+00:00:50.133 --> 00:00:52.233
+Deactivate, and you're back to the system.
+
+16
+00:00:53.433 --> 00:00:54.900
+Let's prove it in a terminal.
+
+17
+00:00:55.200 --> 00:00:57.533
+We create an environment and activate it.
+
+18
+00:00:57.833 --> 00:01:02.167
+Then install httpx, and it lands only in this environment.
+
+19
+00:01:02.467 --> 00:01:05.526
+After deactivating, importing httpx fails.
+
+20
+00:01:05.526 --> 00:01:08.367
+That failure shows the isolation works.
+
+21
+00:01:08.667 --> 00:01:10.272
+The modern tool is uv.
+
+22
+00:01:10.272 --> 00:01:12.533
+Same idea, dramatically faster.
+
+23
+00:01:13.733 --> 00:01:14.700
+A real case.
+
+24
+00:01:15.000 --> 00:01:19.267
+Your RAG service is pinned below numpy two by a legacy faiss build.
+
+25
+00:01:19.567 --> 00:01:23.033
+Your exoplanet classifier wants numpy two point one.
+
+26
+00:01:23.333 --> 00:01:25.656
+Two environments, zero conflict.
+
+27
+00:01:25.656 --> 00:01:29.867
+Later, a Dockerfile is the same idea frozen into an image.
+
+28
+00:01:31.067 --> 00:01:31.821
+Let's recap.
+
+29
+00:01:31.821 --> 00:01:35.967
+A virtual environment is a private interpreter and package folder.
+
+30
+00:01:36.267 --> 00:01:38.267
+Activation just changes your PATH.
+
+31
+00:01:38.567 --> 00:01:40.467
+Uv is the fast modern tool.
+
+32
+00:01:40.767 --> 00:01:43.565
+And never install into the system Python.
+
+33
+00:01:43.565 --> 00:01:46.500
+Next up: packaging with pyproject dot toml.

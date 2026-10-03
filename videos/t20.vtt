@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+Type hints.
+
+2
+00:00:01.933 --> 00:00:06.000
+They look like decoration, but in modern AI code they're load-bearing.
+
+3
+00:00:07.200 --> 00:00:11.400
+A type hint is an annotation that documents which types are expected.
+
+4
+00:00:11.700 --> 00:00:15.400
+Like str, list of int, or dict of str to float.
+
+5
+00:00:15.700 --> 00:00:19.133
+A string or None, with a vertical bar, is the modern optional.
+
+6
+00:00:20.333 --> 00:00:21.567
+Here's the key point.
+
+7
+00:00:21.867 --> 00:00:23.900
+The interpreter mostly ignores hints.
+
+8
+00:00:24.200 --> 00:00:27.333
+But mypy, pyright, and your teammates read every one.
+
+9
+00:00:28.533 --> 00:00:30.033
+Let's read one signature.
+
+10
+00:00:30.333 --> 00:00:34.533
+A TypedDict says exactly which keys a dictionary has, and their types.
+
+11
+00:00:34.833 --> 00:00:38.850
+The function takes a list of those and a float, and returns one or None.
+
+12
+00:00:38.850 --> 00:00:40.300
+That's the whole contract.
+
+13
+00:00:40.600 --> 00:00:44.200
+Pass a string for the float, and mypy flags it before runtime.
+
+14
+00:00:45.400 --> 00:00:48.433
+In modern AI codebases, hints do real work.
+
+15
+00:00:48.733 --> 00:00:50.633
+You write them once on your signatures.
+
+16
+00:00:50.933 --> 00:00:54.533
+FastAPI turns them into parsing and validation errors.
+
+17
+00:00:54.833 --> 00:00:58.233
+Pydantic validates LLM and API payloads.
+
+18
+00:00:58.533 --> 00:01:00.333
+And interactive docs come free.
+
+19
+00:01:01.533 --> 00:01:03.567
+You don't have to type everything at once.
+
+20
+00:01:03.867 --> 00:01:06.933
+Start at the boundaries, where wrong types cost the most.
+
+21
+00:01:07.233 --> 00:01:11.000
+And a type with None forces every caller to ask: what if it's None?
+
+22
+00:01:12.200 --> 00:01:13.167
+A real case.
+
+23
+00:01:13.467 --> 00:01:16.900
+Your endpoint declares a date, a float, and a typed return.
+
+24
+00:01:17.200 --> 00:01:20.767
+From those hints alone you get parsing, validation, and docs.
+
+25
+00:01:21.067 --> 00:01:25.833
+And a TypedDict lets mypy catch a missing field at review, not at two in the morning.
+
+26
+00:01:27.033 --> 00:01:27.858
+Let's recap.
+
+27
+00:01:27.858 --> 00:01:31.433
+Hints document intent and let mypy catch bugs early.
+
+28
+00:01:31.733 --> 00:01:34.700
+FastAPI and Pydantic make them load-bearing.
+
+29
+00:01:35.000 --> 00:01:36.570
+Start at the boundaries.
+
+30
+00:01:36.570 --> 00:01:38.533
+Next up: virtual environments.
