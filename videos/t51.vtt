@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+The median.
+
+2
+00:00:01.900 --> 00:00:04.353
+When someone says average, ask which one.
+
+3
+00:00:04.353 --> 00:00:06.567
+For skewed data it changes the story.
+
+4
+00:00:07.767 --> 00:00:11.133
+The median is the middle value once the data is sorted.
+
+5
+00:00:11.433 --> 00:00:13.956
+Half the points sit below it, half above.
+
+6
+00:00:13.956 --> 00:00:17.033
+It's the fiftieth percentile, also called p fifty.
+
+7
+00:00:17.333 --> 00:00:22.033
+It only cares about position in the sorted order, never how large the extremes are.
+
+8
+00:00:23.233 --> 00:00:24.437
+Here's how it works.
+
+9
+00:00:24.437 --> 00:00:25.400
+Sort the values.
+
+10
+00:00:25.700 --> 00:00:29.200
+With five values, the median is simply the middle one: four.
+
+11
+00:00:29.500 --> 00:00:31.275
+Now add an outlier of forty.
+
+12
+00:00:31.275 --> 00:00:35.521
+The middle pair is four and five, so the median is four point five.
+
+13
+00:00:35.521 --> 00:00:38.500
+It barely moved, while the mean shot up to ten.
+
+14
+00:00:39.700 --> 00:00:41.667
+Let's compare the two side by side.
+
+15
+00:00:41.967 --> 00:00:44.427
+The median depends on sorted position.
+
+16
+00:00:44.427 --> 00:00:46.433
+The mean lets every value pull.
+
+17
+00:00:46.733 --> 00:00:50.700
+The median minimizes absolute distance, the mean squared distance.
+
+18
+00:00:51.000 --> 00:00:54.570
+So the median is robust to outliers and the mean is not.
+
+19
+00:00:54.570 --> 00:00:57.567
+For skewed data, that choice changes the story.
+
+20
+00:00:58.767 --> 00:01:00.133
+Here it is in NumPy.
+
+21
+00:01:00.433 --> 00:01:03.633
+Ten rocky planet masses, and then we add one Jupiter.
+
+22
+00:01:03.933 --> 00:01:08.299
+The median goes from zero point nine seven five to exactly one.
+
+23
+00:01:08.299 --> 00:01:09.200
+Barely moved.
+
+24
+00:01:09.500 --> 00:01:12.000
+The mean, though, explodes to nearly thirty.
+
+25
+00:01:13.200 --> 00:01:15.100
+Now back to the latency dashboard.
+
+26
+00:01:15.400 --> 00:01:17.879
+Switch to median and p ninety five.
+
+27
+00:01:17.879 --> 00:01:22.200
+The p fifty is point nine seconds, so typical users are fast.
+
+28
+00:01:22.500 --> 00:01:25.338
+The p ninety five is two point one seconds.
+
+29
+00:01:25.338 --> 00:01:29.033
+That slow tail, the reranker cold start, is what to fix.
+
+30
+00:01:30.233 --> 00:01:32.500
+The same idea applies to your evals.
+
+31
+00:01:32.800 --> 00:01:36.333
+Say one answer in your RAGAS run is catastrophically bad.
+
+32
+00:01:36.633 --> 00:01:40.500
+The median faithfulness score barely notices, but the mean sinks.
+
+33
+00:01:40.800 --> 00:01:44.667
+Check both, and the gap between them tells you more than either number alone.
+
+34
+00:01:45.867 --> 00:01:46.632
+Let's recap.
+
+35
+00:01:46.632 --> 00:01:49.567
+The median is the middle value of sorted data.
+
+36
+00:01:49.867 --> 00:01:52.567
+It's robust to outliers, where the mean is not.
+
+37
+00:01:52.867 --> 00:01:57.644
+And the same idea generalizes to p ninety five and p ninety nine.
+
+38
+00:01:57.644 --> 00:01:58.967
+Next up: Variance.

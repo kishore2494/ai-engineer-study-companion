@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.267
+Bernoulli distribution.
+
+2
+00:00:02.567 --> 00:00:08.000
+The simplest distribution there is, and the one every binary classifier quietly uses.
+
+3
+00:00:09.200 --> 00:00:13.133
+A Bernoulli is one trial with two outcomes, success or failure.
+
+4
+00:00:13.433 --> 00:00:15.212
+Success has probability p.
+
+5
+00:00:15.212 --> 00:00:20.000
+Think of a coin flip, a user click, or one transit-or-not observation.
+
+6
+00:00:20.300 --> 00:00:24.800
+In classification, the label is zero or one, modeled as a Bernoulli.
+
+7
+00:00:26.000 --> 00:00:29.900
+Here's the whole distribution, with p equal to zero point three.
+
+8
+00:00:30.200 --> 00:00:33.513
+Two bars: seventy percent no, thirty percent yes.
+
+9
+00:00:33.513 --> 00:00:34.933
+The mean is simply p.
+
+10
+00:00:35.233 --> 00:00:39.933
+And the variance is p times one minus p, which comes to zero point two one.
+
+11
+00:00:41.133 --> 00:00:42.967
+Notice how the variance behaves.
+
+12
+00:00:43.267 --> 00:00:46.933
+It peaks at one half, a fair coin, where uncertainty is greatest.
+
+13
+00:00:47.233 --> 00:00:50.700
+At zero or one the outcome is certain, so variance is zero.
+
+14
+00:00:51.900 --> 00:00:53.600
+Here's why this matters for AI.
+
+15
+00:00:53.900 --> 00:00:55.500
+A model takes in features.
+
+16
+00:00:55.800 --> 00:00:58.667
+A sigmoid squashes the score between zero and one.
+
+17
+00:00:58.967 --> 00:01:01.367
+That output is the p of a Bernoulli.
+
+18
+00:01:01.367 --> 00:01:05.767
+And binary cross-entropy loss is just its log-likelihood, negated.
+
+19
+00:01:06.967 --> 00:01:08.067
+Let's simulate it.
+
+20
+00:01:08.367 --> 00:01:13.433
+We draw ten thousand random numbers, and count each one below point three as a success.
+
+21
+00:01:13.733 --> 00:01:18.934
+The mean comes out near zero point three, and the variance near zero point two one.
+
+22
+00:01:18.934 --> 00:01:20.500
+Just as the formulas say.
+
+23
+00:01:21.700 --> 00:01:23.133
+Here's a real scenario.
+
+24
+00:01:23.433 --> 00:01:26.927
+Your exoplanet classifier outputs zero point eight three.
+
+25
+00:01:26.927 --> 00:01:30.667
+It's claiming the label is a Bernoulli with that probability.
+
+26
+00:01:30.967 --> 00:01:32.283
+That claim is testable.
+
+27
+00:01:32.283 --> 00:01:37.433
+Gather the predictions near point eight, and about eighty percent should truly be planets.
+
+28
+00:01:37.733 --> 00:01:44.433
+If they aren't, the model is miscalibrated, and temperature scaling fixes it before anyone ranks follow-up time.
+
+29
+00:01:45.633 --> 00:01:46.450
+Let's recap.
+
+30
+00:01:46.450 --> 00:01:50.467
+A Bernoulli is a single yes or no trial with probability p.
+
+31
+00:01:50.767 --> 00:01:54.600
+Its mean is p, and its variance is p times one minus p.
+
+32
+00:01:54.900 --> 00:01:59.400
+A sigmoid output is that p, and stacking many trials gives the Binomial.
+
+33
+00:01:59.700 --> 00:02:03.565
+And always check that predicted probabilities match reality.
+
+34
+00:02:03.565 --> 00:02:04.467
+Next up: Mean.
