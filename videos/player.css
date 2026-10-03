@@ -1,0 +1,50 @@
+/* Explainer videos: a "Watch" button in each topic head that drops down an inline player. */
+.topic-head { flex-wrap: wrap; }
+.vbtn {
+  margin-left: auto; align-self: center;
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 0.8rem/1 var(--sans); letter-spacing: 0.02em;
+  color: var(--ion); background: rgba(94,211,244,0.08);
+  border: 1px solid rgba(94,211,244,0.35); border-radius: 999px;
+  padding: 7px 12px 7px 9px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.vbtn:hover { background: rgba(94,211,244,0.16); border-color: var(--ion); }
+.vbtn:focus-visible { outline: 2px solid var(--ion); outline-offset: 2px; }
+.vbtn .vplay { width: 20px; height: 20px; border-radius: 50%; background: var(--ion); display: grid; place-items: center; flex-shrink: 0; }
+.vbtn .vplay svg { width: 9px; height: 9px; margin-left: 2px; fill: var(--void); }
+.vbtn .vdur { font-family: var(--mono); font-weight: 500; color: var(--text-dim); font-size: 0.74rem; }
+.vbtn .vchev { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.4; transition: transform .2s; }
+.vbtn[aria-expanded="true"] { background: var(--ion); color: var(--void); border-color: var(--ion); }
+.vbtn[aria-expanded="true"] .vplay { background: var(--void); }
+.vbtn[aria-expanded="true"] .vplay svg { fill: var(--ion); }
+.vbtn[aria-expanded="true"] .vdur { color: var(--deep); }
+.vbtn[aria-expanded="true"] .vchev { transform: rotate(180deg); }
+
+.vpanel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease, margin .3s ease; margin: 0; }
+.vpanel.open { grid-template-rows: 1fr; margin: -6px 0 22px; }
+.vpanel > .vinner { overflow: hidden; min-height: 0; }
+.vframe {
+  background: var(--deep); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+}
+.vframe video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.vbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  padding: 9px 12px; border-top: 1px solid var(--line);
+  font: 0.74rem/1.3 var(--mono); color: var(--text-dim);
+}
+.vbar .vlabel { margin-right: auto; letter-spacing: 0.04em; }
+.vbar button {
+  font: 600 0.72rem/1 var(--mono); color: var(--text-dim); background: transparent;
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; cursor: pointer;
+}
+.vbar button:hover { color: var(--text); border-color: var(--text-dim); }
+.vbar button.on { color: var(--void); background: var(--ion); border-color: var(--ion); }
+.toc-row .vdot { margin-left: 6px; font-size: 0.6rem; color: var(--ion); opacity: 0.75; vertical-align: 1px; }
+#vcount { font-family: var(--mono); }
+@media (max-width: 640px) {
+  .vbtn { margin-left: 0; margin-top: 4px; }
+  .vbar .vlabel { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .vpanel, .vbtn .vchev { transition: none; } }
