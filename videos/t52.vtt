@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+Variance.
+
+2
+00:00:01.867 --> 00:00:05.717
+Two datasets can share a mean and still look completely different.
+
+3
+00:00:05.717 --> 00:00:07.700
+Variance measures that difference.
+
+4
+00:00:08.900 --> 00:00:11.733
+Variance is the average squared distance from the mean.
+
+5
+00:00:12.033 --> 00:00:13.603
+Squaring does two jobs.
+
+6
+00:00:13.603 --> 00:00:17.833
+It removes the sign, so deviations below and above both count.
+
+7
+00:00:18.133 --> 00:00:21.033
+And it punishes big deviations disproportionately.
+
+8
+00:00:22.233 --> 00:00:25.567
+Let's compute it for three values: two, four, and six.
+
+9
+00:00:25.867 --> 00:00:29.767
+The mean is four, so the deviations are minus two, zero, and two.
+
+10
+00:00:30.067 --> 00:00:32.101
+Square each one: four, zero, four.
+
+11
+00:00:32.101 --> 00:00:34.733
+Add them up to get eight, then average them.
+
+12
+00:00:35.933 --> 00:00:37.900
+As a formula, it looks like this.
+
+13
+00:00:38.200 --> 00:00:40.900
+Add up each point's squared deviation from the mean.
+
+14
+00:00:41.200 --> 00:00:42.767
+Then divide by the count.
+
+15
+00:00:43.067 --> 00:00:47.329
+One price: the units are squared, kilometers squared for kilometer data.
+
+16
+00:00:47.329 --> 00:00:49.933
+That's why we usually quote the square root.
+
+17
+00:00:51.133 --> 00:00:52.633
+Now the classic gotcha.
+
+18
+00:00:52.933 --> 00:00:58.049
+Dividing by n gives population variance, and NumPy does that by default.
+
+19
+00:00:58.049 --> 00:01:02.667
+Dividing by n minus one gives sample variance, which pandas uses.
+
+20
+00:01:02.967 --> 00:01:07.867
+For our example, eight over three is two point six seven, but eight over two is four.
+
+21
+00:01:08.167 --> 00:01:10.567
+So always pass ddof explicitly.
+
+22
+00:01:11.767 --> 00:01:14.933
+Here it is in code, with four planet orbital periods.
+
+23
+00:01:15.233 --> 00:01:19.000
+We find the mean, then average the squared deviations by hand.
+
+24
+00:01:19.300 --> 00:01:22.367
+It matches NumPy's population variance exactly.
+
+25
+00:01:22.667 --> 00:01:26.900
+And the sample version, dividing by n minus one, comes out larger.
+
+26
+00:01:28.100 --> 00:01:30.300
+Here's how this bites in real projects.
+
+27
+00:01:30.600 --> 00:01:35.133
+Your training script standardizes features with NumPy, so it divides by n.
+
+28
+00:01:35.433 --> 00:01:40.000
+Your evaluation notebook uses pandas, which divides by n minus one.
+
+29
+00:01:40.300 --> 00:01:45.172
+Your identical pipelines now silently disagree on every scaled value.
+
+30
+00:01:45.172 --> 00:01:49.267
+Pass ddof explicitly and you'll never lose that afternoon.
+
+31
+00:01:50.467 --> 00:01:51.165
+Let's recap.
+
+32
+00:01:51.165 --> 00:01:54.367
+Variance is the average squared distance from the mean.
+
+33
+00:01:54.667 --> 00:01:57.633
+Squaring removes the sign and punishes big gaps.
+
+34
+00:01:57.933 --> 00:02:01.633
+Its units are squared, so we usually quote the standard deviation.
+
+35
+00:02:01.933 --> 00:02:04.455
+And always set ddof explicitly.
+
+36
+00:02:04.455 --> 00:02:06.733
+Next up: Standard deviation.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+Hypothesis testing.
+
+2
+00:00:02.467 --> 00:00:07.767
+It's the machinery behind every A/B test you'll run on models, prompts, and rerankers.
+
+3
+00:00:08.967 --> 00:00:10.633
+Here's the logic of a test.
+
+4
+00:00:10.933 --> 00:00:14.300
+First, assume the null hypothesis: there's no difference.
+
+5
+00:00:14.600 --> 00:00:15.667
+Collect your data.
+
+6
+00:00:15.967 --> 00:00:19.367
+Ask how surprising that data would be, if the null were true.
+
+7
+00:00:19.667 --> 00:00:26.200
+If it's very surprising, below a threshold alpha, usually zero point zero five, you reject the null.
+
+8
+00:00:27.400 --> 00:00:30.933
+Picture all the gaps between two groups that pure noise could produce.
+
+9
+00:00:31.233 --> 00:00:32.850
+Most land near the centre.
+
+10
+00:00:32.850 --> 00:00:35.400
+Small gaps are easy for noise to explain.
+
+11
+00:00:35.700 --> 00:00:38.929
+Only rarely does noise create a gap out in the tails.
+
+12
+00:00:38.929 --> 00:00:41.367
+If ours lands there, we reject the null.
+
+13
+00:00:42.567 --> 00:00:43.600
+Let's run one.
+
+14
+00:00:43.900 --> 00:00:48.700
+Old and new latencies, where version two is truly eighty milliseconds faster.
+
+15
+00:00:49.000 --> 00:00:51.331
+The t-test compares the two means.
+
+16
+00:00:51.331 --> 00:00:55.033
+A small p value says reject the idea of no difference.
+
+17
+00:00:56.233 --> 00:00:57.467
+Here's a real case.
+
+18
+00:00:57.767 --> 00:01:04.000
+Swap the reranker and faithfulness moves from point eight one to point eight four on sixty questions.
+
+19
+00:01:04.300 --> 00:01:08.100
+Run a paired test on the per-question scores before celebrating.
+
+20
+00:01:08.400 --> 00:01:12.447
+With noisy judged metrics, that gap often fails to clear the null.
+
+21
+00:01:12.447 --> 00:01:14.900
+The test stops you shipping a coin flip.
+
+22
+00:01:16.100 --> 00:01:17.733
+A few rules keep you honest.
+
+23
+00:01:18.033 --> 00:01:19.638
+You never prove the null.
+
+24
+00:01:19.638 --> 00:01:21.884
+You reject it or fail to reject it.
+
+25
+00:01:21.884 --> 00:01:24.900
+Absence of evidence is not evidence of absence.
+
+26
+00:01:25.200 --> 00:01:31.567
+Pick the test for your data: t-test for means, chi-squared for counts, Mann-Whitney for skewed data.
+
+27
+00:01:31.867 --> 00:01:37.167
+And choose alpha and sample size before looking, because peeking inflates false positives.
+
+28
+00:01:38.367 --> 00:01:39.100
+Let's recap.
+
+29
+00:01:39.100 --> 00:01:42.400
+Assume the null, then ask how surprising your data is.
+
+30
+00:01:42.700 --> 00:01:46.500
+Reject only when it falls below a threshold you set in advance.
+
+31
+00:01:46.800 --> 00:01:50.283
+You never prove the null, you only fail to reject it.
+
+32
+00:01:50.283 --> 00:01:51.400
+Next up: P-value.

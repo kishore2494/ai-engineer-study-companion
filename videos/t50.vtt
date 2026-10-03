@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.467
+The mean.
+
+2
+00:00:01.767 --> 00:00:04.057
+It's the first number everyone reaches for.
+
+3
+00:00:04.057 --> 00:00:06.667
+Let's see what it really is, and where it breaks.
+
+4
+00:00:07.867 --> 00:00:11.467
+The mean is the sum of the values divided by how many there are.
+
+5
+00:00:11.767 --> 00:00:14.050
+Picture the values sitting on a seesaw.
+
+6
+00:00:14.050 --> 00:00:16.333
+The mean is where the fulcrum balances.
+
+7
+00:00:16.633 --> 00:00:22.533
+It also minimizes squared distance to every point, which is why squared-error models predict means.
+
+8
+00:00:23.733 --> 00:00:25.833
+Here are five values on a number line.
+
+9
+00:00:26.133 --> 00:00:27.311
+They balance at three.
+
+10
+00:00:27.311 --> 00:00:28.167
+That's the mean.
+
+11
+00:00:28.467 --> 00:00:31.533
+Now watch what happens when one extreme value joins.
+
+12
+00:00:31.833 --> 00:00:36.600
+A single nine shifts the fulcrum to four, away from where the crowd actually sits.
+
+13
+00:00:37.800 --> 00:00:39.133
+So when can you trust it?
+
+14
+00:00:39.433 --> 00:00:42.533
+For symmetric, well behaved data, the mean is great.
+
+15
+00:00:42.833 --> 00:00:48.067
+For skewed data like salaries or latencies, a few extremes drag it away from the crowd.
+
+16
+00:00:48.367 --> 00:00:52.733
+The reason: every value pulls on the mean in proportion to its distance.
+
+17
+00:00:53.933 --> 00:00:55.067
+Let's see it in code.
+
+18
+00:00:55.367 --> 00:00:58.180
+Ten rocky planet masses, in Earth masses.
+
+19
+00:00:58.180 --> 00:01:02.433
+Their mean is zero point nine six five, a fair typical planet.
+
+20
+00:01:02.733 --> 00:01:05.247
+Now one Jupiter sneaks into the sample.
+
+21
+00:01:05.247 --> 00:01:09.500
+The mean jumps to nearly thirty, which describes no planet at all.
+
+22
+00:01:10.700 --> 00:01:12.200
+Here's a real dashboard.
+
+23
+00:01:12.500 --> 00:01:16.121
+Most users see a response in about nine tenths of a second.
+
+24
+00:01:16.121 --> 00:01:19.067
+The mean reads one point four, which looks fine.
+
+25
+00:01:19.367 --> 00:01:24.084
+But one query in a hundred hits a cold reranker and takes thirty seconds.
+
+26
+00:01:24.084 --> 00:01:26.733
+A mean-only view hides exactly that pain.
+
+27
+00:01:27.933 --> 00:01:30.067
+Putting it together for your RAG endpoint.
+
+28
+00:01:30.367 --> 00:01:33.833
+The mean says one point four seconds, so everything looks fine.
+
+29
+00:01:34.133 --> 00:01:37.500
+But a few thirty second calls are hiding inside that number.
+
+30
+00:01:37.800 --> 00:01:42.000
+So report percentiles, which is exactly what the next topic is about.
+
+31
+00:01:43.200 --> 00:01:43.913
+Let's recap.
+
+32
+00:01:43.913 --> 00:01:46.467
+The mean is the balance point of your data.
+
+33
+00:01:46.767 --> 00:01:49.400
+One outlier can drag it arbitrarily far.
+
+34
+00:01:49.700 --> 00:01:53.607
+Use it for symmetric data, and be careful with skewed data.
+
+35
+00:01:53.607 --> 00:01:54.667
+Next up: Median.

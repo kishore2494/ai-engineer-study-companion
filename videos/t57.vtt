@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Feature engineering.
+
+2
+00:00:02.367 --> 00:00:03.993
+Models only see numbers.
+
+3
+00:00:03.993 --> 00:00:08.533
+Your job is to turn raw columns into signals they can actually use.
+
+4
+00:00:09.733 --> 00:00:12.700
+A model has no idea what a planet or a star is.
+
+5
+00:00:13.000 --> 00:00:16.167
+It cannot invent domain knowledge from raw columns alone.
+
+6
+00:00:16.467 --> 00:00:20.833
+So you add that knowledge yourself, as new derived columns called features.
+
+7
+00:00:22.033 --> 00:00:24.433
+Here is the same data, before and after.
+
+8
+00:00:24.733 --> 00:00:29.967
+A raw timestamp is nearly useless, but hour, weekday and weekend flag can be gold.
+
+9
+00:00:30.267 --> 00:00:36.267
+Mass and radius alone say little, yet their ratio is density, which has real physical meaning.
+
+10
+00:00:36.567 --> 00:00:39.733
+A log of the orbital period tames huge ranges.
+
+11
+00:00:40.033 --> 00:00:41.800
+Same information, new shape.
+
+12
+00:00:43.000 --> 00:00:46.033
+There are four recipes you will use again and again.
+
+13
+00:00:46.333 --> 00:00:49.000
+Ratios and interactions between columns.
+
+14
+00:00:49.300 --> 00:00:51.900
+Time components pulled from a single timestamp.
+
+15
+00:00:52.200 --> 00:00:55.567
+Aggregations, like a star's average planet radius.
+
+16
+00:00:55.867 --> 00:00:59.200
+And domain flags, booleans that encode an expert's rule.
+
+17
+00:01:00.400 --> 00:01:01.733
+Here it is in pandas.
+
+18
+00:01:02.033 --> 00:01:04.127
+Each line creates one new column.
+
+19
+00:01:04.127 --> 00:01:11.233
+Density is mass divided by radius cubed, and temperature is compared to Earth's two hundred eighty eight kelvin.
+
+20
+00:01:11.533 --> 00:01:14.533
+Then a flag marks planets that are roughly Earth sized.
+
+21
+00:01:15.733 --> 00:01:17.833
+Now the payoff on a real project.
+
+22
+00:01:18.133 --> 00:01:23.267
+A first classifier on raw columns plateaus at zero point eight one AUC.
+
+23
+00:01:23.567 --> 00:01:28.100
+The gradient boosted upgrade you planned would buy about zero point zero two.
+
+24
+00:01:28.400 --> 00:01:34.900
+Adding density, log period and temperature ratio jumps it to zero point eight eight, in an afternoon.
+
+25
+00:01:36.100 --> 00:01:36.906
+Let's recap.
+
+26
+00:01:36.906 --> 00:01:40.800
+Feature engineering turns raw columns into usable signals.
+
+27
+00:01:41.100 --> 00:01:44.167
+It injects domain knowledge the model cannot invent.
+
+28
+00:01:44.467 --> 00:01:47.800
+Think ratios, time parts, aggregations and flags.
+
+29
+00:01:48.100 --> 00:01:50.358
+And it often beats a fancier model.
+
+30
+00:01:50.358 --> 00:01:52.100
+Next up: feature selection.

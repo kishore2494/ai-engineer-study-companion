@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Confidence intervals.
+
+2
+00:00:02.400 --> 00:00:04.517
+A bare number hides how soft it is.
+
+3
+00:00:04.517 --> 00:00:05.667
+Intervals fix that.
+
+4
+00:00:06.867 --> 00:00:13.800
+A confidence interval is a range built to capture the true value in ninety five percent of repeated experiments.
+
+5
+00:00:14.100 --> 00:00:15.977
+It upgrades a point estimate.
+
+6
+00:00:15.977 --> 00:00:18.178
+Point eight four hides everything.
+
+7
+00:00:18.178 --> 00:00:23.033
+An interval from point seven nine to point eight nine shows how soft it is.
+
+8
+00:00:23.333 --> 00:00:26.312
+The ninety five percent describes the procedure.
+
+9
+00:00:26.312 --> 00:00:29.600
+One interval either contains the truth or it doesn't.
+
+10
+00:00:30.800 --> 00:00:33.000
+Picture one true value we're trying to measure.
+
+11
+00:00:33.300 --> 00:00:36.854
+Run an experiment and you get an interval around your estimate.
+
+12
+00:00:36.854 --> 00:00:39.900
+Run it again, and each one lands a little differently.
+
+13
+00:00:40.200 --> 00:00:41.933
+Most of them straddle the truth.
+
+14
+00:00:42.233 --> 00:00:44.673
+But occasionally, by bad luck, one misses.
+
+15
+00:00:44.673 --> 00:00:46.067
+That's the five percent.
+
+16
+00:00:47.267 --> 00:00:48.867
+Two practical facts follow.
+
+17
+00:00:49.167 --> 00:00:54.333
+More data gives a narrower interval, with width shrinking like one over the square root of n.
+
+18
+00:00:54.633 --> 00:00:59.700
+And if two models have heavily overlapping intervals, you probably can't tell them apart yet.
+
+19
+00:01:00.900 --> 00:01:03.019
+How do you build one without formulas?
+
+20
+00:01:03.019 --> 00:01:03.800
+The bootstrap.
+
+21
+00:01:04.100 --> 00:01:06.167
+Resample your data with replacement.
+
+22
+00:01:06.467 --> 00:01:08.800
+Recompute the statistic, like the mean.
+
+23
+00:01:09.100 --> 00:01:10.667
+Repeat thousands of times.
+
+24
+00:01:10.967 --> 00:01:14.800
+Take the two point five and ninety seven point five percentiles.
+
+25
+00:01:16.000 --> 00:01:17.367
+Let's do it in NumPy.
+
+26
+00:01:17.667 --> 00:01:20.067
+We start with sixty measured planet radii.
+
+27
+00:01:20.367 --> 00:01:24.933
+Then resample them ten thousand times, with replacement, and take each mean.
+
+28
+00:01:25.233 --> 00:01:28.467
+The middle ninety five percent of those means is the interval.
+
+29
+00:01:29.667 --> 00:01:31.667
+Here's how it sounds in a real review.
+
+30
+00:01:31.967 --> 00:01:34.833
+Leadership asks whether the new RAG pipeline is better.
+
+31
+00:01:35.133 --> 00:01:42.567
+You bootstrap per question scores: version two at point eight four, version one at point eight one, intervals overlapping.
+
+32
+00:01:42.867 --> 00:01:46.294
+So you say you need about two hundred more eval questions.
+
+33
+00:01:46.294 --> 00:01:48.067
+That's measurement, not vibes.
+
+34
+00:01:49.267 --> 00:01:50.015
+Let's recap.
+
+35
+00:01:50.015 --> 00:01:54.567
+A confidence interval captures the truth ninety five percent of the time.
+
+36
+00:01:54.867 --> 00:01:56.200
+More data narrows it.
+
+37
+00:01:56.500 --> 00:01:58.733
+The bootstrap builds one without formulas.
+
+38
+00:01:59.033 --> 00:02:03.367
+And a good report gives the interval, the overlap, and a sample size plan.

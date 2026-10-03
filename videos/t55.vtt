@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+The p-value.
+
+2
+00:00:02.033 --> 00:00:05.462
+Everyone reports it, and most people get its meaning wrong.
+
+3
+00:00:05.462 --> 00:00:06.333
+Let's fix that.
+
+4
+00:00:07.533 --> 00:00:13.700
+The p-value is the probability of seeing data at least this extreme, if the null hypothesis were true.
+
+5
+00:00:14.000 --> 00:00:16.554
+Small p means: hard to explain as luck.
+
+6
+00:00:16.554 --> 00:00:17.667
+That's all it is.
+
+7
+00:00:18.867 --> 00:00:21.367
+Here is every result pure chance could produce.
+
+8
+00:00:21.667 --> 00:00:23.678
+Our result sits out on the right.
+
+9
+00:00:23.678 --> 00:00:27.943
+The shaded tail is how often chance alone would do at least this well.
+
+10
+00:00:27.943 --> 00:00:29.467
+That area is the p-value.
+
+11
+00:00:30.667 --> 00:00:32.067
+Here's the common mistake.
+
+12
+00:00:32.367 --> 00:00:35.233
+P is a statement about the data, assuming the null.
+
+13
+00:00:35.533 --> 00:00:38.133
+It is not the probability that the null is true.
+
+14
+00:00:38.433 --> 00:00:41.967
+And one minus p is certainly not the chance your change works.
+
+15
+00:00:43.167 --> 00:00:44.640
+There's a bigger trap.
+
+16
+00:00:44.640 --> 00:00:50.933
+At a threshold of zero point zero five, one in twenty truly null experiments succeeds by luck.
+
+17
+00:00:51.233 --> 00:00:55.733
+Run a hundred tests with no real effect, and about five will look like wins.
+
+18
+00:00:56.933 --> 00:00:58.867
+Here is that experiment in Python.
+
+19
+00:00:59.167 --> 00:01:04.333
+Each round draws two samples from identical distributions, so there's no real effect.
+
+20
+00:01:04.633 --> 00:01:08.054
+We count how often p dips below point zero five.
+
+21
+00:01:08.054 --> 00:01:09.408
+Roughly five times.
+
+22
+00:01:09.408 --> 00:01:10.833
+Luck alone succeeds.
+
+23
+00:01:12.033 --> 00:01:13.800
+Here's how it bites in practice.
+
+24
+00:01:14.100 --> 00:01:19.200
+Your RAGAS eval runs eight metrics across four categories, thirty two comparisons.
+
+25
+00:01:19.500 --> 00:01:25.533
+At point zero five, about one point six of them look significant even for a change that does nothing.
+
+26
+00:01:25.833 --> 00:01:29.405
+So one p of point zero four is likely the lottery.
+
+27
+00:01:29.405 --> 00:01:33.333
+Pre-register one metric, or divide alpha by thirty two.
+
+28
+00:01:34.533 --> 00:01:35.276
+Let's recap.
+
+29
+00:01:35.276 --> 00:01:39.300
+The p-value is how surprising the data is, if the null were true.
+
+30
+00:01:39.600 --> 00:01:42.200
+It is not the probability that the null is true.
+
+31
+00:01:42.500 --> 00:01:46.233
+One in twenty null tests pass by luck at point zero five.
+
+32
+00:01:46.533 --> 00:01:49.679
+So when you make many comparisons, correct for them.
+
+33
+00:01:49.679 --> 00:01:51.433
+Next up: Confidence interval.
