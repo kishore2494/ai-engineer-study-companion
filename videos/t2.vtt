@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.467
+Lists.
+
+2
+00:00:01.767 --> 00:00:04.224
+The list is Python's workhorse container.
+
+3
+00:00:04.224 --> 00:00:07.400
+Master three moves and you can shape almost any data.
+
+4
+00:00:08.600 --> 00:00:12.133
+A list is ordered and mutable, and it can hold anything at all.
+
+5
+00:00:12.433 --> 00:00:16.167
+Fluency comes down to indexing, slicing, and comprehensions.
+
+6
+00:00:16.467 --> 00:00:19.667
+Plus knowing which operations are cheap and which are not.
+
+7
+00:00:20.867 --> 00:00:25.533
+Every element has two addresses, one counting from the front and one from the back.
+
+8
+00:00:25.833 --> 00:00:27.933
+Index zero is the first item.
+
+9
+00:00:28.233 --> 00:00:31.167
+Negative one is the last, no length math needed.
+
+10
+00:00:31.467 --> 00:00:32.996
+A slice takes a range.
+
+11
+00:00:32.996 --> 00:00:38.000
+Start is included, stop is excluded, so one to four returns three items.
+
+12
+00:00:39.200 --> 00:00:41.600
+Comprehensions replace a four line loop.
+
+13
+00:00:41.900 --> 00:00:44.233
+We pair each asteroid with its diameter.
+
+14
+00:00:44.533 --> 00:00:48.433
+We keep only the pairs where the diameter is above zero point four.
+
+15
+00:00:48.733 --> 00:00:50.167
+We pull out just the name.
+
+16
+00:00:50.467 --> 00:00:52.167
+And out comes a brand new list.
+
+17
+00:00:53.367 --> 00:00:55.133
+Here's all three moves in code.
+
+18
+00:00:55.433 --> 00:00:58.767
+Index zero and negative one give the first and last.
+
+19
+00:00:59.067 --> 00:01:04.026
+A slice takes the middle, and colon colon negative one makes a reversed copy.
+
+20
+00:01:04.026 --> 00:01:05.700
+The original is untouched.
+
+21
+00:01:06.000 --> 00:01:11.033
+And the comprehension keeps only the asteroids wider than point four kilometers.
+
+22
+00:01:12.233 --> 00:01:14.767
+One performance rule is worth remembering.
+
+23
+00:01:15.067 --> 00:01:17.167
+Append adds at the end, and it's cheap.
+
+24
+00:01:17.467 --> 00:01:22.233
+Inserting at the front shifts every other element, so it gets slower as the list grows.
+
+25
+00:01:22.533 --> 00:01:25.433
+For a queue, reach for collections dot deque instead.
+
+26
+00:01:26.633 --> 00:01:29.433
+In a RAG system, this is every single query.
+
+27
+00:01:29.733 --> 00:01:34.267
+The retriever returns fifty candidate chunks, already sorted by the reranker.
+
+28
+00:01:34.567 --> 00:01:39.267
+One comprehension keeps only the chunks scoring above zero point three five.
+
+29
+00:01:39.567 --> 00:01:42.433
+One slice caps it at eight to fit the prompt budget.
+
+30
+00:01:43.633 --> 00:01:44.422
+Let's recap.
+
+31
+00:01:44.422 --> 00:01:45.867
+Index from either end.
+
+32
+00:01:46.167 --> 00:01:48.033
+Slices clip instead of crashing.
+
+33
+00:01:48.333 --> 00:01:51.100
+Comprehensions filter and reshape in one line.
+
+34
+00:01:51.400 --> 00:01:53.533
+And avoid inserting at the front.
+
+35
+00:01:53.533 --> 00:01:54.567
+Next up: tuples.
