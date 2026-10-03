@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+Variables and data types.
+
+2
+00:00:02.800 --> 00:00:06.196
+In Python, a variable doesn't work the way you'd expect.
+
+3
+00:00:06.196 --> 00:00:09.167
+Getting it right explains a whole family of bugs.
+
+4
+00:00:10.367 --> 00:00:11.633
+Here's the key idea.
+
+5
+00:00:11.933 --> 00:00:16.633
+A variable is just a name tag, tied to an object living somewhere in memory.
+
+6
+00:00:16.933 --> 00:00:18.518
+The object carries the type.
+
+7
+00:00:18.518 --> 00:00:19.933
+The name carries nothing.
+
+8
+00:00:20.233 --> 00:00:22.933
+So the same name can move to a different object.
+
+9
+00:00:24.133 --> 00:00:27.567
+Now watch what happens when we assign a list to a second name.
+
+10
+00:00:27.867 --> 00:00:30.367
+First, the name targets is tied to a list.
+
+11
+00:00:30.667 --> 00:00:33.348
+Then backup is tied to that very same list.
+
+12
+00:00:33.348 --> 00:00:34.533
+Nothing was copied.
+
+13
+00:00:34.833 --> 00:00:38.200
+So a change made through either name is visible through both.
+
+14
+00:00:39.400 --> 00:00:41.533
+This split decides how safe sharing is.
+
+15
+00:00:41.833 --> 00:00:44.737
+Numbers, strings, and tuples are immutable.
+
+16
+00:00:44.737 --> 00:00:47.100
+Lists, dicts, and sets are mutable.
+
+17
+00:00:47.400 --> 00:00:50.455
+Changing an immutable value builds a new object.
+
+18
+00:00:50.455 --> 00:00:52.300
+Mutable ones change in place.
+
+19
+00:00:52.600 --> 00:00:56.199
+So every name pointing at a mutable object sees the change.
+
+20
+00:00:56.199 --> 00:00:58.333
+That's the number one beginner bug.
+
+21
+00:00:59.533 --> 00:01:00.733
+Here it is in code.
+
+22
+00:01:01.033 --> 00:01:03.467
+We tie backup to the same list as targets.
+
+23
+00:01:03.767 --> 00:01:08.167
+The function appends to its parameter, which is just one more tag on that list.
+
+24
+00:01:08.467 --> 00:01:12.433
+And printing backup shows Titan, even though we never touched it directly.
+
+25
+00:01:13.633 --> 00:01:15.633
+Here's how this bites a real agent.
+
+26
+00:01:15.933 --> 00:01:19.167
+The agent hands one config dictionary to every tool.
+
+27
+00:01:19.467 --> 00:01:23.500
+One tool lowers the limit to three, just for its own API call.
+
+28
+00:01:23.800 --> 00:01:29.000
+Suddenly the NEO tool fetches only three results, because they share one dict.
+
+29
+00:01:30.200 --> 00:01:33.133
+The mistake is trusting a shared mutable object.
+
+30
+00:01:33.433 --> 00:01:37.867
+The fix is a deep copy, or a config object that can't be changed at all.
+
+31
+00:01:39.067 --> 00:01:39.838
+Let's recap.
+
+32
+00:01:39.838 --> 00:01:43.567
+A variable is a name tag, and the object carries the type.
+
+33
+00:01:43.867 --> 00:01:47.600
+Immutable objects get replaced, mutable ones change in place.
+
+34
+00:01:47.900 --> 00:01:49.867
+Assignment never copies anything.
+
+35
+00:01:50.167 --> 00:01:52.595
+So watch shared mutable arguments.
+
+36
+00:01:52.595 --> 00:01:53.667
+Next up: lists.
