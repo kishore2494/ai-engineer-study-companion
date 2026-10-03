@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Polymorphism.
+
+2
+00:00:02.167 --> 00:00:05.463
+Different classes can answer the same call in their own way.
+
+3
+00:00:05.463 --> 00:00:07.167
+That's what makes plugins easy.
+
+4
+00:00:08.367 --> 00:00:12.467
+Polymorphism means different classes answer the same method call.
+
+5
+00:00:12.767 --> 00:00:14.733
+Python's flavor is duck typing.
+
+6
+00:00:15.033 --> 00:00:19.433
+The calling code cares that dot run exists, not which class it belongs to.
+
+7
+00:00:20.633 --> 00:00:22.300
+Picture one call fanning out.
+
+8
+00:00:22.600 --> 00:00:27.400
+The same call, tool dot run, goes to whichever object happens to receive it.
+
+9
+00:00:27.700 --> 00:00:30.833
+The asteroid tool answers with near Earth asteroids.
+
+10
+00:00:31.133 --> 00:00:36.064
+The solar flare tool answers with flares, and the events tool with natural events.
+
+11
+00:00:36.064 --> 00:00:37.267
+Each in its own way.
+
+12
+00:00:38.467 --> 00:00:39.767
+Compare the two styles.
+
+13
+00:00:40.067 --> 00:00:44.100
+Checking types means an extra branch every time you add a class.
+
+14
+00:00:44.400 --> 00:00:46.564
+Duck typing just calls the method.
+
+15
+00:00:46.564 --> 00:00:49.300
+A new class needs no changes anywhere else.
+
+16
+00:00:50.500 --> 00:00:51.800
+Here it is in Python.
+
+17
+00:00:52.100 --> 00:00:54.933
+Two unrelated classes, each with a run method.
+
+18
+00:00:55.233 --> 00:00:58.100
+One loop calls run on each, with no type checks.
+
+19
+00:00:58.400 --> 00:01:00.800
+And each object responds in its own way.
+
+20
+00:01:02.000 --> 00:01:04.633
+This is how plugin architectures stay simple.
+
+21
+00:01:04.933 --> 00:01:09.567
+The agent's execution loop just calls run on whatever tools are registered.
+
+22
+00:01:09.867 --> 00:01:14.167
+To add the Exoplanet Archive, you write one new class with a run method.
+
+23
+00:01:14.467 --> 00:01:18.167
+The loop, the retry wrapper, and the tracing all work unchanged.
+
+24
+00:01:19.367 --> 00:01:20.127
+Let's recap.
+
+25
+00:01:20.127 --> 00:01:23.800
+Polymorphism is different classes answering the same call.
+
+26
+00:01:24.100 --> 00:01:27.967
+Duck typing means no type checks, no interface declarations.
+
+27
+00:01:28.267 --> 00:01:30.433
+New features need just one new class.
+
+28
+00:01:30.733 --> 00:01:34.004
+And typing dot Protocol gives it a static spine.
+
+29
+00:01:34.004 --> 00:01:35.367
+Next up: decorators.

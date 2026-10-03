@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.133
+Context managers.
+
+2
+00:00:02.433 --> 00:00:07.033
+They guarantee that setup and teardown happen, even when something goes wrong in the middle.
+
+3
+00:00:08.233 --> 00:00:10.800
+The with statement guarantees setup and teardown.
+
+4
+00:00:11.100 --> 00:00:14.833
+Files close, locks release, and connections go back to the pool.
+
+5
+00:00:15.133 --> 00:00:16.933
+Even if an exception is raised.
+
+6
+00:00:18.133 --> 00:00:19.300
+Here's the sequence.
+
+7
+00:00:19.600 --> 00:00:21.567
+Enter runs first, doing the setup.
+
+8
+00:00:21.867 --> 00:00:23.200
+Then your block runs.
+
+9
+00:00:23.500 --> 00:00:28.000
+Exit always runs afterward, even on the path where an exception was raised.
+
+10
+00:00:28.300 --> 00:00:30.633
+Only then does the exception travel on.
+
+11
+00:00:31.833 --> 00:00:34.000
+You could write try and finally by hand.
+
+12
+00:00:34.300 --> 00:00:36.467
+But then cleanup is yours to remember.
+
+13
+00:00:36.767 --> 00:00:39.215
+With a context manager, it's built in.
+
+14
+00:00:39.215 --> 00:00:43.467
+And the easy way to write one uses a decorator and a single yield.
+
+15
+00:00:44.667 --> 00:00:45.967
+Here's a stage timer.
+
+16
+00:00:46.267 --> 00:00:48.522
+Everything before the yield is the enter.
+
+17
+00:00:48.522 --> 00:00:49.567
+We start the clock.
+
+18
+00:00:49.867 --> 00:00:52.763
+Everything after, inside finally, is the exit.
+
+19
+00:00:52.763 --> 00:00:54.400
+We print the elapsed time.
+
+20
+00:00:54.700 --> 00:00:57.800
+And the with block is timed even if embed raises.
+
+21
+00:00:59.000 --> 00:01:02.333
+Here's why teardown guarantees are production guarantees.
+
+22
+00:01:02.633 --> 00:01:09.133
+Langfuse tracing wraps each RAG stage in a span, so timing is recorded even when the reranker throws.
+
+23
+00:01:09.433 --> 00:01:12.433
+Database connections come from a pool the same way.
+
+24
+00:01:12.733 --> 00:01:18.733
+Once, someone skipped with, an exception leaked a connection, the pool drained, and the whole service froze.
+
+25
+00:01:19.933 --> 00:01:22.667
+The mistake is acquiring a resource manually.
+
+26
+00:01:22.967 --> 00:01:25.133
+The fix is simple: always use with.
+
+27
+00:01:26.333 --> 00:01:27.065
+Let's recap.
+
+28
+00:01:27.065 --> 00:01:29.200
+With guarantees setup and teardown.
+
+29
+00:01:29.500 --> 00:01:30.867
+Exit always runs.
+
+30
+00:01:31.167 --> 00:01:33.933
+Write your own with the contextmanager decorator.
+
+31
+00:01:34.233 --> 00:01:36.100
+Next up: exception handling.

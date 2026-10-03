@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+Generators.
+
+2
+00:00:02.033 --> 00:00:08.000
+They let you produce values one at a time, on demand, so even huge data fits in tiny memory.
+
+3
+00:00:09.200 --> 00:00:12.133
+Put yield in a function and it becomes a generator.
+
+4
+00:00:12.433 --> 00:00:13.967
+Calling it runs nothing yet.
+
+5
+00:00:14.267 --> 00:00:18.800
+Each request for the next value runs the body up to a yield, then freezes.
+
+6
+00:00:20.000 --> 00:00:21.100
+Here's the cycle.
+
+7
+00:00:21.400 --> 00:00:23.400
+The consumer asks for the next value.
+
+8
+00:00:23.700 --> 00:00:25.667
+The body runs until it hits yield.
+
+9
+00:00:25.967 --> 00:00:30.667
+It freezes there with all its local variables intact, and waits to be asked again.
+
+10
+00:00:31.867 --> 00:00:33.133
+Compare it with a list.
+
+11
+00:00:33.433 --> 00:00:35.867
+A list loads everything first, then you work.
+
+12
+00:00:36.167 --> 00:00:40.433
+A generator pulls one item through at a time, so memory stays constant.
+
+13
+00:00:41.633 --> 00:00:43.300
+Let's stream a spacecraft log.
+
+14
+00:00:43.600 --> 00:00:46.933
+We read line by line and yield only the thruster lines.
+
+15
+00:00:47.233 --> 00:00:49.498
+Creating the generator loads nothing.
+
+16
+00:00:49.498 --> 00:00:51.333
+Next asks for the first match.
+
+17
+00:00:51.633 --> 00:00:54.233
+Then the for loop resumes exactly where it stopped.
+
+18
+00:00:55.433 --> 00:00:57.400
+Generators chain into pipelines.
+
+19
+00:00:57.700 --> 00:00:59.267
+The file is read lazily.
+
+20
+00:00:59.567 --> 00:01:01.700
+Each stage filters or transforms.
+
+21
+00:01:02.000 --> 00:01:05.067
+And nothing computes until the final consumer pulls.
+
+22
+00:01:06.267 --> 00:01:08.233
+This is how modern AI apps stream.
+
+23
+00:01:08.533 --> 00:01:12.233
+A generator yields LLM tokens the instant they arrive.
+
+24
+00:01:12.533 --> 00:01:18.467
+FastAPI's streaming response sends them on, so the browser paints words in real time.
+
+25
+00:01:18.767 --> 00:01:24.700
+Ingestion works the same way: four gigabytes of reports flow through embedding in constant memory.
+
+26
+00:01:25.900 --> 00:01:26.722
+Let's recap.
+
+27
+00:01:26.722 --> 00:01:28.367
+Yield makes a generator.
+
+28
+00:01:28.667 --> 00:01:31.200
+Values come on demand, in constant memory.
+
+29
+00:01:31.500 --> 00:01:34.333
+You can chain generators into lazy pipelines.
+
+30
+00:01:34.633 --> 00:01:36.200
+Next up: iterators.
