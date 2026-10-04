@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.567
+CI/CD for models.
+
+2
+00:00:02.867 --> 00:00:05.021
+New data, same code, worse model.
+
+3
+00:00:05.021 --> 00:00:07.633
+So the pipeline has to gate on evidence.
+
+4
+00:00:08.833 --> 00:00:13.567
+CI/CD for models is software delivery discipline, with one twist.
+
+5
+00:00:13.867 --> 00:00:17.700
+Datasets and metrics become first-class citizens of the pipeline.
+
+6
+00:00:18.000 --> 00:00:23.267
+The eval suite plays the role of unit tests: an executable definition of still works.
+
+7
+00:00:24.467 --> 00:00:25.733
+Here is the pipeline.
+
+8
+00:00:26.033 --> 00:00:27.500
+A pull request arrives.
+
+9
+00:00:27.800 --> 00:00:31.067
+We validate the data: schema, ranges, and nulls.
+
+10
+00:00:31.367 --> 00:00:33.800
+We retrain and run the evaluation suite.
+
+11
+00:00:34.100 --> 00:00:36.433
+The gate checks the metric against a threshold.
+
+12
+00:00:36.733 --> 00:00:38.633
+Only if it passes do we release.
+
+13
+00:00:39.833 --> 00:00:41.400
+Three pieces make this work.
+
+14
+00:00:41.700 --> 00:00:46.766
+Continuous integration: every pull request runs data validation and eval.
+
+15
+00:00:46.766 --> 00:00:51.000
+A metric below the threshold is a red X, like a failing test.
+
+16
+00:00:51.300 --> 00:00:57.833
+Continuous delivery: merged changes reach staging automatically, and production goes through the registry.
+
+17
+00:00:58.133 --> 00:01:04.667
+And continuous training: a drift alarm or a schedule can trigger the pipeline with no human pull request.
+
+18
+00:01:05.867 --> 00:01:07.333
+Here is a minimal gate.
+
+19
+00:01:07.633 --> 00:01:09.533
+It runs on every pull request.
+
+20
+00:01:09.833 --> 00:01:13.100
+One step runs the evaluation and writes the metrics.
+
+21
+00:01:13.400 --> 00:01:19.233
+The next reads them, and fails with a red X if the AUC falls below zero point nine one.
+
+22
+00:01:20.433 --> 00:01:21.788
+Here is a real catch.
+
+23
+00:01:21.788 --> 00:01:25.850
+A teammate swaps the embedding model of a RAG system for speed.
+
+24
+00:01:25.850 --> 00:01:27.333
+Code review looks fine.
+
+25
+00:01:27.633 --> 00:01:34.800
+But CI runs the evaluation suite, and faithfulness drops from zero point eight eight to zero point seven nine.
+
+26
+00:01:35.100 --> 00:01:38.889
+Red X, merge blocked, with the metric diff in the check output.
+
+27
+00:01:38.889 --> 00:01:40.633
+The pipeline is the noticing.
+
+28
+00:01:41.833 --> 00:01:42.607
+Let's recap.
+
+29
+00:01:42.607 --> 00:01:44.733
+Models can break from data alone.
+
+30
+00:01:45.033 --> 00:01:47.133
+Eval suites are the new unit tests.
+
+31
+00:01:47.433 --> 00:01:50.333
+CI gates, CD ships, and CT retrains.
+
+32
+00:01:50.633 --> 00:01:52.238
+Evidence, or no deploy.
+
+33
+00:01:52.238 --> 00:01:53.633
+Next up: monitoring.

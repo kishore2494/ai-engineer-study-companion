@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+A/B testing.
+
+2
+00:00:02.133 --> 00:00:06.381
+Offline evaluation says the new model is better on old data.
+
+3
+00:00:06.381 --> 00:00:09.000
+A live test is the honest final exam.
+
+4
+00:00:10.200 --> 00:00:11.300
+Here is the setup.
+
+5
+00:00:11.600 --> 00:00:14.400
+Live traffic is split, randomized per user.
+
+6
+00:00:14.700 --> 00:00:16.400
+Most users keep the champion.
+
+7
+00:00:16.700 --> 00:00:18.600
+A fraction goes to the challenger.
+
+8
+00:00:18.900 --> 00:00:26.667
+Then we measure a business metric, like acceptance rate, not AUC, and promote only if the difference is statistically significant.
+
+9
+00:00:27.867 --> 00:00:29.767
+Three rules keep the test honest.
+
+10
+00:00:30.067 --> 00:00:32.676
+First, run a power analysis before starting.
+
+11
+00:00:32.676 --> 00:00:36.767
+An underpowered test that showed no difference showed nothing at all.
+
+12
+00:00:37.067 --> 00:00:39.741
+Second, randomize per user or session.
+
+13
+00:00:39.741 --> 00:00:43.400
+One user seeing both models contaminates the metric.
+
+14
+00:00:43.700 --> 00:00:45.955
+Third, declare one primary metric.
+
+15
+00:00:45.955 --> 00:00:50.067
+Checking twenty metrics until one is significant is p-hacking.
+
+16
+00:00:51.267 --> 00:00:52.833
+Here is the verdict in code.
+
+17
+00:00:53.133 --> 00:00:56.520
+We simulate two thousand four hundred sessions per arm.
+
+18
+00:00:56.520 --> 00:01:02.000
+The champion accepts about eleven point eight percent, the challenger thirteen point one.
+
+19
+00:01:02.300 --> 00:01:04.300
+A hypothesis test compares them.
+
+20
+00:01:04.600 --> 00:01:07.967
+If p is below point oh five, we promote the challenger.
+
+21
+00:01:09.167 --> 00:01:11.600
+But before running, do the power analysis.
+
+22
+00:01:11.900 --> 00:01:18.301
+Detecting a one percent lift at eighty percent power needs about fourteen thousand sessions per arm.
+
+23
+00:01:18.301 --> 00:01:20.733
+Most quick A/B tests are underpowered.
+
+24
+00:01:21.933 --> 00:01:23.267
+Here is a real case.
+
+25
+00:01:23.567 --> 00:01:26.033
+Your new reranker beats the old one offline.
+
+26
+00:01:26.333 --> 00:01:31.033
+So you route ten percent of analysts to it, and track answer acceptance for two weeks.
+
+27
+00:01:31.333 --> 00:01:34.926
+The result is plus one point three, with p of point oh three.
+
+28
+00:01:34.926 --> 00:01:37.400
+You promote it through the registry alias.
+
+29
+00:01:38.600 --> 00:01:39.440
+Let's recap.
+
+30
+00:01:39.440 --> 00:01:42.100
+Live traffic is the honest final exam.
+
+31
+00:01:42.400 --> 00:01:45.300
+Judge on a business metric, not an offline score.
+
+32
+00:01:45.600 --> 00:01:47.233
+Do a power analysis first.
+
+33
+00:01:47.533 --> 00:01:50.872
+And promote only if the result is significant.
+
+34
+00:01:50.872 --> 00:01:52.033
+Next up: MLflow.

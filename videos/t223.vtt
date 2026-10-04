@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+MLflow.
+
+2
+00:00:01.967 --> 00:00:07.433
+Tracking, registry, and packaging in one self-hostable tool, with no vendor required.
+
+3
+00:00:08.633 --> 00:00:11.367
+MLflow bundles three lifecycle stations.
+
+4
+00:00:11.667 --> 00:00:17.333
+At the bottom, tracking: runs, parameters, metrics, artifacts, and the comparison UI.
+
+5
+00:00:17.633 --> 00:00:22.233
+Above it, the registry: versions, aliases, and lineage back to runs.
+
+6
+00:00:22.533 --> 00:00:31.433
+And on top, models: a packaging format called pyfunc, which makes any model loadable and servable the same way, whatever framework trained it.
+
+7
+00:00:32.633 --> 00:00:34.200
+Here is how it fits together.
+
+8
+00:00:34.500 --> 00:00:36.500
+Training scripts log into the server.
+
+9
+00:00:36.800 --> 00:00:40.800
+The server is just a Python package, a UI, and a database.
+
+10
+00:00:41.100 --> 00:00:43.400
+Serving then loads models back out of it.
+
+11
+00:00:44.600 --> 00:00:47.367
+Before the code, here is what autolog supports.
+
+12
+00:00:47.667 --> 00:00:48.700
+Scikit-learn.
+
+13
+00:00:49.000 --> 00:00:49.867
+PyTorch.
+
+14
+00:00:50.167 --> 00:00:51.367
+XGBoost.
+
+15
+00:00:51.667 --> 00:00:52.539
+And LightGBM.
+
+16
+00:00:52.539 --> 00:00:57.167
+It is the lowest-friction on-ramp to tracked experiments that exists.
+
+17
+00:00:58.367 --> 00:01:00.500
+Its killer convenience is autolog.
+
+18
+00:01:00.800 --> 00:01:05.467
+One line instruments sklearn, PyTorch, XGBoost and friends.
+
+19
+00:01:05.767 --> 00:01:07.867
+The training code itself does not change.
+
+20
+00:01:08.167 --> 00:01:10.679
+Even the score is logged automatically.
+
+21
+00:01:10.679 --> 00:01:14.867
+Run it twice with different parameters, open the UI, and compare.
+
+22
+00:01:16.067 --> 00:01:17.700
+Here is a realistic setup.
+
+23
+00:01:18.000 --> 00:01:24.867
+You run MLflow on a small EC2 instance, with S3 for artifacts and Postgres as the backend.
+
+24
+00:01:25.167 --> 00:01:31.100
+Every project logs to it: classifier retrains, RL runs, even evaluation scores.
+
+25
+00:01:31.400 --> 00:01:37.067
+When a recruiter asks how you manage experiments, you screen-share one UI with a year of evidence.
+
+26
+00:01:38.267 --> 00:01:39.128
+Let's recap.
+
+27
+00:01:39.128 --> 00:01:41.567
+MLflow is the open-source default.
+
+28
+00:01:41.867 --> 00:01:44.600
+It covers tracking, the registry, and packaging.
+
+29
+00:01:44.900 --> 00:01:47.533
+Autolog is the lowest-friction way to start.
+
+30
+00:01:47.833 --> 00:01:50.599
+And it is self-hosted, so you own the data.
+
+31
+00:01:50.599 --> 00:01:52.400
+Next up: Weights and Biases.

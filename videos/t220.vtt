@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+Model monitoring.
+
+2
+00:00:02.233 --> 00:00:06.367
+A model can be a perfectly healthy service and still be completely wrong.
+
+3
+00:00:07.567 --> 00:00:11.100
+Monitoring has two layers, and the trap is stopping at the first.
+
+4
+00:00:11.400 --> 00:00:15.523
+Layer one is the serving system: latency, errors, and throughput.
+
+5
+00:00:15.523 --> 00:00:17.933
+Your existing stack already covers it.
+
+6
+00:00:18.233 --> 00:00:24.633
+Layer two is the predictions themselves: the output distribution, class balance, and feature statistics.
+
+7
+00:00:24.933 --> 00:00:27.406
+The left dashboard says the service is up.
+
+8
+00:00:27.406 --> 00:00:30.467
+Only the right one says the model has lost its mind.
+
+9
+00:00:31.667 --> 00:00:35.133
+Here is a FastAPI endpoint that logs both views.
+
+10
+00:00:35.433 --> 00:00:39.269
+We count predictions per class, which gives a rolling class balance.
+
+11
+00:00:39.269 --> 00:00:40.567
+That is the model view.
+
+12
+00:00:40.867 --> 00:00:44.685
+We log every prediction with its confidence and model version.
+
+13
+00:00:44.685 --> 00:00:48.133
+This is raw material for drift detection and retraining.
+
+14
+00:00:48.433 --> 00:00:51.067
+And we log latency, which is the service view.
+
+15
+00:00:52.267 --> 00:00:55.100
+Now alert on distributions, not just errors.
+
+16
+00:00:55.400 --> 00:01:01.433
+If the planet rate jumps from three percent to thirty one, someone should be paged, even though nothing crashed.
+
+17
+00:01:02.633 --> 00:01:04.667
+Here is how this fails in real life.
+
+18
+00:01:04.967 --> 00:01:09.100
+A firmware update rescales one telemetry channel by a factor of ten.
+
+19
+00:01:09.400 --> 00:01:11.139
+The endpoint keeps serving.
+
+20
+00:01:11.139 --> 00:01:17.067
+Latency is perfect and errors are zero, and the service dashboard stays green for six weeks.
+
+21
+00:01:17.367 --> 00:01:20.201
+The prediction log would have flagged it in an hour.
+
+22
+00:01:20.201 --> 00:01:22.000
+That line is your smoke detector.
+
+23
+00:01:23.200 --> 00:01:26.533
+The classic mistake is trusting a green service dashboard.
+
+24
+00:01:26.833 --> 00:01:30.567
+The fix is to also alert on what the model actually predicts.
+
+25
+00:01:31.767 --> 00:01:32.494
+Let's recap.
+
+26
+00:01:32.494 --> 00:01:35.100
+Watch both the service and the predictions.
+
+27
+00:01:35.400 --> 00:01:37.733
+A healthy service can hide a broken model.
+
+28
+00:01:38.033 --> 00:01:40.800
+Log every prediction, with its model version.
+
+29
+00:01:41.100 --> 00:01:43.482
+And alert on distribution changes.
+
+30
+00:01:43.482 --> 00:01:45.233
+Next up: drift detection.

@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Drift detection.
+
+2
+00:00:02.133 --> 00:00:04.946
+Drift is the reason the lifecycle is a loop.
+
+3
+00:00:04.946 --> 00:00:06.800
+It degrades a model silently.
+
+4
+00:00:08.000 --> 00:00:09.767
+Drift comes in two species.
+
+5
+00:00:10.067 --> 00:00:14.215
+Data drift means the inputs no longer look like the training data.
+
+6
+00:00:14.215 --> 00:00:18.300
+Concept drift means the same inputs now mean something different.
+
+7
+00:00:18.600 --> 00:00:21.118
+A recalibrated sensor causes the first.
+
+8
+00:00:21.118 --> 00:00:23.700
+Evolving fraud tactics cause the second.
+
+9
+00:00:24.000 --> 00:00:26.445
+Data drift needs no labels to detect.
+
+10
+00:00:26.445 --> 00:00:31.400
+Concept drift needs ground truth, because inputs may look perfectly normal.
+
+11
+00:00:32.600 --> 00:00:34.600
+Here is data drift for one feature.
+
+12
+00:00:34.900 --> 00:00:37.500
+The reference window is the training-era data.
+
+13
+00:00:37.800 --> 00:00:39.779
+The live window has walked away.
+
+14
+00:00:39.779 --> 00:00:40.768
+Nothing crashed.
+
+15
+00:00:40.768 --> 00:00:42.500
+That is exactly the problem.
+
+16
+00:00:42.800 --> 00:00:47.000
+So we compare the two windows with a statistical test, feature by feature.
+
+17
+00:00:48.200 --> 00:00:49.700
+Here is the check in Python.
+
+18
+00:00:50.000 --> 00:00:53.267
+One window from the training era, one from the current month.
+
+19
+00:00:53.567 --> 00:00:57.333
+The Kolmogorov Smirnov test compares the two distributions.
+
+20
+00:00:57.633 --> 00:01:00.304
+If the p value is tiny, we raise an alert.
+
+21
+00:01:00.304 --> 00:01:02.467
+Run it per feature, on a schedule.
+
+22
+00:01:03.667 --> 00:01:05.167
+Here is a real example.
+
+23
+00:01:05.467 --> 00:01:11.067
+After a satellite firmware update, the heater duty cycle feature shifts its whole distribution.
+
+24
+00:01:11.367 --> 00:01:13.533
+A nightly test flags it within a day.
+
+25
+00:01:13.833 --> 00:01:17.967
+You investigate, retrain on post-update data, and the loop closes.
+
+26
+00:01:19.167 --> 00:01:22.233
+A drift alarm is not proof that the model is wrong.
+
+27
+00:01:22.533 --> 00:01:27.600
+But it is a trigger to investigate, and ignored alarms are how silent failures happen.
+
+28
+00:01:28.800 --> 00:01:29.585
+Let's recap.
+
+29
+00:01:29.585 --> 00:01:31.546
+Data drift changes the inputs.
+
+30
+00:01:31.546 --> 00:01:33.900
+Concept drift changes their meaning.
+
+31
+00:01:34.200 --> 00:01:35.967
+Both degrade a model silently.
+
+32
+00:01:36.267 --> 00:01:38.767
+Compare a reference window with a live window.
+
+33
+00:01:39.067 --> 00:01:41.661
+And when an alarm fires, investigate.
+
+34
+00:01:41.661 --> 00:01:43.133
+Next up: A/B testing.
