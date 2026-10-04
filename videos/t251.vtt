@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+Dependency injection.
+
+2
+00:00:02.533 --> 00:00:09.467
+This one feature is the difference between tests that need API keys and tests that run offline in seconds.
+
+3
+00:00:10.667 --> 00:00:13.433
+FastAPI flips construction inside out.
+
+4
+00:00:13.733 --> 00:00:20.900
+Instead of each route building a database session or an LLM client, it just declares what it needs in its signature.
+
+5
+00:00:21.200 --> 00:00:26.567
+FastAPI builds it, shares it, and with yield, even cleans it up after the response.
+
+6
+00:00:27.767 --> 00:00:30.533
+Dependencies can depend on other dependencies.
+
+7
+00:00:30.833 --> 00:00:34.033
+This route needs an LLM client and the current user.
+
+8
+00:00:34.333 --> 00:00:37.704
+And the current user itself needs a database session.
+
+9
+00:00:37.704 --> 00:00:39.867
+FastAPI works out the whole order.
+
+10
+00:00:41.067 --> 00:00:42.400
+Here's the trick in code.
+
+11
+00:00:42.700 --> 00:00:46.533
+This function builds the real client, which needs an API key.
+
+12
+00:00:46.833 --> 00:00:48.775
+The route doesn't build anything.
+
+13
+00:00:48.775 --> 00:00:50.833
+It just says it depends on get llm.
+
+14
+00:00:51.133 --> 00:00:54.700
+In a test, we write a tiny fake that returns a canned answer.
+
+15
+00:00:55.000 --> 00:00:59.400
+Then one line in dependency overrides swaps it in, without touching the route.
+
+16
+00:01:00.600 --> 00:01:01.900
+Compare the two worlds.
+
+17
+00:01:02.200 --> 00:01:05.194
+In production, the route gets the real client.
+
+18
+00:01:05.194 --> 00:01:06.300
+In tests, a fake.
+
+19
+00:01:06.600 --> 00:01:08.487
+One needs a key and a network.
+
+20
+00:01:08.487 --> 00:01:09.933
+The other runs offline.
+
+21
+00:01:10.233 --> 00:01:11.333
+One takes seconds.
+
+22
+00:01:11.333 --> 00:01:12.800
+The other, milliseconds.
+
+23
+00:01:13.100 --> 00:01:16.933
+And the route code being tested is exactly what runs in production.
+
+24
+00:01:18.133 --> 00:01:19.833
+Here's what it buys you in CI.
+
+25
+00:01:20.133 --> 00:01:22.133
+Your test suite runs on every push.
+
+26
+00:01:22.433 --> 00:01:30.267
+Both the LLM and the vector database are injected, so CI swaps in a canned LLM and a tiny in-memory retriever.
+
+27
+00:01:30.567 --> 00:01:38.267
+Forty endpoint tests run offline in three seconds, cost zero tokens, and never flake when an outside service is down.
+
+28
+00:01:39.467 --> 00:01:40.150
+Let's recap.
+
+29
+00:01:40.150 --> 00:01:42.600
+Routes declare what they need with Depends.
+
+30
+00:01:42.900 --> 00:01:46.233
+FastAPI resolves the whole dependency graph.
+
+31
+00:01:46.533 --> 00:01:49.367
+Dependency overrides swap in fakes for tests.
+
+32
+00:01:49.667 --> 00:01:53.054
+So tests run offline, on unchanged route code.
+
+33
+00:01:53.054 --> 00:01:56.000
+Next up: streaming responses with S S E.

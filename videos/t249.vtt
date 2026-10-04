@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Pydantic models.
+
+2
+00:00:02.367 --> 00:00:04.918
+Data from users and from LLMs is messy.
+
+3
+00:00:04.918 --> 00:00:09.300
+Pydantic gives it a shape, and tells you precisely where it breaks.
+
+4
+00:00:10.500 --> 00:00:14.367
+Pydantic turns type annotations into runtime validation.
+
+5
+00:00:14.667 --> 00:00:18.867
+It even coerces sensibly, so the string five becomes the number five.
+
+6
+00:00:19.167 --> 00:00:22.200
+And when something's wrong, the error names exactly where.
+
+7
+00:00:23.400 --> 00:00:25.700
+You hand raw data to model validate.
+
+8
+00:00:26.000 --> 00:00:29.133
+If it fits the declared shape, you get a typed object.
+
+9
+00:00:29.433 --> 00:00:33.300
+If not, you get a validation error that points at the failing field.
+
+10
+00:00:34.500 --> 00:00:36.667
+The rule is to validate at the boundary.
+
+11
+00:00:36.967 --> 00:00:38.300
+When a request arrives.
+
+12
+00:00:38.600 --> 00:00:40.933
+When an LLM returns structured output.
+
+13
+00:00:41.233 --> 00:00:43.482
+And when an outside API answers.
+
+14
+00:00:43.482 --> 00:00:45.800
+Never deep inside business logic.
+
+15
+00:00:47.000 --> 00:00:48.567
+Let's see it fail on purpose.
+
+16
+00:00:48.867 --> 00:00:51.600
+An observation has a magnitude and a band.
+
+17
+00:00:51.900 --> 00:00:55.967
+A report has an id, a hazard flag, and a list of observations.
+
+18
+00:00:56.267 --> 00:00:58.591
+The word yes gets coerced into true.
+
+19
+00:00:58.591 --> 00:01:05.433
+But the word bright can't become a float, and the error says exactly where: observations, zero, magnitude.
+
+20
+00:01:06.633 --> 00:01:09.233
+Here's a powerful pattern for structured outputs.
+
+21
+00:01:09.533 --> 00:01:12.167
+The LLM extracts data from free text.
+
+22
+00:01:12.467 --> 00:01:13.500
+We validate it.
+
+23
+00:01:13.800 --> 00:01:16.333
+If it fails, the error names the exact field.
+
+24
+00:01:16.633 --> 00:01:21.167
+We append that message to the conversation, and the model fixes it on the retry.
+
+25
+00:01:22.367 --> 00:01:23.700
+Here's where it pays off.
+
+26
+00:01:24.000 --> 00:01:28.400
+Your research agent extracts asteroid reports from free text bulletins.
+
+27
+00:01:28.700 --> 00:01:33.333
+About one response in twenty has a magnitude like approximately twenty two.
+
+28
+00:01:33.633 --> 00:01:38.867
+Validation catches it, the error goes back to the model, and the retry comes back clean.
+
+29
+00:01:40.067 --> 00:01:40.867
+Let's recap.
+
+30
+00:01:40.867 --> 00:01:42.400
+Declare the shape once.
+
+31
+00:01:42.700 --> 00:01:45.800
+You get a typed object, or an error with an exact path.
+
+32
+00:01:46.100 --> 00:01:47.933
+Always validate at the boundary.
+
+33
+00:01:48.233 --> 00:01:52.414
+And feed validation errors back to the model as retry prompts.
+
+34
+00:01:52.414 --> 00:01:54.100
+Next up: async endpoints.

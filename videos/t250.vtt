@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+Async endpoints.
+
+2
+00:00:02.333 --> 00:00:04.314
+An LLM call is mostly waiting.
+
+3
+00:00:04.314 --> 00:00:09.133
+How you wait decides whether one server handles two users or two hundred.
+
+4
+00:00:10.333 --> 00:00:14.933
+An async endpoint can serve other requests while it waits on input and output.
+
+5
+00:00:15.233 --> 00:00:21.467
+An LLM call is the purest wait there is: five to thirty seconds of just listening to a socket.
+
+6
+00:00:21.767 --> 00:00:27.100
+Every await hands control back to the event loop, so one worker holds hundreds of requests.
+
+7
+00:00:28.300 --> 00:00:29.800
+Let's follow one request.
+
+8
+00:00:30.100 --> 00:00:31.700
+Request A calls the LLM.
+
+9
+00:00:32.000 --> 00:00:33.833
+At the await, it steps aside.
+
+10
+00:00:34.133 --> 00:00:36.500
+The event loop serves other users meanwhile.
+
+11
+00:00:36.800 --> 00:00:38.733
+When the answer arrives, A resumes.
+
+12
+00:00:39.933 --> 00:00:44.500
+Compare two versions of one endpoint under twenty simultaneous requests.
+
+13
+00:00:44.800 --> 00:00:49.300
+Blocking: the calls line up, and twenty times three is about sixty seconds.
+
+14
+00:00:49.600 --> 00:00:53.400
+Awaiting: the waits overlap, and the batch takes about three seconds.
+
+15
+00:00:54.600 --> 00:00:55.800
+So here is the rule.
+
+16
+00:00:56.100 --> 00:00:58.193
+Skip the requests library.
+
+17
+00:00:58.193 --> 00:01:00.367
+Use the async httpx client.
+
+18
+00:01:00.667 --> 00:01:01.867
+Skip time sleep.
+
+19
+00:01:01.867 --> 00:01:03.367
+Await asyncio sleep.
+
+20
+00:01:03.667 --> 00:01:09.433
+Blocking work belongs in a plain def route, which runs in a threadpool, or behind a task queue.
+
+21
+00:01:09.733 --> 00:01:13.400
+Inside an async route, everything that waits must be awaitable.
+
+22
+00:01:14.600 --> 00:01:16.067
+Here are both endpoints.
+
+23
+00:01:16.367 --> 00:01:18.891
+The frozen one sleeps with a blocking call.
+
+24
+00:01:18.891 --> 00:01:20.300
+Nobody else gets served.
+
+25
+00:01:20.600 --> 00:01:24.833
+The fine one awaits, so other requests proceed during those three seconds.
+
+26
+00:01:26.033 --> 00:01:27.867
+Here's a story that happens a lot.
+
+27
+00:01:28.167 --> 00:01:33.715
+The first chat endpoint used the synchronous requests library inside an async route.
+
+28
+00:01:33.715 --> 00:01:35.367
+Solo testing was perfect.
+
+29
+00:01:35.667 --> 00:01:38.326
+On demo day, twelve people asked at once.
+
+30
+00:01:38.326 --> 00:01:42.867
+Each eight second call froze the loop, and the last request timed out.
+
+31
+00:01:43.167 --> 00:01:45.052
+One dependency swap fixed it.
+
+32
+00:01:45.052 --> 00:01:48.433
+The same box now holds two hundred concurrent chats.
+
+33
+00:01:49.633 --> 00:01:50.456
+Let's recap.
+
+34
+00:01:50.456 --> 00:01:53.267
+Async lets one worker overlap many waits.
+
+35
+00:01:53.567 --> 00:01:56.067
+A blocking call freezes the whole event loop.
+
+36
+00:01:56.367 --> 00:01:59.033
+Inside an async route, use awaitable IO.
+
+37
+00:01:59.333 --> 00:02:02.740
+And put blocking work in a plain def route or a queue.
+
+38
+00:02:02.740 --> 00:02:04.633
+Next up: dependency injection.
