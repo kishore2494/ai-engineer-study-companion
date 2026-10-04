@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+GPT.
+
+2
+00:00:02.133 --> 00:00:08.300
+A model trained on one deceptively simple objective, and capabilities nobody trained for appeared.
+
+3
+00:00:09.500 --> 00:00:12.133
+GPT is the decoder-only lineage.
+
+4
+00:00:12.433 --> 00:00:13.703
+No labels, no tasks.
+
+5
+00:00:13.703 --> 00:00:17.767
+Just trillions of tokens and the pressure to continue them well.
+
+6
+00:00:18.067 --> 00:00:24.200
+Scale it up, and translation, code and reasoning-like behavior emerge, none of it trained directly.
+
+7
+00:00:25.400 --> 00:00:27.633
+At inference, one loop does everything.
+
+8
+00:00:27.933 --> 00:00:29.667
+A forward pass runs the model.
+
+9
+00:00:29.967 --> 00:00:33.433
+It gives a probability for every token in the vocabulary.
+
+10
+00:00:33.733 --> 00:00:36.233
+We sample one token from that distribution.
+
+11
+00:00:36.533 --> 00:00:38.000
+We append it, and repeat.
+
+12
+00:00:39.200 --> 00:00:43.133
+After flight, we see a pressure, the model might spread its odds like this.
+
+13
+00:00:43.433 --> 00:00:46.788
+Drop is likely, but spike and increase still have a chance.
+
+14
+00:00:46.788 --> 00:00:48.267
+Sampling picks among them.
+
+15
+00:00:49.467 --> 00:00:53.067
+Temperature, top-k and top-p all act at the sample step.
+
+16
+00:00:53.367 --> 00:00:56.667
+Low temperature makes the output nearly deterministic.
+
+17
+00:00:56.967 --> 00:00:59.800
+High temperature makes it varied, even chaotic.
+
+18
+00:01:01.000 --> 00:01:03.633
+Here is that loop with GPT-2.
+
+19
+00:01:03.933 --> 00:01:07.133
+We run the model and keep the scores for the last position.
+
+20
+00:01:07.433 --> 00:01:10.100
+We divide by the temperature before softmax.
+
+21
+00:01:10.400 --> 00:01:13.833
+We sample a token rather than always taking the top one.
+
+22
+00:01:14.133 --> 00:01:16.133
+Then we append it and go around again.
+
+23
+00:01:17.333 --> 00:01:19.233
+These numbers matter in production.
+
+24
+00:01:19.533 --> 00:01:24.167
+A retrieval system uses temperature zero point one for factual answers.
+
+25
+00:01:24.467 --> 00:01:28.300
+A research agent uses zero point seven when brainstorming.
+
+26
+00:01:28.600 --> 00:01:31.232
+Both tune the sampling step you just wrote.
+
+27
+00:01:31.232 --> 00:01:34.967
+Temperature stops being folklore; it is a division on logits.
+
+28
+00:01:36.167 --> 00:01:37.057
+Let's recap.
+
+29
+00:01:37.057 --> 00:01:39.133
+GPT predicts the next token.
+
+30
+00:01:39.433 --> 00:01:41.433
+Scale makes capabilities emerge.
+
+31
+00:01:41.733 --> 00:01:44.533
+The loop is predict, sample, append, repeat.
+
+32
+00:01:44.833 --> 00:01:47.493
+And temperature lives in the sample step.
+
+33
+00:01:47.493 --> 00:01:48.467
+Next up: LLaMA.

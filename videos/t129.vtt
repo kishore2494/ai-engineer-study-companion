@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Cross-attention.
+
+2
+00:00:02.133 --> 00:00:06.000
+What if the questions come from one sequence, and the answers from another?
+
+3
+00:00:07.200 --> 00:00:08.900
+That is the whole definition.
+
+4
+00:00:09.200 --> 00:00:10.967
+Queries come from one sequence.
+
+5
+00:00:11.267 --> 00:00:13.467
+Keys and values come from a different one.
+
+6
+00:00:14.667 --> 00:00:16.367
+Compare it with self-attention.
+
+7
+00:00:16.667 --> 00:00:20.033
+In self-attention, all three come from the same sequence.
+
+8
+00:00:20.333 --> 00:00:25.567
+In cross-attention, the queries come from one side and the keys and values from the other.
+
+9
+00:00:25.867 --> 00:00:27.267
+The math is the same.
+
+10
+00:00:27.267 --> 00:00:28.867
+Only the wiring changes.
+
+11
+00:00:30.067 --> 00:00:32.733
+Here is how it plays out in a model like T5.
+
+12
+00:00:33.033 --> 00:00:35.100
+The encoder reads the whole source log.
+
+13
+00:00:35.400 --> 00:00:38.262
+Every decoder layer then asks questions of it.
+
+14
+00:00:38.262 --> 00:00:41.933
+Which part of the source answers the word I am writing now?
+
+15
+00:00:42.233 --> 00:00:47.333
+The decoder's queries reach into the encoder's keys and values, and the next word comes out.
+
+16
+00:00:48.533 --> 00:00:51.800
+The same wiring shows up wherever two streams must talk.
+
+17
+00:00:52.100 --> 00:00:54.767
+Encoder-decoder models use it for summaries.
+
+18
+00:00:55.067 --> 00:00:59.067
+Multimodal models let text queries attend over image patches.
+
+19
+00:00:59.367 --> 00:01:03.800
+And diffusion models inject the text prompt into image generation this way.
+
+20
+00:01:05.000 --> 00:01:07.367
+Let's look inside a real T5 model.
+
+21
+00:01:07.667 --> 00:01:09.333
+We encode a short source text.
+
+22
+00:01:09.633 --> 00:01:12.933
+Then we generate while asking for the cross-attention maps.
+
+23
+00:01:13.233 --> 00:01:18.600
+We take the first step of the last layer, average the heads, and find the strongest source token.
+
+24
+00:01:18.900 --> 00:01:22.100
+Finally we print which source word the decoder was looking at.
+
+25
+00:01:23.300 --> 00:01:27.100
+Here is a real use: captioning wildfire satellite images.
+
+26
+00:01:27.400 --> 00:01:30.567
+The model writes: smoke plume in the northeast quadrant.
+
+27
+00:01:30.867 --> 00:01:36.033
+The cross-attention map over image patches shows which pixels justified that phrase.
+
+28
+00:01:36.333 --> 00:01:41.667
+Review tooling uses those maps to catch captions the model wrote without actually looking.
+
+29
+00:01:42.867 --> 00:01:43.617
+Let's recap.
+
+30
+00:01:43.617 --> 00:01:47.433
+Queries come from one sequence, keys and values from another.
+
+31
+00:01:47.733 --> 00:01:50.733
+Each decoder layer asks questions of the encoder.
+
+32
+00:01:51.033 --> 00:01:54.200
+The same trick powers multimodal and diffusion models.
+
+33
+00:01:54.500 --> 00:01:57.040
+And the maps show what the model looked at.
+
+34
+00:01:57.040 --> 00:01:57.867
+Next up: BERT.

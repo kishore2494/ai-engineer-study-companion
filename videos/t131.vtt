@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+RoBERTa.
+
+2
+00:00:01.867 --> 00:00:05.028
+It beat BERT everywhere without changing a single layer.
+
+3
+00:00:05.028 --> 00:00:06.100
+So what did change?
+
+4
+00:00:07.300 --> 00:00:09.533
+RoBERTa is BERT with the training done right.
+
+5
+00:00:09.833 --> 00:00:11.433
+The architecture is the same.
+
+6
+00:00:11.733 --> 00:00:14.433
+Only the recipe improved, and that was enough.
+
+7
+00:00:15.633 --> 00:00:16.600
+First, data.
+
+8
+00:00:16.900 --> 00:00:19.534
+BERT trained on sixteen gigabytes of text.
+
+9
+00:00:19.534 --> 00:00:24.300
+RoBERTa used one hundred sixty, and trained much longer with bigger batches.
+
+10
+00:00:25.500 --> 00:00:26.667
+Two more changes.
+
+11
+00:00:26.967 --> 00:00:32.700
+Masking became dynamic: a new random pattern each pass, instead of one frozen pattern.
+
+12
+00:00:33.000 --> 00:00:36.800
+And the next-sentence objective was dropped, because it proved useless.
+
+13
+00:00:37.100 --> 00:00:40.333
+The lesson: recipe matters as much as architecture.
+
+14
+00:00:41.533 --> 00:00:43.100
+Here is a fair experiment.
+
+15
+00:00:43.400 --> 00:00:45.842
+One line changes: the checkpoint name.
+
+16
+00:00:45.842 --> 00:00:49.633
+Distilbert scores point eight nine, RoBERTa point nine two.
+
+17
+00:00:49.933 --> 00:00:54.700
+Everything else is identical, because the Auto classes make checkpoint swaps free.
+
+18
+00:00:55.900 --> 00:00:58.133
+Here is the lesson in a real project.
+
+19
+00:00:58.433 --> 00:01:04.467
+For an anomaly classifier, you run the identical fine-tune on three backbones and log every score.
+
+20
+00:01:04.767 --> 00:01:08.667
+RoBERTa wins by three points, which is worth it for batch triage.
+
+21
+00:01:08.967 --> 00:01:13.433
+But on the latency-critical path, distilbert is twice as fast, so it stays.
+
+22
+00:01:14.633 --> 00:01:19.867
+Be suspicious of comparisons that change both architecture and recipe at once.
+
+23
+00:01:20.167 --> 00:01:25.067
+Before redesigning anything, ask whether more epochs or better data closes the gap.
+
+24
+00:01:26.267 --> 00:01:27.059
+Let's recap.
+
+25
+00:01:27.059 --> 00:01:29.500
+RoBERTa is BERT with a better recipe.
+
+26
+00:01:29.800 --> 00:01:34.267
+Ten times the data, dynamic masking, no next-sentence objective.
+
+27
+00:01:34.567 --> 00:01:37.100
+Recipe matters as much as architecture.
+
+28
+00:01:37.400 --> 00:01:40.879
+So benchmark a few backbones before committing.
+
+29
+00:01:40.879 --> 00:01:41.767
+Next up: T5.

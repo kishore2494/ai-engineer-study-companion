@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.433
+BERT.
+
+2
+00:00:01.733 --> 00:00:07.133
+A model that learns language by filling in blanks, and quietly powers many systems you will build.
+
+3
+00:00:08.333 --> 00:00:11.833
+BERT, from 2018, is an encoder-only transformer.
+
+4
+00:00:12.133 --> 00:00:15.567
+It is pretrained by hiding fifteen percent of the tokens.
+
+5
+00:00:15.867 --> 00:00:19.700
+Then it predicts them using context from both the left and the right.
+
+6
+00:00:20.900 --> 00:00:23.167
+Here is a sentence with one word hidden.
+
+7
+00:00:23.467 --> 00:00:29.267
+To fill the blank, the mask looks at words on both sides: sudden before it, tank and pressure after it.
+
+8
+00:00:30.467 --> 00:00:32.167
+BERT started the fine-tune era.
+
+9
+00:00:32.467 --> 00:00:34.267
+You download the pretrained weights.
+
+10
+00:00:34.567 --> 00:00:36.000
+Add a small head on top.
+
+11
+00:00:36.300 --> 00:00:38.200
+And train briefly on your own labels.
+
+12
+00:00:39.400 --> 00:00:40.367
+Let's try it.
+
+13
+00:00:40.667 --> 00:00:43.233
+We load bert base with the fill-mask pipeline.
+
+14
+00:00:43.533 --> 00:00:45.891
+Then we print each guess with its score.
+
+15
+00:00:45.891 --> 00:00:48.602
+The top guesses are drop, increase, and spike.
+
+16
+00:00:48.602 --> 00:00:50.900
+That's the pretraining objective, live.
+
+17
+00:00:52.100 --> 00:00:53.767
+Don't file BERT under history.
+
+18
+00:00:54.067 --> 00:00:57.300
+Embedding models are BERT-family encoders with pooling.
+
+19
+00:00:57.600 --> 00:01:01.033
+When a job says embeddings or reranking, it is saying BERT.
+
+20
+00:01:02.233 --> 00:01:04.267
+Here is where it lives in a RAG system.
+
+21
+00:01:04.567 --> 00:01:07.567
+Vector search narrows forty thousand chunks to fifty.
+
+22
+00:01:07.867 --> 00:01:11.633
+A cross-encoder, a BERT, reads the query and each chunk together.
+
+23
+00:01:11.933 --> 00:01:14.108
+It is slower, so it only sees fifty.
+
+24
+00:01:14.108 --> 00:01:18.700
+But it catches chunks that match every term yet answer a different question.
+
+25
+00:01:19.900 --> 00:01:20.682
+Let's recap.
+
+26
+00:01:20.682 --> 00:01:24.200
+BERT is encoder-only, trained to fill in masked words.
+
+27
+00:01:24.500 --> 00:01:26.433
+It reads context from both sides.
+
+28
+00:01:26.733 --> 00:01:28.500
+You fine-tune it with a small head.
+
+29
+00:01:28.800 --> 00:01:31.691
+And it lives on as embedders and rerankers.
+
+30
+00:01:31.691 --> 00:01:32.833
+Next up: RoBERTa.

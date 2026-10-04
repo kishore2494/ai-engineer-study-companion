@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+T5.
+
+2
+00:00:01.900 --> 00:00:04.680
+One model, one format, every language task.
+
+3
+00:00:04.680 --> 00:00:06.167
+Let's see how it works.
+
+4
+00:00:07.367 --> 00:00:10.300
+T5 stands for Text-to-Text Transfer Transformer.
+
+5
+00:00:10.600 --> 00:00:17.633
+Translation, summarization, classification, even regression: all become input text to output text.
+
+6
+00:00:17.933 --> 00:00:20.667
+And the task itself is stated inside the input.
+
+7
+00:00:21.867 --> 00:00:23.133
+Here is the pipeline.
+
+8
+00:00:23.433 --> 00:00:26.267
+The input starts with a task prefix, then the text.
+
+9
+00:00:26.567 --> 00:00:28.900
+The encoder reads it in both directions.
+
+10
+00:00:29.200 --> 00:00:32.116
+The decoder writes the answer through cross-attention.
+
+11
+00:00:32.116 --> 00:00:33.467
+That's the output string.
+
+12
+00:00:34.667 --> 00:00:36.800
+Look at three prompts on the same log line.
+
+13
+00:00:37.100 --> 00:00:39.467
+Start with summarize, and you get a summary.
+
+14
+00:00:39.767 --> 00:00:42.667
+Start with translate to German, and you get German.
+
+15
+00:00:42.967 --> 00:00:46.367
+Ask whether it is routine or critical, and you get triage.
+
+16
+00:00:47.567 --> 00:00:48.900
+Notice what that means.
+
+17
+00:00:49.200 --> 00:00:54.300
+If the task lives in the input, changing behavior means changing text, not weights.
+
+18
+00:00:54.600 --> 00:00:56.533
+That is prompting, two years early.
+
+19
+00:00:57.733 --> 00:00:59.500
+Here is Flan-T5 in code.
+
+20
+00:00:59.800 --> 00:01:01.400
+We load a single small model.
+
+21
+00:01:01.700 --> 00:01:04.748
+Then we call it three times with different wording.
+
+22
+00:01:04.748 --> 00:01:06.600
+Same weights, zero fine-tuning.
+
+23
+00:01:07.800 --> 00:01:10.500
+Not every alert deserves a frontier model call.
+
+24
+00:01:10.800 --> 00:01:18.367
+Flan-T5 runs on CPU as tier one, summarizing and triaging every notice, sub-second and nearly free.
+
+25
+00:01:18.667 --> 00:01:20.533
+Only critical alerts escalate.
+
+26
+00:01:20.833 --> 00:01:23.409
+The big LLM writes the full analysis.
+
+27
+00:01:23.409 --> 00:01:27.933
+This two-tier pattern cuts the API bill by an order of magnitude.
+
+28
+00:01:29.133 --> 00:01:29.970
+Let's recap.
+
+29
+00:01:29.970 --> 00:01:32.200
+Every task is text in, text out.
+
+30
+00:01:32.500 --> 00:01:34.733
+One encoder-decoder handles them all.
+
+31
+00:01:35.033 --> 00:01:37.000
+You change the prompt, not the weights.
+
+32
+00:01:37.300 --> 00:01:40.679
+And Flan-T5 is a cheap CPU workhorse.
+
+33
+00:01:40.679 --> 00:01:41.867
+Next up: GPT.

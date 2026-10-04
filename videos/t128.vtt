@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Self-attention.
+
+2
+00:00:02.167 --> 00:00:06.067
+This is the heart of the transformer, and the classic whiteboard question.
+
+3
+00:00:07.267 --> 00:00:10.367
+Each token's vector is projected three different ways.
+
+4
+00:00:10.667 --> 00:00:13.033
+A query says what this token is looking for.
+
+5
+00:00:13.333 --> 00:00:15.733
+A key says what this token can be found by.
+
+6
+00:00:16.033 --> 00:00:18.622
+And a value is what it hands over if chosen.
+
+7
+00:00:18.622 --> 00:00:22.033
+Keeping keys and values separate is the subtle brilliance.
+
+8
+00:00:23.233 --> 00:00:25.433
+Here is the whole recipe in one line.
+
+9
+00:00:25.733 --> 00:00:30.300
+Dot products between queries and keys give a score for every pair of tokens.
+
+10
+00:00:30.600 --> 00:00:34.233
+We divide by root d, so scores stay in a sensible range.
+
+11
+00:00:34.533 --> 00:00:39.400
+Softmax turns scores into weights, and the output is the weighted sum of the values.
+
+12
+00:00:40.600 --> 00:00:43.300
+Decoders add one more rule, the causal mask.
+
+13
+00:00:43.600 --> 00:00:44.841
+Each row is a query.
+
+14
+00:00:44.841 --> 00:00:47.633
+It may only look at keys at or before itself.
+
+15
+00:00:47.933 --> 00:00:54.133
+Every future score is set to minus infinity before softmax, which makes its weight exactly zero.
+
+16
+00:00:55.333 --> 00:00:57.100
+Here it is in about five lines.
+
+17
+00:00:57.400 --> 00:01:00.600
+We project the inputs into queries, keys and values.
+
+18
+00:01:00.900 --> 00:01:02.567
+Then score every pair and scale.
+
+19
+00:01:02.867 --> 00:01:05.533
+Next we mask the future with minus infinity.
+
+20
+00:01:05.833 --> 00:01:08.133
+Finally softmax, and mix the values.
+
+21
+00:01:09.333 --> 00:01:11.133
+Two payoffs make this worth knowing.
+
+22
+00:01:11.433 --> 00:01:17.200
+First, causal attention in NumPy is a literal interview question for AI engineer roles.
+
+23
+00:01:17.500 --> 00:01:21.600
+Second, if you change a future token, earlier outputs never change.
+
+24
+00:01:21.900 --> 00:01:28.100
+That is exactly why the KV cache works: no recomputing thousands of tokens for every new word.
+
+25
+00:01:29.300 --> 00:01:32.042
+A classic mistake is forgetting the scale.
+
+26
+00:01:32.042 --> 00:01:35.567
+Large dot products saturate softmax and gradients die.
+
+27
+00:01:35.867 --> 00:01:38.767
+The fix is simple: divide by the square root of d.
+
+28
+00:01:39.967 --> 00:01:40.700
+Let's recap.
+
+29
+00:01:40.700 --> 00:01:45.467
+Queries, keys and values: what to look for, how to be found, and what to give.
+
+30
+00:01:45.767 --> 00:01:50.767
+Softmax of Q K transpose over root d, times V, is the whole recipe.
+
+31
+00:01:51.067 --> 00:01:52.967
+The causal mask hides the future.
+
+32
+00:01:53.267 --> 00:01:56.711
+So past outputs stay fixed and the KV cache works.
+
+33
+00:01:56.711 --> 00:01:58.433
+Next up: cross-attention.
