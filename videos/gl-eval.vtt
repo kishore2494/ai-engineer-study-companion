@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Evaluation extras.
+
+2
+00:00:02.500 --> 00:00:08.633
+These are the eval names beyond RAGAS, Langfuse, and Phoenix, plus the older metrics and benchmarks.
+
+3
+00:00:09.833 --> 00:00:12.800
+These are the standard tests behind leaderboard claims.
+
+4
+00:00:13.100 --> 00:00:15.833
+MMLU is broad knowledge multiple choice.
+
+5
+00:00:16.133 --> 00:00:18.567
+GSM8K is grade-school math.
+
+6
+00:00:18.867 --> 00:00:21.033
+HumanEval tests code generation.
+
+7
+00:00:21.333 --> 00:00:23.701
+SWE-bench uses real GitHub issues.
+
+8
+00:00:23.701 --> 00:00:29.967
+They're saturated and prone to contamination, the argument for your own private benchmark.
+
+9
+00:00:31.167 --> 00:00:33.367
+These are the pre-LLM text metrics.
+
+10
+00:00:33.667 --> 00:00:37.006
+BLEU and ROUGE count n-gram overlap with a reference.
+
+11
+00:00:37.006 --> 00:00:39.400
+BERTScore compares embeddings instead.
+
+12
+00:00:39.700 --> 00:00:47.967
+They're weak for open-ended generation, which is why LLM as judge took over, but you'll still see them in papers and legacy pipelines.
+
+13
+00:00:49.167 --> 00:00:52.633
+DeepEval is pytest-style testing for LLM apps.
+
+14
+00:00:52.933 --> 00:01:00.333
+You write assertions over metrics, like faithfulness, relevancy, or custom G-Eval rubrics, and run them in CI.
+
+15
+00:01:00.633 --> 00:01:06.767
+It's the concrete tooling for regression testing, and it's named in many job descriptions alongside RAGAS.
+
+16
+00:01:07.967 --> 00:01:10.667
+promptfoo is a config-driven command line tool.
+
+17
+00:01:10.967 --> 00:01:16.067
+It tests and compares prompts and models side by side, with built-in red-teaming probes.
+
+18
+00:01:16.367 --> 00:01:19.667
+It's the fastest way to make prompt changes evidence-based.
+
+19
+00:01:20.867 --> 00:01:25.000
+TruLens does evaluation and tracing built on feedback functions.
+
+20
+00:01:25.300 --> 00:01:28.100
+Its RAG triad starts with context relevance.
+
+21
+00:01:28.400 --> 00:01:29.600
+Then groundedness.
+
+22
+00:01:29.900 --> 00:01:31.721
+And finally answer relevance.
+
+23
+00:01:31.721 --> 00:01:33.667
+These mirror the RAGAS metrics.
+
+24
+00:01:34.867 --> 00:01:37.400
+LangSmith is LangChain's hosted platform.
+
+25
+00:01:37.700 --> 00:01:43.533
+It covers tracing, eval datasets, and prompt management, and it's the commercial sibling of Langfuse.
+
+26
+00:01:43.833 --> 00:01:49.000
+A LangSmith trace in a portfolio README is a recognized proof-of-production signal.
+
+27
+00:01:50.200 --> 00:01:52.167
+Evidently AI is open source.
+
+28
+00:01:52.467 --> 00:01:58.400
+It gives you dashboards and test suites for data drift, model quality, and now LLM outputs.
+
+29
+00:01:58.700 --> 00:02:01.333
+It's a concrete implementation of drift detection.
+
+30
+00:02:02.533 --> 00:02:03.310
+Let's recap.
+
+31
+00:02:03.310 --> 00:02:06.933
+Public benchmarks are saturated, so build a private one.
+
+32
+00:02:07.233 --> 00:02:10.233
+BLEU, ROUGE, and BERTScore are legacy metrics.
+
+33
+00:02:10.533 --> 00:02:13.800
+DeepEval, promptfoo, and TruLens test and compare.
+
+34
+00:02:14.100 --> 00:02:17.267
+LangSmith traces, and Evidently watches for drift.
