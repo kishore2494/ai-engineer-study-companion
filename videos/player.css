@@ -48,3 +48,14 @@
   .vbar .vlabel { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .vpanel, .vbtn .vchev { transition: none; } }
+/* glossary */
+.gl-vrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.gl-vrow .vbtn { margin-left: 0; }
+.gterm .vpanel, .gcat .vpanel { grid-column: 1 / -1; margin-top: 10px; }
+.gt-play {
+  margin-left: 8px; display: inline-flex; align-items: center; gap: 4px; vertical-align: 1px;
+  font: 600 0.68rem/1 var(--mono); color: var(--ion); background: rgba(94,211,244,0.08);
+  border: 1px solid rgba(94,211,244,0.3); border-radius: 999px; padding: 3px 7px 3px 6px; cursor: pointer;
+}
+.gt-play svg { width: 8px; height: 8px; fill: var(--ion); }
+.gt-play:hover { background: rgba(94,211,244,0.18); }
