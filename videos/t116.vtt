@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+Word2Vec.
+
+2
+00:00:01.967 --> 00:00:04.571
+A tiny network is given a pointless job.
+
+3
+00:00:04.571 --> 00:00:07.567
+The useful part is what it learns by accident.
+
+4
+00:00:08.767 --> 00:00:11.567
+Word2Vec learns a dense vector for every word.
+
+5
+00:00:11.867 --> 00:00:16.967
+It rests on one idea: words that appear in similar contexts have similar meanings.
+
+6
+00:00:18.167 --> 00:00:20.467
+Here is the fake job, called skip-gram.
+
+7
+00:00:20.767 --> 00:00:22.567
+Take a center word, like flare.
+
+8
+00:00:22.867 --> 00:00:24.433
+Feed it to a tiny network.
+
+9
+00:00:24.733 --> 00:00:27.016
+Ask it to predict the words around it.
+
+10
+00:00:27.016 --> 00:00:28.938
+We throw those predictions away.
+
+11
+00:00:28.938 --> 00:00:31.400
+The learned vectors are the real product.
+
+12
+00:00:32.600 --> 00:00:35.378
+After training, the geometry shows the result.
+
+13
+00:00:35.378 --> 00:00:36.767
+Here is the word flare.
+
+14
+00:00:37.067 --> 00:00:42.600
+Flare and CME keep appearing in the same sentences, so training pushes their vectors together.
+
+15
+00:00:42.900 --> 00:00:44.567
+X-class joins the cluster.
+
+16
+00:00:44.867 --> 00:00:48.233
+A word from a different world, like scrub, ends up far away.
+
+17
+00:00:49.433 --> 00:00:53.467
+The famous result is that vector arithmetic captures relations.
+
+18
+00:00:53.767 --> 00:00:56.500
+King minus man plus woman lands near queen.
+
+19
+00:00:56.800 --> 00:01:01.067
+Meaning emerged purely from co-occurrence, and this started the embedding era.
+
+20
+00:01:02.267 --> 00:01:04.040
+There's one key limitation.
+
+21
+00:01:04.040 --> 00:01:06.667
+Word2Vec is static: one vector per word.
+
+22
+00:01:06.967 --> 00:01:11.815
+So dock the maneuver and dock the harbor structure collapse into the same point.
+
+23
+00:01:11.815 --> 00:01:13.633
+Context-aware models fix this.
+
+24
+00:01:14.833 --> 00:01:16.800
+Here is the training in a few lines.
+
+25
+00:01:17.100 --> 00:01:20.000
+Each log line becomes a list of lowercase words.
+
+26
+00:01:20.300 --> 00:01:24.533
+We train with a window of five, and setting sg to one selects skip-gram.
+
+27
+00:01:24.833 --> 00:01:29.200
+Then we check the neighbors of a few words, to see if the space makes domain sense.
+
+28
+00:01:30.400 --> 00:01:33.567
+Every embedding model today descends from this idea.
+
+29
+00:01:33.867 --> 00:01:39.933
+A query like sun eruptions this week retrieves X-class flare chunks despite sharing no words.
+
+30
+00:01:40.233 --> 00:01:42.234
+That is distributional semantics.
+
+31
+00:01:42.234 --> 00:01:47.267
+And a small Word2Vec on your own logs is a quick check that your corpus has signal.
+
+32
+00:01:48.467 --> 00:01:49.191
+Let's recap.
+
+33
+00:01:49.191 --> 00:01:53.233
+Skip-gram predicts neighbors, and the vectors are the real product.
+
+34
+00:01:53.533 --> 00:01:55.967
+Similar contexts produce similar vectors.
+
+35
+00:01:56.267 --> 00:01:58.733
+Relations show up as vector arithmetic.
+
+36
+00:01:59.033 --> 00:02:01.790
+But the vectors are static, one per word.
+
+37
+00:02:01.790 --> 00:02:03.000
+Next up: FastText.

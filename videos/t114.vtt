@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+N-grams.
+
+2
+00:00:01.900 --> 00:00:03.959
+Single words lose local context.
+
+3
+00:00:03.959 --> 00:00:06.533
+A sliding window brings some of it back.
+
+4
+00:00:07.733 --> 00:00:10.700
+An n-gram is a contiguous run of n tokens.
+
+5
+00:00:11.000 --> 00:00:14.933
+One token is a unigram, two is a bigram, three is a trigram.
+
+6
+00:00:15.233 --> 00:00:18.966
+Slide a window across text and count what falls inside.
+
+7
+00:00:18.966 --> 00:00:20.867
+That captures local context.
+
+8
+00:00:22.067 --> 00:00:24.567
+Here's the window in action on four tokens.
+
+9
+00:00:24.867 --> 00:00:26.933
+The first window grabs o2 and tank.
+
+10
+00:00:27.233 --> 00:00:29.600
+Slide one step, and we get tank pressure.
+
+11
+00:00:29.900 --> 00:00:32.144
+Slide again, and we get pressure low.
+
+12
+00:00:32.144 --> 00:00:34.267
+Four tokens produced three bigrams.
+
+13
+00:00:35.467 --> 00:00:38.333
+Now count every window across a whole transcript.
+
+14
+00:00:38.633 --> 00:00:42.037
+Phrases like main bus and o2 tank rise to the top.
+
+15
+00:00:42.037 --> 00:00:45.100
+These are units of meaning, not single words.
+
+16
+00:00:45.400 --> 00:00:46.725
+Trigrams go further.
+
+17
+00:00:46.725 --> 00:00:50.700
+The page's example, main bus undervolt, is a precise phrase.
+
+18
+00:00:51.900 --> 00:00:54.300
+N-grams also hide a piece of history.
+
+19
+00:00:54.600 --> 00:01:00.495
+N-gram language models predicted the next word from the previous few, using counts.
+
+20
+00:01:00.495 --> 00:01:02.200
+That is GPT's objective.
+
+21
+00:01:02.500 --> 00:01:05.733
+The difference: a lookup table versus a neural network.
+
+22
+00:01:06.033 --> 00:01:07.701
+The table died of sparsity.
+
+23
+00:01:07.701 --> 00:01:12.333
+Most five word sequences have never occurred, and neural models fixed that.
+
+24
+00:01:13.533 --> 00:01:15.533
+Here it is in a few lines of Python.
+
+25
+00:01:15.833 --> 00:01:19.267
+We lowercase the transcript and split it into word tokens.
+
+26
+00:01:19.567 --> 00:01:25.933
+Zipping the list with copies of itself shifted by one or two builds the windows, and Counter tallies them.
+
+27
+00:01:26.233 --> 00:01:28.533
+Then we just ask for the most common bigrams.
+
+28
+00:01:29.733 --> 00:01:31.200
+Here's a practical use.
+
+29
+00:01:31.500 --> 00:01:37.146
+Before designing chunking, you run bigram counts over a year of space-weather alerts.
+
+30
+00:01:37.146 --> 00:01:40.733
+Phrases like coronal mass and radio blackout dominate.
+
+31
+00:01:41.033 --> 00:01:45.100
+That tells you these phrases must never be split across chunk boundaries.
+
+32
+00:01:45.400 --> 00:01:51.200
+It also gives a phrase list so the keyword search matches coronal mass ejection as one unit.
+
+33
+00:01:52.400 --> 00:01:53.284
+Let's recap.
+
+34
+00:01:53.284 --> 00:01:55.567
+An n-gram is a run of n tokens.
+
+35
+00:01:55.867 --> 00:01:58.567
+A sliding window captures local context.
+
+36
+00:01:58.867 --> 00:02:01.933
+N-gram models predicted the next word by counting.
+
+37
+00:02:02.233 --> 00:02:05.271
+Sparsity is why neural models won.
+
+38
+00:02:05.271 --> 00:02:06.700
+Next up: TF-IDF.

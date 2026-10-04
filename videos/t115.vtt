@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+TF-IDF.
+
+2
+00:00:02.333 --> 00:00:04.821
+Which words actually identify a document?
+
+3
+00:00:04.821 --> 00:00:07.067
+The most common ones certainly don't.
+
+4
+00:00:08.267 --> 00:00:11.167
+TF-IDF weights each word by two things.
+
+5
+00:00:11.467 --> 00:00:13.533
+How often it appears in this document.
+
+6
+00:00:13.833 --> 00:00:19.267
+Cut by how common it is across every document, so words like the and system fade away.
+
+7
+00:00:19.567 --> 00:00:24.400
+Words distinctive to one document, like cryogenic or hypergolic, pop.
+
+8
+00:00:25.600 --> 00:00:26.833
+Here is the formula.
+
+9
+00:00:27.133 --> 00:00:30.833
+Term frequency is how often the word appears in this document.
+
+10
+00:00:31.133 --> 00:00:37.840
+Inverse document frequency is a log of the ratio: total documents over documents containing the word.
+
+11
+00:00:37.840 --> 00:00:39.500
+Rarer words score higher.
+
+12
+00:00:40.700 --> 00:00:43.100
+Let's multiply it out with simple numbers.
+
+13
+00:00:43.400 --> 00:00:49.333
+The appears five times, but it's in every document, so IDF is zero and the product is zero.
+
+14
+00:00:49.633 --> 00:00:53.933
+Tank appears twice and is moderately rare: two times point five is one.
+
+15
+00:00:54.233 --> 00:00:57.200
+Cryogenic appears once but is rare, so it wins.
+
+16
+00:00:58.400 --> 00:01:00.333
+Now scale this up to a whole corpus.
+
+17
+00:01:00.633 --> 00:01:02.133
+Every document goes in.
+
+18
+00:01:02.433 --> 00:01:05.267
+Each gets weights for every word in the vocabulary.
+
+19
+00:01:05.567 --> 00:01:10.133
+That makes a huge sparse vector, one dimension per word, almost all zeros.
+
+20
+00:01:10.433 --> 00:01:14.633
+Similarity between documents is just the cosine between their vectors.
+
+21
+00:01:15.833 --> 00:01:18.100
+Here's the same pipeline in scikit-learn.
+
+22
+00:01:18.400 --> 00:01:19.790
+Three tiny documents.
+
+23
+00:01:19.790 --> 00:01:22.833
+Two are about the oxygen tank, one is routine.
+
+24
+00:01:23.133 --> 00:01:27.800
+The vectorizer learns the vocabulary and builds the sparse matrix in one call.
+
+25
+00:01:28.100 --> 00:01:30.676
+Then cosine similarity scores every pair.
+
+26
+00:01:30.676 --> 00:01:35.200
+The two tank documents score highest, and the routine one is a stranger.
+
+27
+00:01:36.400 --> 00:01:37.900
+Here's where it earns its keep.
+
+28
+00:01:38.200 --> 00:01:40.900
+A user asks about hypergolic propellant leaks.
+
+29
+00:01:41.200 --> 00:01:45.733
+Dense embeddings find similar concepts, but may miss that exact rare term.
+
+30
+00:01:46.033 --> 00:01:50.933
+The sparse leg nails the documents containing it, and fusion merges both lists.
+
+31
+00:01:52.133 --> 00:01:53.137
+Let's recap.
+
+32
+00:01:53.137 --> 00:01:56.733
+TF-IDF multiplies term frequency by rarity.
+
+33
+00:01:57.033 --> 00:01:59.733
+Common words fade, and distinctive words pop.
+
+34
+00:02:00.033 --> 00:02:03.133
+Documents become sparse vectors you compare with cosine.
+
+35
+00:02:03.433 --> 00:02:08.514
+And its descendant BM25 is still the keyword leg of hybrid search.
+
+36
+00:02:08.514 --> 00:02:09.900
+Next up: Word2Vec.

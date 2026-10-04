@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+FastText.
+
+2
+00:00:02.067 --> 00:00:04.870
+Word2Vec crashes on a word it has never seen.
+
+3
+00:00:04.870 --> 00:00:08.233
+FastText doesn't, and the trick is beautifully simple.
+
+4
+00:00:09.433 --> 00:00:14.700
+FastText, from Facebook in twenty sixteen, rebuilds Word2Vec from character n-grams.
+
+5
+00:00:15.000 --> 00:00:20.267
+A word's vector is simply the sum of the vectors of its pieces, three to six characters long.
+
+6
+00:00:21.467 --> 00:00:22.775
+Take the word anomaly.
+
+7
+00:00:22.775 --> 00:00:24.796
+We slice it into character pieces.
+
+8
+00:00:24.796 --> 00:00:28.067
+The angle brackets mark where the word starts and ends.
+
+9
+00:00:28.367 --> 00:00:32.633
+Each piece owns a vector, and adding them up gives the vector for the whole word.
+
+10
+00:00:33.833 --> 00:00:34.833
+Now the payoff.
+
+11
+00:00:35.133 --> 00:00:38.600
+A misspelled word like telemetrry was never seen in training.
+
+12
+00:00:38.900 --> 00:00:41.733
+But it shares most of its pieces with the correct spelling.
+
+13
+00:00:42.033 --> 00:00:45.211
+So its summed vector lands right next to telemetry.
+
+14
+00:00:45.211 --> 00:00:47.267
+Meaning is assembled from pieces.
+
+15
+00:00:48.467 --> 00:00:49.700
+Here's the contrast.
+
+16
+00:00:50.000 --> 00:00:52.781
+Word2Vec stores one vector per whole word.
+
+17
+00:00:52.781 --> 00:00:54.833
+FastText sums character pieces.
+
+18
+00:00:55.133 --> 00:01:00.700
+An unseen word makes Word2Vec throw a key error, while FastText returns something sensible.
+
+19
+00:01:01.000 --> 00:01:08.267
+That helps most in morphology-rich languages like Tamil, Finnish, and German compounds, where word forms explode.
+
+20
+00:01:08.567 --> 00:01:11.567
+FastText also ships a brutally fast classifier.
+
+21
+00:01:12.767 --> 00:01:14.067
+Let's prove it in code.
+
+22
+00:01:14.367 --> 00:01:17.700
+We train FastText and Word2Vec on the same sentences.
+
+23
+00:01:18.000 --> 00:01:22.133
+We ask FastText for a made-up word, and it happily returns a vector.
+
+24
+00:01:22.433 --> 00:01:26.467
+Word2Vec has never seen that exact string, so it raises a key error.
+
+25
+00:01:27.667 --> 00:01:28.900
+Here's where it matters.
+
+26
+00:01:29.200 --> 00:01:33.500
+Astronaut and controller notes are full of typos and ad hoc jargon.
+
+27
+00:01:33.800 --> 00:01:40.233
+A FastText index still places telemetrry dropouts next to the real entries, because the pieces overlap.
+
+28
+00:01:40.533 --> 00:01:44.000
+The same query kills a Word2Vec index with a key error.
+
+29
+00:01:45.200 --> 00:01:46.007
+Let's recap.
+
+30
+00:01:46.007 --> 00:01:49.033
+FastText builds words from character n-grams.
+
+31
+00:01:49.333 --> 00:01:52.700
+Unseen words and typos still get a sensible vector.
+
+32
+00:01:53.000 --> 00:01:55.467
+It shines on morphology-rich languages.
+
+33
+00:01:55.767 --> 00:01:58.308
+And it's a fast classifier baseline.
+
+34
+00:01:58.308 --> 00:01:59.367
+Next up: GloVe.
