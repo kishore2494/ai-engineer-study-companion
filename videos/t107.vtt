@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.967
+Object detection: IoU, NMS and mAP.
+
+2
+00:00:05.267 --> 00:00:09.533
+Models come and go, but these three concepts judge and clean up all of them.
+
+3
+00:00:10.733 --> 00:00:13.281
+Detection means localize and classify.
+
+4
+00:00:13.281 --> 00:00:16.633
+First we need to measure how well two boxes agree.
+
+5
+00:00:16.933 --> 00:00:18.919
+That's intersection over union.
+
+6
+00:00:18.919 --> 00:00:21.033
+On top, the area the boxes share.
+
+7
+00:00:21.333 --> 00:00:23.600
+Underneath, the combined area they cover.
+
+8
+00:00:23.900 --> 00:00:26.689
+Zero means disjoint, one means identical.
+
+9
+00:00:26.689 --> 00:00:33.967
+A prediction counts as correct when its IoU with the truth clears a threshold, classically zero point five.
+
+10
+00:00:35.167 --> 00:00:39.170
+Every detector emits near duplicate boxes around each object.
+
+11
+00:00:39.170 --> 00:00:41.467
+Non max suppression cleans them up.
+
+12
+00:00:41.767 --> 00:00:43.400
+Keep the highest scoring box.
+
+13
+00:00:43.700 --> 00:00:47.200
+Delete its neighbours whose IoU with it exceeds a threshold.
+
+14
+00:00:47.500 --> 00:00:49.433
+Then repeat on whatever remains.
+
+15
+00:00:50.633 --> 00:00:53.433
+Now the headline score, mean average precision.
+
+16
+00:00:53.733 --> 00:00:55.500
+Sweep the confidence threshold.
+
+17
+00:00:55.800 --> 00:00:58.700
+That traces a precision recall curve for each class.
+
+18
+00:00:59.000 --> 00:01:01.900
+The area under that curve is the average precision.
+
+19
+00:01:02.200 --> 00:01:04.900
+Average over classes to get mAP.
+
+20
+00:01:04.900 --> 00:01:10.300
+The stricter COCO version also averages over ten IoU thresholds.
+
+21
+00:01:11.500 --> 00:01:13.100
+Here is IoU in Python.
+
+22
+00:01:13.400 --> 00:01:19.200
+We find the corners of the overlap rectangle, and its area is zero if the boxes are disjoint.
+
+23
+00:01:19.500 --> 00:01:21.600
+Then divide by the combined area.
+
+24
+00:01:21.900 --> 00:01:26.553
+A small box fully inside a big one scores only zero point three six.
+
+25
+00:01:26.553 --> 00:01:28.400
+Containment is not a match.
+
+26
+00:01:29.600 --> 00:01:30.867
+A real bug story.
+
+27
+00:01:31.167 --> 00:01:35.333
+A dashboard reports twenty three ships in a scene that plainly holds nine.
+
+28
+00:01:35.633 --> 00:01:43.467
+The tiles overlap by twenty percent, so ships near a seam are detected twice, and per tile NMS can't see across tiles.
+
+29
+00:01:43.767 --> 00:01:49.303
+The fix: merge all boxes into scene coordinates and run one global NMS pass.
+
+30
+00:01:49.303 --> 00:01:50.833
+No retraining needed.
+
+31
+00:01:52.033 --> 00:01:52.889
+Let's recap.
+
+32
+00:01:52.889 --> 00:01:55.600
+IoU is shared area over combined area.
+
+33
+00:01:55.900 --> 00:01:58.967
+NMS keeps the best box and deletes duplicates.
+
+34
+00:01:59.267 --> 00:02:02.900
+mAP averages precision over classes.
+
+35
+00:02:03.200 --> 00:02:06.933
+And much of detection hygiene lives outside the network.
+
+36
+00:02:06.933 --> 00:02:08.800
+Next up: image segmentation.

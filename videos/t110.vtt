@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+OpenCV.
+
+2
+00:00:02.167 --> 00:00:08.333
+No learning involved, just fast, battle tested image operations that wrap around every deep model.
+
+3
+00:00:09.533 --> 00:00:15.167
+OpenCV, imported as cv2, is the workhorse of classical image processing.
+
+4
+00:00:15.467 --> 00:00:17.000
+Resize, crop and warp.
+
+5
+00:00:17.300 --> 00:00:20.600
+Thresholding, which splits pixels above and below a value.
+
+6
+00:00:20.900 --> 00:00:22.167
+Canny edge detection.
+
+7
+00:00:22.467 --> 00:00:25.739
+And contours, the outlines of connected regions.
+
+8
+00:00:25.739 --> 00:00:28.533
+Images are plain NumPy arrays throughout.
+
+9
+00:00:29.733 --> 00:00:31.167
+Here's a typical chain.
+
+10
+00:00:31.467 --> 00:00:32.800
+Convert to grayscale.
+
+11
+00:00:33.100 --> 00:00:34.433
+Blur to remove noise.
+
+12
+00:00:34.733 --> 00:00:36.800
+Run Canny to make edges pop out.
+
+13
+00:00:37.100 --> 00:00:38.267
+Find the contours.
+
+14
+00:00:38.567 --> 00:00:40.576
+And keep only the large ones.
+
+15
+00:00:40.576 --> 00:00:46.467
+Sometimes this replaces a model entirely: bright blobs on a dark sky need no network.
+
+16
+00:00:47.667 --> 00:00:51.268
+Now the gotcha worth tattooing somewhere.
+
+17
+00:00:51.268 --> 00:00:54.167
+cv2 loads images as BGR, not RGB.
+
+18
+00:00:54.467 --> 00:00:58.088
+Feed that to a model and predictions turn to garbage.
+
+19
+00:00:58.088 --> 00:00:59.865
+It's the number one cause.
+
+20
+00:00:59.865 --> 00:01:01.300
+Convert to RGB first.
+
+21
+00:01:02.500 --> 00:01:03.700
+Here it is in code.
+
+22
+00:01:04.000 --> 00:01:07.233
+imread returns a NumPy array in BGR order.
+
+23
+00:01:07.533 --> 00:01:09.700
+Then gray, blur, and Canny edges.
+
+24
+00:01:10.000 --> 00:01:14.137
+Find contours and keep those with area above five hundred.
+
+25
+00:01:14.137 --> 00:01:17.133
+No model, no GPU, about five milliseconds.
+
+26
+00:01:18.333 --> 00:01:20.733
+Here's OpenCV's real role.
+
+27
+00:01:21.033 --> 00:01:26.433
+Every satellite tile passes through a cv2 gauntlet before any deep model sees it.
+
+28
+00:01:26.733 --> 00:01:33.133
+Convert BGR to RGB, the bug that once cost a full day, and resize to two twenty four.
+
+29
+00:01:33.433 --> 00:01:40.467
+A cheap blur check then discards unusable frames in five milliseconds, instead of wasting GPU time.
+
+30
+00:01:41.667 --> 00:01:42.580
+Let's recap.
+
+31
+00:01:42.580 --> 00:01:46.767
+OpenCV gives fast classical operations on NumPy arrays.
+
+32
+00:01:47.067 --> 00:01:50.400
+It's the pre and post processing layer around deep models.
+
+33
+00:01:50.700 --> 00:01:53.900
+Sometimes threshold and contours beat training a network.
+
+34
+00:01:54.200 --> 00:01:58.600
+And always remember: cv2 loads BGR, not RGB.

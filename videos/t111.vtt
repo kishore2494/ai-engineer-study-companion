@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Tokenization.
+
+2
+00:00:02.200 --> 00:00:06.728
+Before a language model reads anything, your text has to become numbers.
+
+3
+00:00:06.728 --> 00:00:08.867
+This is the step that decides how.
+
+4
+00:00:10.067 --> 00:00:13.700
+Tokenization splits text into units a model can number.
+
+5
+00:00:14.000 --> 00:00:19.200
+Each unit is looked up in a fixed vocabulary, and the model only sees the integer ID.
+
+6
+00:00:19.500 --> 00:00:22.133
+That vocabulary is frozen at training time.
+
+7
+00:00:23.333 --> 00:00:25.025
+Watch a log line get split.
+
+8
+00:00:25.025 --> 00:00:28.033
+Oxygen and tank are common, so each stays whole.
+
+9
+00:00:28.333 --> 00:00:33.389
+The rare word flatlined breaks into pieces, and every piece becomes an ID.
+
+10
+00:00:33.389 --> 00:00:35.233
+These IDs are illustrative.
+
+11
+00:00:36.433 --> 00:00:38.850
+So where does the vocabulary come from?
+
+12
+00:00:38.850 --> 00:00:41.267
+It's trained, using byte pair encoding.
+
+13
+00:00:41.567 --> 00:00:43.167
+Start with single characters.
+
+14
+00:00:43.467 --> 00:00:45.933
+Count which neighboring pairs appear most often.
+
+15
+00:00:46.233 --> 00:00:48.700
+Merge the winning pair into one new token.
+
+16
+00:00:49.000 --> 00:00:51.316
+Repeat until the vocabulary is full.
+
+17
+00:00:51.316 --> 00:00:56.333
+Nothing is ever out of vocabulary, because the worst case falls back to bytes.
+
+18
+00:00:57.533 --> 00:00:59.467
+This one choice explains a lot.
+
+19
+00:00:59.767 --> 00:01:04.900
+Cost and context limits are measured in tokens, about three quarters of a word each.
+
+20
+00:01:05.200 --> 00:01:08.667
+Non-English text and code cost more tokens per character.
+
+21
+00:01:08.967 --> 00:01:12.067
+And models can't count letters, because they never see them.
+
+22
+00:01:13.267 --> 00:01:14.733
+Here's the idea in code.
+
+23
+00:01:15.033 --> 00:01:18.633
+With tiktoken, we encode the log line and count the IDs.
+
+24
+00:01:18.933 --> 00:01:23.900
+BERT's tokenizer gives a different count, because each model has its own vocabulary.
+
+25
+00:01:25.100 --> 00:01:26.400
+Here's why this matters.
+
+26
+00:01:26.700 --> 00:01:31.767
+Before embedding forty thousand log chunks, you tokenize a sample to size the job.
+
+27
+00:01:32.067 --> 00:01:39.600
+The average chunk is about four twenty tokens, so chunking at five hundred words would blow past a five twelve token limit.
+
+28
+00:01:39.900 --> 00:01:43.990
+Every log gets truncated at the tail, where the resolution lives.
+
+29
+00:01:43.990 --> 00:01:45.500
+Count tokens, not words.
+
+30
+00:01:46.700 --> 00:01:47.604
+Let's recap.
+
+31
+00:01:47.604 --> 00:01:52.500
+Tokenization turns text into integer IDs from a fixed vocabulary.
+
+32
+00:01:52.800 --> 00:01:58.067
+Byte pair encoding builds that vocabulary by merging frequent pairs into subwords.
+
+33
+00:01:58.367 --> 00:02:02.400
+Cost, limits, and chunking are all counted in tokens, not words.
+
+34
+00:02:02.700 --> 00:02:05.279
+And every model has its own tokenizer.
+
+35
+00:02:05.279 --> 00:02:06.500
+Next up: stemming.
