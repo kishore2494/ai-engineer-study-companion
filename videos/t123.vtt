@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+Hugging Face.
+
+2
+00:00:02.100 --> 00:00:05.028
+Almost every open model you'll use arrives through it.
+
+3
+00:00:05.028 --> 00:00:06.600
+Here's how to think about it.
+
+4
+00:00:07.800 --> 00:00:10.133
+Hugging Face is two things fused together.
+
+5
+00:00:10.433 --> 00:00:18.167
+At the bottom, the Hub: hundreds of thousands of pretrained models, datasets, and model cards behind a git-like API.
+
+6
+00:00:18.467 --> 00:00:22.067
+On top, the transformers library, which loads and runs them.
+
+7
+00:00:22.367 --> 00:00:24.900
+And your code picks one of two levels to call it.
+
+8
+00:00:26.100 --> 00:00:27.520
+Level one is pipeline.
+
+9
+00:00:27.520 --> 00:00:33.133
+It wraps preprocessing, model, and postprocessing in one line, perfect for prototyping.
+
+10
+00:00:33.433 --> 00:00:39.933
+Level two is the Auto classes, where you tokenize, run the forward pass, and handle the logits yourself.
+
+11
+00:00:40.233 --> 00:00:42.967
+You need that for batching, custom heads, and serving.
+
+12
+00:00:43.267 --> 00:00:44.900
+It's the same math underneath.
+
+13
+00:00:46.100 --> 00:00:47.933
+Here's the chain pipeline hides.
+
+14
+00:00:48.233 --> 00:00:49.467
+Raw text goes in.
+
+15
+00:00:49.767 --> 00:00:51.900
+The tokenizer turns it into tensors.
+
+16
+00:00:52.200 --> 00:00:55.367
+The model runs the forward pass and returns logits.
+
+17
+00:00:55.667 --> 00:00:58.229
+Softmax converts them into probabilities.
+
+18
+00:00:58.229 --> 00:01:00.167
+Now you can inspect every step.
+
+19
+00:01:01.367 --> 00:01:02.633
+Here are both levels.
+
+20
+00:01:02.933 --> 00:01:06.142
+First an alias for the classification head class.
+
+21
+00:01:06.142 --> 00:01:08.500
+Level one is a single pipeline call.
+
+22
+00:01:08.800 --> 00:01:12.260
+Level two loads tokenizer and model from the same name.
+
+23
+00:01:12.260 --> 00:01:13.267
+They must match.
+
+24
+00:01:13.567 --> 00:01:17.100
+Then we tokenize, run the model, and softmax the logits.
+
+25
+00:01:18.300 --> 00:01:19.567
+Here are both levels.
+
+26
+00:01:19.867 --> 00:01:22.783
+First, the alias picks a classification head.
+
+27
+00:01:22.783 --> 00:01:25.700
+Level one is a single line: build a pipeline.
+
+28
+00:01:26.000 --> 00:01:29.460
+Level two loads tokenizer and model from the same name.
+
+29
+00:01:29.460 --> 00:01:30.467
+They must match.
+
+30
+00:01:30.767 --> 00:01:34.300
+Then we tokenize, run the model, and softmax the logits.
+
+31
+00:01:35.500 --> 00:01:36.900
+Here's how it plays out.
+
+32
+00:01:37.200 --> 00:01:40.433
+You prototype note triage with pipeline in an afternoon.
+
+33
+00:01:40.733 --> 00:01:45.667
+In the service, you use the Auto level: load once, batch thirty two notes per pass.
+
+34
+00:01:45.967 --> 00:01:51.733
+You keep the raw logits, and send anything below zero point seven confidence to human review.
+
+35
+00:01:52.933 --> 00:01:53.703
+Let's recap.
+
+36
+00:01:53.703 --> 00:01:57.167
+Hugging Face is the Hub plus the transformers library.
+
+37
+00:01:57.467 --> 00:02:01.100
+Use pipeline to prototype, and Auto classes for control.
+
+38
+00:02:01.400 --> 00:02:03.998
+Always match tokenizer and checkpoint.
+
+39
+00:02:03.998 --> 00:02:05.433
+Next up: the encoder.

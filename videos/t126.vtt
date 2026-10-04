@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Multi-head attention.
+
+2
+00:00:02.400 --> 00:00:05.961
+A single attention map has to serve every purpose at once.
+
+3
+00:00:05.961 --> 00:00:07.067
+So we run several.
+
+4
+00:00:08.267 --> 00:00:12.500
+Multi-head attention runs h attention operations in parallel.
+
+5
+00:00:12.800 --> 00:00:20.233
+Each head has its own learned query, key, and value projections, working in a smaller subspace of size d over h.
+
+6
+00:00:20.533 --> 00:00:24.100
+We concatenate the results and mix them with an output matrix.
+
+7
+00:00:25.300 --> 00:00:26.467
+Here is the picture.
+
+8
+00:00:26.767 --> 00:00:29.300
+The token vectors fan out into four heads.
+
+9
+00:00:29.600 --> 00:00:32.967
+Each head, with private projections, runs its own attention.
+
+10
+00:00:33.267 --> 00:00:34.867
+They all work at the same time.
+
+11
+00:00:35.167 --> 00:00:39.700
+Then concatenation stitches their findings back into one vector per token.
+
+12
+00:00:40.900 --> 00:00:41.560
+Why bother?
+
+13
+00:00:41.560 --> 00:00:43.300
+Heads are free to specialize.
+
+14
+00:00:43.600 --> 00:00:47.000
+In trained models, researchers find heads tracking syntax.
+
+15
+00:00:47.300 --> 00:00:49.167
+Heads that resolve coreference.
+
+16
+00:00:49.467 --> 00:00:51.600
+Heads that copy adjacent tokens.
+
+17
+00:00:51.900 --> 00:00:53.900
+And heads that look up rare tokens.
+
+18
+00:00:55.100 --> 00:00:56.700
+And it's free in compute terms.
+
+19
+00:00:57.000 --> 00:01:02.267
+Eight heads of sixty four dimensions add up to five twelve, the same as one full-width head.
+
+20
+00:01:03.467 --> 00:01:05.300
+In code, it's a tensor shuffle.
+
+21
+00:01:05.600 --> 00:01:08.600
+Six tokens, sixty four dimensions, four heads.
+
+22
+00:01:08.900 --> 00:01:13.200
+One reshape and transpose splits the vectors into heads, with no loops.
+
+23
+00:01:13.500 --> 00:01:17.042
+We compute one attention map per head, then concatenate.
+
+24
+00:01:17.042 --> 00:01:18.433
+Four maps, one output.
+
+25
+00:01:19.633 --> 00:01:21.167
+Here's a debugging story.
+
+26
+00:01:21.467 --> 00:01:24.067
+Your reranker demotes a clearly relevant chunk.
+
+27
+00:01:24.367 --> 00:01:26.136
+You dump its attention maps.
+
+28
+00:01:26.136 --> 00:01:34.667
+Head seven, which usually links query terms to matches, never fires on EVA, because the chunk spells it out as extravehicular activity.
+
+29
+00:01:34.967 --> 00:01:40.633
+Per head maps turn the model is being weird into a fix: expand abbreviations at indexing.
+
+30
+00:01:41.833 --> 00:01:42.633
+Let's recap.
+
+31
+00:01:42.633 --> 00:01:45.700
+Multi-head attention runs h heads in parallel.
+
+32
+00:01:46.000 --> 00:01:49.200
+Each has its own query, key, and value projections.
+
+33
+00:01:49.500 --> 00:01:53.033
+Outputs are concatenated and mixed by an output matrix.
+
+34
+00:01:53.333 --> 00:01:56.519
+The cost is the same, but the patterns are richer.
+
+35
+00:01:56.519 --> 00:01:58.367
+Next up: positional encoding.

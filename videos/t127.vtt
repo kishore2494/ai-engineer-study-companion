@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Positional encoding.
+
+2
+00:00:02.367 --> 00:00:04.653
+Attention cannot tell first from last.
+
+3
+00:00:04.653 --> 00:00:07.300
+Here is how transformers learn order anyway.
+
+4
+00:00:08.500 --> 00:00:12.367
+Attention scores pairs of vectors, but it has no idea of order.
+
+5
+00:00:12.667 --> 00:00:15.333
+So to a raw transformer, dog bites man...
+
+6
+00:00:15.633 --> 00:00:17.300
+is literally identical to...
+
+7
+00:00:17.600 --> 00:00:18.533
+man bites dog.
+
+8
+00:00:18.533 --> 00:00:22.000
+The fix is to give every position its own signature.
+
+9
+00:00:23.200 --> 00:00:27.633
+The 2017 paper added sine and cosine waves to each embedding.
+
+10
+00:00:27.933 --> 00:00:29.633
+A fast wave changes quickly.
+
+11
+00:00:29.933 --> 00:00:31.767
+A slower wave changes gently.
+
+12
+00:00:32.067 --> 00:00:34.042
+A very slow wave barely moves.
+
+13
+00:00:34.042 --> 00:00:37.333
+Together, each position gets a unique fingerprint.
+
+14
+00:00:38.533 --> 00:00:40.267
+There are three generations to know.
+
+15
+00:00:40.567 --> 00:00:42.800
+Sinusoidal uses those fixed waves.
+
+16
+00:00:43.100 --> 00:00:48.467
+Learned trains an embedding per position, but positions past the training length do not exist.
+
+17
+00:00:48.767 --> 00:00:55.400
+RoPE, used by Llama, Mistral and Qwen, rotates queries and keys by a position-based angle.
+
+18
+00:00:56.600 --> 00:00:58.100
+Let's see the rotary idea.
+
+19
+00:00:58.400 --> 00:01:00.900
+A token at position one points this way.
+
+20
+00:01:01.200 --> 00:01:03.900
+At position two, we rotate it a little further.
+
+21
+00:01:04.200 --> 00:01:06.233
+At position three, further again.
+
+22
+00:01:06.533 --> 00:01:13.267
+The angle between two tokens reflects their distance, so attention sees relative position by construction.
+
+23
+00:01:14.467 --> 00:01:17.100
+In code, it is just a few lines of NumPy.
+
+24
+00:01:17.400 --> 00:01:21.333
+We build a grid with positions down the side and dimensions across.
+
+25
+00:01:21.633 --> 00:01:25.500
+The angle shrinks as the dimension grows, so wavelengths get longer.
+
+26
+00:01:25.800 --> 00:01:28.530
+Even columns get sine, odd get cosine.
+
+27
+00:01:28.530 --> 00:01:29.967
+Every row is unique.
+
+28
+00:01:31.167 --> 00:01:33.000
+Why does this matter in practice?
+
+29
+00:01:33.300 --> 00:01:39.100
+Two reports can share the same words: thruster fired after the leak was sealed, or the reverse.
+
+30
+00:01:39.400 --> 00:01:41.498
+They tell opposite failure stories.
+
+31
+00:01:41.498 --> 00:01:45.333
+When a model gets causality right, positions are doing the work.
+
+32
+00:01:45.633 --> 00:01:48.599
+So check rope theta before feeding long reports.
+
+33
+00:01:48.599 --> 00:01:52.800
+Models stretched past trained positions quietly lose this reasoning.
+
+34
+00:01:54.000 --> 00:01:54.809
+Let's recap.
+
+35
+00:01:54.809 --> 00:01:57.100
+Attention alone is blind to order.
+
+36
+00:01:57.400 --> 00:02:00.667
+Positional encoding gives each position a signature.
+
+37
+00:02:00.967 --> 00:02:04.967
+Remember the three generations: sinusoidal, learned, and RoPE.
+
+38
+00:02:05.267 --> 00:02:09.049
+And long context only works if positions stay in range.
+
+39
+00:02:09.049 --> 00:02:10.700
+Next up: self-attention.

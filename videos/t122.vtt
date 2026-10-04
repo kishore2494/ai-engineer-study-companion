@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+spaCy.
+
+2
+00:00:01.900 --> 00:00:05.184
+In the LLM era, why still use classical NLP?
+
+3
+00:00:05.184 --> 00:00:05.930
+Economics.
+
+4
+00:00:05.930 --> 00:00:06.900
+Let's see it.
+
+5
+00:00:08.100 --> 00:00:11.133
+spaCy is industrial-strength classical NLP.
+
+6
+00:00:11.433 --> 00:00:15.355
+It's a fast, Cython-powered pipeline with opinionated defaults.
+
+7
+00:00:15.355 --> 00:00:18.467
+You load a pretrained pipeline, and it just works.
+
+8
+00:00:19.667 --> 00:00:23.633
+Call nlp on a text, and the whole pipeline runs in one pass.
+
+9
+00:00:23.933 --> 00:00:25.033
+It tokenizes.
+
+10
+00:00:25.333 --> 00:00:26.633
+Tags parts of speech.
+
+11
+00:00:26.933 --> 00:00:28.367
+Parses dependencies.
+
+12
+00:00:28.667 --> 00:00:29.700
+Lemmatizes.
+
+13
+00:00:30.000 --> 00:00:31.791
+And finds named entities.
+
+14
+00:00:31.791 --> 00:00:34.800
+Every stage annotates the same Doc object.
+
+15
+00:00:36.000 --> 00:00:37.500
+Here's entity extraction.
+
+16
+00:00:37.800 --> 00:00:39.700
+We load the small English pipeline.
+
+17
+00:00:40.000 --> 00:00:41.933
+One call processes the sentence.
+
+18
+00:00:42.233 --> 00:00:45.101
+Then we group each entity under its label.
+
+19
+00:00:45.101 --> 00:00:50.700
+NASA, SpaceX and the FAA are organizations, and September twenty eighth is a date.
+
+20
+00:00:51.900 --> 00:00:53.200
+So when do you pick which?
+
+21
+00:00:53.500 --> 00:01:00.733
+Extracting entities from a million documents costs pennies on CPU with spaCy, versus real money with an LLM.
+
+22
+00:01:01.033 --> 00:01:02.866
+spaCy is fast and local.
+
+23
+00:01:02.866 --> 00:01:05.767
+An LLM brings latency and rate limits.
+
+24
+00:01:06.067 --> 00:01:11.667
+Use spaCy for shallow, well-defined extraction, and save the LLM for what needs reasoning.
+
+25
+00:01:12.867 --> 00:01:14.767
+Here's the economics in practice.
+
+26
+00:01:15.067 --> 00:01:21.033
+Retrieval improves sharply when you can filter by metadata, like only chunks mentioning JPL.
+
+27
+00:01:21.333 --> 00:01:27.267
+Running spaCy over forty thousand chunks takes about twenty minutes on one CPU and costs nothing.
+
+28
+00:01:27.567 --> 00:01:32.700
+The same job through an LLM is tens of dollars and hours of rate-limited calls.
+
+29
+00:01:33.900 --> 00:01:34.788
+Let's recap.
+
+30
+00:01:34.788 --> 00:01:37.600
+spaCy is a fast, opinionated pipeline.
+
+31
+00:01:37.900 --> 00:01:41.800
+One call gives tokens, tags, parses, lemmas, and entities.
+
+32
+00:01:42.100 --> 00:01:45.133
+It wins on cost and speed for shallow extraction.
+
+33
+00:01:45.433 --> 00:01:48.551
+Use the LLM only where reasoning is needed.
+
+34
+00:01:48.551 --> 00:01:51.233
+Next up: Hugging Face library basics.
