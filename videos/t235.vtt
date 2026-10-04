@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+ELT.
+
+2
+00:00:01.967 --> 00:00:06.300
+Swap the last two letters of ETL, and you stop throwing data away.
+
+3
+00:00:07.500 --> 00:00:12.933
+ELT loads the raw data first, untouched, then transforms it inside the warehouse.
+
+4
+00:00:13.233 --> 00:00:19.333
+Modern warehouses have cheap, elastic compute, so the old reason to transform outside is gone.
+
+5
+00:00:19.633 --> 00:00:22.907
+In ETL, the transform code owns the truth.
+
+6
+00:00:22.907 --> 00:00:24.933
+In ELT, the raw data does.
+
+7
+00:00:25.233 --> 00:00:30.600
+And since raw data is kept forever, when history matters, ELT is the safer default.
+
+8
+00:00:31.800 --> 00:00:33.033
+So the order swaps.
+
+9
+00:00:33.333 --> 00:00:35.067
+We still extract from the source.
+
+10
+00:00:35.367 --> 00:00:37.800
+But we load straight away, raw and untouched.
+
+11
+00:00:38.100 --> 00:00:40.933
+Only then do we transform, inside the warehouse.
+
+12
+00:00:42.133 --> 00:00:44.067
+This is the dbt pattern.
+
+13
+00:00:44.367 --> 00:00:47.233
+At the bottom sit raw tables, landed untouched.
+
+14
+00:00:47.533 --> 00:00:50.867
+On top, versioned SQL views clean and type the data.
+
+15
+00:00:51.167 --> 00:00:54.119
+And above those, models the analysts query.
+
+16
+00:00:54.119 --> 00:00:59.200
+Anyone can read and review that SQL in a pull request, no Python required.
+
+17
+00:01:00.400 --> 00:01:01.600
+Here it is in code.
+
+18
+00:01:01.900 --> 00:01:06.300
+First, we land each payload as raw JSON, exactly as it arrived.
+
+19
+00:01:06.600 --> 00:01:09.800
+Then the transform is just a view inside the warehouse.
+
+20
+00:01:10.100 --> 00:01:13.344
+If the view has a bug, we fix the SQL and rebuild.
+
+21
+00:01:13.344 --> 00:01:14.967
+The raw rows never moved.
+
+22
+00:01:16.167 --> 00:01:18.267
+Here is a case where ELT shines.
+
+23
+00:01:18.567 --> 00:01:23.233
+A space-weather API is flaky: fields appear, vanish, and change shape.
+
+24
+00:01:23.533 --> 00:01:28.500
+With ETL, every surprise crashed the nightly job and lost that night's data.
+
+25
+00:01:28.800 --> 00:01:36.200
+With ELT, the raw JSON always lands, and a parsing bug becomes a view fix and a rebuild over all history.
+
+26
+00:01:37.400 --> 00:01:38.244
+Let's recap.
+
+27
+00:01:38.244 --> 00:01:42.533
+ELT loads raw data first and transforms inside the warehouse.
+
+28
+00:01:42.833 --> 00:01:45.033
+Raw data stays as the source of truth.
+
+29
+00:01:45.333 --> 00:01:48.867
+Transforms are versioned SQL that anyone can audit.
+
+30
+00:01:49.167 --> 00:01:52.603
+When history matters, ELT is the safer default.
+
+31
+00:01:52.603 --> 00:01:53.700
+Next up: Spark.

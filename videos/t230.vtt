@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+Query optimization.
+
+2
+00:00:02.467 --> 00:00:06.688
+A slow query is usually the database reading far more than it needs to.
+
+3
+00:00:06.688 --> 00:00:08.233
+Let's see how to catch it.
+
+4
+00:00:09.433 --> 00:00:11.500
+The database is honest if you ask it.
+
+5
+00:00:11.800 --> 00:00:14.034
+EXPLAIN shows the plan it chose.
+
+6
+00:00:14.034 --> 00:00:17.733
+EXPLAIN ANALYZE runs the query and adds real timings.
+
+7
+00:00:18.033 --> 00:00:23.000
+The pattern to hunt for is a sequential scan on a big table, where an index scan should be.
+
+8
+00:00:24.200 --> 00:00:26.767
+This is the plan flip you are engineering for.
+
+9
+00:00:27.067 --> 00:00:30.267
+First, a sequential scan reads every row of the table.
+
+10
+00:00:30.567 --> 00:00:34.967
+Then you create an index, a sorted B-tree over the columns you filter on.
+
+11
+00:00:35.267 --> 00:00:38.833
+Now the engine descends the tree straight to the rows that match.
+
+12
+00:00:40.033 --> 00:00:41.633
+Here is the difference in time.
+
+13
+00:00:41.933 --> 00:00:45.641
+The sequential scan took nine hundred forty two milliseconds.
+
+14
+00:00:45.641 --> 00:00:49.167
+With the index, the same query took under one millisecond.
+
+15
+00:00:50.367 --> 00:00:53.633
+One catch: the query must be written so the index can help.
+
+16
+00:00:53.933 --> 00:00:57.367
+A range on the raw timestamp column can use the index.
+
+17
+00:00:57.667 --> 00:01:00.967
+But wrapping the column in a function hides it from the index.
+
+18
+00:01:01.267 --> 00:01:03.338
+Wrapped columns cause a full scan.
+
+19
+00:01:03.338 --> 00:01:04.800
+Rewrite them as a range.
+
+20
+00:01:06.000 --> 00:01:07.900
+Here is the whole workflow in code.
+
+21
+00:01:08.200 --> 00:01:11.633
+We run EXPLAIN ANALYZE and see a slow sequential scan.
+
+22
+00:01:11.933 --> 00:01:15.333
+Then we build a composite index on the two filter columns.
+
+23
+00:01:15.633 --> 00:01:20.667
+Rerun it, and the plan becomes an index scan that finishes in under a millisecond.
+
+24
+00:01:21.867 --> 00:01:23.200
+Here is a real case.
+
+25
+00:01:23.500 --> 00:01:27.819
+A RAG system filters chunks by mission and date before vector search.
+
+26
+00:01:27.819 --> 00:01:32.200
+At four million chunks, that filter alone takes one point two seconds.
+
+27
+00:01:32.500 --> 00:01:37.300
+One EXPLAIN ANALYZE reveals the full scan, and one composite index fixes it.
+
+28
+00:01:37.600 --> 00:01:41.433
+Latency falls under ten milliseconds, from fifteen minutes of work.
+
+29
+00:01:42.633 --> 00:01:43.467
+Let's recap.
+
+30
+00:01:43.467 --> 00:01:45.967
+EXPLAIN ANALYZE shows the real plan.
+
+31
+00:01:46.267 --> 00:01:48.833
+Replace sequential scans with index scans.
+
+32
+00:01:49.133 --> 00:01:52.700
+Keep predicates sargable, with no functions around columns.
+
+33
+00:01:53.000 --> 00:01:55.446
+And index what you filter and join on.
+
+34
+00:01:55.446 --> 00:01:56.733
+Next up: PostgreSQL.

@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+ETL.
+
+2
+00:00:01.933 --> 00:00:03.532
+Extract, transform, load.
+
+3
+00:00:03.532 --> 00:00:07.433
+The classic way to move data, and the one with a hidden cost.
+
+4
+00:00:08.633 --> 00:00:11.500
+ETL stands for extract, transform, load.
+
+5
+00:00:11.800 --> 00:00:15.759
+The point is that the data is cleaned and shaped before it lands.
+
+6
+00:00:15.759 --> 00:00:18.500
+Only clean data ever touches the destination.
+
+7
+00:00:19.700 --> 00:00:20.967
+Here is the pipeline.
+
+8
+00:00:21.267 --> 00:00:27.033
+Extract pulls data from a source, like an API, a production database, or a file drop.
+
+9
+00:00:27.333 --> 00:00:33.800
+Transform runs in a middle tier, usually Python or Spark, parsing, filtering, renaming, and joining.
+
+10
+00:00:34.100 --> 00:00:36.533
+Load writes the finished rows into the warehouse.
+
+11
+00:00:37.733 --> 00:00:40.100
+Here is a small job, with names shortened.
+
+12
+00:00:40.400 --> 00:00:42.867
+Extract: we call the asteroid API.
+
+13
+00:00:43.167 --> 00:00:49.067
+Transform: in Python, we flatten the nested per-day data and skip rows with missing fields.
+
+14
+00:00:49.367 --> 00:00:52.433
+Load: we insert only the clean rows into Postgres.
+
+15
+00:00:53.633 --> 00:00:55.200
+Here is a practical use.
+
+16
+00:00:55.500 --> 00:01:02.867
+A research agent calls a slow, rate-limited asteroid API on every question, for the same data every time.
+
+17
+00:01:03.167 --> 00:01:09.533
+A nightly ETL job flattens the nested JSON into typed rows and loads them into Postgres.
+
+18
+00:01:09.833 --> 00:01:13.067
+Now the agent queries its own warm cache in milliseconds.
+
+19
+00:01:14.267 --> 00:01:15.270
+Here is the cost.
+
+20
+00:01:15.270 --> 00:01:19.933
+A week later you need a field your transform dropped, and the raw data is gone.
+
+21
+00:01:20.233 --> 00:01:23.530
+You can only re-extract if the source still has it.
+
+22
+00:01:23.530 --> 00:01:27.667
+Keeping the raw data is the fix, which is exactly what ELT does.
+
+23
+00:01:28.867 --> 00:01:29.739
+Let's recap.
+
+24
+00:01:29.739 --> 00:01:32.500
+ETL transforms data before loading it.
+
+25
+00:01:32.800 --> 00:01:36.767
+The transform runs in a middle tier, usually Python or Spark.
+
+26
+00:01:37.067 --> 00:01:39.367
+Only clean rows reach the destination.
+
+27
+00:01:39.667 --> 00:01:42.573
+The cost is that the raw data is gone.
+
+28
+00:01:42.573 --> 00:01:43.567
+Next up: ELT.

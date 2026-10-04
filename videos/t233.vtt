@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.367
+Data warehouse concepts.
+
+2
+00:00:02.667 --> 00:00:04.999
+Your Postgres fetches a few rows fast.
+
+3
+00:00:04.999 --> 00:00:06.841
+A warehouse does the opposite.
+
+4
+00:00:06.841 --> 00:00:07.700
+Let's see how.
+
+5
+00:00:08.900 --> 00:00:12.767
+A transactional database fetches a few rows quickly, by index.
+
+6
+00:00:13.067 --> 00:00:17.367
+A data warehouse is built to scan millions of rows and aggregate them.
+
+7
+00:00:17.667 --> 00:00:21.733
+Its trick is storing data column by column, instead of row by row.
+
+8
+00:00:22.933 --> 00:00:25.267
+Here is a small table of service tickets.
+
+9
+00:00:25.567 --> 00:00:31.068
+To sum the parts cost, a warehouse reads only that one column and never touches the rest.
+
+10
+00:00:31.068 --> 00:00:35.333
+Values of the same type sit together, so they compress brutally well.
+
+11
+00:00:36.533 --> 00:00:39.567
+Warehouse data is organized as a star schema.
+
+12
+00:00:39.867 --> 00:00:44.309
+In the middle is a fact table: one row per event, with numeric measures.
+
+13
+00:00:44.309 --> 00:00:45.667
+It is long and skinny.
+
+14
+00:00:45.967 --> 00:00:50.000
+Around it are dimension tables of context, like when, and who and where.
+
+15
+00:00:50.300 --> 00:00:54.433
+Dimensions are short and wide, and they are what you filter and group by.
+
+16
+00:00:55.633 --> 00:00:58.133
+Every analytics query has this same shape.
+
+17
+00:00:58.433 --> 00:01:00.700
+Join the fact table to a few dimensions.
+
+18
+00:01:01.000 --> 00:01:02.567
+Sum the measure you care about.
+
+19
+00:01:02.867 --> 00:01:06.233
+And group by dimension attributes, like month and region.
+
+20
+00:01:07.433 --> 00:01:09.133
+Here is the star in practice.
+
+21
+00:01:09.433 --> 00:01:12.967
+Ops wants downlink volume by station, satellite, and week.
+
+22
+00:01:13.267 --> 00:01:18.000
+You model one downlink fact table, with spokes to station, satellite, and date.
+
+23
+00:01:18.300 --> 00:01:24.900
+Every dashboard tile, and every question ops invents next quarter, is the same query with a different GROUP BY.
+
+24
+00:01:26.100 --> 00:01:26.845
+Let's recap.
+
+25
+00:01:26.845 --> 00:01:29.267
+Warehouses scan and aggregate at scale.
+
+26
+00:01:29.567 --> 00:01:32.700
+Columnar storage reads only the columns you need.
+
+27
+00:01:33.000 --> 00:01:36.633
+A star schema is a fact table surrounded by dimensions.
+
+28
+00:01:36.933 --> 00:01:40.484
+And every query joins, filters, and aggregates.
+
+29
+00:01:40.484 --> 00:01:41.467
+Next up: ETL.
