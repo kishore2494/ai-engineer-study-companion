@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+The F1 score.
+
+2
+00:00:02.200 --> 00:00:06.100
+What if you need a single number that respects both precision and recall?
+
+3
+00:00:07.300 --> 00:00:10.467
+F1 is the harmonic mean of precision and recall.
+
+4
+00:00:10.767 --> 00:00:13.733
+Harmonic, not arithmetic, and that choice has teeth.
+
+5
+00:00:14.033 --> 00:00:19.267
+It is dragged toward the smaller value, so you cannot max one metric and abandon the other.
+
+6
+00:00:20.467 --> 00:00:21.700
+Here is the formula.
+
+7
+00:00:22.000 --> 00:00:25.933
+Two times precision times recall, over precision plus recall.
+
+8
+00:00:26.233 --> 00:00:30.467
+F1 is one only when both are one, and zero if either is zero.
+
+9
+00:00:31.667 --> 00:00:34.167
+Watch what happens with an imbalanced model.
+
+10
+00:00:34.467 --> 00:00:37.859
+Precision is point nine, but recall is only point three.
+
+11
+00:00:37.859 --> 00:00:41.433
+The simple average says sixty percent, which is flattering.
+
+12
+00:00:41.733 --> 00:00:43.564
+F1 says forty five percent.
+
+13
+00:00:43.564 --> 00:00:45.667
+It punishes the imbalance hard.
+
+14
+00:00:46.867 --> 00:00:48.267
+The same thing in Python.
+
+15
+00:00:48.567 --> 00:00:51.100
+We compute F1 from precision and recall.
+
+16
+00:00:51.400 --> 00:00:53.782
+The plain average gives point six.
+
+17
+00:00:53.782 --> 00:00:55.533
+F1 gives point four five.
+
+18
+00:00:56.733 --> 00:01:00.933
+In an experiment tracker, F1 gives the leaderboard one honest column.
+
+19
+00:01:01.233 --> 00:01:07.733
+The forest has precision point eight eight but recall only point six one, so F1 is point seven two.
+
+20
+00:01:08.033 --> 00:01:10.933
+XGBoost is balanced, and scores point eight.
+
+21
+00:01:10.933 --> 00:01:13.833
+Simple averaging would call it nearly a tie.
+
+22
+00:01:15.033 --> 00:01:16.433
+A few variants exist.
+
+23
+00:01:16.733 --> 00:01:20.700
+Use F1 to compare models with one number on imbalanced data.
+
+24
+00:01:21.000 --> 00:01:23.400
+F zero point five weights precision more.
+
+25
+00:01:23.700 --> 00:01:25.362
+And F2 weights recall more.
+
+26
+00:01:25.362 --> 00:01:28.500
+If error costs differ a lot, read the pair instead.
+
+27
+00:01:29.700 --> 00:01:30.513
+Let's recap.
+
+28
+00:01:30.513 --> 00:01:33.767
+F1 is the harmonic mean of precision and recall.
+
+29
+00:01:34.067 --> 00:01:35.933
+It sinks toward the weaker of the two.
+
+30
+00:01:36.233 --> 00:01:38.933
+So imbalance is punished, not averaged away.
+
+31
+00:01:39.233 --> 00:01:41.300
+Next up: ROC AUC.

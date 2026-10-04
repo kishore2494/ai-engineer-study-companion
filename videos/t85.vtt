@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+PyTorch.
+
+2
+00:00:01.967 --> 00:00:05.782
+Every model you train from here on runs on three simple ideas.
+
+3
+00:00:05.782 --> 00:00:06.767
+Let's meet them.
+
+4
+00:00:07.967 --> 00:00:11.100
+PyTorch stacks three ideas, one on top of the other.
+
+5
+00:00:11.400 --> 00:00:15.000
+A tensor is a NumPy array that can live on a GPU.
+
+6
+00:00:15.300 --> 00:00:19.100
+Autograd watches your operations and works out gradients for you.
+
+7
+00:00:19.400 --> 00:00:24.433
+And an nn Module packages weights and a forward method into a reusable layer.
+
+8
+00:00:25.633 --> 00:00:28.000
+Here's what autograd does behind the scenes.
+
+9
+00:00:28.300 --> 00:00:32.633
+As you compute, PyTorch silently records every operation as a graph.
+
+10
+00:00:32.933 --> 00:00:35.200
+The graph ends in a single number, the loss.
+
+11
+00:00:35.500 --> 00:00:37.867
+Calling backward walks that graph in reverse.
+
+12
+00:00:38.167 --> 00:00:40.667
+And it fills in dot grad on every parameter.
+
+13
+00:00:41.867 --> 00:00:44.533
+All training is one loop, and the order matters.
+
+14
+00:00:44.833 --> 00:00:47.167
+First, a forward pass makes predictions.
+
+15
+00:00:47.467 --> 00:00:48.733
+Then we measure the loss.
+
+16
+00:00:49.033 --> 00:00:50.700
+Backward computes the gradients.
+
+17
+00:00:51.000 --> 00:00:52.433
+Step updates the weights.
+
+18
+00:00:52.733 --> 00:00:56.233
+And zero grad clears the gradients before we go around again.
+
+19
+00:00:57.433 --> 00:00:59.333
+Let's learn a straight line from scratch.
+
+20
+00:00:59.633 --> 00:01:03.533
+We create two parameters and tell PyTorch to track their gradients.
+
+21
+00:01:03.833 --> 00:01:07.067
+Inside the loop, we compute predictions and the squared error.
+
+22
+00:01:07.367 --> 00:01:09.467
+Backward fills in the gradients for both.
+
+23
+00:01:09.767 --> 00:01:12.864
+Then step moves the weights, and zero grad resets.
+
+24
+00:01:12.864 --> 00:01:15.900
+After two hundred rounds, we recover two and one.
+
+25
+00:01:17.100 --> 00:01:20.600
+Your exoplanet classifier stops improving at epoch three.
+
+26
+00:01:20.900 --> 00:01:25.467
+Because the loop is plain Python, you just print the gradient norm of the first layer.
+
+27
+00:01:25.767 --> 00:01:28.843
+In thirty seconds, you know if gradients are flowing.
+
+28
+00:01:28.843 --> 00:01:30.700
+That debuggability is the point.
+
+29
+00:01:31.900 --> 00:01:37.233
+The classic first bug: forgetting zero grad, so gradients pile up from step to step.
+
+30
+00:01:37.533 --> 00:01:41.667
+Clear them every step, and keep your model and data on the same device.
+
+31
+00:01:42.867 --> 00:01:43.691
+Let's recap.
+
+32
+00:01:43.691 --> 00:01:46.233
+Tensors are arrays that run on a GPU.
+
+33
+00:01:46.533 --> 00:01:49.200
+Autograd records a graph and walks it backward.
+
+34
+00:01:49.500 --> 00:01:53.167
+The loop order is forward, loss, backward, step, zero grad.
+
+35
+00:01:53.467 --> 00:01:56.419
+And it's all your own Python, so you can debug it.
+
+36
+00:01:56.419 --> 00:01:57.600
+Next up: TensorFlow.

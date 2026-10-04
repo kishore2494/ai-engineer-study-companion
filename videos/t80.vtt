@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+Precision.
+
+2
+00:00:01.867 --> 00:00:03.700
+The metric of false alarm cost.
+
+3
+00:00:04.900 --> 00:00:06.667
+Precision asks one question.
+
+4
+00:00:06.967 --> 00:00:10.833
+Of everything the model flagged as positive, how much really was?
+
+5
+00:00:11.133 --> 00:00:19.333
+Optimize it when acting on a flag is expensive, like a spam filter junking real mail, or a fraud system blocking a good card.
+
+6
+00:00:20.533 --> 00:00:22.200
+Let's count with a spam filter.
+
+7
+00:00:22.500 --> 00:00:24.692
+Look only at the flagged column.
+
+8
+00:00:24.692 --> 00:00:28.733
+Forty real spam plus five good emails, so forty five flags.
+
+9
+00:00:29.033 --> 00:00:31.467
+Forty of those forty five were truly spam.
+
+10
+00:00:32.667 --> 00:00:37.900
+So precision is true positives, divided by true positives plus false positives.
+
+11
+00:00:38.200 --> 00:00:40.333
+The true positives are the real hits.
+
+12
+00:00:40.633 --> 00:00:43.230
+The false positives are the false alarms.
+
+13
+00:00:43.230 --> 00:00:46.967
+Forty over forty five is about zero point eight eight nine.
+
+14
+00:00:48.167 --> 00:00:50.233
+In code, compute it by hand first.
+
+15
+00:00:50.533 --> 00:00:52.333
+Forty over forty plus five.
+
+16
+00:00:52.633 --> 00:00:56.000
+Then scikit-learn gives the same number from the predictions.
+
+17
+00:00:57.200 --> 00:00:59.100
+A trap: precision can be gamed.
+
+18
+00:00:59.400 --> 00:01:03.708
+Flag only your single most confident case, and precision can be perfect.
+
+19
+00:01:03.708 --> 00:01:09.333
+It says nothing about the positives you never flagged, so always read it together with recall.
+
+20
+00:01:10.533 --> 00:01:11.900
+Here is a real trade.
+
+21
+00:01:12.200 --> 00:01:15.433
+Each flagged planet gets expensive telescope follow up.
+
+22
+00:01:15.733 --> 00:01:19.442
+At precision point seven, three in ten follow ups are wasted.
+
+23
+00:01:19.442 --> 00:01:25.400
+So you raise the threshold from point five to point eight, and precision climbs to point nine two.
+
+24
+00:01:25.700 --> 00:01:27.767
+The price is recall, which is next.
+
+25
+00:01:28.967 --> 00:01:29.698
+Let's recap.
+
+26
+00:01:29.698 --> 00:01:32.867
+Precision is true positives over everything flagged.
+
+27
+00:01:33.167 --> 00:01:35.333
+It is the metric of false alarm cost.
+
+28
+00:01:35.633 --> 00:01:38.733
+It sees only the flagged pile, so read it with recall.
+
+29
+00:01:39.033 --> 00:01:40.367
+Next up: recall.

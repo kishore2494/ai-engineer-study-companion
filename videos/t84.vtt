@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+The confusion matrix.
+
+2
+00:00:02.467 --> 00:00:06.600
+Every metric you have learned is arithmetic on a tiny two by two grid.
+
+3
+00:00:07.800 --> 00:00:10.433
+The confusion matrix is a two by two grid.
+
+4
+00:00:10.733 --> 00:00:11.835
+Rows are the truth.
+
+5
+00:00:11.835 --> 00:00:13.400
+Columns are the prediction.
+
+6
+00:00:13.700 --> 00:00:16.267
+Four cells, and every metric comes from them.
+
+7
+00:00:17.467 --> 00:00:18.800
+Here are the four cells.
+
+8
+00:00:19.100 --> 00:00:20.767
+True positive: a hit.
+
+9
+00:00:21.067 --> 00:00:23.133
+False positive: a false alarm.
+
+10
+00:00:23.433 --> 00:00:25.133
+False negative: a miss.
+
+11
+00:00:25.433 --> 00:00:27.600
+True negative: a correct rejection.
+
+12
+00:00:27.900 --> 00:00:30.633
+Precision reads down the predicted yes column.
+
+13
+00:00:30.933 --> 00:00:33.333
+Recall reads across the actual yes row.
+
+14
+00:00:34.533 --> 00:00:36.133
+Why look at the matrix first?
+
+15
+00:00:36.433 --> 00:00:40.733
+Two models can have identical F1 and fail in opposite directions.
+
+16
+00:00:41.033 --> 00:00:42.877
+One drowns in false alarms.
+
+17
+00:00:42.877 --> 00:00:45.267
+The other quietly misses positives.
+
+18
+00:00:45.567 --> 00:00:47.233
+Only the matrix shows which.
+
+19
+00:00:48.433 --> 00:00:50.500
+In scikit-learn, it is one call.
+
+20
+00:00:50.800 --> 00:00:52.749
+Then we unpack the four cells.
+
+21
+00:00:52.749 --> 00:00:57.233
+Note scikit-learn's order: true negatives first, true positives last.
+
+22
+00:00:57.533 --> 00:01:01.767
+Now we can print hits, misses, false alarms, and correct rejections.
+
+23
+00:01:02.967 --> 00:01:05.133
+Here is why teams ship it as figure one.
+
+24
+00:01:05.433 --> 00:01:08.733
+In version two, the model misses only eight positives.
+
+25
+00:01:09.033 --> 00:01:13.870
+Version three has about the same F1, but misses nineteen while false alarms fell.
+
+26
+00:01:13.870 --> 00:01:18.767
+For a screening tool, that is the wrong direction, and the rollback took a minute.
+
+27
+00:01:19.967 --> 00:01:21.300
+So build one habit.
+
+28
+00:01:21.600 --> 00:01:23.646
+Never trust a single scalar alone.
+
+29
+00:01:23.646 --> 00:01:26.533
+Look at the matrix first, then read the metrics.
+
+30
+00:01:27.733 --> 00:01:28.466
+Let's recap.
+
+31
+00:01:28.466 --> 00:01:31.333
+Rows are the truth, columns are the prediction.
+
+32
+00:01:31.633 --> 00:01:35.433
+Four cells: hit, false alarm, miss, and correct rejection.
+
+33
+00:01:35.733 --> 00:01:39.267
+Precision reads down a column, recall reads across a row.
+
+34
+00:01:39.567 --> 00:01:42.152
+Look at the matrix before any scalar metric.
+
+35
+00:01:42.152 --> 00:01:44.267
+Everything else is arithmetic on it.

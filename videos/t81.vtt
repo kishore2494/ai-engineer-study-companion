@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Recall.
+
+2
+00:00:01.833 --> 00:00:03.223
+The metric of miss cost.
+
+3
+00:00:03.223 --> 00:00:06.233
+When a missed case is the disaster, this is the one.
+
+4
+00:00:07.433 --> 00:00:09.233
+Recall is the mirror question.
+
+5
+00:00:09.533 --> 00:00:13.167
+Of everything actually positive, how much did the model catch?
+
+6
+00:00:13.467 --> 00:00:15.717
+Use it when a miss is the disaster.
+
+7
+00:00:15.717 --> 00:00:20.667
+A screening test would rather raise ten false alarms than miss one real case.
+
+8
+00:00:21.867 --> 00:00:23.433
+Use the same spam filter.
+
+9
+00:00:23.733 --> 00:00:26.283
+Now look only at the actual spam row.
+
+10
+00:00:26.283 --> 00:00:29.867
+Forty caught, ten missed, so fifty real spam emails.
+
+11
+00:00:30.167 --> 00:00:31.567
+Forty of fifty caught.
+
+12
+00:00:31.567 --> 00:00:32.967
+Recall is point eight.
+
+13
+00:00:34.167 --> 00:00:38.467
+The formula: true positives over true positives plus false negatives.
+
+14
+00:00:38.767 --> 00:00:41.133
+True positives are the cases we caught.
+
+15
+00:00:41.433 --> 00:00:44.433
+False negatives are the ones that walked out the door.
+
+16
+00:00:45.633 --> 00:00:49.033
+Precision and recall trade off through the decision threshold.
+
+17
+00:00:49.333 --> 00:00:51.713
+Lower the threshold, and you flag more.
+
+18
+00:00:51.713 --> 00:00:52.567
+Recall climbs.
+
+19
+00:00:52.867 --> 00:00:54.024
+But precision falls.
+
+20
+00:00:54.024 --> 00:00:58.133
+Which side to favor is a product decision about which error hurts more.
+
+21
+00:00:59.333 --> 00:01:02.300
+In code, compute it by hand: forty over fifty.
+
+22
+00:01:02.600 --> 00:01:06.300
+Then we take the predicted probabilities and try three thresholds.
+
+23
+00:01:06.600 --> 00:01:09.067
+As the threshold drops, recall rises.
+
+24
+00:01:10.267 --> 00:01:12.033
+Here is a two stage pipeline.
+
+25
+00:01:12.333 --> 00:01:19.700
+First, a cheap screen over two hundred thousand candidates, tuned for recall point nine nine at a threshold of point two.
+
+26
+00:01:20.000 --> 00:01:25.467
+A missed Earth twin is gone forever, while false alarms only cost the next stage some compute.
+
+27
+00:01:25.767 --> 00:01:30.200
+Same model family, opposite threshold, because the cost of a miss differs.
+
+28
+00:01:31.400 --> 00:01:32.257
+Let's recap.
+
+29
+00:01:32.257 --> 00:01:35.900
+Recall is true positives over all actual positives.
+
+30
+00:01:36.200 --> 00:01:37.867
+It is the metric of miss cost.
+
+31
+00:01:38.167 --> 00:01:41.767
+Lower the threshold, and recall rises while precision falls.
+
+32
+00:01:42.067 --> 00:01:43.867
+Next up: the F1 score.
