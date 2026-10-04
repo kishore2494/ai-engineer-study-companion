@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+Qwen.
+
+2
+00:00:02.000 --> 00:00:06.348
+Alibaba's open family, and the most fine-tuned lineage after Llama.
+
+3
+00:00:06.348 --> 00:00:08.100
+Here is what sets it apart.
+
+4
+00:00:09.300 --> 00:00:11.200
+Three things distinguish Qwen.
+
+5
+00:00:11.500 --> 00:00:13.345
+First, multilingual strength.
+
+6
+00:00:13.345 --> 00:00:18.500
+It was trained heavily beyond English, especially Indic and East Asian languages.
+
+7
+00:00:18.800 --> 00:00:21.700
+Second, it is consistently strong at coding and math.
+
+8
+00:00:22.000 --> 00:00:27.467
+Third, most sizes are Apache licensed, which matters when your fine-tune ships in a product.
+
+9
+00:00:28.667 --> 00:00:31.800
+The second advantage is a complete ladder of sizes.
+
+10
+00:00:32.100 --> 00:00:37.800
+Half a billion to three billion parameters runs on edge devices, even a Raspberry Pi.
+
+11
+00:00:38.100 --> 00:00:42.600
+Seven to fourteen billion are the fine-tuning workhorses, on one GPU.
+
+12
+00:00:42.900 --> 00:00:46.000
+Thirty-two billion and up are near-frontier flagships.
+
+13
+00:00:46.300 --> 00:00:50.300
+And variants for code, vision, and embeddings fill every other slot.
+
+14
+00:00:51.500 --> 00:00:53.333
+Let's test the multilingual claim.
+
+15
+00:00:53.633 --> 00:00:56.900
+We load a small one and a half billion parameter Qwen.
+
+16
+00:00:57.200 --> 00:01:01.833
+Then ask a question in Hindi, about the difference between a satellite and a meteor.
+
+17
+00:01:02.133 --> 00:01:05.300
+Run the same prompt through Llama, and the gap is the point.
+
+18
+00:01:06.500 --> 00:01:08.262
+Here is a real scenario.
+
+19
+00:01:08.262 --> 00:01:13.767
+A telemetry operation ingests reports in Hindi and Tamil alongside English.
+
+20
+00:01:14.067 --> 00:01:17.400
+The Llama-based triage model mangles the Indic scripts.
+
+21
+00:01:17.700 --> 00:01:23.300
+The same LoRA recipe on Qwen handles them natively, with no translation layer.
+
+22
+00:01:23.600 --> 00:01:25.288
+No extra latency either.
+
+23
+00:01:25.288 --> 00:01:30.633
+One afternoon of side-by-side prompting saved a whole preprocessing service.
+
+24
+00:01:31.833 --> 00:01:33.733
+The practical takeaway is simple.
+
+25
+00:01:34.033 --> 00:01:42.800
+If your task involves non-English text, or needs one family across many sizes, Qwen is usually the first checkpoint to benchmark.
+
+26
+00:01:44.000 --> 00:01:44.819
+Let's recap.
+
+27
+00:01:44.819 --> 00:01:48.367
+Qwen is strong at multilingual work, code, and math.
+
+28
+00:01:48.667 --> 00:01:50.133
+It has a full size ladder.
+
+29
+00:01:50.433 --> 00:01:52.433
+Most sizes are Apache licensed.
+
+30
+00:01:52.733 --> 00:01:55.400
+Benchmark it first for non-English work.
+
+31
+00:01:55.400 --> 00:01:56.400
+Next up: Gemma.

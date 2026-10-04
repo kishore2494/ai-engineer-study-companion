@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.433
+Gemma.
+
+2
+00:00:01.733 --> 00:00:06.033
+Google's open family, and a habit that makes every model family useful.
+
+3
+00:00:07.233 --> 00:00:09.533
+Gemma is Google's open-weight family.
+
+4
+00:00:09.833 --> 00:00:14.733
+It is the third major open lineage to know, alongside Llama and Qwen.
+
+5
+00:00:15.033 --> 00:00:17.967
+Its niche is small models that punch above their weight.
+
+6
+00:00:19.167 --> 00:00:20.067
+Here is why.
+
+7
+00:00:20.367 --> 00:00:23.133
+A much larger teacher model holds the ability.
+
+8
+00:00:23.433 --> 00:00:26.200
+Distillation transfers that ability downward.
+
+9
+00:00:26.500 --> 00:00:32.100
+So Gemma's small checkpoints often beat same-size peers, exactly what you want at the edge.
+
+10
+00:00:33.300 --> 00:00:37.267
+Now the habit that closes this volume: a personal eval harness.
+
+11
+00:00:37.567 --> 00:00:38.900
+One factual prompt.
+
+12
+00:00:39.200 --> 00:00:40.333
+One multilingual.
+
+13
+00:00:40.633 --> 00:00:42.033
+One structured output.
+
+14
+00:00:42.333 --> 00:00:43.167
+One code.
+
+15
+00:00:43.467 --> 00:00:44.836
+And one refusal bait.
+
+16
+00:00:44.836 --> 00:00:47.967
+Run them against every candidate model, forever.
+
+17
+00:00:49.167 --> 00:00:50.833
+The harness is a short script.
+
+18
+00:00:51.133 --> 00:00:54.133
+One file of prompts, and a list of candidate models.
+
+19
+00:00:54.433 --> 00:00:58.566
+Then two loops, so every model answers every prompt through Ollama.
+
+20
+00:00:58.566 --> 00:01:01.033
+Score by hand first, and automate later.
+
+21
+00:01:02.233 --> 00:01:07.233
+Run it for an offline ground station with eight gigabytes of RAM and no GPU.
+
+22
+00:01:07.533 --> 00:01:11.100
+Gemma's four billion model wins your factual and code prompts.
+
+23
+00:01:11.400 --> 00:01:13.100
+Qwen takes multilingual.
+
+24
+00:01:14.300 --> 00:01:15.767
+Now the decision itself.
+
+25
+00:01:16.067 --> 00:01:19.333
+The station is a fanless mini-PC with no uplink.
+
+26
+00:01:19.633 --> 00:01:23.367
+Its traffic is English only, so multilingual does not matter.
+
+27
+00:01:23.667 --> 00:01:24.391
+Gemma ships.
+
+28
+00:01:24.391 --> 00:01:30.367
+The choice took one evening and is defensible, because the harness sits in git next to the results.
+
+29
+00:01:31.567 --> 00:01:32.404
+Let's recap.
+
+30
+00:01:32.404 --> 00:01:35.333
+Gemma is distilled from Gemini technology.
+
+31
+00:01:35.633 --> 00:01:37.933
+Its small checkpoints punch above their weight.
+
+32
+00:01:38.233 --> 00:01:41.500
+Keep five fixed prompts and run them against every model.
+
+33
+00:01:41.800 --> 00:01:45.367
+Then every new release becomes a five-minute measurement, not hype.

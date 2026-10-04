@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+Pretraining.
+
+2
+00:00:01.933 --> 00:00:05.498
+Everything a language model knows comes from one simple game.
+
+3
+00:00:05.498 --> 00:00:06.667
+Here's how it works.
+
+4
+00:00:07.867 --> 00:00:11.533
+Pretraining is the huge first phase that creates a base model.
+
+5
+00:00:11.833 --> 00:00:13.621
+No labels, no instructions.
+
+6
+00:00:13.621 --> 00:00:16.667
+Just text, and one task: guess the next token.
+
+7
+00:00:16.967 --> 00:00:22.233
+Orbital mechanics, Python syntax, all of it is a side effect of getting good at that game.
+
+8
+00:00:23.433 --> 00:00:27.000
+Here is the loop, repeated across most of the readable internet.
+
+9
+00:00:27.300 --> 00:00:29.100
+Show the network a slice of text.
+
+10
+00:00:29.400 --> 00:00:30.900
+It predicts the next token.
+
+11
+00:00:31.200 --> 00:00:34.400
+We compare that guess with the token that really came next.
+
+12
+00:00:34.700 --> 00:00:38.067
+Then nudge the weights slightly, and repeat trillions of times.
+
+13
+00:00:39.267 --> 00:00:40.933
+The result is a base model.
+
+14
+00:00:41.233 --> 00:00:43.700
+It continues your text instead of answering it.
+
+15
+00:00:44.000 --> 00:00:48.167
+Ask a question and it may reply with more questions, like a quiz page.
+
+16
+00:00:48.467 --> 00:00:51.800
+Instruct models are tuned further to actually reply.
+
+17
+00:00:52.100 --> 00:00:54.267
+Same start, very different behaviour.
+
+18
+00:00:55.467 --> 00:00:56.967
+Here's the difference in code.
+
+19
+00:00:57.267 --> 00:00:59.667
+We load a base model and an instruct model.
+
+20
+00:00:59.967 --> 00:01:01.700
+Then ask both the same question.
+
+21
+00:01:02.000 --> 00:01:03.693
+The base model rambles on.
+
+22
+00:01:03.693 --> 00:01:07.533
+The instruct model answers: minus one eighty three Celsius.
+
+23
+00:01:08.733 --> 00:01:10.600
+So what does this mean for your work?
+
+24
+00:01:10.900 --> 00:01:13.700
+Weights give you language skill and general physics.
+
+25
+00:01:14.000 --> 00:01:17.800
+Context gives you the facts, because weights stop learning at the cutoff.
+
+26
+00:01:19.000 --> 00:01:21.300
+Take Mission Control question answering.
+
+27
+00:01:21.600 --> 00:01:24.900
+Its logs were written last week, long after any cutoff.
+
+28
+00:01:25.200 --> 00:01:26.900
+The weights provide language skill.
+
+29
+00:01:27.200 --> 00:01:28.833
+Retrieval supplies the facts.
+
+30
+00:01:30.033 --> 00:01:30.802
+Let's recap.
+
+31
+00:01:30.802 --> 00:01:34.067
+Pretraining is next token prediction at huge scale.
+
+32
+00:01:34.367 --> 00:01:36.900
+It produces a base model that completes text.
+
+33
+00:01:37.200 --> 00:01:40.600
+Knowledge has a cutoff, so fresh facts come from retrieval.
+
+34
+00:01:40.900 --> 00:01:43.829
+Weights for competence, context for knowledge.
+
+35
+00:01:43.829 --> 00:01:45.167
+Next up: fine-tuning.

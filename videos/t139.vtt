@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+Fine-tuning.
+
+2
+00:00:02.000 --> 00:00:06.067
+Knowing when not to fine-tune is worth more than knowing the training code.
+
+3
+00:00:07.267 --> 00:00:12.333
+Fine-tuning means continuing to train an already pretrained model on your own data.
+
+4
+00:00:12.633 --> 00:00:14.833
+The goal is to specialize how it behaves.
+
+5
+00:00:15.133 --> 00:00:17.667
+But it's a tool you reach for third, not first.
+
+6
+00:00:18.867 --> 00:00:20.148
+Here's how to decide.
+
+7
+00:00:20.148 --> 00:00:22.100
+Start by asking what is missing.
+
+8
+00:00:22.400 --> 00:00:25.228
+If you simply haven't asked well, prompt first.
+
+9
+00:00:25.228 --> 00:00:27.333
+It's cheap, instant and reversible.
+
+10
+00:00:27.633 --> 00:00:31.456
+If the model lacks fresh, citable facts, that's a knowledge gap.
+
+11
+00:00:31.456 --> 00:00:31.933
+Use RAG.
+
+12
+00:00:32.233 --> 00:00:37.033
+If it lacks a house style, a strict format, or a reflex, that's a behaviour gap.
+
+13
+00:00:37.033 --> 00:00:37.633
+Fine-tune.
+
+14
+00:00:38.833 --> 00:00:42.112
+The classic mistake is fine-tuning to inject facts.
+
+15
+00:00:42.112 --> 00:00:47.833
+Facts baked into weights go stale, can't be cited, and can't be removed for one customer.
+
+16
+00:00:48.133 --> 00:00:50.876
+Instead, keep knowledge in the context window.
+
+17
+00:00:50.876 --> 00:00:52.367
+Behaviour is what sticks.
+
+18
+00:00:53.567 --> 00:00:55.933
+Write a memo like this for every project.
+
+19
+00:00:56.233 --> 00:00:59.333
+Fresh facts arrive daily, so that's a job for RAG.
+
+20
+00:00:59.633 --> 00:01:03.433
+A strict report template is a style problem, so that's fine-tuning.
+
+21
+00:01:03.733 --> 00:01:07.600
+And the base model already summarizes well, so no capability gap.
+
+22
+00:01:08.800 --> 00:01:11.533
+For Mission Control RAG you'd likely use both.
+
+23
+00:01:11.833 --> 00:01:14.100
+Retrieval brings in the report content.
+
+24
+00:01:14.400 --> 00:01:19.100
+A small fine-tune, maybe later, makes answers come out in flight ops format.
+
+25
+00:01:19.400 --> 00:01:23.425
+That saves about four hundred prompt tokens on format instructions.
+
+26
+00:01:23.425 --> 00:01:25.167
+Be ready to defend that memo.
+
+27
+00:01:26.367 --> 00:01:27.167
+Let's recap.
+
+28
+00:01:27.167 --> 00:01:29.433
+Fine-tuning specializes behaviour.
+
+29
+00:01:29.733 --> 00:01:32.400
+Go in order: prompt, then RAG, then fine-tune.
+
+30
+00:01:32.700 --> 00:01:34.300
+RAG fills knowledge gaps.
+
+31
+00:01:34.600 --> 00:01:36.981
+And never inject facts into weights.
+
+32
+00:01:36.981 --> 00:01:38.833
+Next up: instruction tuning.
