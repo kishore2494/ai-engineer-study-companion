@@ -65,93 +65,93 @@ Sinusoidal uses those fixed waves.
 Learned trains an embedding per position, but positions past the training length do not exist.
 
 17
-00:00:48.767 --> 00:00:55.400
+00:00:48.767 --> 00:00:55.100
 RoPE, used by Llama, Mistral and Qwen, rotates queries and keys by a position-based angle.
 
 18
-00:00:56.600 --> 00:00:58.100
+00:00:56.300 --> 00:00:57.800
 Let's see the rotary idea.
 
 19
-00:00:58.400 --> 00:01:00.900
+00:00:58.100 --> 00:01:00.600
 A token at position one points this way.
 
 20
-00:01:01.200 --> 00:01:03.900
+00:01:00.900 --> 00:01:03.600
 At position two, we rotate it a little further.
 
 21
-00:01:04.200 --> 00:01:06.233
+00:01:03.900 --> 00:01:05.933
 At position three, further again.
 
 22
-00:01:06.533 --> 00:01:13.267
+00:01:06.233 --> 00:01:12.967
 The angle between two tokens reflects their distance, so attention sees relative position by construction.
 
 23
-00:01:14.467 --> 00:01:17.100
+00:01:14.167 --> 00:01:16.800
 In code, it is just a few lines of NumPy.
 
 24
-00:01:17.400 --> 00:01:21.333
+00:01:17.100 --> 00:01:21.033
 We build a grid with positions down the side and dimensions across.
 
 25
-00:01:21.633 --> 00:01:25.500
+00:01:21.333 --> 00:01:25.200
 The angle shrinks as the dimension grows, so wavelengths get longer.
 
 26
-00:01:25.800 --> 00:01:28.530
+00:01:25.500 --> 00:01:28.230
 Even columns get sine, odd get cosine.
 
 27
-00:01:28.530 --> 00:01:29.967
+00:01:28.230 --> 00:01:29.667
 Every row is unique.
 
 28
-00:01:31.167 --> 00:01:33.000
+00:01:30.867 --> 00:01:32.700
 Why does this matter in practice?
 
 29
-00:01:33.300 --> 00:01:39.100
+00:01:33.000 --> 00:01:38.800
 Two reports can share the same words: thruster fired after the leak was sealed, or the reverse.
 
 30
-00:01:39.400 --> 00:01:41.498
+00:01:39.100 --> 00:01:41.198
 They tell opposite failure stories.
 
 31
-00:01:41.498 --> 00:01:45.333
+00:01:41.198 --> 00:01:45.033
 When a model gets causality right, positions are doing the work.
 
 32
-00:01:45.633 --> 00:01:48.599
+00:01:45.333 --> 00:01:48.299
 So check rope theta before feeding long reports.
 
 33
-00:01:48.599 --> 00:01:52.800
+00:01:48.299 --> 00:01:52.500
 Models stretched past trained positions quietly lose this reasoning.
 
 34
-00:01:54.000 --> 00:01:54.809
+00:01:53.700 --> 00:01:54.509
 Let's recap.
 
 35
-00:01:54.809 --> 00:01:57.100
+00:01:54.509 --> 00:01:56.800
 Attention alone is blind to order.
 
 36
-00:01:57.400 --> 00:02:00.667
+00:01:57.100 --> 00:02:00.367
 Positional encoding gives each position a signature.
 
 37
-00:02:00.967 --> 00:02:04.967
+00:02:00.667 --> 00:02:04.300
 Remember the three generations: sinusoidal, learned, and RoPE.
 
 38
-00:02:05.267 --> 00:02:09.049
+00:02:04.600 --> 00:02:08.383
 And long context only works if positions stay in range.
 
 39
-00:02:09.049 --> 00:02:10.700
+00:02:08.383 --> 00:02:10.033
 Next up: self-attention.

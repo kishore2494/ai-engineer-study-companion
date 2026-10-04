@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+The Llama family.
+
+2
+00:00:02.200 --> 00:00:08.600
+Meta's open-weight family is the base for most industry fine-tuning, and its design became the standard.
+
+3
+00:00:09.800 --> 00:00:12.000
+LLaMA is Meta's open-weight family.
+
+4
+00:00:12.300 --> 00:00:17.867
+When a company adapts a model on private data, the base is more often a Llama than anything else.
+
+5
+00:00:18.167 --> 00:00:25.367
+Its design is GPT-2's skeleton, with a few upgrades that nearly every open model now copies.
+
+6
+00:00:26.567 --> 00:00:27.667
+Here is the block.
+
+7
+00:00:27.967 --> 00:00:29.860
+Tokens come in as embeddings.
+
+8
+00:00:29.860 --> 00:00:32.733
+Positions are added later, inside attention.
+
+9
+00:00:33.033 --> 00:00:35.647
+Each sublayer is preceded by RMSNorm.
+
+10
+00:00:35.647 --> 00:00:41.933
+Attention uses RoPE, and later versions share key and value heads to shrink the KV cache.
+
+11
+00:00:42.233 --> 00:00:46.267
+The feed-forward network uses SwiGLU, and there are no bias terms.
+
+12
+00:00:47.467 --> 00:00:50.467
+Side by side, the four upgrades are easy to see.
+
+13
+00:00:50.767 --> 00:00:53.067
+RMSNorm replaces LayerNorm.
+
+14
+00:00:53.367 --> 00:00:55.200
+RoPE replaces learned positions.
+
+15
+00:00:55.500 --> 00:00:57.133
+SwiGLU replaces GELU.
+
+16
+00:00:57.433 --> 00:00:59.133
+And the bias terms disappear.
+
+17
+00:01:00.333 --> 00:01:02.500
+You can read all this from a config file.
+
+18
+00:01:02.800 --> 00:01:05.354
+We download the config for Llama 3.
+
+19
+00:01:05.354 --> 00:01:05.500
+2.
+
+20
+00:01:05.800 --> 00:01:07.475
+Then print four fields.
+
+21
+00:01:07.475 --> 00:01:10.607
+The activation is silu, the gate in SwiGLU.
+
+22
+00:01:10.607 --> 00:01:15.633
+There is an RMSNorm epsilon, a RoPE theta, and eight key value heads.
+
+23
+00:01:16.833 --> 00:01:19.133
+Here is why this vocabulary matters.
+
+24
+00:01:19.433 --> 00:01:25.033
+Mission notes cannot leave your network, so the assistant is a LoRA fine-tune of a Llama base.
+
+25
+00:01:25.333 --> 00:01:27.233
+It is served on your own GPU.
+
+26
+00:01:27.533 --> 00:01:33.333
+Quantization, KV cache growth and context stretching are all read straight from the config.
+
+27
+00:01:34.533 --> 00:01:35.272
+Let's recap.
+
+28
+00:01:35.272 --> 00:01:38.533
+LLaMA's open weights are the base of most fine-tunes.
+
+29
+00:01:38.833 --> 00:01:40.900
+It uses RMSNorm and RoPE.
+
+30
+00:01:41.200 --> 00:01:42.867
+SwiGLU and no biases.
+
+31
+00:01:43.167 --> 00:01:46.864
+And the config file shows any model's anatomy in seconds.
+
+32
+00:01:46.864 --> 00:01:47.967
+Next up: Mistral.

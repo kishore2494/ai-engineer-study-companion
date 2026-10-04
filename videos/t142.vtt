@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.259
+D P O.
+
+2
+00:00:01.259 --> 00:00:03.633
+Direct preference optimization.
+
+3
+00:00:03.933 --> 00:00:06.427
+RLHF is the concept you explain.
+
+4
+00:00:06.427 --> 00:00:09.233
+DPO is the trainer you actually run.
+
+5
+00:00:10.433 --> 00:00:11.600
+Here's the insight.
+
+6
+00:00:11.900 --> 00:00:14.233
+You don't need to train a separate reward model.
+
+7
+00:00:14.533 --> 00:00:16.833
+And you don't need to run reinforcement learning.
+
+8
+00:00:17.133 --> 00:00:21.300
+If you have preference pairs, you can optimize the policy directly on them.
+
+9
+00:00:22.500 --> 00:00:28.733
+Each training row has three parts: a prompt, a chosen response that people liked, and a rejected one.
+
+10
+00:00:29.033 --> 00:00:32.533
+DPO raises the probability of the chosen response.
+
+11
+00:00:32.833 --> 00:00:38.200
+And lowers the probability of the rejected one, both measured against a frozen reference.
+
+12
+00:00:39.400 --> 00:00:40.867
+Compare the two approaches.
+
+13
+00:00:41.167 --> 00:00:43.301
+RLHF needs four models.
+
+14
+00:00:43.301 --> 00:00:44.600
+DPO needs two.
+
+15
+00:00:44.900 --> 00:00:48.311
+RLHF uses unstable reinforcement learning.
+
+16
+00:00:48.311 --> 00:00:51.967
+DPO trains like ordinary supervised learning.
+
+17
+00:00:52.267 --> 00:00:55.136
+RLHF builds a reward model first.
+
+18
+00:00:55.136 --> 00:00:56.267
+DPO skips it.
+
+19
+00:00:56.567 --> 00:01:00.067
+So DPO is cheaper, more stable, and the current default.
+
+20
+00:01:01.267 --> 00:01:02.467
+Here it is in code.
+
+21
+00:01:02.767 --> 00:01:06.667
+The dataset holds a prompt, a chosen and a rejected reply.
+
+22
+00:01:06.967 --> 00:01:09.009
+No reward model, no value head.
+
+23
+00:01:09.009 --> 00:01:12.633
+Beta controls how hard we push away from the reference.
+
+24
+00:01:13.833 --> 00:01:17.967
+Imagine Mission Control logs a thumbs up or down on every answer.
+
+25
+00:01:18.267 --> 00:01:24.900
+Six months in, you have thousands of pairs: the answer users accepted, and the regeneration they rejected.
+
+26
+00:01:25.200 --> 00:01:31.333
+With DPOTrainer, that becomes a weekend project that tunes the model toward what your users prefer.
+
+27
+00:01:32.533 --> 00:01:33.348
+Let's recap.
+
+28
+00:01:33.348 --> 00:01:36.200
+DPO learns directly from preference pairs.
+
+29
+00:01:36.500 --> 00:01:38.800
+No reward model and no PPO.
+
+30
+00:01:39.100 --> 00:01:41.000
+Two models and stable training.
+
+31
+00:01:41.300 --> 00:01:43.176
+And beta controls the push.
+
+32
+00:01:43.176 --> 00:01:45.400
+Next up: supervised fine-tuning.

@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+RLHF.
+
+2
+00:00:02.200 --> 00:00:04.567
+Reinforcement learning from human feedback.
+
+3
+00:00:04.567 --> 00:00:07.100
+You should be able to draw it on a whiteboard.
+
+4
+00:00:08.300 --> 00:00:09.633
+Here's the big picture.
+
+5
+00:00:09.933 --> 00:00:14.433
+First, humans rank pairs of model responses: this one is more helpful.
+
+6
+00:00:14.733 --> 00:00:18.333
+Next, a reward model is trained to predict those preferences.
+
+7
+00:00:18.633 --> 00:00:24.233
+Then the language model is optimized against that reward, using an algorithm called PPO.
+
+8
+00:00:25.433 --> 00:00:27.400
+Inside that last step is a loop.
+
+9
+00:00:27.700 --> 00:00:29.567
+The model generates a response.
+
+10
+00:00:29.867 --> 00:00:31.433
+The reward model scores it.
+
+11
+00:00:31.733 --> 00:00:33.516
+And PPO updates the model.
+
+12
+00:00:33.516 --> 00:00:40.167
+A KL penalty keeps it close to a frozen reference copy, or it drifts into high scoring gibberish.
+
+13
+00:00:41.367 --> 00:00:43.100
+That means four models in memory.
+
+14
+00:00:43.400 --> 00:00:46.500
+The policy is the one being trained, and it generates.
+
+15
+00:00:46.800 --> 00:00:48.800
+The reward model scores the replies.
+
+16
+00:00:49.100 --> 00:00:51.533
+The value head estimates future reward.
+
+17
+00:00:51.833 --> 00:00:54.300
+And the frozen reference anchors the policy.
+
+18
+00:00:55.500 --> 00:00:56.700
+Here they are in code.
+
+19
+00:00:57.000 --> 00:00:59.133
+The four roles are named one per line.
+
+20
+00:00:59.433 --> 00:01:05.300
+The trainer takes a small coefficient that controls how strongly drift from the reference is penalized.
+
+21
+00:01:06.500 --> 00:01:08.700
+Why does this matter when you pick a model?
+
+22
+00:01:09.000 --> 00:01:14.467
+Its model card says aligned with RLHF, or DPO on a feedback dataset.
+
+23
+00:01:14.767 --> 00:01:18.067
+That tells you it was optimized for ranked human preference.
+
+24
+00:01:18.367 --> 00:01:23.633
+Your flight ops users will notice it: concise, hedged, helpful sounding summaries.
+
+25
+00:01:24.833 --> 00:01:25.593
+Let's recap.
+
+26
+00:01:25.593 --> 00:01:29.200
+Humans rank replies, and a reward model learns from them.
+
+27
+00:01:29.500 --> 00:01:32.967
+PPO optimizes the policy against that reward.
+
+28
+00:01:33.267 --> 00:01:36.400
+A KL penalty keeps the policy near its reference.
+
+29
+00:01:36.700 --> 00:01:39.882
+Four models make it expensive and finicky.
+
+30
+00:01:39.882 --> 00:01:40.867
+Next up: DPO.
