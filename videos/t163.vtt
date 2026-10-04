@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.633
+Reranking with cross-encoders.
+
+2
+00:00:02.933 --> 00:00:07.332
+Six lines of code, often a ten to twenty five point jump in hit-rate.
+
+3
+00:00:07.332 --> 00:00:08.033
+Here's how.
+
+4
+00:00:09.233 --> 00:00:10.800
+The trick is two stages.
+
+5
+00:00:11.100 --> 00:00:14.500
+First, retrieve generously and cheaply, built for recall.
+
+6
+00:00:14.800 --> 00:00:18.033
+Then rescore a small set carefully, built for precision.
+
+7
+00:00:19.233 --> 00:00:20.400
+Two kinds of model.
+
+8
+00:00:20.700 --> 00:00:26.667
+A bi-encoder embeds the query and each document separately, so the two texts never see each other.
+
+9
+00:00:26.967 --> 00:00:30.500
+A cross-encoder reads them together through a full transformer.
+
+10
+00:00:30.800 --> 00:00:35.467
+That makes it far more accurate, but far too slow to run against a million chunks.
+
+11
+00:00:35.767 --> 00:00:38.867
+So narrow with the fast one, decide with the accurate one.
+
+12
+00:00:40.067 --> 00:00:41.067
+Here's the funnel.
+
+13
+00:00:41.367 --> 00:00:43.500
+The whole index holds millions of chunks.
+
+14
+00:00:43.800 --> 00:00:46.800
+The fast retriever returns a generous top fifty.
+
+15
+00:00:47.100 --> 00:00:50.200
+The cross-encoder rescores those fifty precisely.
+
+16
+00:00:50.500 --> 00:00:52.733
+And only the top five go into the prompt.
+
+17
+00:00:53.933 --> 00:00:54.900
+Here's the code.
+
+18
+00:00:55.200 --> 00:00:57.300
+Stage one pulls fifty candidates.
+
+19
+00:00:57.600 --> 00:01:01.100
+The cross-encoder scores each query and chunk pair together.
+
+20
+00:01:01.400 --> 00:01:03.533
+We sort by score and keep the top five.
+
+21
+00:01:04.733 --> 00:01:05.700
+Now measure it.
+
+22
+00:01:06.000 --> 00:01:11.067
+On a twenty question eval, hit-rate at five went from sixty percent to eighty five.
+
+23
+00:01:11.367 --> 00:01:14.367
+Nothing else tried that week came close, per line of code.
+
+24
+00:01:15.567 --> 00:01:16.867
+Here is why it works.
+
+25
+00:01:17.167 --> 00:01:19.567
+A user asks why the March burn aborted.
+
+26
+00:01:19.867 --> 00:01:28.767
+The log says TLI maneuver terminated, with no shared words, so the bi-encoder ranked it twenty seventh, invisible to a top five prompt.
+
+27
+00:01:29.067 --> 00:01:32.833
+The cross-encoder reads both together, and moves it to rank one.
+
+28
+00:01:34.033 --> 00:01:34.892
+Let's recap.
+
+29
+00:01:34.892 --> 00:01:36.967
+Bi-encoders give fast recall.
+
+30
+00:01:37.267 --> 00:01:39.500
+Cross-encoders give precise ranking.
+
+31
+00:01:39.800 --> 00:01:42.067
+Retrieve fifty, rescore, keep five.
+
+32
+00:01:42.367 --> 00:01:44.883
+And measure hit-rate before and after.
+
+33
+00:01:44.883 --> 00:01:47.200
+Next up: retrieval pipeline design.

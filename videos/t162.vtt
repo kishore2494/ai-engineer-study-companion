@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+BM25.
+
+2
+00:00:02.333 --> 00:00:07.200
+A decades-old keyword scorer that still humbles expensive neural retrievers.
+
+3
+00:00:08.400 --> 00:00:11.133
+BM25 is tf-idf grown up.
+
+4
+00:00:11.433 --> 00:00:15.787
+It scores a document for a query using plain word statistics.
+
+5
+00:00:15.787 --> 00:00:17.500
+No training, and no GPU.
+
+6
+00:00:18.700 --> 00:00:20.367
+It combines three ingredients.
+
+7
+00:00:20.667 --> 00:00:24.833
+Term frequency, but with saturation, tuned by the k one knob.
+
+8
+00:00:25.133 --> 00:00:26.924
+Inverse document frequency.
+
+9
+00:00:26.924 --> 00:00:31.367
+A rare term like IMU zero four B weighs far more than the word the.
+
+10
+00:00:31.667 --> 00:00:38.067
+And length normalization, tuned by the b knob, so long documents don't win just by having more words.
+
+11
+00:00:39.267 --> 00:00:40.533
+Here's saturation.
+
+12
+00:00:40.833 --> 00:00:43.367
+The first occurrence of a word adds a lot.
+
+13
+00:00:43.367 --> 00:00:44.633
+The second adds less.
+
+14
+00:00:44.933 --> 00:00:47.446
+By the twentieth, the curve is nearly flat.
+
+15
+00:00:47.446 --> 00:00:49.667
+Repeating a word can't game the score.
+
+16
+00:00:50.867 --> 00:00:52.667
+Know its strengths and weaknesses.
+
+17
+00:00:52.967 --> 00:00:55.733
+It wins on part numbers, error codes, and names.
+
+18
+00:00:56.033 --> 00:01:01.500
+It loses when there are no shared words, like password reset against credential recovery.
+
+19
+00:01:01.800 --> 00:01:08.033
+The professional rule: if your fancy retriever can't beat BM25, ship BM25.
+
+20
+00:01:09.233 --> 00:01:11.333
+Here it is with rank BM25.
+
+21
+00:01:11.633 --> 00:01:14.400
+We tokenize the documents and build the index.
+
+22
+00:01:14.700 --> 00:01:17.033
+We score every document against the query.
+
+23
+00:01:17.333 --> 00:01:21.067
+And print the best match, the one containing that exact part number.
+
+24
+00:01:22.267 --> 00:01:24.800
+A real benchmark from Mission Control RAG.
+
+25
+00:01:25.100 --> 00:01:32.100
+On twenty test questions, BM25 scores sixty five percent hit-rate at five, and dense scores seventy two.
+
+26
+00:01:32.400 --> 00:01:38.567
+But on the six questions with error codes or unit IDs, BM25 wins six of six.
+
+27
+00:01:38.867 --> 00:01:41.691
+That split is why production runs hybrid.
+
+28
+00:01:41.691 --> 00:01:46.100
+And did you compare against BM25 is a favorite interview filter.
+
+29
+00:01:47.300 --> 00:01:48.230
+Let's recap.
+
+30
+00:01:48.230 --> 00:01:53.500
+BM25 combines saturated term frequency, rarity, and length fairness.
+
+31
+00:01:53.800 --> 00:01:56.933
+No training, no GPU, and a brutal baseline.
+
+32
+00:01:57.233 --> 00:02:00.467
+It wins on identifiers, and loses on synonyms.
+
+33
+00:02:00.767 --> 00:02:02.607
+If you can't beat it, ship it.
+
+34
+00:02:02.607 --> 00:02:05.000
+Next up: reranking with cross-encoders.

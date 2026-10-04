@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.467
+Retrieval pipeline design.
+
+2
+00:00:02.767 --> 00:00:06.114
+Everything so far snaps together into one architecture.
+
+3
+00:00:06.114 --> 00:00:06.967
+Let's draw it.
+
+4
+00:00:08.167 --> 00:00:09.700
+Here is the whole pipeline.
+
+5
+00:00:10.000 --> 00:00:11.967
+Offline, we parse the documents.
+
+6
+00:00:12.267 --> 00:00:13.200
+We chunk them.
+
+7
+00:00:13.500 --> 00:00:16.467
+We embed the chunks and index them in a vector store.
+
+8
+00:00:16.767 --> 00:00:18.900
+Online, we first rewrite the query.
+
+9
+00:00:19.200 --> 00:00:23.267
+Then retrieve with hybrid search, and rerank before assembling the prompt.
+
+10
+00:00:24.467 --> 00:00:27.067
+Mature pipelines pull ahead on the query side.
+
+11
+00:00:27.367 --> 00:00:33.600
+Query rewriting turns a conversational follow-up into a standalone search query, using chat history.
+
+12
+00:00:33.900 --> 00:00:39.300
+Multi-query generates three paraphrases, retrieves for all, and unions the results.
+
+13
+00:00:39.600 --> 00:00:44.300
+And HyDE has the LLM write a hypothetical answer, and embeds that.
+
+14
+00:00:45.500 --> 00:00:46.967
+Why does HyDE work?
+
+15
+00:00:47.267 --> 00:00:52.033
+A question sits in one region of vector space, and the real document in another.
+
+16
+00:00:52.333 --> 00:00:56.773
+But a hypothetical answer, even an invented one, looks like a document.
+
+17
+00:00:56.773 --> 00:00:59.400
+So it lands much nearer to the real thing.
+
+18
+00:01:00.600 --> 00:01:02.000
+Here they are, composed.
+
+19
+00:01:02.300 --> 00:01:06.367
+Rewrite the question, then make paraphrases and a hypothetical answer.
+
+20
+00:01:06.667 --> 00:01:09.633
+Retrieve for each of them and union the candidates.
+
+21
+00:01:09.933 --> 00:01:12.833
+Finally rerank against the real, rewritten query.
+
+22
+00:01:14.033 --> 00:01:20.200
+A user asks what caused the Artemis three comms dropout, then follows with: and how long did it last?
+
+23
+00:01:20.500 --> 00:01:24.300
+No chunk resembles that sentence, so retrieval returns nothing.
+
+24
+00:01:24.600 --> 00:01:29.067
+Rewriting turns it into: duration of the Artemis three comms dropout.
+
+25
+00:01:29.367 --> 00:01:34.433
+On the eval, a third of which were follow-ups, that alone lifts hit-rate fourteen points.
+
+26
+00:01:35.633 --> 00:01:36.495
+Let's recap.
+
+27
+00:01:36.495 --> 00:01:39.367
+Ingest means parse, chunk, embed, index.
+
+28
+00:01:39.667 --> 00:01:42.700
+Query means rewrite, retrieve, rerank, assemble.
+
+29
+00:01:43.000 --> 00:01:46.333
+Rewriting, multi-query, and HyDE boost recall.
+
+30
+00:01:46.633 --> 00:01:49.311
+And every arrow is a dial you can measure.
+
+31
+00:01:49.311 --> 00:01:50.267
+Next up: FAISS.

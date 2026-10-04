@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.467
+Chroma.
+
+2
+00:00:01.767 --> 00:00:05.300
+The fastest path from nothing to a working retrieval system.
+
+3
+00:00:06.500 --> 00:00:09.467
+Chroma is the SQLite of vector databases.
+
+4
+00:00:09.767 --> 00:00:12.868
+It's embedded, and persists to a local directory.
+
+5
+00:00:12.868 --> 00:00:16.033
+Documents, embeddings, and metadata live together.
+
+6
+00:00:16.333 --> 00:00:19.150
+No container, no config, no schema ceremony.
+
+7
+00:00:19.150 --> 00:00:21.967
+It can even run the embedding model for you.
+
+8
+00:00:23.167 --> 00:00:24.433
+Here's the shape of it.
+
+9
+00:00:24.733 --> 00:00:27.433
+A persistent client points at a local folder.
+
+10
+00:00:27.733 --> 00:00:31.267
+A collection bundles documents, embeddings, and metadata.
+
+11
+00:00:31.567 --> 00:00:35.267
+You query with text, plus a where filter built into every query.
+
+12
+00:00:35.567 --> 00:00:36.967
+And you get your top hits.
+
+13
+00:00:38.167 --> 00:00:39.833
+Here's Chroma in a few lines.
+
+14
+00:00:40.133 --> 00:00:42.490
+A persistent client and a collection.
+
+15
+00:00:42.490 --> 00:00:44.400
+The database is just a folder.
+
+16
+00:00:44.700 --> 00:00:47.233
+We add a document with an id and metadata.
+
+17
+00:00:47.533 --> 00:00:49.342
+Then query with a where filter.
+
+18
+00:00:49.342 --> 00:00:52.900
+Kill the process, restart, and the collection is still there.
+
+19
+00:00:54.100 --> 00:00:55.533
+Three facts to remember.
+
+20
+00:00:55.833 --> 00:00:59.600
+Its form factor is an embedded library, installed with pip.
+
+21
+00:00:59.900 --> 00:01:04.867
+Its signature move is collections bundling everything, with where filters on every query.
+
+22
+00:01:05.167 --> 00:01:09.067
+Reach for it when prototyping, demoing, or running a single node.
+
+23
+00:01:10.267 --> 00:01:12.433
+Its limits are the flip side of its charm.
+
+24
+00:01:12.733 --> 00:01:16.433
+It's single-node, with modest scale in the millions and coarse tuning.
+
+25
+00:01:16.733 --> 00:01:18.900
+Production needs more control and scale.
+
+26
+00:01:19.200 --> 00:01:23.633
+So the standard path is Chroma in dev, and Qdrant or Pinecone in prod.
+
+27
+00:01:24.833 --> 00:01:28.633
+The very first version of Mission Control RAG was forty lines.
+
+28
+00:01:28.933 --> 00:01:33.967
+A persistent Chroma client, five hundred report chunks with mission and year metadata.
+
+29
+00:01:34.267 --> 00:01:37.633
+A query with a where filter, and the results into a prompt.
+
+30
+00:01:37.933 --> 00:01:39.240
+Built in an evening.
+
+31
+00:01:39.240 --> 00:01:44.533
+And the restart test, kill Python, reopen, query again, is the prove-it exercise.
+
+32
+00:01:45.733 --> 00:01:46.487
+Let's recap.
+
+33
+00:01:46.487 --> 00:01:49.000
+Chroma is an embedded, persistent store.
+
+34
+00:01:49.300 --> 00:01:52.667
+Collections bundle documents, vectors, and metadata.
+
+35
+00:01:52.967 --> 00:01:55.167
+Filters are built into every query.
+
+36
+00:01:55.467 --> 00:01:59.179
+Perfect for prototypes, with a clear graduation path.
+
+37
+00:01:59.179 --> 00:02:00.300
+Next up: Qdrant.

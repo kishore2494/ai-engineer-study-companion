@@ -85,37 +85,37 @@ Here is where it lives in a RAG system.
 Vector search narrows forty thousand chunks to fifty.
 
 22
-00:01:07.867 --> 00:01:11.633
+00:01:07.867 --> 00:01:11.667
 A cross-encoder, a BERT, reads the query and each chunk together.
 
 23
-00:01:11.933 --> 00:01:14.108
+00:01:11.967 --> 00:01:14.142
 It is slower, so it only sees fifty.
 
 24
-00:01:14.108 --> 00:01:18.700
+00:01:14.142 --> 00:01:18.733
 But it catches chunks that match every term yet answer a different question.
 
 25
-00:01:19.900 --> 00:01:20.682
+00:01:19.933 --> 00:01:20.715
 Let's recap.
 
 26
-00:01:20.682 --> 00:01:24.200
+00:01:20.715 --> 00:01:24.233
 BERT is encoder-only, trained to fill in masked words.
 
 27
-00:01:24.500 --> 00:01:26.433
+00:01:24.533 --> 00:01:26.467
 It reads context from both sides.
 
 28
-00:01:26.733 --> 00:01:28.500
+00:01:26.767 --> 00:01:28.533
 You fine-tune it with a small head.
 
 29
-00:01:28.800 --> 00:01:31.691
+00:01:28.833 --> 00:01:31.724
 And it lives on as embedders and rerankers.
 
 30
-00:01:31.691 --> 00:01:32.833
+00:01:31.724 --> 00:01:32.867
 Next up: RoBERTa.
