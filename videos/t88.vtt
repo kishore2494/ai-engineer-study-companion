@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+The perceptron.
+
+2
+00:00:02.067 --> 00:00:06.633
+It's the simplest neural network, and its failure is why deep learning exists.
+
+3
+00:00:07.833 --> 00:00:10.333
+A perceptron is one artificial neuron.
+
+4
+00:00:10.633 --> 00:00:15.267
+It multiplies each input by a learned weight, adds a bias, and checks the sum.
+
+5
+00:00:15.567 --> 00:00:18.343
+If the sum is positive, the output is one.
+
+6
+00:00:18.343 --> 00:00:19.400
+Otherwise, zero.
+
+7
+00:00:20.600 --> 00:00:22.967
+Here's the computation, step by step.
+
+8
+00:00:23.267 --> 00:00:24.300
+Inputs come in.
+
+9
+00:00:24.600 --> 00:00:26.133
+Each is scaled by its weight.
+
+10
+00:00:26.433 --> 00:00:28.733
+The weighted values are added with the bias.
+
+11
+00:00:29.033 --> 00:00:32.900
+A hard threshold decides, and the neuron outputs zero or one.
+
+12
+00:00:34.100 --> 00:00:38.733
+Geometrically, a perceptron draws a single straight line through input space.
+
+13
+00:00:39.033 --> 00:00:40.407
+Take the AND function.
+
+14
+00:00:40.407 --> 00:00:42.467
+Only the point one, one is a one.
+
+15
+00:00:42.767 --> 00:00:45.228
+One straight line separates it from the rest.
+
+16
+00:00:45.228 --> 00:00:49.767
+When the neuron errs, the learning rule nudges the weights toward the right answer.
+
+17
+00:00:50.967 --> 00:00:52.090
+Now the failure.
+
+18
+00:00:52.090 --> 00:00:52.933
+This is XOR.
+
+19
+00:00:53.233 --> 00:00:55.900
+It outputs one only when the two inputs differ.
+
+20
+00:00:56.200 --> 00:00:58.368
+But the ones sit on opposite corners.
+
+21
+00:00:58.368 --> 00:01:02.000
+No straight line separates them, so no weights will ever work.
+
+22
+00:01:03.200 --> 00:01:05.000
+Here's the learning rule in NumPy.
+
+23
+00:01:05.300 --> 00:01:08.100
+We predict with the weighted sum and the threshold.
+
+24
+00:01:08.400 --> 00:01:10.523
+Then we nudge the weights by the error.
+
+25
+00:01:10.523 --> 00:01:12.700
+It only changes when the guess is wrong.
+
+26
+00:01:13.000 --> 00:01:14.575
+It learns AND perfectly.
+
+27
+00:01:14.575 --> 00:01:17.267
+Swap in XOR, and this loop never settles.
+
+28
+00:01:18.467 --> 00:01:20.333
+Here's where this bites in real work.
+
+29
+00:01:20.633 --> 00:01:26.667
+A satellite telemetry alert is secretly a perceptron, a weighted sum of temperature and voltage.
+
+30
+00:01:26.967 --> 00:01:31.074
+Then you see readings that are normal alone but anomalous together.
+
+31
+00:01:31.074 --> 00:01:32.300
+That's an XOR shape.
+
+32
+00:01:32.600 --> 00:01:34.003
+No reweighting fixes it.
+
+33
+00:01:34.003 --> 00:01:36.867
+You need a hidden layer, which is our next topic.
+
+34
+00:01:38.067 --> 00:01:38.800
+Let's recap.
+
+35
+00:01:38.800 --> 00:01:41.733
+A perceptron is a weighted sum with a threshold.
+
+36
+00:01:42.033 --> 00:01:43.567
+It draws one straight line.
+
+37
+00:01:43.867 --> 00:01:45.933
+XOR can't be split by one line.
+
+38
+00:01:46.233 --> 00:01:48.157
+The fix is to stack layers.
+
+39
+00:01:48.157 --> 00:01:50.367
+Next up: neural network basics.

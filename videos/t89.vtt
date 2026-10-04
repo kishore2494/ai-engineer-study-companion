@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.367
+Neural network basics.
+
+2
+00:00:02.667 --> 00:00:04.762
+Why does stacking layers help at all?
+
+3
+00:00:04.762 --> 00:00:07.367
+The answer is one small function between them.
+
+4
+00:00:08.567 --> 00:00:11.867
+A neural network is layers of perceptron-like units.
+
+5
+00:00:12.167 --> 00:00:17.200
+But the hard threshold is replaced by a smooth activation, like ReLU or tanh.
+
+6
+00:00:17.500 --> 00:00:19.622
+That activation is not decoration.
+
+7
+00:00:19.622 --> 00:00:20.933
+It's the whole point.
+
+8
+00:00:22.133 --> 00:00:23.767
+Look at what happens without one.
+
+9
+00:00:24.067 --> 00:00:26.067
+The first layer applies a linear map.
+
+10
+00:00:26.367 --> 00:00:28.200
+The second layer applies another.
+
+11
+00:00:28.500 --> 00:00:31.678
+But two linear maps multiply into a single matrix.
+
+12
+00:00:31.678 --> 00:00:33.967
+A hundred layers would still be one.
+
+13
+00:00:35.167 --> 00:00:36.700
+So the recipe alternates.
+
+14
+00:00:37.000 --> 00:00:37.900
+A linear step.
+
+15
+00:00:38.200 --> 00:00:39.567
+Then a non-linear bend.
+
+16
+00:00:39.867 --> 00:00:42.077
+Then linear again, and bend again.
+
+17
+00:00:42.077 --> 00:00:45.067
+Now the network can fold and warp input space.
+
+18
+00:00:46.267 --> 00:00:47.933
+Here are two common choices.
+
+19
+00:00:48.233 --> 00:00:52.546
+ReLU just returns zero for negatives and passes positives through.
+
+20
+00:00:52.546 --> 00:00:54.833
+It's cheap, and the modern default.
+
+21
+00:00:55.133 --> 00:00:58.833
+Tanh squashes everything smoothly between minus one and one.
+
+22
+00:01:00.033 --> 00:01:03.367
+Now the perceptron's nemesis, XOR, in PyTorch.
+
+23
+00:01:03.667 --> 00:01:06.139
+Two linear layers with a tanh between them.
+
+24
+00:01:06.139 --> 00:01:08.267
+Delete the tanh, and it never learns.
+
+25
+00:01:08.567 --> 00:01:10.233
+We train with the usual loop.
+
+26
+00:01:10.533 --> 00:01:12.800
+And the network gets all four answers right.
+
+27
+00:01:14.000 --> 00:01:15.667
+Here's the real-world payoff.
+
+28
+00:01:15.967 --> 00:01:20.467
+In exoplanet vetting, the label depends on how period and depth interact.
+
+29
+00:01:20.767 --> 00:01:25.300
+Logistic regression, one linear boundary, tops out at seventy one percent.
+
+30
+00:01:25.600 --> 00:01:31.867
+One hidden layer with ReLU jumps to eighty eight, because its units learn the folds where the interaction lives.
+
+31
+00:01:33.067 --> 00:01:33.797
+Let's recap.
+
+32
+00:01:33.797 --> 00:01:36.233
+Stacked linear layers collapse into one.
+
+33
+00:01:36.533 --> 00:01:39.467
+Activations break that collapse by bending the space.
+
+34
+00:01:39.767 --> 00:01:44.067
+With enough units, one hidden layer can approximate any continuous function.
+
+35
+00:01:44.367 --> 00:01:47.556
+Width gives capacity, depth gives composition.
+
+36
+00:01:47.556 --> 00:01:49.567
+Next up: forward propagation.
