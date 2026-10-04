@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Hybrid search.
+
+2
+00:00:02.133 --> 00:00:04.834
+Real queries mix concepts with part numbers.
+
+3
+00:00:04.834 --> 00:00:07.167
+So run two retrievers, and merge them.
+
+4
+00:00:08.367 --> 00:00:09.733
+Here's the architecture.
+
+5
+00:00:10.033 --> 00:00:12.300
+The query goes to two retrievers at once.
+
+6
+00:00:12.600 --> 00:00:15.133
+Dense search matches meaning, using vectors.
+
+7
+00:00:15.433 --> 00:00:19.133
+Sparse search, BM25, matches exact tokens.
+
+8
+00:00:19.433 --> 00:00:22.967
+Then Reciprocal Rank Fusion merges the two ranked lists.
+
+9
+00:00:24.167 --> 00:00:26.700
+RRF is almost embarrassingly simple.
+
+10
+00:00:27.000 --> 00:00:30.767
+Each document gets one over k plus its rank, in each list.
+
+11
+00:00:31.067 --> 00:00:33.633
+K is about sixty, which softens the top.
+
+12
+00:00:33.933 --> 00:00:36.223
+Then we add up the scores across lists.
+
+13
+00:00:36.223 --> 00:00:39.100
+Ranks are comparable even when raw scores aren't.
+
+14
+00:00:40.300 --> 00:00:41.933
+Let's try three documents.
+
+15
+00:00:42.233 --> 00:00:45.567
+Document A is first by dense, but fifth by sparse.
+
+16
+00:00:45.867 --> 00:00:49.367
+Document B is second in both lists, and scores slightly higher.
+
+17
+00:00:49.667 --> 00:00:53.509
+Document C appears in only one list, so it scores lowest.
+
+18
+00:00:53.509 --> 00:00:55.667
+Decent in both beats top in one.
+
+19
+00:00:56.867 --> 00:00:58.167
+Here it is in Python.
+
+20
+00:00:58.467 --> 00:01:00.200
+We loop over both ranked lists.
+
+21
+00:01:00.500 --> 00:01:03.700
+Each document accumulates one over k plus rank.
+
+22
+00:01:04.000 --> 00:01:06.467
+Then we sort by total score, highest first.
+
+23
+00:01:07.667 --> 00:01:14.333
+A flight controller asks about attitude drift involving IMU zero four B during the March burn.
+
+24
+00:01:14.633 --> 00:01:18.333
+Dense alone returns generic attitude chunks, the wrong unit.
+
+25
+00:01:18.633 --> 00:01:24.267
+BM25 alone returns every boring calibration sheet mentioning that part.
+
+26
+00:01:24.567 --> 00:01:28.433
+The merge puts the one log about that unit and that burn at rank one.
+
+27
+00:01:29.633 --> 00:01:30.404
+Let's recap.
+
+28
+00:01:30.404 --> 00:01:33.167
+Run dense and sparse retrieval in parallel.
+
+29
+00:01:33.467 --> 00:01:35.733
+Merge them with Reciprocal Rank Fusion.
+
+30
+00:01:36.033 --> 00:01:38.133
+Ranks need no score normalization.
+
+31
+00:01:38.433 --> 00:01:41.335
+That makes it the enterprise default.
+
+32
+00:01:41.335 --> 00:01:42.433
+Next up: BM25.

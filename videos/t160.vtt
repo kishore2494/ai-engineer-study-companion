@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Semantic search.
+
+2
+00:00:02.200 --> 00:00:04.194
+Embeddings, applied end to end.
+
+3
+00:00:04.194 --> 00:00:06.767
+It has a superpower, and one blind spot.
+
+4
+00:00:07.967 --> 00:00:10.067
+The whole engine fits in four boxes.
+
+5
+00:00:10.367 --> 00:00:12.567
+Offline, we embed every chunk once.
+
+6
+00:00:12.867 --> 00:00:15.800
+Those vectors are stored in an index, ready to search.
+
+7
+00:00:16.100 --> 00:00:18.333
+At request time, we embed the query.
+
+8
+00:00:18.633 --> 00:00:21.200
+And return the chunks whose vectors sit nearest.
+
+9
+00:00:22.400 --> 00:00:24.433
+Here's the superpower: paraphrase.
+
+10
+00:00:24.733 --> 00:00:27.167
+The query, reset my password, lands here.
+
+11
+00:00:27.467 --> 00:00:33.733
+Credential recovery procedure sits right beside it, with no shared words, because vectors encode meaning.
+
+12
+00:00:34.033 --> 00:00:36.767
+A gyro calibration page sits far away.
+
+13
+00:00:37.967 --> 00:00:39.267
+Now the mirror image.
+
+14
+00:00:39.567 --> 00:00:41.102
+Meaning is its strength.
+
+15
+00:00:41.102 --> 00:00:44.300
+Paraphrases match, even with zero words in common.
+
+16
+00:00:44.600 --> 00:00:50.300
+But part numbers, SKUs, and error codes are rare tokens with weak, unstable embeddings.
+
+17
+00:00:50.600 --> 00:00:55.233
+Semantic search often whiffs where a plain keyword match would score a direct hit.
+
+18
+00:00:56.433 --> 00:00:58.167
+Let's build it with no framework.
+
+19
+00:00:58.467 --> 00:01:01.067
+Embed every document once and normalize.
+
+20
+00:01:01.367 --> 00:01:04.267
+At query time, embed and normalize the query.
+
+21
+00:01:04.567 --> 00:01:06.784
+A dot product, a sort, and the top k.
+
+22
+00:01:06.784 --> 00:01:10.500
+That's the whole engine, and nothing else is hiding behind it.
+
+23
+00:01:11.700 --> 00:01:14.500
+Mission Control RAG started exactly like this.
+
+24
+00:01:14.800 --> 00:01:18.100
+Fifty log excerpts, one embed call, a dot product.
+
+25
+00:01:18.400 --> 00:01:23.100
+It answered a question about comms problems during the eclipse correctly on day one.
+
+26
+00:01:23.400 --> 00:01:26.393
+And whiffed that afternoon on a log id lookup.
+
+27
+00:01:26.393 --> 00:01:28.800
+The fix comes next, in hybrid search.
+
+28
+00:01:30.000 --> 00:01:30.786
+Let's recap.
+
+29
+00:01:30.786 --> 00:01:33.733
+Embed chunks once, and the query per request.
+
+30
+00:01:34.033 --> 00:01:35.600
+Return the nearest vectors.
+
+31
+00:01:35.900 --> 00:01:37.700
+Its superpower is paraphrase.
+
+32
+00:01:38.000 --> 00:01:40.827
+Its blind spot is exact identifiers.
+
+33
+00:01:40.827 --> 00:01:42.633
+Next up: hybrid search.
