@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+PostgreSQL.
+
+2
+00:00:01.900 --> 00:00:07.318
+It is the default serious open-source database, and quietly, an AI platform too.
+
+3
+00:00:07.318 --> 00:00:08.267
+Let's see why.
+
+4
+00:00:09.467 --> 00:00:14.300
+PostgreSQL is a relational database that stretches in three useful directions.
+
+5
+00:00:14.600 --> 00:00:22.300
+Together they mean you should ask a question before reaching for a dedicated vector database: does Postgres already do the job?
+
+6
+00:00:23.500 --> 00:00:25.533
+Here are the three extensions that matter.
+
+7
+00:00:25.833 --> 00:00:31.467
+JSONB stores documents as binary JSON that you can index and query inside.
+
+8
+00:00:31.767 --> 00:00:35.000
+Built-in full-text search gives ranked keyword retrieval.
+
+9
+00:00:35.300 --> 00:00:41.200
+And pgvector adds an embedding column type, so cosine similarity becomes an ORDER BY.
+
+10
+00:00:42.400 --> 00:00:46.167
+Because it is all one system, a single statement can do everything.
+
+11
+00:00:46.467 --> 00:00:50.533
+First, filter rows using fields inside the JSON metadata.
+
+12
+00:00:50.833 --> 00:00:54.633
+Then order what is left by vector distance to the query embedding.
+
+13
+00:00:54.933 --> 00:00:56.633
+And return the top five chunks.
+
+14
+00:00:57.833 --> 00:00:59.867
+Here is a minimal version in code.
+
+15
+00:01:00.167 --> 00:01:06.467
+Each chunk is one row, holding its JSON metadata and a fifteen hundred thirty six number embedding.
+
+16
+00:01:06.767 --> 00:01:09.900
+The WHERE clause filters on a field inside the JSON.
+
+17
+00:01:10.200 --> 00:01:14.433
+Then the arrow operator orders by cosine distance, and we take five.
+
+18
+00:01:15.633 --> 00:01:18.900
+Here is a real story from a mission control RAG system.
+
+19
+00:01:19.200 --> 00:01:24.533
+Version one used Postgres for metadata and a separate vector database for embeddings.
+
+20
+00:01:24.833 --> 00:01:29.033
+Sync bugs left ghosts: deleted reports whose embeddings lived on.
+
+21
+00:01:29.333 --> 00:01:31.208
+Version two is one Postgres.
+
+22
+00:01:31.208 --> 00:01:37.633
+The chunk, its metadata, and its embedding are the same row, so a delete is a delete everywhere.
+
+23
+00:01:37.933 --> 00:01:39.967
+Fewer moving parts, and one backup.
+
+24
+00:01:41.167 --> 00:01:41.954
+Let's recap.
+
+25
+00:01:41.954 --> 00:01:45.433
+Postgres is the default serious open-source database.
+
+26
+00:01:45.733 --> 00:01:49.500
+JSONB, full-text search, and pgvector extend it.
+
+27
+00:01:49.800 --> 00:01:52.200
+One database can serve a whole RAG stack.
+
+28
+00:01:52.500 --> 00:01:56.132
+So ask first whether Postgres already does the job.
+
+29
+00:01:56.132 --> 00:01:57.200
+Next up: MySQL.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Kafka.
+
+2
+00:00:01.833 --> 00:00:04.833
+Kafka is the backbone of real-time pipelines.
+
+3
+00:00:04.833 --> 00:00:09.300
+The idea is simple: an append-only log that many readers can share.
+
+4
+00:00:10.500 --> 00:00:13.167
+Kafka is a distributed append-only log.
+
+5
+00:00:13.467 --> 00:00:16.308
+Producers append messages to named topics.
+
+6
+00:00:16.308 --> 00:00:19.554
+Messages are never changed or deleted when read.
+
+7
+00:00:19.554 --> 00:00:22.733
+They are only appended, and much later expired.
+
+8
+00:00:23.933 --> 00:00:25.967
+Each topic splits into partitions.
+
+9
+00:00:26.267 --> 00:00:31.033
+Partitions are independent ordered logs, and that is where parallelism comes from.
+
+10
+00:00:31.333 --> 00:00:37.267
+Messages with the same key always land in the same partition, so order is preserved per key.
+
+11
+00:00:37.567 --> 00:00:40.333
+Different partitions can be consumed in parallel.
+
+12
+00:00:41.533 --> 00:00:44.467
+Here is the crucial inversion versus a classic queue.
+
+13
+00:00:44.767 --> 00:00:48.681
+Consumers track their own position in the log, called the offset.
+
+14
+00:00:48.681 --> 00:00:51.933
+One group, the anomaly detector, has read up to three.
+
+15
+00:00:52.233 --> 00:00:55.477
+Another group, the warehouse loader, is already at six.
+
+16
+00:00:55.477 --> 00:00:57.600
+The broker does not push and forget.
+
+17
+00:00:58.800 --> 00:01:00.633
+Here it is in code, trimmed down.
+
+18
+00:01:00.933 --> 00:01:06.267
+The producer sends a message with a key, so every NOAA message lands in the same partition.
+
+19
+00:01:06.567 --> 00:01:10.833
+The consumer joins a group by name, and Kafka remembers that group's place.
+
+20
+00:01:11.133 --> 00:01:13.100
+As we loop, the offset advances.
+
+21
+00:01:14.300 --> 00:01:16.200
+Here is why this design matters.
+
+22
+00:01:16.500 --> 00:01:21.967
+A telemetry stream feeds two consumer groups: an anomaly detector and a warehouse loader.
+
+23
+00:01:22.267 --> 00:01:24.451
+The detector crashes on Friday night.
+
+24
+00:01:24.451 --> 00:01:26.400
+The loader carries on, untouched.
+
+25
+00:01:26.700 --> 00:01:33.154
+On Monday, the detector restarts at its committed offset and works through the weekend backlog in order.
+
+26
+00:01:33.154 --> 00:01:34.333
+Zero messages lost.
+
+27
+00:01:35.533 --> 00:01:36.380
+Let's recap.
+
+28
+00:01:36.380 --> 00:01:39.133
+Kafka is a distributed append-only log.
+
+29
+00:01:39.433 --> 00:01:42.367
+Partitions give parallelism, with per-key order.
+
+30
+00:01:42.667 --> 00:01:44.333
+Consumers track their own offset.
+
+31
+00:01:44.633 --> 00:01:47.101
+Restart to resume, rewind to replay.
+
+32
+00:01:47.101 --> 00:01:48.267
+Next up: Airflow.
