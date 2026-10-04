@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+Human-in-the-loop checkpoints.
+
+2
+00:00:02.633 --> 00:00:04.943
+Sending, deleting, paying, posting.
+
+3
+00:00:04.943 --> 00:00:09.033
+Some actions are too consequential for an agent to take alone.
+
+4
+00:00:10.233 --> 00:00:13.867
+A human-in-the-loop checkpoint pauses the agent at a risky step.
+
+5
+00:00:14.167 --> 00:00:20.333
+It shows the human exactly what is about to happen, then resumes cleanly, possibly with edited state.
+
+6
+00:00:20.633 --> 00:00:24.333
+For agents touching real systems, this is non-negotiable.
+
+7
+00:00:25.533 --> 00:00:27.933
+The reviewer has three responses, not two.
+
+8
+00:00:28.233 --> 00:00:29.633
+There is a pending action.
+
+9
+00:00:29.933 --> 00:00:31.857
+Approve it, and it runs as is.
+
+10
+00:00:31.857 --> 00:00:35.000
+Edit it, and it runs with the modified arguments.
+
+11
+00:00:35.300 --> 00:00:36.215
+Or reject it.
+
+12
+00:00:36.215 --> 00:00:40.789
+The refusal is fed back as an observation, so the agent re-plans.
+
+13
+00:00:40.789 --> 00:00:42.900
+A rejection is not a dead end.
+
+14
+00:00:44.100 --> 00:00:45.867
+Here is the part people miss.
+
+15
+00:00:46.167 --> 00:00:48.167
+The agent proposes a risky call.
+
+16
+00:00:48.467 --> 00:00:53.567
+Its state must be saved at that checkpoint, because you cannot hold a Python process hostage.
+
+17
+00:00:53.867 --> 00:00:55.767
+A manager may click hours later.
+
+18
+00:00:56.067 --> 00:00:58.599
+Then the agent resumes from the saved state.
+
+19
+00:00:58.599 --> 00:01:02.167
+LangGraph's checkpointer and interrupt give you this natively.
+
+20
+00:01:03.367 --> 00:01:04.700
+Here is a simple gate.
+
+21
+00:01:05.000 --> 00:01:08.567
+If the next tool call is on the risky list, we stop and ask.
+
+22
+00:01:08.867 --> 00:01:13.267
+A no becomes an observation, telling the agent to propose something else.
+
+23
+00:01:13.567 --> 00:01:15.500
+An edit swaps in new arguments.
+
+24
+00:01:15.800 --> 00:01:19.133
+And only the approved or edited version ever executes.
+
+25
+00:01:20.333 --> 00:01:21.833
+Here is a real example.
+
+26
+00:01:22.133 --> 00:01:27.933
+The hazard alert tool posts to the ops Slack channel, where real people will see it, so it is gated.
+
+27
+00:01:28.233 --> 00:01:32.292
+The agent drafts an alert for a one hundred sixty meter asteroid.
+
+28
+00:01:32.292 --> 00:01:37.600
+The reviewer sees the exact message and lowers the severity from warning to advisory.
+
+29
+00:01:37.900 --> 00:01:43.600
+The edited version posts, the edit is recorded in state, and nothing reaches Slack un-reviewed.
+
+30
+00:01:44.800 --> 00:01:45.591
+Let's recap.
+
+31
+00:01:45.591 --> 00:01:47.633
+Gate the consequential actions.
+
+32
+00:01:47.933 --> 00:01:50.367
+The human can approve, edit, or reject.
+
+33
+00:01:50.667 --> 00:01:54.000
+A rejection is an observation the agent learns from.
+
+34
+00:01:54.300 --> 00:01:56.965
+And persist state at the checkpoint.
+
+35
+00:01:56.965 --> 00:02:00.000
+Next up: MCP, the Model Context Protocol.

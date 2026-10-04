@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.133
+A2A, the Agent2Agent protocol.
+
+2
+00:00:03.433 --> 00:00:04.936
+Your agent can call tools.
+
+3
+00:00:04.936 --> 00:00:08.867
+But what happens when it needs to hire a completely different agent?
+
+4
+00:00:10.067 --> 00:00:14.667
+A2A is an open standard that lets one agent talk to another agent.
+
+5
+00:00:14.967 --> 00:00:16.333
+It was started by Google.
+
+6
+00:00:16.633 --> 00:00:21.967
+And it works across teams, companies, and vendors, with no custom integration for each pair.
+
+7
+00:00:23.167 --> 00:00:26.000
+Most people mix these two up, so let's separate them.
+
+8
+00:00:26.300 --> 00:00:28.633
+MCP connects an agent to tools.
+
+9
+00:00:28.933 --> 00:00:30.867
+A2A connects agents to each other.
+
+10
+00:00:31.167 --> 00:00:32.649
+They are not rivals.
+
+11
+00:00:32.649 --> 00:00:37.467
+A mature system uses MCP inside each agent, and A2A between them.
+
+12
+00:00:38.667 --> 00:00:40.467
+Here is how the exchange works.
+
+13
+00:00:40.767 --> 00:00:41.988
+First, discovery.
+
+14
+00:00:41.988 --> 00:00:47.733
+Each agent publishes an agent card, a small JSON file describing what it can do.
+
+15
+00:00:48.033 --> 00:00:49.208
+Second, delegation.
+
+16
+00:00:49.208 --> 00:00:55.267
+The caller sends a task, which moves through states like submitted, working, completed, or failed.
+
+17
+00:00:55.567 --> 00:00:58.200
+Finally, the work comes back as an artifact.
+
+18
+00:00:59.400 --> 00:01:05.367
+Here is a trimmed agent card, usually served at a well known path called agent dot json.
+
+19
+00:01:05.667 --> 00:01:08.067
+It names the agent and gives its address.
+
+20
+00:01:08.367 --> 00:01:10.533
+It lists capabilities, such as streaming.
+
+21
+00:01:10.833 --> 00:01:12.084
+And it lists skills.
+
+22
+00:01:12.084 --> 00:01:15.400
+This is the menu other agents read before delegating.
+
+23
+00:01:16.600 --> 00:01:17.833
+Here's a real case.
+
+24
+00:01:18.133 --> 00:01:22.467
+A partner team's launch agent needs space weather clearance for a launch window.
+
+25
+00:01:22.767 --> 00:01:26.333
+It fetches your agent card and sees the space weather brief skill.
+
+26
+00:01:26.633 --> 00:01:30.252
+It delegates the task, and a structured brief comes back.
+
+27
+00:01:30.252 --> 00:01:32.411
+Neither team wrote an integration.
+
+28
+00:01:32.411 --> 00:01:34.633
+Both just implemented the standard.
+
+29
+00:01:35.833 --> 00:01:36.726
+Let's recap.
+
+30
+00:01:36.726 --> 00:01:39.033
+A2A lets agents talk to agents.
+
+31
+00:01:39.333 --> 00:01:42.567
+The agent card advertises what an agent can do.
+
+32
+00:01:42.867 --> 00:01:46.367
+Work moves as tasks, and results come back as artifacts.
+
+33
+00:01:46.667 --> 00:01:50.079
+MCP is for tools, A2A is between agents.
+
+34
+00:01:50.079 --> 00:01:51.700
+Next up: LangChain.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Self-correction.
+
+2
+00:00:02.133 --> 00:00:07.167
+When something fails, a good agent should try something different, not the same thing again.
+
+3
+00:00:08.367 --> 00:00:09.867
+There are two different things here.
+
+4
+00:00:10.167 --> 00:00:12.278
+A retry repeats the same action.
+
+5
+00:00:12.278 --> 00:00:16.500
+A self-correction chooses a new action, informed by the failure.
+
+6
+00:00:16.800 --> 00:00:19.982
+Retries suit transient faults, like a network blip.
+
+7
+00:00:19.982 --> 00:00:24.100
+Self-correction suits wrong arguments, bad code, or failed checks.
+
+8
+00:00:24.400 --> 00:00:27.800
+For the second kind, the error text goes into the context.
+
+9
+00:00:28.100 --> 00:00:29.767
+Production agents need both.
+
+10
+00:00:30.967 --> 00:00:31.967
+Here is the loop.
+
+11
+00:00:32.267 --> 00:00:33.833
+The agent makes an attempt.
+
+12
+00:00:34.133 --> 00:00:39.600
+It fails, and we capture the signal: a tool error, a failed validation, or a judge score.
+
+13
+00:00:39.900 --> 00:00:46.710
+That signal goes into the context, and the model reasons over it, so the next attempt is materially different.
+
+14
+00:00:46.710 --> 00:00:49.433
+It is capped, and then escalated to a human.
+
+15
+00:00:50.633 --> 00:00:53.467
+Here is a code-writing agent that debugs itself.
+
+16
+00:00:53.767 --> 00:00:56.800
+Each prompt includes the error from the previous attempt.
+
+17
+00:00:57.100 --> 00:01:00.057
+When the code fails, we keep the end of the traceback.
+
+18
+00:01:00.057 --> 00:01:02.467
+That is the signal going back into the loop.
+
+19
+00:01:02.767 --> 00:01:05.800
+After three distinct attempts, we hand it to a human.
+
+20
+00:01:07.000 --> 00:01:08.400
+Now the real scenario.
+
+21
+00:01:08.700 --> 00:01:14.200
+DONKI is the flakiest dependency, and about a third of calls time out or come back empty.
+
+22
+00:01:14.500 --> 00:01:17.367
+The agent reads the error and changes strategy.
+
+23
+00:01:17.667 --> 00:01:24.867
+A timeout gets a shorter date range, an empty body gets the cached table, and stale data gets an EONET cross-check.
+
+24
+00:01:26.067 --> 00:01:31.200
+The common mistake is a blind retry loop against a failure that is deterministic.
+
+25
+00:01:31.500 --> 00:01:33.100
+Feed the error back instead.
+
+26
+00:01:33.100 --> 00:01:38.300
+This is the interview story: point at the trace where attempt two differs from attempt one.
+
+27
+00:01:39.500 --> 00:01:40.339
+Let's recap.
+
+28
+00:01:40.339 --> 00:01:43.067
+Retry repeats; self-correction changes.
+
+29
+00:01:43.367 --> 00:01:46.267
+The failure signal re-enters the loop as context.
+
+30
+00:01:46.567 --> 00:01:50.933
+Use backoff for transient faults and error-in-context for systematic ones.
+
+31
+00:01:51.233 --> 00:01:53.377
+And cap the attempts, then escalate.
+
+32
+00:01:53.377 --> 00:01:55.700
+Next up: human-in-the-loop checkpoints.

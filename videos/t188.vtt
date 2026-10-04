@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.567
+MCP, the Model Context Protocol.
+
+2
+00:00:03.867 --> 00:00:08.733
+One open standard for plugging AI into tools and data, with no custom glue.
+
+3
+00:00:09.933 --> 00:00:15.000
+MCP is Anthropic's open standard for connecting AI to tools and data.
+
+4
+00:00:15.300 --> 00:00:18.900
+A server exposes tools, which are functions the model can call.
+
+5
+00:00:19.200 --> 00:00:21.333
+Resources, which are data it can read.
+
+6
+00:00:21.633 --> 00:00:24.297
+And prompts, which are reusable templates.
+
+7
+00:00:24.297 --> 00:00:28.800
+Any client, like Claude Desktop or your own app, plugs into any server.
+
+8
+00:00:30.000 --> 00:00:32.867
+Here is the math behind the USB-C analogy.
+
+9
+00:00:33.167 --> 00:00:36.167
+Say you have five apps and eight data sources.
+
+10
+00:00:36.167 --> 00:00:39.688
+Without a standard, that is forty custom integrations.
+
+11
+00:00:39.688 --> 00:00:45.493
+With MCP, each app implements the client once and each source implements the server once.
+
+12
+00:00:45.493 --> 00:00:46.601
+That is thirteen.
+
+13
+00:00:46.601 --> 00:00:49.667
+This economics is why the ecosystem snowballed.
+
+14
+00:00:50.867 --> 00:00:52.967
+Now what happens when a client connects.
+
+15
+00:00:53.267 --> 00:00:54.733
+The client starts the session.
+
+16
+00:00:55.033 --> 00:00:59.667
+First comes the initialize handshake, negotiating version and capabilities.
+
+17
+00:00:59.967 --> 00:01:03.233
+Then the client discovers what is on offer with tools list.
+
+18
+00:01:03.533 --> 00:01:05.333
+And it calls a tool with tools call.
+
+19
+00:01:06.533 --> 00:01:10.633
+Here is the same thing as simplified JSON-RPC messages.
+
+20
+00:01:10.933 --> 00:01:15.100
+The client sends initialize, and the server answers with what it supports.
+
+21
+00:01:15.400 --> 00:01:19.600
+Then tools list returns the available tools, such as close approaches.
+
+22
+00:01:19.900 --> 00:01:22.733
+And tools call runs one, returning its content.
+
+23
+00:01:23.933 --> 00:01:25.533
+Here is a skill worth having.
+
+24
+00:01:25.833 --> 00:01:28.667
+Install any MCP server into Claude Code.
+
+25
+00:01:28.967 --> 00:01:33.600
+On startup the client spawned the server, ran the handshake, and called tools list.
+
+26
+00:01:33.900 --> 00:01:38.645
+Those schemas joined the model's tool set, which is why the tools just appeared.
+
+27
+00:01:38.645 --> 00:01:41.967
+Explaining that, not just using it, is the scarce skill.
+
+28
+00:01:43.167 --> 00:01:44.076
+Let's recap.
+
+29
+00:01:44.076 --> 00:01:47.333
+MCP is an open standard for tools and data.
+
+30
+00:01:47.633 --> 00:01:50.600
+Servers expose tools, resources, and prompts.
+
+31
+00:01:50.900 --> 00:01:54.233
+It turns M times N integrations into M plus N.
+
+32
+00:01:54.533 --> 00:01:57.225
+The flow is handshake, list, then call.
+
+33
+00:01:57.225 --> 00:01:59.433
+Next up: building an MCP server.
