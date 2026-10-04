@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Attention.
+
+2
+00:00:01.900 --> 00:00:06.003
+This is the idea that unlocked everything after twenty seventeen.
+
+3
+00:00:06.003 --> 00:00:07.833
+First, the problem it solved.
+
+4
+00:00:09.033 --> 00:00:12.267
+Before twenty fourteen, sequence models had a bottleneck.
+
+5
+00:00:12.567 --> 00:00:14.633
+The encoder read the entire input.
+
+6
+00:00:14.933 --> 00:00:17.711
+And squeezed it into one fixed-size vector.
+
+7
+00:00:17.711 --> 00:00:22.233
+Imagine summarizing a full mission log in five hundred twelve numbers.
+
+8
+00:00:22.533 --> 00:00:27.800
+The decoder had to rebuild everything from that snapshot, and long inputs degraded badly.
+
+9
+00:00:29.000 --> 00:00:32.600
+Attention, from Bahdanau and colleagues, removed the bottleneck.
+
+10
+00:00:32.900 --> 00:00:37.067
+At every output step, the decoder looks back at all the input positions.
+
+11
+00:00:37.367 --> 00:00:41.700
+And takes a weighted average, with weights the model learns to compute on the fly.
+
+12
+00:00:42.900 --> 00:00:44.700
+The mechanism is three steps.
+
+13
+00:00:45.000 --> 00:00:49.633
+First, score the current query against every stored input with a dot product.
+
+14
+00:00:49.933 --> 00:00:53.267
+Then softmax turns those scores into weights that sum to one.
+
+15
+00:00:53.567 --> 00:00:56.514
+And the weighted sum of the inputs is the context.
+
+16
+00:00:56.514 --> 00:01:01.700
+It's a differentiable soft lookup, so the model learns where to look by backpropagation.
+
+17
+00:01:02.900 --> 00:01:05.567
+Here is a tiny example with three stored states.
+
+18
+00:01:05.867 --> 00:01:10.235
+The scores turn into weights: sixty four, ten, and twenty six percent.
+
+19
+00:01:10.235 --> 00:01:11.733
+They sum to one hundred.
+
+20
+00:01:12.033 --> 00:01:16.267
+Most of the weight lands on state zero, the one that best matches the query.
+
+21
+00:01:17.467 --> 00:01:19.067
+Here's the same thing in code.
+
+22
+00:01:19.367 --> 00:01:21.867
+Three stored encoder states, four numbers each.
+
+23
+00:01:22.167 --> 00:01:24.767
+One query, what the decoder needs right now.
+
+24
+00:01:25.067 --> 00:01:30.535
+We score with a matrix product, softmax the scores, and blend the states with those weights.
+
+25
+00:01:30.535 --> 00:01:31.367
+No bottleneck.
+
+26
+00:01:32.567 --> 00:01:34.333
+Here's why this matters for RAG.
+
+27
+00:01:34.633 --> 00:01:37.167
+You stuff eight reranked chunks into the prompt.
+
+28
+00:01:37.467 --> 00:01:44.967
+When the model writes the anomaly began at a timestamp, it attends to the two chunks containing it, nearly ignoring the other six.
+
+29
+00:01:45.267 --> 00:01:47.900
+It looks up the right one for every output token.
+
+30
+00:01:49.100 --> 00:01:49.879
+Let's recap.
+
+31
+00:01:49.879 --> 00:01:52.733
+Attention removes the one-vector bottleneck.
+
+32
+00:01:53.033 --> 00:01:54.933
+Score, softmax, weighted sum.
+
+33
+00:01:55.233 --> 00:02:00.184
+It's a differentiable soft lookup, and the weights are learned by backpropagation.
+
+34
+00:02:00.184 --> 00:02:01.633
+Next up: self-attention.

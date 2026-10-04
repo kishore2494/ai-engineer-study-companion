@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+NLTK.
+
+2
+00:00:02.100 --> 00:00:05.309
+The classic teaching library for language processing.
+
+3
+00:00:05.309 --> 00:00:08.033
+It's everywhere in tutorials and legacy code.
+
+4
+00:00:09.233 --> 00:00:13.533
+NLTK, the Natural Language Toolkit, dates from two thousand one.
+
+5
+00:00:13.833 --> 00:00:19.000
+It's pure Python with an academic flavor, and it bundles corpora and classic tools.
+
+6
+00:00:19.300 --> 00:00:23.333
+It's slow and dated for production, so know it, but don't build on it.
+
+7
+00:00:24.533 --> 00:00:25.733
+Here's the toolbox.
+
+8
+00:00:26.033 --> 00:00:30.800
+Ready-made corpora like Gutenberg and Brown give you instant sandbox text.
+
+9
+00:00:31.100 --> 00:00:34.533
+Sentence and word splitters, the pre-subword tokenizers.
+
+10
+00:00:34.833 --> 00:00:39.233
+Part of speech taggers that label each word as noun, verb, adjective.
+
+11
+00:00:39.533 --> 00:00:42.933
+And stemmers, the WordNet lemmatizer, and synonym graphs.
+
+12
+00:00:44.133 --> 00:00:48.200
+NLTK also gave us the classical pipeline vocabulary.
+
+13
+00:00:48.500 --> 00:00:51.233
+Tokenize the text into sentences and words.
+
+14
+00:00:51.533 --> 00:00:53.800
+Tag each token with its part of speech.
+
+15
+00:00:54.100 --> 00:00:56.300
+Then chunk tagged words into phrases.
+
+16
+00:00:56.300 --> 00:00:58.500
+This sequence turns up in interviews.
+
+17
+00:00:59.700 --> 00:01:00.900
+Here it is in code.
+
+18
+00:01:01.200 --> 00:01:02.840
+First, we download the models.
+
+19
+00:01:02.840 --> 00:01:03.933
+They aren't bundled.
+
+20
+00:01:04.233 --> 00:01:06.333
+We split the paragraph into sentences.
+
+21
+00:01:06.633 --> 00:01:11.200
+Then we tag every word and keep the ones whose tag starts with N N, the nouns.
+
+22
+00:01:12.400 --> 00:01:17.367
+The classic gotcha: you run a tokenizer on a fresh machine and get a lookup error.
+
+23
+00:01:17.667 --> 00:01:19.653
+The data was never downloaded.
+
+24
+00:01:19.653 --> 00:01:22.433
+Call nltk download for the resource first.
+
+25
+00:01:23.633 --> 00:01:25.500
+Here's NLTK at its best.
+
+26
+00:01:25.800 --> 00:01:31.233
+Before designing metadata for the RAG, you spend ten notebook minutes probing a sample of logs.
+
+27
+00:01:31.533 --> 00:01:36.000
+Transcripts average nine words per sentence, engineering reports thirty one.
+
+28
+00:01:36.300 --> 00:01:39.349
+That's evidence they need different chunk sizes.
+
+29
+00:01:39.349 --> 00:01:41.700
+Quick, disposable corpus archaeology.
+
+30
+00:01:42.900 --> 00:01:43.782
+Let's recap.
+
+31
+00:01:43.782 --> 00:01:46.500
+NLTK is the classic teaching library.
+
+32
+00:01:46.800 --> 00:01:50.267
+It bundles corpora, tokenizers, taggers, and stemmers.
+
+33
+00:01:50.567 --> 00:01:53.367
+Remember to download resources on first use.
+
+34
+00:01:53.667 --> 00:01:56.194
+It's great for probing, not production.
+
+35
+00:01:56.194 --> 00:01:57.167
+Next up: spaCy.

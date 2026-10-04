@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+GloVe.
+
+2
+00:00:01.867 --> 00:00:03.700
+Word2Vec predicts locally.
+
+3
+00:00:03.700 --> 00:00:05.251
+GloVe counts globally.
+
+4
+00:00:05.251 --> 00:00:07.367
+Both end up with word vectors.
+
+5
+00:00:08.567 --> 00:00:11.233
+GloVe came from Stanford in twenty fourteen.
+
+6
+00:00:11.533 --> 00:00:14.767
+Word2Vec slides a window and predicts nearby words.
+
+7
+00:00:15.067 --> 00:00:17.500
+GloVe counts across the whole corpus first.
+
+8
+00:00:17.800 --> 00:00:20.367
+Both encode the same distributional signal.
+
+9
+00:00:21.567 --> 00:00:23.433
+First, GloVe builds a table.
+
+10
+00:00:23.733 --> 00:00:31.133
+Every row and column is a word, and each cell counts how often two words appear near each other across the entire corpus.
+
+11
+00:00:31.433 --> 00:00:33.833
+Flare and CME show up together often.
+
+12
+00:00:34.133 --> 00:00:36.133
+Flare and pizza almost never do.
+
+13
+00:00:37.333 --> 00:00:38.800
+Here's the whole recipe.
+
+14
+00:00:39.100 --> 00:00:40.333
+Start with the corpus.
+
+15
+00:00:40.633 --> 00:00:42.333
+Count co-occurrences globally.
+
+16
+00:00:42.633 --> 00:00:47.067
+Then fit vectors so that their dot products reproduce the log of those counts.
+
+17
+00:00:47.367 --> 00:00:49.767
+The result is one static vector per word.
+
+18
+00:00:50.967 --> 00:00:53.267
+Side by side, the two differ in method.
+
+19
+00:00:53.567 --> 00:00:56.233
+One predicts locally, the other counts globally.
+
+20
+00:00:56.533 --> 00:00:59.133
+One uses a network, the other fits a table.
+
+21
+00:00:59.433 --> 00:01:01.653
+Both are static and context-blind.
+
+22
+00:01:01.653 --> 00:01:08.833
+What mattered in practice was pretrained GloVe files, the first taste of someone else's compute for your task.
+
+23
+00:01:10.033 --> 00:01:12.700
+Using pretrained GloVe takes a few lines.
+
+24
+00:01:13.000 --> 00:01:16.533
+One call downloads the vectors, then they're cached on your machine.
+
+25
+00:01:16.833 --> 00:01:20.533
+We ask for the classic analogy: king minus man plus woman.
+
+26
+00:01:20.833 --> 00:01:25.467
+Then we check that astronaut and cosmonaut, which are the same job, score high.
+
+27
+00:01:26.667 --> 00:01:28.133
+Here's a practical use.
+
+28
+00:01:28.433 --> 00:01:34.512
+Before paying for API embeddings in a literature search tool, baseline with pretrained GloVe.
+
+29
+00:01:34.512 --> 00:01:38.433
+Average each abstract's word vectors and retrieve by cosine.
+
+30
+00:01:38.733 --> 00:01:40.600
+It's crude, but free and instant.
+
+31
+00:01:40.900 --> 00:01:46.667
+If the paid model beats it by only two points of recall at ten, that's a finding worth escalating.
+
+32
+00:01:47.867 --> 00:01:48.661
+Let's recap.
+
+33
+00:01:48.661 --> 00:01:52.233
+GloVe counts globally while Word2Vec predicts locally.
+
+34
+00:01:52.533 --> 00:01:55.300
+Its vectors are fit to log co-occurrence counts.
+
+35
+00:01:55.600 --> 00:01:58.267
+Pretrained files were the big practical win.
+
+36
+00:01:58.567 --> 00:02:01.318
+But they're still static and context-blind.
+
+37
+00:02:01.318 --> 00:02:02.533
+Next up: attention.

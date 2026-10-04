@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+Lemmatization.
+
+2
+00:00:02.267 --> 00:00:05.059
+No suffix rule will ever turn better into good.
+
+3
+00:00:05.059 --> 00:00:06.900
+To get there, you need grammar.
+
+4
+00:00:08.100 --> 00:00:12.567
+Lemmatization reduces a word to its lemma, its true dictionary form.
+
+5
+00:00:12.867 --> 00:00:14.238
+Better becomes good.
+
+6
+00:00:14.238 --> 00:00:15.267
+Was becomes be.
+
+7
+00:00:15.567 --> 00:00:18.733
+And anomalies becomes anomaly, always a real word.
+
+8
+00:00:19.933 --> 00:00:21.700
+Here's how a lemmatizer works.
+
+9
+00:00:22.000 --> 00:00:23.700
+It starts with the raw sentence.
+
+10
+00:00:24.000 --> 00:00:27.233
+A tagger first labels each word with its part of speech.
+
+11
+00:00:27.533 --> 00:00:31.400
+Then the dictionary is consulted using both the word and its tag.
+
+12
+00:00:31.700 --> 00:00:33.388
+Out comes a real base form.
+
+13
+00:00:33.388 --> 00:00:36.700
+That's why it usually lives inside a tool like spaCy.
+
+14
+00:00:37.900 --> 00:00:39.533
+Let's put them side by side.
+
+15
+00:00:39.833 --> 00:00:42.082
+For crews, both approaches give crew.
+
+16
+00:00:42.082 --> 00:00:42.933
+No difference.
+
+17
+00:00:43.233 --> 00:00:46.175
+For were, the stemmer is stuck, but the lemma is be.
+
+18
+00:00:46.175 --> 00:00:47.533
+Only grammar knows that.
+
+19
+00:00:47.833 --> 00:00:52.500
+And for anomalies, the stem is a broken string, while the lemma is a real word.
+
+20
+00:00:53.700 --> 00:00:54.967
+So which one do you pick?
+
+21
+00:00:55.267 --> 00:00:56.788
+Stemming is fast rules.
+
+22
+00:00:56.788 --> 00:00:59.633
+Lemmatization is slower and needs a tagger.
+
+23
+00:00:59.933 --> 00:01:01.975
+Stem output may not be a word.
+
+24
+00:01:01.975 --> 00:01:03.200
+A lemma always is.
+
+25
+00:01:03.500 --> 00:01:04.776
+Stems suit indexes.
+
+26
+00:01:04.776 --> 00:01:08.133
+Lemmas are required when a human reads the result.
+
+27
+00:01:08.433 --> 00:01:11.000
+If you count or display words, lemmatize.
+
+28
+00:01:12.200 --> 00:01:13.400
+Here it is in code.
+
+29
+00:01:13.700 --> 00:01:18.900
+We load a spaCy pipeline, which includes the tagger, and a Porter stemmer for comparison.
+
+30
+00:01:19.200 --> 00:01:23.267
+Then for every real word, we print the stem and the lemma next to each other.
+
+31
+00:01:24.467 --> 00:01:25.700
+Here's a real use.
+
+32
+00:01:26.000 --> 00:01:30.200
+Your report generator counts topics across a week of space-weather logs.
+
+33
+00:01:30.500 --> 00:01:35.167
+Lemmatizing first means flares, flare, and flaring all tally under flare.
+
+34
+00:01:35.467 --> 00:01:39.633
+And the dashboard your team reads shows a real word, not a stemmed fragment.
+
+35
+00:01:40.833 --> 00:01:41.613
+Let's recap.
+
+36
+00:01:41.613 --> 00:01:44.600
+A lemma is the real dictionary form of a word.
+
+37
+00:01:44.900 --> 00:01:48.367
+Finding it takes vocabulary and part of speech information.
+
+38
+00:01:48.667 --> 00:01:52.500
+It's slower than stemming, but the output is always a real word.
+
+39
+00:01:52.800 --> 00:01:56.707
+Use it whenever humans read the result, or you count words.
+
+40
+00:01:56.707 --> 00:01:57.833
+Next up: n-grams.
