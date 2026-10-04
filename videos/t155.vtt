@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Function calling.
+
+2
+00:00:02.200 --> 00:00:06.767
+This is the atom of all tool use, and the loop every agent framework wraps.
+
+3
+00:00:07.967 --> 00:00:09.233
+Here's the key idea.
+
+4
+00:00:09.533 --> 00:00:12.454
+You describe your functions as JSON schemas.
+
+5
+00:00:12.454 --> 00:00:17.433
+The model replies with a function name and JSON arguments instead of prose.
+
+6
+00:00:17.733 --> 00:00:19.850
+Your code runs the real function.
+
+7
+00:00:19.850 --> 00:00:21.133
+The model only asks.
+
+8
+00:00:22.333 --> 00:00:23.933
+Here is the full round trip.
+
+9
+00:00:24.233 --> 00:00:26.500
+You send the request with your tool schemas.
+
+10
+00:00:26.800 --> 00:00:30.800
+The model decides a tool would help, and responds with a structured call.
+
+11
+00:00:31.100 --> 00:00:33.867
+Your code parses it and runs the real function.
+
+12
+00:00:34.167 --> 00:00:36.567
+The result goes back as a new tool message.
+
+13
+00:00:36.867 --> 00:00:39.300
+And the model folds it into its final answer.
+
+14
+00:00:40.500 --> 00:00:41.967
+Let's watch the messages.
+
+15
+00:00:42.267 --> 00:00:44.133
+The user asks about asteroids.
+
+16
+00:00:44.433 --> 00:00:48.367
+The model answers with a call to get neo feed, with this week's dates.
+
+17
+00:00:48.667 --> 00:00:51.533
+Our code returns the JSON as a tool message.
+
+18
+00:00:51.833 --> 00:00:54.533
+Then the model summarizes it in plain language.
+
+19
+00:00:55.733 --> 00:00:57.067
+Here's the loop in code.
+
+20
+00:00:57.367 --> 00:01:00.167
+We send the messages together with the tool schemas.
+
+21
+00:01:00.467 --> 00:01:03.767
+We parse the call, and we run the real function ourselves.
+
+22
+00:01:04.067 --> 00:01:06.467
+Then we append the result and request again.
+
+23
+00:01:07.667 --> 00:01:08.862
+One common mistake.
+
+24
+00:01:08.862 --> 00:01:13.767
+When two tools both mention events, vague descriptions cause wrong-tool calls.
+
+25
+00:01:14.067 --> 00:01:18.633
+The fix is sharper descriptions, because the model chooses tools by reading them.
+
+26
+00:01:19.833 --> 00:01:22.467
+This is the Orbital Research Agent's first tool.
+
+27
+00:01:22.767 --> 00:01:25.033
+A user asks about nearby asteroids.
+
+28
+00:01:25.333 --> 00:01:29.767
+The agent emits the call, and your code queries NASA's NEO API.
+
+29
+00:01:30.067 --> 00:01:34.700
+Then the model turns the JSON into three named objects with miss distances.
+
+30
+00:01:35.900 --> 00:01:36.723
+Let's recap.
+
+31
+00:01:36.723 --> 00:01:39.467
+Describe your functions as JSON schemas.
+
+32
+00:01:39.767 --> 00:01:41.133
+The model emits a call.
+
+33
+00:01:41.133 --> 00:01:42.500
+It never runs anything.
+
+34
+00:01:42.800 --> 00:01:45.400
+Your code executes and returns the result.
+
+35
+00:01:45.700 --> 00:01:49.145
+Every agent is this loop with control flow around it.
+
+36
+00:01:49.145 --> 00:01:50.900
+Next up: structured output.

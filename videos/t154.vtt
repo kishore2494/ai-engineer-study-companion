@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Hallucination.
+
+2
+00:00:02.167 --> 00:00:04.870
+Models can invent facts that sound perfect.
+
+3
+00:00:04.870 --> 00:00:07.700
+Let's see why, and how to engineer around it.
+
+4
+00:00:08.900 --> 00:00:10.167
+Here's the root cause.
+
+5
+00:00:10.467 --> 00:00:13.300
+A model is trained to continue text plausibly.
+
+6
+00:00:13.600 --> 00:00:17.333
+So when a question outruns its grounding, it does not stop.
+
+7
+00:00:17.333 --> 00:00:19.990
+It produces fluent, confident fabrication.
+
+8
+00:00:19.990 --> 00:00:22.900
+That's the default of an ungrounded generator.
+
+9
+00:00:24.100 --> 00:00:25.400
+Compare the two paths.
+
+10
+00:00:25.700 --> 00:00:27.160
+One answers from memory.
+
+11
+00:00:27.160 --> 00:00:29.533
+The other answers from retrieved facts.
+
+12
+00:00:29.833 --> 00:00:31.702
+One makes claims you can't check.
+
+13
+00:00:31.702 --> 00:00:33.967
+The other tags each claim with a source.
+
+14
+00:00:34.267 --> 00:00:35.698
+One must always answer.
+
+15
+00:00:35.698 --> 00:00:37.067
+The other may abstain.
+
+16
+00:00:37.367 --> 00:00:39.533
+Same model, but now it is a system.
+
+17
+00:00:40.733 --> 00:00:43.433
+There are four mitigations, in order of leverage.
+
+18
+00:00:43.733 --> 00:00:46.816
+Ground the model by putting the true facts in context.
+
+19
+00:00:46.816 --> 00:00:48.300
+That's the premise of RAG.
+
+20
+00:00:48.600 --> 00:00:49.884
+Require citations.
+
+21
+00:00:49.884 --> 00:00:52.667
+Forced to point, models fabricate less.
+
+22
+00:00:52.967 --> 00:00:54.600
+Give it permission to abstain.
+
+23
+00:00:54.900 --> 00:00:57.700
+And measure, because you can't reduce what you don't measure.
+
+24
+00:00:58.900 --> 00:01:00.600
+Put it together as a pipeline.
+
+25
+00:01:00.900 --> 00:01:02.233
+A question comes in.
+
+26
+00:01:02.533 --> 00:01:04.067
+We retrieve the real chunks.
+
+27
+00:01:04.367 --> 00:01:06.567
+The model answers and cites each claim.
+
+28
+00:01:06.867 --> 00:01:10.700
+A validator rejects any cited id that was never retrieved.
+
+29
+00:01:11.000 --> 00:01:12.663
+What passes is the answer.
+
+30
+00:01:12.663 --> 00:01:14.133
+Otherwise, it abstains.
+
+31
+00:01:15.333 --> 00:01:17.333
+Here is the prompt that carries all of it.
+
+32
+00:01:17.633 --> 00:01:20.033
+First, answer using only the sources.
+
+33
+00:01:20.333 --> 00:01:23.100
+Second, cite the source id after every claim.
+
+34
+00:01:23.400 --> 00:01:27.133
+Third, an exact sentence to use when the sources don't answer.
+
+35
+00:01:28.333 --> 00:01:30.933
+Here's how it played out in Mission Control RAG.
+
+36
+00:01:31.233 --> 00:01:40.033
+A tester asked about a mission that isn't in the corpus, and got three paragraphs citing a beautifully plausible, entirely invented log id.
+
+37
+00:01:40.333 --> 00:01:46.967
+The team required citations, added an abstain path, and rejected ids not in the retrieval set.
+
+38
+00:01:47.267 --> 00:01:51.200
+Now the same query says: not found in the retrieved mission logs.
+
+39
+00:01:52.400 --> 00:01:53.178
+Let's recap.
+
+40
+00:01:53.178 --> 00:01:54.863
+Models continue plausibly.
+
+41
+00:01:54.863 --> 00:01:55.900
+They don't know.
+
+42
+00:01:56.200 --> 00:01:58.233
+Ground answers in retrieved facts.
+
+43
+00:01:58.533 --> 00:02:01.800
+Require citations, and allow the model to abstain.
+
+44
+00:02:02.100 --> 00:02:03.767
+Then measure faithfulness.
+
+45
+00:02:03.767 --> 00:02:05.433
+Next up: function calling.

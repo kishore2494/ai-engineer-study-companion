@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.933
+Vector databases, the concept.
+
+2
+00:00:03.233 --> 00:00:07.767
+How do you find the nearest vectors among millions, without checking every single one?
+
+3
+00:00:08.967 --> 00:00:12.000
+Exact search compares the query against every vector.
+
+4
+00:00:12.300 --> 00:00:13.856
+That's fine at ten thousand.
+
+5
+00:00:13.856 --> 00:00:15.800
+It's hopeless at a hundred million.
+
+6
+00:00:16.100 --> 00:00:20.073
+So vector databases use approximate nearest neighbor indexes.
+
+7
+00:00:20.073 --> 00:00:23.133
+They give up a sliver of recall for huge speed.
+
+8
+00:00:24.333 --> 00:00:27.167
+Here's the trade on one hundred thousand vectors.
+
+9
+00:00:27.467 --> 00:00:30.127
+An exact scan takes about ten milliseconds.
+
+10
+00:00:30.127 --> 00:00:34.767
+The graph index takes about a tenth of one, roughly a hundred times faster.
+
+11
+00:00:35.967 --> 00:00:38.800
+The first index family is HNSW.
+
+12
+00:00:39.100 --> 00:00:43.967
+Search enters a sparse top layer, and greedily hops toward the query with long jumps.
+
+13
+00:00:44.267 --> 00:00:47.033
+Then it descends to a denser layer for shorter hops.
+
+14
+00:00:47.333 --> 00:00:50.028
+Finally the bottom layer holds every vector.
+
+15
+00:00:50.028 --> 00:00:52.600
+The search visits only a handful of nodes.
+
+16
+00:00:53.800 --> 00:00:55.633
+The other family is IVF.
+
+17
+00:00:55.933 --> 00:00:57.895
+HNSW is a layered graph.
+
+18
+00:00:57.895 --> 00:01:01.900
+IVF partitions space into cells around centroids.
+
+19
+00:01:02.200 --> 00:01:04.073
+HNSW hops and descends.
+
+20
+00:01:04.073 --> 00:01:07.167
+IVF probes only the few nearest cells.
+
+21
+00:01:07.467 --> 00:01:10.200
+Either way, a little recall buys a lot of speed.
+
+22
+00:01:11.400 --> 00:01:13.133
+Here's the comparison in FAISS.
+
+23
+00:01:13.433 --> 00:01:15.733
+One index scans everything exactly.
+
+24
+00:01:16.033 --> 00:01:18.600
+The other builds an HNSW graph.
+
+25
+00:01:18.900 --> 00:01:22.400
+We search both, and measure how many of the ten results match.
+
+26
+00:01:23.600 --> 00:01:27.067
+The other half of a vector database is metadata filtering.
+
+27
+00:01:27.367 --> 00:01:31.396
+Mission Control RAG first retrieved the top ten, then filtered.
+
+28
+00:01:31.396 --> 00:01:35.233
+For Artemis queries, all ten were often from other missions.
+
+29
+00:01:35.533 --> 00:01:37.467
+Filtering afterwards left nothing.
+
+30
+00:01:37.767 --> 00:01:41.384
+Moving the filter into the query, during the walk, fixed it.
+
+31
+00:01:41.384 --> 00:01:44.700
+Post-filtering top-k is a classic first production bug.
+
+32
+00:01:45.900 --> 00:01:46.671
+Let's recap.
+
+33
+00:01:46.671 --> 00:01:50.400
+Exact search doesn't scale, so we use approximate indexes.
+
+34
+00:01:50.700 --> 00:01:52.962
+HNSW hops through layers.
+
+35
+00:01:52.962 --> 00:01:54.500
+IVF probes cells.
+
+36
+00:01:54.800 --> 00:01:57.000
+Both trade a sliver of recall for speed.
+
+37
+00:01:57.300 --> 00:01:59.996
+And filter during the search, never after.
+
+38
+00:01:59.996 --> 00:02:01.600
+Next up: semantic search.

@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+Embeddings.
+
+2
+00:00:01.933 --> 00:00:08.700
+Half of this volume runs on one idea: turning text into a point, so that similar meaning lands close together.
+
+3
+00:00:09.900 --> 00:00:12.300
+An embedding model maps text to a vector.
+
+4
+00:00:12.600 --> 00:00:16.500
+The key property: similar meaning becomes geometric closeness.
+
+5
+00:00:16.800 --> 00:00:22.300
+That single property powers retrieval, clustering, deduplication, and semantic caching.
+
+6
+00:00:23.500 --> 00:00:25.233
+Picture each text as a point.
+
+7
+00:00:25.533 --> 00:00:28.100
+Solar flare disrupted comms lands here.
+
+8
+00:00:28.400 --> 00:00:32.000
+And a CME hitting the magnetosphere lands right next to it.
+
+9
+00:00:32.300 --> 00:00:36.100
+Asteroid flyby lands far away, close to its own neighbor.
+
+10
+00:00:36.100 --> 00:00:37.900
+That geometry is retrieval.
+
+11
+00:00:39.100 --> 00:00:41.700
+Compare every pair, and you get a block pattern.
+
+12
+00:00:42.000 --> 00:00:44.633
+The two sun texts score about zero point seven.
+
+13
+00:00:44.933 --> 00:00:46.667
+So do the two asteroid texts.
+
+14
+00:00:46.967 --> 00:00:49.767
+Across the groups, only about zero point two.
+
+15
+00:00:50.967 --> 00:00:52.967
+Here it is with sentence transformers.
+
+16
+00:00:53.267 --> 00:00:54.867
+We load one embedding model.
+
+17
+00:00:55.167 --> 00:00:59.345
+We encode the texts, normalized, and multiply by the transpose.
+
+18
+00:00:59.345 --> 00:01:01.533
+That gives the similarity matrix.
+
+19
+00:01:02.733 --> 00:01:03.358
+Two traps.
+
+20
+00:01:03.358 --> 00:01:09.100
+If you mix models or versions between documents and queries, you compare garbage to garbage.
+
+21
+00:01:09.400 --> 00:01:11.925
+And your model choice caps the whole system.
+
+22
+00:01:11.925 --> 00:01:14.967
+Check the leaderboard, but decide on your own corpus.
+
+23
+00:01:16.167 --> 00:01:18.367
+A real fix from Mission Control RAG.
+
+24
+00:01:18.667 --> 00:01:25.800
+A general model put solar array degradation, a power issue, nearly on top of solar activity, space weather.
+
+25
+00:01:26.100 --> 00:01:28.767
+The team swapped to a stronger model and re-indexed.
+
+26
+00:01:29.067 --> 00:01:33.012
+The clusters separated, and wrong-document retrievals vanished.
+
+27
+00:01:33.012 --> 00:01:34.702
+Nothing downstream changed.
+
+28
+00:01:34.702 --> 00:01:35.767
+The geometry did.
+
+29
+00:01:36.967 --> 00:01:37.719
+Let's recap.
+
+30
+00:01:37.719 --> 00:01:40.100
+Embeddings turn meaning into position.
+
+31
+00:01:40.400 --> 00:01:42.300
+Similar text lands close together.
+
+32
+00:01:42.600 --> 00:01:45.367
+Queries and documents must share the same model.
+
+33
+00:01:45.667 --> 00:01:48.171
+And your model choice caps RAG quality.
+
+34
+00:01:48.171 --> 00:01:50.033
+Next up: chunking strategies.

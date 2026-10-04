@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Structured output.
+
+2
+00:00:02.300 --> 00:00:05.513
+This is the difference between a demo and a system.
+
+3
+00:00:05.513 --> 00:00:09.733
+Usually valid JSON means a parse exception at three in the morning.
+
+4
+00:00:10.933 --> 00:00:15.267
+A model that usually returns valid JSON is a bug waiting to happen.
+
+5
+00:00:15.567 --> 00:00:18.567
+What you need is a contract the output must satisfy.
+
+6
+00:00:19.767 --> 00:00:21.900
+There are three guarantees, each stronger.
+
+7
+00:00:22.200 --> 00:00:26.533
+JSON mode guarantees syntactically valid JSON, but any shape.
+
+8
+00:00:26.833 --> 00:00:29.354
+Schema-constrained decoding goes further.
+
+9
+00:00:29.354 --> 00:00:33.533
+The sampler literally cannot emit a token that violates your schema.
+
+10
+00:00:33.833 --> 00:00:41.367
+The Instructor pattern validates into a Pydantic model, so it guarantees meaning too, like severity between one and five.
+
+11
+00:00:42.567 --> 00:00:43.567
+Here is the loop.
+
+12
+00:00:43.867 --> 00:00:46.400
+We prompt with the raw log and a target schema.
+
+13
+00:00:46.700 --> 00:00:48.900
+The model produces a JSON attempt.
+
+14
+00:00:49.200 --> 00:00:51.600
+Pydantic validates it against our rules.
+
+15
+00:00:51.900 --> 00:00:57.633
+If it fails, the validation error becomes the next prompt, until the object is provably right.
+
+16
+00:00:58.833 --> 00:01:00.033
+Here it is in code.
+
+17
+00:01:00.333 --> 00:01:04.867
+A Pydantic class defines the contract: typed fields for every piece.
+
+18
+00:01:05.167 --> 00:01:07.933
+Severity must be an integer from one to five.
+
+19
+00:01:08.233 --> 00:01:12.900
+Instructor validates the model's reply, and retries up to three times.
+
+20
+00:01:12.900 --> 00:01:15.500
+You get a real object, or a loud error.
+
+21
+00:01:16.700 --> 00:01:18.233
+Here's a real batch job.
+
+22
+00:01:18.533 --> 00:01:23.900
+Mission Control RAG extracts anomaly records from twelve thousand historical logs.
+
+23
+00:01:24.200 --> 00:01:28.970
+With plain prompting, about two percent returned the word high instead of a number.
+
+24
+00:01:28.970 --> 00:01:30.867
+That's two hundred forty crashes.
+
+25
+00:01:31.167 --> 00:01:35.884
+With validation and retry, the model corrects itself on the second attempt.
+
+26
+00:01:35.884 --> 00:01:37.833
+Same model, different contract.
+
+27
+00:01:39.033 --> 00:01:39.826
+Let's recap.
+
+28
+00:01:39.826 --> 00:01:42.467
+Downstream code needs fields, not prose.
+
+29
+00:01:42.767 --> 00:01:47.467
+Guarantees escalate: JSON mode, schema decoding, then Instructor.
+
+30
+00:01:47.767 --> 00:01:50.100
+Validation errors become the next prompt.
+
+31
+00:01:50.400 --> 00:01:53.044
+Build this loop until it's muscle memory.
+
+32
+00:01:53.044 --> 00:01:54.333
+Next up: embeddings.

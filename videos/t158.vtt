@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Chunking strategies.
+
+2
+00:00:02.400 --> 00:00:05.258
+Before you embed a document, you have to cut it up.
+
+3
+00:00:05.258 --> 00:00:07.500
+Where you cut decides what you can find.
+
+4
+00:00:08.700 --> 00:00:13.000
+Embed a forty page report as one vector and you get semantic mush.
+
+5
+00:00:13.300 --> 00:00:15.821
+The LLM needs focused context anyway.
+
+6
+00:00:15.821 --> 00:00:17.933
+So we split the document first.
+
+7
+00:00:19.133 --> 00:00:20.867
+There is a ladder of strategies.
+
+8
+00:00:21.167 --> 00:00:23.771
+Fixed size with overlap is the baseline.
+
+9
+00:00:23.771 --> 00:00:26.767
+Overlap keeps boundary sentences in one piece.
+
+10
+00:00:27.067 --> 00:00:30.200
+Recursive splitting follows the document's own seams.
+
+11
+00:00:30.500 --> 00:00:34.500
+Semantic splitting cuts where similarity between sentences drops.
+
+12
+00:00:34.800 --> 00:00:37.267
+And parent-child is the production favorite.
+
+13
+00:00:38.467 --> 00:00:40.233
+Chunking has one core tension.
+
+14
+00:00:40.533 --> 00:00:42.833
+Small chunks hold one idea per vector.
+
+15
+00:00:43.133 --> 00:00:44.835
+So they retrieve precisely.
+
+16
+00:00:44.835 --> 00:00:46.600
+Big chunks retrieve mushily.
+
+17
+00:00:46.900 --> 00:00:50.867
+But small chunks starve the model of context, while big ones supply it.
+
+18
+00:00:51.167 --> 00:00:54.500
+Parent-child resolves it: match the small, feed the big.
+
+19
+00:00:55.700 --> 00:00:56.800
+Here is the flow.
+
+20
+00:00:57.100 --> 00:01:00.567
+The query is embedded and compared against small child chunks.
+
+21
+00:01:00.867 --> 00:01:02.533
+The best child wins the search.
+
+22
+00:01:02.833 --> 00:01:04.400
+We look up its larger parent.
+
+23
+00:01:04.700 --> 00:01:06.833
+And hand that parent to the LLM.
+
+24
+00:01:06.833 --> 00:01:10.367
+Precision at search time, context at generation time.
+
+25
+00:01:11.567 --> 00:01:13.733
+Here's a simplified version in Python.
+
+26
+00:01:14.033 --> 00:01:16.400
+Two splitters: big parents, small children.
+
+27
+00:01:16.700 --> 00:01:20.700
+We embed only the small children, and tag each with its parent's id.
+
+28
+00:01:21.000 --> 00:01:24.400
+At query time we match children, then return their parents.
+
+29
+00:01:25.600 --> 00:01:27.000
+Here's a test you can run.
+
+30
+00:01:27.300 --> 00:01:32.967
+Chunk one sixty page propulsion report three ways: fixed, recursive, and parent-child.
+
+31
+00:01:33.267 --> 00:01:38.600
+Fixed size splits a critical valve failure table mid-row, and misses two of five questions.
+
+32
+00:01:38.900 --> 00:01:43.433
+Parent-child gets all five, because the child hit pulls in the whole procedure.
+
+33
+00:01:44.633 --> 00:01:45.379
+Let's recap.
+
+34
+00:01:45.379 --> 00:01:47.867
+Always split documents before embedding.
+
+35
+00:01:48.167 --> 00:01:51.100
+Strategies climb from fixed size to parent-child.
+
+36
+00:01:51.400 --> 00:01:53.967
+Small chunks retrieve, big chunks inform.
+
+37
+00:01:54.267 --> 00:01:57.011
+And compare chunkers on your own questions.
+
+38
+00:01:57.011 --> 00:01:59.500
+Next up: vector databases, the concept.
