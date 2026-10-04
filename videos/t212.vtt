@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+Deep RL.
+
+2
+00:00:02.033 --> 00:00:06.200
+It breaks in characteristic ways, and knowing them is a professional skill.
+
+3
+00:00:07.400 --> 00:00:09.667
+The centerpiece is the deadly triad.
+
+4
+00:00:09.967 --> 00:00:12.867
+Bootstrapping: targets built from your own estimates.
+
+5
+00:00:13.167 --> 00:00:16.033
+Off-policy data: replay from old behavior.
+
+6
+00:00:16.333 --> 00:00:20.933
+And function approximation: networks that generalize errors across states.
+
+7
+00:00:21.233 --> 00:00:22.575
+Each is fine alone.
+
+8
+00:00:22.575 --> 00:00:26.033
+Together, value estimates can spiral to infinity.
+
+9
+00:00:27.233 --> 00:00:29.733
+DQN sits squarely on all three corners.
+
+10
+00:00:30.033 --> 00:00:35.300
+Its replay buffer and target network are engineering duct tape holding the triad together.
+
+11
+00:00:36.500 --> 00:00:38.633
+Beyond the triad, three more failures.
+
+12
+00:00:38.933 --> 00:00:43.500
+Sample inefficiency: millions of steps for tasks a human learns in minutes.
+
+13
+00:00:43.800 --> 00:00:48.867
+Reward hacking: the agent optimizes the letter of the reward, never its spirit.
+
+14
+00:00:49.167 --> 00:00:53.867
+And seed sensitivity: the same code can succeed or fail on different seeds.
+
+15
+00:00:55.067 --> 00:00:56.633
+Here is what that looks like.
+
+16
+00:00:56.933 --> 00:01:01.300
+Same code, same hyperparameters, different seeds, very different curves.
+
+17
+00:01:01.600 --> 00:01:04.667
+A single learning curve is an anecdote, not a result.
+
+18
+00:01:05.867 --> 00:01:08.067
+Here we remove DQN's anchor.
+
+19
+00:01:08.367 --> 00:01:13.035
+Setting the target update interval to one makes the target the online net.
+
+20
+00:01:13.035 --> 00:01:16.000
+Watch the q-values balloon and reward collapse.
+
+21
+00:01:16.300 --> 00:01:17.923
+Then never trust one seed.
+
+22
+00:01:17.923 --> 00:01:20.233
+Run five, and report mean and spread.
+
+23
+00:01:21.433 --> 00:01:26.933
+A vendor claims RL optimizes satellite downlinks forty percent better than heuristics.
+
+24
+00:01:27.233 --> 00:01:30.867
+One environment, one learning curve, no seeds, no baseline.
+
+25
+00:01:31.167 --> 00:01:38.200
+You now have three questions: how many seeds, what does the simple baseline score, and what loophole might the reward have?
+
+26
+00:01:39.400 --> 00:01:40.204
+Let's recap.
+
+27
+00:01:40.204 --> 00:01:45.500
+The deadly triad is bootstrapping, off-policy data, and function approximation.
+
+28
+00:01:45.800 --> 00:01:49.033
+Expect inefficiency, reward hacking, and seed noise.
+
+29
+00:01:49.333 --> 00:01:53.690
+Run five or more seeds, and prefer the simplest thing that works.
+
+30
+00:01:53.690 --> 00:01:55.500
+Next up: Stable Baselines3.
