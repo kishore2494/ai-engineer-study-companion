@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Backpropagation.
+
+2
+00:00:02.200 --> 00:00:06.933
+This is the single idea that makes deep learning computationally possible.
+
+3
+00:00:08.133 --> 00:00:10.800
+Training asks one question about every weight.
+
+4
+00:00:11.100 --> 00:00:14.533
+If I nudge this weight slightly, how much does the loss change?
+
+5
+00:00:14.833 --> 00:00:16.733
+That number is the weight's gradient.
+
+6
+00:00:17.933 --> 00:00:19.633
+There's a naive way to find them.
+
+7
+00:00:19.933 --> 00:00:22.168
+Nudge each weight and rerun the network.
+
+8
+00:00:22.168 --> 00:00:25.800
+With a million weights, that's a million forward passes per step.
+
+9
+00:00:26.100 --> 00:00:31.800
+Backprop gets every gradient in one backward sweep, for about twice the cost of a forward pass.
+
+10
+00:00:32.100 --> 00:00:34.767
+That efficiency is the whole reason this works.
+
+11
+00:00:35.967 --> 00:00:37.167
+Here's the mechanism.
+
+12
+00:00:37.467 --> 00:00:40.367
+On the forward pass, every layer caches its input.
+
+13
+00:00:40.667 --> 00:00:44.000
+Then, starting at the loss, an error signal flows backward.
+
+14
+00:00:44.300 --> 00:00:49.500
+At each layer, it yields that layer's weight gradients, then passes on to the layer below.
+
+15
+00:00:50.700 --> 00:00:52.300
+Underneath is the chain rule.
+
+16
+00:00:52.600 --> 00:00:55.033
+First, how the loss changes with the output.
+
+17
+00:00:55.333 --> 00:00:57.933
+Then how the output changes with the hidden layer.
+
+18
+00:00:58.233 --> 00:01:01.726
+And finally how the hidden layer changes with the weight.
+
+19
+00:01:01.726 --> 00:01:04.667
+Multiply them, and never recompute a term twice.
+
+20
+00:01:05.867 --> 00:01:08.767
+Here's a tiny network, differentiated by hand.
+
+21
+00:01:09.067 --> 00:01:12.033
+The forward pass computes and remembers each value.
+
+22
+00:01:12.333 --> 00:01:16.100
+Then we start at the loss and apply local derivatives, right to left.
+
+23
+00:01:16.400 --> 00:01:18.567
+That gives the gradient for the second weight.
+
+24
+00:01:18.867 --> 00:01:21.436
+The signal keeps flowing down to the first.
+
+25
+00:01:21.436 --> 00:01:23.767
+These match PyTorch's backward exactly.
+
+26
+00:01:24.967 --> 00:01:26.633
+Here's backprop paying rent.
+
+27
+00:01:26.933 --> 00:01:29.867
+Your custom focal loss turns to NaN at step forty.
+
+28
+00:01:30.167 --> 00:01:31.678
+You know where to look.
+
+29
+00:01:31.678 --> 00:01:37.000
+The log of p has a derivative of one over p, which explodes as p approaches zero.
+
+30
+00:01:37.300 --> 00:01:40.819
+An infinite signal gets multiplied through every layer.
+
+31
+00:01:40.819 --> 00:01:44.467
+One clamp fixes it, instead of re-architecting the model.
+
+32
+00:01:45.667 --> 00:01:46.398
+Let's recap.
+
+33
+00:01:46.398 --> 00:01:49.567
+A gradient says how much each weight moves the loss.
+
+34
+00:01:49.867 --> 00:01:52.200
+Backprop gets all of them in a single sweep.
+
+35
+00:01:52.500 --> 00:01:54.633
+Forward caches, backward consumes.
+
+36
+00:01:54.933 --> 00:01:57.646
+It's just the chain rule, well organized.
+
+37
+00:01:57.646 --> 00:01:59.367
+Next up: gradient descent.

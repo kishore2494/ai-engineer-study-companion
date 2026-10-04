@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Gradient descent.
+
+2
+00:00:02.300 --> 00:00:04.536
+Backprop tells us which way is uphill.
+
+3
+00:00:04.536 --> 00:00:06.067
+Now we step the other way.
+
+4
+00:00:07.267 --> 00:00:10.533
+The gradient points in the direction of steepest increase.
+
+5
+00:00:10.833 --> 00:00:14.667
+So we step the opposite way, and repeat until the loss stops falling.
+
+6
+00:00:15.867 --> 00:00:17.233
+Here is the update rule.
+
+7
+00:00:17.533 --> 00:00:19.500
+Every weight is replaced by itself...
+
+8
+00:00:19.800 --> 00:00:22.233
+minus the learning rate, which scales the step...
+
+9
+00:00:22.533 --> 00:00:23.602
+times the gradient.
+
+10
+00:00:23.602 --> 00:00:27.033
+The learning rate matters more than almost any other setting.
+
+11
+00:00:28.233 --> 00:00:29.767
+Picture the loss as a valley.
+
+12
+00:00:30.067 --> 00:00:33.833
+With a good learning rate, each step takes us smoothly toward the bottom.
+
+13
+00:00:35.033 --> 00:00:36.600
+Now the two failure modes.
+
+14
+00:00:36.900 --> 00:00:40.900
+Too large, and you leap across the valley and land higher than you started.
+
+15
+00:00:41.200 --> 00:00:43.900
+The loss oscillates, and can diverge to NaN.
+
+16
+00:00:44.200 --> 00:00:45.787
+Too small, and you creep.
+
+17
+00:00:45.787 --> 00:00:50.800
+The fix is to cut a rate that blows up by ten times, and raise one that crawls.
+
+18
+00:00:52.000 --> 00:00:54.033
+Let's test three rates on a simple bowl.
+
+19
+00:00:54.333 --> 00:00:57.800
+The loss is just the weight squared, with its minimum at zero.
+
+20
+00:00:58.100 --> 00:01:01.100
+Each step subtracts the learning rate times the gradient.
+
+21
+00:01:01.400 --> 00:01:06.167
+Ten diverges, point one converges, and one in ten thousand barely moves.
+
+22
+00:01:07.367 --> 00:01:09.133
+Here's how it bites in practice.
+
+23
+00:01:09.433 --> 00:01:16.300
+Your satellite telemetry autoencoder trains fine for two epochs, then the loss becomes NaN at three in the morning.
+
+24
+00:01:16.600 --> 00:01:22.033
+A burst of spikes produced big gradients, and the learning rate turned them into a catastrophic leap.
+
+25
+00:01:22.333 --> 00:01:30.500
+The fix is a pair: lower the rate to one e minus three, and clip the gradient norm so no batch can throw the weights across the valley.
+
+26
+00:01:31.700 --> 00:01:32.490
+Let's recap.
+
+27
+00:01:32.490 --> 00:01:34.267
+Step opposite the gradient.
+
+28
+00:01:34.567 --> 00:01:36.400
+The learning rate scales every step.
+
+29
+00:01:36.700 --> 00:01:38.900
+Too big diverges, too small crawls.
+
+30
+00:01:39.200 --> 00:01:41.566
+And clip gradients as a safety net.
+
+31
+00:01:41.566 --> 00:01:44.067
+Next up: stochastic gradient descent.

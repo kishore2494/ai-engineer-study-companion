@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+The Adam optimizer.
+
+2
+00:00:02.500 --> 00:00:06.167
+Plain SGD uses one learning rate for a million weights.
+
+3
+00:00:06.167 --> 00:00:07.300
+Adam does better.
+
+4
+00:00:08.500 --> 00:00:10.233
+Real networks are lopsided.
+
+5
+00:00:10.533 --> 00:00:12.767
+Some weights see huge, steady gradients.
+
+6
+00:00:13.067 --> 00:00:14.733
+Others see rare, tiny ones.
+
+7
+00:00:15.033 --> 00:00:17.167
+A single shared learning rate suits neither.
+
+8
+00:00:18.367 --> 00:00:21.400
+Adam tracks two moving averages for every parameter.
+
+9
+00:00:21.700 --> 00:00:23.400
+Each new gradient feeds both.
+
+10
+00:00:23.700 --> 00:00:28.133
+M is the average of recent gradients: which direction has it been pointing?
+
+11
+00:00:28.433 --> 00:00:32.067
+V is the average of squared gradients: how big have they been?
+
+12
+00:00:32.367 --> 00:00:35.367
+Together they shape a step that is tuned to that one weight.
+
+13
+00:00:36.567 --> 00:00:38.667
+The step divides direction by scale.
+
+14
+00:00:38.967 --> 00:00:41.067
+On top, the momentum, the direction.
+
+15
+00:00:41.367 --> 00:00:43.768
+Underneath, the square root of the scale.
+
+16
+00:00:43.768 --> 00:00:47.400
+Big gradients get damped, and small steady ones get amplified.
+
+17
+00:00:48.600 --> 00:00:49.700
+What does it buy you?
+
+18
+00:00:50.000 --> 00:00:56.800
+On the same network, SGD needed about forty epochs to reach the loss that AdamW hit in about eight.
+
+19
+00:00:58.000 --> 00:00:59.500
+In code, it's one line.
+
+20
+00:00:59.800 --> 00:01:04.585
+We use AdamW, which decouples weight decay from the adaptive scaling.
+
+21
+00:01:04.585 --> 00:01:07.567
+It's the default for transformers and LLMs.
+
+22
+00:01:07.867 --> 00:01:15.067
+A good start is three e minus four, or around one e minus five to five e minus five when fine-tuning.
+
+23
+00:01:15.367 --> 00:01:16.967
+The loop itself doesn't change.
+
+24
+00:01:18.167 --> 00:01:19.433
+Here's how you'd use it.
+
+25
+00:01:19.733 --> 00:01:24.167
+You fine-tune a pretrained ResNet on satellite tiles for ship detection.
+
+26
+00:01:24.467 --> 00:01:33.833
+You reach for AdamW at one e minus four, because its per-weight scaling handles very different gradient sizes between early layers and the new head.
+
+27
+00:01:34.133 --> 00:01:37.700
+You get a strong baseline by lunch, without a learning-rate search.
+
+28
+00:01:38.900 --> 00:01:39.648
+Let's recap.
+
+29
+00:01:39.648 --> 00:01:42.700
+Adam tracks direction and scale for every weight.
+
+30
+00:01:43.000 --> 00:01:45.133
+So each parameter tunes its own step.
+
+31
+00:01:45.433 --> 00:01:49.833
+AdamW decouples weight decay, and it's the default for transformers.
+
+32
+00:01:50.133 --> 00:01:52.702
+Start around three e minus four.
+
+33
+00:01:52.702 --> 00:01:54.067
+Next up: RMSProp.
