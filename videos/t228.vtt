@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+SQL joins.
+
+2
+00:00:02.233 --> 00:00:04.400
+Choosing a join is never cosmetic.
+
+3
+00:00:04.400 --> 00:00:08.033
+It decides which rows quietly disappear from your report.
+
+4
+00:00:09.233 --> 00:00:11.983
+A join matches rows from two tables on a key.
+
+5
+00:00:11.983 --> 00:00:13.633
+There are three main kinds.
+
+6
+00:00:13.933 --> 00:00:16.800
+INNER keeps only the rows that match on both sides.
+
+7
+00:00:17.100 --> 00:00:22.133
+LEFT keeps everything on the left, and fills the right side with NULLs when there is no match.
+
+8
+00:00:22.433 --> 00:00:26.100
+FULL keeps both sides, and NULL-pads whichever one is missing.
+
+9
+00:00:27.300 --> 00:00:30.033
+Here is a LEFT JOIN of satellites to their passes.
+
+10
+00:00:30.333 --> 00:00:33.533
+Two satellites matched, so they carry real pass counts.
+
+11
+00:00:33.833 --> 00:00:35.054
+Aqua had no passes.
+
+12
+00:00:35.054 --> 00:00:36.790
+LEFT keeps it, with a NULL.
+
+13
+00:00:36.790 --> 00:00:41.867
+An inner join would have dropped exactly the silent satellite ops needs to see.
+
+14
+00:00:43.067 --> 00:00:45.500
+Now the trap that bites everyone in production.
+
+15
+00:00:45.800 --> 00:00:49.933
+One downlink row, a hundred gigabytes, belongs to station seven.
+
+16
+00:00:50.233 --> 00:00:54.867
+But the station table lists key seven twice, so the join finds two matches.
+
+17
+00:00:55.167 --> 00:00:57.600
+The downlink now appears twice in the output.
+
+18
+00:00:57.900 --> 00:01:00.662
+And every sum downstream is silently doubled.
+
+19
+00:01:00.662 --> 00:01:04.100
+When a total looks about double, suspect the join first.
+
+20
+00:01:05.300 --> 00:01:07.367
+Here is the satellite query in code.
+
+21
+00:01:07.667 --> 00:01:12.100
+We start from satellites and LEFT JOIN passes, so no satellite is lost.
+
+22
+00:01:12.400 --> 00:01:15.867
+The date filter on the right table goes inside the ON clause.
+
+23
+00:01:16.167 --> 00:01:20.833
+That way satellites with zero recent passes still show up with a count of zero.
+
+24
+00:01:22.033 --> 00:01:24.033
+Here is a real version of that trap.
+
+25
+00:01:24.333 --> 00:01:30.133
+The Svalbard ground station was decommissioned and later added again, so its key exists twice.
+
+26
+00:01:30.433 --> 00:01:32.667
+Every pass through it now matches two rows.
+
+27
+00:01:32.967 --> 00:01:37.267
+Total downlinked gigabytes for that station come out exactly doubled.
+
+28
+00:01:38.467 --> 00:01:39.227
+Let's recap.
+
+29
+00:01:39.227 --> 00:01:42.267
+INNER, LEFT, and FULL decide which rows survive.
+
+30
+00:01:42.567 --> 00:01:45.833
+Duplicate keys multiply rows and inflate your sums.
+
+31
+00:01:46.133 --> 00:01:48.467
+Filters on the right table belong in ON.
+
+32
+00:01:48.767 --> 00:01:52.614
+And a LEFT JOIN plus IS NULL finds rows with no partner.
+
+33
+00:01:52.614 --> 00:01:54.400
+Next up: window functions.

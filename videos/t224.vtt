@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Weights and Biases.
+
+2
+00:00:02.400 --> 00:00:07.100
+The hosted tracker that deep learning teams love, and its standout feature is sweeps.
+
+3
+00:00:08.300 --> 00:00:10.733
+Weights and Biases is a hosted tracker.
+
+4
+00:00:11.033 --> 00:00:15.700
+Dashboards stream live, so you watch loss curves update mid-epoch from any browser.
+
+5
+00:00:16.000 --> 00:00:18.600
+It has team reports and artifact versioning.
+
+6
+00:00:18.900 --> 00:00:23.367
+And its standout feature is sweeps, a managed hyperparameter search service.
+
+7
+00:00:24.567 --> 00:00:25.867
+Here is the sweep loop.
+
+8
+00:00:26.167 --> 00:00:30.700
+You declare a search space and a strategy: grid, random, or Bayesian.
+
+9
+00:00:31.000 --> 00:00:33.433
+The server suggests the next configuration.
+
+10
+00:00:33.733 --> 00:00:37.667
+Any machine running an agent pulls it, trains, and reports back.
+
+11
+00:00:37.967 --> 00:00:43.333
+Results flow into a parallel coordinates plot, showing which hyperparameters actually matter.
+
+12
+00:00:44.533 --> 00:00:46.000
+Here is a sweep config.
+
+13
+00:00:46.300 --> 00:00:47.722
+The method is Bayesian.
+
+14
+00:00:47.722 --> 00:00:49.700
+It could also be grid or random.
+
+15
+00:00:50.000 --> 00:00:52.600
+We want to maximize validation AUC.
+
+16
+00:00:52.900 --> 00:00:55.700
+And the search space covers learning rate and batch size.
+
+17
+00:00:56.000 --> 00:00:59.367
+The agent then runs thirty trainings, with a live dashboard.
+
+18
+00:01:00.567 --> 00:01:02.367
+How does it compare with MLflow?
+
+19
+00:01:02.667 --> 00:01:08.133
+W and B is hosted polish: zero setup, but your metrics live on their servers.
+
+20
+00:01:08.433 --> 00:01:12.333
+MLflow is self-host control: your infrastructure, your data.
+
+21
+00:01:12.633 --> 00:01:19.767
+Heavy deep learning teams often use W and B for research velocity, and MLflow for the production registry.
+
+22
+00:01:20.967 --> 00:01:25.033
+Your CNN on light curves plateaus at point eight nine AUC.
+
+23
+00:01:25.333 --> 00:01:29.767
+After days of hand-tuning, you run a thirty run Bayesian sweep overnight.
+
+24
+00:01:30.067 --> 00:01:37.300
+The plot shows every run above point nine one has a learning rate between two e minus four and eight e minus four.
+
+25
+00:01:37.600 --> 00:01:39.900
+Two insights, one plot, no more debate.
+
+26
+00:01:41.100 --> 00:01:41.959
+Let's recap.
+
+27
+00:01:41.959 --> 00:01:45.467
+W and B is a hosted tracker with live dashboards.
+
+28
+00:01:45.767 --> 00:01:48.100
+Sweeps are managed hyperparameter search.
+
+29
+00:01:48.400 --> 00:01:50.667
+The parallel plot shows which settings matter.
+
+30
+00:01:50.967 --> 00:01:55.378
+And the trade-off is hosted polish versus self-host control.
+
+31
+00:01:55.378 --> 00:01:56.333
+Next up: DVC.

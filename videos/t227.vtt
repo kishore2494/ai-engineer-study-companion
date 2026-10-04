@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+SQL fundamentals.
+
+2
+00:00:02.400 --> 00:00:05.933
+Every data conversation quietly assumes you know SQL.
+
+3
+00:00:05.933 --> 00:00:10.600
+One fact unlocks the whole language: the order a query really runs in.
+
+4
+00:00:11.800 --> 00:00:14.133
+SQL is declarative set logic.
+
+5
+00:00:14.433 --> 00:00:15.618
+You never write a loop.
+
+6
+00:00:15.618 --> 00:00:20.100
+You describe the shape of the result you want, and the planner works out how to get it.
+
+7
+00:00:21.300 --> 00:00:23.784
+Here is the order a query actually runs in.
+
+8
+00:00:23.784 --> 00:00:25.633
+It is not the order you type it.
+
+9
+00:00:25.933 --> 00:00:27.600
+First, FROM picks the tables.
+
+10
+00:00:27.900 --> 00:00:29.967
+WHERE then filters individual rows.
+
+11
+00:00:30.267 --> 00:00:33.133
+GROUP BY collapses each group into a single row.
+
+12
+00:00:33.433 --> 00:00:36.567
+HAVING filters those groups, after the counting is done.
+
+13
+00:00:36.867 --> 00:00:40.300
+Only now does SELECT build the columns and their aliases.
+
+14
+00:00:40.600 --> 00:00:42.700
+And ORDER BY sorts the final result.
+
+15
+00:00:43.900 --> 00:00:45.967
+This order explains the two filters.
+
+16
+00:00:46.267 --> 00:00:49.533
+WHERE runs before grouping, so it only sees single rows.
+
+17
+00:00:49.833 --> 00:00:53.333
+HAVING runs after aggregation, so it filters whole groups.
+
+18
+00:00:53.633 --> 00:00:56.615
+That is why HAVING can see a count and WHERE cannot.
+
+19
+00:00:56.615 --> 00:00:58.967
+Do as much filtering in WHERE as you can.
+
+20
+00:01:00.167 --> 00:01:01.261
+Here it is in code.
+
+21
+00:01:01.261 --> 00:01:03.967
+Which satellites had three or more weak passes?
+
+22
+00:01:04.267 --> 00:01:07.267
+WHERE throws away strong passes first, row by row.
+
+23
+00:01:07.567 --> 00:01:11.633
+Then we group by satellite, and HAVING keeps only groups with at least three.
+
+24
+00:01:11.933 --> 00:01:16.300
+Finally ORDER BY can use the weak passes alias, because it runs last.
+
+25
+00:01:17.500 --> 00:01:18.967
+Here is where this pays off.
+
+26
+00:01:19.267 --> 00:01:21.433
+Ops asks which satellites are degrading.
+
+27
+00:01:21.733 --> 00:01:25.933
+That is one GROUP BY with a HAVING, run straight on the telemetry database.
+
+28
+00:01:26.233 --> 00:01:30.067
+The answer comes back in seconds, with no pandas and no export.
+
+29
+00:01:31.267 --> 00:01:32.088
+Let's recap.
+
+30
+00:01:32.088 --> 00:01:33.390
+SQL is declarative.
+
+31
+00:01:33.390 --> 00:01:35.033
+You describe the result.
+
+32
+00:01:35.333 --> 00:01:37.800
+Clauses run in a fixed logical order.
+
+33
+00:01:38.100 --> 00:01:40.800
+WHERE filters rows, and HAVING filters groups.
+
+34
+00:01:41.100 --> 00:01:44.380
+And aliases only exist after SELECT runs.
+
+35
+00:01:44.380 --> 00:01:45.900
+Next up: SQL joins.
