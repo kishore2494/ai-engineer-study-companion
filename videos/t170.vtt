@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Milvus.
+
+2
+00:00:01.833 --> 00:00:04.919
+The heavy scale option, built for billions of vectors.
+
+3
+00:00:04.919 --> 00:00:07.033
+Let's see when that actually matters.
+
+4
+00:00:08.233 --> 00:00:11.967
+Milvus is built for billions of vectors under constant writes.
+
+5
+00:00:12.267 --> 00:00:14.900
+Its trick is to separate storage from compute.
+
+6
+00:00:16.100 --> 00:00:17.567
+Here is the architecture.
+
+7
+00:00:17.867 --> 00:00:20.800
+At the bottom, object storage holds the segments.
+
+8
+00:00:21.100 --> 00:00:24.500
+Index building runs on its own nodes, away from queries.
+
+9
+00:00:24.800 --> 00:00:28.100
+And stateless query nodes on top scale out horizontally.
+
+10
+00:00:29.300 --> 00:00:31.000
+Here is the interface, locally.
+
+11
+00:00:31.300 --> 00:00:36.433
+Milvus lite is an embedded build with the same API as a fifty node cluster.
+
+12
+00:00:36.733 --> 00:00:41.667
+Notice that you pick the index parameters yourself, here one thousand twenty four cells.
+
+13
+00:00:41.967 --> 00:00:45.792
+At query time, nprobe decides how many cells to search.
+
+14
+00:00:45.792 --> 00:00:49.200
+Low is fast and lossy, high is slow and thorough.
+
+15
+00:00:49.200 --> 00:00:50.800
+That dial is yours now.
+
+16
+00:00:52.000 --> 00:00:54.300
+Six stores later, here is the whole map.
+
+17
+00:00:54.600 --> 00:00:58.600
+FAISS is just a library, perfect for experiments on one machine.
+
+18
+00:00:58.900 --> 00:01:02.733
+Qdrant is the self-hosted production server, with rich filters.
+
+19
+00:01:03.033 --> 00:01:06.733
+Pinecone is managed, for when operations cost more than the bill.
+
+20
+00:01:07.033 --> 00:01:08.699
+And Milvus is for scale.
+
+21
+00:01:08.699 --> 00:01:10.433
+Overkill, until it isn't.
+
+22
+00:01:11.633 --> 00:01:14.100
+Picture the roadmap for Mission Control RAG.
+
+23
+00:01:14.400 --> 00:01:21.267
+The plan is to index every NASA technical report plus arXiv: about two billion chunks, growing daily.
+
+24
+00:01:21.567 --> 00:01:27.000
+That is where one Qdrant box stops being the answer, and separated storage becomes the point.
+
+25
+00:01:27.300 --> 00:01:34.867
+Until then, milvus lite teaches you the API, and the map is your interview answer: it depends, and here is the axis.
+
+26
+00:01:36.067 --> 00:01:36.819
+Let's recap.
+
+27
+00:01:36.819 --> 00:01:39.200
+Milvus separates storage from compute.
+
+28
+00:01:39.500 --> 00:01:41.533
+It is built for billions of vectors.
+
+29
+00:01:41.833 --> 00:01:45.000
+Milvus lite lets you learn the API on your laptop.
+
+30
+00:01:45.300 --> 00:01:48.586
+And you pick a store by scale and operations.
+
+31
+00:01:48.586 --> 00:01:49.900
+Next up: GraphRAG.

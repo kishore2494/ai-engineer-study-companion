@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+GraphRAG.
+
+2
+00:00:02.233 --> 00:00:04.485
+Ordinary retrieval has a blind spot.
+
+3
+00:00:04.485 --> 00:00:07.300
+Here is what it is, and how a graph fixes it.
+
+4
+00:00:08.500 --> 00:00:11.767
+Ask: what are the main themes across five hundred reports?
+
+5
+00:00:12.067 --> 00:00:17.700
+Top-k retrieval returns the five chunks most similar to the word themes, and they answer nothing.
+
+6
+00:00:18.000 --> 00:00:21.567
+The answer is a property of the whole corpus, not of any chunk.
+
+7
+00:00:22.767 --> 00:00:25.333
+GraphRAG changes what gets indexed.
+
+8
+00:00:25.633 --> 00:00:27.300
+It starts with the whole corpus.
+
+9
+00:00:27.600 --> 00:00:32.800
+An LLM extracts entities and relations from every chunk, forming a knowledge graph.
+
+10
+00:00:33.100 --> 00:00:37.767
+A clustering algorithm called Leiden groups the graph into topical neighborhoods.
+
+11
+00:00:38.067 --> 00:00:41.100
+Then the LLM writes a summary for each community.
+
+12
+00:00:42.300 --> 00:00:43.767
+Here is the shape in code.
+
+13
+00:00:44.067 --> 00:00:45.887
+The offline build runs once.
+
+14
+00:00:45.887 --> 00:00:49.723
+Extract entities, find communities, and summarize each one.
+
+15
+00:00:49.723 --> 00:00:51.933
+The summaries are the costly step.
+
+16
+00:00:52.233 --> 00:00:59.767
+At question time, we gather the relevant community summaries and synthesize one answer, map reduce style, not top k.
+
+17
+00:01:00.967 --> 00:01:02.300
+Here is a real case.
+
+18
+00:01:02.600 --> 00:01:07.833
+A program manager asks which subsystems fail most often after long eclipse periods.
+
+19
+00:01:08.133 --> 00:01:14.967
+Top k returns five random mentions, because the connection lives across thirty reports that never cite each other.
+
+20
+00:01:15.267 --> 00:01:20.533
+With a graph of subsystems, anomalies, and conditions, the community summaries can answer it.
+
+21
+00:01:21.733 --> 00:01:24.400
+The honest tradeoff: the build is expensive.
+
+22
+00:01:24.700 --> 00:01:27.755
+It makes an LLM call per chunk, plus summaries.
+
+23
+00:01:27.755 --> 00:01:31.200
+Use it when your questions truly span many documents.
+
+24
+00:01:32.400 --> 00:01:33.185
+Let's recap.
+
+25
+00:01:33.185 --> 00:01:35.800
+Chunk retrieval misses global questions.
+
+26
+00:01:36.100 --> 00:01:40.633
+GraphRAG builds a graph, clusters it, and summarizes each community.
+
+27
+00:01:40.933 --> 00:01:43.700
+Answers come from map reduce over those summaries.
+
+28
+00:01:44.000 --> 00:01:46.267
+The build is costly but done once.
+
+29
+00:01:46.267 --> 00:01:48.467
+Next up: knowledge graphs in RAG.

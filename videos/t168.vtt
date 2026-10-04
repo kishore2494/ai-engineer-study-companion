@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+Pinecone.
+
+2
+00:00:01.867 --> 00:00:04.492
+A vector database you rent by the API call.
+
+3
+00:00:04.492 --> 00:00:07.300
+Let's see what you gain, and what you give up.
+
+4
+00:00:08.500 --> 00:00:11.900
+Pinecone is a fully managed, serverless vector database.
+
+5
+00:00:12.200 --> 00:00:15.900
+There are no containers to run and no index servers to size.
+
+6
+00:00:16.200 --> 00:00:19.533
+You pay for what you use, and scaling happens invisibly.
+
+7
+00:00:20.733 --> 00:00:23.167
+Here is the signature move: the namespace.
+
+8
+00:00:23.467 --> 00:00:24.933
+You start with one index.
+
+9
+00:00:25.233 --> 00:00:29.333
+Inside it, each tenant gets a namespace, which is a hard partition.
+
+10
+00:00:29.633 --> 00:00:32.420
+A query on artemis walks only that branch.
+
+11
+00:00:32.420 --> 00:00:36.533
+Voyager vectors are structurally unreachable, by construction.
+
+12
+00:00:37.733 --> 00:00:40.033
+Here is the API, and it is small.
+
+13
+00:00:40.333 --> 00:00:42.716
+We connect with a key and open an index.
+
+14
+00:00:42.716 --> 00:00:43.967
+Nothing to provision.
+
+15
+00:00:44.267 --> 00:00:47.600
+Then we upsert each tenant's vectors into its own namespace.
+
+16
+00:00:47.900 --> 00:00:51.800
+And the query names artemis, so voyager results can never leak in.
+
+17
+00:00:53.000 --> 00:00:54.112
+The API is easy.
+
+18
+00:00:54.112 --> 00:00:56.267
+The real skill is the tradeoff.
+
+19
+00:00:56.567 --> 00:00:58.316
+Managed means no ops work.
+
+20
+00:00:58.316 --> 00:01:00.267
+Self-hosted means you run it.
+
+21
+00:01:00.567 --> 00:01:06.733
+But with Pinecone your embeddings live in a vendor's cloud, which matters for residency and compliance.
+
+22
+00:01:07.033 --> 00:01:10.900
+And cost scales with usage, rather than with hardware you already bought.
+
+23
+00:01:11.200 --> 00:01:15.205
+So the mature answer is never Pinecone good, or self-hosted good.
+
+24
+00:01:15.205 --> 00:01:17.300
+It is a short list of constraints.
+
+25
+00:01:18.500 --> 00:01:20.700
+Here is how it plays out on a real team.
+
+26
+00:01:21.000 --> 00:01:25.233
+You write a one-page memo comparing self-hosted Qdrant with Pinecone.
+
+27
+00:01:25.533 --> 00:01:32.367
+Pinecone means no ops, but your vectors leave the premises, and forty million queries a month has a price tag.
+
+28
+00:01:32.667 --> 00:01:37.973
+The decision lands on self-hosted, because of data residency, not technology.
+
+29
+00:01:37.973 --> 00:01:40.867
+That memo is the skill this topic teaches.
+
+30
+00:01:42.067 --> 00:01:42.850
+Let's recap.
+
+31
+00:01:42.850 --> 00:01:45.133
+Pinecone is managed and serverless.
+
+32
+00:01:45.433 --> 00:01:48.767
+Namespaces isolate each tenant inside one index.
+
+33
+00:01:49.067 --> 00:01:52.300
+The tradeoff is that your data lives in the vendor's cloud.
+
+34
+00:01:52.600 --> 00:01:54.422
+So choose by constraints.
+
+35
+00:01:54.422 --> 00:01:55.733
+Next up: Weaviate.
