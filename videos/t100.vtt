@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+ResNet.
+
+2
+00:00:01.933 --> 00:00:05.372
+Before 2015, going deeper made networks worse.
+
+3
+00:00:05.372 --> 00:00:06.867
+One idea fixed that.
+
+4
+00:00:08.067 --> 00:00:11.233
+Past about twenty conv layers, plain stacks got worse.
+
+5
+00:00:11.533 --> 00:00:15.066
+Not from overfitting, but because they were hard to optimize.
+
+6
+00:00:15.066 --> 00:00:18.367
+The error signal degrades through every layer it crosses.
+
+7
+00:00:19.567 --> 00:00:20.600
+Here's the fix.
+
+8
+00:00:20.900 --> 00:00:22.633
+The block takes an input, x.
+
+9
+00:00:22.933 --> 00:00:25.433
+The layers compute a correction, F of x.
+
+10
+00:00:25.733 --> 00:00:29.500
+And a skip connection adds the original input back to the output.
+
+11
+00:00:30.700 --> 00:00:31.733
+As an equation.
+
+12
+00:00:32.033 --> 00:00:36.000
+The block only has to learn the residual, the correction to the identity.
+
+13
+00:00:36.300 --> 00:00:38.467
+The skip carries the input through untouched.
+
+14
+00:00:38.767 --> 00:00:42.967
+So learning change nothing is easy, and extra depth can no longer hurt.
+
+15
+00:00:44.167 --> 00:00:46.133
+The deeper reason is the gradient.
+
+16
+00:00:46.433 --> 00:00:48.900
+At the addition, backprop's signal splits.
+
+17
+00:00:49.200 --> 00:00:55.467
+One copy flows straight through the skip, unmodified, bypassing every multiplication that could shrink it.
+
+18
+00:00:55.767 --> 00:01:01.400
+That took depth from twenty layers to over a hundred and fifty, and reappears in every transformer.
+
+19
+00:01:02.600 --> 00:01:05.433
+In practice, you fine-tune a pretrained ResNet.
+
+20
+00:01:05.733 --> 00:01:08.667
+Load ResNet eighteen with its ImageNet weights.
+
+21
+00:01:08.967 --> 00:01:10.900
+Freeze every pretrained parameter.
+
+22
+00:01:11.200 --> 00:01:14.000
+Replace only the final layer with a two-class head.
+
+23
+00:01:14.300 --> 00:01:15.633
+And train just that head.
+
+24
+00:01:16.833 --> 00:01:17.900
+Here's the payoff.
+
+25
+00:01:18.200 --> 00:01:23.700
+You have two thousand labeled satellite tiles, hopeless for training a deep CNN from scratch.
+
+26
+00:01:24.000 --> 00:01:28.033
+But the pretrained backbone already knows edges, textures, and shapes.
+
+27
+00:01:28.333 --> 00:01:35.257
+Freeze, replace the head, train five epochs: about ninety four percent, versus seventy eight from scratch.
+
+28
+00:01:35.257 --> 00:01:38.000
+It's the template for LLM fine-tuning too.
+
+29
+00:01:39.200 --> 00:01:40.008
+Let's recap.
+
+30
+00:01:40.008 --> 00:01:42.633
+Plain deep stacks are hard to optimize.
+
+31
+00:01:42.933 --> 00:01:45.700
+Skip connections compute F of x plus x.
+
+32
+00:01:46.000 --> 00:01:48.667
+They give gradients a highway back to the first layer.
+
+33
+00:01:48.967 --> 00:01:53.228
+And pretrained ResNets are the default for custom vision.
+
+34
+00:01:53.228 --> 00:01:54.200
+Next up: VGG.
