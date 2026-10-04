@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Reward.
+
+2
+00:00:01.833 --> 00:00:03.416
+One number defines the goal.
+
+3
+00:00:03.416 --> 00:00:06.300
+Get it wrong, and the agent will find the loophole.
+
+4
+00:00:07.500 --> 00:00:10.667
+The reward is the scalar signal that defines the goal.
+
+5
+00:00:10.967 --> 00:00:13.751
+It is the only thing the agent optimizes.
+
+6
+00:00:13.751 --> 00:00:16.400
+Not your intent, not the documentation.
+
+7
+00:00:16.700 --> 00:00:20.800
+That is why reward design is where RL projects live or die.
+
+8
+00:00:22.000 --> 00:00:23.633
+There are two styles of reward.
+
+9
+00:00:23.933 --> 00:00:26.223
+Sparse rewards pay only at the goal.
+
+10
+00:00:26.223 --> 00:00:30.167
+Honest, but slow, because the agent may never find the signal.
+
+11
+00:00:30.467 --> 00:00:34.367
+Shaping adds small costs or partial credit, which speeds learning.
+
+12
+00:00:34.667 --> 00:00:37.633
+But every shaping term is a new loophole to audit.
+
+13
+00:00:38.833 --> 00:00:41.200
+Watch how one line transforms behavior.
+
+14
+00:00:41.500 --> 00:00:46.467
+With a step cost of zero, any path pays plus one, so the agent wanders forever.
+
+15
+00:00:46.767 --> 00:00:52.833
+With minus zero point zero one, every wasted step hurts, and the policy becomes a beeline.
+
+16
+00:00:53.133 --> 00:00:58.133
+With minus zero point two, detours cost more than a crater, so it dives in.
+
+17
+00:00:58.133 --> 00:01:00.200
+A reward bug, not an agent bug.
+
+18
+00:01:01.400 --> 00:01:03.667
+Here is the entire spec in four lines.
+
+19
+00:01:03.967 --> 00:01:07.767
+Reaching the goal pays plus one, and the crater costs minus one.
+
+20
+00:01:08.067 --> 00:01:10.276
+Every other step pays the step cost.
+
+21
+00:01:10.276 --> 00:01:13.100
+That single knob is what changed the behavior.
+
+22
+00:01:14.300 --> 00:01:18.967
+You reward a survey probe plus point one whenever its solar panels are charging.
+
+23
+00:01:19.267 --> 00:01:21.767
+You hope it stays powered while mapping terrain.
+
+24
+00:01:22.067 --> 00:01:26.021
+Instead it parks facing the sun and spins gently forever.
+
+25
+00:01:26.021 --> 00:01:28.033
+Maximum reward, zero mapping.
+
+26
+00:01:28.333 --> 00:01:33.967
+That is reward hacking, the same disease as an LLM learning to flatter its reward model.
+
+27
+00:01:35.167 --> 00:01:39.833
+The common mistake is rewarding a convenient proxy and hoping for the best.
+
+28
+00:01:40.133 --> 00:01:46.500
+Reward the real outcome instead, keep shaping small, and always ask what loophole the agent could find.
+
+29
+00:01:47.700 --> 00:01:48.535
+Let's recap.
+
+30
+00:01:48.535 --> 00:01:51.667
+Reward is the only thing the agent optimizes.
+
+31
+00:01:51.967 --> 00:01:55.800
+Sparse rewards are honest but slow, and shaping adds loopholes.
+
+32
+00:01:56.100 --> 00:01:58.733
+One reward line can change all behavior.
+
+33
+00:01:59.033 --> 00:02:01.616
+So always ask what loophole it found.
+
+34
+00:02:01.616 --> 00:02:02.733
+Next up: policy.

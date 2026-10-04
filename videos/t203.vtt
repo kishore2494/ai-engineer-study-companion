@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Policy.
+
+2
+00:00:01.833 --> 00:00:07.000
+Values, buffers and critics all exist for one reason: to improve this one mapping.
+
+3
+00:00:08.200 --> 00:00:10.442
+A policy maps a state to an action.
+
+4
+00:00:10.442 --> 00:00:11.467
+It is the agent.
+
+5
+00:00:11.767 --> 00:00:15.633
+A deterministic policy gives one fixed answer for each state.
+
+6
+00:00:15.933 --> 00:00:20.100
+A stochastic policy gives a probability distribution over actions.
+
+7
+00:00:21.300 --> 00:00:23.333
+Here is a policy for a small grid.
+
+8
+00:00:23.633 --> 00:00:26.867
+Each cell simply holds an arrow: the action to take there.
+
+9
+00:00:27.167 --> 00:00:29.425
+One cell keeps a little randomness.
+
+10
+00:00:29.425 --> 00:00:32.200
+Exploration lives inside the policy itself.
+
+11
+00:00:33.400 --> 00:00:36.533
+Stochastic policies matter more than they first appear.
+
+12
+00:00:36.833 --> 00:00:41.267
+Deterministic ones give one action and have no built-in exploration.
+
+13
+00:00:41.567 --> 00:00:43.567
+Stochastic ones explore naturally.
+
+14
+00:00:43.867 --> 00:00:48.300
+And they are differentiable, which policy-gradient methods like PPO need.
+
+15
+00:00:48.600 --> 00:00:54.200
+An LLM generating tokens is exactly this: a distribution over next actions.
+
+16
+00:00:55.400 --> 00:00:57.200
+Policies are easy to compare.
+
+17
+00:00:57.500 --> 00:01:01.200
+A random policy averages about minus zero point four.
+
+18
+00:01:01.500 --> 00:01:07.167
+A greedy policy, picking the best known action, averages about plus zero point nine four.
+
+19
+00:01:08.367 --> 00:01:10.300
+Here are those two policies in code.
+
+20
+00:01:10.600 --> 00:01:12.667
+The random policy picks any action.
+
+21
+00:01:12.967 --> 00:01:17.300
+The greedy policy picks the action with the highest value in the Q-table.
+
+22
+00:01:17.600 --> 00:01:20.633
+Averaged over episodes, that gap is the whole point.
+
+23
+00:01:21.833 --> 00:01:24.233
+Ask of any RL system: what ships?
+
+24
+00:01:24.533 --> 00:01:28.600
+The training rig stays home: buffer, optimizer, reward function.
+
+25
+00:01:28.900 --> 00:01:33.667
+Only the policy goes up: a sixteen row table, or a twenty kilobyte network.
+
+26
+00:01:33.967 --> 00:01:35.075
+Same as an LLM.
+
+27
+00:01:35.075 --> 00:01:37.733
+The served model is a frozen policy.
+
+28
+00:01:38.933 --> 00:01:39.733
+Let's recap.
+
+29
+00:01:39.733 --> 00:01:41.867
+The policy maps state to action.
+
+30
+00:01:41.867 --> 00:01:42.933
+It is the agent.
+
+31
+00:01:43.233 --> 00:01:45.700
+It can be deterministic or stochastic.
+
+32
+00:01:46.000 --> 00:01:49.100
+Stochastic policies explore and are differentiable.
+
+33
+00:01:49.400 --> 00:01:51.149
+And only the policy ships.
+
+34
+00:01:51.149 --> 00:01:53.033
+Next up: the value function.

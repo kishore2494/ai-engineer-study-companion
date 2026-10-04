@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Q-learning.
+
+2
+00:00:01.900 --> 00:00:04.643
+A table, one update rule, and enough practice.
+
+3
+00:00:04.643 --> 00:00:07.267
+That is all it takes to learn good behavior.
+
+4
+00:00:08.467 --> 00:00:10.667
+After each step, we nudge the estimate.
+
+5
+00:00:10.967 --> 00:00:16.767
+The target is the reward we actually got, plus the best value we believe is available next.
+
+6
+00:00:17.067 --> 00:00:22.667
+The gap between that target and our old estimate is the TD error: promise versus evidence.
+
+7
+00:00:22.967 --> 00:00:26.133
+Alpha, the learning rate, controls how big the nudge is.
+
+8
+00:00:27.333 --> 00:00:28.333
+Here is the loop.
+
+9
+00:00:28.633 --> 00:00:31.551
+With probability epsilon, explore randomly.
+
+10
+00:00:31.551 --> 00:00:34.333
+Otherwise, exploit the best known action.
+
+11
+00:00:34.633 --> 00:00:37.533
+Take the step, and observe the reward and next state.
+
+12
+00:00:37.833 --> 00:00:39.587
+Apply the nudge, and repeat.
+
+13
+00:00:39.587 --> 00:00:44.533
+It is off-policy: it bootstraps from the best next action even while exploring.
+
+14
+00:00:45.733 --> 00:00:48.567
+After training, the Q-table looks like a heat grid.
+
+15
+00:00:48.867 --> 00:00:53.033
+Rows are states, columns are actions, and brightness is learned value.
+
+16
+00:00:53.333 --> 00:00:56.500
+Read a row's brightest cell, and you are reading the policy.
+
+17
+00:00:57.700 --> 00:00:58.900
+Here it is in code.
+
+18
+00:00:59.200 --> 00:01:01.400
+We choose an action epsilon greedily.
+
+19
+00:01:01.700 --> 00:01:05.867
+Then we compute the best next value, and nudge the table toward the target.
+
+20
+00:01:07.067 --> 00:01:08.667
+Run this on the Mars grid.
+
+21
+00:01:08.967 --> 00:01:12.031
+Two thousand episodes finish in under a second.
+
+22
+00:01:12.031 --> 00:01:19.267
+The reward climbs from minus one, falling into the crater, to about plus zero point nine four: a clean beeline.
+
+23
+00:01:20.467 --> 00:01:21.633
+Now make it visible.
+
+24
+00:01:21.933 --> 00:01:23.300
+Log the reward curve.
+
+25
+00:01:23.600 --> 00:01:28.700
+Plot the Q-table as a heat grid at episodes zero, one hundred, and five hundred.
+
+26
+00:01:29.000 --> 00:01:32.565
+You literally watch value flow backward from the lander.
+
+27
+00:01:32.565 --> 00:01:35.367
+That is the best RL intuition you can build.
+
+28
+00:01:36.567 --> 00:01:37.360
+Let's recap.
+
+29
+00:01:37.360 --> 00:01:40.733
+Nudge Q toward the reward plus the best next value.
+
+30
+00:01:41.033 --> 00:01:42.567
+The gap is the TD error.
+
+31
+00:01:42.867 --> 00:01:45.867
+It is off-policy, behaving epsilon greedily.
+
+32
+00:01:46.167 --> 00:01:49.367
+Swap the table for a network and you get DQN.
+
+33
+00:01:49.367 --> 00:01:50.433
+Next up: SARSA.
