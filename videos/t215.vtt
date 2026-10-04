@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+RLlib.
+
+2
+00:00:01.967 --> 00:00:05.333
+What do you do when reinforcement learning outgrows one machine?
+
+3
+00:00:06.533 --> 00:00:10.667
+RLlib is Ray's distributed reinforcement learning library.
+
+4
+00:00:10.967 --> 00:00:15.033
+Ray takes care of scheduling, fault tolerance, and moving data around.
+
+5
+00:00:15.333 --> 00:00:20.300
+It adds multi-agent environments, population-based training, and Ray Tune.
+
+6
+00:00:21.500 --> 00:00:22.967
+Here is the architecture.
+
+7
+00:00:23.267 --> 00:00:29.033
+Many rollout workers simulate the environment, fanned out across the CPUs of a cluster.
+
+8
+00:00:29.333 --> 00:00:35.367
+They send their experience to a single learner, which does the gradient updates, usually on a GPU.
+
+9
+00:00:35.667 --> 00:00:39.500
+Then fresh weights flow back out to the workers, and the loop continues.
+
+10
+00:00:40.700 --> 00:00:43.033
+Here is a PPO setup in RLlib.
+
+11
+00:00:43.333 --> 00:00:44.700
+We name the environment.
+
+12
+00:00:45.000 --> 00:00:47.300
+We ask for eight parallel rollout workers.
+
+13
+00:00:47.600 --> 00:00:50.733
+Their experience is pooled into large training batches.
+
+14
+00:00:51.033 --> 00:00:53.136
+Then we call train in a loop.
+
+15
+00:00:53.136 --> 00:00:55.456
+The PPO math is the same as SB3.
+
+16
+00:00:55.456 --> 00:00:58.067
+Only where rollouts run has changed.
+
+17
+00:00:59.267 --> 00:01:00.567
+So which one should you pick?
+
+18
+00:01:00.867 --> 00:01:04.012
+SB3 has a small configuration surface.
+
+19
+00:01:04.012 --> 00:01:05.833
+RLlib's is far larger.
+
+20
+00:01:06.133 --> 00:01:09.035
+SB3 handles one machine of simulators.
+
+21
+00:01:09.035 --> 00:01:12.700
+RLlib shines with hundreds of parallel rollouts.
+
+22
+00:01:13.000 --> 00:01:18.000
+And RLlib means inheriting the operational weight of a distributed system.
+
+23
+00:01:18.300 --> 00:01:22.233
+The rule of thumb: SB3 until one machine is the bottleneck.
+
+24
+00:01:22.233 --> 00:01:25.033
+Knowing that line is the interview answer.
+
+25
+00:01:26.233 --> 00:01:28.067
+Here is the classic situation.
+
+26
+00:01:28.367 --> 00:01:34.482
+Your cubesat environment runs at three hundred steps a second, and PPO needs fifty million steps.
+
+27
+00:01:34.482 --> 00:01:36.500
+That is two days on one machine.
+
+28
+00:01:36.800 --> 00:01:42.333
+So you point RLlib at your existing Kubernetes cluster, with two hundred environment runners.
+
+29
+00:01:42.633 --> 00:01:44.936
+The same training finishes over lunch.
+
+30
+00:01:44.936 --> 00:01:47.967
+Not better math, just the rollout loop spread out.
+
+31
+00:01:49.167 --> 00:01:50.024
+Let's recap.
+
+32
+00:01:50.024 --> 00:01:53.667
+RLlib is distributed reinforcement learning on Ray.
+
+33
+00:01:53.967 --> 00:01:56.033
+One learner, many rollout workers.
+
+34
+00:01:56.333 --> 00:02:00.767
+The price is a bigger configuration and the weight of a distributed system.
+
+35
+00:02:01.067 --> 00:02:06.086
+So start with SB3, and move to RLlib when one machine is the limit.
+
+36
+00:02:06.086 --> 00:02:08.033
+Next up: the ML lifecycle.

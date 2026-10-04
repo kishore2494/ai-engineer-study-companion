@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+Stable Baselines3.
+
+2
+00:00:02.633 --> 00:00:06.200
+The sane default for applying RL rather than researching it.
+
+3
+00:00:07.400 --> 00:00:13.267
+Stable Baselines3 gives you reliable, tested implementations of the standard algorithms.
+
+4
+00:00:13.567 --> 00:00:20.300
+PPO, A2C, DQN, SAC, TD3, behind an API that feels like scikit-learn.
+
+5
+00:00:21.500 --> 00:00:23.400
+Why does that matter so much in RL?
+
+6
+00:00:23.700 --> 00:00:27.396
+Because implementations are easy to get subtly wrong.
+
+7
+00:00:27.396 --> 00:00:31.581
+A famous blog post lists thirty seven details for PPO alone.
+
+8
+00:00:31.581 --> 00:00:37.300
+With SB3, when a run fails, suspect your environment and reward, not the plumbing.
+
+9
+00:00:38.500 --> 00:00:40.133
+The workflow is five steps.
+
+10
+00:00:40.433 --> 00:00:41.433
+Create a model.
+
+11
+00:00:41.733 --> 00:00:42.533
+Call learn.
+
+12
+00:00:42.833 --> 00:00:43.533
+Save it.
+
+13
+00:00:43.833 --> 00:00:44.933
+Load it anywhere.
+
+14
+00:00:45.233 --> 00:00:46.200
+And evaluate.
+
+15
+00:00:47.400 --> 00:00:48.367
+A few perks.
+
+16
+00:00:48.667 --> 00:00:53.033
+Swapping algorithms is one word, so honest baselines are nearly free.
+
+17
+00:00:53.333 --> 00:00:59.100
+You also get evaluation, checkpoint callbacks, vectorized environments, and TensorBoard logging.
+
+18
+00:00:59.400 --> 00:01:03.709
+Its boundary is single-machine training with standard algorithms.
+
+19
+00:01:03.709 --> 00:01:05.233
+Beyond that, use RLlib.
+
+20
+00:01:06.433 --> 00:01:07.900
+Here is the whole template.
+
+21
+00:01:08.200 --> 00:01:10.267
+Build a PPO model, and train it.
+
+22
+00:01:10.567 --> 00:01:11.128
+Save it.
+
+23
+00:01:11.128 --> 00:01:11.900
+Train once.
+
+24
+00:01:12.200 --> 00:01:15.703
+Reload it anywhere, and evaluate over twenty episodes.
+
+25
+00:01:15.703 --> 00:01:18.233
+To swap the algorithm, change one word.
+
+26
+00:01:19.433 --> 00:01:23.233
+LunarLander is the closest gym environment to your space world.
+
+27
+00:01:23.533 --> 00:01:26.700
+Thrust, gravity, a landing pad, and fuel penalties.
+
+28
+00:01:27.000 --> 00:01:29.398
+This script is your permanent template.
+
+29
+00:01:29.398 --> 00:01:33.333
+Your custom telemetry environment drops into the same few lines.
+
+30
+00:01:33.633 --> 00:01:37.400
+And keep the saved model: it becomes your first registered version.
+
+31
+00:01:38.600 --> 00:01:39.483
+Let's recap.
+
+32
+00:01:39.483 --> 00:01:42.500
+SB3 gives you tested standard algorithms.
+
+33
+00:01:42.800 --> 00:01:45.533
+Construct, learn, save, load, evaluate.
+
+34
+00:01:45.833 --> 00:01:49.400
+Swapping algorithms is one word, so baselines are cheap.
+
+35
+00:01:49.700 --> 00:01:52.067
+Beyond one machine, use RLlib.
+
+36
+00:01:52.067 --> 00:01:53.567
+Next up: Gymnasium.
