@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+BitsAndBytes.
+
+2
+00:00:02.200 --> 00:00:07.000
+The fastest path from a checkpoint on the Hub to a model running on a small GPU.
+
+3
+00:00:08.200 --> 00:00:10.433
+BitsAndBytes quantizes at load time.
+
+4
+00:00:10.733 --> 00:00:13.733
+You start with any ordinary fp16 checkpoint.
+
+5
+00:00:14.033 --> 00:00:16.100
+You pass a single config object.
+
+6
+00:00:16.400 --> 00:00:19.233
+The weights are compressed on the fly as they stream in.
+
+7
+00:00:19.533 --> 00:00:22.700
+No pre-quantized file, and no calibration pass.
+
+8
+00:00:23.900 --> 00:00:25.167
+Three settings matter.
+
+9
+00:00:25.467 --> 00:00:31.200
+NF4 is a four bit grid whose bins follow the normal distribution real weights have.
+
+10
+00:00:31.500 --> 00:00:38.400
+The compute dtype means matmuls dequantize to bf16, so storage is small but math stays wide.
+
+11
+00:00:38.700 --> 00:00:44.233
+Double quantization compresses the scale factors too, saving about point four bits per weight.
+
+12
+00:00:45.433 --> 00:00:47.400
+How does it compare to the other methods?
+
+13
+00:00:47.700 --> 00:00:50.854
+BitsAndBytes quantizes at load time.
+
+14
+00:00:50.854 --> 00:00:53.833
+GPTQ and AWQ are prepared offline.
+
+15
+00:00:54.133 --> 00:00:58.333
+BitsAndBytes gives maximum convenience, but slightly slower inference.
+
+16
+00:00:58.633 --> 00:01:02.300
+So it's ideal for experiments, less so for hot serving paths.
+
+17
+00:01:03.500 --> 00:01:04.700
+Here is the config.
+
+18
+00:01:05.000 --> 00:01:07.733
+Turn on four bit loading with the NF4 type.
+
+19
+00:01:08.033 --> 00:01:10.733
+Set bf16 as the compute dtype.
+
+20
+00:01:11.033 --> 00:01:12.667
+Turn on double quantization.
+
+21
+00:01:12.967 --> 00:01:16.867
+The model now takes about four gigabytes, down from fourteen and a half.
+
+22
+00:01:18.067 --> 00:01:21.100
+Say you're choosing the answering model for Mission Control.
+
+23
+00:01:21.400 --> 00:01:26.967
+You want to audition five seven billion candidates, but only two have pre-quantized files.
+
+24
+00:01:27.267 --> 00:01:29.477
+BitsAndBytes removes the blocker.
+
+25
+00:01:29.477 --> 00:01:34.700
+Every checkpoint loads in four bit, and all five fit your twelve gigabyte GPU.
+
+26
+00:01:35.000 --> 00:01:38.100
+Then graduate the winner to AWQ for serving.
+
+27
+00:01:39.300 --> 00:01:40.133
+Let's recap.
+
+28
+00:01:40.133 --> 00:01:42.633
+BitsAndBytes quantizes at load time.
+
+29
+00:01:42.933 --> 00:01:46.200
+NF4 for storage, bf16 for compute.
+
+30
+00:01:46.500 --> 00:01:48.900
+Double quantization saves a bit more.
+
+31
+00:01:49.200 --> 00:01:52.590
+Use it for experiments, then graduate to AWQ.
+
+32
+00:01:52.590 --> 00:01:54.700
+Next up: prompt engineering.

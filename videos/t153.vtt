@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.400
+Context window management.
+
+2
+00:00:02.700 --> 00:00:04.993
+The context window is a hard limit.
+
+3
+00:00:04.993 --> 00:00:08.333
+How you spend it decides cost, speed, and accuracy.
+
+4
+00:00:09.533 --> 00:00:11.444
+Treat the window as architecture.
+
+5
+00:00:11.444 --> 00:00:12.833
+You decide three things.
+
+6
+00:00:13.133 --> 00:00:15.600
+What always goes in, like the system prompt.
+
+7
+00:00:15.900 --> 00:00:18.300
+What gets retrieved fresh for each request.
+
+8
+00:00:18.600 --> 00:00:20.633
+And what gets summarized, or dropped.
+
+9
+00:00:21.833 --> 00:00:23.900
+Here is a request, top to bottom.
+
+10
+00:00:24.200 --> 00:00:25.867
+Stable parts sit at the top.
+
+11
+00:00:26.167 --> 00:00:28.333
+Then a short summary of the oldest turns.
+
+12
+00:00:28.633 --> 00:00:30.700
+Then the newest turns, word for word.
+
+13
+00:00:31.000 --> 00:00:32.933
+Then the retrieved chunks and the question.
+
+14
+00:00:33.233 --> 00:00:34.689
+And room for the answer.
+
+15
+00:00:34.689 --> 00:00:36.933
+Budget backwards: reserve that first.
+
+16
+00:00:38.133 --> 00:00:39.500
+Position matters too.
+
+17
+00:00:39.800 --> 00:00:43.333
+Models attend best to the start and end of a long context.
+
+18
+00:00:43.633 --> 00:00:47.067
+Bury the key chunk in the middle, and accuracy quietly sinks.
+
+19
+00:00:48.267 --> 00:00:50.900
+Providers also cache a repeated prefix.
+
+20
+00:00:51.200 --> 00:00:54.600
+Put the question first, and the prefix changes every time.
+
+21
+00:00:54.900 --> 00:00:58.300
+Put stable text first, and the prefix stays identical.
+
+22
+00:00:58.600 --> 00:01:02.267
+Identical leading tokens cost a fraction, and return faster.
+
+23
+00:01:02.567 --> 00:01:04.867
+So: stable first, volatile last.
+
+24
+00:01:06.067 --> 00:01:08.133
+Here is the budget idea in Python.
+
+25
+00:01:08.433 --> 00:01:11.067
+Window minus answer headroom gives our budget.
+
+26
+00:01:11.367 --> 00:01:15.867
+While history is over budget, we replace the oldest four turns with one summary.
+
+27
+00:01:16.167 --> 00:01:19.633
+And the system prompt always goes first, so the cache can hit.
+
+28
+00:01:20.833 --> 00:01:23.033
+A real case from Mission Control RAG.
+
+29
+00:01:23.333 --> 00:01:28.233
+Every request carried a four thousand token glossary of NASA abbreviations.
+
+30
+00:01:28.533 --> 00:01:31.167
+One reordering: move it to position zero.
+
+31
+00:01:31.467 --> 00:01:36.000
+Caching cut its cost about ninety percent and saved four hundred milliseconds.
+
+32
+00:01:37.200 --> 00:01:38.010
+Let's recap.
+
+33
+00:01:38.010 --> 00:01:39.900
+The window is a hard budget.
+
+34
+00:01:40.200 --> 00:01:43.300
+Summarize old turns, keep recent ones verbatim.
+
+35
+00:01:43.600 --> 00:01:45.767
+Keep key facts away from the lost middle.
+
+36
+00:01:46.067 --> 00:01:47.667
+And order for the cache.
+
+37
+00:01:47.667 --> 00:01:50.733
+Next up: hallucination, causes and mitigation.

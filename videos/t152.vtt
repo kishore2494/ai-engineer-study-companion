@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+Prompt engineering.
+
+2
+00:00:02.267 --> 00:00:08.333
+It's a discipline with a repeatable anatomy, and a professional habit that separates seniors from dabblers.
+
+3
+00:00:09.533 --> 00:00:11.467
+Every production prompt has layers.
+
+4
+00:00:11.767 --> 00:00:13.600
+A role sets the model's priors.
+
+5
+00:00:13.900 --> 00:00:18.767
+Explicit constraints cut whole failure modes, like answer only from the sources.
+
+6
+00:00:19.067 --> 00:00:22.767
+Few shot examples show rather than tell, especially for format.
+
+7
+00:00:23.067 --> 00:00:25.800
+An output schema makes the reply parseable.
+
+8
+00:00:26.100 --> 00:00:30.167
+And reasoning room lets the model think before answering hard questions.
+
+9
+00:00:31.367 --> 00:00:32.533
+Here's one in code.
+
+10
+00:00:32.833 --> 00:00:34.433
+The first line gives the role.
+
+11
+00:00:34.733 --> 00:00:39.000
+Then a constraint, plus an escape hatch for when the logs don't contain the answer.
+
+12
+00:00:39.300 --> 00:00:41.433
+A single worked example shows the style.
+
+13
+00:00:41.733 --> 00:00:44.500
+And a JSON schema keeps the output parseable.
+
+14
+00:00:45.700 --> 00:00:47.763
+Here's the habit that matters most.
+
+15
+00:00:47.763 --> 00:00:52.067
+The mistake is editing a production prompt because one output looked odd.
+
+16
+00:00:52.367 --> 00:00:56.833
+Instead, version prompts like code, and change them only against a measurement.
+
+17
+00:00:58.033 --> 00:00:59.967
+Here's what that looks like in practice.
+
+18
+00:01:00.267 --> 00:01:04.408
+Mission Control's answer prompt lives in a file with a changelog.
+
+19
+00:01:04.408 --> 00:01:07.467
+Version one scored sixty one percent acceptable.
+
+20
+00:01:07.767 --> 00:01:09.700
+Version two reached seventy four.
+
+21
+00:01:10.000 --> 00:01:15.114
+Adding the few shot example and the escape hatch brought version three to eighty three.
+
+22
+00:01:15.114 --> 00:01:18.700
+That table is what prompt engineering means on a senior team.
+
+23
+00:01:19.900 --> 00:01:21.100
+Let's put it together.
+
+24
+00:01:21.400 --> 00:01:24.233
+The prompt is a versioned file with a changelog.
+
+25
+00:01:24.533 --> 00:01:28.533
+The same twenty questions run through every version, with scores logged.
+
+26
+00:01:28.833 --> 00:01:32.567
+The gain from sixty one to eighty three is provable, not a hunch.
+
+27
+00:01:33.767 --> 00:01:34.519
+Let's recap.
+
+28
+00:01:34.519 --> 00:01:39.033
+A prompt has a role, constraints, examples, a schema and reasoning room.
+
+29
+00:01:39.333 --> 00:01:40.800
+Version prompts like code.
+
+30
+00:01:41.100 --> 00:01:43.233
+Change them only against a measurement.
+
+31
+00:01:43.533 --> 00:01:46.772
+Three variants, the same inputs, a scored table.
+
+32
+00:01:46.772 --> 00:01:49.133
+Next up: context window management.

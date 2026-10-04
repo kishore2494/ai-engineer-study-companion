@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+GGUF.
+
+2
+00:00:02.233 --> 00:00:07.300
+The file format that lets language models run on laptops, Macs and edge boxes.
+
+3
+00:00:08.500 --> 00:00:13.233
+GGUF is the file format of the llama dot cpp ecosystem.
+
+4
+00:00:13.533 --> 00:00:16.733
+Everything the runtime needs is packed into one file.
+
+5
+00:00:17.033 --> 00:00:21.200
+Metadata first: the architecture, context length and RoPE settings.
+
+6
+00:00:21.500 --> 00:00:22.767
+Then the tokenizer.
+
+7
+00:00:23.067 --> 00:00:27.500
+And finally the weight tensors, with quantization baked in at a named level.
+
+8
+00:00:28.700 --> 00:00:30.867
+The level names encode the trade-off.
+
+9
+00:00:31.167 --> 00:00:33.700
+Q eight is near lossless, but the biggest.
+
+10
+00:00:34.000 --> 00:00:36.933
+Q four K M is the community's sweet spot.
+
+11
+00:00:37.233 --> 00:00:39.272
+Q two K is the desperate option.
+
+12
+00:00:39.272 --> 00:00:43.667
+A bigger number means more bits, more gigabytes, and better fidelity.
+
+13
+00:00:44.867 --> 00:00:46.467
+Here's what that means in size.
+
+14
+00:00:46.767 --> 00:00:52.000
+The four bit version of an eight billion parameter model is about four point nine gigabytes.
+
+15
+00:00:52.300 --> 00:00:54.767
+The eight bit version is about eight and a half.
+
+16
+00:00:55.967 --> 00:00:58.767
+In practice, you meet GGUF through Ollama.
+
+17
+00:00:59.067 --> 00:01:02.233
+You choose the quantization level right in the name you pull.
+
+18
+00:01:02.533 --> 00:01:06.533
+Then run the same prompt on both, and compare answer quality and speed.
+
+19
+00:01:07.733 --> 00:01:09.033
+Here's why this matters.
+
+20
+00:01:09.333 --> 00:01:12.967
+You demo Mission Control at a meetup with unreliable Wi-Fi.
+
+21
+00:01:13.267 --> 00:01:19.433
+The whole stack runs locally: Chroma on disk, and a Q four K M model in Ollama on your MacBook.
+
+22
+00:01:19.733 --> 00:01:25.067
+One file pulled the night before, and the demo survives even if the network dies mid talk.
+
+23
+00:01:26.267 --> 00:01:27.302
+Let's recap.
+
+24
+00:01:27.302 --> 00:01:31.100
+GGUF is one portable file for llama dot cpp.
+
+25
+00:01:31.400 --> 00:01:34.800
+It holds metadata, tokenizer and quantized weights.
+
+26
+00:01:35.100 --> 00:01:38.267
+Level names encode the size versus quality trade.
+
+27
+00:01:38.567 --> 00:01:41.572
+And Q four K M is the everyday default.
+
+28
+00:01:41.572 --> 00:01:43.267
+Next up: BitsAndBytes.

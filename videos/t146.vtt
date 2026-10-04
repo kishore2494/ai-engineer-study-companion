@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+PEFT.
+
+2
+00:00:02.100 --> 00:00:04.081
+Parameter-efficient fine-tuning.
+
+3
+00:00:04.081 --> 00:00:07.300
+LoRA is the star, but it has siblings worth knowing.
+
+4
+00:00:08.500 --> 00:00:11.867
+PEFT is both an umbrella term and a library.
+
+5
+00:00:12.167 --> 00:00:18.427
+The term covers any method that adapts a model while touching only a small fraction of its parameters.
+
+6
+00:00:18.427 --> 00:00:21.067
+The library puts them behind one interface.
+
+7
+00:00:21.367 --> 00:00:25.400
+The base model stays frozen, so forgetting is structurally impossible.
+
+8
+00:00:26.600 --> 00:00:27.633
+Meet the family.
+
+9
+00:00:27.933 --> 00:00:31.118
+LoRA adds low rank bypass matrices in attention.
+
+10
+00:00:31.118 --> 00:00:34.700
+It's the default, with the best quality on most tasks.
+
+11
+00:00:35.000 --> 00:00:39.633
+Prompt tuning learns about twenty virtual token embeddings placed before the input.
+
+12
+00:00:39.933 --> 00:00:45.200
+Prefix tuning learns virtual key and value vectors inside every attention layer.
+
+13
+00:00:45.500 --> 00:00:50.667
+And IA3 learns per channel scaling vectors, with even fewer parameters than LoRA.
+
+14
+00:00:51.867 --> 00:00:53.033
+Here's the trade-off.
+
+15
+00:00:53.333 --> 00:00:59.067
+LoRA trains about point two two percent of parameters, and gives the best quality on most tasks.
+
+16
+00:00:59.367 --> 00:01:03.434
+Prompt tuning trains only about point zero zero three percent.
+
+17
+00:01:03.434 --> 00:01:05.533
+It's weaker, but absurdly cheap.
+
+18
+00:01:06.733 --> 00:01:08.833
+The library makes comparison easy.
+
+19
+00:01:09.133 --> 00:01:12.933
+We define two configs, one for LoRA and one for prompt tuning.
+
+20
+00:01:13.233 --> 00:01:17.367
+Then the same call wraps the model with either, and prints how much is trainable.
+
+21
+00:01:18.567 --> 00:01:20.100
+A great portfolio move.
+
+22
+00:01:20.400 --> 00:01:24.000
+Run the same small fine-tune twice, LoRA and prompt tuning.
+
+23
+00:01:24.300 --> 00:01:30.500
+Commit a two row table: trainable parameters, minutes to train, and quality on ten held out logs.
+
+24
+00:01:30.800 --> 00:01:34.433
+It shows you understand the design space, not just a tutorial.
+
+25
+00:01:35.633 --> 00:01:36.481
+Let's recap.
+
+26
+00:01:36.481 --> 00:01:39.800
+PEFT adapts a model by touching few parameters.
+
+27
+00:01:40.100 --> 00:01:41.367
+LoRA is the default.
+
+28
+00:01:41.667 --> 00:01:45.167
+Prompt tuning, prefix tuning and IA3 are its siblings.
+
+29
+00:01:45.467 --> 00:01:48.556
+The base stays frozen and adapters stay tiny.
+
+30
+00:01:48.556 --> 00:01:50.067
+Next up: quantization.
