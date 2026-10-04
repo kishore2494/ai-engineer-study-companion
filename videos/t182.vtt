@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.300
+Multi-agent systems.
+
+2
+00:00:02.600 --> 00:00:05.010
+Splitting work across agents sounds elegant.
+
+3
+00:00:05.010 --> 00:00:07.967
+But it has a price, and you should be able to name it.
+
+4
+00:00:09.167 --> 00:00:13.767
+A multi-agent system is several specialized agents passing messages.
+
+5
+00:00:14.067 --> 00:00:15.933
+A researcher gathers the data.
+
+6
+00:00:16.233 --> 00:00:18.000
+It writes to a shared scratchpad.
+
+7
+00:00:18.300 --> 00:00:21.158
+And a writer turns that into the final brief.
+
+8
+00:00:21.158 --> 00:00:25.667
+Each agent gets a focused prompt, focused tools, and a cleaner context.
+
+9
+00:00:26.867 --> 00:00:28.102
+Now the reality check.
+
+10
+00:00:28.102 --> 00:00:29.900
+There are three costs to recite.
+
+11
+00:00:30.200 --> 00:00:34.433
+First, coordination overhead: the handoff logic and the shared state.
+
+12
+00:00:34.733 --> 00:00:36.369
+Second, error compounding.
+
+13
+00:00:36.369 --> 00:00:39.767
+Every hop can garble what the previous agent produced.
+
+14
+00:00:40.067 --> 00:00:42.097
+Third, token multiplication.
+
+15
+00:00:42.097 --> 00:00:45.867
+Context gets re-sent for every agent, on every turn.
+
+16
+00:00:47.067 --> 00:00:49.067
+So here is the professional stance.
+
+17
+00:00:49.367 --> 00:00:52.133
+Always build the single-agent baseline first.
+
+18
+00:00:52.433 --> 00:01:03.600
+Reach for multiple agents only when one agent measurably fails, perhaps because one prompt cannot hold two conflicting personas, or one context cannot hold both workloads.
+
+19
+00:01:04.800 --> 00:01:07.067
+Here is an experiment that keeps you honest.
+
+20
+00:01:07.367 --> 00:01:08.234
+First, the pair.
+
+21
+00:01:08.234 --> 00:01:11.867
+The researcher gathers, and the writer drafts from the shared file.
+
+22
+00:01:12.167 --> 00:01:14.700
+Then the same task given to a single agent.
+
+23
+00:01:15.000 --> 00:01:18.600
+We compare the token counts, and then blind-grade both briefs.
+
+24
+00:01:19.800 --> 00:01:23.767
+Here is what happened when the Orbital Research Agent was split into three.
+
+25
+00:01:24.067 --> 00:01:26.990
+The trio cost two point three times the tokens.
+
+26
+00:01:26.990 --> 00:01:31.033
+The solo brief had equal facts, but it buried the hazard summary.
+
+27
+00:01:32.233 --> 00:01:33.400
+Here is the verdict.
+
+28
+00:01:33.700 --> 00:01:37.167
+You split the agent into a fetcher, an analyst, and a writer.
+
+29
+00:01:37.467 --> 00:01:39.400
+You measure it against the baseline.
+
+30
+00:01:39.700 --> 00:01:46.256
+So you keep the researcher and writer pair for the weekly report only, and stay single-agent everywhere else.
+
+31
+00:01:46.256 --> 00:01:50.467
+That measured, partial adoption is the judgment interviewers look for.
+
+32
+00:01:51.667 --> 00:01:52.473
+Let's recap.
+
+33
+00:01:52.473 --> 00:01:56.033
+Multi-agent systems are specialists passing messages.
+
+34
+00:01:56.333 --> 00:02:00.067
+They cost coordination, compounding errors, and extra tokens.
+
+35
+00:02:00.367 --> 00:02:03.900
+Build the baseline first, and split only on a measured failure.
+
+36
+00:02:04.200 --> 00:02:06.723
+Then adopt it only where it pays off.
+
+37
+00:02:06.723 --> 00:02:08.700
+Next up: agent orchestration.

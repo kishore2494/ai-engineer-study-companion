@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Long-term memory.
+
+2
+00:00:02.200 --> 00:00:05.733
+A context window forgets everything when the session ends.
+
+3
+00:00:05.733 --> 00:00:08.900
+Long-term memory is how an agent keeps what matters.
+
+4
+00:00:10.100 --> 00:00:16.067
+Long-term memory keeps important facts outside the context window, usually in a vector store.
+
+5
+00:00:16.367 --> 00:00:21.633
+Reading from it is just retrieval, the same RAG you already know, but over your own past.
+
+6
+00:00:21.933 --> 00:00:25.267
+The genuinely hard part is deciding what to write down.
+
+7
+00:00:26.467 --> 00:00:28.867
+Here are the two phases, sharing one store.
+
+8
+00:00:29.167 --> 00:00:31.833
+When a session ends, we look back over the history.
+
+9
+00:00:32.133 --> 00:00:35.967
+The model extracts a few short facts, and we write them into the store.
+
+10
+00:00:36.267 --> 00:00:40.400
+Later, a new session starts, and we search the store with the user's message.
+
+11
+00:00:40.700 --> 00:00:45.033
+The best matches are added to the system prompt, so the agent already knows you.
+
+12
+00:00:46.233 --> 00:00:47.459
+So what should we write?
+
+13
+00:00:47.459 --> 00:00:48.633
+There are two extremes.
+
+14
+00:00:48.933 --> 00:00:52.733
+Dumping whole transcripts is easy, but it buries the useful bits.
+
+15
+00:00:53.033 --> 00:00:57.067
+Atomic facts, like the user tracks Apophis, keep retrieval sharp.
+
+16
+00:00:57.367 --> 00:01:01.033
+Good systems also deduplicate, and expire stale facts.
+
+17
+00:01:01.333 --> 00:01:03.567
+Store durable facts, not transcripts.
+
+18
+00:01:04.767 --> 00:01:07.933
+Here is the whole thing in Python, with a Chroma collection.
+
+19
+00:01:08.233 --> 00:01:13.433
+At the end of a session, we ask the model for a few durable facts and add them to the store.
+
+20
+00:01:13.733 --> 00:01:19.867
+At the start of the next one, we query with the user's message and append the top three hits to the system prompt.
+
+21
+00:01:21.067 --> 00:01:24.333
+Picture the Orbital Research Agent after a week of use.
+
+22
+00:01:24.633 --> 00:01:32.600
+Its memory holds a few facts: the user tracks Apophis, prefers lunar distances, and cares only about big solar storms.
+
+23
+00:01:32.900 --> 00:01:35.284
+Now kill the process and restart it.
+
+24
+00:01:35.284 --> 00:01:37.800
+Then ask, anything new on my asteroid?
+
+25
+00:01:38.100 --> 00:01:42.619
+Retrieval pulls the Apophis fact into the prompt, and the agent answers.
+
+26
+00:01:42.619 --> 00:01:45.067
+That restart proves the memory is real.
+
+27
+00:01:46.267 --> 00:01:47.060
+Let's recap.
+
+28
+00:01:47.060 --> 00:01:50.367
+Long-term memory lives outside the context window.
+
+29
+00:01:50.667 --> 00:01:51.724
+Reading is easy.
+
+30
+00:01:51.724 --> 00:01:54.433
+The write policy is the real design work.
+
+31
+00:01:54.733 --> 00:01:57.533
+Store durable, atomic facts, not transcripts.
+
+32
+00:01:57.833 --> 00:01:59.700
+And prove it with a restart.
+
+33
+00:01:59.700 --> 00:02:01.367
+Next up: episodic memory.

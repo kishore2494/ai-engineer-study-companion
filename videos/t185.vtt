@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+Reflection.
+
+2
+00:00:01.933 --> 00:00:07.100
+Two extra model calls, no new tools, no new data, and noticeably better answers.
+
+3
+00:00:08.300 --> 00:00:12.167
+Reflection is a second pass where the model critiques its own draft.
+
+4
+00:00:12.467 --> 00:00:13.533
+First, a draft.
+
+5
+00:00:13.833 --> 00:00:16.933
+Then a critique, whose only job is to find flaws.
+
+6
+00:00:17.233 --> 00:00:19.867
+Then a revision that fixes every flaw it found.
+
+7
+00:00:21.067 --> 00:00:22.100
+Why does it work?
+
+8
+00:00:22.400 --> 00:00:25.167
+Critiquing is an easier task than generating.
+
+9
+00:00:25.467 --> 00:00:33.000
+Reading a draft for flaws needs less juggling of constraints than writing one, so the same model does better as its own reviewer.
+
+10
+00:00:34.200 --> 00:00:35.767
+Let's watch the three roles.
+
+11
+00:00:36.067 --> 00:00:37.733
+The first call writes a draft.
+
+12
+00:00:38.033 --> 00:00:40.667
+The draft says soon, with a distance in miles.
+
+13
+00:00:40.967 --> 00:00:43.400
+The second call is a separate harsh reviewer.
+
+14
+00:00:43.700 --> 00:00:46.502
+It spots the missing date and the mixed units.
+
+15
+00:00:46.502 --> 00:00:53.567
+Keep roles in separate calls, because asking for a great, self-checked answer in one call loses most of the benefit.
+
+16
+00:00:54.767 --> 00:00:56.600
+In code, it is just three calls.
+
+17
+00:00:56.900 --> 00:00:58.467
+One call drafts the answer.
+
+18
+00:00:58.767 --> 00:01:01.467
+A second call lists flaws, and only flaws.
+
+19
+00:01:01.767 --> 00:01:05.833
+And a third rewrites the answer with both the draft and the flaws in view.
+
+20
+00:01:07.033 --> 00:01:09.900
+Now the evidence from the Orbital Research Agent.
+
+21
+00:01:10.200 --> 00:01:16.067
+Scoring ten hazard summaries against a checklist, only four were clean without reflection.
+
+22
+00:01:16.067 --> 00:01:17.305
+With it, nine were.
+
+23
+00:01:17.305 --> 00:01:20.825
+The critique reliably flagged that soon is not a date.
+
+24
+00:01:20.825 --> 00:01:24.867
+Two extra calls per report is the cheapest lift you will find.
+
+25
+00:01:26.067 --> 00:01:26.891
+Let's recap.
+
+26
+00:01:26.891 --> 00:01:29.500
+Reflection is draft, critique, revise.
+
+27
+00:01:29.800 --> 00:01:32.033
+Critiquing is easier than generating.
+
+28
+00:01:32.333 --> 00:01:34.033
+Keep each role in its own call.
+
+29
+00:01:34.333 --> 00:01:36.438
+And always measure with and without.
+
+30
+00:01:36.438 --> 00:01:37.900
+Next up: self-correction.

@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.333
+Supervisor and hierarchical patterns.
+
+2
+00:00:03.633 --> 00:00:07.833
+Instead of hoping the model got it right, put a checkpoint in front of every answer.
+
+3
+00:00:09.033 --> 00:00:12.933
+In the supervisor pattern, one agent is in charge of the others.
+
+4
+00:00:13.233 --> 00:00:21.567
+It assigns work, reviews each output against explicit criteria, and demands a retry with specific critique when a check fails.
+
+5
+00:00:21.867 --> 00:00:24.367
+You trade extra tokens for reliability.
+
+6
+00:00:25.567 --> 00:00:26.567
+Here is the loop.
+
+7
+00:00:26.867 --> 00:00:28.400
+The worker drafts an answer.
+
+8
+00:00:28.700 --> 00:00:31.367
+The supervisor checks it against a concrete list.
+
+9
+00:00:31.667 --> 00:00:35.247
+If a check fails, the worker gets exactly which one and why.
+
+10
+00:00:35.247 --> 00:00:38.828
+That specificity makes the second try better than the first.
+
+11
+00:00:38.828 --> 00:00:40.200
+And the loop is capped.
+
+12
+00:00:41.400 --> 00:00:42.967
+Three rules make this work.
+
+13
+00:00:43.267 --> 00:00:44.519
+Criteria, not vibes.
+
+14
+00:00:44.519 --> 00:00:48.900
+The supervisor checks a concrete list, not whether the answer is good.
+
+15
+00:00:49.200 --> 00:00:51.733
+Specific critique, naming the failed check.
+
+16
+00:00:52.033 --> 00:00:55.200
+And bounded loops: past the cap, escalate to a human.
+
+17
+00:00:56.400 --> 00:00:57.800
+Here is the loop in code.
+
+18
+00:00:58.100 --> 00:01:03.567
+Up to three times, the worker drafts and the supervisor checks the draft against the criteria.
+
+19
+00:01:03.867 --> 00:01:05.197
+If it passes, we stop.
+
+20
+00:01:05.197 --> 00:01:09.067
+If not, the failures are added to the task for the next attempt.
+
+21
+00:01:09.367 --> 00:01:12.957
+And if all three fail, the else branch escalates to a human.
+
+22
+00:01:12.957 --> 00:01:14.333
+Never an infinite loop.
+
+23
+00:01:15.533 --> 00:01:16.900
+Here is a real catch.
+
+24
+00:01:17.200 --> 00:01:25.400
+The weekly report writer stated a CME speed of three thousand one hundred kilometers per second, a number that appears nowhere in the data.
+
+25
+00:01:25.700 --> 00:01:32.567
+The third criterion, no numbers absent from tool outputs, fails, and the writer is told exactly why.
+
+26
+00:01:32.867 --> 00:01:35.115
+The revision cites the real figure.
+
+27
+00:01:35.115 --> 00:01:40.767
+The cost was two extra model calls, and no fabricated number ever reached a stakeholder.
+
+28
+00:01:41.967 --> 00:01:42.779
+Let's recap.
+
+29
+00:01:42.779 --> 00:01:46.300
+A supervisor reviews worker output against criteria.
+
+30
+00:01:46.600 --> 00:01:48.867
+Failures come back as specific critique.
+
+31
+00:01:49.167 --> 00:01:51.400
+Loops are capped, then a human steps in.
+
+32
+00:01:51.700 --> 00:01:54.299
+You spend tokens to get a checkable gate.
+
+33
+00:01:54.299 --> 00:01:55.567
+Next up: reflection.
