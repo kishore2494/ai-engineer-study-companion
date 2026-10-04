@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.633
+AWS core services.
+
+2
+00:00:02.933 --> 00:00:10.467
+Choosing between EC2, Lambda, and ECS is a cost, latency, and ops decision you should argue out loud.
+
+3
+00:00:11.667 --> 00:00:14.200
+AWS compute comes in three shapes.
+
+4
+00:00:14.500 --> 00:00:16.642
+EC2 is a raw virtual machine.
+
+5
+00:00:16.642 --> 00:00:21.000
+Full control, always on, always billed, and yours to patch.
+
+6
+00:00:21.300 --> 00:00:22.683
+Lambda is a function.
+
+7
+00:00:22.683 --> 00:00:29.200
+It scales to zero, so idle costs nothing, but it caps at fifteen minutes and pays a cold-start tax.
+
+8
+00:00:29.500 --> 00:00:35.433
+ECS runs containers with managed orchestration, and with Fargate, you never see a server.
+
+9
+00:00:36.633 --> 00:00:37.831
+So how do you choose?
+
+10
+00:00:37.831 --> 00:00:38.800
+Look at the load.
+
+11
+00:00:39.100 --> 00:00:43.246
+Spiky and low volume, like ten requests a day, belongs on Lambda.
+
+12
+00:00:43.246 --> 00:00:44.267
+You pay pennies.
+
+13
+00:00:44.567 --> 00:00:51.267
+Steady and high volume belongs on containers or EC2, because per-invocation pricing gets brutal.
+
+14
+00:00:51.567 --> 00:00:57.000
+Weird dependencies, GPUs, or long jobs go to EC2, the escape hatch.
+
+15
+00:00:58.200 --> 00:00:59.800
+Here is the cost argument.
+
+16
+00:01:00.100 --> 00:01:06.000
+At ten requests a day, Lambda is nearly free, while an idle EC2 box costs real money.
+
+17
+00:01:06.300 --> 00:01:11.733
+At a hundred requests a second, Lambda cost climbs, and cold starts hurt tail latency.
+
+18
+00:01:12.033 --> 00:01:13.733
+Containers win at steady scale.
+
+19
+00:01:14.933 --> 00:01:16.867
+Here are the three shapes as commands.
+
+20
+00:01:17.167 --> 00:01:19.633
+Lambda is a function invoke, paid per call.
+
+21
+00:01:19.933 --> 00:01:23.433
+ECS scales by raising the desired container count.
+
+22
+00:01:23.733 --> 00:01:29.000
+And with EC2, you simply log in to a computer that is yours, including the patching.
+
+23
+00:01:30.200 --> 00:01:32.367
+Here is the story to tell in an interview.
+
+24
+00:01:32.667 --> 00:01:39.600
+The FastAPI backend starts with about fifty requests a day, on Lambda behind API Gateway.
+
+25
+00:01:39.900 --> 00:01:42.877
+Launch week brings forty requests a second.
+
+26
+00:01:42.877 --> 00:01:47.100
+Cold starts push p99 past three seconds, and the bill climbs.
+
+27
+00:01:47.400 --> 00:01:51.133
+So it moves to ECS Fargate with two always-warm tasks.
+
+28
+00:01:52.333 --> 00:01:53.192
+Let's recap.
+
+29
+00:01:53.192 --> 00:01:56.267
+EC2 is a virtual machine you own and patch.
+
+30
+00:01:56.567 --> 00:01:59.400
+Lambda scales to zero, but has cold starts.
+
+31
+00:01:59.700 --> 00:02:02.067
+ECS runs managed containers.
+
+32
+00:02:02.367 --> 00:02:04.443
+Match the shape to the load.
+
+33
+00:02:04.443 --> 00:02:05.333
+Next up: S3.

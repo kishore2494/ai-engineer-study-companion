@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+AWS S3.
+
+2
+00:00:02.800 --> 00:00:05.245
+S3 is the universal data substrate.
+
+3
+00:00:05.245 --> 00:00:09.367
+Datasets, model weights, logs, and backups all end up here.
+
+4
+00:00:10.567 --> 00:00:12.120
+S3 is object storage.
+
+5
+00:00:12.120 --> 00:00:13.600
+The model is simple.
+
+6
+00:00:13.900 --> 00:00:18.100
+A bucket, with a globally unique name, holds objects addressed by key.
+
+7
+00:00:18.400 --> 00:00:19.815
+The namespace is flat.
+
+8
+00:00:19.815 --> 00:00:24.833
+That path is just one string, and the folders are an illusion drawn by prefix.
+
+9
+00:00:26.033 --> 00:00:28.600
+Storage classes trade cost for access speed.
+
+10
+00:00:28.900 --> 00:00:31.833
+Standard is fast, and costs the most per gigabyte.
+
+11
+00:00:32.133 --> 00:00:35.700
+Infrequent Access is cheaper to keep, but costlier to read.
+
+12
+00:00:36.000 --> 00:00:38.247
+Glacier is the cheapest and slowest.
+
+13
+00:00:38.247 --> 00:00:41.367
+Colder means cheaper per gigabyte, slower to read.
+
+14
+00:00:42.567 --> 00:00:44.900
+Now the standard way to share a private file.
+
+15
+00:00:45.200 --> 00:00:47.433
+A browser asks your backend for a file.
+
+16
+00:00:47.733 --> 00:00:52.067
+The backend signs a URL that works for exactly as long as you say.
+
+17
+00:00:52.367 --> 00:00:58.800
+The browser then fetches straight from S3, with no credentials, and your server is out of the download path.
+
+18
+00:01:00.000 --> 00:01:02.000
+Here is the code, with boto3.
+
+19
+00:01:02.300 --> 00:01:06.200
+Uploading takes a bucket name and a key, which together are the address.
+
+20
+00:01:06.500 --> 00:01:09.782
+Then we generate a presigned URL for that object.
+
+21
+00:01:09.782 --> 00:01:13.600
+It works in any browser, and it expires in sixty seconds.
+
+22
+00:01:14.800 --> 00:01:16.130
+Two beginner mistakes.
+
+23
+00:01:16.130 --> 00:01:20.967
+Treating a prefix like a real folder, and trying to edit bytes inside an object.
+
+24
+00:01:21.267 --> 00:01:24.120
+Keys are flat strings, and objects are immutable.
+
+25
+00:01:24.120 --> 00:01:25.867
+You overwrite the whole thing.
+
+26
+00:01:27.067 --> 00:01:29.300
+Count what your stack already keeps in S3.
+
+27
+00:01:29.600 --> 00:01:35.700
+Training datasets, model weights, raw API payloads, evaluation reports, and trace exports.
+
+28
+00:01:36.000 --> 00:01:38.433
+A scientist asks for last month's report.
+
+29
+00:01:38.733 --> 00:01:41.345
+Your endpoint doesn't proxy the file.
+
+30
+00:01:41.345 --> 00:01:45.933
+It returns a sixty second presigned URL, and S3 serves the bytes.
+
+31
+00:01:47.133 --> 00:01:47.983
+Let's recap.
+
+32
+00:01:47.983 --> 00:01:51.100
+S3 is object storage, with buckets and keys.
+
+33
+00:01:51.400 --> 00:01:54.667
+The namespace is flat, and folders are just prefixes.
+
+34
+00:01:54.967 --> 00:01:57.233
+Storage classes trade cost for speed.
+
+35
+00:01:57.533 --> 00:02:00.540
+And presigned URLs give temporary access.
+
+36
+00:02:00.540 --> 00:02:02.300
+Next up: VPC networking.

@@ -93,29 +93,29 @@ This is how modern AI apps stream.
 A generator yields LLM tokens the instant they arrive.
 
 24
-00:01:12.533 --> 00:01:18.467
+00:01:12.533 --> 00:01:18.033
 FastAPI's streaming response sends them on, so the browser paints words in real time.
 
 25
-00:01:18.767 --> 00:01:24.700
+00:01:18.333 --> 00:01:24.267
 Ingestion works the same way: four gigabytes of reports flow through embedding in constant memory.
 
 26
-00:01:25.900 --> 00:01:26.722
+00:01:25.467 --> 00:01:26.289
 Let's recap.
 
 27
-00:01:26.722 --> 00:01:28.367
+00:01:26.289 --> 00:01:27.933
 Yield makes a generator.
 
 28
-00:01:28.667 --> 00:01:31.200
+00:01:28.233 --> 00:01:30.767
 Values come on demand, in constant memory.
 
 29
-00:01:31.500 --> 00:01:34.333
+00:01:31.067 --> 00:01:33.900
 You can chain generators into lazy pipelines.
 
 30
-00:01:34.633 --> 00:01:36.200
+00:01:34.200 --> 00:01:35.767
 Next up: iterators.
