@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+LangChain.
+
+2
+00:00:01.967 --> 00:00:06.576
+It is the most famous LLM framework, and also the most argued about.
+
+3
+00:00:06.576 --> 00:00:08.000
+Let's see both sides.
+
+4
+00:00:09.200 --> 00:00:11.167
+LangChain gives you three big things.
+
+5
+00:00:11.467 --> 00:00:14.169
+At the bottom, a huge integration catalog.
+
+6
+00:00:14.169 --> 00:00:18.867
+Nearly every vector database, model provider, and reranker has a wrapper.
+
+7
+00:00:19.167 --> 00:00:24.033
+On top of that, document loaders for a hundred file formats and APIs.
+
+8
+00:00:24.333 --> 00:00:27.733
+And chains, composable pipelines written with a pipe symbol.
+
+9
+00:00:28.933 --> 00:00:30.433
+Here's a retrieval chain.
+
+10
+00:00:30.733 --> 00:00:33.267
+A retriever fetches context for the question.
+
+11
+00:00:33.567 --> 00:00:36.500
+A prompt template fills in that context and the question.
+
+12
+00:00:36.800 --> 00:00:38.300
+The model writes the answer.
+
+13
+00:00:38.600 --> 00:00:41.419
+And an output parser turns it into a plain string.
+
+14
+00:00:41.419 --> 00:00:43.167
+The pipe symbol joins them all.
+
+15
+00:00:44.367 --> 00:00:46.100
+Here it is in code, shortened.
+
+16
+00:00:46.400 --> 00:00:50.333
+We define a prompt template with two blanks, the context and the question.
+
+17
+00:00:50.633 --> 00:00:56.067
+Then the pipe symbol composes the retriever, prompt, model, and parser into one chain.
+
+18
+00:00:56.367 --> 00:00:59.400
+One call to invoke runs the entire pipeline.
+
+19
+00:01:00.600 --> 00:01:04.100
+Now the honest criticism, which you should know from experience.
+
+20
+00:01:04.400 --> 00:01:07.633
+LangChain wins on loaders and on swapping retrievers.
+
+21
+00:01:07.933 --> 00:01:13.533
+But simple things pass through many wrapper layers, and debugging means tunneling through framework code.
+
+22
+00:01:13.833 --> 00:01:16.749
+The professional answer isn't that LangChain is bad.
+
+23
+00:01:16.749 --> 00:01:18.600
+It's knowing where each one wins.
+
+24
+00:01:19.800 --> 00:01:22.167
+Here's an exercise that makes you credible.
+
+25
+00:01:22.467 --> 00:01:25.842
+Rebuild your retrieval question answering in LangChain.
+
+26
+00:01:25.842 --> 00:01:27.867
+It takes about twenty five lines.
+
+27
+00:01:28.167 --> 00:01:31.767
+Keep your raw Python version, around sixty lines, beside it.
+
+28
+00:01:32.067 --> 00:01:34.387
+LangChain wins on the PDF loader.
+
+29
+00:01:34.387 --> 00:01:39.943
+Raw Python wins the day a query fails and the trace is five frames, not thirty.
+
+30
+00:01:39.943 --> 00:01:42.967
+Now your interview answer has real numbers.
+
+31
+00:01:44.167 --> 00:01:44.987
+Let's recap.
+
+32
+00:01:44.987 --> 00:01:49.433
+LangChain offers chains, loaders, and a huge integration catalog.
+
+33
+00:01:49.733 --> 00:01:52.467
+The pipe syntax composes steps into one chain.
+
+34
+00:01:52.767 --> 00:01:55.133
+Its known weakness is abstraction bloat.
+
+35
+00:01:55.433 --> 00:01:58.604
+So build it both ways and give a measured answer.
+
+36
+00:01:58.604 --> 00:01:59.833
+Next up: LangGraph.

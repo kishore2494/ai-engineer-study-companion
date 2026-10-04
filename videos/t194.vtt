@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+CrewAI.
+
+2
+00:00:01.967 --> 00:00:06.720
+This framework gets a multi-agent demo running faster than almost any other.
+
+3
+00:00:06.720 --> 00:00:08.033
+Here's how it thinks.
+
+4
+00:00:09.233 --> 00:00:12.667
+In CrewAI, you define each agent with three fields.
+
+5
+00:00:12.967 --> 00:00:14.700
+A role: who the agent is.
+
+6
+00:00:15.000 --> 00:00:16.667
+A goal: what it must achieve.
+
+7
+00:00:16.967 --> 00:00:20.067
+And a backstory: context that shapes how it behaves.
+
+8
+00:00:21.267 --> 00:00:22.933
+Now let's remove the magic.
+
+9
+00:00:23.233 --> 00:00:26.000
+Role, goal, and backstory are just prompt text.
+
+10
+00:00:26.300 --> 00:00:29.590
+CrewAI drops them into each agent's system prompt.
+
+11
+00:00:29.590 --> 00:00:33.933
+So a backstory can't fix a missing tool or a bad task description.
+
+12
+00:00:35.133 --> 00:00:38.433
+Agents join together as a crew, and you pick a process.
+
+13
+00:00:38.733 --> 00:00:41.800
+With the sequential process, the researcher goes first.
+
+14
+00:00:42.100 --> 00:00:44.733
+Its output feeds forward into the writer's task.
+
+15
+00:00:45.033 --> 00:00:47.367
+And the writer produces the final result.
+
+16
+00:00:48.567 --> 00:00:50.400
+Here it is in code, trimmed down.
+
+17
+00:00:50.700 --> 00:00:53.600
+The researcher gets a role, a goal, and a backstory.
+
+18
+00:00:53.900 --> 00:00:55.900
+The writer gets its own three fields.
+
+19
+00:00:56.200 --> 00:01:00.233
+We put both in a crew with their tasks, and choose the sequential process.
+
+20
+00:01:00.533 --> 00:01:02.100
+Then kickoff starts the run.
+
+21
+00:01:03.300 --> 00:01:04.933
+Try this on a weekly brief.
+
+22
+00:01:05.233 --> 00:01:09.467
+Rebuild your researcher and writer pair as a crew, with verbose logging on.
+
+23
+00:01:09.767 --> 00:01:14.840
+The logs show the researcher's answer injected straight into the writer's context.
+
+24
+00:01:14.840 --> 00:01:17.933
+The handoff you used to plumb by hand is now free.
+
+25
+00:01:18.233 --> 00:01:21.451
+But the crew costs about fifteen percent more tokens.
+
+26
+00:01:21.451 --> 00:01:24.000
+That's the trade: convenience for control.
+
+27
+00:01:25.200 --> 00:01:25.987
+Let's recap.
+
+28
+00:01:25.987 --> 00:01:29.133
+Agents are defined by role, goal, and backstory.
+
+29
+00:01:29.433 --> 00:01:30.900
+Those are just prompt text.
+
+30
+00:01:31.200 --> 00:01:35.300
+A crew runs sequentially, or with a manager in hierarchical mode.
+
+31
+00:01:35.600 --> 00:01:38.154
+And the convenience costs some control.
+
+32
+00:01:38.154 --> 00:01:39.267
+Next up: AutoGen.

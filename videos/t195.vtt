@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+AutoGen.
+
+2
+00:00:01.967 --> 00:00:09.167
+Microsoft's framework asks a strange question: what if the agents just talked, and the work happened inside the dialogue?
+
+3
+00:00:10.367 --> 00:00:13.433
+AutoGen treats conversation as computation.
+
+4
+00:00:13.733 --> 00:00:15.800
+Agents chat in pairs or in groups.
+
+5
+00:00:16.100 --> 00:00:22.333
+An agent can even write Python that a sandboxed executor runs, with the results flowing back into the chat.
+
+6
+00:00:23.533 --> 00:00:25.167
+Here is a group chat in action.
+
+7
+00:00:25.467 --> 00:00:28.233
+The analyst makes an estimate and shows the math.
+
+8
+00:00:28.533 --> 00:00:31.833
+The skeptic attacks a weak assumption, and demands a range.
+
+9
+00:00:32.133 --> 00:00:34.067
+The analyst revises its answer.
+
+10
+00:00:34.367 --> 00:00:38.233
+And when the skeptic is convinced, it says the magic word, TERMINATE.
+
+11
+00:00:39.433 --> 00:00:41.300
+Behind the scenes, a loop runs.
+
+12
+00:00:41.600 --> 00:00:43.700
+A chat manager picks who speaks next.
+
+13
+00:00:44.000 --> 00:00:45.767
+That agent replies to the group.
+
+14
+00:00:46.067 --> 00:00:51.758
+Then termination conditions are checked, like the keyword TERMINATE or a maximum round count.
+
+15
+00:00:51.758 --> 00:00:53.900
+If neither fires, the loop repeats.
+
+16
+00:00:55.100 --> 00:00:56.633
+Here is the setup in code.
+
+17
+00:00:56.933 --> 00:01:00.300
+Each agent gets a system message that sets its attitude.
+
+18
+00:01:00.600 --> 00:01:03.467
+We wrap them in a group chat with a cap of eight rounds.
+
+19
+00:01:03.767 --> 00:01:05.800
+And a manager steers who speaks next.
+
+20
+00:01:07.000 --> 00:01:08.467
+Compare the mental models.
+
+21
+00:01:08.767 --> 00:01:11.233
+LangGraph makes control flow explicit.
+
+22
+00:01:11.233 --> 00:01:12.467
+You draw the edges.
+
+23
+00:01:12.767 --> 00:01:14.346
+AutoGen makes it emergent.
+
+24
+00:01:14.346 --> 00:01:16.533
+Whoever speaks next steers the work.
+
+25
+00:01:16.833 --> 00:01:24.433
+That shines in debate and code review loops, but it's exactly wrong when compliance asks for the exact path a request takes.
+
+26
+00:01:25.633 --> 00:01:26.833
+Here's a real run.
+
+27
+00:01:27.133 --> 00:01:32.133
+The question comes from your asteroid data: impact energy for a real object.
+
+28
+00:01:32.433 --> 00:01:37.667
+In round two, the skeptic attacks the density assumption for a possibly porous body.
+
+29
+00:01:37.967 --> 00:01:41.326
+By round four they agree on thirty to seventy megatons.
+
+30
+00:01:41.326 --> 00:01:46.212
+It cost eight model calls, where a simple reflection loop would have cost three.
+
+31
+00:01:46.212 --> 00:01:47.800
+That's framework judgment.
+
+32
+00:01:49.000 --> 00:01:49.784
+Let's recap.
+
+33
+00:01:49.784 --> 00:01:53.767
+In AutoGen, agents chat and the work happens in the dialogue.
+
+34
+00:01:54.067 --> 00:01:56.333
+Termination rules decide when it ends.
+
+35
+00:01:56.633 --> 00:01:59.667
+LangGraph is explicit, AutoGen is emergent.
+
+36
+00:01:59.967 --> 00:02:03.419
+Great for debate, weaker for auditability.
+
+37
+00:02:03.419 --> 00:02:05.967
+Next up: the OpenAI Agents SDK.

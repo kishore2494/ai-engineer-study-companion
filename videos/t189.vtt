@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.533
+Building an MCP server.
+
+2
+00:00:02.833 --> 00:00:08.533
+With a few lines of Python, your own system becomes a tool that any MCP client can use.
+
+3
+00:00:09.733 --> 00:00:14.833
+With FastMCP, a decorated Python function becomes an MCP tool.
+
+4
+00:00:15.133 --> 00:00:17.400
+The type hints generate the input schema.
+
+5
+00:00:17.700 --> 00:00:20.833
+And the docstring becomes the description the model reads.
+
+6
+00:00:22.033 --> 00:00:23.100
+Here is the stack.
+
+7
+00:00:23.400 --> 00:00:26.433
+At the bottom, your function, with types and a docstring.
+
+8
+00:00:26.733 --> 00:00:29.533
+FastMCP turns those hints into a schema.
+
+9
+00:00:29.833 --> 00:00:33.567
+It also handles the handshake and the JSON-RPC plumbing.
+
+10
+00:00:33.867 --> 00:00:35.413
+So any client can use it.
+
+11
+00:00:35.413 --> 00:00:39.000
+Your job is to write good functions and honest docstrings.
+
+12
+00:00:40.200 --> 00:00:41.533
+Here is a real server.
+
+13
+00:00:41.833 --> 00:00:44.833
+The decorator and the typed parameter define the tool.
+
+14
+00:00:45.133 --> 00:00:47.967
+The docstring tells the model when and how to use it.
+
+15
+00:00:48.267 --> 00:00:52.200
+The query uses a dollar parameter, never SQL built from strings.
+
+16
+00:00:52.500 --> 00:00:56.167
+And run serves it over stdio, ready for any client.
+
+17
+00:00:57.367 --> 00:00:58.933
+A few rules keep this safe.
+
+18
+00:00:59.233 --> 00:01:01.967
+Start read-only, with parameterized selects.
+
+19
+00:01:02.267 --> 00:01:05.700
+Add write tools later, and only behind human checkpoints.
+
+20
+00:01:06.000 --> 00:01:09.500
+And write honest docstrings, because the model relies on them.
+
+21
+00:01:10.700 --> 00:01:12.500
+Here is the portfolio moment.
+
+22
+00:01:12.800 --> 00:01:16.553
+The Orbital Research Agent already stores data in Postgres.
+
+23
+00:01:16.553 --> 00:01:19.033
+You wrap it with three read-only tools.
+
+24
+00:01:19.333 --> 00:01:22.100
+Register the server in Claude Desktop's config.
+
+25
+00:01:22.400 --> 00:01:25.960
+Ask which asteroid had the closest approach this quarter.
+
+26
+00:01:25.960 --> 00:01:30.457
+Claude calls your server, your SQL runs, and the answer cites your rows.
+
+27
+00:01:30.457 --> 00:01:33.767
+Almost nobody interviewing next to you has done this.
+
+28
+00:01:34.967 --> 00:01:35.889
+Let's recap.
+
+29
+00:01:35.889 --> 00:01:38.733
+FastMCP turns a function into a tool.
+
+30
+00:01:39.033 --> 00:01:42.300
+Hints make the schema, and the docstring makes the description.
+
+31
+00:01:42.600 --> 00:01:45.267
+Start read-only, with parameterized SQL.
+
+32
+00:01:45.567 --> 00:01:49.174
+Wrap a real system, and you have a standout project.
+
+33
+00:01:49.174 --> 00:01:51.533
+Next up: connecting an MCP client.
