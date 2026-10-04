@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+Short-term memory.
+
+2
+00:00:02.233 --> 00:00:05.190
+An agent's working memory is its context window.
+
+3
+00:00:05.190 --> 00:00:07.100
+Here is how to keep it healthy.
+
+4
+00:00:08.300 --> 00:00:11.733
+An agent's short term memory is simply the context window.
+
+5
+00:00:12.033 --> 00:00:16.667
+The history is re-sent on every call, so you pay for every token, every time.
+
+6
+00:00:16.967 --> 00:00:22.100
+And models get measurably worse at using facts buried in the middle of a long context.
+
+7
+00:00:23.300 --> 00:00:25.433
+Look at what happens as a session grows.
+
+8
+00:00:25.733 --> 00:00:29.300
+Sending the full history, every call gets bigger and costlier.
+
+9
+00:00:29.600 --> 00:00:33.333
+With compaction, the context stops growing once it hits a budget.
+
+10
+00:00:34.533 --> 00:00:37.867
+So you manage working memory deliberately, in three ways.
+
+11
+00:00:38.167 --> 00:00:40.567
+Window it: keep only the last N turns.
+
+12
+00:00:40.867 --> 00:00:44.267
+Summarize it: compress old turns into a running summary.
+
+13
+00:00:44.567 --> 00:00:49.133
+Or structure it: keep a compact scratchpad of facts instead of raw transcripts.
+
+14
+00:00:50.333 --> 00:00:52.767
+It helps to see the whole memory architecture.
+
+15
+00:00:53.067 --> 00:00:55.333
+Recorded experience is the base layer.
+
+16
+00:00:55.633 --> 00:00:57.100
+Above it, durable facts.
+
+17
+00:00:57.400 --> 00:00:59.572
+And on top, volatile working memory.
+
+18
+00:00:59.572 --> 00:01:02.167
+Different stores, different write policies.
+
+19
+00:01:03.367 --> 00:01:05.100
+Here is rolling summarization.
+
+20
+00:01:05.400 --> 00:01:07.667
+While the history is over budget, we act.
+
+21
+00:01:07.967 --> 00:01:14.467
+We take the oldest turns and ask the model to summarize them, keeping IDs, dates, and numbers verbatim.
+
+22
+00:01:14.767 --> 00:01:18.300
+Then the summary is inserted at the front as earlier context.
+
+23
+00:01:19.500 --> 00:01:20.867
+Here is a real session.
+
+24
+00:01:21.167 --> 00:01:28.333
+The Orbital Research Agent collects forty NEO observations, tens of thousands of tokens of raw JSON.
+
+25
+00:01:28.633 --> 00:01:34.500
+Rolling compaction replaces the oldest with one line: checked fourteen asteroids, two hazardous.
+
+26
+00:01:34.800 --> 00:01:40.400
+Cost drops about seventy percent, and answers improve, because key facts stop getting lost.
+
+27
+00:01:41.600 --> 00:01:42.369
+Let's recap.
+
+28
+00:01:42.369 --> 00:01:44.933
+Short term memory is the context window.
+
+29
+00:01:45.233 --> 00:01:48.067
+A long history costs both money and attention.
+
+30
+00:01:48.367 --> 00:01:50.933
+So window it, summarize it, or structure it.
+
+31
+00:01:51.233 --> 00:01:53.663
+And keep exact IDs and numbers.
+
+32
+00:01:53.663 --> 00:01:55.700
+Next up: long term memory.

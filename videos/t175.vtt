@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+Tool calling.
+
+2
+00:00:02.000 --> 00:00:06.967
+How a model reaches outside its weights, and why your tool descriptions matter so much.
+
+3
+00:00:08.167 --> 00:00:11.533
+With tool calling, you expose typed functions to the model.
+
+4
+00:00:11.833 --> 00:00:15.800
+Each step, it picks one tool and fills in the arguments as JSON.
+
+5
+00:00:16.100 --> 00:00:19.596
+And it chooses by reading names, descriptions, and schemas.
+
+6
+00:00:19.596 --> 00:00:20.367
+Nothing else.
+
+7
+00:00:21.567 --> 00:00:22.867
+Let's watch one call.
+
+8
+00:00:23.167 --> 00:00:25.567
+The user asks about hazardous asteroids.
+
+9
+00:00:25.867 --> 00:00:30.533
+The model reads the tool descriptions, picks neo feed, and fills in the dates.
+
+10
+00:00:30.833 --> 00:00:33.300
+Your code runs it and returns the result.
+
+11
+00:00:33.600 --> 00:00:35.600
+Then the model answers from that result.
+
+12
+00:00:36.800 --> 00:00:38.833
+Four rules make tools reliable.
+
+13
+00:00:39.133 --> 00:00:42.700
+Use tight schemas, so the model can only emit valid shapes.
+
+14
+00:00:43.000 --> 00:00:46.367
+Write honest descriptions, including when not to use the tool.
+
+15
+00:00:46.667 --> 00:00:51.567
+Validate inputs, because the model's JSON is a suggestion, not a guarantee.
+
+16
+00:00:51.867 --> 00:00:56.467
+And execute safely, with timeouts, allow lists, and read only by default.
+
+17
+00:00:57.667 --> 00:00:59.733
+Here is a tool definition in code.
+
+18
+00:01:00.033 --> 00:01:05.433
+The description says what the tool does, adds the seven day limit, and says what it is not for.
+
+19
+00:01:05.733 --> 00:01:07.400
+The schema types both dates.
+
+20
+00:01:07.700 --> 00:01:10.633
+And both are required, so the model cannot skip them.
+
+21
+00:01:11.833 --> 00:01:16.000
+Here is a real test with three NASA tools and five varied queries.
+
+22
+00:01:16.300 --> 00:01:21.567
+The first version misroutes two of five, because every description began with the same words.
+
+23
+00:01:21.867 --> 00:01:27.133
+Rewriting the descriptions to front load the differences takes routing to five out of five.
+
+24
+00:01:28.333 --> 00:01:29.064
+Let's recap.
+
+25
+00:01:29.064 --> 00:01:31.867
+The model picks tools by reading descriptions.
+
+26
+00:01:32.167 --> 00:01:35.900
+So a tool description is prompt engineering, with consequences.
+
+27
+00:01:36.200 --> 00:01:39.033
+Use tight schemas, and validate every input.
+
+28
+00:01:39.333 --> 00:01:42.796
+Descriptions are the cheapest accuracy lever you own.
+
+29
+00:01:42.796 --> 00:01:45.867
+Next up: function calling in the agent context.

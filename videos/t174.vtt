@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+The ReAct pattern.
+
+2
+00:00:02.233 --> 00:00:03.373
+Reason, then act.
+
+3
+00:00:03.373 --> 00:00:08.000
+It is the simplest way to understand what an agent is doing, and why.
+
+4
+00:00:09.200 --> 00:00:11.300
+ReAct stands for reason plus act.
+
+5
+00:00:11.600 --> 00:00:15.056
+Before every tool call, the model verbalizes a thought.
+
+6
+00:00:15.056 --> 00:00:21.967
+That text is scratch computation it can condition on, and it measurably improves tool selection and arguments.
+
+7
+00:00:23.167 --> 00:00:24.167
+Here is the loop.
+
+8
+00:00:24.467 --> 00:00:27.633
+First, a thought: what do I know, and what do I still need?
+
+9
+00:00:27.933 --> 00:00:29.967
+Then an action, which is a tool call.
+
+10
+00:00:30.267 --> 00:00:33.197
+Then an observation, the result that comes back.
+
+11
+00:00:33.197 --> 00:00:36.067
+Repeat until the model can give a final answer.
+
+12
+00:00:37.267 --> 00:00:38.567
+Here's a real trace.
+
+13
+00:00:38.867 --> 00:00:42.400
+The agent thinks it needs the weekly feed, and calls that tool.
+
+14
+00:00:42.700 --> 00:00:45.500
+It observes sixty one objects, three hazardous.
+
+15
+00:00:45.800 --> 00:00:48.467
+New thought: fetch details of the largest one.
+
+16
+00:00:48.767 --> 00:00:51.733
+The observation says about a hundred sixty meters.
+
+17
+00:00:52.033 --> 00:00:54.533
+Now it has enough, and gives the final answer.
+
+18
+00:00:55.733 --> 00:01:00.633
+Modern APIs bake actions and observations into native tool calling.
+
+19
+00:01:00.933 --> 00:01:04.700
+But the pattern survives as your mental model for reading traces.
+
+20
+00:01:05.900 --> 00:01:07.533
+Here's ReAct earning its keep.
+
+21
+00:01:07.833 --> 00:01:13.033
+A user asks about storms this week, and the agent calls the wrong tool, for Earth events.
+
+22
+00:01:13.333 --> 00:01:17.133
+The thought line tells you why: it read storms as natural events.
+
+23
+00:01:17.433 --> 00:01:23.300
+So you rewrite the space-weather tool description to mention geomagnetic storms and solar flares.
+
+24
+00:01:24.500 --> 00:01:27.233
+The temptation is to guess, and add more prompting.
+
+25
+00:01:27.533 --> 00:01:28.985
+Instead, read the thoughts.
+
+26
+00:01:28.985 --> 00:01:31.833
+They show exactly where its understanding went wrong.
+
+27
+00:01:33.033 --> 00:01:33.828
+Let's recap.
+
+28
+00:01:33.828 --> 00:01:37.800
+Thought, action, observation, repeated until a final answer.
+
+29
+00:01:38.100 --> 00:01:40.067
+Thinking first improves tool use.
+
+30
+00:01:40.367 --> 00:01:42.367
+Traces make agents debuggable.
+
+31
+00:01:42.667 --> 00:01:44.767
+So fix the cause, not the prompt.
+
+32
+00:01:44.767 --> 00:01:46.167
+Next up: tool calling.

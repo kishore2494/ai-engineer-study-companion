@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.300
+Function calling, in the agent context.
+
+2
+00:00:03.600 --> 00:00:04.933
+The happy path is easy.
+
+3
+00:00:04.933 --> 00:00:08.467
+Production is about what happens when a tool call goes wrong.
+
+4
+00:00:09.667 --> 00:00:12.200
+Production tool calling has three realities.
+
+5
+00:00:12.500 --> 00:00:16.637
+Parallel calls: the model may request several tools in one turn.
+
+6
+00:00:16.637 --> 00:00:21.033
+Run them concurrently, and return every result with its matching ID.
+
+7
+00:00:21.333 --> 00:00:27.633
+Malformed arguments: hallucinated fields, wrong date formats, ranges the API rejects.
+
+8
+00:00:27.933 --> 00:00:29.800
+And the big one: error feedback.
+
+9
+00:00:31.000 --> 00:00:35.167
+Here is the rule: write error messages for the model, not for humans.
+
+10
+00:00:35.467 --> 00:00:38.033
+Error four hundred teaches the model nothing.
+
+11
+00:00:38.333 --> 00:00:44.533
+But a message that states the date format and the seven day limit, and what you sent, lets it fix its own call.
+
+12
+00:00:44.833 --> 00:00:47.100
+The error message is the repair prompt.
+
+13
+00:00:48.300 --> 00:00:50.500
+Put it together and the loop heals itself.
+
+14
+00:00:50.800 --> 00:00:52.133
+The model calls a tool.
+
+15
+00:00:52.433 --> 00:00:53.433
+The call fails.
+
+16
+00:00:53.733 --> 00:00:56.400
+You return the error as the tool's observation.
+
+17
+00:00:56.700 --> 00:00:59.600
+And on the next turn, the model repairs its own call.
+
+18
+00:01:00.800 --> 00:01:02.367
+Here is the pattern in code.
+
+19
+00:01:02.667 --> 00:01:06.900
+First, a pydantic gate validates the arguments before the tool runs.
+
+20
+00:01:07.200 --> 00:01:12.300
+If validation or the API fails, we build a clear message that says how to fix it.
+
+21
+00:01:12.600 --> 00:01:15.556
+Either way, the text goes back into the messages.
+
+22
+00:01:15.556 --> 00:01:16.400
+Never a crash.
+
+23
+00:01:17.600 --> 00:01:19.100
+Here is a real example.
+
+24
+00:01:19.400 --> 00:01:23.867
+Asked for close approaches this month, the agent requests a thirty day span.
+
+25
+00:01:24.167 --> 00:01:27.996
+NASA's API rejects it, because the feed caps at seven days.
+
+26
+00:01:27.996 --> 00:01:30.333
+Your error string states that limit.
+
+27
+00:01:30.633 --> 00:01:35.556
+So the next turn splits the month into four weekly calls and merges the results.
+
+28
+00:01:35.556 --> 00:01:38.633
+One good message turned a crash into a capability.
+
+29
+00:01:39.833 --> 00:01:40.672
+Let's recap.
+
+30
+00:01:40.672 --> 00:01:44.867
+Handle parallel calls, and return results with matching IDs.
+
+31
+00:01:45.167 --> 00:01:47.967
+Expect malformed arguments, and validate them.
+
+32
+00:01:48.267 --> 00:01:51.267
+Return errors as observations, never crashes.
+
+33
+00:01:51.567 --> 00:01:53.851
+And write errors the model can act on.
+
+34
+00:01:53.851 --> 00:01:54.933
+Next up: planning.

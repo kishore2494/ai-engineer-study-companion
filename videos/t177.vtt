@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.467
+Planning.
+
+2
+00:00:01.767 --> 00:00:07.167
+Two ways to run a multi-step task, and the hybrid that production systems actually use.
+
+3
+00:00:08.367 --> 00:00:09.667
+Let's compare the two.
+
+4
+00:00:09.967 --> 00:00:12.875
+Plan and execute drafts every step upfront.
+
+5
+00:00:12.875 --> 00:00:17.000
+Reactive decides each step only after seeing the last result.
+
+6
+00:00:17.300 --> 00:00:21.167
+With planning, a big model plans once and cheaper calls execute.
+
+7
+00:00:21.467 --> 00:00:23.500
+Reactive adapts to every surprise.
+
+8
+00:00:23.800 --> 00:00:26.914
+But plans go stale, and reactive agents can wander.
+
+9
+00:00:26.914 --> 00:00:29.600
+Each one's weakness is the other's strength.
+
+10
+00:00:30.800 --> 00:00:32.867
+The production answer is the hybrid.
+
+11
+00:00:33.167 --> 00:00:36.800
+First, draft a plan, with a done criterion for each step.
+
+12
+00:00:37.100 --> 00:00:39.200
+Then a cheap executor runs one step.
+
+13
+00:00:39.500 --> 00:00:41.833
+Check the result against what you expected.
+
+14
+00:00:42.133 --> 00:00:47.533
+If reality diverges, regenerate the remaining plan with what you learned, and carry on.
+
+15
+00:00:48.733 --> 00:00:50.267
+Here is the idea in code.
+
+16
+00:00:50.567 --> 00:00:54.200
+The model drafts numbered steps, each with a done criterion.
+
+17
+00:00:54.500 --> 00:00:56.900
+We loop over them, running each one cheaply.
+
+18
+00:00:57.200 --> 00:01:02.700
+If a result fails its done criterion, our assumptions went stale, so we replan the rest.
+
+19
+00:01:03.900 --> 00:01:05.900
+Planning can be dramatically cheaper.
+
+20
+00:01:06.200 --> 00:01:12.167
+On the weekly space report, the planner burned about forty percent fewer tokens than the reactive agent.
+
+21
+00:01:13.367 --> 00:01:14.533
+Now watch it break.
+
+22
+00:01:14.833 --> 00:01:19.200
+The planner drafts four steps: fetch three NASA sources, then synthesize.
+
+23
+00:01:19.500 --> 00:01:21.380
+Then DONKI goes down mid run.
+
+24
+00:01:21.380 --> 00:01:25.333
+The pure planner synthesizes anyway, with a hole in its data.
+
+25
+00:01:25.633 --> 00:01:30.633
+The hybrid replans instead: proceed without DONKI, and flag the gap in the report.
+
+26
+00:01:31.833 --> 00:01:32.611
+Let's recap.
+
+27
+00:01:32.611 --> 00:01:35.333
+Plan and execute is cheap and disciplined.
+
+28
+00:01:35.633 --> 00:01:37.433
+Reactive adapts, but can wander.
+
+29
+00:01:37.733 --> 00:01:40.467
+Plans go stale when a result surprises you.
+
+30
+00:01:40.767 --> 00:01:43.876
+So use the hybrid: plan, execute, replan.
+
+31
+00:01:43.876 --> 00:01:46.000
+Next up: task decomposition.
