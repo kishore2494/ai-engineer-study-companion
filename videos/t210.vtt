@@ -13,117 +13,117 @@ A history lesson worth knowing cold: why it mattered, and why we don't use it to
 Here's the problem A3C solved.
 
 4
-00:00:10.367 --> 00:00:14.067
+00:00:10.367 --> 00:00:13.933
 On-policy methods can't use DQN's replay buffer.
 
 5
-00:00:14.367 --> 00:00:18.567
+00:00:14.233 --> 00:00:18.433
 But consecutive samples from one environment are hopelessly correlated.
 
 6
-00:00:18.867 --> 00:00:21.467
+00:00:18.733 --> 00:00:21.333
 The answer: run many environments at once.
 
 7
-00:00:22.667 --> 00:00:23.867
+00:00:22.533 --> 00:00:23.733
 Here is the design.
 
 8
-00:00:24.167 --> 00:00:26.667
+00:00:24.033 --> 00:00:26.533
 Each worker has its own environment copy.
 
 9
-00:00:26.967 --> 00:00:29.033
+00:00:26.833 --> 00:00:28.900
 They compute gradients independently.
 
 10
-00:00:29.333 --> 00:00:34.180
+00:00:29.200 --> 00:00:34.047
 And push them to shared parameters asynchronously, with no locks and no waiting.
 
 11
-00:00:34.180 --> 00:00:37.633
+00:00:34.047 --> 00:00:37.500
 Slightly stale gradients turned out to be harmless noise.
 
 12
-00:00:38.833 --> 00:00:40.333
+00:00:38.700 --> 00:00:40.200
 It worked remarkably well.
 
 13
-00:00:40.633 --> 00:00:46.567
+00:00:40.500 --> 00:00:46.433
 In 2016, sixteen CPU cores matched GPU-trained DQN on Atari.
 
 14
-00:00:47.767 --> 00:00:49.000
+00:00:47.633 --> 00:00:48.867
 So why did it fade?
 
 15
-00:00:49.300 --> 00:00:52.800
+00:00:49.167 --> 00:00:52.667
 Synchronous A2C works just as well, and is far simpler.
 
 16
-00:00:53.100 --> 00:00:58.500
+00:00:52.967 --> 00:00:58.133
 PPO's clipping attacked the stability problem directly, rather than statistically.
 
 17
-00:00:58.800 --> 00:01:03.367
+00:00:58.433 --> 00:01:03.000
 Its legacy is the parallel rollout pattern every modern library uses.
 
 18
-00:01:04.567 --> 00:01:06.167
+00:01:04.200 --> 00:01:05.800
 Know the shape, don't build it.
 
 19
-00:01:06.467 --> 00:01:10.470
+00:01:06.100 --> 00:01:10.104
 Each worker copies the shared parameters, which may already be stale.
 
 20
-00:01:10.470 --> 00:01:11.167
+00:01:10.104 --> 00:01:10.800
 That's fine.
 
 21
-00:01:11.467 --> 00:01:14.967
+00:01:11.100 --> 00:01:14.600
 It rolls out in its own environment and computes gradients.
 
 22
-00:01:15.267 --> 00:01:17.300
+00:01:14.900 --> 00:01:16.933
 Then pushes them back without locking.
 
 23
-00:01:18.500 --> 00:01:20.233
+00:01:18.133 --> 00:01:19.867
 Here's the answer to memorize.
 
 24
-00:01:20.533 --> 00:01:26.500
+00:01:20.167 --> 00:01:26.133
 A3C solved on-policy correlation with asynchronous workers instead of a replay buffer.
 
 25
-00:01:26.800 --> 00:01:32.267
+00:01:26.433 --> 00:01:31.900
 It faded because A2C matched it more simply, and PPO fixed stability at the source.
 
 26
-00:01:32.567 --> 00:01:37.067
+00:01:32.200 --> 00:01:36.700
 Its legacy is parallel rollouts, used even by RLlib workers.
 
 27
-00:01:38.267 --> 00:01:38.987
+00:01:37.900 --> 00:01:38.620
 Let's recap.
 
 28
-00:01:38.987 --> 00:01:41.867
+00:01:38.620 --> 00:01:41.500
 Asynchronous workers replaced the replay buffer.
 
 29
-00:01:42.167 --> 00:01:44.233
+00:01:41.800 --> 00:01:43.867
 They shared parameters with no locks.
 
 30
-00:01:44.533 --> 00:01:48.533
+00:01:44.167 --> 00:01:48.167
 It faded because A2C is simpler and PPO is more stable.
 
 31
-00:01:48.833 --> 00:01:51.144
+00:01:48.467 --> 00:01:50.778
 Its legacy is parallel rollouts.
 
 32
-00:01:51.144 --> 00:01:52.733
+00:01:50.778 --> 00:01:52.367
 Next up: actor-critic.

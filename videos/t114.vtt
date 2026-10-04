@@ -73,81 +73,81 @@ The page's example, main bus undervolt, is a precise phrase.
 N-grams also hide a piece of history.
 
 19
-00:00:54.600 --> 00:01:00.495
+00:00:54.600 --> 00:01:00.211
 N-gram language models predicted the next word from the previous few, using counts.
 
 20
-00:01:00.495 --> 00:01:02.200
+00:01:00.211 --> 00:01:01.833
 That is GPT's objective.
 
 21
-00:01:02.500 --> 00:01:05.733
+00:01:02.133 --> 00:01:05.367
 The difference: a lookup table versus a neural network.
 
 22
-00:01:06.033 --> 00:01:07.701
+00:01:05.667 --> 00:01:07.334
 The table died of sparsity.
 
 23
-00:01:07.701 --> 00:01:12.333
+00:01:07.334 --> 00:01:11.967
 Most five word sequences have never occurred, and neural models fixed that.
 
 24
-00:01:13.533 --> 00:01:15.533
+00:01:13.167 --> 00:01:15.167
 Here it is in a few lines of Python.
 
 25
-00:01:15.833 --> 00:01:19.267
+00:01:15.467 --> 00:01:18.900
 We lowercase the transcript and split it into word tokens.
 
 26
-00:01:19.567 --> 00:01:25.933
+00:01:19.200 --> 00:01:25.567
 Zipping the list with copies of itself shifted by one or two builds the windows, and Counter tallies them.
 
 27
-00:01:26.233 --> 00:01:28.533
+00:01:25.867 --> 00:01:28.167
 Then we just ask for the most common bigrams.
 
 28
-00:01:29.733 --> 00:01:31.200
+00:01:29.367 --> 00:01:30.833
 Here's a practical use.
 
 29
-00:01:31.500 --> 00:01:37.146
+00:01:31.133 --> 00:01:36.780
 Before designing chunking, you run bigram counts over a year of space-weather alerts.
 
 30
-00:01:37.146 --> 00:01:40.733
+00:01:36.780 --> 00:01:40.367
 Phrases like coronal mass and radio blackout dominate.
 
 31
-00:01:41.033 --> 00:01:45.100
+00:01:40.667 --> 00:01:44.733
 That tells you these phrases must never be split across chunk boundaries.
 
 32
-00:01:45.400 --> 00:01:51.200
+00:01:45.033 --> 00:01:50.833
 It also gives a phrase list so the keyword search matches coronal mass ejection as one unit.
 
 33
-00:01:52.400 --> 00:01:53.284
+00:01:52.033 --> 00:01:52.917
 Let's recap.
 
 34
-00:01:53.284 --> 00:01:55.567
+00:01:52.917 --> 00:01:55.200
 An n-gram is a run of n tokens.
 
 35
-00:01:55.867 --> 00:01:58.567
+00:01:55.500 --> 00:01:58.200
 A sliding window captures local context.
 
 36
-00:01:58.867 --> 00:02:01.933
+00:01:58.500 --> 00:02:01.567
 N-gram models predicted the next word by counting.
 
 37
-00:02:02.233 --> 00:02:05.271
+00:02:01.867 --> 00:02:04.904
 Sparsity is why neural models won.
 
 38
-00:02:05.271 --> 00:02:06.700
+00:02:04.904 --> 00:02:06.333
 Next up: TF-IDF.
