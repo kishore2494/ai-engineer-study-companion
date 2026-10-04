@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+Azure AI.
+
+2
+00:00:02.100 --> 00:00:05.085
+OpenAI models wrapped in enterprise controls.
+
+3
+00:00:05.085 --> 00:00:07.008
+The controls are the product.
+
+4
+00:00:07.008 --> 00:00:08.533
+Let's see how it works.
+
+5
+00:00:09.733 --> 00:00:15.067
+Azure OpenAI Service is OpenAI models wrapped in enterprise controls.
+
+6
+00:00:15.367 --> 00:00:17.279
+First, regional data residency.
+
+7
+00:00:17.279 --> 00:00:21.167
+Prompts and completions are processed in the region you choose.
+
+8
+00:00:21.467 --> 00:00:24.033
+Second, content filters you can configure.
+
+9
+00:00:24.333 --> 00:00:25.933
+Third, private networking.
+
+10
+00:00:26.233 --> 00:00:31.000
+And Microsoft grade compliance paperwork that procurement departments already trust.
+
+11
+00:00:32.200 --> 00:00:34.567
+Here is the telling difference in the API.
+
+12
+00:00:34.867 --> 00:00:36.233
+You don't call a model name.
+
+13
+00:00:36.533 --> 00:00:38.200
+You call your own deployment name.
+
+14
+00:00:39.400 --> 00:00:40.533
+Follow a request.
+
+15
+00:00:40.833 --> 00:00:43.000
+Your code targets the deployment name.
+
+16
+00:00:43.300 --> 00:00:47.667
+The deployment pins a specific model version, with the capacity you chose.
+
+17
+00:00:47.967 --> 00:00:50.400
+Your content filter policy is applied.
+
+18
+00:00:50.700 --> 00:00:53.567
+And processing stays inside your chosen region.
+
+19
+00:00:54.767 --> 00:00:55.800
+Here is the code.
+
+20
+00:00:56.100 --> 00:01:01.200
+The client points at your own Azure resource endpoint, with a key and an API version.
+
+21
+00:01:01.500 --> 00:01:05.767
+Then in the model field, we put our deployment name, not the vendor's model name.
+
+22
+00:01:06.067 --> 00:01:10.500
+The deployment pins the version, region, capacity, and filter policy.
+
+23
+00:01:11.700 --> 00:01:13.833
+Here's the meeting that shows the value.
+
+24
+00:01:14.133 --> 00:01:22.100
+A bank loves your ticket triage demo, but compliance has one non-negotiable line: customer data must not leave India.
+
+25
+00:01:22.400 --> 00:01:25.167
+The public OpenAI API is a no.
+
+26
+00:01:25.467 --> 00:01:32.347
+Azure OpenAI with a deployment in Central India is a yes, with the filter policy and audit trail attached.
+
+27
+00:01:32.347 --> 00:01:34.100
+Your prompts didn't change.
+
+28
+00:01:34.100 --> 00:01:36.567
+The deployment made the deal signable.
+
+29
+00:01:37.767 --> 00:01:38.710
+Let's recap.
+
+30
+00:01:38.710 --> 00:01:43.033
+Azure OpenAI is OpenAI models plus enterprise controls.
+
+31
+00:01:43.333 --> 00:01:46.567
+That means residency, filters, and private networking.
+
+32
+00:01:46.867 --> 00:01:49.400
+You call your deployment name, not the model name.
+
+33
+00:01:49.700 --> 00:01:54.633
+And that deployment is your pinned, governed instance, not the vendor's moving target.

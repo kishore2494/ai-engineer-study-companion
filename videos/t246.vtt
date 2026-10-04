@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+Azure core services.
+
+2
+00:00:02.533 --> 00:00:07.339
+Azure is the enterprise default wherever Microsoft contracts already exist.
+
+3
+00:00:07.339 --> 00:00:09.133
+Here's the efficient way in.
+
+4
+00:00:10.333 --> 00:00:10.921
+Why Azure?
+
+5
+00:00:10.921 --> 00:00:16.267
+Because the client's Active Directory, Office licenses, and procurement already live there.
+
+6
+00:00:16.567 --> 00:00:19.767
+In India's services sector, that is very often the case.
+
+7
+00:00:20.067 --> 00:00:24.867
+So the efficient way in is to map your AWS knowledge by analogy.
+
+8
+00:00:26.067 --> 00:00:27.067
+Here is the map.
+
+9
+00:00:27.367 --> 00:00:29.700
+EC2 becomes Virtual Machines.
+
+10
+00:00:30.000 --> 00:00:31.533
+Lambda becomes Functions.
+
+11
+00:00:31.833 --> 00:00:33.733
+S3 becomes Blob Storage.
+
+12
+00:00:34.033 --> 00:00:37.367
+EKS becomes AKS, the enterprise workhorse.
+
+13
+00:00:37.667 --> 00:00:39.486
+RDS becomes Azure Database.
+
+14
+00:00:39.486 --> 00:00:43.933
+Same shapes, different names, and you learn the deltas on the job.
+
+15
+00:00:45.133 --> 00:00:47.167
+Azure has one organizing quirk.
+
+16
+00:00:47.467 --> 00:00:52.500
+Everything lives inside a resource group, a named container for related resources.
+
+17
+00:00:52.800 --> 00:00:56.060
+Storage, clusters, and functions all sit inside it.
+
+18
+00:00:56.060 --> 00:00:59.767
+You can tag it, secure it, and delete it as a single unit.
+
+19
+00:01:00.967 --> 00:01:02.933
+Let's see it in the Azure command line.
+
+20
+00:01:03.233 --> 00:01:06.867
+First we create the resource group, in the Central India region.
+
+21
+00:01:07.167 --> 00:01:09.756
+Then a storage account, inside that group.
+
+22
+00:01:09.756 --> 00:01:14.933
+Where S3 had a bucket and a key, Azure has an account, a container, and a blob name.
+
+23
+00:01:15.233 --> 00:01:19.036
+And a managed Kubernetes cluster, roughly the same as EKS.
+
+24
+00:01:19.036 --> 00:01:21.133
+Note the group on every command.
+
+25
+00:01:22.333 --> 00:01:23.900
+Here is the typical case.
+
+26
+00:01:24.200 --> 00:01:29.373
+A large client wants your ticket triage LLM system deployed on their cloud.
+
+27
+00:01:29.373 --> 00:01:33.167
+It's Azure, decided years ago by a Microsoft agreement.
+
+28
+00:01:33.467 --> 00:01:37.533
+Your Kubernetes manifests move to AKS nearly unchanged.
+
+29
+00:01:37.833 --> 00:01:42.699
+S3 calls become Blob Storage calls, and the container doesn't care.
+
+30
+00:01:42.699 --> 00:01:45.749
+Try mapping five AWS services from memory.
+
+31
+00:01:45.749 --> 00:01:48.000
+That mapping is the onboarding.
+
+32
+00:01:49.200 --> 00:01:50.000
+Let's recap.
+
+33
+00:01:50.000 --> 00:01:54.267
+Azure is the enterprise default where Microsoft contracts exist.
+
+34
+00:01:54.567 --> 00:01:58.833
+Map your AWS knowledge by analogy, then learn the differences.
+
+35
+00:01:59.133 --> 00:02:01.333
+Everything lives inside a resource group.
+
+36
+00:02:01.633 --> 00:02:04.092
+The concepts transfer one to one.
+
+37
+00:02:04.092 --> 00:02:05.433
+Next up: Azure AI.
