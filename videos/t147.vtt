@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.800
+Quantization.
+
+2
+00:00:02.100 --> 00:00:05.593
+Trade a little quality for huge wins in memory and speed.
+
+3
+00:00:05.593 --> 00:00:06.267
+Here's how.
+
+4
+00:00:07.467 --> 00:00:09.833
+Quantization stores weights in fewer bits.
+
+5
+00:00:10.133 --> 00:00:14.800
+Each block of precise values is mapped onto a small grid, plus a scale factor.
+
+6
+00:00:15.100 --> 00:00:22.200
+It works because weights are redundant and roughly normally distributed, so a well placed grid loses surprisingly little.
+
+7
+00:00:23.400 --> 00:00:26.300
+Here's the payoff for a seven billion parameter model.
+
+8
+00:00:26.600 --> 00:00:29.967
+At fp32 it needs about twenty eight gigabytes.
+
+9
+00:00:30.267 --> 00:00:32.367
+At fp16, about fourteen.
+
+10
+00:00:32.667 --> 00:00:34.783
+And at four bits, just three and a half.
+
+11
+00:00:34.783 --> 00:00:36.900
+Every halving of bits halves the memory.
+
+12
+00:00:38.100 --> 00:00:39.867
+But the quality drop is uneven.
+
+13
+00:00:40.167 --> 00:00:42.582
+On casual chat, it's nearly invisible.
+
+14
+00:00:42.582 --> 00:00:44.933
+On long reasoning chains, it's worst.
+
+15
+00:00:45.233 --> 00:00:46.867
+Rare domains suffer more too.
+
+16
+00:00:47.167 --> 00:00:49.633
+So measure on your own eval, not on vibes.
+
+17
+00:00:50.833 --> 00:00:52.033
+Here it is in code.
+
+18
+00:00:52.333 --> 00:00:55.000
+We load the same model once in sixteen bit.
+
+19
+00:00:55.300 --> 00:00:57.867
+And once in four bit, with a single config.
+
+20
+00:00:58.167 --> 00:01:02.067
+The footprint drops from about fourteen and a half gigabytes to about four.
+
+21
+00:01:03.267 --> 00:01:04.767
+Here's a real constraint.
+
+22
+00:01:05.067 --> 00:01:10.933
+One twenty four gigabyte GPU must hold the answerer, the embedding model and the reranker.
+
+23
+00:01:11.233 --> 00:01:15.088
+At fp16 the answerer alone takes fourteen gigabytes.
+
+24
+00:01:15.088 --> 00:01:16.867
+At four bit, about four.
+
+25
+00:01:17.167 --> 00:01:19.559
+Run your twenty question eval on both.
+
+26
+00:01:19.559 --> 00:01:22.833
+If the drop is within noise, ten gigabytes are free.
+
+27
+00:01:24.033 --> 00:01:24.789
+Let's recap.
+
+28
+00:01:24.789 --> 00:01:27.433
+Quantization stores weights in fewer bits.
+
+29
+00:01:27.733 --> 00:01:29.667
+Each halving of bits halves the memory.
+
+30
+00:01:29.967 --> 00:01:31.633
+The quality drop is uneven.
+
+31
+00:01:31.933 --> 00:01:34.719
+So always measure on your own eval.
+
+32
+00:01:34.719 --> 00:01:35.833
+Next up: GPTQ.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+AWQ.
+
+2
+00:00:02.200 --> 00:00:04.355
+Activation-aware weight quantization.
+
+3
+00:00:04.355 --> 00:00:07.967
+A small group of weights does a surprising amount of the work.
+
+4
+00:00:09.167 --> 00:00:14.633
+AWQ starts with an observation: look at the activations flowing through the model.
+
+5
+00:00:14.933 --> 00:00:16.432
+Most channels are quiet.
+
+6
+00:00:16.432 --> 00:00:20.367
+But roughly one percent carry disproportionately large signals.
+
+7
+00:00:20.667 --> 00:00:23.400
+Quantize those carelessly and quality craters.
+
+8
+00:00:24.600 --> 00:00:26.500
+So AWQ protects them.
+
+9
+00:00:26.800 --> 00:00:30.533
+First it finds the salient channels by activation magnitude.
+
+10
+00:00:30.833 --> 00:00:33.000
+Then it scales them up before quantization.
+
+11
+00:00:33.300 --> 00:00:35.700
+It compensates for that scaling downstream.
+
+12
+00:00:36.000 --> 00:00:39.967
+Finally the four bit rounding error lands on weights that barely matter.
+
+13
+00:00:41.167 --> 00:00:43.167
+How does it compare to GPTQ?
+
+14
+00:00:43.467 --> 00:00:47.894
+GPTQ minimizes layer output error on calibration data.
+
+15
+00:00:47.894 --> 00:00:50.600
+AWQ protects the salient weights.
+
+16
+00:00:50.900 --> 00:00:54.667
+At the same bit width, AWQ generally keeps more quality.
+
+17
+00:00:54.967 --> 00:00:57.198
+But the real decision is empirical.
+
+18
+00:00:57.198 --> 00:00:58.600
+Run both on your eval.
+
+19
+00:00:59.800 --> 00:01:04.167
+AWQ is a first class citizen in serving stacks like vLLM.
+
+20
+00:01:04.467 --> 00:01:09.733
+We point at an AWQ checkpoint from the Hub, along with a maximum context length.
+
+21
+00:01:10.033 --> 00:01:12.400
+And one flag tells vLLM to use it.
+
+22
+00:01:13.600 --> 00:01:16.367
+Before locking the serving image, run a bake-off.
+
+23
+00:01:16.667 --> 00:01:20.733
+Deploy the same model as GPTQ and as AWQ.
+
+24
+00:01:21.033 --> 00:01:24.567
+Run the flight ops eval on both, and log scores and speed.
+
+25
+00:01:24.867 --> 00:01:28.216
+AWQ wins by four points at identical latency.
+
+26
+00:01:28.216 --> 00:01:31.267
+Now it's a row in a table you can defend.
+
+27
+00:01:32.467 --> 00:01:33.242
+Let's recap.
+
+28
+00:01:33.242 --> 00:01:36.733
+About one percent of channels carry large activations.
+
+29
+00:01:37.033 --> 00:01:40.433
+AWQ protects them before rounding to four bits.
+
+30
+00:01:40.733 --> 00:01:43.633
+It usually keeps more quality than GPTQ.
+
+31
+00:01:43.933 --> 00:01:46.461
+Pick the winner on your own eval.
+
+32
+00:01:46.461 --> 00:01:47.533
+Next up: GGUF.

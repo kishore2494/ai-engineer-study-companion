@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.467
+LoRA.
+
+2
+00:00:01.767 --> 00:00:04.229
+The fine-tuning workhorse of the industry.
+
+3
+00:00:04.229 --> 00:00:06.633
+If you build one thing twice, build this.
+
+4
+00:00:07.833 --> 00:00:08.933
+Here is the idea.
+
+5
+00:00:09.233 --> 00:00:11.200
+Freeze all of the original weights.
+
+6
+00:00:11.500 --> 00:00:16.300
+Then train only tiny low-rank matrices that sit beside the attention layers.
+
+7
+00:00:17.500 --> 00:00:22.667
+Instead of updating the full d by d matrix W, LoRA learns two thin matrices.
+
+8
+00:00:22.967 --> 00:00:24.400
+W stays frozen.
+
+9
+00:00:24.700 --> 00:00:26.900
+B is d by r, where r is small.
+
+10
+00:00:27.200 --> 00:00:28.071
+A is r by d.
+
+11
+00:00:28.071 --> 00:00:31.267
+Together they hold far fewer numbers than W.
+
+12
+00:00:32.467 --> 00:00:33.800
+The layer computes this.
+
+13
+00:00:34.100 --> 00:00:37.067
+The original path, W times x, is frozen.
+
+14
+00:00:37.367 --> 00:00:40.833
+Beside it runs the learned bypass, B times A times x.
+
+15
+00:00:41.133 --> 00:00:44.417
+A scale of alpha over r controls its strength.
+
+16
+00:00:44.417 --> 00:00:48.700
+At inference you can merge it into W for zero added latency.
+
+17
+00:00:49.900 --> 00:00:52.000
+Here it is with the PEFT library.
+
+18
+00:00:52.300 --> 00:00:55.567
+We pick rank eight and target two attention projections.
+
+19
+00:00:55.867 --> 00:01:00.400
+Printing trainable parameters shows only about point two two percent are trained.
+
+20
+00:01:00.700 --> 00:01:03.267
+The saved adapter is just a few megabytes.
+
+21
+00:01:04.467 --> 00:01:06.733
+That small artifact is the superpower.
+
+22
+00:01:07.033 --> 00:01:12.084
+Mission Control serves two programs from one 7B base, with one adapter each.
+
+23
+00:01:12.084 --> 00:01:14.344
+Two adapters cost forty megabytes.
+
+24
+00:01:14.344 --> 00:01:17.667
+Two full models would cost twenty eight gigabytes.
+
+25
+00:01:18.867 --> 00:01:22.967
+This is the interview classic: how would you serve per customer fine-tunes?
+
+26
+00:01:23.267 --> 00:01:25.900
+Keep one base model in GPU memory.
+
+27
+00:01:26.200 --> 00:01:29.867
+Train an adapter for each program, Artemis and heliophysics.
+
+28
+00:01:30.167 --> 00:01:32.833
+And let the API pick the adapter per request.
+
+29
+00:01:34.033 --> 00:01:34.953
+Let's recap.
+
+30
+00:01:34.953 --> 00:01:38.633
+LoRA freezes W and trains thin matrices A and B.
+
+31
+00:01:38.933 --> 00:01:42.433
+About one percent of the parameters gives most of the benefit.
+
+32
+00:01:42.733 --> 00:01:44.633
+Adapters are tiny and swappable.
+
+33
+00:01:44.933 --> 00:01:47.721
+And you can merge them for zero latency.
+
+34
+00:01:47.721 --> 00:01:48.767
+Next up: QLoRA.

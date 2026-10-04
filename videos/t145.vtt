@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+QLoRA.
+
+2
+00:00:01.900 --> 00:00:05.167
+This is the technique that democratized fine-tuning.
+
+3
+00:00:05.167 --> 00:00:08.433
+Let's see how it fits a big model into a small card.
+
+4
+00:00:09.633 --> 00:00:12.833
+QLoRA is LoRA stacked on a four bit frozen base.
+
+5
+00:00:13.133 --> 00:00:17.452
+The frozen weights don't need gradients, so they don't need precision either.
+
+6
+00:00:17.452 --> 00:00:18.967
+We store them in four bits.
+
+7
+00:00:19.267 --> 00:00:23.200
+Small LoRA adapters in bf16 are the only thing trained.
+
+8
+00:00:23.500 --> 00:00:27.800
+Paged optimizers spill their state to the CPU when memory spikes.
+
+9
+00:00:29.000 --> 00:00:31.033
+Here's what happens inside each layer.
+
+10
+00:00:31.333 --> 00:00:36.567
+Weights are stored in NF4, a four bit format shaped for normally distributed weights.
+
+11
+00:00:36.867 --> 00:00:40.500
+For each matrix multiply, they are dequantized on the fly.
+
+12
+00:00:40.800 --> 00:00:42.667
+The math runs in bf16.
+
+13
+00:00:42.967 --> 00:00:47.033
+Gradients flow through into the adapters, and only the adapters change.
+
+14
+00:00:48.233 --> 00:00:49.767
+Why does this matter so much?
+
+15
+00:00:50.067 --> 00:00:55.667
+Before QLoRA, adapting a seven billion parameter model meant a multi-GPU rig.
+
+16
+00:00:55.967 --> 00:00:59.500
+Now a single consumer card is enough, even a free Colab.
+
+17
+00:00:59.800 --> 00:01:03.700
+A seven billion model fits where only a one billion model used to.
+
+18
+00:01:04.900 --> 00:01:06.100
+Here it is in code.
+
+19
+00:01:06.400 --> 00:01:11.000
+A config asks for four bit NF4 weights with bf16 compute.
+
+20
+00:01:11.300 --> 00:01:14.333
+We load a seven billion parameter Mistral model through it.
+
+21
+00:01:14.633 --> 00:01:16.583
+Then we attach LoRA adapters.
+
+22
+00:01:16.583 --> 00:01:18.667
+That trains on a free Colab T4.
+
+23
+00:01:19.867 --> 00:01:22.200
+Here's a project you can finish this weekend.
+
+24
+00:01:22.500 --> 00:01:27.300
+NASA logs are full of abbreviations that generic models expand wrongly.
+
+25
+00:01:27.600 --> 00:01:32.400
+You QLoRA a Mistral on two thousand log line pairs, on a free Colab T4.
+
+26
+00:01:32.700 --> 00:01:39.100
+You end with a fine-tuned seven billion parameter model on a zero dollar budget, and the adapter to prove it.
+
+27
+00:01:40.300 --> 00:01:41.177
+Let's recap.
+
+28
+00:01:41.177 --> 00:01:44.100
+QLoRA is LoRA on a four bit frozen base.
+
+29
+00:01:44.400 --> 00:01:47.533
+Weights in NF4, adapters in bf16.
+
+30
+00:01:47.833 --> 00:01:52.233
+Double quantization and paged optimizers save even more memory.
+
+31
+00:01:52.533 --> 00:01:57.591
+So a seven billion parameter fine-tune fits on a consumer GPU.
+
+32
+00:01:57.591 --> 00:01:58.733
+Next up: PEFT.

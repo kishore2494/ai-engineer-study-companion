@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+GPTQ.
+
+2
+00:00:02.300 --> 00:00:05.111
+A smarter way to squeeze a model to four bits.
+
+3
+00:00:05.111 --> 00:00:08.533
+It matters because the quality loss isn't spread evenly.
+
+4
+00:00:09.733 --> 00:00:13.333
+GPTQ is post-training quantization, done carefully.
+
+5
+00:00:13.633 --> 00:00:19.900
+Instead of rounding every weight on its own, it works layer by layer, using a small calibration dataset.
+
+6
+00:00:20.200 --> 00:00:24.585
+It targets four bit GPU inference, and you almost never run it yourself.
+
+7
+00:00:24.585 --> 00:00:26.900
+You download checkpoints from the Hub.
+
+8
+00:00:28.100 --> 00:00:30.033
+Here's the trick, shown on one layer.
+
+9
+00:00:30.333 --> 00:00:32.958
+We quantize the first column to four bits.
+
+10
+00:00:32.958 --> 00:00:34.833
+That introduces a small error.
+
+11
+00:00:35.133 --> 00:00:39.179
+Then the columns not yet quantized are adjusted to compensate.
+
+12
+00:00:39.179 --> 00:00:41.267
+We repeat this column by column.
+
+13
+00:00:42.467 --> 00:00:44.033
+Zoom out to the whole workflow.
+
+14
+00:00:44.333 --> 00:00:46.700
+Someone starts with the fp16 model.
+
+15
+00:00:47.000 --> 00:00:51.767
+They quantize it offline against about a hundred twenty eight calibration samples.
+
+16
+00:00:52.067 --> 00:00:53.800
+The checkpoint is shared on the Hub.
+
+17
+00:00:54.100 --> 00:00:56.233
+You just load it for GPU inference.
+
+18
+00:00:57.433 --> 00:00:59.100
+Here's how simple loading is.
+
+19
+00:00:59.400 --> 00:01:04.167
+We point at a pre-quantized GPTQ checkpoint and load it on the GPU.
+
+20
+00:01:04.467 --> 00:01:09.233
+Then we run our own eval prompts, because the error is tuned to the calibration data.
+
+21
+00:01:10.433 --> 00:01:12.333
+Here's the lesson in one incident.
+
+22
+00:01:12.633 --> 00:01:18.200
+You swap a GPTQ checkpoint into Mission Control and casual questions look fine.
+
+23
+00:01:18.500 --> 00:01:21.067
+But your flight ops eval drops fifteen percent.
+
+24
+00:01:21.367 --> 00:01:27.957
+The calibration set was web text, and your telemetry jargon is exactly what the quantizer never saw.
+
+25
+00:01:27.957 --> 00:01:30.000
+Always eval on your own domain.
+
+26
+00:01:31.200 --> 00:01:32.181
+Let's recap.
+
+27
+00:01:32.181 --> 00:01:34.633
+GPTQ quantizes layer by layer.
+
+28
+00:01:34.933 --> 00:01:37.200
+Remaining weights absorb each step's error.
+
+29
+00:01:37.500 --> 00:01:39.767
+That error is tuned to the calibration set.
+
+30
+00:01:40.067 --> 00:01:42.960
+So always eval on your own domain.
+
+31
+00:01:42.960 --> 00:01:44.067
+Next up: AWQ.
