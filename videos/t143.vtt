@@ -21,101 +21,101 @@ First comes pretraining on the web.
 Then SFT, where the model learns from demonstrations of the exact behaviour we want.
 
 6
-00:00:19.133 --> 00:00:22.967
+00:00:19.133 --> 00:00:23.433
 And last, preference alignment with RLHF or DPO.
 
 7
-00:00:24.167 --> 00:00:27.967
+00:00:24.633 --> 00:00:28.433
 SFT is plain supervised learning on demonstration data.
 
 8
-00:00:28.267 --> 00:00:32.625
+00:00:28.733 --> 00:00:33.092
 Here is the prompt, here is the exact response the model should have produced.
 
 9
-00:00:32.625 --> 00:00:33.967
+00:00:33.092 --> 00:00:34.433
 Minimize the difference.
 
 10
-00:00:34.267 --> 00:00:37.177
+00:00:34.733 --> 00:00:37.643
 No preference rankings and no reward models.
 
 11
-00:00:37.177 --> 00:00:38.433
+00:00:37.643 --> 00:00:38.900
 Just good examples.
 
 12
-00:00:39.633 --> 00:00:43.500
+00:00:40.100 --> 00:00:43.967
 The lesson everyone learns the hard way: data quality dominates.
 
 13
-00:00:43.800 --> 00:00:49.767
+00:00:44.267 --> 00:00:50.233
 A thousand excellent, hand checked demonstrations beat a hundred thousand scraped mediocre ones.
 
 14
-00:00:50.067 --> 00:00:54.633
+00:00:50.533 --> 00:00:55.099
 The model imitates whatever you show it, including verbosity and mistakes.
 
 15
-00:00:54.633 --> 00:00:55.867
+00:00:55.099 --> 00:00:56.333
 Curate, don't hoard.
 
 16
-00:00:57.067 --> 00:01:00.467
+00:00:57.533 --> 00:01:00.933
 Here's SFT in code, using the TRL library.
 
 17
-00:01:00.767 --> 00:01:05.000
+00:01:01.233 --> 00:01:05.467
 We load a hundred hand checked conversations from a JSON lines file.
 
 18
-00:01:05.300 --> 00:01:09.490
+00:01:05.767 --> 00:01:09.957
 Then we train a small Qwen model for three passes over the data.
 
 19
-00:01:09.490 --> 00:01:12.633
+00:01:09.957 --> 00:01:13.100
 Afterwards, compare outputs on the same prompts.
 
 20
-00:01:13.833 --> 00:01:15.033
+00:01:14.300 --> 00:01:15.500
 Picture this at work.
 
 21
-00:01:15.333 --> 00:01:19.933
+00:01:15.800 --> 00:01:20.400
 You gather a hundred pairs: telemetry excerpt in, anomaly report out.
 
 22
-00:01:20.233 --> 00:01:23.500
+00:01:20.700 --> 00:01:23.967
 A tiny model trains on them for three epochs, in minutes.
 
 23
-00:01:23.800 --> 00:01:28.600
+00:01:24.267 --> 00:01:29.067
 Afterwards it writes severity, subsystem and impact without being asked.
 
 24
-00:01:28.600 --> 00:01:31.667
+00:01:29.067 --> 00:01:32.133
 That before and after is how SFT becomes real.
 
 25
-00:01:32.867 --> 00:01:33.695
+00:01:33.333 --> 00:01:34.161
 Let's recap.
 
 26
-00:01:33.695 --> 00:01:36.800
+00:01:34.161 --> 00:01:37.267
 SFT is supervised learning on demonstrations.
 
 27
-00:01:37.100 --> 00:01:40.100
+00:01:37.567 --> 00:01:40.567
 It comes after pretraining and before preference tuning.
 
 28
-00:01:40.400 --> 00:01:42.600
+00:01:40.867 --> 00:01:43.067
 Data quality dominates everything.
 
 29
-00:01:42.900 --> 00:01:44.253
+00:01:43.367 --> 00:01:44.720
 Curate, don't hoard.
 
 30
-00:01:44.253 --> 00:01:45.200
+00:01:44.720 --> 00:01:45.667
 Next up: LoRA.
