@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+PPO.
+
+2
+00:00:01.933 --> 00:00:04.819
+One small trick keeps policy training stable.
+
+3
+00:00:04.819 --> 00:00:07.833
+It is also the engine behind aligning chatbots.
+
+4
+00:00:09.033 --> 00:00:14.967
+Policy-gradient methods adjust the policy's weights directly, making good actions more probable.
+
+5
+00:00:15.267 --> 00:00:18.733
+Their curse: one oversized update can wreck the policy.
+
+6
+00:00:19.033 --> 00:00:23.567
+And that broken policy collects the next batch of data, so it may never recover.
+
+7
+00:00:24.767 --> 00:00:28.000
+PPO's one elegant move starts with a ratio.
+
+8
+00:00:28.300 --> 00:00:33.433
+New policy probability divided by old policy probability, for the same action.
+
+9
+00:00:33.733 --> 00:00:36.467
+Then we clip that ratio to a narrow band.
+
+10
+00:00:36.467 --> 00:00:38.600
+Epsilon is about zero point two.
+
+11
+00:00:39.800 --> 00:00:41.300
+Here is the clip as a curve.
+
+12
+00:00:41.600 --> 00:00:44.967
+The dashed line is the raw ratio, growing without limit.
+
+13
+00:00:45.267 --> 00:00:49.233
+The clipped version goes flat beyond zero point eight and one point two.
+
+14
+00:00:49.533 --> 00:00:55.033
+No batch, however extreme, can pull the policy outside the trust band around its old self.
+
+15
+00:00:56.233 --> 00:00:59.433
+Two reasons this is the most important algorithm here.
+
+16
+00:00:59.733 --> 00:01:03.167
+It is the default for continuous control and robotics.
+
+17
+00:01:03.467 --> 00:01:05.744
+And it is the engine of RLHF.
+
+18
+00:01:05.744 --> 00:01:12.967
+The LLM is the policy, tokens are actions, and a reward model stands in for the environment.
+
+19
+00:01:14.167 --> 00:01:17.133
+In Stable Baselines3 it's a single parameter.
+
+20
+00:01:17.433 --> 00:01:19.333
+Clip range of zero point two.
+
+21
+00:01:19.633 --> 00:01:25.170
+In the logs, watch clip fraction: the share of samples where the clip actually engaged.
+
+22
+00:01:25.170 --> 00:01:29.433
+Healthy runs sit between about zero point one and zero point three.
+
+23
+00:01:30.633 --> 00:01:33.633
+Remember the four models of RLHF?
+
+24
+00:01:33.933 --> 00:01:36.590
+Policy, reference, reward, and value.
+
+25
+00:01:36.590 --> 00:01:39.533
+The optimizer holding it together is PPO.
+
+26
+00:01:39.833 --> 00:01:45.267
+The clip keeps the LLM near its reference, so it doesn't collapse into reward-hacked gibberish.
+
+27
+00:01:45.567 --> 00:01:47.800
+Build intuition on LunarLander first.
+
+28
+00:01:49.000 --> 00:01:49.760
+Let's recap.
+
+29
+00:01:49.760 --> 00:01:52.167
+Big policy updates can wreck learning.
+
+30
+00:01:52.467 --> 00:01:55.700
+PPO clips the probability ratio to a trust band.
+
+31
+00:01:56.000 --> 00:02:00.200
+It's the default for control, and the engine of RLHF.
+
+32
+00:02:00.500 --> 00:02:03.213
+Watch the clip fraction in your logs.
+
+33
+00:02:03.213 --> 00:02:04.167
+Next up: A2C.
