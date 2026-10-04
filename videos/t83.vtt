@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+ROC AUC.
+
+2
+00:00:02.633 --> 00:00:06.092
+Every metric so far depended on one chosen threshold.
+
+3
+00:00:06.092 --> 00:00:07.267
+This one does not.
+
+4
+00:00:08.467 --> 00:00:09.567
+Here is the idea.
+
+5
+00:00:09.867 --> 00:00:15.133
+Sweep the cutoff, and at each point plot the true positive rate against the false positive rate.
+
+6
+00:00:15.433 --> 00:00:17.338
+That trace is the ROC curve.
+
+7
+00:00:17.338 --> 00:00:20.400
+The area under it summarizes ranking quality.
+
+8
+00:00:21.600 --> 00:00:23.267
+Here is how the curve is built.
+
+9
+00:00:23.567 --> 00:00:26.067
+Start with a cutoff of one, flagging nothing.
+
+10
+00:00:26.367 --> 00:00:28.533
+Lower it step by step, flagging more.
+
+11
+00:00:28.833 --> 00:00:31.933
+At each step, measure the true and false positive rates.
+
+12
+00:00:32.233 --> 00:00:34.533
+Each cutoff adds one point to the plot.
+
+13
+00:00:35.733 --> 00:00:37.200
+Now compare two models.
+
+14
+00:00:37.500 --> 00:00:39.567
+The dashed diagonal is a coin flip.
+
+15
+00:00:39.867 --> 00:00:42.772
+The curve hugging the top left corner wins.
+
+16
+00:00:42.772 --> 00:00:44.867
+Here, XGBoost beats the forest.
+
+17
+00:00:46.067 --> 00:00:47.967
+AUC has a lovely meaning.
+
+18
+00:00:48.267 --> 00:00:55.000
+It is the probability that a randomly chosen positive gets a higher score than a randomly chosen negative.
+
+19
+00:00:55.300 --> 00:00:58.467
+Point five is a coin flip, and one is perfect ranking.
+
+20
+00:00:59.667 --> 00:01:01.567
+In code, we loop over the models.
+
+21
+00:01:01.867 --> 00:01:04.900
+We use predicted probabilities, not hard labels.
+
+22
+00:01:05.200 --> 00:01:08.067
+Then we get the curve and the area, and plot each model.
+
+23
+00:01:09.267 --> 00:01:10.200
+One caution.
+
+24
+00:01:10.500 --> 00:01:18.583
+When negatives hugely outnumber positives, the false positive rate barely moves, so ROC AUC can look rosy.
+
+25
+00:01:18.583 --> 00:01:22.167
+Precision recall AUC is often more informative.
+
+26
+00:01:23.367 --> 00:01:24.800
+Here is the real use.
+
+27
+00:01:25.100 --> 00:01:28.533
+Your screen and your ranker will run at very different thresholds.
+
+28
+00:01:28.833 --> 00:01:32.833
+So you pick the model with AUC, which ignores thresholds.
+
+29
+00:01:32.833 --> 00:01:37.533
+XGBoost scores point nine three, against point nine for the forest.
+
+30
+00:01:37.833 --> 00:01:40.081
+Choose any operating point later.
+
+31
+00:01:40.081 --> 00:01:42.533
+XGBoost ranks better at all of them.
+
+32
+00:01:43.733 --> 00:01:44.646
+Let's recap.
+
+33
+00:01:44.646 --> 00:01:46.700
+ROC sweeps every threshold.
+
+34
+00:01:47.000 --> 00:01:50.400
+AUC is the chance a positive outranks a negative.
+
+35
+00:01:50.700 --> 00:01:54.033
+On extreme imbalance, try precision recall AUC.
+
+36
+00:01:54.333 --> 00:01:56.367
+Next up: the confusion matrix.
