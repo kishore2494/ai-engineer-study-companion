@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.500
+State.
+
+2
+00:00:01.800 --> 00:00:06.035
+What the agent knows about its situation decides everything it can learn.
+
+3
+00:00:06.035 --> 00:00:07.833
+Getting that right is your job.
+
+4
+00:00:09.033 --> 00:00:11.767
+A state is everything the agent knows right now.
+
+5
+00:00:12.067 --> 00:00:17.167
+The key assumption is the Markov property: given the present, the past adds nothing.
+
+6
+00:00:17.467 --> 00:00:22.667
+Real problems rarely obey it, so you must build states that make it approximately true.
+
+7
+00:00:23.867 --> 00:00:25.867
+Imagine a probe drifting through space.
+
+8
+00:00:26.167 --> 00:00:29.333
+Its position is x equals four, y equals two.
+
+9
+00:00:29.633 --> 00:00:31.667
+It might be drifting up and to the right.
+
+10
+00:00:31.967 --> 00:00:33.475
+Or down and to the left.
+
+11
+00:00:33.475 --> 00:00:35.549
+Same position, different futures.
+
+12
+00:00:35.549 --> 00:00:39.633
+Add velocity, and the present carries what the past mattered for.
+
+13
+00:00:40.833 --> 00:00:42.800
+The classic fix is frame stacking.
+
+14
+00:00:43.100 --> 00:00:46.467
+DQN on Atari takes four consecutive frames.
+
+15
+00:00:46.767 --> 00:00:48.400
+It stacks them into one state.
+
+16
+00:00:48.700 --> 00:00:51.033
+Now the network sees which way things move.
+
+17
+00:00:52.233 --> 00:00:53.433
+Here it is in code.
+
+18
+00:00:53.733 --> 00:00:55.666
+This state holds only position.
+
+19
+00:00:55.666 --> 00:00:57.100
+Many futures follow it.
+
+20
+00:00:57.400 --> 00:00:59.067
+Adding velocity fixes that.
+
+21
+00:00:59.367 --> 00:01:02.067
+Now the next position follows from the state alone.
+
+22
+00:01:03.267 --> 00:01:06.233
+Say you train an agent to manage a satellite battery.
+
+23
+00:01:06.533 --> 00:01:08.888
+Charge percent alone is not Markov.
+
+24
+00:01:08.888 --> 00:01:13.933
+Sixty percent charging and sixty percent discharging need opposite actions.
+
+25
+00:01:14.233 --> 00:01:17.767
+Add charge rate and a sunlight flag from the telemetry stream.
+
+26
+00:01:18.067 --> 00:01:19.710
+The agent stops thrashing.
+
+27
+00:01:19.710 --> 00:01:21.100
+State design fixed it.
+
+28
+00:01:22.300 --> 00:01:23.120
+One more trap.
+
+29
+00:01:23.120 --> 00:01:26.167
+Sometimes the sensor cannot see something important.
+
+30
+00:01:26.467 --> 00:01:29.237
+That makes it a POMDP, partially observable.
+
+31
+00:01:29.237 --> 00:01:33.267
+The agent needs memory, like a recurrent network or transformer.
+
+32
+00:01:34.467 --> 00:01:35.198
+Let's recap.
+
+33
+00:01:35.198 --> 00:01:38.000
+State is everything the agent knows right now.
+
+34
+00:01:38.300 --> 00:01:41.700
+Markov means the present alone predicts what comes next.
+
+35
+00:01:42.000 --> 00:01:44.567
+Add velocity, or stack frames, to get there.
+
+36
+00:01:44.867 --> 00:01:48.656
+And hidden information makes it a POMDP, which needs memory.
+
+37
+00:01:48.656 --> 00:01:49.667
+Next up: action.

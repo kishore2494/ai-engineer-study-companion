@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+Agent evaluation.
+
+2
+00:00:02.467 --> 00:00:06.074
+An agent can get the right answer by a wasteful or lucky path.
+
+3
+00:00:06.074 --> 00:00:08.867
+Here's how to catch that before production does.
+
+4
+00:00:10.067 --> 00:00:12.467
+A chatbot evaluation grades the answer.
+
+5
+00:00:12.767 --> 00:00:17.167
+Agent evaluation grades the trajectory, the whole sequence of decisions.
+
+6
+00:00:17.467 --> 00:00:19.633
+Because many decisions happen on the way.
+
+7
+00:00:19.933 --> 00:00:23.767
+A right answer reached by a bad path will betray you in production.
+
+8
+00:00:24.967 --> 00:00:26.500
+There are three core metrics.
+
+9
+00:00:26.800 --> 00:00:32.167
+Tool call accuracy: did the agent pick the right tool with the right arguments at each step?
+
+10
+00:00:32.467 --> 00:00:36.567
+Step efficiency: how many steps did it take, versus the minimal path?
+
+11
+00:00:36.867 --> 00:00:40.700
+And task completion: did the final state satisfy the rubric?
+
+12
+00:00:41.900 --> 00:00:43.033
+Here's the workflow.
+
+13
+00:00:43.333 --> 00:00:47.883
+First, hand label a small suite: twenty tasks with the expected tool calls.
+
+14
+00:00:47.883 --> 00:00:49.400
+That's your ground truth.
+
+15
+00:00:49.700 --> 00:00:52.300
+Run the agent and log every trajectory.
+
+16
+00:00:52.600 --> 00:00:53.733
+Grade each step.
+
+17
+00:00:54.033 --> 00:00:56.312
+Then aggregate into three numbers.
+
+18
+00:00:56.312 --> 00:01:00.133
+An LLM judge comes later, calibrated against your labels.
+
+19
+00:01:01.333 --> 00:01:03.067
+Here is the loop, simplified.
+
+20
+00:01:03.367 --> 00:01:07.200
+For each labeled task, run the agent and log its trajectory.
+
+21
+00:01:07.500 --> 00:01:13.300
+For every tool call, we check whether it matches an expected call, both the tool and its arguments.
+
+22
+00:01:13.600 --> 00:01:17.200
+We also grade completion against the rubric and count the steps.
+
+23
+00:01:18.400 --> 00:01:20.800
+Now a real result from a twenty task suite.
+
+24
+00:01:21.100 --> 00:01:25.281
+The first run: completion eighteen out of twenty, which looks great.
+
+25
+00:01:25.281 --> 00:01:32.167
+But tool call accuracy is only seventy one percent, and steps average four point two against a minimum of three.
+
+26
+00:01:32.467 --> 00:01:40.633
+After tightening two tool descriptions, accuracy is eighty seven percent and steps drop to three point four, with the same completion.
+
+27
+00:01:41.833 --> 00:01:42.581
+Let's recap.
+
+28
+00:01:42.581 --> 00:01:45.200
+Grade the trajectory, not just the answer.
+
+29
+00:01:45.500 --> 00:01:48.767
+Track tool accuracy, step efficiency, and completion.
+
+30
+00:01:49.067 --> 00:01:51.633
+Hand label first, then calibrate a judge.
+
+31
+00:01:51.933 --> 00:01:56.567
+And run the suite on every change, so it feels better becomes three numbers moving.

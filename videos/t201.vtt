@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.433
+Action.
+
+2
+00:00:01.733 --> 00:00:07.167
+What the agent is allowed to do decides what it can learn, and which algorithms you can even use.
+
+3
+00:00:08.367 --> 00:00:12.067
+The action space is the agent's menu of choices in each state.
+
+4
+00:00:12.367 --> 00:00:17.433
+Discrete means a finite menu, like up, down, left, right, or buy, hold, sell.
+
+5
+00:00:17.733 --> 00:00:22.200
+Continuous means real numbers, like a steering angle or a thrust vector.
+
+6
+00:00:23.400 --> 00:00:25.367
+Here is how the two flavors differ.
+
+7
+00:00:25.667 --> 00:00:27.353
+A discrete menu is finite.
+
+8
+00:00:27.353 --> 00:00:30.400
+A continuous knob has infinitely many settings.
+
+9
+00:00:30.700 --> 00:00:32.955
+Q-learning needs a max over actions.
+
+10
+00:00:32.955 --> 00:00:36.400
+With a continuous knob, that max stops being an option.
+
+11
+00:00:36.700 --> 00:00:44.467
+So discrete suits Q-tables and DQN, while continuous needs policy-gradient methods like PPO or SAC.
+
+12
+00:00:44.767 --> 00:00:48.200
+Those methods output a distribution over actions instead.
+
+13
+00:00:49.400 --> 00:00:50.933
+Menu design matters too.
+
+14
+00:00:51.233 --> 00:00:54.600
+Too coarse, and the best behavior may not even be expressible.
+
+15
+00:00:54.900 --> 00:00:57.372
+Too fine, and exploration takes forever.
+
+16
+00:00:57.372 --> 00:01:02.933
+A probe with three hundred sixty headings explores ninety times slower than one with four.
+
+17
+00:01:04.133 --> 00:01:06.367
+Even the edges are a design decision.
+
+18
+00:01:06.667 --> 00:01:09.669
+What happens when the agent drives into a wall?
+
+19
+00:01:09.669 --> 00:01:12.800
+Here it stays put and pays a small extra penalty.
+
+20
+00:01:13.100 --> 00:01:14.955
+Otherwise it makes a normal move.
+
+21
+00:01:14.955 --> 00:01:17.933
+The learner will faithfully learn whatever you chose.
+
+22
+00:01:18.233 --> 00:01:22.623
+Same world, two designs: four discrete moves train in seconds.
+
+23
+00:01:22.623 --> 00:01:26.233
+A continuous thrust needs PPO and far more samples.
+
+24
+00:01:27.433 --> 00:01:29.600
+Say you're simulating a tumbling cubesat.
+
+25
+00:01:29.900 --> 00:01:36.233
+Three discrete actions, fire left, fire right, or coast, trains with DQN in minutes on a laptop.
+
+26
+00:01:36.533 --> 00:01:39.667
+A continuous torque vector needs PPO and hours.
+
+27
+00:01:39.967 --> 00:01:46.400
+So start discrete to prove the pipeline works, and go continuous only if the coarse menu can't steady the spin.
+
+28
+00:01:47.600 --> 00:01:48.486
+Let's recap.
+
+29
+00:01:48.486 --> 00:01:51.367
+A discrete menu suits Q-tables and DQN.
+
+30
+00:01:51.667 --> 00:01:54.800
+A continuous knob needs PPO or SAC.
+
+31
+00:01:55.100 --> 00:01:57.667
+The design of the menu shapes what is learnable.
+
+32
+00:01:57.967 --> 00:02:01.544
+And edge behavior is your choice, so make it on purpose.
+
+33
+00:02:01.544 --> 00:02:02.567
+Next up: reward.

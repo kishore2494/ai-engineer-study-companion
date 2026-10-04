@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+PydanticAI.
+
+2
+00:00:02.400 --> 00:00:08.667
+From the team behind Pydantic, it treats an agent's output as a contract, not a loose block of text.
+
+3
+00:00:09.867 --> 00:00:12.833
+PydanticAI has three signature ideas.
+
+4
+00:00:13.133 --> 00:00:20.767
+Typed dependencies: things like a database client are injected into every tool, so tools become testable functions.
+
+5
+00:00:21.067 --> 00:00:25.700
+Validated results: the agent's output must parse into your Pydantic model.
+
+6
+00:00:26.000 --> 00:00:28.733
+And automatic retries when validation fails.
+
+7
+00:00:29.933 --> 00:00:31.400
+Here is the retry loop.
+
+8
+00:00:31.700 --> 00:00:33.333
+The agent drafts an output.
+
+9
+00:00:33.633 --> 00:00:35.592
+We validate it against the model.
+
+10
+00:00:35.592 --> 00:00:41.467
+If it fails, the error goes back to the model, which is self correction built into the return type.
+
+11
+00:00:41.767 --> 00:00:45.233
+Once it passes, your code receives a typed, trusted result.
+
+12
+00:00:46.433 --> 00:00:47.933
+Here it is in code, trimmed.
+
+13
+00:00:48.233 --> 00:00:51.211
+First, a Pydantic model describes the output.
+
+14
+00:00:51.211 --> 00:00:57.300
+The diameter must be greater than zero, and the verdict can only be safe, monitor, or alert.
+
+15
+00:00:57.600 --> 00:01:01.167
+The agent declares its dependency type and its output type.
+
+16
+00:01:01.467 --> 00:01:06.833
+And a tool reaches the database through the context, so you can swap in a fake during tests.
+
+17
+00:01:08.033 --> 00:01:09.333
+So why does this help?
+
+18
+00:01:09.633 --> 00:01:15.433
+Output as a contract: downstream code reads the verdict field, never regex over prose.
+
+19
+00:01:15.733 --> 00:01:19.300
+Dependency injection makes agent tools unit testable.
+
+20
+00:01:19.600 --> 00:01:23.800
+And your type checker catches wiring mistakes before any tokens are spent.
+
+21
+00:01:25.000 --> 00:01:26.233
+Here's a real case.
+
+22
+00:01:26.533 --> 00:01:33.900
+A FastAPI route returns the hazard report directly, because the agent's output either parses or retries.
+
+23
+00:01:34.200 --> 00:01:38.747
+Force a failure once: the model answers that the diameter is unknown.
+
+24
+00:01:38.747 --> 00:01:39.867
+Validation fails.
+
+25
+00:01:40.167 --> 00:01:45.086
+The error goes back as a retry prompt, and attempt two returns a proper number.
+
+26
+00:01:45.086 --> 00:01:49.133
+Compare that with the try and except pyramid in early prototypes.
+
+27
+00:01:50.333 --> 00:01:51.125
+Let's recap.
+
+28
+00:01:51.125 --> 00:01:53.700
+Typed dependencies make tools testable.
+
+29
+00:01:54.000 --> 00:01:55.867
+Output must parse into your model.
+
+30
+00:01:56.167 --> 00:01:58.333
+Failures trigger automatic retries.
+
+31
+00:01:58.633 --> 00:02:01.542
+So your code gets typed, trusted output.
+
+32
+00:02:01.542 --> 00:02:03.433
+Next up: agent evaluation.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.300
+The OpenAI Agents SDK.
+
+2
+00:00:03.600 --> 00:00:08.109
+It is OpenAI's own opinion on how simple agent code should be.
+
+3
+00:00:08.109 --> 00:00:10.000
+Just five building blocks.
+
+4
+00:00:11.200 --> 00:00:12.767
+Here are the five primitives.
+
+5
+00:00:13.067 --> 00:00:15.667
+Agents: a model, instructions, and tools.
+
+6
+00:00:15.967 --> 00:00:19.900
+Handoffs: one agent transfers the whole conversation to another.
+
+7
+00:00:20.200 --> 00:00:24.467
+Guardrails: validators that can halt a run before tokens are wasted.
+
+8
+00:00:24.767 --> 00:00:26.067
+Sessions give memory.
+
+9
+00:00:26.367 --> 00:00:28.600
+And tracing is built in for every run.
+
+10
+00:00:29.800 --> 00:00:31.233
+Here's a typical setup.
+
+11
+00:00:31.533 --> 00:00:35.467
+A guardrail gates the door, and rejects off-topic requests early.
+
+12
+00:00:35.767 --> 00:00:39.067
+A triage agent decides who should handle the request.
+
+13
+00:00:39.367 --> 00:00:43.533
+Then it hands off the entire conversation to a specialist, who answers.
+
+14
+00:00:44.733 --> 00:00:46.467
+Here it is in code, shortened.
+
+15
+00:00:46.767 --> 00:00:51.033
+We define two specialists, one for asteroids and one for space weather.
+
+16
+00:00:51.333 --> 00:00:55.767
+The triage agent lists them as handoffs, and attaches an input guardrail.
+
+17
+00:00:56.067 --> 00:00:58.133
+Then the runner executes the request.
+
+18
+00:00:59.333 --> 00:01:00.500
+Now a real use.
+
+19
+00:01:00.800 --> 00:01:02.346
+You port your own router.
+
+20
+00:01:02.346 --> 00:01:05.933
+Triage hands off to asteroid or space weather specialists.
+
+21
+00:01:06.233 --> 00:01:12.367
+The on topic guardrail rejects a request like write my homework before a specialist ever sees it.
+
+22
+00:01:12.667 --> 00:01:18.467
+And the trace viewer shows the handoff chain per request, observability you'd otherwise build yourself.
+
+23
+00:01:19.667 --> 00:01:20.516
+One caution.
+
+24
+00:01:20.516 --> 00:01:28.233
+The SDK is opinionated about staying inside its ecosystem, and relying on it blindly hides how routing works.
+
+25
+00:01:28.533 --> 00:01:32.331
+The fix: keep both versions in your repo, raw and SDK.
+
+26
+00:01:32.331 --> 00:01:36.200
+That's a portfolio piece that shows real understanding.
+
+27
+00:01:37.400 --> 00:01:38.234
+Let's recap.
+
+28
+00:01:38.234 --> 00:01:43.867
+The SDK has five primitives: agents, handoffs, guardrails, sessions, and tracing.
+
+29
+00:01:44.167 --> 00:01:46.633
+A handoff transfers the whole conversation.
+
+30
+00:01:46.933 --> 00:01:48.767
+Guardrails stop bad runs early.
+
+31
+00:01:49.067 --> 00:01:52.366
+It's convenient, but tied to its ecosystem.
+
+32
+00:01:52.366 --> 00:01:53.900
+Next up: PydanticAI.

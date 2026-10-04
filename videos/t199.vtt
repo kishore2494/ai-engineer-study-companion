@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+Markov decision process.
+
+2
+00:00:02.800 --> 00:00:07.171
+Reinforcement learning chooses good actions in a world that answers back.
+
+3
+00:00:07.171 --> 00:00:09.267
+This is how we describe that world.
+
+4
+00:00:10.467 --> 00:00:12.500
+Here is the loop at the heart of RL.
+
+5
+00:00:12.800 --> 00:00:14.400
+The agent observes a state.
+
+6
+00:00:14.700 --> 00:00:15.800
+It picks an action.
+
+7
+00:00:16.100 --> 00:00:20.533
+The environment moves to a next state, drawn from transition probabilities.
+
+8
+00:00:20.833 --> 00:00:22.466
+And it hands back a reward.
+
+9
+00:00:22.466 --> 00:00:23.433
+Then it repeats.
+
+10
+00:00:24.633 --> 00:00:26.567
+Five ingredients define the game.
+
+11
+00:00:26.867 --> 00:00:29.500
+States: every situation the agent can be in.
+
+12
+00:00:29.800 --> 00:00:31.867
+Actions: the choices on the menu.
+
+13
+00:00:32.167 --> 00:00:34.600
+Transitions: where an action might land you.
+
+14
+00:00:34.900 --> 00:00:37.200
+Reward: the only definition of good.
+
+15
+00:00:37.500 --> 00:00:40.733
+And gamma, the discount, says how much the future counts.
+
+16
+00:00:41.933 --> 00:00:43.467
+Here's what the discount does.
+
+17
+00:00:43.767 --> 00:00:47.450
+A reward n steps away is worth gamma to the power n today.
+
+18
+00:00:47.450 --> 00:00:49.800
+The further away, the less it counts.
+
+19
+00:00:50.100 --> 00:00:53.879
+Typical gamma is zero point nine to zero point nine nine.
+
+20
+00:00:53.879 --> 00:00:56.067
+It keeps infinite futures finite.
+
+21
+00:00:57.267 --> 00:00:58.333
+Here's the payoff.
+
+22
+00:00:58.633 --> 00:01:03.794
+If you can write your problem as an MDP, every algorithm in this volume applies.
+
+23
+00:01:03.794 --> 00:01:05.600
+Framing it is the hard part.
+
+24
+00:01:06.800 --> 00:01:09.700
+Here is a four by four gridworld, no library.
+
+25
+00:01:10.000 --> 00:01:12.367
+A goal cell, a crater cell, and four moves.
+
+26
+00:01:12.667 --> 00:01:17.167
+The step function is the transition: state and action in, next state out.
+
+27
+00:01:17.467 --> 00:01:22.200
+It also returns the reward: plus one, minus one, or a tiny step cost.
+
+28
+00:01:23.400 --> 00:01:25.333
+Picture a rover on a Mars grid.
+
+29
+00:01:25.633 --> 00:01:28.200
+Cells are states and drive commands are actions.
+
+30
+00:01:28.500 --> 00:01:32.867
+Craters cost one point, the lander pays one, and each step burns battery.
+
+31
+00:01:33.167 --> 00:01:35.167
+Q-learning then solves it unchanged.
+
+32
+00:01:36.367 --> 00:01:37.238
+Let's recap.
+
+33
+00:01:37.238 --> 00:01:41.667
+An MDP is states, actions, transitions, reward, and discount.
+
+34
+00:01:41.967 --> 00:01:45.267
+The agent acts, the world answers with state and reward.
+
+35
+00:01:45.567 --> 00:01:47.867
+Gamma decides how much the future counts.
+
+36
+00:01:48.167 --> 00:01:51.755
+Frame it as an MDP and every algorithm applies.
+
+37
+00:01:51.755 --> 00:01:52.900
+Next up: state.
