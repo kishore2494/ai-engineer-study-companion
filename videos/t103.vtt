@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+The Vision Transformer.
+
+2
+00:00:02.400 --> 00:00:07.900
+It skips convolution entirely, and it is the vision half of every multimodal LLM.
+
+3
+00:00:09.100 --> 00:00:11.333
+ViT asks a heretical question.
+
+4
+00:00:11.633 --> 00:00:15.233
+What if we throw away convolution and treat an image like text?
+
+5
+00:00:15.533 --> 00:00:19.467
+Each small patch of the image becomes a word, or rather, a token.
+
+6
+00:00:20.667 --> 00:00:22.200
+Here is the whole pipeline.
+
+7
+00:00:22.500 --> 00:00:25.133
+Start with a two hundred twenty four pixel image.
+
+8
+00:00:25.433 --> 00:00:29.633
+Chop it into one hundred ninety six patches, each sixteen by sixteen.
+
+9
+00:00:29.933 --> 00:00:33.488
+Flatten each patch and project it through one linear layer.
+
+10
+00:00:33.488 --> 00:00:34.633
+Now we have tokens.
+
+11
+00:00:34.933 --> 00:00:40.333
+Add position embeddings for patch order, and a learnable CLS token to collect the summary.
+
+12
+00:00:40.633 --> 00:00:43.133
+Feed it all to a standard transformer encoder.
+
+13
+00:00:43.433 --> 00:00:46.881
+And the classification head reads the CLS output.
+
+14
+00:00:46.881 --> 00:00:47.233
+Done.
+
+15
+00:00:48.433 --> 00:00:49.500
+There's a tradeoff.
+
+16
+00:00:49.800 --> 00:00:51.904
+A CNN has locality built in.
+
+17
+00:00:51.904 --> 00:00:54.233
+ViT must learn it from scratch.
+
+18
+00:00:54.533 --> 00:01:01.100
+On ImageNet alone it loses to ResNet, but pretrained on hundreds of millions of images, it wins.
+
+19
+00:01:01.400 --> 00:01:04.700
+Self attention relates any patch to any other in one hop.
+
+20
+00:01:05.000 --> 00:01:06.800
+Data hungry, but it scales.
+
+21
+00:01:08.000 --> 00:01:09.200
+Here it is in code.
+
+22
+00:01:09.500 --> 00:01:12.700
+We load the image processor and the pretrained ViT.
+
+23
+00:01:13.000 --> 00:01:16.933
+The processor resizes the picture to two hundred twenty four square.
+
+24
+00:01:17.233 --> 00:01:23.400
+And the patch embeddings come out as one hundred ninety six tokens, each seven hundred sixty eight numbers long.
+
+25
+00:01:24.600 --> 00:01:26.833
+Why does the patch grid matter in practice?
+
+26
+00:01:27.133 --> 00:01:31.033
+Ask a multimodal model whether a storm frame shows an eye wall.
+
+27
+00:01:31.333 --> 00:01:36.433
+It literally sees patch tokens, so a ten pixel feature can vanish inside one patch.
+
+28
+00:01:36.733 --> 00:01:41.148
+So you tile and zoom the input, and you never ask for pixel coordinates.
+
+29
+00:01:41.148 --> 00:01:43.600
+The patch grid is your debugging manual.
+
+30
+00:01:44.800 --> 00:01:45.612
+Let's recap.
+
+31
+00:01:45.612 --> 00:01:49.133
+An image becomes patches, and patches become tokens.
+
+32
+00:01:49.433 --> 00:01:53.633
+Add position embeddings and a CLS token, then a plain transformer.
+
+33
+00:01:53.933 --> 00:01:57.033
+It is data hungry, but wins with big pretraining.
+
+34
+00:01:57.333 --> 00:02:00.867
+And it is the vision half of multimodal LLMs.
+
+35
+00:02:00.867 --> 00:02:01.967
+Next up: YOLO.

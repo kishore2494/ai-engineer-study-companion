@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+Weight initialization.
+
+2
+00:00:02.400 --> 00:00:06.000
+Random starting weights decide whether a network can learn at all.
+
+3
+00:00:07.200 --> 00:00:10.767
+Every layer multiplies the signal's variance by some factor.
+
+4
+00:00:11.067 --> 00:00:17.767
+If the factor is below one, signals shrink toward zero across layers, and early layers never get a gradient.
+
+5
+00:00:18.067 --> 00:00:22.967
+Above one, activations saturate, gradients explode, and the loss goes NaN.
+
+6
+00:00:24.167 --> 00:00:26.667
+Here's the picture, with illustrative numbers.
+
+7
+00:00:26.967 --> 00:00:30.867
+Too small, and the gradient dies before it reaches the early layers.
+
+8
+00:00:31.167 --> 00:00:32.720
+Too large, and it blows up.
+
+9
+00:00:32.720 --> 00:00:36.000
+Matched variance keeps the signal steady from end to end.
+
+10
+00:00:37.200 --> 00:00:41.333
+The fix is to choose the initial variance so the factor is about one.
+
+11
+00:00:41.633 --> 00:00:46.000
+Xavier or Glorot init balances the signal for tanh and sigmoid.
+
+12
+00:00:46.300 --> 00:00:51.333
+He or Kaiming init doubles it, to compensate for ReLU killing half its inputs.
+
+13
+00:00:52.533 --> 00:00:54.433
+Let's apply it to a deep network.
+
+14
+00:00:54.733 --> 00:00:56.900
+Ten stacked linear and ReLU blocks.
+
+15
+00:00:57.200 --> 00:01:00.933
+Each linear layer gets Kaiming normal init, designed for ReLU.
+
+16
+00:01:01.233 --> 00:01:03.469
+And apply runs it over every layer.
+
+17
+00:01:03.469 --> 00:01:06.600
+Gradient norms now stay the same size throughout.
+
+18
+00:01:07.800 --> 00:01:08.967
+Here's where it bites.
+
+19
+00:01:09.267 --> 00:01:13.433
+You port a twelve layer encoder from a paper, swapping tanh for ReLU.
+
+20
+00:01:13.733 --> 00:01:15.021
+Training flatlines.
+
+21
+00:01:15.021 --> 00:01:23.767
+The paper's Xavier init was matched to tanh, and under ReLU the signal decays until layer one's gradients reach one e minus nine.
+
+22
+00:01:24.067 --> 00:01:26.633
+Switching to He init fixes it on the first try.
+
+23
+00:01:27.833 --> 00:01:28.749
+One more trap.
+
+24
+00:01:28.749 --> 00:01:34.635
+All zeros is even worse: every neuron in a layer is identical and can never differentiate.
+
+25
+00:01:34.635 --> 00:01:36.467
+That's the symmetry problem.
+
+26
+00:01:36.767 --> 00:01:40.233
+Use random weights, with variance matched to your activation.
+
+27
+00:01:41.433 --> 00:01:42.203
+Let's recap.
+
+28
+00:01:42.203 --> 00:01:45.667
+Initialization sets the signal factor for every layer.
+
+29
+00:01:45.967 --> 00:01:48.400
+Too small vanishes, too large explodes.
+
+30
+00:01:48.700 --> 00:01:50.800
+Xavier for tanh, He for ReLU.
+
+31
+00:01:51.100 --> 00:01:53.781
+Watch for it in custom or ported code.
+
+32
+00:01:53.781 --> 00:01:56.533
+Next up: convolutional neural networks.

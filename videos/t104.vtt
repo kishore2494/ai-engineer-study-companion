@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.154
+YOLO.
+
+2
+00:00:01.154 --> 00:00:02.500
+You only look once.
+
+3
+00:00:02.800 --> 00:00:05.618
+Early detectors were accurate but glacial.
+
+4
+00:00:05.618 --> 00:00:07.967
+This idea made detection real time.
+
+5
+00:00:09.167 --> 00:00:13.133
+Early detectors ran a classifier over thousands of image crops.
+
+6
+00:00:13.433 --> 00:00:17.133
+YOLO reframes detection as a single regression problem.
+
+7
+00:00:17.433 --> 00:00:22.033
+One forward pass of one network predicts every box and every class at once.
+
+8
+00:00:23.233 --> 00:00:24.628
+Here is the mechanism.
+
+9
+00:00:24.628 --> 00:00:26.467
+Divide the image into a grid.
+
+10
+00:00:26.767 --> 00:00:30.776
+Each cell is responsible for objects whose center falls inside it.
+
+11
+00:00:30.776 --> 00:00:32.233
+This cell owns the ship.
+
+12
+00:00:32.533 --> 00:00:38.300
+Every cell emits box coordinates, an objectness score, and class scores, all at the same time.
+
+13
+00:00:39.500 --> 00:00:41.133
+So the full pipeline is short.
+
+14
+00:00:41.433 --> 00:00:42.567
+A frame goes in.
+
+15
+00:00:42.867 --> 00:00:45.233
+The network predicts everything in one pass.
+
+16
+00:00:45.533 --> 00:00:48.533
+That leaves duplicate boxes around each object.
+
+17
+00:00:48.833 --> 00:00:51.079
+Non max suppression deletes them.
+
+18
+00:00:51.079 --> 00:00:57.067
+One pass means real time: thirty to over a hundred and fifty frames per second on a GPU.
+
+19
+00:00:58.267 --> 00:00:59.467
+Here it is in code.
+
+20
+00:00:59.767 --> 00:01:01.169
+We load the nano model.
+
+21
+00:01:01.169 --> 00:01:04.033
+It has only three point two million parameters.
+
+22
+00:01:04.333 --> 00:01:08.567
+We run it on a harbor image and print each box's label and confidence.
+
+23
+00:01:08.867 --> 00:01:13.200
+And training on your own labeled data is a single call with a config file.
+
+24
+00:01:14.400 --> 00:01:16.333
+Here's where speed is the requirement.
+
+25
+00:01:16.633 --> 00:01:20.319
+A satellite service must post ship counts before the nine a.
+
+26
+00:01:20.319 --> 00:01:20.442
+m.
+
+27
+00:01:20.442 --> 00:01:20.933
+standup.
+
+28
+00:01:21.233 --> 00:01:28.133
+A YOLO model fine-tuned on fifteen hundred annotated tiles handles the forty thousand tile scene in minutes.
+
+29
+00:01:28.433 --> 00:01:33.667
+A two stage detector would triple the runtime for accuracy you don't need to count ships.
+
+30
+00:01:34.867 --> 00:01:35.458
+To recap.
+
+31
+00:01:35.458 --> 00:01:39.267
+YOLO treats detection as one dense prediction over a grid.
+
+32
+00:01:39.567 --> 00:01:43.133
+Each cell outputs a box, an objectness score and classes.
+
+33
+00:01:43.433 --> 00:01:45.100
+One pass means real time.
+
+34
+00:01:45.400 --> 00:01:48.986
+It's the practical default for live video and edge.
+
+35
+00:01:48.986 --> 00:01:50.533
+Next up: Faster R-CNN.

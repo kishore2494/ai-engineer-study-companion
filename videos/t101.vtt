@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+VGG.
+
+2
+00:00:02.167 --> 00:00:05.316
+This 2014 network proved a simple design rule.
+
+3
+00:00:05.316 --> 00:00:09.767
+It also teaches a lesson about where a model's size really hides.
+
+4
+00:00:10.967 --> 00:00:14.067
+VGG's recipe is wonderfully boring.
+
+5
+00:00:14.367 --> 00:00:16.610
+Don't invent exotic filter sizes.
+
+6
+00:00:16.610 --> 00:00:19.533
+Use only small three by three convolutions.
+
+7
+00:00:19.833 --> 00:00:22.367
+Stack lots of them, in a uniform pattern.
+
+8
+00:00:22.667 --> 00:00:26.133
+Each time the resolution halves, the number of channels doubles.
+
+9
+00:00:27.333 --> 00:00:28.450
+Why small filters?
+
+10
+00:00:28.450 --> 00:00:30.000
+Watch what stacking does.
+
+11
+00:00:30.300 --> 00:00:33.900
+One three by three convolution sees a three by three patch.
+
+12
+00:00:34.200 --> 00:00:37.733
+Stack a second, and together they see a five by five region.
+
+13
+00:00:38.033 --> 00:00:39.749
+A third sees seven by seven.
+
+14
+00:00:39.749 --> 00:00:44.833
+That is the view of a big filter, but with fewer parameters and more non-linearity.
+
+15
+00:00:46.033 --> 00:00:47.458
+Now the surprising part.
+
+16
+00:00:47.458 --> 00:00:49.833
+Here is the parameter count in millions.
+
+17
+00:00:50.133 --> 00:00:54.767
+The convolutions everyone remembers hold only fourteen point seven million.
+
+18
+00:00:55.067 --> 00:00:59.224
+The three dense layers at the end hold one hundred twenty three million.
+
+19
+00:00:59.224 --> 00:01:01.533
+That is nearly nine tenths of the model.
+
+20
+00:01:01.833 --> 00:01:10.667
+Modern networks replace that head with global average pooling, which is why ResNet-18 gets by with just eleven point seven million.
+
+21
+00:01:11.867 --> 00:01:14.067
+You can check this yourself in PyTorch.
+
+22
+00:01:14.367 --> 00:01:18.600
+We write a tiny helper that sums the number of elements in every parameter.
+
+23
+00:01:18.900 --> 00:01:23.392
+Run it on VGG and the classifier head, and the head dominates.
+
+24
+00:01:23.392 --> 00:01:26.000
+ResNet-18 is a fraction of the size.
+
+25
+00:01:27.200 --> 00:01:29.467
+Here's how this plays out in a real review.
+
+26
+00:01:29.767 --> 00:01:37.133
+A vendor proposes a VGG-16 classifier for your edge server, which has only two gigabytes of RAM.
+
+27
+00:01:37.433 --> 00:01:42.800
+You run the count: about five hundred twenty eight megabytes of weights, before activations.
+
+28
+00:01:43.100 --> 00:01:46.110
+You counter with ResNet-18 or EfficientNet.
+
+29
+00:01:46.110 --> 00:01:48.000
+The numbers end the debate.
+
+30
+00:01:49.200 --> 00:01:49.968
+Let's recap.
+
+31
+00:01:49.968 --> 00:01:54.833
+Stack uniform three by three convolutions, doubling channels as size halves.
+
+32
+00:01:55.133 --> 00:01:58.333
+Small stacks match big filters with fewer parameters.
+
+33
+00:01:58.633 --> 00:02:02.033
+But the dense head holds most of VGG's weight.
+
+34
+00:02:02.333 --> 00:02:05.815
+So it lives on as a baseline, not a deployment choice.
+
+35
+00:02:05.815 --> 00:02:07.233
+Next up: EfficientNet.

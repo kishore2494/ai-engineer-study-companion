@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+Faster R-CNN.
+
+2
+00:00:02.467 --> 00:00:07.367
+The definitive two stage detector, and the pick when small, crowded objects matter.
+
+3
+00:00:08.567 --> 00:00:12.033
+Faster R-CNN splits detection into two stages.
+
+4
+00:00:12.333 --> 00:00:15.900
+First, propose a few hundred places where an object might be.
+
+5
+00:00:16.200 --> 00:00:20.600
+Second, study each candidate closely, classify it, and fix its box.
+
+6
+00:00:21.800 --> 00:00:23.000
+Here's the pipeline.
+
+7
+00:00:23.300 --> 00:00:25.767
+A backbone turns the image into a feature map.
+
+8
+00:00:26.067 --> 00:00:28.969
+The region proposal network slides over it.
+
+9
+00:00:28.969 --> 00:00:37.067
+At each location it scores template boxes called anchors, in varied sizes and shapes, asking: is there some object here?
+
+10
+00:00:37.367 --> 00:00:41.972
+Each candidate is cropped from the feature map and resized to a fixed size.
+
+11
+00:00:41.972 --> 00:00:43.200
+That is RoI pooling.
+
+12
+00:00:43.500 --> 00:00:47.800
+A second head then classifies the region and fine tunes its coordinates.
+
+13
+00:00:49.000 --> 00:00:50.567
+How does it compare with YOLO?
+
+14
+00:00:50.867 --> 00:00:53.128
+Two stage is propose then refine.
+
+15
+00:00:53.128 --> 00:00:55.800
+One stage predicts densely in one shot.
+
+16
+00:00:56.100 --> 00:01:00.100
+The second look costs speed, roughly five to twenty frames per second.
+
+17
+00:01:00.400 --> 00:01:07.400
+But it historically bought accuracy on small, crowded objects, since each candidate is studied at a normalized scale.
+
+18
+00:01:07.700 --> 00:01:09.133
+That's the interview framing.
+
+19
+00:01:10.333 --> 00:01:12.333
+In torchvision it's a few lines.
+
+20
+00:01:12.633 --> 00:01:15.033
+Load the pretrained model in eval mode.
+
+21
+00:01:15.333 --> 00:01:16.620
+Run it on an image.
+
+22
+00:01:16.620 --> 00:01:19.533
+The output holds boxes, labels, and scores.
+
+23
+00:01:19.833 --> 00:01:23.400
+Then keep only detections scoring above zero point eight.
+
+24
+00:01:24.600 --> 00:01:26.433
+Now a case where accuracy wins.
+
+25
+00:01:26.733 --> 00:01:32.667
+An audit must flag small vehicles in cluttered launch facility imagery, objects twelve pixels wide.
+
+26
+00:01:32.967 --> 00:01:35.700
+A YOLO run keeps merging adjacent trucks.
+
+27
+00:01:36.000 --> 00:01:38.400
+Faster R-CNN separates them cleanly.
+
+28
+00:01:38.400 --> 00:01:42.200
+It takes three times longer, but it runs while you sleep.
+
+29
+00:01:42.200 --> 00:01:45.200
+Matching stage count to the job is the skill.
+
+30
+00:01:46.400 --> 00:01:47.241
+Let's recap.
+
+31
+00:01:47.241 --> 00:01:51.233
+The RPN proposes regions, and a second head refines each.
+
+32
+00:01:51.533 --> 00:01:54.233
+Anchors and RoI pooling connect the stages.
+
+33
+00:01:54.533 --> 00:01:57.767
+Two stage leans accuracy, one stage leans speed.
+
+34
+00:01:58.067 --> 00:02:00.800
+And it's the chassis for the next model.
+
+35
+00:02:00.800 --> 00:02:02.167
+Next up: Mask R-CNN.
