@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.133
+Experiment tracking.
+
+2
+00:00:02.433 --> 00:00:08.000
+The most important question in applied ML is which model was that, and how do I reproduce it.
+
+3
+00:00:09.200 --> 00:00:11.533
+Without tracking you get the folder graveyard.
+
+4
+00:00:11.833 --> 00:00:15.167
+Folders named final version two, and model best real.
+
+5
+00:00:15.467 --> 00:00:18.000
+Within a month, nobody knows which one was which.
+
+6
+00:00:18.300 --> 00:00:20.601
+With tracking, the answer is a query.
+
+7
+00:00:20.601 --> 00:00:22.467
+Without it, it is archaeology.
+
+8
+00:00:23.667 --> 00:00:25.333
+A run is the atomic unit.
+
+9
+00:00:25.333 --> 00:00:30.533
+Anything that influenced the result is attached to it, by code, not by memory.
+
+10
+00:00:30.833 --> 00:00:32.300
+Parameters and config.
+
+11
+00:00:32.600 --> 00:00:35.200
+Metrics, like loss curves and eval scores.
+
+12
+00:00:35.500 --> 00:00:36.467
+The git commit.
+
+13
+00:00:36.767 --> 00:00:37.833
+The data version.
+
+14
+00:00:38.133 --> 00:00:40.367
+And artifacts, like weights and plots.
+
+15
+00:00:41.567 --> 00:00:44.700
+Once runs are tracked, they become a table you can query.
+
+16
+00:00:45.000 --> 00:00:48.543
+Sort by the metric, and the best run floats to the top.
+
+17
+00:00:48.543 --> 00:00:50.733
+Hand a colleague the exact run ID.
+
+18
+00:00:51.933 --> 00:00:54.267
+Here is the same idea in MLflow.
+
+19
+00:00:54.567 --> 00:00:58.067
+We loop over three learning rates, and each one gets its own run.
+
+20
+00:00:58.367 --> 00:01:02.000
+We log the parameters, and after training, the validation score.
+
+21
+00:01:02.300 --> 00:01:04.600
+Then we attach a plot as an artifact.
+
+22
+00:01:04.900 --> 00:01:07.667
+The UI then lists all three runs side by side.
+
+23
+00:01:08.867 --> 00:01:11.800
+A teammate asks why March's model beats June's.
+
+24
+00:01:12.100 --> 00:01:15.633
+Because every retrain was a tracked run, you compare them directly.
+
+25
+00:01:15.933 --> 00:01:20.400
+Same code, same hyperparameters, but June logged a newer data version.
+
+26
+00:01:20.700 --> 00:01:23.037
+That version included a noisy detector.
+
+27
+00:01:23.037 --> 00:01:25.733
+Three minutes, instead of a week of guessing.
+
+28
+00:01:26.933 --> 00:01:27.809
+Let's recap.
+
+29
+00:01:27.809 --> 00:01:29.633
+A run is the atomic unit.
+
+30
+00:01:29.933 --> 00:01:33.433
+Log parameters, metrics, code, data, and artifacts.
+
+31
+00:01:33.733 --> 00:01:36.100
+Tracked runs become a table you can query.
+
+32
+00:01:36.400 --> 00:01:39.802
+That habit separates engineering from notebook science.
+
+33
+00:01:39.802 --> 00:01:41.533
+Next up: the model registry.
