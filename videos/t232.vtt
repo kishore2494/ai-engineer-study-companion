@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+MySQL, in depth.
+
+2
+00:00:02.500 --> 00:00:04.823
+It is everywhere in existing companies.
+
+3
+00:00:04.823 --> 00:00:08.933
+Knowing where it truly differs from Postgres is a professional habit.
+
+4
+00:00:10.133 --> 00:00:15.500
+The part of MySQL worth knowing deeply is InnoDB, its default storage engine.
+
+5
+00:00:15.800 --> 00:00:18.533
+It gives row-level locking and crash recovery.
+
+6
+00:00:18.833 --> 00:00:26.300
+And MySQL has had a real JSON type since five point seven, so the claim that it cannot do documents is folklore.
+
+7
+00:00:27.500 --> 00:00:30.033
+Here is InnoDB's most distinctive trait.
+
+8
+00:00:30.333 --> 00:00:33.633
+A query first finds a value through a secondary index.
+
+9
+00:00:33.933 --> 00:00:37.067
+Each secondary index entry carries the primary key.
+
+10
+00:00:37.367 --> 00:00:42.967
+And the table itself is physically stored in primary key order, so that key leads straight to the row.
+
+11
+00:00:44.167 --> 00:00:46.667
+Now the differences you should verify yourself.
+
+12
+00:00:46.967 --> 00:00:49.200
+The upsert syntax is spelled differently.
+
+13
+00:00:49.500 --> 00:00:51.718
+Postgres has a full outer join.
+
+14
+00:00:51.718 --> 00:00:54.867
+MySQL needs a union of left and right joins.
+
+15
+00:00:55.167 --> 00:00:57.973
+Postgres can return changed rows inline.
+
+16
+00:00:57.973 --> 00:00:59.867
+MySQL needs another select.
+
+17
+00:01:00.167 --> 00:01:04.133
+Default isolation levels differ, and so do identifier quotes.
+
+18
+00:01:04.433 --> 00:01:06.167
+Run each one on both engines.
+
+19
+00:01:07.367 --> 00:01:09.767
+Here is the same upsert in both dialects.
+
+20
+00:01:10.067 --> 00:01:13.167
+Postgres uses ON CONFLICT, naming the key column.
+
+21
+00:01:13.467 --> 00:01:16.633
+MySQL uses ON DUPLICATE KEY UPDATE instead.
+
+22
+00:01:17.833 --> 00:01:21.096
+The difference that bites hardest is in migrations.
+
+23
+00:01:21.096 --> 00:01:26.533
+MySQL auto-commits schema changes, so a failed migration can leave you half-migrated.
+
+24
+00:01:26.833 --> 00:01:29.166
+Postgres rolls the whole thing back.
+
+25
+00:01:29.166 --> 00:01:31.433
+On MySQL, plan for partial failure.
+
+26
+00:01:32.633 --> 00:01:34.033
+Here is why it matters.
+
+27
+00:01:34.333 --> 00:01:39.533
+A client wants your ticket summarization model wired into their MySQL eight database.
+
+28
+00:01:39.833 --> 00:01:44.600
+Your Postgres-flavored scripts fail on ON CONFLICT, and a rollback that never happened.
+
+29
+00:01:44.900 --> 00:01:48.167
+The engineer who knows the real differences ships that week.
+
+30
+00:01:49.367 --> 00:01:50.111
+Let's recap.
+
+31
+00:01:50.111 --> 00:01:52.900
+MySQL is everywhere, and you will inherit it.
+
+32
+00:01:53.200 --> 00:01:56.733
+InnoDB gives row locks and a clustered primary key.
+
+33
+00:01:57.033 --> 00:02:00.700
+Know the real differences from Postgres, because you verified them.
+
+34
+00:02:01.000 --> 00:02:04.085
+And remember that MySQL auto-commits DDL.
+
+35
+00:02:04.085 --> 00:02:05.967
+Next up: data warehouses.

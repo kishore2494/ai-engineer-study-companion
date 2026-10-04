@@ -101,37 +101,37 @@ Find contours and keep those with area above five hundred.
 No model, no GPU, about five milliseconds.
 
 26
-00:01:18.333 --> 00:01:20.733
+00:01:18.333 --> 00:01:20.300
 Here's OpenCV's real role.
 
 27
-00:01:21.033 --> 00:01:26.433
+00:01:20.600 --> 00:01:26.000
 Every satellite tile passes through a cv2 gauntlet before any deep model sees it.
 
 28
-00:01:26.733 --> 00:01:33.133
+00:01:26.300 --> 00:01:32.700
 Convert BGR to RGB, the bug that once cost a full day, and resize to two twenty four.
 
 29
-00:01:33.433 --> 00:01:40.467
+00:01:33.000 --> 00:01:40.033
 A cheap blur check then discards unusable frames in five milliseconds, instead of wasting GPU time.
 
 30
-00:01:41.667 --> 00:01:42.580
+00:01:41.233 --> 00:01:42.147
 Let's recap.
 
 31
-00:01:42.580 --> 00:01:46.767
+00:01:42.147 --> 00:01:46.333
 OpenCV gives fast classical operations on NumPy arrays.
 
 32
-00:01:47.067 --> 00:01:50.400
+00:01:46.633 --> 00:01:49.967
 It's the pre and post processing layer around deep models.
 
 33
-00:01:50.700 --> 00:01:53.900
+00:01:50.267 --> 00:01:53.467
 Sometimes threshold and contours beat training a network.
 
 34
-00:01:54.200 --> 00:01:58.600
+00:01:53.767 --> 00:01:58.167
 And always remember: cv2 loads BGR, not RGB.

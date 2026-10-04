@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+GCP core services.
+
+2
+00:00:02.800 --> 00:00:07.743
+Google Cloud maps neatly onto AWS, and a few pieces genuinely shine.
+
+3
+00:00:07.743 --> 00:00:08.833
+Let's see them.
+
+4
+00:00:10.033 --> 00:00:13.133
+Start by mapping GCP from what you already know.
+
+5
+00:00:13.433 --> 00:00:17.867
+Compute Engine is the equivalent of EC2: plain virtual machines.
+
+6
+00:00:18.167 --> 00:00:21.367
+Cloud Run runs containers and scales them to zero.
+
+7
+00:00:21.667 --> 00:00:27.800
+GKE is widely seen as the strongest managed Kubernetes, because Google wrote Kubernetes.
+
+8
+00:00:28.100 --> 00:00:30.678
+And BigQuery is a serverless warehouse.
+
+9
+00:00:30.678 --> 00:00:31.933
+No cluster to size.
+
+10
+00:00:32.233 --> 00:00:35.233
+The data tooling is the calling card of GCP.
+
+11
+00:00:36.433 --> 00:00:44.433
+Many data-heavy teams pick GCP for BigQuery and its analytics stack, even when everything else lives on AWS.
+
+12
+00:00:45.633 --> 00:00:47.633
+Here is the whole pitch of Cloud Run.
+
+13
+00:00:47.933 --> 00:00:51.467
+With no traffic there are zero instances, and you pay nothing.
+
+14
+00:00:51.767 --> 00:00:54.389
+When traffic arrives, one instance starts.
+
+15
+00:00:54.389 --> 00:00:56.700
+That first request pays a cold start.
+
+16
+00:00:57.000 --> 00:00:59.300
+Under a spike, it scales out by itself.
+
+17
+00:00:59.600 --> 00:01:01.997
+And afterwards it drops back to zero.
+
+18
+00:01:01.997 --> 00:01:03.033
+Back to no cost.
+
+19
+00:01:04.233 --> 00:01:05.700
+Here it is in the terminal.
+
+20
+00:01:06.000 --> 00:01:12.667
+One command takes your source to a public HTTPS URL, with minimum instances set to zero.
+
+21
+00:01:12.967 --> 00:01:14.469
+Then we time a request.
+
+22
+00:01:14.469 --> 00:01:18.454
+The first hit after idle takes about one point eight seconds.
+
+23
+00:01:18.454 --> 00:01:21.067
+Warm hits take about forty milliseconds.
+
+24
+00:01:21.367 --> 00:01:24.400
+And BigQuery runs a query with no cluster at all.
+
+25
+00:01:24.400 --> 00:01:26.567
+You pay per amount of data scanned.
+
+26
+00:01:27.767 --> 00:01:29.000
+Here's a real use.
+
+27
+00:01:29.300 --> 00:01:32.447
+Your public exoplanet demo runs on Cloud Run.
+
+28
+00:01:32.447 --> 00:01:35.733
+Weeks of almost no traffic cost almost nothing.
+
+29
+00:01:36.033 --> 00:01:39.500
+Then a Hacker News spike arrives, and the service scales itself.
+
+30
+00:01:39.800 --> 00:01:45.920
+Meanwhile you load the full archive into BigQuery and run analytics with no warehouse to look after.
+
+31
+00:01:45.920 --> 00:01:51.367
+And measure the cold start yourself, so you can say two seconds, then forty milliseconds.
+
+32
+00:01:52.567 --> 00:01:53.767
+Let's recap.
+
+33
+00:01:53.767 --> 00:01:56.567
+Map GCP by analogy from AWS.
+
+34
+00:01:56.867 --> 00:02:00.200
+Cloud Run scales to zero, and costs nothing while idle.
+
+35
+00:02:00.500 --> 00:02:03.267
+GKE is top-tier managed Kubernetes.
+
+36
+00:02:03.567 --> 00:02:06.849
+And BigQuery is serverless, paying per scan.
+
+37
+00:02:06.849 --> 00:02:08.267
+Next up: Vertex AI.

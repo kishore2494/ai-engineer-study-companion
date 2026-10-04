@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+SageMaker.
+
+2
+00:00:02.067 --> 00:00:04.752
+On AWS there are two ways to run models.
+
+3
+00:00:04.752 --> 00:00:06.767
+Let's see where each one fits.
+
+4
+00:00:07.967 --> 00:00:12.333
+SageMaker is AWS's managed machine learning platform.
+
+5
+00:00:12.633 --> 00:00:14.933
+You bring a script and a model artifact.
+
+6
+00:00:15.233 --> 00:00:17.200
+AWS brings the hardware.
+
+7
+00:00:18.400 --> 00:00:19.700
+Here is the lifecycle.
+
+8
+00:00:20.000 --> 00:00:22.167
+You explore data in a hosted notebook.
+
+9
+00:00:22.467 --> 00:00:28.400
+A training job spins up GPU instances, trains, and, crucially, tears them down again.
+
+10
+00:00:28.700 --> 00:00:31.467
+The result is saved as an artifact in S3.
+
+11
+00:00:31.767 --> 00:00:38.700
+Then an endpoint puts your model behind an HTTPS URL with autoscaling, and no server babysitting.
+
+12
+00:00:39.900 --> 00:00:41.433
+Next to it sits Bedrock.
+
+13
+00:00:41.733 --> 00:00:43.853
+SageMaker is for models you train.
+
+14
+00:00:43.853 --> 00:00:46.533
+Bedrock is for models someone else trained.
+
+15
+00:00:46.833 --> 00:00:49.666
+With SageMaker you deploy an endpoint.
+
+16
+00:00:49.666 --> 00:00:53.467
+With Bedrock there's one API and no GPUs to manage.
+
+17
+00:00:53.767 --> 00:00:59.100
+Foundation models like Claude and Llama live there, with enterprise IAM and billing.
+
+18
+00:00:59.400 --> 00:01:00.961
+So: train it, SageMaker.
+
+19
+00:01:00.961 --> 00:01:02.067
+Call it, Bedrock.
+
+20
+00:01:03.267 --> 00:01:04.967
+Here is both sides in Python.
+
+21
+00:01:05.267 --> 00:01:10.267
+We point a model object at the artifact in S3, with a role and an inference script.
+
+22
+00:01:10.567 --> 00:01:15.033
+Calling deploy creates the endpoint, on the instance type and count we choose.
+
+23
+00:01:15.333 --> 00:01:19.087
+And on the Bedrock side, we create a client and call converse.
+
+24
+00:01:19.087 --> 00:01:20.600
+No infrastructure at all.
+
+25
+00:01:21.800 --> 00:01:24.700
+Here is how it plays out for an exoplanet project.
+
+26
+00:01:25.000 --> 00:01:27.814
+The classifier trains as a SageMaker job.
+
+27
+00:01:27.814 --> 00:01:32.070
+The GPU spins up, trains, writes the artifact, and spins down.
+
+28
+00:01:32.070 --> 00:01:34.267
+You pay for about forty minutes.
+
+29
+00:01:34.567 --> 00:01:39.133
+It then serves from an endpoint that autoscales when survey data is released.
+
+30
+00:01:39.433 --> 00:01:45.546
+Meanwhile the research agent's LLM calls go through Bedrock, under the same account and IAM.
+
+31
+00:01:45.546 --> 00:01:49.333
+You feel exactly where your model ends and theirs begins.
+
+32
+00:01:50.533 --> 00:01:51.308
+Let's recap.
+
+33
+00:01:51.308 --> 00:01:54.667
+SageMaker covers notebooks, training, and endpoints.
+
+34
+00:01:54.967 --> 00:01:58.167
+Training jobs spin GPUs up and tear them down.
+
+35
+00:01:58.467 --> 00:02:01.600
+Bedrock serves foundation models that you simply call.
+
+36
+00:02:01.900 --> 00:02:04.297
+Models you train go on SageMaker.
+
+37
+00:02:04.297 --> 00:02:06.839
+Models you call go through Bedrock.
+
+38
+00:02:06.839 --> 00:02:08.800
+Next up: GCP core services.
