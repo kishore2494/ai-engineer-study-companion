@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.533
+Privacy preserving AI.
+
+2
+00:00:02.833 --> 00:00:08.433
+Every enterprise with sensitive data asks these questions, and few engineers can answer them.
+
+3
+00:00:09.633 --> 00:00:12.933
+Start with the practical answer: confidential computing.
+
+4
+00:00:13.233 --> 00:00:14.767
+Data goes in encrypted.
+
+5
+00:00:15.067 --> 00:00:22.300
+It enters a hardware enclave, like Intel TDX, AMD SEV, or NVIDIA confidential GPUs.
+
+6
+00:00:22.600 --> 00:00:24.133
+Inference runs inside.
+
+7
+00:00:24.433 --> 00:00:27.119
+Even the cloud operator cannot read the data.
+
+8
+00:00:27.119 --> 00:00:28.133
+This ships today.
+
+9
+00:00:29.333 --> 00:00:32.133
+Differential privacy adds calibrated noise.
+
+10
+00:00:32.433 --> 00:00:35.433
+Compare the output with and without one person's record.
+
+11
+00:00:35.733 --> 00:00:39.054
+The budget, epsilon, bounds how different they can be.
+
+12
+00:00:39.054 --> 00:00:40.100
+Smaller is safer.
+
+13
+00:00:41.300 --> 00:00:42.533
+Here is the full map.
+
+14
+00:00:42.833 --> 00:00:46.500
+Confidential computing and differential privacy are ready now.
+
+15
+00:00:46.800 --> 00:00:54.767
+Federated learning trains across devices or hospitals without centralizing data, and pairs naturally with differential privacy.
+
+16
+00:00:55.067 --> 00:01:01.033
+Homomorphic encryption computes on encrypted data, but is a thousand to a million times slower.
+
+17
+00:01:02.233 --> 00:01:04.433
+Federated learning deserves a picture.
+
+18
+00:01:04.733 --> 00:01:06.800
+Each hospital trains on its own data.
+
+19
+00:01:07.100 --> 00:01:08.867
+Another hospital does the same.
+
+20
+00:01:09.167 --> 00:01:12.588
+Only model updates are combined into a shared model.
+
+21
+00:01:12.588 --> 00:01:14.233
+The raw data never moves.
+
+22
+00:01:15.433 --> 00:01:19.911
+That slowdown is why it only suits small, targeted operations today.
+
+23
+00:01:19.911 --> 00:01:23.467
+Beautiful mathematics, but not yet practical at scale.
+
+24
+00:01:24.667 --> 00:01:29.733
+One last item: machine unlearning, removing a person's data from a trained model.
+
+25
+00:01:30.033 --> 00:01:36.867
+GDPR style rights demand it, but for large models retraining is still the only reliable answer.
+
+26
+00:01:38.067 --> 00:01:38.850
+Let's recap.
+
+27
+00:01:38.850 --> 00:01:41.133
+Confidential computing ships today.
+
+28
+00:01:41.433 --> 00:01:44.600
+Differential privacy bounds any one record's effect.
+
+29
+00:01:44.900 --> 00:01:47.100
+Federated learning keeps data local.
+
+30
+00:01:47.400 --> 00:01:51.036
+Homomorphic encryption and unlearning are ones to watch.
+
+31
+00:01:51.036 --> 00:01:53.633
+Next up: interpretability and alignment.

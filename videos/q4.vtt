@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Quantum machine learning.
+
+2
+00:00:02.500 --> 00:00:06.167
+What is the real mechanism, and what does it actually deliver today?
+
+3
+00:00:07.367 --> 00:00:11.033
+Today, QML almost always means a variational circuit.
+
+4
+00:00:11.333 --> 00:00:14.867
+First, classical data is encoded into a quantum state.
+
+5
+00:00:15.167 --> 00:00:18.900
+Then a circuit of trainable rotations, called the ansatz, runs.
+
+6
+00:00:19.200 --> 00:00:20.267
+We measure a number.
+
+7
+00:00:20.567 --> 00:00:25.667
+And a classical optimizer on your CPU updates the angles, then the loop repeats.
+
+8
+00:00:26.867 --> 00:00:29.100
+Encoding decides everything downstream.
+
+9
+00:00:29.400 --> 00:00:32.266
+Basis encoding maps bits to basis states.
+
+10
+00:00:32.266 --> 00:00:33.733
+Simple, but wasteful.
+
+11
+00:00:34.033 --> 00:00:37.599
+Angle encoding turns each feature into a rotation.
+
+12
+00:00:37.599 --> 00:00:40.167
+Almost every practical demo uses it.
+
+13
+00:00:40.467 --> 00:00:47.233
+Amplitude encoding is compact, but preparing the state takes exponential time, which cancels the advantage.
+
+14
+00:00:48.433 --> 00:00:52.667
+You cannot backpropagate through hardware, because measuring destroys the state.
+
+15
+00:00:52.967 --> 00:00:54.906
+So we use the parameter shift rule.
+
+16
+00:00:54.906 --> 00:00:57.233
+Run the circuit with the angle shifted up.
+
+17
+00:00:57.533 --> 00:00:59.100
+Run it again shifted down.
+
+18
+00:00:59.400 --> 00:01:00.559
+Subtract and halve.
+
+19
+00:01:00.559 --> 00:01:03.367
+It is exact, but costs two runs per parameter.
+
+20
+00:01:04.567 --> 00:01:06.533
+Here is the shape of it in PennyLane.
+
+21
+00:01:06.833 --> 00:01:09.000
+Angle embedding encodes the features.
+
+22
+00:01:09.300 --> 00:01:11.800
+Strongly entangling layers are the ansatz.
+
+23
+00:01:12.100 --> 00:01:14.867
+And a classical Adam optimizer does the training.
+
+24
+00:01:16.067 --> 00:01:18.382
+Three problems keep QML in the lab.
+
+25
+00:01:18.382 --> 00:01:20.300
+The first is barren plateaus.
+
+26
+00:01:20.600 --> 00:01:26.350
+As circuits grow, gradients flatten exponentially, so the optimizer has nothing to follow.
+
+27
+00:01:26.350 --> 00:01:32.867
+The other two are data loading, and dequantization, where classical algorithms match claimed speedups.
+
+28
+00:01:34.067 --> 00:01:35.200
+The honest verdict.
+
+29
+00:01:35.500 --> 00:01:43.500
+As of twenty twenty six, there is no demonstrated quantum advantage on any practical machine learning task with classical data.
+
+30
+00:01:43.800 --> 00:01:47.600
+Quantum should matter first for simulating chemistry and materials.
+
+31
+00:01:48.800 --> 00:01:49.665
+Let's recap.
+
+32
+00:01:49.665 --> 00:01:54.133
+QML is a variational circuit trained by a classical optimizer.
+
+33
+00:01:54.433 --> 00:01:56.633
+Gradients come from the parameter shift rule.
+
+34
+00:01:56.933 --> 00:01:59.833
+Data loading and barren plateaus block progress.
+
+35
+00:02:00.133 --> 00:02:04.551
+Quantum inspired tensor networks already work on classical hardware.
+
+36
+00:02:04.551 --> 00:02:06.500
+Next up: a three weekend plan.

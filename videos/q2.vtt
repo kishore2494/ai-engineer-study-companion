@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Gates and circuits.
+
+2
+00:00:02.300 --> 00:00:06.369
+If you know matrix multiplication, you already have the machinery.
+
+3
+00:00:06.369 --> 00:00:08.033
+Only the vocabulary is new.
+
+4
+00:00:09.233 --> 00:00:11.245
+A quantum program is a circuit.
+
+5
+00:00:11.245 --> 00:00:16.500
+It is a sequence of unitary matrices applied to a state, ending in a measurement.
+
+6
+00:00:16.800 --> 00:00:19.700
+Unitary means reversible and length preserving.
+
+7
+00:00:20.900 --> 00:00:22.467
+Here are the gates worth knowing.
+
+8
+00:00:22.767 --> 00:00:25.583
+X, Y and Z flip states or change phase.
+
+9
+00:00:25.583 --> 00:00:27.100
+X is the quantum NOT.
+
+10
+00:00:27.400 --> 00:00:29.334
+Hadamard creates superposition.
+
+11
+00:00:29.334 --> 00:00:32.267
+It is the first move of nearly every algorithm.
+
+12
+00:00:32.567 --> 00:00:34.836
+The rotation gates turn by any angle.
+
+13
+00:00:34.836 --> 00:00:39.067
+Those angles become trainable parameters in quantum machine learning.
+
+14
+00:00:39.367 --> 00:00:41.442
+And CNOT entangles two qubits.
+
+15
+00:00:41.442 --> 00:00:46.700
+Without it, a circuit is just independent qubits that a laptop can simulate.
+
+16
+00:00:47.900 --> 00:00:49.600
+Let's build the classic circuit.
+
+17
+00:00:49.900 --> 00:00:51.533
+Both qubits start at zero.
+
+18
+00:00:51.833 --> 00:00:54.367
+Hadamard puts the first one in superposition.
+
+19
+00:00:54.667 --> 00:00:56.800
+CNOT entangles the second with it.
+
+20
+00:00:57.100 --> 00:01:00.633
+Measure, and you see zero zero or one one, about half each.
+
+21
+00:01:01.833 --> 00:01:03.200
+Here it is in Qiskit.
+
+22
+00:01:03.500 --> 00:01:06.467
+The h call puts qubit zero in superposition.
+
+23
+00:01:06.767 --> 00:01:09.857
+The cx call is CNOT, entangling qubit one.
+
+24
+00:01:09.857 --> 00:01:13.536
+On real hardware you will also see stray outcomes.
+
+25
+00:01:13.536 --> 00:01:14.567
+That is noise.
+
+26
+00:01:15.767 --> 00:01:17.115
+Now the algorithms.
+
+27
+00:01:17.115 --> 00:01:21.300
+Grover searches N unstructured items in about root N steps.
+
+28
+00:01:21.600 --> 00:01:27.491
+That is a quadratic gain, not exponential, and it needs the search encoded as an oracle.
+
+29
+00:01:27.491 --> 00:01:29.633
+It does not make databases fast.
+
+30
+00:01:30.833 --> 00:01:32.000
+A few more by name.
+
+31
+00:01:32.300 --> 00:01:35.342
+Shor factors large integers, and breaks RSA.
+
+32
+00:01:35.342 --> 00:01:39.767
+It needs a large fault tolerant machine that does not exist yet.
+
+33
+00:01:40.067 --> 00:01:44.700
+VQE finds molecule energies, the most credible near term application.
+
+34
+00:01:45.000 --> 00:01:49.000
+QAOA targets optimization, but classical solvers still win.
+
+35
+00:01:49.300 --> 00:01:54.333
+HHL solves linear systems, with caveats that destroy most claimed uses.
+
+36
+00:01:55.533 --> 00:01:56.345
+Let's recap.
+
+37
+00:01:56.345 --> 00:02:00.000
+A circuit is unitary matrices followed by measurement.
+
+38
+00:02:00.300 --> 00:02:03.267
+Hadamard superposes, and CNOT entangles.
+
+39
+00:02:03.567 --> 00:02:05.767
+Grover is only a quadratic speedup.
+
+40
+00:02:06.067 --> 00:02:07.819
+Shor and VQE matter most.
+
+41
+00:02:07.819 --> 00:02:10.833
+Next up: noise, NISQ, and error correction.

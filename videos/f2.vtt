@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.733
+Embodied AI and world models.
+
+2
+00:00:03.033 --> 00:00:08.433
+The most heavily funded frontier in AI, and your transformer knowledge transfers directly.
+
+3
+00:00:09.633 --> 00:00:13.300
+A vision language action model, or VLA, is one transformer.
+
+4
+00:00:13.600 --> 00:00:18.167
+It reads camera frames and an instruction, and outputs robot joint commands.
+
+5
+00:00:18.467 --> 00:00:23.733
+Think of a VLM whose output vocabulary is motor tokens instead of words.
+
+6
+00:00:24.933 --> 00:00:26.200
+Here is the pipeline.
+
+7
+00:00:26.500 --> 00:00:27.867
+Camera frames come in.
+
+8
+00:00:28.167 --> 00:00:30.200
+Along with a plain language instruction.
+
+9
+00:00:30.500 --> 00:00:32.333
+The transformer processes both.
+
+10
+00:00:32.633 --> 00:00:35.367
+And it emits motor tokens that drive the joints.
+
+11
+00:00:36.567 --> 00:00:38.100
+World models add planning.
+
+12
+00:00:38.400 --> 00:00:40.433
+They learn the environment's dynamics.
+
+13
+00:00:40.733 --> 00:00:45.667
+So the agent can imagine what happens if it does X, instead of learning only by trial.
+
+14
+00:00:45.967 --> 00:00:48.500
+It picks the best imagined action, then acts.
+
+15
+00:00:48.800 --> 00:00:52.067
+They bridge reinforcement learning and generative modeling.
+
+16
+00:00:53.267 --> 00:00:55.667
+Training happens mostly in simulation.
+
+17
+00:00:55.967 --> 00:01:02.433
+Tools like Isaac Sim and MuJoCo make data free, while real robots are slow, costly, and risky.
+
+18
+00:01:02.733 --> 00:01:08.133
+Domain randomization varies the simulation so policies survive the reality gap.
+
+19
+00:01:09.333 --> 00:01:11.275
+The scarce ingredient is data.
+
+20
+00:01:11.275 --> 00:01:14.900
+There is no internet scale corpus of robot manipulation.
+
+21
+00:01:15.200 --> 00:01:19.200
+That is why teleoperation datasets and simulation get the effort.
+
+22
+00:01:19.500 --> 00:01:27.233
+If you want to move into this field, data is the entry point, and it is an engineering problem, not a robotics PhD problem.
+
+23
+00:01:28.433 --> 00:01:29.274
+Let's recap.
+
+24
+00:01:29.274 --> 00:01:32.567
+VLAs are transformers that output motor tokens.
+
+25
+00:01:32.867 --> 00:01:34.833
+World models plan by imagining.
+
+26
+00:01:35.133 --> 00:01:37.767
+Sim to real needs domain randomization.
+
+27
+00:01:38.067 --> 00:01:40.129
+And data is your entry point.
+
+28
+00:01:40.129 --> 00:01:42.333
+Next up: privacy preserving AI.
