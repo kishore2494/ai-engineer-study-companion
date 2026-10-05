@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Message queues.
+
+2
+00:00:02.167 --> 00:00:06.085
+A queue lets your system survive a sudden spike without falling over.
+
+3
+00:00:06.085 --> 00:00:06.767
+Here is how.
+
+4
+00:00:07.967 --> 00:00:12.833
+A message queue decouples the code that produces work from the code that consumes it.
+
+5
+00:00:13.133 --> 00:00:16.800
+The producer drops a job on the queue and returns immediately.
+
+6
+00:00:17.100 --> 00:00:20.433
+Consumers pull jobs at whatever rate they can sustain.
+
+7
+00:00:21.633 --> 00:00:23.633
+Here is the shock absorber at work.
+
+8
+00:00:23.933 --> 00:00:26.700
+A burst of four hundred jobs per second arrives.
+
+9
+00:00:27.000 --> 00:00:29.975
+But the workers drain at a steady fifty per second.
+
+10
+00:00:29.975 --> 00:00:31.900
+The extra jobs wait in the queue.
+
+11
+00:00:32.200 --> 00:00:35.377
+Workers never see the spike, so they never fall over.
+
+12
+00:00:35.377 --> 00:00:38.733
+And if a worker crashes, its job goes back on the queue.
+
+13
+00:00:39.933 --> 00:00:43.100
+Now the fine print that separates seniors from juniors.
+
+14
+00:00:43.400 --> 00:00:46.267
+The standard guarantee is at-least-once delivery.
+
+15
+00:00:46.567 --> 00:00:53.000
+Exactly-once across processes is practically a myth, so the same job will occasionally arrive twice.
+
+16
+00:00:53.300 --> 00:00:59.067
+Making the consumer idempotent, so a duplicate changes nothing, is your job, not the queue's.
+
+17
+00:01:00.267 --> 00:01:02.167
+Here is a worker that handles it.
+
+18
+00:01:02.467 --> 00:01:04.300
+It blocks until a job arrives.
+
+19
+00:01:04.600 --> 00:01:07.496
+Then it claims the job with set if not exists.
+
+20
+00:01:07.496 --> 00:01:10.833
+If the claim fails, it is a duplicate, so we skip it.
+
+21
+00:01:11.133 --> 00:01:15.367
+If the work fails, we release the claim and push the job back for a retry.
+
+22
+00:01:16.567 --> 00:01:21.367
+A big solar storm hits, and NASA publishes three hundred new reports in an hour.
+
+23
+00:01:21.667 --> 00:01:26.208
+Instead of embedding inline, ingest drops three hundred jobs on the queue.
+
+24
+00:01:26.208 --> 00:01:29.400
+Four workers drain them at the embedding rate limit.
+
+25
+00:01:29.700 --> 00:01:31.386
+Now kill a worker mid job.
+
+26
+00:01:31.386 --> 00:01:37.419
+Another worker gets the job, and the claim key makes sure the chunk is embedded exactly once.
+
+27
+00:01:37.419 --> 00:01:39.300
+That kill test is your proof.
+
+28
+00:01:40.500 --> 00:01:41.277
+Let's recap.
+
+29
+00:01:41.277 --> 00:01:43.933
+Queues decouple producers from consumers.
+
+30
+00:01:44.233 --> 00:01:46.433
+They absorb spikes and retry failures.
+
+31
+00:01:46.733 --> 00:01:48.433
+Delivery is at least once.
+
+32
+00:01:48.733 --> 00:01:51.091
+So make your consumers idempotent.
+
+33
+00:01:51.091 --> 00:01:52.200
+Next up: Celery.

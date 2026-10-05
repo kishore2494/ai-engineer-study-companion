@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+Scalability principles.
+
+2
+00:00:02.633 --> 00:00:06.420
+Going from one user to ten thousand is not about a faster server.
+
+3
+00:00:06.420 --> 00:00:08.633
+It is about knowing what breaks first.
+
+4
+00:00:09.833 --> 00:00:11.667
+There are two ways to handle more load.
+
+5
+00:00:11.967 --> 00:00:14.506
+Vertical scaling means a bigger machine.
+
+6
+00:00:14.506 --> 00:00:17.933
+Horizontal means more machines behind a load balancer.
+
+7
+00:00:18.233 --> 00:00:23.000
+Vertical needs no code changes, but it is simple only until you hit the ceiling.
+
+8
+00:00:23.300 --> 00:00:28.567
+Horizontal can grow almost forever, but it demands one discipline, which we'll see next.
+
+9
+00:00:28.867 --> 00:00:32.433
+So vertical is the quick fix, and horizontal is what lasts.
+
+10
+00:00:33.633 --> 00:00:35.933
+Here is the discipline: statelessness.
+
+11
+00:00:36.233 --> 00:00:37.833
+Requests come in from users.
+
+12
+00:00:38.133 --> 00:00:40.833
+The load balancer sends each one to any replica.
+
+13
+00:00:41.133 --> 00:00:45.767
+The replicas keep nothing in their own memory, so any of them can serve any request.
+
+14
+00:00:46.067 --> 00:00:49.487
+State moves down a layer, into Redis or a database.
+
+15
+00:00:49.487 --> 00:00:51.633
+The app tier becomes disposable.
+
+16
+00:00:52.833 --> 00:00:54.433
+Here is the difference in code.
+
+17
+00:00:54.733 --> 00:01:00.633
+A sessions dictionary in app memory dies with the pod, and breaks as soon as you run two replicas.
+
+18
+00:01:00.933 --> 00:01:05.803
+Instead, we read and write the conversation history in Redis, keyed by session.
+
+19
+00:01:05.803 --> 00:01:08.700
+Any replica can pick up where another left off.
+
+20
+00:01:09.900 --> 00:01:12.433
+The other half of the skill is bottleneck thinking.
+
+21
+00:01:12.733 --> 00:01:13.700
+First, measure.
+
+22
+00:01:14.000 --> 00:01:18.467
+Then find the narrowest component, because the system scales exactly that far.
+
+23
+00:01:18.767 --> 00:01:20.331
+Fix it, and measure again.
+
+24
+00:01:20.331 --> 00:01:23.100
+The bottleneck moves, but it never disappears.
+
+25
+00:01:24.300 --> 00:01:27.600
+Picture scaling a chat API to ten thousand users.
+
+26
+00:01:27.900 --> 00:01:33.323
+The first wall is the provider's tokens per minute limit, long before your CPU sweats.
+
+27
+00:01:33.323 --> 00:01:34.900
+Queuing and caching help.
+
+28
+00:01:35.200 --> 00:01:38.594
+Next the vector database struggles with query volume.
+
+29
+00:01:38.594 --> 00:01:40.067
+Read replicas fix that.
+
+30
+00:01:40.367 --> 00:01:44.336
+Finally your workers run out of open connections while streaming.
+
+31
+00:01:44.336 --> 00:01:46.046
+Add more stateless replicas.
+
+32
+00:01:46.046 --> 00:01:47.633
+Find the bottleneck first.
+
+33
+00:01:48.833 --> 00:01:49.670
+Let's recap.
+
+34
+00:01:49.670 --> 00:01:53.367
+Vertical scaling is simple, horizontal scaling lasts.
+
+35
+00:01:53.667 --> 00:01:55.600
+Horizontal needs stateless apps.
+
+36
+00:01:55.900 --> 00:01:58.467
+So state lives in Redis or a database.
+
+37
+00:01:58.767 --> 00:02:01.407
+And always measure to find the bottleneck.
+
+38
+00:02:01.407 --> 00:02:03.167
+Next up: caching strategies.

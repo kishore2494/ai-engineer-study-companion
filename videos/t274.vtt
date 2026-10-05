@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Redis.
+
+2
+00:00:01.833 --> 00:00:05.861
+It is fast, simple, and shows up in almost every AI backend.
+
+3
+00:00:05.861 --> 00:00:06.667
+Here is why.
+
+4
+00:00:07.867 --> 00:00:11.867
+Redis keeps data structures in memory and serves them over the network.
+
+5
+00:00:12.167 --> 00:00:16.100
+Strings, hashes, lists, sets, sorted sets, and pub sub channels.
+
+6
+00:00:16.400 --> 00:00:20.167
+Each has atomic operations, and optional expiry times.
+
+7
+00:00:21.367 --> 00:00:22.667
+Here is the key trick.
+
+8
+00:00:22.967 --> 00:00:26.167
+Redis runs commands one at a time on a single thread.
+
+9
+00:00:26.467 --> 00:00:28.569
+So a counter increment is atomic.
+
+10
+00:00:28.569 --> 00:00:32.900
+Two replicas incrementing the same counter can never lose an update.
+
+11
+00:00:33.200 --> 00:00:34.400
+No locks needed.
+
+12
+00:00:35.600 --> 00:00:37.133
+Each structure fits a job.
+
+13
+00:00:37.433 --> 00:00:39.567
+Strings with a TTL give you caching.
+
+14
+00:00:39.867 --> 00:00:42.567
+Atomic counters give you quotas and rate limits.
+
+15
+00:00:42.867 --> 00:00:46.933
+Sorted sets give you leaderboards, priority queues, and sliding windows.
+
+16
+00:00:47.233 --> 00:00:49.800
+Lists and pub sub give you queues and events.
+
+17
+00:00:51.000 --> 00:00:52.867
+Here is a per-user daily quota.
+
+18
+00:00:53.167 --> 00:00:55.100
+Each user gets one key per day.
+
+19
+00:00:55.400 --> 00:00:56.434
+We increment it.
+
+20
+00:00:56.434 --> 00:00:59.667
+That is atomic, so every replica can do it safely.
+
+21
+00:00:59.967 --> 00:01:03.393
+On the very first hit, we set a twenty four hour expiry.
+
+22
+00:01:03.393 --> 00:01:05.167
+Then we compare to the limit.
+
+23
+00:01:06.367 --> 00:01:09.667
+In the Mission Control stack, one Redis wears four hats.
+
+24
+00:01:09.967 --> 00:01:11.667
+It caches semantic answers.
+
+25
+00:01:11.967 --> 00:01:14.233
+It enforces per-user token quotas.
+
+26
+00:01:14.533 --> 00:01:17.333
+It carries the Celery jobs for background summaries.
+
+27
+00:01:17.633 --> 00:01:21.667
+And a sorted set window limits calls to the NASA DONKI API.
+
+28
+00:01:22.867 --> 00:01:25.900
+In interviews, saying you used Redis is not enough.
+
+29
+00:01:26.200 --> 00:01:30.344
+Name the structure behind each job, and explain why INCR is atomic.
+
+30
+00:01:30.344 --> 00:01:32.200
+That shows you really know it.
+
+31
+00:01:33.400 --> 00:01:34.216
+Let's recap.
+
+32
+00:01:34.216 --> 00:01:36.800
+Redis holds data structures in memory.
+
+33
+00:01:37.100 --> 00:01:39.600
+Its single thread makes increments atomic.
+
+34
+00:01:39.900 --> 00:01:41.867
+Each structure suits a different job.
+
+35
+00:01:42.167 --> 00:01:44.727
+So one Redis often plays four roles.
+
+36
+00:01:44.727 --> 00:01:46.433
+Next up: message queues.

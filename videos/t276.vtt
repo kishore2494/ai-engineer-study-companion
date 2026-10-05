@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.500
+Celery.
+
+2
+00:00:01.800 --> 00:00:05.333
+Browsers and load balancers give up on slow requests.
+
+3
+00:00:05.333 --> 00:00:09.733
+Celery is how Python teams run slow work safely in the background.
+
+4
+00:00:10.933 --> 00:00:14.167
+Celery turns a Python function into a background job.
+
+5
+00:00:14.467 --> 00:00:17.167
+You decorate it, and any worker machine can run it.
+
+6
+00:00:17.467 --> 00:00:23.733
+It brings retries, scheduling, and result tracking, on top of a broker like Redis or RabbitMQ.
+
+7
+00:00:24.933 --> 00:00:26.067
+Here is the pattern.
+
+8
+00:00:26.367 --> 00:00:27.867
+The client sends a request.
+
+9
+00:00:28.167 --> 00:00:32.267
+The API enqueues the task and instantly returns a task id.
+
+10
+00:00:32.567 --> 00:00:35.233
+The broker holds the task until a worker is free.
+
+11
+00:00:35.533 --> 00:00:37.967
+A worker does the slow work in the background.
+
+12
+00:00:38.267 --> 00:00:42.467
+Meanwhile the client polls a status endpoint until the result is ready.
+
+13
+00:00:43.667 --> 00:00:44.867
+Here it is in code.
+
+14
+00:00:45.167 --> 00:00:49.933
+The decorator makes it a task, and tells Celery to retry on timeouts with backoff.
+
+15
+00:00:50.233 --> 00:00:54.500
+The function body is the slow work, about ninety seconds of model calls.
+
+16
+00:00:54.800 --> 00:01:00.300
+The endpoint calls delay, which enqueues the task, and returns the task id immediately.
+
+17
+00:01:01.500 --> 00:01:05.067
+A user asks for a summary of a two hundred page report.
+
+18
+00:01:05.367 --> 00:01:08.867
+That is sixty chunks, and about ninety seconds of model calls.
+
+19
+00:01:09.167 --> 00:01:14.033
+Done inline, the load balancer times out, and the retry doubles your token bill.
+
+20
+00:01:14.333 --> 00:01:23.633
+As a Celery task, the API answers in twenty milliseconds, the UI shows progress, and workers scale from two to eight without touching the API.
+
+21
+00:01:24.833 --> 00:01:28.433
+The classic mistake is doing slow work inside the request.
+
+22
+00:01:28.733 --> 00:01:33.900
+Enqueue it instead, return a task id, and let the client poll or receive a webhook.
+
+23
+00:01:35.100 --> 00:01:35.879
+Let's recap.
+
+24
+00:01:35.879 --> 00:01:38.800
+Celery turns functions into background tasks.
+
+25
+00:01:39.100 --> 00:01:41.867
+Retries, scheduling, and results are built in.
+
+26
+00:01:42.167 --> 00:01:44.600
+Enqueue, return a task id, and poll.
+
+27
+00:01:44.900 --> 00:01:46.995
+And scale workers independently.
+
+28
+00:01:46.995 --> 00:01:48.500
+Next up: rate limiting.
