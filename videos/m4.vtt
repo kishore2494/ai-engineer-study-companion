@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+How top minds think.
+
+2
+00:00:02.400 --> 00:00:08.167
+These habits of thought are worth more than any single technique, because they survive when the tools change.
+
+3
+00:00:09.367 --> 00:00:12.367
+The first habit: first principles over cargo cult.
+
+4
+00:00:12.667 --> 00:00:16.415
+Using rank sixteen because the tutorial did is cargo cult.
+
+5
+00:00:16.415 --> 00:00:23.267
+Using it because you tested four, eight, sixteen and thirty two, and sixteen was the knee, is engineering.
+
+6
+00:00:23.567 --> 00:00:26.567
+If you can't justify a choice, treat that as a flag.
+
+7
+00:00:26.867 --> 00:00:27.833
+Not a detail.
+
+8
+00:00:29.033 --> 00:00:31.133
+Next, baselines before brilliance.
+
+9
+00:00:31.433 --> 00:00:39.867
+Start with the dumb version: BM25 before embeddings, logistic regression before the CNN, prompting before fine-tuning.
+
+10
+00:00:40.167 --> 00:00:41.733
+Measure it, and get a number.
+
+11
+00:00:42.033 --> 00:00:46.900
+Half of AI projects die because nobody checked whether the simple thing already worked.
+
+12
+00:00:47.200 --> 00:00:49.900
+Only add complexity when the baseline fails.
+
+13
+00:00:51.100 --> 00:00:53.433
+Think in distributions, not anecdotes.
+
+14
+00:00:53.733 --> 00:00:55.396
+One good output means nothing.
+
+15
+00:00:55.396 --> 00:00:58.833
+You need the spread over a hundred inputs, including the tail.
+
+16
+00:00:59.133 --> 00:01:02.167
+That is why evals exist, and why demos deceive.
+
+17
+00:01:03.367 --> 00:01:04.633
+Now systems thinking.
+
+18
+00:01:04.933 --> 00:01:07.533
+The model is one non-deterministic part.
+
+19
+00:01:07.833 --> 00:01:10.433
+Around it you add validation and retries.
+
+20
+00:01:10.733 --> 00:01:12.300
+Then fallbacks and budgets.
+
+21
+00:01:12.600 --> 00:01:13.248
+And gates.
+
+22
+00:01:13.248 --> 00:01:14.933
+Your job is this envelope.
+
+23
+00:01:16.133 --> 00:01:17.300
+A few more habits.
+
+24
+00:01:17.600 --> 00:01:18.994
+Measure, don't believe.
+
+25
+00:01:18.994 --> 00:01:20.933
+It feels better is not a result.
+
+26
+00:01:21.233 --> 00:01:22.744
+Respect the error bars.
+
+27
+00:01:22.744 --> 00:01:25.700
+A two percent gap on fifty examples is noise.
+
+28
+00:01:26.000 --> 00:01:28.800
+Know what you don't know, and say I'd have to test that.
+
+29
+00:01:29.100 --> 00:01:33.133
+And taste: sometimes a SQL query and a rule is the better answer.
+
+30
+00:01:34.333 --> 00:01:39.100
+The uncomfortable one: when you collect material instead of building, progress stops.
+
+31
+00:01:39.400 --> 00:01:41.900
+Build, run the experiment, and own the number.
+
+32
+00:01:43.100 --> 00:01:43.909
+Let's recap.
+
+33
+00:01:43.909 --> 00:01:46.133
+First principles over cargo cult.
+
+34
+00:01:46.433 --> 00:01:48.033
+Baselines before brilliance.
+
+35
+00:01:48.333 --> 00:01:51.367
+Think in distributions, and respect the error bars.
+
+36
+00:01:51.667 --> 00:01:54.854
+Top minds are defined by what they built and measured.
+
+37
+00:01:54.854 --> 00:01:57.333
+Next up: staying current without drowning.

@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.133
+The from-scratch builds.
+
+2
+00:00:02.433 --> 00:00:06.500
+Karpathy's rule, and the fastest route from practitioner to architect.
+
+3
+00:00:07.700 --> 00:00:09.167
+Ten builds, done in order.
+
+4
+00:00:09.467 --> 00:00:15.326
+Each takes a weekend to a week, and each one permanently removes a category of confusion.
+
+5
+00:00:15.326 --> 00:00:17.367
+Each is also a portfolio piece.
+
+6
+00:00:18.567 --> 00:00:20.800
+The first five builds go inside the model.
+
+7
+00:00:21.100 --> 00:00:25.563
+Micrograd: an autograd engine in about a hundred and fifty lines.
+
+8
+00:00:25.563 --> 00:00:27.967
+Backprop is never mysterious again.
+
+9
+00:00:28.267 --> 00:00:32.133
+A byte pair tokenizer, which explains token counts and costs.
+
+10
+00:00:32.433 --> 00:00:36.567
+Then nanoGPT, a working transformer trained on your own text.
+
+11
+00:00:36.867 --> 00:00:40.933
+Add multi-head attention, causal masking, RoPE, and a KV cache.
+
+12
+00:00:41.233 --> 00:00:44.267
+Finally, LoRA by hand, then compare against peft.
+
+13
+00:00:45.467 --> 00:00:47.400
+The next five build real systems.
+
+14
+00:00:47.700 --> 00:00:50.733
+A RAG with no framework, in about two hundred lines.
+
+15
+00:00:51.033 --> 00:00:55.567
+An agent loop from zero, then read LangGraph and recognize every piece.
+
+16
+00:00:55.867 --> 00:00:58.600
+Your own eval harness, before you touch RAGAS.
+
+17
+00:00:58.900 --> 00:01:03.367
+An MCP server on real data, the highest leverage item on the list.
+
+18
+00:01:03.667 --> 00:01:05.078
+And a serving benchmark.
+
+19
+00:01:05.078 --> 00:01:06.900
+Numbers you own beat any claim.
+
+20
+00:01:08.100 --> 00:01:10.533
+So why does building work when reading doesn't?
+
+21
+00:01:10.833 --> 00:01:12.988
+Reading lets you accept a hand-wave.
+
+22
+00:01:12.988 --> 00:01:13.767
+Code doesn't.
+
+23
+00:01:14.067 --> 00:01:16.467
+Code makes you ask what shape that tensor is.
+
+24
+00:01:16.767 --> 00:01:18.433
+And why the loss is not moving.
+
+25
+00:01:18.733 --> 00:01:21.867
+That is the mechanism by which understanding forms.
+
+26
+00:01:23.067 --> 00:01:24.533
+Here is where it pays off.
+
+27
+00:01:24.833 --> 00:01:27.467
+In an interview, you say: I built it from scratch.
+
+28
+00:01:27.767 --> 00:01:29.533
+They can probe you for ten minutes.
+
+29
+00:01:29.833 --> 00:01:32.967
+And it holds, which makes it the most credible line you have.
+
+30
+00:01:34.167 --> 00:01:34.797
+Let's recap.
+
+31
+00:01:34.797 --> 00:01:37.267
+If you can't build it, you don't understand it.
+
+32
+00:01:37.567 --> 00:01:39.067
+Do the ten builds in order.
+
+33
+00:01:39.367 --> 00:01:42.033
+Code forces answers that reading lets you skip.
+
+34
+00:01:42.333 --> 00:01:45.175
+And built from scratch holds up in interviews.
+
+35
+00:01:45.175 --> 00:01:46.967
+Next up: how top minds think.

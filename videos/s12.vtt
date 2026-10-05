@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.300
+The AI strategy meeting.
+
+2
+00:00:02.600 --> 00:00:06.127
+Everyone wants AI in the product, and they're all looking at you.
+
+3
+00:00:06.127 --> 00:00:07.267
+Here's how to answer.
+
+4
+00:00:08.467 --> 00:00:11.033
+Leadership wants AI in the product this quarter.
+
+5
+00:00:11.333 --> 00:00:13.333
+A VP saw a competitor's demo.
+
+6
+00:00:13.633 --> 00:00:15.733
+A PM has six feature ideas.
+
+7
+00:00:16.033 --> 00:00:19.300
+And the CTO worries about cost and data privacy.
+
+8
+00:00:20.500 --> 00:00:24.067
+The whole move is to ask questions before proposing anything.
+
+9
+00:00:24.367 --> 00:00:26.633
+Ask what a win looks like in ninety days.
+
+10
+00:00:26.933 --> 00:00:31.800
+Ask which pain shows up in support tickets, and what data exists and where it can go.
+
+11
+00:00:32.100 --> 00:00:35.444
+And ask how tolerant customers are of wrong answers.
+
+12
+00:00:35.444 --> 00:00:37.567
+AI becomes a means, not the goal.
+
+13
+00:00:38.767 --> 00:00:41.600
+Now choose among the six, scoring each out loud.
+
+14
+00:00:41.900 --> 00:00:44.142
+Value: does it remove measured pain?
+
+15
+00:00:44.142 --> 00:00:46.633
+Support ticket volume is cheap evidence.
+
+16
+00:00:46.933 --> 00:00:53.700
+Tolerance for error: summarizing an internal doc is fine, auto replying about refunds is dangerous.
+
+17
+00:00:54.000 --> 00:00:59.133
+Data readiness: if expertise lives only in heads, it's a content project first.
+
+18
+00:00:59.433 --> 00:01:02.400
+Measurability: otherwise it gets killed on vibes.
+
+19
+00:01:03.600 --> 00:01:05.467
+Then commit to something concrete.
+
+20
+00:01:05.767 --> 00:01:08.867
+One internal facing feature, in six to eight weeks.
+
+21
+00:01:09.167 --> 00:01:12.100
+Shipped with evals and a cost dashboard from day one.
+
+22
+00:01:12.400 --> 00:01:15.033
+Plus the platform pieces it forces you to build.
+
+23
+00:01:15.333 --> 00:01:18.467
+So features two through six take weeks instead of quarters.
+
+24
+00:01:19.667 --> 00:01:21.467
+Address the CTO unprompted.
+
+25
+00:01:21.767 --> 00:01:23.633
+Offer data residency options.
+
+26
+00:01:23.933 --> 00:01:26.200
+Redact personal data before it leaves.
+
+27
+00:01:26.500 --> 00:01:28.367
+Cap cost per feature at the gateway.
+
+28
+00:01:28.667 --> 00:01:29.933
+And keep an audit trail.
+
+29
+00:01:31.133 --> 00:01:33.233
+Be willing to say the unpopular thing.
+
+30
+00:01:33.533 --> 00:01:37.600
+If an idea needs only a search filter or rule engine, say so.
+
+31
+00:01:37.600 --> 00:01:39.867
+Nothing builds credibility faster.
+
+32
+00:01:41.067 --> 00:01:41.895
+Let's recap.
+
+33
+00:01:41.895 --> 00:01:44.033
+Ask questions before proposing.
+
+34
+00:01:44.333 --> 00:01:48.433
+Score ideas on value, error tolerance, data, and measurability.
+
+35
+00:01:48.733 --> 00:01:51.633
+Commit to one internal feature plus the platform.
+
+36
+00:01:51.933 --> 00:01:53.785
+And be willing to say no AI.
+
+37
+00:01:53.785 --> 00:01:56.167
+Next up: how long all of this takes.
