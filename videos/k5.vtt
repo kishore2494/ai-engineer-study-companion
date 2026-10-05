@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.400
+Reading job descriptions.
+
+2
+00:00:02.700 --> 00:00:06.367
+Behind every requirement is a story of something that went wrong.
+
+3
+00:00:06.367 --> 00:00:07.833
+Let's decode the language.
+
+4
+00:00:09.033 --> 00:00:10.300
+Here is the mindset.
+
+5
+00:00:10.600 --> 00:00:13.709
+Each requirement exists because a team got burned.
+
+6
+00:00:13.709 --> 00:00:16.133
+Your job is to see which scar it hides.
+
+7
+00:00:17.333 --> 00:00:19.333
+Let's decode two real postings.
+
+8
+00:00:19.633 --> 00:00:26.500
+A Bangalore product company asks for RAG in enterprise production, not prototypes, with parsing and evals.
+
+9
+00:00:26.800 --> 00:00:31.889
+The translation: they were burned by a prototype that failed on real documents.
+
+10
+00:00:31.889 --> 00:00:36.333
+So lead with parsing quality, eval numbers, and one production story.
+
+11
+00:00:36.633 --> 00:00:41.900
+A Hyderabad GCC wants monitoring, fallback logic, and written evaluations.
+
+12
+00:00:42.200 --> 00:00:44.461
+That means a mature engineering team.
+
+13
+00:00:44.461 --> 00:00:48.067
+Expect questions on how you measure, and how you roll back.
+
+14
+00:00:49.267 --> 00:00:51.100
+Different companies probe differently.
+
+15
+00:00:51.400 --> 00:00:55.033
+The GCC asks how you measure quality, and how you roll back.
+
+16
+00:00:55.333 --> 00:00:59.667
+The startup asks you to explain attention, and why a model hallucinates.
+
+17
+00:00:59.967 --> 00:01:03.233
+Startups probe fundamentals harder, so prepare for both.
+
+18
+00:01:04.433 --> 00:01:05.600
+So how do you answer?
+
+19
+00:01:05.900 --> 00:01:08.800
+Start with parsing quality on real documents.
+
+20
+00:01:09.100 --> 00:01:10.533
+Back it with eval numbers.
+
+21
+00:01:10.833 --> 00:01:12.867
+And finish with one production story.
+
+22
+00:01:14.067 --> 00:01:16.100
+A few extras appear again and again.
+
+23
+00:01:16.400 --> 00:01:19.500
+Alignment with RLHF or DPO.
+
+24
+00:01:19.800 --> 00:01:23.033
+Multi-agent frameworks like LangGraph and CrewAI.
+
+25
+00:01:23.333 --> 00:01:26.000
+Observability with Langfuse or LangSmith.
+
+26
+00:01:26.300 --> 00:01:31.222
+Inference optimization, and security like prompt injection defense.
+
+27
+00:01:31.222 --> 00:01:34.233
+Also MCP and genuinely deployed projects.
+
+28
+00:01:35.433 --> 00:01:36.215
+Let's recap.
+
+29
+00:01:36.215 --> 00:01:38.233
+Every requirement hides a scar.
+
+30
+00:01:38.533 --> 00:01:41.667
+Lead with parsing, evals, and one production story.
+
+31
+00:01:41.967 --> 00:01:43.782
+GCCs test how you measure.
+
+32
+00:01:43.782 --> 00:01:45.667
+Startups test fundamentals.
+
+33
+00:01:45.967 --> 00:01:48.183
+And deployed projects beat claims.
+
+34
+00:01:48.183 --> 00:01:50.400
+Next up: the salary reality check.

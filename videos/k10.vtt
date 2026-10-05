@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+This week's checklist.
+
+2
+00:00:02.367 --> 00:00:06.333
+Concrete moves for the next seven days, wherever you are in the study path.
+
+3
+00:00:07.533 --> 00:00:08.607
+There are eight moves.
+
+4
+00:00:08.607 --> 00:00:10.267
+The first four are about building.
+
+5
+00:00:11.467 --> 00:00:12.767
+Here is what to build.
+
+6
+00:00:13.067 --> 00:00:14.375
+Run vLLM locally.
+
+7
+00:00:14.375 --> 00:00:21.300
+Serve a small Llama or Qwen, and watch PagedAttention and continuous batching in the logs.
+
+8
+00:00:21.600 --> 00:00:27.833
+Build one agentic RAG system with LangGraph and Qdrant, where the agent decides when to retrieve.
+
+9
+00:00:28.133 --> 00:00:32.367
+Design an eval pipeline with your own metrics, and justify every one.
+
+10
+00:00:32.667 --> 00:00:36.000
+And start one MCP server over a real database.
+
+11
+00:00:37.200 --> 00:00:39.067
+The other four are about being seen.
+
+12
+00:00:39.367 --> 00:00:44.100
+Create one properly structured repo, with an architecture diagram at the top.
+
+13
+00:00:44.400 --> 00:00:45.987
+Write one technical post.
+
+14
+00:00:45.987 --> 00:00:49.033
+Teaching forces precision and builds visibility.
+
+15
+00:00:49.333 --> 00:00:50.274
+Join the rooms.
+
+16
+00:00:50.274 --> 00:00:53.033
+Lurking is fine, being present is the point.
+
+17
+00:00:53.333 --> 00:00:55.099
+And target the right companies.
+
+18
+00:00:55.099 --> 00:00:57.833
+For twenty five lakh and up, skip service firms.
+
+19
+00:00:59.033 --> 00:01:00.267
+One closing thought.
+
+20
+00:01:00.567 --> 00:01:07.100
+Your background as a solution architect, founder and field service expert is not a gap to apologize for.
+
+21
+00:01:07.400 --> 00:01:09.733
+It is the context most engineers lack.
+
+22
+00:01:10.933 --> 00:01:12.400
+So the formula is simple.
+
+23
+00:01:12.700 --> 00:01:13.900
+Build the projects.
+
+24
+00:01:14.200 --> 00:01:15.333
+Measure everything.
+
+25
+00:01:15.633 --> 00:01:16.900
+Publish the evidence.
+
+26
+00:01:17.200 --> 00:01:19.156
+Then price yourself accordingly.
+
+27
+00:01:19.156 --> 00:01:24.900
+The market has more roles than qualified people, and evidence is the only currency it accepts.
+
+28
+00:01:26.100 --> 00:01:27.113
+Let's recap.
+
+29
+00:01:27.113 --> 00:01:32.600
+Four moves to build: vLLM, agentic RAG, evals, and an MCP server.
+
+30
+00:01:32.900 --> 00:01:37.700
+Four moves to be seen: a repo, a post, the right rooms, and the right companies.
+
+31
+00:01:38.000 --> 00:01:40.333
+Your background is context, not a gap.
+
+32
+00:01:40.633 --> 00:01:44.133
+Build the projects, measure everything, and publish the evidence.

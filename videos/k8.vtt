@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.467
+Five unfair advantages.
+
+2
+00:00:02.767 --> 00:00:06.600
+These are ways to stand out as the candidate nobody else can offer.
+
+3
+00:00:07.800 --> 00:00:09.267
+You do not need all five.
+
+4
+00:00:09.567 --> 00:00:11.600
+You need one, executed visibly.
+
+5
+00:00:12.800 --> 00:00:13.867
+Here are the five.
+
+6
+00:00:14.167 --> 00:00:18.633
+The evaluation engineer, who can explain exactly how quality is measured.
+
+7
+00:00:18.933 --> 00:00:22.367
+The cost optimization expert, who saves lakhs a month.
+
+8
+00:00:22.667 --> 00:00:29.000
+The agentic architect, who builds bounded autonomy, with humans approving consequential actions.
+
+9
+00:00:29.300 --> 00:00:35.367
+The domain specialist, who combines AI with a vertical like legaltech, fintech or field service.
+
+10
+00:00:35.667 --> 00:00:40.500
+And the inference systems engineer, the highest paid intersection and the hardest to fake.
+
+11
+00:00:41.700 --> 00:00:43.870
+Cost shows how concrete this can get.
+
+12
+00:00:43.870 --> 00:00:46.333
+Companies are bleeding money on inference.
+
+13
+00:00:46.633 --> 00:00:51.547
+Cut cost forty percent with routing, and fifty percent or more with prompt caching.
+
+14
+00:00:51.547 --> 00:00:54.033
+That is a budget line, not a nice-to-have.
+
+15
+00:00:55.233 --> 00:00:56.700
+Now, your specific edge.
+
+16
+00:00:57.000 --> 00:00:59.433
+Most engineers can only code a feature.
+
+17
+00:00:59.733 --> 00:01:02.200
+Most architects can only draw diagrams.
+
+18
+00:01:02.500 --> 00:01:08.433
+You are aiming at the rare overlap: design the architecture and write the async Python that executes it.
+
+19
+00:01:09.633 --> 00:01:12.967
+So lead with the architecture story, and close with the code.
+
+20
+00:01:13.267 --> 00:01:14.800
+Here is how I designed it.
+
+21
+00:01:15.100 --> 00:01:16.867
+Here is the trace showing it running.
+
+22
+00:01:17.167 --> 00:01:18.833
+And here is the number it moved.
+
+23
+00:01:20.033 --> 00:01:20.804
+Let's recap.
+
+24
+00:01:20.804 --> 00:01:23.500
+Pick one advantage and execute it visibly.
+
+25
+00:01:23.800 --> 00:01:26.533
+Evals and cost are the most concrete signals.
+
+26
+00:01:26.833 --> 00:01:29.100
+Be both the architect and the engineer.
+
+27
+00:01:29.400 --> 00:01:31.441
+And always show a proof artifact.
+
+28
+00:01:31.441 --> 00:01:34.100
+Next up: the proof of production portfolio.
