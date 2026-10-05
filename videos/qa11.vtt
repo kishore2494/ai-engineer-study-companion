@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.733
+Agentic QA, autonomous testing agents.
+
+2
+00:00:04.033 --> 00:00:06.113
+Nobody scripts the exact clicks.
+
+3
+00:00:06.113 --> 00:00:09.167
+The agent decides them live, in a real browser.
+
+4
+00:00:10.367 --> 00:00:16.333
+This is the same agent loop as any tool using agent, with a live browser as the environment.
+
+5
+00:00:16.633 --> 00:00:20.533
+First, it perceives the page, using the DOM and a screenshot.
+
+6
+00:00:20.833 --> 00:00:25.900
+Then it plans the next action toward a stated goal, like sign up and reach the dashboard.
+
+7
+00:00:26.200 --> 00:00:29.174
+Then it acts by clicking, typing, or navigating.
+
+8
+00:00:29.174 --> 00:00:32.767
+It repeats until the goal is reached or a step limit hits.
+
+9
+00:00:33.967 --> 00:00:35.533
+How does it differ from a script?
+
+10
+00:00:35.833 --> 00:00:38.933
+A script follows a click path someone wrote in advance.
+
+11
+00:00:39.233 --> 00:00:43.700
+An agent works out the path live, so it finds routes nobody anticipated.
+
+12
+00:00:44.000 --> 00:00:48.167
+That is also why it is slower, costlier, and varies from run to run.
+
+13
+00:00:49.367 --> 00:00:50.867
+Here is a real example.
+
+14
+00:00:51.167 --> 00:00:53.833
+The agent is only told to check out as a guest.
+
+15
+00:00:54.133 --> 00:00:57.833
+Mid checkout, it presses browser back, just out of curiosity.
+
+16
+00:00:58.133 --> 00:01:00.739
+The cart is silently emptied with no error.
+
+17
+00:01:00.739 --> 00:01:04.800
+No script tested pressing back, because nobody thought to write it.
+
+18
+00:01:06.000 --> 00:01:08.933
+So the right pattern is discovery, not replacement.
+
+19
+00:01:09.233 --> 00:01:10.600
+The agent explores.
+
+20
+00:01:10.900 --> 00:01:15.400
+When it finds a real bug, turn that exact path into a deterministic script.
+
+21
+00:01:15.700 --> 00:01:20.880
+It joins the regression suite, and is caught for free from then on, instead of by chance.
+
+22
+00:01:20.880 --> 00:01:23.033
+That's the loop with test generation.
+
+23
+00:01:24.233 --> 00:01:27.033
+The mistake is letting the agent replace the suite.
+
+24
+00:01:27.333 --> 00:01:31.167
+Let it discover, and let deterministic scripts do the regression work.
+
+25
+00:01:32.367 --> 00:01:33.128
+Let's recap.
+
+26
+00:01:33.128 --> 00:01:36.300
+The agent perceives, plans, and acts in a browser.
+
+27
+00:01:36.600 --> 00:01:39.067
+It finds paths scripts never anticipated.
+
+28
+00:01:39.367 --> 00:01:41.767
+But it is slower and non deterministic.
+
+29
+00:01:42.067 --> 00:01:45.078
+So turn what it finds into scripted tests.
+
+30
+00:01:45.078 --> 00:01:47.300
+Next up: AI in the CI pipeline.

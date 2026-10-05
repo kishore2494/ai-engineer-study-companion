@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.000
+Visual regression testing with AI.
+
+2
+00:00:03.300 --> 00:00:06.134
+Comparing two screenshots sounds foolproof.
+
+3
+00:00:06.134 --> 00:00:09.033
+In practice it drowns teams in false alarms.
+
+4
+00:00:10.233 --> 00:00:12.100
+Why is pixel diffing so noisy?
+
+5
+00:00:12.400 --> 00:00:15.533
+Anti aliasing changes how edges are smoothed.
+
+6
+00:00:15.833 --> 00:00:17.533
+Font hinting nudges letters.
+
+7
+00:00:17.833 --> 00:00:20.167
+A live timestamp changes every run.
+
+8
+00:00:20.467 --> 00:00:24.767
+And a single pixel of sub pixel rendering is enough to trigger a failure.
+
+9
+00:00:25.967 --> 00:00:30.333
+A perceptual or AI diff classifies changes the way a person would.
+
+10
+00:00:30.633 --> 00:00:31.943
+That's just the clock.
+
+11
+00:00:31.943 --> 00:00:33.133
+Mask it and move on.
+
+12
+00:00:33.433 --> 00:00:36.033
+That's a layout shift, which is a real problem.
+
+13
+00:00:36.333 --> 00:00:37.979
+And that's a colour change.
+
+14
+00:00:37.979 --> 00:00:42.367
+Changes get grouped by kind, instead of every moved pixel being flagged.
+
+15
+00:00:43.567 --> 00:00:45.000
+Here is the comparison.
+
+16
+00:00:45.300 --> 00:00:48.800
+Pixel diff is fast and exact, but it flags everything.
+
+17
+00:00:49.100 --> 00:00:55.667
+Perceptual diff is tolerant, and lets you ignore dynamic regions like clocks, ads, or live counters.
+
+18
+00:00:55.967 --> 00:00:57.967
+It also groups changes by kind.
+
+19
+00:00:58.267 --> 00:01:03.667
+Add a DOM structure diff too, to catch changes in an element's role or hierarchy.
+
+20
+00:01:04.867 --> 00:01:06.367
+Here is how it goes wrong.
+
+21
+00:01:06.667 --> 00:01:12.626
+The footer clock made naive pixel tests fail every single run, so the team disabled them.
+
+22
+00:01:12.626 --> 00:01:14.233
+They lost real coverage.
+
+23
+00:01:15.433 --> 00:01:19.333
+Back to the dashboard footer, which shows last updated with a live time.
+
+24
+00:01:19.633 --> 00:01:23.333
+The team masks that one region and switches to perceptual diffing.
+
+25
+00:01:23.633 --> 00:01:25.500
+False positives drop to zero.
+
+26
+00:01:25.800 --> 00:01:32.300
+And next sprint it catches a real regression: a chart's y axis silently switching from linear to log.
+
+27
+00:01:33.500 --> 00:01:34.292
+Let's recap.
+
+28
+00:01:34.292 --> 00:01:36.667
+Pixel diffs produce false positives.
+
+29
+00:01:36.967 --> 00:01:39.733
+Perceptual diffs classify changes by kind.
+
+30
+00:01:40.033 --> 00:01:41.633
+Mask dynamic regions.
+
+31
+00:01:41.933 --> 00:01:44.353
+And add a DOM structure check.
+
+32
+00:01:44.353 --> 00:01:45.967
+Next up: agentic QA.

@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+Inside the model.
+
+2
+00:00:02.233 --> 00:00:06.089
+Twelve terms for architecture internals and generation controls.
+
+3
+00:00:06.089 --> 00:00:10.667
+These are the words you hear in every how does it actually run conversation.
+
+4
+00:00:11.867 --> 00:00:20.167
+The KV cache stores the keys and values from earlier tokens, so each new token doesn't recompute attention over the whole history.
+
+5
+00:00:20.467 --> 00:00:27.867
+That's why long chats eat GPU memory, and it's what vLLM's PagedAttention manages, like virtual memory.
+
+6
+00:00:29.067 --> 00:00:30.633
+Inference has two phases.
+
+7
+00:00:30.933 --> 00:00:34.700
+Prefill reads your whole prompt in parallel, and it is compute-bound.
+
+8
+00:00:35.000 --> 00:00:39.047
+Decode generates one token at a time, and it is memory-bound.
+
+9
+00:00:39.047 --> 00:00:41.967
+Serving optimizations treat them separately.
+
+10
+00:00:43.167 --> 00:00:49.700
+RoPE, rotary positional embedding, encodes a token's position by rotating its query and key vectors.
+
+11
+00:00:50.000 --> 00:00:59.033
+It's the modern default in Llama, Qwen, and Mistral, and its scaling tricks, YaRN and NTK-aware, are how context windows got stretched.
+
+12
+00:01:00.233 --> 00:01:06.000
+ALiBi skips position embeddings entirely, and instead penalizes attention by distance.
+
+13
+00:01:06.300 --> 00:01:10.222
+It's simpler than RoPE and extrapolates to longer sequences.
+
+14
+00:01:10.222 --> 00:01:12.967
+You'll see it in MPT and BLOOM era models.
+
+15
+00:01:14.167 --> 00:01:21.233
+FlashAttention is an exact attention algorithm, reorganized to minimize slow GPU memory reads.
+
+16
+00:01:21.533 --> 00:01:25.133
+Same math, two to four times faster, and far less memory.
+
+17
+00:01:25.433 --> 00:01:30.900
+Versions two and three refine it, and it sits under nearly every modern training and serving stack.
+
+18
+00:01:32.100 --> 00:01:38.367
+Grouped-query and multi-query attention let several query heads share a single key and value head.
+
+19
+00:01:38.667 --> 00:01:42.567
+That shrinks the KV cache dramatically, with minimal quality loss.
+
+20
+00:01:42.867 --> 00:01:45.533
+It's why Llama-3-class models serve cheaply.
+
+21
+00:01:46.733 --> 00:01:52.533
+With sliding-window attention, each token looks only at the last N tokens instead of everything.
+
+22
+00:01:52.833 --> 00:01:55.266
+Memory stays constant as context grows.
+
+23
+00:01:55.266 --> 00:01:57.200
+It's Mistral's signature trick.
+
+24
+00:01:58.400 --> 00:02:05.733
+A mixture of experts has many parallel feed-forward experts, with a router activating only one or two per token.
+
+25
+00:02:06.033 --> 00:02:10.500
+So you get a huge model that only pays for a fraction of it on each inference.
+
+26
+00:02:10.800 --> 00:02:15.167
+Mixtral and DeepSeek-V3 use it, and reportedly frontier models too.
+
+27
+00:02:16.367 --> 00:02:19.267
+State space models are an attention alternative.
+
+28
+00:02:19.567 --> 00:02:23.283
+They process sequences in linear time with constant memory.
+
+29
+00:02:23.283 --> 00:02:28.133
+Mamba is the flagship, and hybrids like Jamba mix them with attention layers.
+
+30
+00:02:28.433 --> 00:02:31.333
+Watch this space, but don't bet your career on it yet.
+
+31
+00:02:32.533 --> 00:02:40.900
+RWKV and RetNet are other attention-free architectures, RNN flavored, with transformer-level training parallelism.
+
+32
+00:02:41.200 --> 00:02:43.535
+Same pitch as Mamba: linear scaling.
+
+33
+00:02:43.535 --> 00:02:46.000
+Recognition-level knowledge is enough.
+
+34
+00:02:47.200 --> 00:02:51.043
+The model's raw output is one score per vocabulary token.
+
+35
+00:02:51.043 --> 00:02:53.133
+Those scores are called logits.
+
+36
+00:02:53.433 --> 00:02:55.600
+Softmax turns them into probabilities.
+
+37
+00:02:55.900 --> 00:02:59.800
+Every sampling knob you'll meet next operates on this distribution.
+
+38
+00:03:01.000 --> 00:03:05.733
+Temperature below one sharpens the distribution, above one flattens it.
+
+39
+00:03:05.733 --> 00:03:11.867
+Top-k keeps the k likeliest tokens, and top-p keeps the smallest set covering probability p.
+
+40
+00:03:12.167 --> 00:03:17.233
+Temperature zero is roughly deterministic, the setting for extraction and evals.
+
+41
+00:03:18.433 --> 00:03:19.400
+Let's recap.
+
+42
+00:03:19.700 --> 00:03:25.100
+The KV cache, plus GQA and FlashAttention, keep memory and speed under control.
+
+43
+00:03:25.400 --> 00:03:29.519
+RoPE, ALiBi, and sliding windows handle position and length.
+
+44
+00:03:29.519 --> 00:03:33.500
+MoE and state space models change the architecture itself.
+
+45
+00:03:33.800 --> 00:03:36.133
+And logits feed every sampling control.

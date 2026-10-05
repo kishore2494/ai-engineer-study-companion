@@ -1,0 +1,177 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+More inside the model.
+
+2
+00:00:02.400 --> 00:00:08.933
+Eleven more terms: decoding, tokenizers, training tricks, and how big models get split across hardware.
+
+3
+00:00:10.133 --> 00:00:15.667
+Beam search keeps the B best partial sequences, to find a globally high-probability output.
+
+4
+00:00:15.967 --> 00:00:21.767
+Great for translation, but rarely used for chat, because the text turns bland and repetitive.
+
+5
+00:00:22.967 --> 00:00:26.899
+Perplexity measures how surprised a language model is by text.
+
+6
+00:00:26.899 --> 00:00:29.500
+It's the exponential of the average loss.
+
+7
+00:00:29.800 --> 00:00:31.330
+Lower means a better fit.
+
+8
+00:00:31.330 --> 00:00:36.167
+It's the classic metric for base models, and for checking quantization quality.
+
+9
+00:00:37.367 --> 00:00:40.233
+There are three main subword tokenizer families.
+
+10
+00:00:40.533 --> 00:00:49.300
+BPE comes from the GPT lineage, WordPiece from BERT, and SentencePiece is language-agnostic, used by Llama and T5.
+
+11
+00:00:49.600 --> 00:00:52.760
+All of them split rare words into learnable pieces.
+
+12
+00:00:52.760 --> 00:00:55.300
+That's the mechanics behind tokenization.
+
+13
+00:00:56.500 --> 00:01:00.700
+Distillation trains a small student model to mimic a large teacher.
+
+14
+00:01:01.000 --> 00:01:05.467
+The student matches the teacher's output distributions or reasoning traces.
+
+15
+00:01:05.767 --> 00:01:11.033
+That's how the strongest small models, like Phi, Gemma, and the R1 distills, got that way.
+
+16
+00:01:12.233 --> 00:01:18.900
+Model merging averages or algebraically combines the weights of several fine-tunes of the same base model.
+
+17
+00:01:19.200 --> 00:01:21.548
+Methods include SLERP, TIES, and DARE.
+
+18
+00:01:21.548 --> 00:01:26.367
+You fuse capabilities without any training, and mergekit is the standard tool.
+
+19
+00:01:27.567 --> 00:01:32.455
+LayerNorm normalizes each token's activation vector, to keep training stable.
+
+20
+00:01:32.455 --> 00:01:36.200
+It's applied before every attention and feed-forward block.
+
+21
+00:01:36.500 --> 00:01:40.633
+RMSNorm is the cheaper variant that modern LLMs use.
+
+22
+00:01:41.833 --> 00:01:44.967
+Beyond temperature and top-p, there are a few more knobs.
+
+23
+00:01:45.267 --> 00:01:48.800
+Frequency and presence penalties discourage repetition.
+
+24
+00:01:49.100 --> 00:01:55.400
+Stop sequences end generation at a marker, and logit bias pushes specific tokens up or down.
+
+25
+00:01:55.700 --> 00:02:01.200
+A seed makes sampling reproducible, and max tokens caps output length, and therefore cost.
+
+26
+00:02:02.400 --> 00:02:05.567
+This is how models too big for one GPU get split.
+
+27
+00:02:05.867 --> 00:02:10.550
+Tensor parallelism slices each layer's matrices across GPUs.
+
+28
+00:02:10.550 --> 00:02:15.233
+Pipeline parallelism assigns layer ranges to different GPUs.
+
+29
+00:02:15.533 --> 00:02:18.425
+Sequence parallelism splits along tokens.
+
+30
+00:02:18.425 --> 00:02:22.233
+It's the vocabulary of multi-GPU serving and training.
+
+31
+00:02:23.433 --> 00:02:29.767
+Activation checkpointing says: don't store intermediate activations for the backward pass, recompute them.
+
+32
+00:02:30.067 --> 00:02:34.447
+You trade roughly thirty percent extra compute for huge memory savings.
+
+33
+00:02:34.447 --> 00:02:37.100
+It's a standard flag in big-model training.
+
+34
+00:02:38.300 --> 00:02:44.433
+When GPU memory runs out, you can park weights or the KV cache in CPU RAM, or on disk.
+
+35
+00:02:44.733 --> 00:02:47.667
+It's slow, but it makes a too-big model runnable at all.
+
+36
+00:02:47.967 --> 00:02:49.444
+Accelerate and llama.
+
+37
+00:02:49.444 --> 00:02:51.133
+cpp do it automatically.
+
+38
+00:02:52.333 --> 00:02:56.100
+In mixture of depths, a router lets easy tokens skip layers.
+
+39
+00:02:56.400 --> 00:02:59.219
+Full depth is spent only where it's needed.
+
+40
+00:02:59.219 --> 00:03:04.267
+It's the depth-wise cousin of MoE, research-tier, so just recognize the name.
+
+41
+00:03:05.467 --> 00:03:06.433
+Let's recap.
+
+42
+00:03:06.733 --> 00:03:09.967
+Beam search and perplexity cover decoding and measurement.
+
+43
+00:03:10.267 --> 00:03:12.933
+Distillation and merging build models cheaply.
+
+44
+00:03:13.233 --> 00:03:21.367
+Parallelism, checkpointing, and offloading fit big models onto limited GPUs, while tokenizers and norms are the plumbing.

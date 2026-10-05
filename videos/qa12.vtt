@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.433
+AI in the CI pipeline.
+
+2
+00:00:02.733 --> 00:00:07.800
+At a few thousand tests, flaky failures and slow runs quietly eat your team's trust.
+
+3
+00:00:09.000 --> 00:00:14.000
+Two problems dominate at scale: flaky tests, and slow, low signal runs.
+
+4
+00:00:14.300 --> 00:00:23.133
+ML based flaky detection scores each test's history against code changes, and quarantines tests that fail independently of what changed.
+
+5
+00:00:23.433 --> 00:00:29.367
+Test impact analysis maps changed files to the tests that could be affected, and runs only those.
+
+6
+00:00:29.667 --> 00:00:35.600
+And LLM triage clusters failures by their error text, so you read causes, not failures.
+
+7
+00:00:36.800 --> 00:00:38.600
+Look at the cost of running everything.
+
+8
+00:00:38.900 --> 00:00:44.000
+A forty minute end to end suite runs in full for a documentation only change.
+
+9
+00:00:44.300 --> 00:00:48.000
+With impact analysis, it drops to a ninety second smoke check.
+
+10
+00:00:49.200 --> 00:00:50.233
+Now, triage.
+
+11
+00:00:50.533 --> 00:00:52.200
+Say eighty seven tests fail.
+
+12
+00:00:52.500 --> 00:00:54.733
+We embed each assertion and stack trace.
+
+13
+00:00:55.033 --> 00:00:56.967
+Then we cluster them by similarity.
+
+14
+00:00:57.267 --> 00:01:00.767
+A human sees three root causes, not eighty seven failures.
+
+15
+00:01:01.967 --> 00:01:05.367
+In code, we embed the failure messages and cluster them.
+
+16
+00:01:05.667 --> 00:01:08.300
+Eighty seven failures collapse into three groups.
+
+17
+00:01:08.600 --> 00:01:14.567
+Sixty two are one checkout regression, nineteen are a flaky timeout, and six are a fixture bug.
+
+18
+00:01:15.767 --> 00:01:17.567
+Here is how the numbers play out.
+
+19
+00:01:17.867 --> 00:01:21.800
+A documentation PR no longer triggers the forty minute suite.
+
+20
+00:01:22.100 --> 00:01:28.300
+A flaky detector flags a checkout test that fails thirty percent of the time, unrelated to any change.
+
+21
+00:01:28.600 --> 00:01:32.801
+It is quarantined and ticketed, instead of blocking five PRs.
+
+22
+00:01:32.801 --> 00:01:34.867
+And no test logic was touched.
+
+23
+00:01:36.067 --> 00:01:36.873
+Let's recap.
+
+24
+00:01:36.873 --> 00:01:40.567
+Flaky tests erode trust, so detect and quarantine them.
+
+25
+00:01:40.867 --> 00:01:43.600
+Impact analysis runs only what matters.
+
+26
+00:01:43.900 --> 00:01:46.267
+Triage clusters failures by root cause.
+
+27
+00:01:46.567 --> 00:01:49.967
+And all of that works without touching a single test's logic.
