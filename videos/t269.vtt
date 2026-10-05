@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.100
+CI CD.
+
+2
+00:00:02.400 --> 00:00:05.612
+The best teams deploy many times a day and barely notice.
+
+3
+00:00:05.612 --> 00:00:07.133
+Here is how they get there.
+
+4
+00:00:08.333 --> 00:00:09.567
+Start with the culture.
+
+5
+00:00:09.867 --> 00:00:14.300
+A team that deploys twenty times a day ships small, low-risk changes.
+
+6
+00:00:14.600 --> 00:00:18.133
+A team that deploys quarterly ships giant, terrifying ones.
+
+7
+00:00:18.433 --> 00:00:20.567
+Continuous means small and reversible.
+
+8
+00:00:21.767 --> 00:00:29.800
+Continuous integration means every push is built and tested automatically, so broken code is caught in minutes, at the pull request.
+
+9
+00:00:30.100 --> 00:00:34.733
+Continuous delivery means deploys are automated, reversible and routine.
+
+10
+00:00:35.033 --> 00:00:37.438
+Delivery means every change can ship.
+
+11
+00:00:37.438 --> 00:00:39.712
+Deployment means every change does.
+
+12
+00:00:39.712 --> 00:00:42.767
+Most teams keep a human click on the last step.
+
+13
+00:00:43.967 --> 00:00:45.767
+Here is a six-stage pipeline.
+
+14
+00:00:46.067 --> 00:00:46.967
+Lint the code.
+
+15
+00:00:47.267 --> 00:00:48.300
+Run the tests.
+
+16
+00:00:48.600 --> 00:00:49.633
+Build the image.
+
+17
+00:00:49.933 --> 00:00:51.500
+Scan for vulnerabilities.
+
+18
+00:00:51.800 --> 00:00:53.867
+Deploy to staging, then production.
+
+19
+00:00:54.167 --> 00:00:56.046
+And verify with a smoke test.
+
+20
+00:00:56.046 --> 00:00:58.767
+Each stage must pass before the next runs.
+
+21
+00:00:59.967 --> 00:01:02.900
+Every stage needs a defined failure behavior.
+
+22
+00:01:03.200 --> 00:01:05.938
+Lint, test and build failures block the merge.
+
+23
+00:01:05.938 --> 00:01:08.200
+You fix it with a commit, not a retry.
+
+24
+00:01:08.500 --> 00:01:11.100
+A scan with critical vulnerabilities blocks too.
+
+25
+00:01:11.400 --> 00:01:15.067
+A failed deploy rolls back to the last good image automatically.
+
+26
+00:01:15.367 --> 00:01:17.900
+Only a failed smoke test pages a human.
+
+27
+00:01:19.100 --> 00:01:20.767
+Here is the transformation.
+
+28
+00:01:21.067 --> 00:01:26.805
+Early deploys were a Friday evening ritual: ssh in, git pull, restart, and pray.
+
+29
+00:01:26.805 --> 00:01:31.467
+Once, a broken retriever shipped and nobody noticed until Monday.
+
+30
+00:01:31.767 --> 00:01:35.333
+With the pipeline, a deploy is just merging the pull request.
+
+31
+00:01:35.633 --> 00:01:40.074
+That class of bug now dies at stage two, in CI, minutes after the push.
+
+32
+00:01:40.074 --> 00:01:45.767
+You can deploy on a Friday at five without a second thought, because rollback is automatic.
+
+33
+00:01:46.967 --> 00:01:47.851
+Let's recap.
+
+34
+00:01:47.851 --> 00:01:51.533
+CI tests every push, and CD makes deploys routine.
+
+35
+00:01:51.833 --> 00:01:54.033
+A pipeline is a set of ordered gates.
+
+36
+00:01:54.333 --> 00:01:57.133
+Every stage has a defined failure behavior.
+
+37
+00:01:57.433 --> 00:01:59.806
+And reversibility beats perfection.
+
+38
+00:01:59.806 --> 00:02:01.433
+Next up: GitHub Actions.

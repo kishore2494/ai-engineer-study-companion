@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+Nginx.
+
+2
+00:00:02.000 --> 00:00:08.706
+Before a request reaches your Python code, something sits in front and handles the boring, critical jobs.
+
+3
+00:00:08.706 --> 00:00:09.600
+That is Nginx.
+
+4
+00:00:10.800 --> 00:00:12.448
+Nginx is a reverse proxy.
+
+5
+00:00:12.448 --> 00:00:16.800
+It receives every client request and forwards it to your backends.
+
+6
+00:00:17.100 --> 00:00:24.333
+At that choke point it ends HTTPS, so backends speak plain HTTP internally, and it balances load.
+
+7
+00:00:24.633 --> 00:00:30.233
+It also serves static files, and passes the real client address along in a forwarded header.
+
+8
+00:00:31.433 --> 00:00:32.500
+Here is the path.
+
+9
+00:00:32.800 --> 00:00:35.433
+The client sends an HTTPS request.
+
+10
+00:00:35.733 --> 00:00:37.900
+Nginx terminates TLS right here.
+
+11
+00:00:38.200 --> 00:00:41.550
+Then it fans requests out across identical replicas.
+
+12
+00:00:41.550 --> 00:00:45.867
+Whatever fancier gateway a company runs, the concepts are the same.
+
+13
+00:00:47.067 --> 00:00:49.400
+Nginx has two strategies you should know.
+
+14
+00:00:49.700 --> 00:00:53.067
+Round-robin is the default: each replica takes a turn.
+
+15
+00:00:53.367 --> 00:00:55.563
+It works when requests are similar.
+
+16
+00:00:55.563 --> 00:00:59.267
+But when durations vary wildly, one replica can get buried.
+
+17
+00:00:59.567 --> 00:01:04.400
+Least connections sends work to the least busy replica, which suits LLM calls.
+
+18
+00:01:04.700 --> 00:01:07.633
+So for LLM traffic, choose least connections.
+
+19
+00:01:08.833 --> 00:01:09.900
+Now the config.
+
+20
+00:01:10.200 --> 00:01:14.100
+An upstream block lists the two replicas and picks least connections.
+
+21
+00:01:14.400 --> 00:01:20.400
+The server block listens on four four three with TLS, then proxies every request to that pool.
+
+22
+00:01:20.700 --> 00:01:22.997
+And this last line matters for streaming.
+
+23
+00:01:22.997 --> 00:01:24.733
+Remember it for the next scene.
+
+24
+00:01:25.933 --> 00:01:27.900
+Here is a classic interview story.
+
+25
+00:01:28.200 --> 00:01:32.067
+You put Nginx in front of two replicas, and load balancing works.
+
+26
+00:01:32.367 --> 00:01:36.200
+But suddenly streaming delivers the whole answer in one lump at the end.
+
+27
+00:01:36.500 --> 00:01:39.166
+The culprit is the default proxy buffering.
+
+28
+00:01:39.166 --> 00:01:42.391
+One directive, buffering off, and tokens flow again.
+
+29
+00:01:42.391 --> 00:01:44.933
+The proxy is part of your streaming path.
+
+30
+00:01:46.133 --> 00:01:46.994
+Let's recap.
+
+31
+00:01:46.994 --> 00:01:49.933
+Nginx is the front door, a reverse proxy.
+
+32
+00:01:50.233 --> 00:01:52.500
+It ends TLS and balances load.
+
+33
+00:01:52.800 --> 00:01:56.133
+Least connections suits slow, uneven LLM calls.
+
+34
+00:01:56.433 --> 00:01:59.850
+And turn proxy buffering off for streams.
+
+35
+00:01:59.850 --> 00:02:01.100
+Next up: CI CD.

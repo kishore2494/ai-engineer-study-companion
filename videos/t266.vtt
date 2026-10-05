@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Docker Compose.
+
+2
+00:00:02.200 --> 00:00:05.659
+Clone a repo, run one command, and get a working stack.
+
+3
+00:00:05.659 --> 00:00:08.867
+That is the experience good projects are judged by.
+
+4
+00:00:10.067 --> 00:00:14.303
+Docker Compose declares your whole dev stack in one YAML file.
+
+5
+00:00:14.303 --> 00:00:16.900
+The API, Postgres and Redis, together.
+
+6
+00:00:17.200 --> 00:00:22.300
+The standard is simple: git clone, then docker compose up, and you have a working stack.
+
+7
+00:00:22.600 --> 00:00:23.710
+It is a dev tool.
+
+8
+00:00:23.710 --> 00:00:29.067
+In production, Kubernetes takes over, and Compose is its single-machine rehearsal.
+
+9
+00:00:30.267 --> 00:00:33.800
+Here is the quiet superpower: networking by service name.
+
+10
+00:00:34.100 --> 00:00:40.300
+Your API runs alongside its dependencies, all on one private network with its own DNS.
+
+11
+00:00:40.600 --> 00:00:44.367
+It reaches the database at postgres, port fifty four thirty two.
+
+12
+00:00:44.667 --> 00:00:47.817
+And the cache at redis, port sixty three seventy nine.
+
+13
+00:00:47.817 --> 00:00:50.033
+The names come straight from the YAML.
+
+14
+00:00:51.233 --> 00:00:52.933
+One more detail on startup.
+
+15
+00:00:53.233 --> 00:00:56.033
+Depends on controls the order services start in.
+
+16
+00:00:56.333 --> 00:01:01.033
+Add healthchecks, and Compose waits until a service is ready, not merely started.
+
+17
+00:01:02.233 --> 00:01:03.700
+Here it is, trimmed down.
+
+18
+00:01:04.000 --> 00:01:08.433
+The API builds from the current folder and exposes port eight thousand.
+
+19
+00:01:08.733 --> 00:01:10.576
+Look at the database URL.
+
+20
+00:01:10.576 --> 00:01:13.968
+The host is simply postgres, the service name.
+
+21
+00:01:13.968 --> 00:01:15.000
+No IP address.
+
+22
+00:01:15.300 --> 00:01:17.357
+Depends on controls startup order.
+
+23
+00:01:17.357 --> 00:01:20.867
+Add healthchecks and it waits for ready, not just started.
+
+24
+00:01:22.067 --> 00:01:23.437
+Now a real scenario.
+
+25
+00:01:23.437 --> 00:01:25.767
+A collaborator joins your project.
+
+26
+00:01:26.067 --> 00:01:31.400
+In the old world, that was half a day installing Postgres and fixing extension versions.
+
+27
+00:01:31.700 --> 00:01:34.733
+In the new world, they clone and run docker compose up.
+
+28
+00:01:35.033 --> 00:01:39.028
+Four minutes later they have the whole stack, identical to yours.
+
+29
+00:01:39.028 --> 00:01:42.100
+One YAML file deletes every works for me argument.
+
+30
+00:01:43.300 --> 00:01:44.083
+Let's recap.
+
+31
+00:01:44.083 --> 00:01:46.300
+One YAML declares the whole stack.
+
+32
+00:01:46.600 --> 00:01:48.700
+Services reach each other by name.
+
+33
+00:01:49.000 --> 00:01:50.533
+Depends on orders startup.
+
+34
+00:01:50.833 --> 00:01:53.060
+And Compose is for development.
+
+35
+00:01:53.060 --> 00:01:55.000
+Next up: Kubernetes basics.

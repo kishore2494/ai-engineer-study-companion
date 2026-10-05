@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+GitHub Actions.
+
+2
+00:00:02.200 --> 00:00:07.447
+For anything hosted on GitHub, reading and writing a workflow file is simply assumed.
+
+3
+00:00:07.447 --> 00:00:08.867
+Let's learn the pieces.
+
+4
+00:00:10.067 --> 00:00:16.367
+A workflow is CI CD written as YAML, stored in your repo under dot github slash workflows.
+
+5
+00:00:16.667 --> 00:00:20.100
+It names its triggers, its jobs, and the steps inside them.
+
+6
+00:00:20.400 --> 00:00:24.343
+Secrets are injected from repo settings and never committed.
+
+7
+00:00:24.343 --> 00:00:27.300
+And a matrix can fan one job across versions.
+
+8
+00:00:28.500 --> 00:00:29.900
+Three layers to remember.
+
+9
+00:00:30.200 --> 00:00:35.133
+Triggers decide when it runs: a push, a tag, a pull request, or a schedule.
+
+10
+00:00:35.433 --> 00:00:39.133
+Jobs each run on a fresh runner machine, and needs puts them in order.
+
+11
+00:00:39.433 --> 00:00:44.967
+Steps are shell commands, plus prebuilt marketplace actions, so you compose rather than script.
+
+12
+00:00:46.167 --> 00:00:48.067
+Here is the pipeline from the page.
+
+13
+00:00:48.367 --> 00:00:51.000
+A push to main, or a version tag, triggers it.
+
+14
+00:00:51.300 --> 00:00:53.667
+The test job runs the linter and the tests.
+
+15
+00:00:53.967 --> 00:00:58.267
+The image job needs the test job to pass, so a failure stops everything.
+
+16
+00:00:58.567 --> 00:01:01.867
+And only a version tag actually pushes to the registry.
+
+17
+00:01:03.067 --> 00:01:04.300
+And the file itself.
+
+18
+00:01:04.600 --> 00:01:07.900
+The trigger is a push to main, or any tag starting with v.
+
+19
+00:01:08.200 --> 00:01:12.867
+The test job checks out the code, installs dependencies, and runs the tests.
+
+20
+00:01:13.167 --> 00:01:17.767
+The image job needs the test job, and runs only when the ref is a version tag.
+
+21
+00:01:18.967 --> 00:01:20.767
+Here is a senior-level habit.
+
+22
+00:01:21.067 --> 00:01:22.116
+Add a third job.
+
+23
+00:01:22.116 --> 00:01:26.967
+After the unit tests pass, it runs RAGAS over a forty question golden set.
+
+24
+00:01:27.267 --> 00:01:31.367
+If faithfulness drops below zero point eight five, the job fails.
+
+25
+00:01:31.667 --> 00:01:33.549
+The pull request cannot merge.
+
+26
+00:01:33.549 --> 00:01:38.067
+Evals as a merge gate is exactly what the market calls senior right now.
+
+27
+00:01:39.267 --> 00:01:40.048
+Let's recap.
+
+28
+00:01:40.048 --> 00:01:42.133
+Workflows are YAML in your repo.
+
+29
+00:01:42.433 --> 00:01:44.733
+They are made of triggers, jobs and steps.
+
+30
+00:01:45.033 --> 00:01:47.167
+Needs makes each job gate the next.
+
+31
+00:01:47.467 --> 00:01:50.540
+And evals as a merge gate is a senior habit.
+
+32
+00:01:50.540 --> 00:01:51.867
+Next up: Terraform.
