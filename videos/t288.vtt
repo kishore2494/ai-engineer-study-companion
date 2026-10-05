@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.233
+Regression testing for prompts and models.
+
+2
+00:00:03.533 --> 00:00:06.200
+You wouldn't merge code that fails its tests.
+
+3
+00:00:06.200 --> 00:00:08.333
+Prompts and models deserve the same.
+
+4
+00:00:09.533 --> 00:00:11.333
+This is evals-first engineering.
+
+5
+00:00:11.633 --> 00:00:16.733
+Every prompt tweak, model upgrade, or retrieval change runs the full eval suite.
+
+6
+00:00:17.033 --> 00:00:20.067
+And the score diff justifies the change, or blocks it.
+
+7
+00:00:21.267 --> 00:00:22.567
+Compare the two habits.
+
+8
+00:00:22.867 --> 00:00:24.814
+By feel, you try three examples.
+
+9
+00:00:24.814 --> 00:00:27.067
+By evidence, you run the whole suite.
+
+10
+00:00:27.367 --> 00:00:28.726
+One says it looks better.
+
+11
+00:00:28.726 --> 00:00:30.900
+The other shows a score diff per metric.
+
+12
+00:00:31.200 --> 00:00:37.400
+This catches the silent killer: a change that improves what you watched while breaking ten cases you didn't.
+
+13
+00:00:38.600 --> 00:00:40.767
+Mechanically, it's a gate in CI.
+
+14
+00:00:41.067 --> 00:00:43.633
+A pull request changes a prompt or a model.
+
+15
+00:00:43.933 --> 00:00:46.967
+CI runs the benchmark and the golden set on it.
+
+16
+00:00:47.267 --> 00:00:50.100
+Each metric is compared to the baseline from main.
+
+17
+00:00:50.400 --> 00:00:54.093
+If a metric drops more than a tolerance, the build fails.
+
+18
+00:00:54.093 --> 00:00:57.333
+Scores are noisy, so never gate on exact equality.
+
+19
+00:00:58.533 --> 00:01:00.367
+The average isn't the whole story.
+
+20
+00:01:00.667 --> 00:01:03.875
+Faithfulness looks fine here, but relevancy collapsed.
+
+21
+00:01:03.875 --> 00:01:07.500
+The per-question diff names exactly what you're trading away.
+
+22
+00:01:08.700 --> 00:01:10.700
+Here's the gate as a workflow file.
+
+23
+00:01:11.000 --> 00:01:12.967
+It triggers on every pull request.
+
+24
+00:01:13.267 --> 00:01:15.400
+One step scores the changed pipeline.
+
+25
+00:01:15.700 --> 00:01:19.378
+The next fails on a drop of more than zero point zero two.
+
+26
+00:01:19.378 --> 00:01:21.533
+Red needs a very good explanation.
+
+27
+00:01:22.733 --> 00:01:24.033
+Here's a real story.
+
+28
+00:01:24.333 --> 00:01:27.225
+A cheaper model arrives, forty percent less.
+
+29
+00:01:27.225 --> 00:01:29.000
+You change one config line.
+
+30
+00:01:29.300 --> 00:01:36.464
+The diff shows relevancy fell from zero point eight six to zero point seven one, with nine questions named.
+
+31
+00:01:36.464 --> 00:01:37.000
+Blocked.
+
+32
+00:01:37.300 --> 00:01:39.792
+One prompt line fixes it, and you merge.
+
+33
+00:01:39.792 --> 00:01:43.467
+The safety net cost fifty five questions and three minutes.
+
+34
+00:01:44.667 --> 00:01:45.437
+Let's recap.
+
+35
+00:01:45.437 --> 00:01:49.033
+Run the full eval suite on every prompt or model change.
+
+36
+00:01:49.333 --> 00:01:52.167
+Gate on the score diff, with a tolerance for noise.
+
+37
+00:01:52.467 --> 00:01:55.167
+Read the per-question diff, not only the average.
+
+38
+00:01:55.467 --> 00:01:57.681
+Evidence replaces seems better.
+
+39
+00:01:57.681 --> 00:01:59.467
+Next up: golden datasets.

@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.133
+Benchmark creation.
+
+2
+00:00:02.433 --> 00:00:06.016
+Public benchmarks can't say which model is best for your task.
+
+3
+00:00:06.016 --> 00:00:07.633
+Let's build a test that can.
+
+4
+00:00:08.833 --> 00:00:10.900
+Let's compare the two kinds of benchmark.
+
+5
+00:00:11.200 --> 00:00:13.650
+Public ones like MMLU are saturated.
+
+6
+00:00:13.650 --> 00:00:16.100
+The top models cluster within noise.
+
+7
+00:00:16.400 --> 00:00:20.933
+They're also contaminated: their test sets leaked into training data long ago.
+
+8
+00:00:21.233 --> 00:00:25.600
+A private one uses your inputs, truth you checked, and no model has seen it.
+
+9
+00:00:26.800 --> 00:00:29.467
+Three ingredients make a good domain benchmark.
+
+10
+00:00:29.767 --> 00:00:35.233
+First, representative inputs from real user queries: easy, hard, and edge cases.
+
+11
+00:00:35.533 --> 00:00:39.156
+Second, hard negatives: questions the corpus can't answer.
+
+12
+00:00:39.156 --> 00:00:40.967
+Models that bluff get caught.
+
+13
+00:00:41.267 --> 00:00:45.900
+Third, a scoring script: exact match, or an LLM judge with a rubric.
+
+14
+00:00:47.100 --> 00:00:49.367
+Put it together and the recipe is simple.
+
+15
+00:00:49.667 --> 00:00:51.100
+Start with real inputs.
+
+16
+00:00:51.400 --> 00:00:53.500
+Attach truth that a human verified.
+
+17
+00:00:53.800 --> 00:00:56.367
+Let a script grade every answer unattended.
+
+18
+00:00:56.667 --> 00:00:58.333
+Out comes one number per model.
+
+19
+00:00:59.533 --> 00:01:01.367
+Here is a tiny version in code.
+
+20
+00:01:01.667 --> 00:01:03.648
+Each case is one line of data.
+
+21
+00:01:03.648 --> 00:01:08.933
+This one is a hard negative: the expected answer is that the corpus has nothing.
+
+22
+00:01:09.233 --> 00:01:13.467
+The scorer asks the system, grades each answer, and prints a single score.
+
+23
+00:01:14.667 --> 00:01:16.818
+Here's what it looks like in practice.
+
+24
+00:01:16.818 --> 00:01:19.367
+Thirty questions, six of them hard negatives.
+
+25
+00:01:19.667 --> 00:01:24.100
+Overall, the expensive model wins, eighty three percent to seventy one.
+
+26
+00:01:24.400 --> 00:01:27.758
+But on hard negatives it's six of six against two of six.
+
+27
+00:01:27.758 --> 00:01:29.467
+Those four bluffs can't ship.
+
+28
+00:01:30.667 --> 00:01:31.867
+Now the full story.
+
+29
+00:01:32.167 --> 00:01:37.900
+Thirty questions over the Mission Control corpus: factoids, multi-hop, and hard negatives.
+
+30
+00:01:38.200 --> 00:01:40.967
+Public leaderboards had two models within a point.
+
+31
+00:01:41.267 --> 00:01:44.596
+Your questions disagreed, on the axis that matters.
+
+32
+00:01:44.596 --> 00:01:45.967
+Nobody can copy that.
+
+33
+00:01:47.167 --> 00:01:47.993
+Let's recap.
+
+34
+00:01:47.993 --> 00:01:51.367
+Public benchmarks are saturated and contaminated.
+
+35
+00:01:51.667 --> 00:01:55.933
+A private benchmark is real inputs, verified truth, and a script.
+
+36
+00:01:56.233 --> 00:01:58.900
+Add hard negatives to catch models that bluff.
+
+37
+00:01:59.200 --> 00:02:01.827
+And a benchmark you own is a real asset.
+
+38
+00:02:01.827 --> 00:02:03.667
+Next up: regression testing.

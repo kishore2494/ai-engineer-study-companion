@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Golden datasets.
+
+2
+00:00:02.367 --> 00:00:05.867
+Every automated metric needs something to calibrate against.
+
+3
+00:00:05.867 --> 00:00:07.033
+This is that anchor.
+
+4
+00:00:08.233 --> 00:00:14.133
+A golden dataset is a small, hand-verified, versioned set of inputs and expected outputs.
+
+5
+00:00:14.433 --> 00:00:18.567
+Golden means a human checked every example against the source of truth.
+
+6
+00:00:18.867 --> 00:00:23.300
+No scraped labels, and no model-generated ground truth you didn't verify.
+
+7
+00:00:24.500 --> 00:00:26.167
+Three habits keep it trustworthy.
+
+8
+00:00:26.467 --> 00:00:27.432
+Keep it in git.
+
+9
+00:00:27.432 --> 00:00:31.167
+A changed expectation is a diff that someone must approve.
+
+10
+00:00:31.467 --> 00:00:32.499
+Record provenance.
+
+11
+00:00:32.499 --> 00:00:35.767
+Where did the truth come from, who verified it, and when?
+
+12
+00:00:36.067 --> 00:00:37.329
+Grow it deliberately.
+
+13
+00:00:37.329 --> 00:00:40.033
+Fix the bug, then keep the failure as a test.
+
+14
+00:00:41.233 --> 00:00:42.600
+Why does it matter so much?
+
+15
+00:00:42.900 --> 00:00:45.000
+Because the golden set sits at the centre.
+
+16
+00:00:45.300 --> 00:00:46.933
+Regression gates read from it.
+
+17
+00:00:47.233 --> 00:00:49.600
+Judge models are calibrated against it.
+
+18
+00:00:49.900 --> 00:00:51.692
+And benchmarks trace back to it.
+
+19
+00:00:51.692 --> 00:00:55.667
+If the anchor is wrong, everything downstream measures the wrong thing.
+
+20
+00:00:56.867 --> 00:00:58.567
+Here is one golden example.
+
+21
+00:00:58.867 --> 00:01:02.633
+It has the input and the expected output a human verified.
+
+22
+00:01:02.933 --> 00:01:07.733
+It also records its provenance, where the truth came from, plus the version it was added.
+
+23
+00:01:08.033 --> 00:01:13.267
+And a simple assert on the size makes any change to the set loud, so someone has to review it.
+
+24
+00:01:14.467 --> 00:01:15.533
+Here's the payoff.
+
+25
+00:01:15.833 --> 00:01:23.405
+You pick the twenty five most representative real user questions and answer each by hand, against primary reports.
+
+26
+00:01:23.405 --> 00:01:24.600
+About three hours.
+
+27
+00:01:24.900 --> 00:01:30.067
+Weeks later a teammate fixes a chunking bug, and two golden expectations start failing.
+
+28
+00:01:30.367 --> 00:01:35.610
+The discussion shows the expectations were right, and the fix broke section headers.
+
+29
+00:01:35.610 --> 00:01:40.167
+A failed CI run and a five minute revert, instead of a silent regression.
+
+30
+00:01:41.367 --> 00:01:42.161
+Let's recap.
+
+31
+00:01:42.161 --> 00:01:46.067
+A golden set is hand verified, versioned, and lives in git.
+
+32
+00:01:46.367 --> 00:01:50.900
+Quality beats quantity: twenty five you trust beat twenty five hundred you don't.
+
+33
+00:01:51.200 --> 00:01:53.300
+Record provenance for every example.
+
+34
+00:01:53.600 --> 00:01:56.769
+And turn each production failure into a new test.
+
+35
+00:01:56.769 --> 00:01:59.033
+Next up: hallucination measurement.

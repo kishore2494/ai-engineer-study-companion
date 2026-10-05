@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Faithfulness scoring.
+
+2
+00:00:02.367 --> 00:00:07.700
+This is the hallucination check for RAG, and the metric enterprise buyers ask about first.
+
+3
+00:00:08.900 --> 00:00:13.933
+Faithfulness asks: is every claim in the answer supported by the retrieved context?
+
+4
+00:00:14.233 --> 00:00:16.267
+First, take the generated answer.
+
+5
+00:00:16.567 --> 00:00:18.633
+Decompose it into atomic claims.
+
+6
+00:00:18.933 --> 00:00:23.200
+An LLM judge checks each claim against the context, yes or no.
+
+7
+00:00:23.500 --> 00:00:25.631
+The score is the supported fraction.
+
+8
+00:00:25.631 --> 00:00:30.367
+An unsupported claim is something the model made up or dragged in from training.
+
+9
+00:00:31.567 --> 00:00:33.067
+Be clear about its limits.
+
+10
+00:00:33.367 --> 00:00:36.680
+It checks that every claim traces back to the context.
+
+11
+00:00:36.680 --> 00:00:42.078
+It does not check correctness or completeness, because the context itself could be thin.
+
+12
+00:00:42.078 --> 00:00:43.367
+That is recall's job.
+
+13
+00:00:43.667 --> 00:00:47.026
+Nor does it check whether the answer addresses the question.
+
+14
+00:00:47.026 --> 00:00:48.033
+That is relevancy.
+
+15
+00:00:48.333 --> 00:00:51.467
+Faithfulness does one thing: no claim without a source.
+
+16
+00:00:52.667 --> 00:00:54.200
+Here is the idea in code.
+
+17
+00:00:54.500 --> 00:00:56.900
+One prompt lists the claims, one per line.
+
+18
+00:00:57.200 --> 00:01:01.326
+Another asks, for each claim, whether the context fully supports it.
+
+19
+00:01:01.326 --> 00:01:01.933
+Yes or no.
+
+20
+00:01:02.233 --> 00:01:04.662
+The score is the fraction of yes answers.
+
+21
+00:01:04.662 --> 00:01:09.933
+Do this by hand once for one answer, and you will understand the automated score forever.
+
+22
+00:01:11.133 --> 00:01:15.267
+Here is a Mission Control answer about the Apollo 13 review board.
+
+23
+00:01:15.567 --> 00:01:18.664
+Faithfulness flags it at zero point seven five.
+
+24
+00:01:18.664 --> 00:01:21.233
+Three claims are supported, one is not.
+
+25
+00:01:21.533 --> 00:01:24.606
+The panel concluded schedule pressure was a factor.
+
+26
+00:01:24.606 --> 00:01:27.800
+That sentence exists nowhere in the retrieved chunks.
+
+27
+00:01:29.000 --> 00:01:30.600
+The answer reads beautifully.
+
+28
+00:01:30.900 --> 00:01:34.867
+But the model imported a plausible sounding conclusion from its pretraining.
+
+29
+00:01:35.167 --> 00:01:40.891
+For a compliance customer, citing a finding that isn't in their documents is the nightmare.
+
+30
+00:01:40.891 --> 00:01:43.533
+Faithfulness catches it on every eval run.
+
+31
+00:01:44.733 --> 00:01:45.492
+Let's recap.
+
+32
+00:01:45.492 --> 00:01:48.400
+Faithfulness asks if every claim is supported.
+
+33
+00:01:48.700 --> 00:01:51.367
+Split into claims, verify each, and score.
+
+34
+00:01:51.667 --> 00:01:53.867
+It is the hallucination check for RAG.
+
+35
+00:01:54.167 --> 00:01:57.191
+But it doesn't judge correctness or relevance.
+
+36
+00:01:57.191 --> 00:01:58.900
+Next up: answer relevancy.

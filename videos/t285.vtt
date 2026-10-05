@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+Answer relevancy.
+
+2
+00:00:02.333 --> 00:00:06.224
+An answer can be perfectly grounded and still dodge the question.
+
+3
+00:00:06.224 --> 00:00:07.900
+Faithfulness can't see that.
+
+4
+00:00:09.100 --> 00:00:13.400
+Answer relevancy asks: does the answer address the question that was asked?
+
+5
+00:00:13.700 --> 00:00:20.000
+An answer can summarize the wrong report, answer a related but different question, or hedge with filler.
+
+6
+00:00:20.300 --> 00:00:24.533
+Faithfulness can't see these failures, which is why the two metrics are a pair.
+
+7
+00:00:25.733 --> 00:00:27.433
+RAGAS uses a clever trick.
+
+8
+00:00:27.733 --> 00:00:28.767
+Take the answer.
+
+9
+00:00:29.067 --> 00:00:33.833
+Ask an LLM to reverse engineer the questions this answer responds to.
+
+10
+00:00:34.133 --> 00:00:36.200
+Embed those generated questions.
+
+11
+00:00:36.500 --> 00:00:40.318
+Then compare them by cosine similarity to the real question.
+
+12
+00:00:40.318 --> 00:00:43.055
+On target means they land right next to it.
+
+13
+00:00:43.055 --> 00:00:44.900
+A dodge lands somewhere else.
+
+14
+00:00:46.100 --> 00:00:47.767
+Picture it in embedding space.
+
+15
+00:00:48.067 --> 00:00:49.633
+Here is the real question.
+
+16
+00:00:49.933 --> 00:00:54.367
+If the answer is on target, the question guessed from it points almost the same way.
+
+17
+00:00:54.667 --> 00:00:59.000
+If the answer dodged, the guessed question points elsewhere, and the score drops.
+
+18
+00:01:00.200 --> 00:01:02.067
+Here is the same trick by hand.
+
+19
+00:01:02.367 --> 00:01:04.600
+Generate three questions from the answer.
+
+20
+00:01:04.900 --> 00:01:09.133
+Embed the real question and compare each guess with cosine similarity.
+
+21
+00:01:09.433 --> 00:01:11.633
+The average is the answer relevancy.
+
+22
+00:01:12.833 --> 00:01:16.433
+A user asks what caused the anomaly on sol one twenty two.
+
+23
+00:01:16.733 --> 00:01:22.300
+Retrieval mostly surfaced sol one twenty one, so the model faithfully summarized that.
+
+24
+00:01:22.300 --> 00:01:26.767
+Faithfulness is point nine two, but relevancy is only point four one.
+
+25
+00:01:27.067 --> 00:01:29.963
+The answer was well written, cited, and useless.
+
+26
+00:01:29.963 --> 00:01:35.333
+Filter by sol number before the vector search, and relevancy climbs to point eight eight.
+
+27
+00:01:36.533 --> 00:01:37.296
+Let's recap.
+
+28
+00:01:37.296 --> 00:01:40.600
+Relevancy asks if the answer addresses the question.
+
+29
+00:01:40.900 --> 00:01:44.367
+We reverse engineer questions and compare their embeddings.
+
+30
+00:01:44.667 --> 00:01:46.633
+A faithful answer can still dodge.
+
+31
+00:01:46.933 --> 00:01:48.920
+So use it with faithfulness.
+
+32
+00:01:48.920 --> 00:01:51.333
+Next up: the LLM as judge pattern.

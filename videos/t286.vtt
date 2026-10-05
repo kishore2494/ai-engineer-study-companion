@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.633
+The LLM as judge pattern.
+
+2
+00:00:02.933 --> 00:00:05.907
+Humans can't grade thousands of outputs a day.
+
+3
+00:00:05.907 --> 00:00:08.233
+A model can, if you know its biases.
+
+4
+00:00:09.433 --> 00:00:13.633
+String matching can't grade open ended text, and humans don't scale.
+
+5
+00:00:13.933 --> 00:00:20.467
+So a strong model receives a written rubric, with criteria in priority order and a fixed output format.
+
+6
+00:00:20.767 --> 00:00:22.333
+Plus the outputs to grade.
+
+7
+00:00:22.633 --> 00:00:24.633
+The judge is the model in the middle.
+
+8
+00:00:24.933 --> 00:00:27.530
+It returns a score or a pairwise verdict.
+
+9
+00:00:27.530 --> 00:00:30.000
+This is how RAGAS computes its metrics.
+
+10
+00:00:31.200 --> 00:00:34.067
+Trust a judge only after you know its biases.
+
+11
+00:00:34.367 --> 00:00:38.091
+Position bias: judges favor whichever answer comes first.
+
+12
+00:00:38.091 --> 00:00:40.967
+Run every pair twice with the order swapped.
+
+13
+00:00:41.267 --> 00:00:44.031
+Verbosity bias: longer answers score higher.
+
+14
+00:00:44.031 --> 00:00:46.733
+Put brevity in the rubric, and cap lengths.
+
+15
+00:00:47.033 --> 00:00:50.293
+Self preference: models like their own family's style.
+
+16
+00:00:50.293 --> 00:00:52.467
+Judge with a different model family.
+
+17
+00:00:53.667 --> 00:00:55.033
+Here is the swap test.
+
+18
+00:00:55.333 --> 00:00:57.933
+We judge the pair twice, once with each order.
+
+19
+00:00:58.233 --> 00:01:01.667
+Then translate each verdict back to answer a or answer b.
+
+20
+00:01:01.967 --> 00:01:04.372
+If both rounds agree, that's a real win.
+
+21
+00:01:04.372 --> 00:01:07.800
+If they flip, it was position bias, and we call it a tie.
+
+22
+00:01:09.000 --> 00:01:12.267
+Now compare two reranker configs on fifty questions.
+
+23
+00:01:12.567 --> 00:01:15.900
+Without a swap, config B wins thirty four to sixteen.
+
+24
+00:01:16.200 --> 00:01:19.872
+With the swap test, eleven verdicts flip and become ties.
+
+25
+00:01:19.872 --> 00:01:23.094
+The honest tally is twenty five, fourteen, eleven.
+
+26
+00:01:23.094 --> 00:01:25.800
+Still a win for B, but a much smaller one.
+
+27
+00:01:27.000 --> 00:01:33.467
+The team also noticed that a same family judge rated its own house style a suspicious point four higher.
+
+28
+00:01:33.767 --> 00:01:37.133
+The fix: swap the order, and use a different model family.
+
+29
+00:01:38.333 --> 00:01:39.124
+Let's recap.
+
+30
+00:01:39.124 --> 00:01:41.167
+A judge needs a written rubric.
+
+31
+00:01:41.467 --> 00:01:43.800
+Fight position bias by swapping order.
+
+32
+00:01:44.100 --> 00:01:46.800
+Fight verbosity bias by rewarding brevity.
+
+33
+00:01:47.100 --> 00:01:50.437
+And fight self preference with another model family.
+
+34
+00:01:50.437 --> 00:01:52.233
+Next up: benchmark creation.
