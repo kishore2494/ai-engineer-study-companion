@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+LiteLLM.
+
+2
+00:00:02.200 --> 00:00:06.551
+What happens when your model provider goes down in the middle of a demo?
+
+3
+00:00:06.551 --> 00:00:08.667
+LiteLLM makes that a routing event.
+
+4
+00:00:09.867 --> 00:00:15.633
+LiteLLM gives you one OpenAI shaped interface over more than a hundred providers.
+
+5
+00:00:15.933 --> 00:00:20.867
+OpenAI, Anthropic, Bedrock, Vertex, even your own vLLM server.
+
+6
+00:00:21.167 --> 00:00:24.267
+Switching models becomes a string change, not a rewrite.
+
+7
+00:00:25.467 --> 00:00:30.733
+On top, it adds features every multi provider system rebuilds badly by hand.
+
+8
+00:00:31.033 --> 00:00:34.433
+Fallback routing: if the primary fails, try the next model.
+
+9
+00:00:34.733 --> 00:00:37.600
+Load balancing across deployments of one model.
+
+10
+00:00:37.900 --> 00:00:40.300
+Budgets per key, team, or project.
+
+11
+00:00:40.600 --> 00:00:43.133
+And rate limits, with retries and cooldowns.
+
+12
+00:00:44.333 --> 00:00:45.433
+Here is the chain.
+
+13
+00:00:45.733 --> 00:00:47.100
+Your app makes one call.
+
+14
+00:00:47.400 --> 00:00:49.033
+It goes to the primary first.
+
+15
+00:00:49.333 --> 00:00:52.533
+If that fails, LiteLLM tries the next provider.
+
+16
+00:00:52.833 --> 00:00:54.400
+And then your own local server.
+
+17
+00:00:55.600 --> 00:00:57.467
+LiteLLM runs in two ways.
+
+18
+00:00:57.767 --> 00:01:02.000
+As a library inside your Python process, or as a proxy gateway.
+
+19
+00:01:02.300 --> 00:01:07.867
+With the proxy, keys, budgets, and routing live in one config instead of in every codebase.
+
+20
+00:01:08.167 --> 00:01:13.167
+That is the standard answer for resilience and cost control without touching every app.
+
+21
+00:01:14.367 --> 00:01:15.900
+Here is the call in Python.
+
+22
+00:01:16.200 --> 00:01:19.667
+The primary model is just a provider and model name string.
+
+23
+00:01:19.967 --> 00:01:23.967
+The fallbacks list names Claude next, then your own vLLM model.
+
+24
+00:01:24.267 --> 00:01:30.067
+Add two retries and a twenty second timeout, and the response has the same shape from any provider.
+
+25
+00:01:31.267 --> 00:01:32.567
+Picture a demo day.
+
+26
+00:01:32.867 --> 00:01:35.667
+Your primary provider is down for forty minutes.
+
+27
+00:01:35.967 --> 00:01:39.884
+The agent does not notice: LiteLLM fails over to Claude.
+
+28
+00:01:39.884 --> 00:01:41.633
+Later a budget cap trips.
+
+29
+00:01:41.933 --> 00:01:46.167
+Then local vLLM takes over, and your traces show the model flipping.
+
+30
+00:01:47.367 --> 00:01:48.196
+Let's recap.
+
+31
+00:01:48.196 --> 00:01:52.067
+One OpenAI shaped call reaches over a hundred providers.
+
+32
+00:01:52.367 --> 00:01:55.833
+You get fallbacks, load balancing, budgets, and rate limits.
+
+33
+00:01:56.133 --> 00:01:59.033
+Run it as a library, or as a proxy gateway.
+
+34
+00:01:59.333 --> 00:02:02.960
+And failover becomes configuration, not an incident.
+
+35
+00:02:02.960 --> 00:02:03.867
+Next up: Ray.

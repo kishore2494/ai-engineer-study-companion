@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.700
+vLLM.
+
+2
+00:00:02.000 --> 00:00:07.077
+Serving a language model to many users at once is a memory problem first.
+
+3
+00:00:07.077 --> 00:00:09.233
+vLLM is the open source answer.
+
+4
+00:00:10.433 --> 00:00:14.467
+vLLM is the open source standard for serving language models.
+
+5
+00:00:14.767 --> 00:00:18.767
+Each generating sequence keeps an attention memory, the KV cache.
+
+6
+00:00:19.067 --> 00:00:25.000
+Its trick, PagedAttention, manages that memory like an operating system manages RAM.
+
+7
+00:00:26.200 --> 00:00:28.600
+Let's compare two ways to reserve that memory.
+
+8
+00:00:28.900 --> 00:00:32.843
+Naive serving gives each request one big contiguous slab.
+
+9
+00:00:32.843 --> 00:00:35.333
+Paging uses small blocks, on demand.
+
+10
+00:00:35.633 --> 00:00:38.349
+The slab is sized for the maximum length.
+
+11
+00:00:38.349 --> 00:00:40.667
+Paging grows only as tokens appear.
+
+12
+00:00:40.967 --> 00:00:44.500
+So naive wastes sixty to eighty percent, paging about four.
+
+13
+00:00:44.800 --> 00:00:47.333
+Far more sequences fit on one GPU.
+
+14
+00:00:48.533 --> 00:00:50.100
+Here is how paging works.
+
+15
+00:00:50.400 --> 00:00:52.767
+Each request is a sequence of tokens.
+
+16
+00:00:53.067 --> 00:00:55.367
+A block table tracks which blocks it owns.
+
+17
+00:00:55.667 --> 00:00:58.133
+The blocks can sit anywhere in GPU memory.
+
+18
+00:00:59.333 --> 00:01:02.633
+More resident sequences enable continuous batching.
+
+19
+00:01:02.933 --> 00:01:06.233
+The GPU decodes one token for every live sequence.
+
+20
+00:01:06.533 --> 00:01:08.333
+Finished sequences leave right away.
+
+21
+00:01:08.633 --> 00:01:12.533
+Queued requests join, so the GPU never waits for a whole batch.
+
+22
+00:01:13.733 --> 00:01:15.833
+Learn the metrics vocabulary cold.
+
+23
+00:01:16.133 --> 00:01:20.167
+TTFT is time to first token: how fast a reply starts.
+
+24
+00:01:20.467 --> 00:01:24.067
+TPOT is time per output token: how fast it streams.
+
+25
+00:01:24.367 --> 00:01:27.900
+Throughput is total tokens per second, what you provision by.
+
+26
+00:01:29.100 --> 00:01:30.300
+Here it is in code.
+
+27
+00:01:30.600 --> 00:01:35.367
+One vllm serve command starts an OpenAI compatible endpoint.
+
+28
+00:01:35.667 --> 00:01:39.367
+The ordinary OpenAI client just points at your own machine.
+
+29
+00:01:39.667 --> 00:01:45.133
+One user gets forty two tokens a second; thirty two users get about eleven hundred fifty.
+
+30
+00:01:46.333 --> 00:01:47.800
+Here is where it pays off.
+
+31
+00:01:48.100 --> 00:01:51.233
+Your fine-tuned summarizer must serve real users.
+
+32
+00:01:51.533 --> 00:01:56.267
+One command on an A10G, and the backend only swaps the base URL.
+
+33
+00:01:56.567 --> 00:01:59.767
+Time to first token stays under four hundred milliseconds.
+
+34
+00:02:00.967 --> 00:02:01.817
+Let's recap.
+
+35
+00:02:01.817 --> 00:02:05.500
+PagedAttention pages the KV cache into small blocks.
+
+36
+00:02:05.800 --> 00:02:08.567
+Continuous batching keeps the GPU busy.
+
+37
+00:02:08.867 --> 00:02:11.433
+Know TTFT, TPOT, and throughput.
+
+38
+00:02:11.733 --> 00:02:15.583
+And one command gives you an OpenAI style endpoint.
+
+39
+00:02:15.583 --> 00:02:16.867
+Next up: LiteLLM.

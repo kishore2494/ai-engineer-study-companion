@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.367
+Ray.
+
+2
+00:00:01.667 --> 00:00:03.927
+Some jobs are too big for one machine.
+
+3
+00:00:03.927 --> 00:00:06.900
+Ray lets you spread plain Python across a cluster.
+
+4
+00:00:08.100 --> 00:00:11.500
+Ray makes a cluster feel like one big Python process.
+
+5
+00:00:11.800 --> 00:00:17.200
+Decorate a function with ray remote, and it becomes a task that can run on any free worker.
+
+6
+00:00:17.500 --> 00:00:21.433
+The scheduler handles placement, data movement, and fault tolerance.
+
+7
+00:00:22.633 --> 00:00:24.000
+Let's follow one call.
+
+8
+00:00:24.300 --> 00:00:28.200
+Calling dot remote returns a future immediately, without waiting.
+
+9
+00:00:28.500 --> 00:00:32.200
+The scheduler sends the work to free workers anywhere in the cluster.
+
+10
+00:00:32.500 --> 00:00:33.833
+They all run in parallel.
+
+11
+00:00:34.133 --> 00:00:36.567
+And ray get collects the results when you need them.
+
+12
+00:00:37.767 --> 00:00:39.367
+Ray has two building blocks.
+
+13
+00:00:39.667 --> 00:00:41.601
+A task is a remote function.
+
+14
+00:00:41.601 --> 00:00:43.467
+An actor is a remote class.
+
+15
+00:00:43.767 --> 00:00:45.071
+A task is stateless.
+
+16
+00:00:45.071 --> 00:00:48.333
+An actor is a stateful worker you call methods on.
+
+17
+00:00:48.633 --> 00:00:54.033
+Think of a task as embedding one batch, and an actor as a model held in GPU memory.
+
+18
+00:00:54.333 --> 00:00:57.100
+Either way, the cluster feels like one process.
+
+19
+00:00:58.300 --> 00:01:01.233
+On this base, Ray ships higher level libraries.
+
+20
+00:01:01.533 --> 00:01:03.033
+At the bottom, Ray core.
+
+21
+00:01:03.333 --> 00:01:05.633
+Data does distributed preprocessing.
+
+22
+00:01:05.933 --> 00:01:07.833
+Train does distributed training.
+
+23
+00:01:08.133 --> 00:01:11.908
+And Serve handles model serving with autoscaling.
+
+24
+00:01:11.908 --> 00:01:15.067
+vLLM even uses Ray for multi GPU serving.
+
+25
+00:01:16.267 --> 00:01:17.467
+Here it is in code.
+
+26
+00:01:17.767 --> 00:01:20.600
+We decorate a normal function with ray remote.
+
+27
+00:01:20.900 --> 00:01:24.700
+Calling dot remote on every batch returns futures instantly.
+
+28
+00:01:25.000 --> 00:01:27.800
+Then ray get waits and collects all the vectors.
+
+29
+00:01:27.800 --> 00:01:29.433
+The loop body never changed.
+
+30
+00:01:30.633 --> 00:01:31.867
+Now a real job.
+
+31
+00:01:32.167 --> 00:01:35.866
+A new embedding model means re-embedding two million chunks.
+
+32
+00:01:35.866 --> 00:01:37.900
+Serially, that is fourteen hours.
+
+33
+00:01:38.200 --> 00:01:41.667
+With Ray, the batches fan out across an eight node spot cluster.
+
+34
+00:01:41.967 --> 00:01:47.267
+It finishes in under two hours, and Ray retries any batches lost when a node was reclaimed.
+
+35
+00:01:48.467 --> 00:01:49.241
+Let's recap.
+
+36
+00:01:49.241 --> 00:01:52.533
+Ray remote turns function calls into cluster tasks.
+
+37
+00:01:52.833 --> 00:01:56.100
+You get futures right away, and collect them with ray get.
+
+38
+00:01:56.400 --> 00:01:58.100
+Actors are stateful workers.
+
+39
+00:01:58.400 --> 00:02:01.942
+And Serve, Train, Data, and RLlib are built on top.
+
+40
+00:02:01.942 --> 00:02:04.233
+Next up: Triton Inference Server.
