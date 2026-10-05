@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+J W T.
+
+2
+00:00:02.333 --> 00:00:05.626
+A token that any service can verify without a database.
+
+3
+00:00:05.626 --> 00:00:08.200
+But there's one rule you must never forget.
+
+4
+00:00:09.400 --> 00:00:13.133
+A JSON Web Token is a signed, self contained token.
+
+5
+00:00:13.433 --> 00:00:18.567
+The payload carries claims: who the user is, when the token expires, and maybe roles.
+
+6
+00:00:18.867 --> 00:00:21.853
+Any service holding the key can verify it locally.
+
+7
+00:00:21.853 --> 00:00:23.167
+That's stateless auth.
+
+8
+00:00:24.367 --> 00:00:25.500
+Here's the anatomy.
+
+9
+00:00:25.800 --> 00:00:27.533
+The header names the algorithm.
+
+10
+00:00:27.833 --> 00:00:29.467
+The payload holds the claims.
+
+11
+00:00:29.767 --> 00:00:31.657
+And the signature covers both.
+
+12
+00:00:31.657 --> 00:00:34.933
+Flip one character anywhere, and verification fails.
+
+13
+00:00:36.133 --> 00:00:38.467
+Three habits keep JWTs safe.
+
+14
+00:00:38.767 --> 00:00:40.100
+They're tamper evident.
+
+15
+00:00:40.400 --> 00:00:45.358
+Verify properly, checking the signature and pinning the expected algorithms.
+
+16
+00:00:45.358 --> 00:00:49.533
+The classic attacks exploit sloppy verification, not the crypto.
+
+17
+00:00:49.833 --> 00:00:55.133
+And keep access tokens short lived, since you can't easily revoke one before it expires.
+
+18
+00:00:56.333 --> 00:00:57.367
+Let's try one.
+
+19
+00:00:57.667 --> 00:01:01.567
+We encode claims for a user, with an expiry fifteen minutes away.
+
+20
+00:01:01.867 --> 00:01:05.600
+Decoding with the key returns the claims, and we pin the algorithm.
+
+21
+00:01:05.900 --> 00:01:08.311
+Now we alter the last two characters.
+
+22
+00:01:08.311 --> 00:01:11.633
+Verification fails with an invalid signature error.
+
+23
+00:01:12.833 --> 00:01:14.067
+Here's how it scales.
+
+24
+00:01:14.367 --> 00:01:22.767
+Your platform has three FastAPI services: the RAG API, the telemetry API, and the exoplanet classifier.
+
+25
+00:01:23.067 --> 00:01:27.767
+Users log in once and get a fifteen minute token with role and missions claims.
+
+26
+00:01:28.067 --> 00:01:30.947
+Each service verifies the signature locally.
+
+27
+00:01:30.947 --> 00:01:33.500
+No auth round trip, no session cluster.
+
+28
+00:01:34.700 --> 00:01:38.893
+The mistake: putting secrets in the payload because the token is signed.
+
+29
+00:01:38.893 --> 00:01:40.000
+Anyone can read it.
+
+30
+00:01:40.300 --> 00:01:46.633
+Keep secrets out, expire tokens in minutes, and rotate refresh tokens to bound the damage of a leak.
+
+31
+00:01:47.833 --> 00:01:48.752
+Let's recap.
+
+32
+00:01:48.752 --> 00:01:53.267
+A JWT is header, payload and signature, all self contained.
+
+33
+00:01:53.567 --> 00:01:55.733
+Any service can verify it locally.
+
+34
+00:01:56.033 --> 00:01:58.400
+Signed means tamper evident, not secret.
+
+35
+00:01:58.700 --> 00:02:00.598
+So keep tokens short lived.
+
+36
+00:02:00.598 --> 00:02:02.567
+Next up: Linux fundamentals.

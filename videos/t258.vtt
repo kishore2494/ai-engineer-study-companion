@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Authentication.
+
+2
+00:00:02.200 --> 00:00:06.900
+Before your API guards anything, it must know who is calling, and what they may do.
+
+3
+00:00:08.100 --> 00:00:09.367
+Here are the two gates.
+
+4
+00:00:09.667 --> 00:00:10.900
+A request arrives.
+
+5
+00:00:11.200 --> 00:00:13.201
+Authentication asks: who are you?
+
+6
+00:00:13.201 --> 00:00:15.567
+Fail it, and the answer is four oh one.
+
+7
+00:00:15.867 --> 00:00:18.160
+Authorization asks: what may you do?
+
+8
+00:00:18.160 --> 00:00:21.600
+A known user above their pay grade gets four oh three.
+
+9
+00:00:21.900 --> 00:00:23.367
+Getting these right is free.
+
+10
+00:00:24.567 --> 00:00:26.800
+Two strategies keep a user logged in.
+
+11
+00:00:27.100 --> 00:00:31.433
+Sessions keep a random ID in a cookie and look the user up server side.
+
+12
+00:00:31.733 --> 00:00:34.933
+Tokens carry the state with the client, so there's no lookup.
+
+13
+00:00:35.233 --> 00:00:38.613
+Sessions are easy to revoke but need shared storage.
+
+14
+00:00:38.613 --> 00:00:40.433
+Tokens are harder to revoke.
+
+15
+00:00:41.633 --> 00:00:43.600
+Now the iron rule for passwords.
+
+16
+00:00:43.900 --> 00:00:47.467
+Add a random salt, so identical passwords hash differently.
+
+17
+00:00:47.767 --> 00:00:51.200
+Run a deliberately slow hash like bcrypt or argon2.
+
+18
+00:00:51.500 --> 00:00:52.852
+Store only that hash.
+
+19
+00:00:52.852 --> 00:00:55.233
+Never encrypt, never keep plain text.
+
+20
+00:00:55.533 --> 00:00:58.033
+At login, re-hash the attempt and compare.
+
+21
+00:00:59.233 --> 00:01:00.433
+Here it is in code.
+
+22
+00:01:00.733 --> 00:01:05.449
+Verifying a wrong guess against an argon2 hash simply returns false.
+
+23
+00:01:05.449 --> 00:01:06.767
+No decryption ever.
+
+24
+00:01:07.067 --> 00:01:09.233
+With no user, we raise four oh one.
+
+25
+00:01:09.533 --> 00:01:11.333
+With the wrong role, four oh three.
+
+26
+00:01:12.533 --> 00:01:13.767
+Here's a real case.
+
+27
+00:01:14.067 --> 00:01:18.567
+Your reindex endpoint rebuilds the vector index, forty minutes of compute.
+
+28
+00:01:18.867 --> 00:01:20.903
+Anonymous calls get four oh one.
+
+29
+00:01:20.903 --> 00:01:23.385
+A logged in analyst gets four oh three.
+
+30
+00:01:23.385 --> 00:01:25.167
+Only two admins get through.
+
+31
+00:01:25.467 --> 00:01:30.567
+Because the check is a dependency, every future admin endpoint gets the same gate.
+
+32
+00:01:31.767 --> 00:01:34.430
+The classic mistake is encrypting passwords.
+
+33
+00:01:34.430 --> 00:01:36.367
+A leaked key un-hides every one.
+
+34
+00:01:36.667 --> 00:01:42.067
+Store salted slow hashes, so even a full leak forces attackers to grind each password.
+
+35
+00:01:43.267 --> 00:01:44.020
+Let's recap.
+
+36
+00:01:44.020 --> 00:01:47.533
+Authentication is who, and failing it gives four oh one.
+
+37
+00:01:47.833 --> 00:01:51.067
+Authorization is what, and failing it gives four oh three.
+
+38
+00:01:51.367 --> 00:01:54.400
+Sessions are revocable, while tokens are stateless.
+
+39
+00:01:54.700 --> 00:01:58.129
+And passwords are only ever salted, slow hashes.
+
+40
+00:01:58.129 --> 00:01:59.200
+Next up: OAuth.

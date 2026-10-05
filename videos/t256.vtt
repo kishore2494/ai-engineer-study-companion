@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.733
+GraphQL.
+
+2
+00:00:02.033 --> 00:00:05.197
+REST makes you take what the server decides to send.
+
+3
+00:00:05.197 --> 00:00:08.300
+GraphQL lets the client describe the data it wants.
+
+4
+00:00:09.500 --> 00:00:11.333
+GraphQL inverts REST's shape.
+
+5
+00:00:11.633 --> 00:00:13.067
+There's a single endpoint.
+
+6
+00:00:13.367 --> 00:00:19.400
+The client sends a query naming exactly the fields it wants, even nested ones, in one round trip.
+
+7
+00:00:19.700 --> 00:00:22.467
+And the response mirrors the query's shape exactly.
+
+8
+00:00:23.667 --> 00:00:25.967
+GraphQL solves two REST annoyances.
+
+9
+00:00:26.267 --> 00:00:30.333
+Over fetching: the endpoint returns forty fields and you need three.
+
+10
+00:00:30.633 --> 00:00:36.800
+And under fetching: you need repository, then issues, then authors, which is three sequential calls.
+
+11
+00:00:37.100 --> 00:00:40.700
+With GraphQL, one query shaped like your UI does it all.
+
+12
+00:00:41.900 --> 00:00:43.367
+Here's how to read a query.
+
+13
+00:00:43.667 --> 00:00:45.433
+It starts at a repository.
+
+14
+00:00:45.733 --> 00:00:48.833
+From there we ask for the star count, and for its issues.
+
+15
+00:00:49.133 --> 00:00:51.833
+And for each issue, just the title and the author.
+
+16
+00:00:53.033 --> 00:00:55.967
+Here's a real query against GitHub's API.
+
+17
+00:00:56.267 --> 00:00:58.967
+We pick one repository by owner and name.
+
+18
+00:00:59.267 --> 00:01:00.800
+We ask for its star count.
+
+19
+00:01:01.100 --> 00:01:06.700
+Then the last three open issues, with each title and its author's login, all in one request.
+
+20
+00:01:07.900 --> 00:01:09.067
+But there are costs.
+
+21
+00:01:09.367 --> 00:01:15.367
+The server needs a resolver for every field, and naive ones trigger N plus one database queries.
+
+22
+00:01:15.667 --> 00:01:20.200
+Since each query is a unique post, HTTP caching mostly breaks.
+
+23
+00:01:20.500 --> 00:01:23.367
+And you must guard against maliciously deep queries.
+
+24
+00:01:24.567 --> 00:01:26.033
+Here's when it earns its keep.
+
+25
+00:01:26.333 --> 00:01:31.900
+A mission dashboard shows a mission, its latest alerts, and the instrument behind each alert.
+
+26
+00:01:32.200 --> 00:01:37.467
+Over REST that's three sequential fetches, and a visible loading stagger on the wall display.
+
+27
+00:01:37.767 --> 00:01:41.777
+With GraphQL, it asks for that whole tree once and paints once.
+
+28
+00:01:41.777 --> 00:01:44.833
+The mobile version simply asks for fewer fields.
+
+29
+00:01:46.033 --> 00:01:46.796
+Let's recap.
+
+30
+00:01:46.796 --> 00:01:49.400
+One endpoint, with client shaped queries.
+
+31
+00:01:49.700 --> 00:01:52.000
+It fixes over fetching and under fetching.
+
+32
+00:01:52.300 --> 00:01:55.267
+The costs are resolvers, caching, and deep queries.
+
+33
+00:01:55.567 --> 00:01:58.774
+Use it when many UIs share a rich data graph.
+
+34
+00:01:58.774 --> 00:02:00.200
+Next up: WebSockets.
