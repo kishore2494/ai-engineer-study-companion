@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.433
+Data and pipeline testing.
+
+2
+00:00:02.733 --> 00:00:07.224
+Many AI failure stories start with the words, the model was fine, but.
+
+3
+00:00:07.224 --> 00:00:08.700
+They end with bad data.
+
+4
+00:00:09.900 --> 00:00:10.973
+The rule is simple.
+
+5
+00:00:10.973 --> 00:00:13.233
+Test the data before you test the model.
+
+6
+00:00:13.533 --> 00:00:21.933
+A null heavy column, a units change nobody flagged, or a parser that quietly returns empty text can ruin everything downstream.
+
+7
+00:00:23.133 --> 00:00:25.533
+Here is the idea of a data contract.
+
+8
+00:00:25.833 --> 00:00:28.500
+Raw data comes in from your ingestion job.
+
+9
+00:00:28.800 --> 00:00:33.267
+A schema checks every batch, the same discipline as an API contract.
+
+10
+00:00:33.567 --> 00:00:35.956
+Only batches that pass reach the index.
+
+11
+00:00:35.956 --> 00:00:37.733
+Everything else fails loudly.
+
+12
+00:00:38.933 --> 00:00:41.700
+A contract usually combines four kinds of check.
+
+13
+00:00:42.000 --> 00:00:46.773
+Schema validation checks types, required columns, and allowed ranges.
+
+14
+00:00:46.773 --> 00:00:50.300
+Pandera, Great Expectations, or Pydantic can do it.
+
+15
+00:00:50.600 --> 00:00:56.767
+Statistical checks compare today's distribution with a reference window, instead of eyeballing a dashboard.
+
+16
+00:00:57.067 --> 00:01:00.467
+Completeness checks watch null rates and empty parsed text.
+
+17
+00:01:00.767 --> 00:01:06.087
+Referential checks make sure every chunk points to a source document that still exists.
+
+18
+00:01:06.087 --> 00:01:09.633
+Silent orphaning looks like a retrieval problem for weeks.
+
+19
+00:01:10.833 --> 00:01:12.600
+Here is a contract in Pandera.
+
+20
+00:01:12.900 --> 00:01:15.081
+Each column gets a type and a rule.
+
+21
+00:01:15.081 --> 00:01:20.067
+The text must be longer than twenty characters, and the page cannot be negative.
+
+22
+00:01:20.367 --> 00:01:23.061
+Then the ingest function validates first.
+
+23
+00:01:23.061 --> 00:01:27.333
+If the batch is bad, it raises before anything touches the index.
+
+24
+00:01:28.533 --> 00:01:31.067
+Now a real story from Mission Control RAG.
+
+25
+00:01:31.367 --> 00:01:34.065
+The team swaps in a faster PDF parser.
+
+26
+00:01:34.065 --> 00:01:36.833
+It ingests cleanly, with no exceptions.
+
+27
+00:01:37.133 --> 00:01:40.433
+But every scanned appendix now comes back as empty text.
+
+28
+00:01:40.733 --> 00:01:44.121
+A text length check in the contract catches it the same day.
+
+29
+00:01:44.121 --> 00:01:48.300
+Without it, you hear two weeks later that the bot doesn't know appendix C.
+
+30
+00:01:49.500 --> 00:01:50.215
+Let's recap.
+
+31
+00:01:50.215 --> 00:01:52.600
+Test the data before you test the model.
+
+32
+00:01:52.900 --> 00:01:56.500
+A data contract fails loudly at the ingestion boundary.
+
+33
+00:01:56.800 --> 00:01:59.967
+Check schema, statistics, completeness, and references.
+
+34
+00:02:00.267 --> 00:02:03.733
+That way silent regressions get caught the same day.
+
+35
+00:02:03.733 --> 00:02:07.000
+Next up: model and RAG evals as regression tests.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.533
+Model and RAG evals as regression tests.
+
+2
+00:00:03.833 --> 00:00:08.833
+If you already have golden datasets and metrics, you're most of the way to a real test suite.
+
+3
+00:00:10.033 --> 00:00:14.233
+An eval suite works just like a regression suite, with softer assertions.
+
+4
+00:00:14.533 --> 00:00:18.167
+The golden set is versioned and frozen, like fixture files.
+
+5
+00:00:18.467 --> 00:00:22.667
+We assert on scores with a tolerance band, not on strings with equality.
+
+6
+00:00:22.967 --> 00:00:24.785
+And a score drop fails the build.
+
+7
+00:00:24.785 --> 00:00:27.100
+It isn't a Slack thread three weeks later.
+
+8
+00:00:27.400 --> 00:00:34.133
+Faithfulness above zero point nine, averaged over the golden set, is the AI version of a snapshot test.
+
+9
+00:00:35.333 --> 00:00:36.400
+Here is the gate.
+
+10
+00:00:36.700 --> 00:00:39.833
+Every prompt, model, or retriever change triggers it.
+
+11
+00:00:40.133 --> 00:00:42.667
+The full golden set runs through the pipeline.
+
+12
+00:00:42.967 --> 00:00:45.867
+Scores are compared with the baseline from the main branch.
+
+13
+00:00:46.167 --> 00:00:49.300
+Only if they hold within tolerance can the change merge.
+
+14
+00:00:50.500 --> 00:00:52.233
+And here is the gate as a test.
+
+15
+00:00:52.533 --> 00:00:56.533
+First, run the whole versioned golden set through the current pipeline.
+
+16
+00:00:56.833 --> 00:01:01.433
+Faithfulness may not fall more than zero point zero two below the baseline.
+
+17
+00:01:01.733 --> 00:01:04.965
+Recall and relevancy must stay above fixed floors.
+
+18
+00:01:04.965 --> 00:01:07.033
+Fail the merge, don't just warn.
+
+19
+00:01:08.233 --> 00:01:09.900
+Now the improvement that wasn't.
+
+20
+00:01:10.200 --> 00:01:14.933
+A prompt tweak trims boilerplate, and it reads cleaner when you skim five examples.
+
+21
+00:01:15.233 --> 00:01:18.013
+Run on the full golden set, faithfulness drops.
+
+22
+00:01:18.013 --> 00:01:22.567
+The shorter prompt was quietly losing the cite your source chunk instruction.
+
+23
+00:01:22.867 --> 00:01:24.859
+The gate blocks it before merge.
+
+24
+00:01:24.859 --> 00:01:29.467
+After merge, that's a week of wondering why hallucination complaints rose.
+
+25
+00:01:30.667 --> 00:01:34.633
+One trap: treating a score drop as a warning that someone may read later.
+
+26
+00:01:34.933 --> 00:01:37.267
+Make it a failing check that blocks the merge.
+
+27
+00:01:38.467 --> 00:01:39.193
+Let's recap.
+
+28
+00:01:39.193 --> 00:01:41.433
+Your evals are your regression suite.
+
+29
+00:01:41.733 --> 00:01:44.967
+Assert on scores with tolerance bands, not on strings.
+
+30
+00:01:45.267 --> 00:01:47.533
+Keep the golden set versioned and frozen.
+
+31
+00:01:47.833 --> 00:01:50.703
+And treat a score drop as a build failure.
+
+32
+00:01:50.703 --> 00:01:53.300
+Next up: testing LLM outputs directly.
