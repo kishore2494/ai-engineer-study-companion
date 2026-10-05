@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Docker basics.
+
+2
+00:00:02.200 --> 00:00:06.735
+Works on my machine stops being an excuse once your app ships with its own machine.
+
+3
+00:00:06.735 --> 00:00:07.500
+Let's see how.
+
+4
+00:00:08.700 --> 00:00:10.100
+Two words to get straight.
+
+5
+00:00:10.400 --> 00:00:15.500
+An image is an immutable, layered snapshot of a filesystem, built from a Dockerfile.
+
+6
+00:00:15.800 --> 00:00:20.867
+A container is a running instance of that image, with a thin writable layer on top.
+
+7
+00:00:21.167 --> 00:00:23.733
+Kill the container and the image is untouched.
+
+8
+00:00:24.033 --> 00:00:25.744
+So the image is the machine.
+
+9
+00:00:25.744 --> 00:00:28.067
+That is what ends works on my machine.
+
+10
+00:00:29.267 --> 00:00:31.808
+Now the daily-life skill: layer caching.
+
+11
+00:00:31.808 --> 00:00:34.667
+Every Dockerfile instruction creates a layer.
+
+12
+00:00:34.967 --> 00:00:36.700
+At the bottom, the base image.
+
+13
+00:00:37.000 --> 00:00:38.467
+Then the requirements file.
+
+14
+00:00:38.767 --> 00:00:40.667
+Then the slow dependency install.
+
+15
+00:00:40.967 --> 00:00:42.685
+And on top, your source code.
+
+16
+00:00:42.685 --> 00:00:46.300
+A layer rebuilds only if it, or anything beneath it, changed.
+
+17
+00:00:47.500 --> 00:00:48.667
+Here is the payoff.
+
+18
+00:00:48.967 --> 00:00:50.433
+You edit one line of code.
+
+19
+00:00:50.733 --> 00:00:55.100
+Everything beneath your code is cached, so dependencies are not reinstalled.
+
+20
+00:00:55.400 --> 00:00:57.133
+Only the code layer rebuilds.
+
+21
+00:00:57.433 --> 00:00:59.887
+Three seconds, instead of three minutes.
+
+22
+00:00:59.887 --> 00:01:02.033
+Put what changes most often on top.
+
+23
+00:01:03.233 --> 00:01:04.567
+Here is the Dockerfile.
+
+24
+00:01:04.867 --> 00:01:10.000
+We copy the requirements file and install dependencies first, since they rarely change.
+
+25
+00:01:10.300 --> 00:01:13.667
+Only then do we copy the source code, which changes daily.
+
+26
+00:01:13.967 --> 00:01:18.300
+Rebuild after an edit, and every layer says cached, except the code copy.
+
+27
+00:01:19.500 --> 00:01:23.733
+Picture a live demo where you are fixing prompt wording between sessions.
+
+28
+00:01:24.033 --> 00:01:28.242
+With the naive Dockerfile, every one-line tweak reinstalls torch.
+
+29
+00:01:28.242 --> 00:01:29.667
+Three-minute rebuilds.
+
+30
+00:01:29.967 --> 00:01:33.767
+The fix is to install dependencies before copying the source.
+
+31
+00:01:34.067 --> 00:01:36.210
+Now each rebuild takes three seconds.
+
+32
+00:01:36.210 --> 00:01:38.933
+The order of two lines is the whole difference.
+
+33
+00:01:40.133 --> 00:01:40.897
+Let's recap.
+
+34
+00:01:40.897 --> 00:01:43.633
+An image is an immutable, layered snapshot.
+
+35
+00:01:43.933 --> 00:01:46.267
+A container is a running instance of it.
+
+36
+00:01:46.567 --> 00:01:50.033
+A layer rebuilds only if it, or a layer beneath it, changed.
+
+37
+00:01:50.333 --> 00:01:53.872
+So put slow, stable steps first and your code last.
+
+38
+00:01:53.872 --> 00:01:56.300
+Next up: Docker multi-stage builds.

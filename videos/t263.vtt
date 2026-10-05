@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.700
+GitHub, branching, pull requests and rebasing.
+
+2
+00:00:04.000 --> 00:00:05.389
+Git stores your history.
+
+3
+00:00:05.389 --> 00:00:08.224
+GitHub is where a team, or a recruiter, reads it.
+
+4
+00:00:08.224 --> 00:00:10.133
+Let's see the habits that matter.
+
+5
+00:00:11.333 --> 00:00:14.140
+GitHub is the collaboration layer on top of Git.
+
+6
+00:00:14.140 --> 00:00:18.700
+You work on a feature branch, and a pull request shows the diff to a reviewer.
+
+7
+00:00:19.000 --> 00:00:22.967
+Branch protection makes review and green checks mandatory on main.
+
+8
+00:00:23.267 --> 00:00:27.633
+And a squash merge collapses all the fix-up noise into one clean commit.
+
+9
+00:00:28.833 --> 00:00:30.567
+Here is the life of one change.
+
+10
+00:00:30.867 --> 00:00:32.900
+You isolate the work on its own branch.
+
+11
+00:00:33.200 --> 00:00:35.800
+You open a pull request with a clear description.
+
+12
+00:00:36.100 --> 00:00:38.900
+A reviewer reads it, and you answer every comment.
+
+13
+00:00:39.200 --> 00:00:42.500
+CI runs, and nothing broken can land, mechanically.
+
+14
+00:00:42.800 --> 00:00:46.533
+Finally, you squash merge, and one clean commit reaches main.
+
+15
+00:00:47.733 --> 00:00:50.933
+Hiring managers really do read your pull requests.
+
+16
+00:00:51.233 --> 00:00:52.967
+A good PR has one concern.
+
+17
+00:00:52.967 --> 00:00:56.100
+A two hundred line diff gets reviewed in hours.
+
+18
+00:00:56.400 --> 00:00:59.100
+A giant two thousand line one sits for a week.
+
+19
+00:00:59.400 --> 00:01:02.133
+State what changed, why, and how you tested it.
+
+20
+00:01:02.433 --> 00:01:05.100
+Small and clear is the habit that gets merged.
+
+21
+00:01:06.300 --> 00:01:08.033
+Here is that loop in the terminal.
+
+22
+00:01:08.333 --> 00:01:10.233
+We create a feature branch and push it.
+
+23
+00:01:10.533 --> 00:01:15.900
+Then we open the pull request, with a title and a description covering the speed-up and rollback.
+
+24
+00:01:16.200 --> 00:01:19.600
+We check that CI is green, and squash merge into main.
+
+25
+00:01:20.800 --> 00:01:22.267
+Here is why it pays off.
+
+26
+00:01:22.567 --> 00:01:26.867
+A hiring manager spends ninety seconds on your repo before the interview.
+
+27
+00:01:27.167 --> 00:01:34.400
+They see a protected main, where every change arrived as a small pull request with a crisp description and green checks.
+
+28
+00:01:34.700 --> 00:01:39.867
+That reads as real team experience, and it costs about five extra minutes per change.
+
+29
+00:01:41.067 --> 00:01:41.833
+Let's recap.
+
+30
+00:01:41.833 --> 00:01:44.067
+Feature branches isolate your work.
+
+31
+00:01:44.367 --> 00:01:46.833
+Pull requests put the diff in front of a reviewer.
+
+32
+00:01:47.133 --> 00:01:50.233
+Branch protection with CI makes the checks mandatory.
+
+33
+00:01:50.533 --> 00:01:54.224
+And small diffs with clear descriptions show seniority.
+
+34
+00:01:54.224 --> 00:01:55.767
+Next up: Docker basics.

@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.400
+Git.
+
+2
+00:00:01.700 --> 00:00:05.986
+Once you understand how Git stores history, you can be much braver with it.
+
+3
+00:00:05.986 --> 00:00:07.700
+Let's build that mental model.
+
+4
+00:00:08.900 --> 00:00:11.000
+Git's mental model fits in one line.
+
+5
+00:00:11.300 --> 00:00:16.300
+Commits are immutable snapshots of the whole tree, not diffs, linked into a graph.
+
+6
+00:00:16.600 --> 00:00:21.400
+And branches are just movable pointers to commits, so creating one costs nothing.
+
+7
+00:00:22.600 --> 00:00:23.967
+Here's a tiny history.
+
+8
+00:00:24.267 --> 00:00:26.200
+Both branches grew from commit A.
+
+9
+00:00:26.500 --> 00:00:29.467
+Main points at B, and the fix branch points at C.
+
+10
+00:00:30.667 --> 00:00:33.100
+Now, two philosophies for combining work.
+
+11
+00:00:33.400 --> 00:00:36.967
+Merge preserves the fork and the join, and adds a merge commit.
+
+12
+00:00:37.267 --> 00:00:41.700
+Rebase replays your commits on top of the target, giving a clean linear story.
+
+13
+00:00:42.000 --> 00:00:43.867
+The cost is that it rewrites them.
+
+14
+00:00:44.167 --> 00:00:49.367
+So most teams rebase their private branch to stay current, and never rebase shared history.
+
+15
+00:00:50.567 --> 00:00:52.033
+And here's the safety net.
+
+16
+00:00:52.333 --> 00:00:54.900
+A hard reset makes a commit seem to vanish.
+
+17
+00:00:55.200 --> 00:00:56.736
+But it's only unpointed.
+
+18
+00:00:56.736 --> 00:00:58.400
+The snapshot still exists.
+
+19
+00:00:58.700 --> 00:01:01.567
+The reflog records every place HEAD has pointed.
+
+20
+00:01:01.867 --> 00:01:03.967
+Reset to the one you want, and it's back.
+
+21
+00:01:05.167 --> 00:01:06.200
+Let's see a drill.
+
+22
+00:01:06.500 --> 00:01:09.567
+We create a branch, commit, and rebase it onto main.
+
+23
+00:01:09.867 --> 00:01:13.034
+Now a disaster: a hard reset loses the commit.
+
+24
+00:01:13.034 --> 00:01:16.133
+The reflog finds it, and we reset right back.
+
+25
+00:01:16.433 --> 00:01:18.833
+And always look at the graph, not just the list.
+
+26
+00:01:20.033 --> 00:01:21.100
+Here's the story.
+
+27
+00:01:21.400 --> 00:01:22.322
+Friday, six p.
+
+28
+00:01:22.322 --> 00:01:22.454
+m.
+
+29
+00:01:22.454 --> 00:01:29.500
+You hard reset the classifier repo to test a clean baseline, and the unpushed light curve fix goes with it.
+
+30
+00:01:29.800 --> 00:01:32.100
+Old you would re-derive it over the weekend.
+
+31
+00:01:32.400 --> 00:01:38.232
+New you runs reflog, spots the commit, cherry picks it back, and is at dinner by six fifteen.
+
+32
+00:01:38.232 --> 00:01:39.800
+Snapshots are never gone.
+
+33
+00:01:41.000 --> 00:01:41.734
+Let's recap.
+
+34
+00:01:41.734 --> 00:01:44.733
+Commits are snapshots, and branches are pointers.
+
+35
+00:01:45.033 --> 00:01:47.967
+Merge preserves history, while rebase rewrites it.
+
+36
+00:01:48.267 --> 00:01:49.933
+Never rebase shared history.
+
+37
+00:01:50.233 --> 00:01:53.129
+And the reflog can recover almost anything.
+
+38
+00:01:53.129 --> 00:01:56.833
+Next up: GitHub, branching, pull requests and rebasing.

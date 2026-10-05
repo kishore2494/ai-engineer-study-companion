@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+Docker multi-stage builds.
+
+2
+00:00:02.800 --> 00:00:05.581
+Your production image does not need a compiler.
+
+3
+00:00:05.581 --> 00:00:07.533
+Let's see how to leave it behind.
+
+4
+00:00:08.733 --> 00:00:12.900
+A multi-stage build uses two or more FROM blocks in one Dockerfile.
+
+5
+00:00:13.200 --> 00:00:18.833
+The first is a fat build stage, with compilers, headers and dev tools doing the heavy lifting.
+
+6
+00:00:19.133 --> 00:00:25.300
+The second is a slim runtime stage that starts clean, and copies in only the finished artifacts.
+
+7
+00:00:26.500 --> 00:00:27.600
+Here is the flow.
+
+8
+00:00:27.900 --> 00:00:32.967
+The build stage installs everything it needs, including a toolchain for native wheels.
+
+9
+00:00:33.267 --> 00:00:37.533
+Then copy from the build stage pulls across just the installed packages.
+
+10
+00:00:37.833 --> 00:00:39.876
+The runtime stage ships those.
+
+11
+00:00:39.876 --> 00:00:44.233
+Gcc, caches and test tooling are discarded with the build stage.
+
+12
+00:00:45.433 --> 00:00:46.127
+Why bother?
+
+13
+00:00:46.127 --> 00:00:47.200
+Look at the size.
+
+14
+00:00:47.500 --> 00:00:52.471
+A single-stage Python API image is about fourteen hundred megabytes.
+
+15
+00:00:52.471 --> 00:00:56.491
+Multi-stage brings it down to around two hundred forty.
+
+16
+00:00:56.491 --> 00:01:00.000
+Smaller images pull faster, and size is latency.
+
+17
+00:01:01.200 --> 00:01:02.400
+Here it is in code.
+
+18
+00:01:02.700 --> 00:01:07.633
+The first block is the fat build stage, installing packages into a single folder.
+
+19
+00:01:07.933 --> 00:01:13.900
+The second starts from the slim image and copies only that folder across, using copy from build.
+
+20
+00:01:15.100 --> 00:01:16.467
+Here is where it matters.
+
+21
+00:01:16.767 --> 00:01:22.067
+Traffic spikes when a NASA announcement trends, and the Kubernetes autoscaler adds pods.
+
+22
+00:01:22.367 --> 00:01:28.700
+But every new node pulled a one point four gigabyte image first, so capacity arrived ninety seconds late.
+
+23
+00:01:29.000 --> 00:01:39.033
+After the rewrite the image is two hundred thirty eight megabytes, and the security scan flags sixty percent fewer vulnerabilities, since no compiler ships to production.
+
+24
+00:01:40.233 --> 00:01:41.020
+Let's recap.
+
+25
+00:01:41.020 --> 00:01:44.100
+Use a fat build stage and a slim runtime stage.
+
+26
+00:01:44.400 --> 00:01:47.333
+Copy from build carries over only the artifacts.
+
+27
+00:01:47.633 --> 00:01:49.400
+Smaller images pull faster.
+
+28
+00:01:49.700 --> 00:01:53.383
+And no toolchain in production means less attack surface.
+
+29
+00:01:53.383 --> 00:01:54.933
+Next up: Docker Compose.

@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Linux fundamentals.
+
+2
+00:00:02.367 --> 00:00:05.962
+Every container, every Kubernetes node, every cloud box.
+
+3
+00:00:05.962 --> 00:00:09.300
+A small working set covers most of what you'll need.
+
+4
+00:00:10.500 --> 00:00:12.200
+Everything lives in one tree.
+
+5
+00:00:12.500 --> 00:00:14.900
+Slash etc holds configuration.
+
+6
+00:00:15.200 --> 00:00:17.367
+Slash var slash log holds logs.
+
+7
+00:00:17.667 --> 00:00:20.806
+And slash proc exposes live process information.
+
+8
+00:00:20.806 --> 00:00:24.600
+Everything is a file, so the same tools work on all of it.
+
+9
+00:00:25.800 --> 00:00:27.633
+Permissions come in three triplets.
+
+10
+00:00:27.933 --> 00:00:29.858
+The owner gets read and write.
+
+11
+00:00:29.858 --> 00:00:32.167
+That's the six in chmod six hundred.
+
+12
+00:00:32.467 --> 00:00:34.352
+Group and other get nothing.
+
+13
+00:00:34.352 --> 00:00:35.900
+Perfect for an ssh key.
+
+14
+00:00:37.100 --> 00:00:38.467
+Pipes are the superpower.
+
+15
+00:00:38.767 --> 00:00:40.533
+Grep keeps only the error lines.
+
+16
+00:00:40.833 --> 00:00:42.267
+Awk cuts out the message.
+
+17
+00:00:42.567 --> 00:00:44.200
+Sort groups identical ones.
+
+18
+00:00:44.500 --> 00:00:45.700
+Uniq counts them.
+
+19
+00:00:46.000 --> 00:00:47.633
+Sort again, biggest first.
+
+20
+00:00:47.933 --> 00:00:49.533
+And head shows the top five.
+
+21
+00:00:50.733 --> 00:00:52.867
+One more habit: kill is a request.
+
+22
+00:00:53.167 --> 00:00:55.467
+Dash fifteen asks the process politely.
+
+23
+00:00:55.767 --> 00:00:58.633
+Dash nine is the last resort, with no cleanup.
+
+24
+00:00:59.833 --> 00:01:00.967
+Here's the toolkit.
+
+25
+00:01:01.267 --> 00:01:05.633
+Lsof shows who holds port eight thousand, and kill asks it to stop.
+
+26
+00:01:05.933 --> 00:01:09.667
+This one pipeline finds the five most common errors in a log.
+
+27
+00:01:09.967 --> 00:01:16.733
+Then chmod locks a key, and systemctl and journalctl check the service and tail its logs.
+
+28
+00:01:17.933 --> 00:01:19.267
+Here's a typical day.
+
+29
+00:01:19.567 --> 00:01:22.767
+The staging deploy fails with address already in use.
+
+30
+00:01:23.067 --> 00:01:31.367
+You ssh in, lsof shows a zombie uvicorn from last week, kill clears it, and journalctl confirms a clean start.
+
+31
+00:01:31.667 --> 00:01:37.020
+Then one pipeline answers what's erroring, instead of downloading two gigabytes of logs.
+
+32
+00:01:37.020 --> 00:01:38.967
+Four minutes, all muscle memory.
+
+33
+00:01:40.167 --> 00:01:40.933
+Let's recap.
+
+34
+00:01:40.933 --> 00:01:44.000
+One filesystem tree, where everything is a file.
+
+35
+00:01:44.300 --> 00:01:48.133
+Permissions are read, write and execute for owner, group and other.
+
+36
+00:01:48.433 --> 00:01:50.833
+Pipes chain small tools into big answers.
+
+37
+00:01:51.133 --> 00:01:56.559
+Prefer the polite kill, and use systemctl and journalctl for services.
+
+38
+00:01:56.559 --> 00:01:57.567
+Next up: Git.
