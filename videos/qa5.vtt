@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.833
+Adversarial and red-team testing.
+
+2
+00:00:03.133 --> 00:00:05.453
+Functional evals ask whether it works.
+
+3
+00:00:05.453 --> 00:00:09.300
+Red-team tests ask what happens when someone tries to break it.
+
+4
+00:00:10.500 --> 00:00:11.767
+Here is the core rule.
+
+5
+00:00:12.067 --> 00:00:17.070
+Any text your app processes that a trusted developer didn't write is untrusted.
+
+6
+00:00:17.070 --> 00:00:20.300
+That includes retrieved documents and tool results.
+
+7
+00:00:21.500 --> 00:00:23.533
+A red team suite has four branches.
+
+8
+00:00:23.833 --> 00:00:27.855
+Direct jailbreaks: the user says ignore previous instructions.
+
+9
+00:00:27.855 --> 00:00:31.033
+Keep an attack corpus and rerun it every release.
+
+10
+00:00:31.333 --> 00:00:37.028
+Indirect injection: malicious text hidden in a document, email, or API response.
+
+11
+00:00:37.028 --> 00:00:39.733
+Classic pentesting never covered this.
+
+12
+00:00:40.033 --> 00:00:43.628
+Over-refusal: a filter that blocks legitimate requests.
+
+13
+00:00:43.628 --> 00:00:45.000
+Track it as a metric.
+
+14
+00:00:45.300 --> 00:00:46.286
+And tool abuse.
+
+15
+00:00:46.286 --> 00:00:50.167
+For agents, the scariest failure is an unauthorized delete.
+
+16
+00:00:51.367 --> 00:00:52.733
+So how do we test for it?
+
+17
+00:00:53.033 --> 00:00:56.533
+We plant a poisoned document that looks like a normal report.
+
+18
+00:00:56.833 --> 00:00:58.833
+The agent is asked to summarize it.
+
+19
+00:00:59.133 --> 00:01:01.200
+We record every tool call it makes.
+
+20
+00:01:01.500 --> 00:01:03.998
+And we assert that no write ever happened.
+
+21
+00:01:03.998 --> 00:01:05.367
+Actions, not just text.
+
+22
+00:01:06.567 --> 00:01:08.067
+In code, it looks like this.
+
+23
+00:01:08.367 --> 00:01:10.900
+We run the agent on the poisoned document.
+
+24
+00:01:11.200 --> 00:01:15.867
+Then we gather every SQL call from the trace, and assert that no delete appears.
+
+25
+00:01:16.167 --> 00:01:18.633
+And every call must be in read only mode.
+
+26
+00:01:19.833 --> 00:01:21.333
+Here is a real example.
+
+27
+00:01:21.633 --> 00:01:27.600
+The Orbital Research Agent's MCP server exposes three tools over production Postgres.
+
+28
+00:01:27.900 --> 00:01:33.533
+A red team case plants an instruction inside a fabricated report, asking for a write query.
+
+29
+00:01:33.833 --> 00:01:38.248
+The server is read only, and a test asserts no write tool exists.
+
+30
+00:01:38.248 --> 00:01:41.100
+The test proves the design actually holds.
+
+31
+00:01:42.300 --> 00:01:43.124
+Let's recap.
+
+32
+00:01:43.124 --> 00:01:45.733
+Treat all retrieved text as untrusted.
+
+33
+00:01:46.033 --> 00:01:49.800
+Test jailbreaks, injection, over-refusal, and tool abuse.
+
+34
+00:01:50.100 --> 00:01:52.567
+Assert on actions taken, not just words.
+
+35
+00:01:52.867 --> 00:01:54.838
+Tests prove the design holds.
+
+36
+00:01:54.838 --> 00:01:58.033
+Next up: eval gates, shadow and canary deploys.

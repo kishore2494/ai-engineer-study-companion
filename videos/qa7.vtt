@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.967
+Why AI reshapes test automation.
+
+2
+00:00:03.267 --> 00:00:06.265
+Classic automation has three chronic problems.
+
+3
+00:00:06.265 --> 00:00:07.633
+AI attacks all three.
+
+4
+00:00:08.833 --> 00:00:10.767
+Here are the three chronic problems.
+
+5
+00:00:11.067 --> 00:00:13.602
+Locators break on every redesign.
+
+6
+00:00:13.602 --> 00:00:18.367
+AI finds elements by meaning, instead of brittle CSS or XPath.
+
+7
+00:00:18.667 --> 00:00:21.034
+Scripts need a rewrite each release.
+
+8
+00:00:21.034 --> 00:00:23.533
+AI can generate test cases from specs.
+
+9
+00:00:23.833 --> 00:00:27.265
+And coverage plateaus, because writing cases is slow.
+
+10
+00:00:27.265 --> 00:00:30.567
+AI can explore an app the way a human tester would.
+
+11
+00:00:31.767 --> 00:00:33.533
+It helps to think in three tiers.
+
+12
+00:00:33.833 --> 00:00:35.398
+Tier one is authoring.
+
+13
+00:00:35.398 --> 00:00:40.733
+An LLM drafts cases or scripts from a spec, and a human or CI reviews them.
+
+14
+00:00:41.033 --> 00:00:42.690
+Tier two is maintenance.
+
+15
+00:00:42.690 --> 00:00:46.833
+Locators and visual checks use AI signals to survive change.
+
+16
+00:00:47.133 --> 00:00:49.526
+Tier three is autonomous execution.
+
+17
+00:00:49.526 --> 00:00:53.900
+An agent perceives, plans, and acts against a live app each run.
+
+18
+00:00:55.100 --> 00:00:57.128
+Tiers one and two share a pattern.
+
+19
+00:00:57.128 --> 00:01:01.600
+The AI helps write or repair a script, and then the script runs on its own.
+
+20
+00:01:01.900 --> 00:01:03.364
+Tier three is different.
+
+21
+00:01:03.364 --> 00:01:08.000
+There is no script, because the agent itself decides what to do at run time.
+
+22
+00:01:09.200 --> 00:01:10.733
+Now the critical distinction.
+
+23
+00:01:11.033 --> 00:01:17.400
+With AI assisted automation, AI writes or heals a script, which then runs deterministically.
+
+24
+00:01:17.700 --> 00:01:19.667
+It runs the same way every time.
+
+25
+00:01:19.967 --> 00:01:24.037
+With AI autonomous testing, an agent decides actions live.
+
+26
+00:01:24.037 --> 00:01:29.300
+It adapts and finds the unexpected, but it is slower and non-deterministic.
+
+27
+00:01:29.600 --> 00:01:32.400
+Production suites lean on assisted for regression.
+
+28
+00:01:33.600 --> 00:01:37.467
+The tempting mistake is replacing the regression suite with an agent.
+
+29
+00:01:37.767 --> 00:01:44.600
+Instead, the autonomous agent is a discovery tool, and it complements the regression suite rather than replacing it.
+
+30
+00:01:45.800 --> 00:01:46.658
+Let's recap.
+
+31
+00:01:46.658 --> 00:01:49.233
+AI locates, generates, and explores.
+
+32
+00:01:49.533 --> 00:01:52.767
+There are three tiers: authoring, maintenance, and autonomy.
+
+33
+00:01:53.067 --> 00:01:55.600
+Assisted automation stays deterministic.
+
+34
+00:01:55.900 --> 00:01:58.561
+Autonomous testing is for discovery.
+
+35
+00:01:58.561 --> 00:02:01.000
+Next up: AI generated test cases.

@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.400
+Eval gates, shadow and canary deploys.
+
+2
+00:00:03.700 --> 00:00:05.830
+Production catches everything else.
+
+3
+00:00:05.830 --> 00:00:10.333
+So we need a loop that learns from real use, not just a gate before merge.
+
+4
+00:00:11.533 --> 00:00:14.933
+A gate only stops failures you already know to check for.
+
+5
+00:00:15.233 --> 00:00:18.800
+The feedback loop is what makes tomorrow's gate smarter than today's.
+
+6
+00:00:20.000 --> 00:00:21.000
+Here is the loop.
+
+7
+00:00:21.300 --> 00:00:24.900
+Every change first runs the golden set suite before merge.
+
+8
+00:00:25.200 --> 00:00:28.467
+Then it ships to real traffic, in a canary or a shadow.
+
+9
+00:00:28.767 --> 00:00:33.700
+Online signals come in: thumbs up or down, task completion, escalation rate.
+
+10
+00:00:34.000 --> 00:00:37.633
+And those failures become new golden rows, so the loop closes.
+
+11
+00:00:38.833 --> 00:00:40.567
+What is the difference between the two?
+
+12
+00:00:40.867 --> 00:00:43.667
+A canary serves a small slice of real users.
+
+13
+00:00:43.967 --> 00:00:47.600
+A shadow runs alongside production, without affecting anyone.
+
+14
+00:00:47.900 --> 00:00:52.967
+Either way, online signals flow back so the golden set keeps learning from production.
+
+15
+00:00:54.167 --> 00:00:57.833
+A real case: a canary of Mission Control RAG version two.
+
+16
+00:00:58.133 --> 00:01:00.300
+It gets three thumbs down on the same day.
+
+17
+00:01:00.600 --> 00:01:06.100
+All three are multi-hop questions that the router sent to vector search instead of the graph.
+
+18
+00:01:06.400 --> 00:01:11.659
+Those transcripts become three new golden set rows, with the correct routing labeled.
+
+19
+00:01:11.659 --> 00:01:14.567
+The next eval run would catch it before canary.
+
+20
+00:01:15.767 --> 00:01:18.533
+The mistake is fixing the incident and moving on.
+
+21
+00:01:18.833 --> 00:01:23.958
+Production incidents that don't become golden set rows are lessons paid for twice.
+
+22
+00:01:23.958 --> 00:01:25.333
+Make every one a test.
+
+23
+00:01:26.533 --> 00:01:27.263
+Let's recap.
+
+24
+00:01:27.263 --> 00:01:30.000
+Offline evals catch what you thought to test.
+
+25
+00:01:30.300 --> 00:01:32.767
+Canary and shadow expose real traffic.
+
+26
+00:01:33.067 --> 00:01:35.800
+Online signals feed back into the golden set.
+
+27
+00:01:36.100 --> 00:01:38.170
+So tomorrow's gate is smarter.
+
+28
+00:01:38.170 --> 00:01:41.000
+Next up: why AI reshapes test automation.
