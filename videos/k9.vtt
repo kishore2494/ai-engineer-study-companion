@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.767
+The proof of production portfolio.
+
+2
+00:00:03.067 --> 00:00:07.967
+What surrounds your code decides whether it reads as a tutorial or as real work.
+
+3
+00:00:09.167 --> 00:00:10.633
+There are two kinds of repo.
+
+4
+00:00:10.933 --> 00:00:13.700
+A side project says: I followed a tutorial.
+
+5
+00:00:14.000 --> 00:00:17.167
+A proof of production repo says: I have done this job.
+
+6
+00:00:17.467 --> 00:00:20.233
+The difference is entirely in what surrounds the code.
+
+7
+00:00:21.433 --> 00:00:22.967
+Here are six things to add.
+
+8
+00:00:23.267 --> 00:00:26.300
+An architecture diagram at the top of the README.
+
+9
+00:00:26.600 --> 00:00:32.567
+A trace link from LangSmith or Langfuse, showing multi-step execution with timings and costs.
+
+10
+00:00:32.867 --> 00:00:36.200
+An eval report, with your golden set committed to the repo.
+
+11
+00:00:36.500 --> 00:00:41.800
+A benchmark table of latency and cost, before and after, with a reproducible method.
+
+12
+00:00:42.100 --> 00:00:47.100
+A real repo structure, with source, tests, docker, workflows and typed code.
+
+13
+00:00:47.400 --> 00:00:49.043
+And a written post-mortem.
+
+14
+00:00:49.043 --> 00:00:52.267
+This is the section senior engineers actually read.
+
+15
+00:00:53.467 --> 00:00:55.078
+Now quantify everything.
+
+16
+00:00:55.078 --> 00:01:02.733
+Here is a real style of claim: cost per query reduced by sixty two percent, from forty one paise to sixteen paise.
+
+17
+00:01:03.933 --> 00:01:06.433
+The mistake is a paragraph of adjectives.
+
+18
+00:01:06.733 --> 00:01:10.412
+Instead, say the number, the method, and the quality you held.
+
+19
+00:01:10.412 --> 00:01:13.200
+That single sentence outperforms the paragraph.
+
+20
+00:01:14.400 --> 00:01:17.667
+But you can only write that sentence if you measured from day one.
+
+21
+00:01:17.967 --> 00:01:19.100
+So measure first.
+
+22
+00:01:19.400 --> 00:01:20.500
+Then optimize.
+
+23
+00:01:20.800 --> 00:01:21.712
+Then prove it.
+
+24
+00:01:21.712 --> 00:01:25.033
+That is why evals come before optimization, always.
+
+25
+00:01:26.233 --> 00:01:27.003
+Let's recap.
+
+26
+00:01:27.003 --> 00:01:29.633
+Proof of production beats a side project.
+
+27
+00:01:29.933 --> 00:01:33.800
+Add a diagram, trace, evals, benchmarks and a post-mortem.
+
+28
+00:01:34.100 --> 00:01:35.533
+Quantify every claim.
+
+29
+00:01:35.833 --> 00:01:38.131
+And evals come before optimization.
+
+30
+00:01:38.131 --> 00:01:40.167
+Next up: this week's checklist.

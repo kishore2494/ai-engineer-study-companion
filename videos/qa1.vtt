@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.033
+Why testing AI breaks the old rules.
+
+2
+00:00:03.333 --> 00:00:07.798
+A test that passes today can fail tomorrow, and nobody touched the code.
+
+3
+00:00:07.798 --> 00:00:08.667
+Let's see why.
+
+4
+00:00:09.867 --> 00:00:13.647
+Classic unit tests assume the function is deterministic.
+
+5
+00:00:13.647 --> 00:00:15.267
+Same input, same output.
+
+6
+00:00:15.567 --> 00:00:16.799
+An LLM breaks that.
+
+7
+00:00:16.799 --> 00:00:20.300
+Many outputs are valid, and there is no single oracle.
+
+8
+00:00:20.600 --> 00:00:23.233
+So we replace is it equal with a threshold.
+
+9
+00:00:23.533 --> 00:00:26.500
+Is it correct enough, consistent enough, and safe enough?
+
+10
+00:00:27.700 --> 00:00:29.300
+There are four reasons for this.
+
+11
+00:00:29.600 --> 00:00:31.932
+First, there is no single ground truth.
+
+12
+00:00:31.932 --> 00:00:35.100
+We grade with rubrics, reference answers, and judges.
+
+13
+00:00:35.400 --> 00:00:37.241
+Second, randomness is real.
+
+14
+00:00:37.241 --> 00:00:42.833
+Sampling temperature and even floating point order on a GPU can change the output.
+
+15
+00:00:43.133 --> 00:00:45.533
+Third, the system moves without you.
+
+16
+00:00:45.533 --> 00:00:51.200
+A vendor can swap the model behind an API, so pin versions and rerun your golden set.
+
+17
+00:00:51.500 --> 00:00:53.895
+And fourth, quality is a distribution.
+
+18
+00:00:53.895 --> 00:00:56.100
+One passing example proves nothing.
+
+19
+00:00:57.300 --> 00:00:58.900
+Here is the difference in code.
+
+20
+00:00:59.200 --> 00:01:03.800
+The exact match fails about thirty percent of runs, even when the summary is good.
+
+21
+00:01:04.100 --> 00:01:08.233
+The robust version checks similarity to a reference against a threshold.
+
+22
+00:01:08.533 --> 00:01:11.467
+Then a judge grades the answer against a rubric.
+
+23
+00:01:12.667 --> 00:01:13.876
+Here is a real case.
+
+24
+00:01:13.876 --> 00:01:19.500
+The Orbital Research Agent used to write that a close approach will occur soon, with no date.
+
+25
+00:01:19.800 --> 00:01:24.133
+Exact match can't test the fix, because every report has different numbers.
+
+26
+00:01:24.433 --> 00:01:28.533
+So the test is a rubric: a date, units, and no vague time words.
+
+27
+00:01:28.833 --> 00:01:32.333
+A judge scores ten reports, rerun on every prompt change.
+
+28
+00:01:33.533 --> 00:01:39.100
+The common mistake: asserting exact equality on free text, then blaming the test runner.
+
+29
+00:01:39.400 --> 00:01:44.633
+The fix: pin temperature to zero where you must assert exactly, and still say usually.
+
+30
+00:01:45.833 --> 00:01:46.699
+Let's recap.
+
+31
+00:01:46.699 --> 00:01:51.100
+An LLM output is not deterministic, so equality checks break.
+
+32
+00:01:51.400 --> 00:01:54.633
+Test with thresholds for correct, consistent, and safe.
+
+33
+00:01:54.933 --> 00:01:57.767
+Pin model versions, and rerun your golden set.
+
+34
+00:01:58.067 --> 00:02:00.632
+Quality is a distribution, not a point.
+
+35
+00:02:00.632 --> 00:02:02.933
+Next up: data and pipeline testing.
