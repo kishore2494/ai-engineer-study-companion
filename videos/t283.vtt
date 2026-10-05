@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Context recall.
+
+2
+00:00:02.300 --> 00:00:05.135
+Precision asks if the retrieved text is clean.
+
+3
+00:00:05.135 --> 00:00:07.600
+Recall asks whether anything is missing.
+
+4
+00:00:08.800 --> 00:00:14.333
+Context recall asks: did retrieval surface all the information the correct answer needs?
+
+5
+00:00:14.633 --> 00:00:18.367
+We take the ground truth answer and split it into individual claims.
+
+6
+00:00:18.667 --> 00:00:22.967
+Then we check what fraction of those claims is supported by the retrieved chunks.
+
+7
+00:00:24.167 --> 00:00:26.367
+Here are three claims from the correct answer.
+
+8
+00:00:26.667 --> 00:00:29.267
+Two are supported somewhere in the retrieved chunks.
+
+9
+00:00:29.567 --> 00:00:30.534
+One is missing.
+
+10
+00:00:30.534 --> 00:00:34.533
+That gives a recall of two thirds, about zero point six seven.
+
+11
+00:00:35.733 --> 00:00:39.133
+The dangerous pattern is high precision with low recall.
+
+12
+00:00:39.433 --> 00:00:44.233
+Everything retrieved is on topic, so the model answers fluently and confidently.
+
+13
+00:00:44.533 --> 00:00:47.224
+But a key piece never reached the context.
+
+14
+00:00:47.224 --> 00:00:49.529
+Users rarely notice what is missing.
+
+15
+00:00:49.529 --> 00:00:51.067
+Your recall metric does.
+
+16
+00:00:52.267 --> 00:00:53.467
+Here it is in code.
+
+17
+00:00:53.767 --> 00:00:57.833
+For each claim, an LLM checks whether any retrieved chunk supports it.
+
+18
+00:00:58.133 --> 00:01:00.033
+Recall is the covered fraction.
+
+19
+00:01:00.333 --> 00:01:05.767
+And printing the uncovered claims tells you what to fix: chunking, top k, or ingestion.
+
+20
+00:01:06.967 --> 00:01:12.533
+Why did Mars Climate Orbiter keep scoring zero point five recall, even at top k ten?
+
+21
+00:01:12.833 --> 00:01:15.670
+The uncovered claim was always the unit mismatch.
+
+22
+00:01:15.670 --> 00:01:22.500
+The mishap report put it in a table, and the fixed size chunker split the numbers from the paragraph naming the units.
+
+23
+00:01:22.800 --> 00:01:26.131
+No reranker can retrieve a chunk that doesn't exist.
+
+24
+00:01:26.131 --> 00:01:30.167
+Keep tables atomic in chunking, and recall jumps to point nine.
+
+25
+00:01:31.367 --> 00:01:32.160
+Let's recap.
+
+26
+00:01:32.160 --> 00:01:35.400
+Recall asks if retrieval found everything needed.
+
+27
+00:01:35.700 --> 00:01:38.300
+We check ground truth claims against the context.
+
+28
+00:01:38.600 --> 00:01:41.233
+High precision with low recall hides gaps.
+
+29
+00:01:41.533 --> 00:01:42.865
+So fix it upstream.
+
+30
+00:01:42.865 --> 00:01:44.967
+Next up: faithfulness scoring.

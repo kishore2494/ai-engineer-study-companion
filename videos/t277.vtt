@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.767
+Rate limiting.
+
+2
+00:00:02.067 --> 00:00:06.467
+A rate limiter protects your wallet from users, and the provider's limits from you.
+
+3
+00:00:07.667 --> 00:00:10.267
+The algorithm to know is the token bucket.
+
+4
+00:00:10.567 --> 00:00:14.567
+The bucket holds up to a burst of tokens, and refills at a steady rate.
+
+5
+00:00:14.867 --> 00:00:17.103
+Each request takes one token.
+
+6
+00:00:17.103 --> 00:00:22.500
+If the bucket is empty, we reject with a 429 and a retry after header.
+
+7
+00:00:23.700 --> 00:00:25.000
+Watch the bucket level.
+
+8
+00:00:25.300 --> 00:00:29.100
+A full bucket lets a burst of requests through at once, and drains it.
+
+9
+00:00:29.400 --> 00:00:30.953
+Then it refills steadily.
+
+10
+00:00:30.953 --> 00:00:33.933
+Burst allowed, but the average rate is enforced.
+
+11
+00:00:35.133 --> 00:00:37.600
+There is a stricter cousin, the sliding window.
+
+12
+00:00:37.900 --> 00:00:40.833
+The bucket allows bursts, while the window allows none.
+
+13
+00:00:41.133 --> 00:00:45.800
+The bucket refills steadily, while the window counts requests in the last few seconds.
+
+14
+00:00:46.100 --> 00:00:49.133
+A Redis sorted set implements the window naturally.
+
+15
+00:00:49.433 --> 00:00:53.000
+So pick the bucket for flexibility, and the window for strictness.
+
+16
+00:00:54.200 --> 00:00:56.000
+Here is a bucket stored in Redis.
+
+17
+00:00:56.300 --> 00:01:01.633
+We load the saved tokens, and add refill for the time that has passed, capped at the burst size.
+
+18
+00:01:01.933 --> 00:01:04.633
+If less than one token is left, we reject.
+
+19
+00:01:04.933 --> 00:01:07.479
+Otherwise we spend one token and save.
+
+20
+00:01:07.479 --> 00:01:11.900
+In production, wrap this in a Lua script so it is one atomic step.
+
+21
+00:01:13.100 --> 00:01:16.833
+The Orbital Research Agent needs limits in both directions.
+
+22
+00:01:17.133 --> 00:01:20.813
+Inbound, a teammate's script sends twenty requests.
+
+23
+00:01:20.813 --> 00:01:27.233
+Ten drain the bucket, and request eleven gets a clean 429 instead of a forty dollar bill.
+
+24
+00:01:27.533 --> 00:01:31.033
+Outbound, the DONKI API caps at thirty requests a minute.
+
+25
+00:01:31.333 --> 00:01:38.167
+A shared bucket across all four workers holds the fleet at twenty eight per minute, and the provider errors disappear.
+
+26
+00:01:39.367 --> 00:01:40.136
+Let's recap.
+
+27
+00:01:40.136 --> 00:01:43.600
+A token bucket allows bursts at a steady average rate.
+
+28
+00:01:43.900 --> 00:01:46.533
+An empty bucket means a 429.
+
+29
+00:01:46.833 --> 00:01:48.500
+A sliding window is stricter.
+
+30
+00:01:48.800 --> 00:01:51.280
+And limit both inbound and outbound.
+
+31
+00:01:51.280 --> 00:01:52.933
+Next up: load balancing.

@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+Context precision.
+
+2
+00:00:02.333 --> 00:00:04.286
+Retrieval returned five chunks.
+
+3
+00:00:04.286 --> 00:00:06.177
+How many were actually useful?
+
+4
+00:00:06.177 --> 00:00:08.067
+That is what this metric asks.
+
+5
+00:00:09.267 --> 00:00:13.567
+Context precision asks: of the chunks retrieved, how many were relevant?
+
+6
+00:00:13.867 --> 00:00:17.367
+It is the signal to noise ratio of your retrieval stage.
+
+7
+00:00:17.667 --> 00:00:23.833
+RAGAS makes it rank aware, so relevant chunks near the top score better than the same chunks buried at the bottom.
+
+8
+00:00:25.033 --> 00:00:27.633
+Let's label the top five chunks for one query.
+
+9
+00:00:27.933 --> 00:00:30.333
+Chunks one, two, and four are relevant.
+
+10
+00:00:30.633 --> 00:00:32.593
+Chunks three and five are noise.
+
+11
+00:00:32.593 --> 00:00:36.267
+Three out of five gives a plain precision of zero point six.
+
+12
+00:00:37.467 --> 00:00:39.033
+Here is the math in Python.
+
+13
+00:00:39.333 --> 00:00:42.067
+Plain precision is just the relevant fraction.
+
+14
+00:00:42.367 --> 00:00:48.133
+The rank aware version averages the precision at each relevant position, so early hits count more.
+
+15
+00:00:48.433 --> 00:00:51.867
+Plain gives point six, and rank aware gives point nine two.
+
+16
+00:00:53.067 --> 00:00:54.600
+Why does this matter so much?
+
+17
+00:00:54.900 --> 00:00:57.700
+Irrelevant chunks are not just wasted tokens.
+
+18
+00:00:58.000 --> 00:01:04.173
+Every off-topic paragraph is raw material for the model to weave into a confident, wrong answer.
+
+19
+00:01:04.173 --> 00:01:07.067
+If faithfulness drops, check precision first.
+
+20
+00:01:08.267 --> 00:01:11.600
+On Mission Control, precision reads a dismal point four.
+
+21
+00:01:11.900 --> 00:01:13.861
+Eyeballing the chunks shows why.
+
+22
+00:01:13.861 --> 00:01:22.500
+Every NASA report opens with the same export control notice, and it was embedded like everything else, so it looks close to almost any query.
+
+23
+00:01:22.800 --> 00:01:27.167
+Filter boilerplate at ingest, and precision climbs to point six two.
+
+24
+00:01:27.167 --> 00:01:32.433
+Add a cross encoder reranker over the top fifty, and it reaches point eight three.
+
+25
+00:01:33.633 --> 00:01:34.361
+Let's recap.
+
+26
+00:01:34.361 --> 00:01:37.633
+Precision is the relevant share of what you retrieved.
+
+27
+00:01:37.933 --> 00:01:40.133
+Rank aware scoring rewards early hits.
+
+28
+00:01:40.433 --> 00:01:42.833
+Low precision invites hallucination.
+
+29
+00:01:43.133 --> 00:01:46.167
+Fix it with ingest filters and a reranker.
+
+30
+00:01:46.167 --> 00:01:47.900
+Next up: context recall.

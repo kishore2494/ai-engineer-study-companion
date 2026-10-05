@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.633
+Distributed systems basics.
+
+2
+00:00:02.933 --> 00:00:07.056
+The moment your system spans two machines, new kinds of failure appear.
+
+3
+00:00:07.056 --> 00:00:10.133
+You can't fix them, but you can engineer around them.
+
+4
+00:00:11.333 --> 00:00:12.867
+Three truths always apply.
+
+5
+00:00:13.167 --> 00:00:14.491
+Networks partition.
+
+6
+00:00:14.491 --> 00:00:17.767
+Messages get lost, or arrive after you gave up.
+
+7
+00:00:18.067 --> 00:00:20.067
+Messages arrive twice, or never.
+
+8
+00:00:20.367 --> 00:00:24.933
+And clocks disagree, so never order events across machines by timestamp.
+
+9
+00:00:26.133 --> 00:00:28.000
+The toolkit starts with retries.
+
+10
+00:00:28.300 --> 00:00:31.506
+Wait half a second, then one, then two, then four.
+
+11
+00:00:31.506 --> 00:00:33.238
+The wait doubles each time.
+
+12
+00:00:33.238 --> 00:00:35.033
+That is exponential backoff.
+
+13
+00:00:35.333 --> 00:00:43.063
+Then add jitter, a random extra delay, so a thousand clients don't retry in lockstep and re-kill the recovering service.
+
+14
+00:00:43.063 --> 00:00:44.867
+That is the thundering herd.
+
+15
+00:00:46.067 --> 00:00:47.133
+Three more tools.
+
+16
+00:00:47.433 --> 00:00:48.735
+Timeouts everywhere.
+
+17
+00:00:48.735 --> 00:00:51.533
+An unbounded wait is an outage in disguise.
+
+18
+00:00:51.833 --> 00:00:52.952
+Idempotency keys.
+
+19
+00:00:52.952 --> 00:00:59.333
+The client sends a unique key, and the server runs each key once, so a retry can't double charge.
+
+20
+00:00:59.633 --> 00:01:00.917
+And CAP intuition.
+
+21
+00:01:00.917 --> 00:01:07.267
+During a partition, refuse writes for consistency, or accept divergence for availability.
+
+22
+00:01:08.467 --> 00:01:10.967
+Here is the heart of a retry decorator.
+
+23
+00:01:11.267 --> 00:01:13.467
+Every call gets a ten second deadline.
+
+24
+00:01:13.767 --> 00:01:16.967
+On a transient error, the delay doubles with each attempt.
+
+25
+00:01:17.267 --> 00:01:20.093
+And we sleep for the delay plus a random amount.
+
+26
+00:01:20.093 --> 00:01:22.567
+On the last attempt, we give up and raise.
+
+27
+00:01:23.767 --> 00:01:25.600
+Both failures live in one stack.
+
+28
+00:01:25.900 --> 00:01:29.845
+The DONKI tool fails about half the time during solar maxima.
+
+29
+00:01:29.845 --> 00:01:33.467
+Wrapped in retry, success climbs to ninety four percent.
+
+30
+00:01:33.767 --> 00:01:37.667
+Jitter matters, because all four workers hit it at the same cron tick.
+
+31
+00:01:37.967 --> 00:01:43.933
+And when Kafka re-reads a batch, an idempotency key means operators get one page, not three.
+
+32
+00:01:45.133 --> 00:01:45.933
+Let's recap.
+
+33
+00:01:45.933 --> 00:01:49.400
+Networks fail, messages duplicate, and clocks drift.
+
+34
+00:01:49.700 --> 00:01:51.367
+Put timeouts on every call.
+
+35
+00:01:51.667 --> 00:01:53.400
+Retry with backoff and jitter.
+
+36
+00:01:53.700 --> 00:01:56.925
+And use idempotency keys so retries are safe.
+
+37
+00:01:56.925 --> 00:01:59.433
+Next up: event-driven architecture.

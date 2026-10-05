@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Load balancing.
+
+2
+00:00:02.200 --> 00:00:07.633
+A load balancer spreads traffic across your replicas, and quietly removes the ones that die.
+
+3
+00:00:08.833 --> 00:00:11.567
+A load balancer sits in front of your instances.
+
+4
+00:00:11.867 --> 00:00:13.433
+Clients send requests to it.
+
+5
+00:00:13.733 --> 00:00:15.400
+It picks a backend for each one.
+
+6
+00:00:15.700 --> 00:00:19.600
+This works because the replicas are stateless, so any of them can answer.
+
+7
+00:00:20.800 --> 00:00:23.000
+Three strategies cover most interviews.
+
+8
+00:00:23.300 --> 00:00:25.240
+Round robin simply takes turns.
+
+9
+00:00:25.240 --> 00:00:26.367
+It is the default.
+
+10
+00:00:26.667 --> 00:00:31.408
+Least connections sends work to the instance with the fewest open requests.
+
+11
+00:00:31.408 --> 00:00:35.833
+That is better when durations vary wildly, like streaming LLM answers.
+
+12
+00:00:36.133 --> 00:00:43.133
+Consistent hashing sends the same key to the same instance, and adding a node reshuffles only a sliver of keys.
+
+13
+00:00:44.333 --> 00:00:46.567
+The production-grade part is health checks.
+
+14
+00:00:46.867 --> 00:00:51.300
+The balancer probes each backend, with a health ping or by counting failures.
+
+15
+00:00:51.600 --> 00:00:54.267
+Dead backends leave rotation automatically.
+
+16
+00:00:54.567 --> 00:00:56.667
+When they recover, they come back.
+
+17
+00:00:56.667 --> 00:01:00.867
+Deploys, crashes, and out of memory kills become invisible to users.
+
+18
+00:01:02.067 --> 00:01:03.867
+Here is the Nginx config.
+
+19
+00:01:04.167 --> 00:01:08.600
+We choose least connections, because LLM streams have wild durations.
+
+20
+00:01:08.900 --> 00:01:12.433
+After two failures, a backend is ejected for ten seconds.
+
+21
+00:01:12.733 --> 00:01:17.133
+And if a backend errors mid request, Nginx replays it on the next one.
+
+22
+00:01:18.333 --> 00:01:21.222
+Two replicas of the RAG API sit behind Nginx.
+
+23
+00:01:21.222 --> 00:01:30.467
+Round robin starved one of them, because streamed answers hold connections for twenty seconds while health queries finish in fifty milliseconds.
+
+24
+00:01:30.767 --> 00:01:36.000
+To prove it works, run a five hundred request load test and kill api two halfway.
+
+25
+00:01:36.300 --> 00:01:45.300
+The dead backend is ejected within a second, the in-flight failures are replayed on api one, and the test finishes with zero failed requests.
+
+26
+00:01:46.500 --> 00:01:47.257
+Let's recap.
+
+27
+00:01:47.257 --> 00:01:50.600
+A balancer spreads traffic across stateless replicas.
+
+28
+00:01:50.900 --> 00:01:54.333
+Pick round robin, least connections, or consistent hashing.
+
+29
+00:01:54.633 --> 00:01:56.600
+Health checks remove dead backends.
+
+30
+00:01:56.900 --> 00:01:58.885
+And prove it with a kill test.
+
+31
+00:01:58.885 --> 00:02:01.267
+Next up: distributed systems basics.

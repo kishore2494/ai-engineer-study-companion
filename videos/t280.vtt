@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.433
+Event-driven architecture.
+
+2
+00:00:02.733 --> 00:00:06.316
+Instead of services calling each other, they announce what happened.
+
+3
+00:00:06.316 --> 00:00:07.633
+Let's see why that helps.
+
+4
+00:00:08.833 --> 00:00:10.067
+Compare two styles.
+
+5
+00:00:10.367 --> 00:00:13.532
+In a request driven system, A calls B directly.
+
+6
+00:00:13.532 --> 00:00:17.033
+In an event driven one, A announces a fact on a bus.
+
+7
+00:00:17.333 --> 00:00:19.390
+With a call, A must know B exists.
+
+8
+00:00:19.390 --> 00:00:23.200
+With events, the publisher knows nothing about its subscribers.
+
+9
+00:00:23.500 --> 00:00:26.157
+A must wait on B and handle its failures.
+
+10
+00:00:26.157 --> 00:00:29.267
+Subscribers instead react on their own schedule.
+
+11
+00:00:29.567 --> 00:00:31.967
+Events trade tight coupling for flexibility.
+
+12
+00:00:33.167 --> 00:00:34.267
+Here is the shape.
+
+13
+00:00:34.567 --> 00:00:37.600
+The ingestor publishes a fact, log ingested.
+
+14
+00:00:37.900 --> 00:00:41.933
+It goes onto a bus like Redis pub sub, Kafka, or SNS.
+
+15
+00:00:42.233 --> 00:00:44.833
+The embedder subscribes and reacts on its own.
+
+16
+00:00:45.133 --> 00:00:47.033
+Later you add an eval sampler.
+
+17
+00:00:47.033 --> 00:00:50.200
+A new subscriber, and the publisher never changes.
+
+18
+00:00:51.400 --> 00:00:53.167
+Here is the idea in Redis.
+
+19
+00:00:53.467 --> 00:00:57.500
+The publisher sends a small event, and has no idea who is listening.
+
+20
+00:00:57.800 --> 00:01:03.004
+Each subscriber listens in its own process, and reacts by embedding the document.
+
+21
+00:01:03.004 --> 00:01:04.867
+Use Kafka if you need replay.
+
+22
+00:01:06.067 --> 00:01:08.300
+The price is eventual consistency.
+
+23
+00:01:08.600 --> 00:01:12.769
+For a moment, the event is published but not processed everywhere.
+
+24
+00:01:12.769 --> 00:01:17.633
+Debugging also spans many services, which is what distributed tracing is for.
+
+25
+00:01:18.833 --> 00:01:23.241
+Originally the ingestor called the embedder directly, then a notifier.
+
+26
+00:01:23.241 --> 00:01:24.500
+Three coupled steps.
+
+27
+00:01:24.800 --> 00:01:30.733
+After the refactor, the ingestor just publishes an event, and the embedder and an alerter subscribe.
+
+28
+00:01:31.033 --> 00:01:33.600
+Two months later you add an eval sampler.
+
+29
+00:01:33.600 --> 00:01:36.167
+The ingestor does not change by one line.
+
+30
+00:01:37.367 --> 00:01:38.124
+Let's recap.
+
+31
+00:01:38.124 --> 00:01:40.333
+Publishers announce facts on a bus.
+
+32
+00:01:40.633 --> 00:01:42.667
+Subscribers react independently.
+
+33
+00:01:42.967 --> 00:01:45.333
+You get loose coupling and easy extension.
+
+34
+00:01:45.633 --> 00:01:49.442
+The cost is eventual consistency and harder debugging.
+
+35
+00:01:49.442 --> 00:01:50.500
+Next up: RAGAS.
