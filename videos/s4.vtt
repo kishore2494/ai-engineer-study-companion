@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+It worked in the demo.
+
+2
+00:00:02.267 --> 00:00:03.556
+Everyone is impressed.
+
+3
+00:00:03.556 --> 00:00:08.067
+You have to raise concerns without becoming the person who blocks everything.
+
+4
+00:00:09.267 --> 00:00:14.567
+A colleague demos a new prompting approach that improved accuracy by forty percent.
+
+5
+00:00:14.867 --> 00:00:16.313
+But look at the evidence.
+
+6
+00:00:16.313 --> 00:00:17.933
+Twelve hand picked examples.
+
+7
+00:00:18.233 --> 00:00:20.633
+Graded by the person who wrote the prompt.
+
+8
+00:00:20.933 --> 00:00:23.800
+And compared against the old prompt at a different temperature.
+
+9
+00:00:25.000 --> 00:00:27.100
+Rank the flaws by how much they matter.
+
+10
+00:00:27.400 --> 00:00:31.633
+Twelve examples is far too few to separate a real gain from noise.
+
+11
+00:00:31.933 --> 00:00:35.433
+Hand picking means they may be exactly where the new prompt shines.
+
+12
+00:00:35.733 --> 00:00:37.833
+The grader is invested in the outcome.
+
+13
+00:00:38.133 --> 00:00:42.427
+And with two variables changed, the comparison can't be interpreted.
+
+14
+00:00:42.427 --> 00:00:45.900
+Arguing about prompt wording is only taste, so skip it.
+
+15
+00:00:47.100 --> 00:00:49.833
+Now, how you say it matters as much as being right.
+
+16
+00:00:50.133 --> 00:00:51.865
+Don't open with the weakness.
+
+17
+00:00:51.865 --> 00:00:54.133
+Open with what is genuinely promising.
+
+18
+00:00:54.433 --> 00:00:58.267
+Then propose running it on the golden set, so you help prove their idea.
+
+19
+00:00:58.567 --> 00:01:01.533
+The golden set becomes the arbiter, not your opinion.
+
+20
+00:01:01.833 --> 00:01:03.433
+Lead with belief, not doubt.
+
+21
+00:01:04.633 --> 00:01:06.467
+So what would make you happy to ship it?
+
+22
+00:01:06.767 --> 00:01:10.167
+The same two hundred example golden set for both prompts.
+
+23
+00:01:10.467 --> 00:01:13.400
+The same temperature, so only one thing changes.
+
+24
+00:01:13.700 --> 00:01:19.900
+Blind grading, with an LLM judge that swaps answer order, or a colleague who wrote neither prompt.
+
+25
+00:01:20.200 --> 00:01:23.873
+And a per item diff showing what improved and what regressed.
+
+26
+00:01:23.873 --> 00:01:25.800
+If the gain survives, it's real.
+
+27
+00:01:27.000 --> 00:01:29.767
+The trap is being right and alienating everyone.
+
+28
+00:01:30.067 --> 00:01:33.567
+Frame it as a shared goal: a number we can defend to leadership.
+
+29
+00:01:34.767 --> 00:01:35.539
+Let's recap.
+
+30
+00:01:35.539 --> 00:01:39.467
+Twelve hand picked, author graded examples are weak evidence.
+
+31
+00:01:39.767 --> 00:01:42.167
+Skip taste debates and fix the evidence.
+
+32
+00:01:42.467 --> 00:01:44.900
+Lead with belief, then bring the golden set.
+
+33
+00:01:45.200 --> 00:01:47.560
+Ship on blind, same settings results.
+
+34
+00:01:47.560 --> 00:01:50.367
+Next up: the model that got worse overnight.

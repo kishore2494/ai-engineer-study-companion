@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.667
+The model that got worse overnight.
+
+2
+00:00:02.967 --> 00:00:06.074
+Nothing was deployed, yet the output is garbage.
+
+3
+00:00:06.074 --> 00:00:08.533
+Let's debug it like a senior engineer.
+
+4
+00:00:09.733 --> 00:00:10.867
+It's Monday morning.
+
+5
+00:00:11.167 --> 00:00:16.333
+Your pipeline uses an LLM to extract structured fields from customer emails.
+
+6
+00:00:16.633 --> 00:00:18.700
+Support says it's returning garbage.
+
+7
+00:00:19.000 --> 00:00:21.233
+And nothing has been deployed since Thursday.
+
+8
+00:00:22.433 --> 00:00:25.100
+Nothing changed is almost always false.
+
+9
+00:00:25.100 --> 00:00:27.562
+Something outside your repo changed.
+
+10
+00:00:27.562 --> 00:00:29.067
+List every hypothesis.
+
+11
+00:00:29.367 --> 00:00:32.633
+The provider's alias may have moved to a new model version.
+
+12
+00:00:32.933 --> 00:00:34.433
+Your inputs may have shifted.
+
+13
+00:00:34.733 --> 00:00:37.700
+An upstream parser may now include HTML.
+
+14
+00:00:38.000 --> 00:00:39.900
+Longer inputs may be truncated.
+
+15
+00:00:40.200 --> 00:00:42.367
+Timeouts may fall back to a weaker model.
+
+16
+00:00:42.667 --> 00:00:44.067
+Or nothing broke at all.
+
+17
+00:00:45.267 --> 00:00:46.867
+Now find the cheapest test.
+
+18
+00:00:47.167 --> 00:00:50.800
+Take twenty inputs from last Wednesday that worked, and run them now.
+
+19
+00:00:51.100 --> 00:00:54.938
+If they still work, the model is fine and your inputs shifted.
+
+20
+00:00:54.938 --> 00:00:57.848
+If they fail, the model or its version changed.
+
+21
+00:00:57.848 --> 00:00:58.900
+That's bisecting.
+
+22
+00:01:00.100 --> 00:01:02.667
+And what should have existed so you'd know on Friday?
+
+23
+00:01:02.967 --> 00:01:05.867
+Pinned model versions, never floating aliases.
+
+24
+00:01:06.167 --> 00:01:11.033
+A daily canary eval of thirty golden examples, with an alert when the score drops.
+
+25
+00:01:11.333 --> 00:01:15.000
+Input monitoring for lengths, schema failures, and new sources.
+
+26
+00:01:15.300 --> 00:01:19.100
+And tracing, so you can compare an old good trace with a new bad one.
+
+27
+00:01:20.300 --> 00:01:22.700
+The trap is concluding the model got dumber.
+
+28
+00:01:23.000 --> 00:01:25.478
+That is a hypothesis, not a conclusion.
+
+29
+00:01:25.478 --> 00:01:29.100
+Bisect first, and blame vendors only with a diff in hand.
+
+30
+00:01:30.300 --> 00:01:31.092
+Let's recap.
+
+31
+00:01:31.092 --> 00:01:33.667
+Nothing changed is almost always false.
+
+32
+00:01:33.967 --> 00:01:36.033
+Rerun old good inputs to bisect.
+
+33
+00:01:36.333 --> 00:01:38.600
+Pin versions and run a daily canary.
+
+34
+00:01:38.900 --> 00:01:40.970
+Blame the model only with a diff.
+
+35
+00:01:40.970 --> 00:01:43.667
+Next up: the client who wants to fine-tune.

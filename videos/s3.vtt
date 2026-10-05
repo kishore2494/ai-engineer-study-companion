@@ -1,0 +1,169 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.133
+The agent that deleted production data.
+
+2
+00:00:03.433 --> 00:00:05.044
+Four thousand rows vanished.
+
+3
+00:00:05.044 --> 00:00:06.367
+What really went wrong?
+
+4
+00:00:07.567 --> 00:00:12.433
+Your internal ops agent has a run SQL tool to answer data questions.
+
+5
+00:00:12.733 --> 00:00:16.167
+A user asks it to clean up the duplicate customer records.
+
+6
+00:00:16.467 --> 00:00:18.348
+It writes and executes a delete.
+
+7
+00:00:18.348 --> 00:00:20.700
+Four thousand two hundred rows are gone.
+
+8
+00:00:21.000 --> 00:00:25.700
+Backups are six hours old, and your manager asks if we can still use agents.
+
+9
+00:00:26.900 --> 00:00:28.233
+First, the first hour.
+
+10
+00:00:28.533 --> 00:00:31.015
+Disable the tool, not the whole agent.
+
+11
+00:00:31.015 --> 00:00:31.733
+Be precise.
+
+12
+00:00:32.033 --> 00:00:33.867
+Restore the backup into staging.
+
+13
+00:00:34.167 --> 00:00:36.900
+Rebuild the six hour gap from application logs.
+
+14
+00:00:37.200 --> 00:00:38.800
+Pull the agent's trajectory.
+
+15
+00:00:39.100 --> 00:00:40.667
+And communicate scope early.
+
+16
+00:00:41.867 --> 00:00:43.367
+Now name the real failure.
+
+17
+00:00:43.667 --> 00:00:45.921
+It isn't that the model made a mistake.
+
+18
+00:00:45.921 --> 00:00:48.233
+Models will do anything the tool allows.
+
+19
+00:00:48.533 --> 00:00:56.451
+The failure is that an irreversible capability was exposed with no permission boundary, no human checkpoint, and no dry run.
+
+20
+00:00:56.451 --> 00:00:58.367
+That's an architecture defect.
+
+21
+00:00:59.567 --> 00:01:01.767
+Here is the redesign, layer by layer.
+
+22
+00:01:02.067 --> 00:01:04.476
+The SQL tool is read-only by default.
+
+23
+00:01:04.476 --> 00:01:07.667
+Writes live behind a separate tool with approval.
+
+24
+00:01:07.967 --> 00:01:11.000
+Writes preview the rows they'd touch and wait for a human.
+
+25
+00:01:11.300 --> 00:01:14.133
+The database role simply can't delete or drop.
+
+26
+00:01:14.433 --> 00:01:16.767
+Large statements escalate no matter what.
+
+27
+00:01:17.067 --> 00:01:21.067
+And soft deletes plus an audit log make every mistake recoverable.
+
+28
+00:01:22.267 --> 00:01:23.867
+So what do you tell your manager?
+
+29
+00:01:24.167 --> 00:01:25.474
+Don't blame the model.
+
+30
+00:01:25.474 --> 00:01:27.733
+The cause was unreviewed write access.
+
+31
+00:01:28.033 --> 00:01:30.278
+And don't ask the model to be careful.
+
+32
+00:01:30.278 --> 00:01:31.400
+Enforce it in code.
+
+33
+00:01:31.700 --> 00:01:35.500
+Yes, we can use agents, with the controls we'd give a new intern.
+
+34
+00:01:36.700 --> 00:01:38.967
+The classic trap is fixing it in the prompt.
+
+35
+00:01:39.267 --> 00:01:41.576
+A prompt is not a security boundary.
+
+36
+00:01:41.576 --> 00:01:44.333
+Enforce it in code and permissions, always.
+
+37
+00:01:45.533 --> 00:01:46.312
+Let's recap.
+
+38
+00:01:46.312 --> 00:01:49.233
+In hour one, disable the tool, not the agent.
+
+39
+00:01:49.533 --> 00:01:52.467
+The failure was an ungated, irreversible action.
+
+40
+00:01:52.767 --> 00:01:56.700
+Layer read-only access, dry runs, least privilege, and caps.
+
+41
+00:01:57.000 --> 00:01:59.049
+Enforce it in code, not prompts.
+
+42
+00:01:59.049 --> 00:02:01.033
+Next up: it worked in the demo.

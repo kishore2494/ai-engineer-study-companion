@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.300
+The RAG that answers confidently and wrongly.
+
+2
+00:00:03.600 --> 00:00:06.200
+Users love how it sounds and hate what it says.
+
+3
+00:00:07.400 --> 00:00:11.200
+You shipped a RAG assistant, and leadership is asking whether to scrap it.
+
+4
+00:00:11.500 --> 00:00:14.233
+It runs over forty thousand policy documents.
+
+5
+00:00:14.533 --> 00:00:19.433
+Its answers sound authoritative, but they cite policies that don't say what it claims.
+
+6
+00:00:19.733 --> 00:00:21.513
+And you have almost no data.
+
+7
+00:00:21.513 --> 00:00:24.500
+Just request counts, no eval set, and one week.
+
+8
+00:00:25.700 --> 00:00:27.225
+Day one, stop guessing.
+
+9
+00:00:27.225 --> 00:00:31.600
+Collect fifty real failing queries, and for each ask one question.
+
+10
+00:00:31.900 --> 00:00:34.102
+Was the correct passage retrieved at all?
+
+11
+00:00:34.102 --> 00:00:36.733
+This single check tells you which half is broken.
+
+12
+00:00:37.033 --> 00:00:38.107
+Never retrieved?
+
+13
+00:00:38.107 --> 00:00:42.669
+Check chunking, vocabulary mismatch, keyword search, and a reranker.
+
+14
+00:00:42.669 --> 00:00:43.340
+Retrieved?
+
+15
+00:00:43.340 --> 00:00:47.433
+Check context order, a missing not found rule, and citations.
+
+16
+00:00:48.633 --> 00:00:50.667
+Then make sure you never run blind again.
+
+17
+00:00:50.967 --> 00:00:55.200
+Add tracing that logs retrieved chunks, scores, and the final answer.
+
+18
+00:00:55.500 --> 00:00:59.467
+Turn those fifty failures into a golden set with verified answers.
+
+19
+00:00:59.767 --> 00:01:04.167
+And add a confidence threshold, so it can say it couldn't find this in the policies.
+
+20
+00:01:05.367 --> 00:01:07.933
+With a golden set, progress becomes a number.
+
+21
+00:01:08.233 --> 00:01:13.100
+Hit rate at five goes from sixty one percent to eighty nine, instead of it feels better.
+
+22
+00:01:14.300 --> 00:01:16.600
+Your day one message to leadership is short.
+
+23
+00:01:16.900 --> 00:01:17.800
+It's fixable.
+
+24
+00:01:18.100 --> 00:01:21.267
+I know how to measure it, and by Friday you'll have numbers.
+
+25
+00:01:21.567 --> 00:01:26.600
+Meanwhile it can refuse to guess, which recovers trust faster than any accuracy gain.
+
+26
+00:01:27.800 --> 00:01:31.107
+The trap is rewriting the system prompt right away.
+
+27
+00:01:31.107 --> 00:01:33.700
+It feels productive but fixes few cases.
+
+28
+00:01:34.000 --> 00:01:36.733
+Measure first, then fix what the data points to.
+
+29
+00:01:37.933 --> 00:01:38.714
+Let's recap.
+
+30
+00:01:38.714 --> 00:01:41.967
+First split failures into retrieval or generation.
+
+31
+00:01:42.267 --> 00:01:44.300
+Trace everything so you're never blind.
+
+32
+00:01:44.600 --> 00:01:46.500
+Turn failures into a golden set.
+
+33
+00:01:46.800 --> 00:01:48.568
+And let the system refuse.
+
+34
+00:01:48.568 --> 00:01:51.833
+Next up: the eight lakh rupees a month API bill.

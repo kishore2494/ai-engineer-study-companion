@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.267
+The eight lakh rupee monthly API bill.
+
+2
+00:00:03.567 --> 00:00:05.258
+Finance wants it at two lakh.
+
+3
+00:00:05.258 --> 00:00:07.767
+Here's how a strong engineer approaches it.
+
+4
+00:00:08.967 --> 00:00:10.300
+Here's the situation.
+
+5
+00:00:10.600 --> 00:00:14.133
+Fifty thousand conversations a day, around six turns each.
+
+6
+00:00:14.433 --> 00:00:20.567
+Every turn sends a two thousand token system prompt plus context, all on one frontier model.
+
+7
+00:00:20.867 --> 00:00:22.900
+Finance wants eight lakh down to two.
+
+8
+00:00:24.100 --> 00:00:25.833
+First, attribute the cost.
+
+9
+00:00:25.833 --> 00:00:27.633
+Estimate before optimizing.
+
+10
+00:00:27.933 --> 00:00:36.167
+Three hundred thousand calls a day, each carrying prompt and context, adds up to about one point two billion input tokens a month.
+
+11
+00:00:36.467 --> 00:00:38.879
+Output is only around ninety million.
+
+12
+00:00:38.879 --> 00:00:40.900
+This is an input-token problem.
+
+13
+00:00:42.100 --> 00:00:44.900
+Now four levers, ordered by savings per effort.
+
+14
+00:00:45.200 --> 00:00:49.881
+Prompt caching: put the stable prompt first, and repeats bill at a fraction.
+
+15
+00:00:49.881 --> 00:00:50.867
+No quality risk.
+
+16
+00:00:51.167 --> 00:00:53.733
+Model routing, the biggest structural saving.
+
+17
+00:00:54.033 --> 00:00:57.667
+Cache answers, but never anything personalized across users.
+
+18
+00:00:57.967 --> 00:00:58.973
+And trim context.
+
+19
+00:00:58.973 --> 00:01:02.700
+Do you really need five chunks, or the full history every turn?
+
+20
+00:01:03.900 --> 00:01:05.267
+Here's how routing works.
+
+21
+00:01:05.567 --> 00:01:08.500
+Most support turns are simple, like where's my order.
+
+22
+00:01:08.800 --> 00:01:12.800
+A cheap classifier sends them to a model roughly ten times cheaper.
+
+23
+00:01:13.100 --> 00:01:16.300
+Only hard reasoning turns reach the frontier model.
+
+24
+00:01:17.500 --> 00:01:19.267
+Now prove quality didn't drop.
+
+25
+00:01:19.567 --> 00:01:27.733
+Run your golden set before and after each lever, and A/B the router on live traffic, with an LLM judge sampling two percent.
+
+26
+00:01:28.033 --> 00:01:31.076
+Report one table: cost, latency, and quality.
+
+27
+00:01:31.076 --> 00:01:35.133
+That table is the deliverable, not the savings number alone.
+
+28
+00:01:36.333 --> 00:01:39.129
+The trap is jumping to self-hosting a model.
+
+29
+00:01:39.129 --> 00:01:41.733
+It's weeks of work and operations burden.
+
+30
+00:01:42.033 --> 00:01:44.967
+Caching and routing get most of the way in days.
+
+31
+00:01:46.167 --> 00:01:46.999
+Let's recap.
+
+32
+00:01:46.999 --> 00:01:48.733
+Attribute the cost first.
+
+33
+00:01:49.033 --> 00:01:52.067
+Then cache, route, cache answers, and trim context.
+
+34
+00:01:52.367 --> 00:01:54.400
+Prove it with a before and after table.
+
+35
+00:01:54.700 --> 00:01:57.065
+And always the cheapest effort first.
+
+36
+00:01:57.065 --> 00:02:00.133
+Next up: the agent that deleted production data.
