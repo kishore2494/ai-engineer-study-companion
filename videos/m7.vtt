@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+The analytical toolkit.
+
+2
+00:00:02.500 --> 00:00:07.288
+Four reasoning tools that turn vague AI questions into answerable ones.
+
+3
+00:00:07.288 --> 00:00:11.267
+Fluency with them is the loudest seniority signal there is.
+
+4
+00:00:12.467 --> 00:00:16.200
+Tool one: Fermi estimation, for can we afford it questions.
+
+5
+00:00:16.500 --> 00:00:19.767
+Decompose the question into quantities you can bound.
+
+6
+00:00:20.067 --> 00:00:22.033
+Anchor on numbers you have memorized.
+
+7
+00:00:22.333 --> 00:00:23.082
+Sanity-check.
+
+8
+00:00:23.082 --> 00:00:26.133
+You need the right order of magnitude, not precision.
+
+9
+00:00:26.433 --> 00:00:28.600
+Then name the lever that moves the answer.
+
+10
+00:00:29.800 --> 00:00:31.267
+Try this drill on paper.
+
+11
+00:00:31.567 --> 00:00:35.867
+A support bot serves fifty thousand conversations a day, eight turns each.
+
+12
+00:00:36.167 --> 00:00:39.500
+Each turn is three thousand tokens in, three hundred out.
+
+13
+00:00:39.800 --> 00:00:45.733
+What is the monthly cost on a frontier model versus a small one, and what cache hit rate makes them equal?
+
+14
+00:00:46.933 --> 00:00:49.533
+Tool two: hypothesis driven debugging.
+
+15
+00:00:49.833 --> 00:00:51.525
+Don't just change the prompt.
+
+16
+00:00:51.525 --> 00:00:52.400
+Localize first.
+
+17
+00:00:52.700 --> 00:00:54.533
+Was the right chunk retrieved at all?
+
+18
+00:00:54.833 --> 00:00:58.957
+If not, it is retrieval: embedding, chunking, or the query.
+
+19
+00:00:58.957 --> 00:01:03.010
+If yes, it is generation: prompt, context order, or model.
+
+20
+00:01:03.010 --> 00:01:04.967
+One check halves the search.
+
+21
+00:01:06.167 --> 00:01:08.100
+Tool three: structured tradeoffs.
+
+22
+00:01:08.400 --> 00:01:12.900
+Score every choice on quality, latency, cost, complexity, and risk.
+
+23
+00:01:13.200 --> 00:01:17.067
+Reranking spends four hundred milliseconds and fifteen percent cost.
+
+24
+00:01:17.367 --> 00:01:23.400
+It buys about twenty points of precision, obviously worth it for legal search, not for autocomplete.
+
+25
+00:01:24.600 --> 00:01:26.900
+Tool four: reasoning about uncertainty.
+
+26
+00:01:27.200 --> 00:01:31.667
+On fifty examples, differences under about ten points are usually noise.
+
+27
+00:01:31.967 --> 00:01:35.667
+Fix seeds and temperature, so you measure your change, not the dice.
+
+28
+00:01:35.967 --> 00:01:39.733
+Compare old and new on identical inputs, item by item.
+
+29
+00:01:40.033 --> 00:01:41.254
+And beware the tail.
+
+30
+00:01:41.254 --> 00:01:43.633
+Users feel p ninety five, not the mean.
+
+31
+00:01:44.833 --> 00:01:45.662
+Let's recap.
+
+32
+00:01:45.662 --> 00:01:49.733
+Fermi estimation: decompose, anchor, check, name the lever.
+
+33
+00:01:50.033 --> 00:01:52.800
+Bisect the pipeline, one variable at a time.
+
+34
+00:01:53.100 --> 00:01:55.533
+Make tradeoffs explicit on five axes.
+
+35
+00:01:55.833 --> 00:01:57.852
+And respect noise and the tail.
+
+36
+00:01:57.852 --> 00:02:00.067
+Next up: critical-thinking drills.

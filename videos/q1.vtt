@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.533
+Qubits.
+
+2
+00:00:01.833 --> 00:00:04.295
+What actually differs from a classical bit?
+
+3
+00:00:04.295 --> 00:00:07.500
+Three facts about two numbers explain almost everything.
+
+4
+00:00:08.700 --> 00:00:10.835
+A classical bit is zero or one.
+
+5
+00:00:10.835 --> 00:00:14.967
+A qubit is a unit vector in a two dimensional complex space.
+
+6
+00:00:15.267 --> 00:00:18.700
+Its state is a specific pair of numbers, called amplitudes.
+
+7
+00:00:19.000 --> 00:00:21.381
+Two amplitudes instead of one switch.
+
+8
+00:00:21.381 --> 00:00:24.533
+That continuum is where the extra capacity lives.
+
+9
+00:00:25.733 --> 00:00:27.467
+Here is the state of a qubit.
+
+10
+00:00:27.767 --> 00:00:30.267
+Alpha is the amplitude for the zero state.
+
+11
+00:00:30.567 --> 00:00:32.933
+Beta is the amplitude for the one state.
+
+12
+00:00:33.233 --> 00:00:35.290
+Squared sizes must add up to one.
+
+13
+00:00:35.290 --> 00:00:37.533
+That is what makes it a unit vector.
+
+14
+00:00:38.733 --> 00:00:39.639
+Let's draw it.
+
+15
+00:00:39.639 --> 00:00:42.033
+The zero state points along one axis.
+
+16
+00:00:42.333 --> 00:00:44.133
+The one state points along the other.
+
+17
+00:00:44.433 --> 00:00:48.400
+A superposition is an arrow in between, with length exactly one.
+
+18
+00:00:48.700 --> 00:00:51.400
+A gate like Hadamard just rotates the arrow.
+
+19
+00:00:52.600 --> 00:00:54.800
+Measuring only gives you samples.
+
+20
+00:00:54.800 --> 00:00:58.333
+After one Hadamard, you get zero or one, fifty fifty.
+
+21
+00:00:58.633 --> 00:01:02.267
+That is the Born rule: probability is the amplitude squared.
+
+22
+00:01:02.567 --> 00:01:04.249
+Now apply Hadamard twice.
+
+23
+00:01:04.249 --> 00:01:08.220
+The amplitudes for one cancel, and you get zero every time.
+
+24
+00:01:08.220 --> 00:01:09.633
+That is interference.
+
+25
+00:01:10.833 --> 00:01:12.300
+The same thing in NumPy.
+
+26
+00:01:12.600 --> 00:01:16.633
+The state is a two number vector, and the Hadamard gate is a matrix.
+
+27
+00:01:16.933 --> 00:01:20.467
+Multiply, then square the amplitudes to get fifty fifty.
+
+28
+00:01:20.767 --> 00:01:23.800
+Apply it again and we are back to zero with certainty.
+
+29
+00:01:25.000 --> 00:01:31.833
+A common mistake: fifty qubits hold two to the fifty amplitudes, so everything must be exponentially faster.
+
+30
+00:01:32.133 --> 00:01:33.587
+But you cannot read them.
+
+31
+00:01:33.587 --> 00:01:39.167
+A measurement gives only fifty bits, so advantage needs interference to favour the right answer.
+
+32
+00:01:40.367 --> 00:01:41.196
+Let's recap.
+
+33
+00:01:41.196 --> 00:01:44.167
+A qubit is a unit vector of two amplitudes.
+
+34
+00:01:44.467 --> 00:01:47.733
+Measurement samples one outcome and collapses the state.
+
+35
+00:01:48.033 --> 00:01:51.433
+Interference, where wrong answers cancel, is the real power.
+
+36
+00:01:51.733 --> 00:01:54.849
+And more amplitudes never means automatic speedup.
+
+37
+00:01:54.849 --> 00:01:58.400
+Next up: gates, circuits, and the algorithms that matter.

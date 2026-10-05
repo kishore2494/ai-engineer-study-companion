@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.233
+The compounding habits.
+
+2
+00:00:02.533 --> 00:00:05.600
+None of these need permission, a title, or a budget.
+
+3
+00:00:06.800 --> 00:00:08.867
+The gap is repetition, not talent.
+
+4
+00:00:09.167 --> 00:00:12.667
+Over two or three years, small habits separate people sharply.
+
+5
+00:00:13.867 --> 00:00:15.567
+Here are the habits, as a loop.
+
+6
+00:00:15.867 --> 00:00:16.825
+Write in public.
+
+7
+00:00:16.825 --> 00:00:20.178
+A monthly post on what you built and what surprised you.
+
+8
+00:00:20.178 --> 00:00:22.333
+It is the highest return habit here.
+
+9
+00:00:22.633 --> 00:00:23.632
+Reproduce results.
+
+10
+00:00:23.632 --> 00:00:28.733
+You'll be right often enough to gain confidence, and wrong often enough to build skepticism.
+
+11
+00:00:29.033 --> 00:00:31.750
+Keep a numbers notebook of every benchmark.
+
+12
+00:00:31.750 --> 00:00:34.467
+In two years you estimate systems out loud.
+
+13
+00:00:34.767 --> 00:00:38.100
+Teach one person, and find where your understanding is thin.
+
+14
+00:00:38.400 --> 00:00:42.500
+Post-mortem every failure into a written lesson and a new eval case.
+
+15
+00:00:42.800 --> 00:00:46.700
+And always keep one project running that you are not sure you can finish.
+
+16
+00:00:47.900 --> 00:00:48.800
+Now your edge.
+
+17
+00:00:49.100 --> 00:00:51.826
+Most engineers can't scope a business problem.
+
+18
+00:00:51.826 --> 00:00:54.433
+Most architects can't ship the async Python.
+
+19
+00:00:54.733 --> 00:00:56.316
+One ships without the case.
+
+20
+00:00:56.316 --> 00:00:58.367
+The other designs and never builds.
+
+21
+00:00:58.667 --> 00:00:59.372
+You do both.
+
+22
+00:00:59.372 --> 00:01:01.900
+That combination is rarer than either half.
+
+23
+00:01:03.100 --> 00:01:04.367
+Here is the timeline.
+
+24
+00:01:04.667 --> 00:01:11.467
+In ninety days: three from-scratch builds, twelve papers, three write-ups, and one repo with evals and traces.
+
+25
+00:01:11.767 --> 00:01:18.533
+In a year: all ten builds, forty plus papers, monthly writing, and one real open source contribution.
+
+26
+00:01:18.833 --> 00:01:22.199
+In three years, people cite your work or use your tool.
+
+27
+00:01:22.199 --> 00:01:26.300
+That is level four territory, reachable only by building in public.
+
+28
+00:01:27.500 --> 00:01:29.200
+Here is one habit in action.
+
+29
+00:01:29.500 --> 00:01:34.000
+Something fails: an outage, a hallucination, or a blown cost estimate.
+
+30
+00:01:34.300 --> 00:01:36.100
+You write down what happened and why.
+
+31
+00:01:36.400 --> 00:01:39.967
+Then it becomes a new eval case, so the system learns from failure.
+
+32
+00:01:41.167 --> 00:01:41.904
+Let's recap.
+
+33
+00:01:41.904 --> 00:01:43.933
+Write in public, the best return.
+
+34
+00:01:44.233 --> 00:01:46.800
+Reproduce, measure, teach, and post-mortem.
+
+35
+00:01:47.100 --> 00:01:49.200
+Always build one thing beyond your level.
+
+36
+00:01:49.500 --> 00:01:51.485
+And be the architect who codes.
+
+37
+00:01:51.485 --> 00:01:53.533
+Next up: the analytical toolkit.

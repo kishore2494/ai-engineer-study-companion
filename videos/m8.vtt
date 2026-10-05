@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Critical-thinking drills.
+
+2
+00:00:02.500 --> 00:00:08.189
+This field runs on claims, like benchmark tables and we improved accuracy forty percent.
+
+3
+00:00:08.189 --> 00:00:11.033
+Critical thinking here is a trainable skill.
+
+4
+00:00:12.233 --> 00:00:14.667
+Run this checklist before believing anything.
+
+5
+00:00:14.967 --> 00:00:16.000
+Compared to what?
+
+6
+00:00:16.000 --> 00:00:18.067
+An untuned baseline means nothing.
+
+7
+00:00:18.367 --> 00:00:19.443
+Measured on what?
+
+8
+00:00:19.443 --> 00:00:21.533
+Watch for test set contamination.
+
+9
+00:00:21.833 --> 00:00:22.714
+Who's counting?
+
+10
+00:00:22.714 --> 00:00:26.000
+Vendor evals of the vendor's product carry an incentive.
+
+11
+00:00:26.300 --> 00:00:27.395
+What's not shown?
+
+12
+00:00:27.395 --> 00:00:30.100
+Cost, latency and failures usually vanish.
+
+13
+00:00:30.400 --> 00:00:32.285
+Does the mechanism make sense?
+
+14
+00:00:32.285 --> 00:00:33.667
+Ask by what mechanism.
+
+15
+00:00:33.967 --> 00:00:35.669
+And would it survive my data?
+
+16
+00:00:35.669 --> 00:00:37.900
+Run it on twenty of your own examples.
+
+17
+00:00:39.100 --> 00:00:41.867
+Now a weekly drill: red-team your own result.
+
+18
+00:00:42.167 --> 00:00:45.900
+After any positive result, spend ten minutes trying to prove it wrong.
+
+19
+00:00:46.200 --> 00:00:50.233
+Look for leakage, a tiny sample, a lucky seed, or judge bias.
+
+20
+00:00:50.533 --> 00:00:52.167
+Publish only what survives.
+
+21
+00:00:53.367 --> 00:00:55.567
+Another drill: predict before you run.
+
+22
+00:00:55.867 --> 00:00:58.090
+Write down the expected number first.
+
+23
+00:00:58.090 --> 00:01:01.033
+Being wrong on paper is how calibration is built.
+
+24
+00:01:02.233 --> 00:01:03.600
+Here it is in practice.
+
+25
+00:01:03.900 --> 00:01:06.900
+A launch post says accuracy improved forty percent.
+
+26
+00:01:07.200 --> 00:01:11.067
+You ask about the baseline, the dataset, who ran it, and what is missing.
+
+27
+00:01:11.367 --> 00:01:14.933
+Then you try twenty of your own examples before adopting anything.
+
+28
+00:01:16.133 --> 00:01:18.833
+The habit that makes it stick is a decision log.
+
+29
+00:01:19.133 --> 00:01:21.500
+One line per decision: what you chose.
+
+30
+00:01:21.800 --> 00:01:22.867
+What you expected.
+
+31
+00:01:23.167 --> 00:01:25.033
+And later, what actually happened.
+
+32
+00:01:25.333 --> 00:01:26.520
+Review it monthly.
+
+33
+00:01:26.520 --> 00:01:31.267
+Ten years of unreviewed experience is often one year repeated ten times.
+
+34
+00:01:32.467 --> 00:01:33.260
+Let's recap.
+
+35
+00:01:33.260 --> 00:01:36.700
+Interrogate every claim: baseline, data, and source.
+
+36
+00:01:37.000 --> 00:01:38.467
+Red-team your own results.
+
+37
+00:01:38.767 --> 00:01:40.100
+Predict before you run.
+
+38
+00:01:40.400 --> 00:01:41.800
+And keep a decision log.
