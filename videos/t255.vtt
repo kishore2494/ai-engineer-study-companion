@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+REST APIs.
+
+2
+00:00:02.367 --> 00:00:03.621
+REST isn't a library.
+
+3
+00:00:03.621 --> 00:00:09.833
+It's a design discipline, and once clients depend on your endpoints, your mistakes ship to them forever.
+
+4
+00:00:11.033 --> 00:00:12.700
+REST rests on three habits.
+
+5
+00:00:13.000 --> 00:00:18.900
+Name resources with nouns, like missions slash forty two slash logs, never get mission logs.
+
+6
+00:00:19.200 --> 00:00:21.600
+Use HTTP verbs as the actions.
+
+7
+00:00:21.900 --> 00:00:26.067
+And return correct status codes so clients can react programmatically.
+
+8
+00:00:27.267 --> 00:00:30.800
+The deepest idea is idempotency: is retrying safe?
+
+9
+00:00:31.100 --> 00:00:33.262
+Get, put and delete are idempotent.
+
+10
+00:00:33.262 --> 00:00:35.733
+Doing them twice equals doing them once.
+
+11
+00:00:36.033 --> 00:00:36.882
+Post is not.
+
+12
+00:00:36.882 --> 00:00:40.700
+Retry a timed out post and you may create a duplicate.
+
+13
+00:00:40.700 --> 00:00:43.033
+Every retry policy leans on this.
+
+14
+00:00:44.233 --> 00:00:46.233
+Here's the trap and the standard fix.
+
+15
+00:00:46.533 --> 00:00:48.300
+A client posts to create a log.
+
+16
+00:00:48.600 --> 00:00:51.833
+The reply times out, so the client can't tell if it worked.
+
+17
+00:00:52.133 --> 00:00:55.033
+It retries, sending the same idempotency key.
+
+18
+00:00:55.333 --> 00:00:59.133
+The server recognizes the key, and creates the log only once.
+
+19
+00:01:00.333 --> 00:01:03.467
+Here's a mission log service, designed rather than accreted.
+
+20
+00:01:03.767 --> 00:01:06.711
+Get returns a filtered list with a two hundred.
+
+21
+00:01:06.711 --> 00:01:09.467
+Post creates a log and returns a two oh one.
+
+22
+00:01:09.767 --> 00:01:13.200
+Put replaces, patch edits part of it, and delete removes it.
+
+23
+00:01:13.500 --> 00:01:17.633
+And an idempotency key header lets the server dedupe retried posts.
+
+24
+00:01:18.833 --> 00:01:20.633
+Here's why design is permanent.
+
+25
+00:01:20.933 --> 00:01:28.033
+You expose your exoplanet classifier as post slash predictions, returning a two oh one with the result's URL.
+
+26
+00:01:28.333 --> 00:01:31.133
+Six months later, three teams' dashboards call it.
+
+27
+00:01:31.433 --> 00:01:33.425
+A colleague suggests renaming it.
+
+28
+00:01:33.425 --> 00:01:40.667
+Now you can push back: that's a breaking change, so it needs a version two, deprecation headers, and a migration window.
+
+29
+00:01:41.867 --> 00:01:46.833
+The classic mistake is putting verbs in the URL, and ignoring status codes.
+
+30
+00:01:47.133 --> 00:01:51.533
+The fix: nouns for resources, verbs as actions, and correct codes.
+
+31
+00:01:52.733 --> 00:01:53.597
+Let's recap.
+
+32
+00:01:53.597 --> 00:01:56.333
+Nouns for resources, verbs as actions.
+
+33
+00:01:56.633 --> 00:01:58.467
+Return correct status codes.
+
+34
+00:01:58.767 --> 00:02:01.199
+Get, put and delete are idempotent.
+
+35
+00:02:01.199 --> 00:02:02.033
+Post is not.
+
+36
+00:02:02.333 --> 00:02:04.688
+And shipped contracts are permanent.
+
+37
+00:02:04.688 --> 00:02:05.800
+Next up: GraphQL.

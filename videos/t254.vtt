@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.500
+Django.
+
+2
+00:00:01.800 --> 00:00:04.165
+Sometimes you don't need a model server.
+
+3
+00:00:04.165 --> 00:00:08.067
+You need a product around it, with users, forms and screens, fast.
+
+4
+00:00:09.267 --> 00:00:11.833
+Django is the batteries included framework.
+
+5
+00:00:12.133 --> 00:00:17.267
+It's for building products: dashboards, portals, internal tools with users and forms.
+
+6
+00:00:17.567 --> 00:00:22.300
+You wouldn't serve an LLM through it, but you might build everything around the LLM with it.
+
+7
+00:00:23.500 --> 00:00:24.833
+Here's what's included.
+
+8
+00:00:25.133 --> 00:00:27.733
+An ORM, where tables are just Python classes.
+
+9
+00:00:28.033 --> 00:00:31.133
+Migrations, generated and versioned automatically.
+
+10
+00:00:31.433 --> 00:00:33.200
+A full authentication system.
+
+11
+00:00:33.500 --> 00:00:37.333
+And the famous admin panel, a complete web UI over your models.
+
+12
+00:00:38.533 --> 00:00:40.433
+Watch how one model fans out.
+
+13
+00:00:40.733 --> 00:00:42.500
+You write a single model class.
+
+14
+00:00:42.800 --> 00:00:45.500
+Django generates a versioned migration from it.
+
+15
+00:00:45.800 --> 00:00:47.800
+Running migrate creates the tables.
+
+16
+00:00:48.100 --> 00:00:51.567
+And registering the model gives you a working admin interface.
+
+17
+00:00:52.767 --> 00:00:53.733
+Here's the code.
+
+18
+00:00:54.033 --> 00:00:59.600
+This class defines the mission log table: a mission, a timestamp, a severity, and a note.
+
+19
+00:00:59.900 --> 00:01:02.611
+This one line registers it with the admin.
+
+20
+00:01:02.611 --> 00:01:05.000
+Search, filters and edit forms, free.
+
+21
+00:01:05.300 --> 00:01:09.900
+Then three commands create the migration, build the tables, and start the server.
+
+22
+00:01:11.100 --> 00:01:12.800
+Two reasons teams like Django.
+
+23
+00:01:13.100 --> 00:01:18.633
+The admin alone can replace a week of hand built internal tool work, with permissions included.
+
+24
+00:01:18.933 --> 00:01:23.567
+And convention over configuration keeps big teams consistent by default.
+
+25
+00:01:24.767 --> 00:01:26.000
+Here's a real use.
+
+26
+00:01:26.300 --> 00:01:32.000
+Your evaluations need humans to grade five hundred answers as correct, partial or wrong.
+
+27
+00:01:32.300 --> 00:01:39.433
+Instead of building a labeling interface, you define one model, register it in the admin, and add two reviewer accounts.
+
+28
+00:01:39.733 --> 00:01:42.156
+Reviewers get search and an edit form.
+
+29
+00:01:42.156 --> 00:01:44.833
+You get graded data in Postgres by Friday.
+
+30
+00:01:46.033 --> 00:01:46.863
+Let's recap.
+
+31
+00:01:46.863 --> 00:01:48.867
+Django is batteries included.
+
+32
+00:01:49.167 --> 00:01:52.367
+You get an ORM, migrations, auth and an admin.
+
+33
+00:01:52.667 --> 00:01:56.500
+One model class fans out into a schema and a working interface.
+
+34
+00:01:56.800 --> 00:02:00.152
+Use it to build the product around the LLM.
+
+35
+00:02:00.152 --> 00:02:01.633
+Next up: REST APIs.

@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.500
+Flask.
+
+2
+00:00:01.800 --> 00:00:05.349
+A decade of internal tools and ML demo servers run on it.
+
+3
+00:00:05.349 --> 00:00:08.400
+You'll meet Flask code long before you write any.
+
+4
+00:00:09.600 --> 00:00:13.533
+Flask is the minimal, synchronous predecessor to FastAPI.
+
+5
+00:00:13.833 --> 00:00:18.667
+It's WSGI, which means one worker thread for every request in flight.
+
+6
+00:00:18.967 --> 00:00:24.600
+Validation is whatever if statements you write, and docs are whatever you keep updated yourself.
+
+7
+00:00:25.800 --> 00:00:27.267
+Here's everything you get.
+
+8
+00:00:27.567 --> 00:00:31.467
+A WSGI server runs your app, one thread per request.
+
+9
+00:00:31.767 --> 00:00:34.333
+Flask adds routing and a request object.
+
+10
+00:00:34.633 --> 00:00:37.200
+Everything else, you write explicitly yourself.
+
+11
+00:00:38.400 --> 00:00:40.567
+Here's the same chat endpoint in Flask.
+
+12
+00:00:40.867 --> 00:00:44.733
+Instead of a typed model, we pull raw JSON from the request.
+
+13
+00:00:45.033 --> 00:00:48.900
+Then we check the question ourselves and return a four hundred by hand.
+
+14
+00:00:49.200 --> 00:00:53.567
+And the retrieval call is synchronous, so it blocks this worker until it finishes.
+
+15
+00:00:54.767 --> 00:00:57.100
+Now the comparison you'll need in an interview.
+
+16
+00:00:57.400 --> 00:01:00.800
+Flask is synchronous, FastAPI is async native.
+
+17
+00:01:01.100 --> 00:01:05.067
+Flask validates by hand, FastAPI uses Pydantic.
+
+18
+00:01:05.367 --> 00:01:08.933
+Flask docs are manual, FastAPI generates them.
+
+19
+00:01:09.233 --> 00:01:14.800
+Flask keeps everything explicit, while FastAPI has dependency injection built in.
+
+20
+00:01:15.100 --> 00:01:18.867
+The boilerplate Flask makes you write, FastAPI generates.
+
+21
+00:01:20.067 --> 00:01:22.000
+Here's a striking number from the field.
+
+22
+00:01:22.300 --> 00:01:29.600
+That old tool needs sixteen gunicorn workers to survive load that your FastAPI service handles with two.
+
+23
+00:01:30.800 --> 00:01:32.500
+Here's where this knowledge lands.
+
+24
+00:01:32.800 --> 00:01:38.267
+You join a company that runs a satellite telemetry viewer written in Flask in twenty nineteen.
+
+25
+00:01:38.567 --> 00:01:45.567
+Before proposing a rewrite, you read it fluently: where routes live, and how raw JSON replaces typed models.
+
+26
+00:01:45.867 --> 00:01:49.296
+Then your migration memo names precisely what a port buys.
+
+27
+00:01:49.296 --> 00:01:50.833
+That's what makes it land.
+
+28
+00:01:52.033 --> 00:01:52.833
+Let's recap.
+
+29
+00:01:52.833 --> 00:01:55.033
+Flask is minimal and synchronous.
+
+30
+00:01:55.333 --> 00:01:58.333
+It's WSGI, with a thread per request.
+
+31
+00:01:58.633 --> 00:02:00.767
+Validation and docs are manual.
+
+32
+00:02:01.067 --> 00:02:04.249
+FastAPI generates that boilerplate for you.
+
+33
+00:02:04.249 --> 00:02:05.433
+Next up: Django.

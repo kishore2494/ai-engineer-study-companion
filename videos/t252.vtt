@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+Streaming responses.
+
+2
+00:00:02.367 --> 00:00:05.545
+Nobody wants to stare at a spinner for twenty seconds.
+
+3
+00:00:05.545 --> 00:00:08.900
+Streaming fixes that without making the model any faster.
+
+4
+00:00:10.100 --> 00:00:14.100
+Server-Sent Events push tokens to the client as the model writes them.
+
+5
+00:00:14.400 --> 00:00:18.133
+It's plain HTTP, using the event stream content type.
+
+6
+00:00:18.433 --> 00:00:22.100
+Each message is just a data line followed by a blank line.
+
+7
+00:00:23.300 --> 00:00:24.433
+Look at the difference.
+
+8
+00:00:24.733 --> 00:00:28.492
+Without streaming, the user waits for the entire twelve seconds.
+
+9
+00:00:28.492 --> 00:00:32.133
+With streaming, the first words appear in about half a second.
+
+10
+00:00:33.333 --> 00:00:34.333
+Here's the chain.
+
+11
+00:00:34.633 --> 00:00:38.367
+The provider's API already streams to you using SSE.
+
+12
+00:00:38.667 --> 00:00:42.300
+Your API passes those tokens along in the same format.
+
+13
+00:00:42.600 --> 00:00:47.633
+And the browser reads them with its built in event source, which even reconnects automatically.
+
+14
+00:00:48.833 --> 00:00:50.200
+Three things to remember.
+
+15
+00:00:50.500 --> 00:00:52.313
+It's one way, server to client.
+
+16
+00:00:52.313 --> 00:00:56.700
+For two way traffic you'd reach for WebSockets, but chat rarely needs that.
+
+17
+00:00:57.000 --> 00:01:01.767
+Time to first token becomes your headline latency metric, instead of total time.
+
+18
+00:01:02.067 --> 00:01:03.436
+And it's browser native.
+
+19
+00:01:03.436 --> 00:01:05.433
+Debug it from a terminal with curl.
+
+20
+00:01:06.633 --> 00:01:08.367
+Here it is in FastAPI.
+
+21
+00:01:08.667 --> 00:01:14.267
+Inside a generator, we loop over tokens from the model and yield each one as a data line.
+
+22
+00:01:14.567 --> 00:01:16.833
+When it finishes, we yield a done marker.
+
+23
+00:01:17.133 --> 00:01:21.933
+Then we wrap the generator in a streaming response with the event stream content type.
+
+24
+00:01:23.133 --> 00:01:24.367
+Here's a real case.
+
+25
+00:01:24.667 --> 00:01:29.467
+Answers about old mission failure reports take about fifteen seconds end to end.
+
+26
+00:01:29.767 --> 00:01:35.567
+After switching the chat endpoint to SSE, the first tokens land while the model is still writing.
+
+27
+00:01:35.867 --> 00:01:39.950
+Traces now track time to first token, zero point six seconds.
+
+28
+00:01:39.950 --> 00:01:44.033
+Same compute, same cost, and the slow complaints disappeared.
+
+29
+00:01:45.233 --> 00:01:46.286
+Let's recap.
+
+30
+00:01:46.286 --> 00:01:49.267
+SSE pushes tokens over plain HTTP.
+
+31
+00:01:49.567 --> 00:01:51.500
+It's one way, server to client.
+
+32
+00:01:51.800 --> 00:01:55.100
+Time to first token becomes the key latency metric.
+
+33
+00:01:55.400 --> 00:01:58.280
+Same compute, far better perceived speed.
+
+34
+00:01:58.280 --> 00:01:59.333
+Next up: Flask.

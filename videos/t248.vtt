@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+FastAPI.
+
+2
+00:00:02.300 --> 00:00:09.198
+It's the default chassis for LLM services, so most example code you'll read from here on simply assumes it.
+
+3
+00:00:09.198 --> 00:00:10.100
+Let's see why.
+
+4
+00:00:11.300 --> 00:00:15.767
+FastAPI is the modern Python framework for building APIs.
+
+5
+00:00:16.067 --> 00:00:21.000
+Under the hood it's an ASGI app, built on Starlette and served by uvicorn.
+
+6
+00:00:21.300 --> 00:00:27.567
+That makes it async native, which matters when every request spends seconds waiting on an LLM provider.
+
+7
+00:00:28.767 --> 00:00:30.633
+Here's the stack, from the bottom up.
+
+8
+00:00:30.933 --> 00:00:33.800
+Uvicorn is the server that listens for requests.
+
+9
+00:00:34.100 --> 00:00:35.833
+Starlette gives it async plumbing.
+
+10
+00:00:36.133 --> 00:00:39.167
+FastAPI adds the type-hint magic on top.
+
+11
+00:00:39.467 --> 00:00:42.300
+And your routes sit at the very top, small and clean.
+
+12
+00:00:43.500 --> 00:00:45.733
+The same annotations do three jobs.
+
+13
+00:00:46.033 --> 00:00:52.733
+First, you declare the request shape, and FastAPI rejects bad input with a precise four twenty two error.
+
+14
+00:00:53.033 --> 00:00:56.080
+Second, the response model is your output contract.
+
+15
+00:00:56.080 --> 00:00:57.633
+Extra fields are stripped.
+
+16
+00:00:57.933 --> 00:01:03.233
+Third, a live docs page appears at slash docs, generated from the very same hints.
+
+17
+00:01:04.433 --> 00:01:05.900
+Here's a real endpoint.
+
+18
+00:01:06.200 --> 00:01:11.633
+One class describes what a request must contain: a question, and an optional top k.
+
+19
+00:01:11.933 --> 00:01:15.400
+Another describes the response: an answer and its sources.
+
+20
+00:01:15.700 --> 00:01:18.867
+The route is async, and it declares that response model.
+
+21
+00:01:19.167 --> 00:01:24.400
+Inside, we await retrieval, await the model, and return the answer with source ids.
+
+22
+00:01:25.600 --> 00:01:26.867
+Now the real payoff.
+
+23
+00:01:27.167 --> 00:01:29.733
+Your RAG has lived in notebooks for a long time.
+
+24
+00:01:30.033 --> 00:01:36.967
+This endpoint becomes its public face: a question about mission logs goes in, an answer with sources comes out.
+
+25
+00:01:37.267 --> 00:01:40.367
+When a teammate asks how to call it, you don't write docs.
+
+26
+00:01:40.367 --> 00:01:43.467
+You send the docs link, and they test it from the browser.
+
+27
+00:01:44.667 --> 00:01:45.647
+Let's recap.
+
+28
+00:01:45.647 --> 00:01:49.567
+FastAPI is the default chassis for LLM services.
+
+29
+00:01:49.867 --> 00:01:53.967
+Your type hints validate input, shape output, and generate docs.
+
+30
+00:01:54.267 --> 00:01:56.367
+It's ASGI and async native.
+
+31
+00:01:56.667 --> 00:02:00.044
+So share the docs link instead of writing a manual.
+
+32
+00:02:00.044 --> 00:02:01.700
+Next up: Pydantic models.
