@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.900
+Arize Phoenix.
+
+2
+00:00:02.200 --> 00:00:06.833
+Open-source tracing and evaluation that launches right inside a notebook.
+
+3
+00:00:08.033 --> 00:00:10.367
+Phoenix is built OpenTelemetry-native.
+
+4
+00:00:10.667 --> 00:00:14.100
+It ingests standard spans through the OpenInference conventions.
+
+5
+00:00:14.400 --> 00:00:17.100
+So anything you already instrumented flows straight in.
+
+6
+00:00:18.300 --> 00:00:22.233
+What sets it apart from a generic trace viewer is the analysis layer.
+
+7
+00:00:22.533 --> 00:00:25.700
+Traces show every retrieve, rerank, and model call.
+
+8
+00:00:26.000 --> 00:00:31.100
+Retrieval analysis shows which documents each query pulled, and how relevant they were.
+
+9
+00:00:31.400 --> 00:00:35.300
+Embedding drift projects query and document clusters over time.
+
+10
+00:00:35.600 --> 00:00:37.767
+And evals run inside the same tool.
+
+11
+00:00:38.967 --> 00:00:40.700
+Think of how it fits with Langfuse.
+
+12
+00:00:41.000 --> 00:00:45.000
+OTel is the shared base, so you don't choose at instrumentation time.
+
+13
+00:00:45.300 --> 00:00:48.200
+Phoenix is the open-a-debugger tool for RAG work.
+
+14
+00:00:48.500 --> 00:00:51.267
+Langfuse is the run-it-in-production counterpart.
+
+15
+00:00:52.467 --> 00:00:54.133
+Here's how small the barrier is.
+
+16
+00:00:54.433 --> 00:00:56.542
+One call launches a local UI.
+
+17
+00:00:56.542 --> 00:00:58.433
+No docker, and no account.
+
+18
+00:00:58.733 --> 00:01:01.833
+One line instruments your framework, so traces flow in.
+
+19
+00:01:02.133 --> 00:01:06.467
+Run some queries, then open the traces, retrieval, and embeddings views.
+
+20
+00:01:07.667 --> 00:01:08.667
+Here's a story.
+
+21
+00:01:08.967 --> 00:01:14.533
+Mission Control's retrieval quality quietly degrades, and RAGAS says so, but not why.
+
+22
+00:01:14.833 --> 00:01:17.772
+You load two thousand traced queries into Phoenix.
+
+23
+00:01:17.772 --> 00:01:22.767
+The corpus cluster hasn't moved, but a new lobe of queries has grown off to the side.
+
+24
+00:01:23.067 --> 00:01:27.652
+Users started asking about the Artemis logs, which were never ingested.
+
+25
+00:01:27.652 --> 00:01:29.202
+Retrieval wasn't broken.
+
+26
+00:01:29.202 --> 00:01:30.558
+The corpus was stale.
+
+27
+00:01:30.558 --> 00:01:33.400
+One picture ended a week of prompt tweaking.
+
+28
+00:01:34.600 --> 00:01:35.421
+Let's recap.
+
+29
+00:01:35.421 --> 00:01:38.567
+Phoenix is OTel-native tracing and evaluation.
+
+30
+00:01:38.867 --> 00:01:42.167
+It adds retrieval analysis and embedding drift views.
+
+31
+00:01:42.467 --> 00:01:44.833
+It launches in a notebook with a single call.
+
+32
+00:01:45.133 --> 00:01:48.577
+Use it as your debugger, and Langfuse for production.
+
+33
+00:01:48.577 --> 00:01:50.267
+Next up: diffusion models.

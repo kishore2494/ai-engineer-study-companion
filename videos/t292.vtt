@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+OpenTelemetry.
+
+2
+00:00:02.300 --> 00:00:07.767
+The vendor-neutral standard for seeing what your system is doing, even across many services.
+
+3
+00:00:08.967 --> 00:00:13.700
+OpenTelemetry, or OTel, standardizes three observability signals.
+
+4
+00:00:14.000 --> 00:00:16.600
+Traces follow one request through your system.
+
+5
+00:00:16.900 --> 00:00:18.667
+Metrics are numbers over time.
+
+6
+00:00:18.967 --> 00:00:21.035
+And logs are timestamped events.
+
+7
+00:00:21.035 --> 00:00:25.300
+There are SDKs for every language and exporters for every backend.
+
+8
+00:00:26.500 --> 00:00:28.733
+The core trick is context propagation.
+
+9
+00:00:29.033 --> 00:00:30.600
+Service A starts a trace.
+
+10
+00:00:30.900 --> 00:00:35.800
+When A calls B, the trace ID travels in an HTTP header called traceparent.
+
+11
+00:00:36.100 --> 00:00:41.067
+B's spans attach to A's trace, so you get a single waterfall for the whole request.
+
+12
+00:00:42.267 --> 00:00:43.633
+That's the real promise.
+
+13
+00:00:43.933 --> 00:00:50.567
+For AI systems, the GenAI conventions even standardize names for model calls and token counts.
+
+14
+00:00:50.867 --> 00:00:53.267
+Instrument once, and choose vendors later.
+
+15
+00:00:54.467 --> 00:00:56.033
+Here's the setup in Python.
+
+16
+00:00:56.333 --> 00:01:01.167
+One line instruments the FastAPI server, so every request gets a span.
+
+17
+00:01:01.467 --> 00:01:07.367
+One line instruments the HTTP client, so every outgoing call carries the trace header.
+
+18
+00:01:07.667 --> 00:01:11.867
+Then we add our own span around the rerank step, tagged with the model name.
+
+19
+00:01:13.067 --> 00:01:14.841
+Now a real debugging story.
+
+20
+00:01:14.841 --> 00:01:17.733
+Users say the agent sometimes takes forever.
+
+21
+00:01:18.033 --> 00:01:21.141
+Three services, three log files, no shared ID.
+
+22
+00:01:21.141 --> 00:01:23.100
+So you add OTel to all three.
+
+23
+00:01:23.400 --> 00:01:29.200
+The next slow request is one trace: agent four point nine seconds, RAG four point six.
+
+24
+00:01:29.500 --> 00:01:34.889
+And inside it, a three point eight second gap before the vLLM span even starts.
+
+25
+00:01:34.889 --> 00:01:39.800
+That's connection pool exhaustion, obvious only in the joined waterfall.
+
+26
+00:01:41.000 --> 00:01:41.879
+Let's recap.
+
+27
+00:01:41.879 --> 00:01:45.100
+OTel standardizes traces, metrics, and logs.
+
+28
+00:01:45.400 --> 00:01:48.567
+The traceparent header joins services into one trace.
+
+29
+00:01:48.867 --> 00:01:53.200
+GenAI conventions give LLM calls shared attribute names.
+
+30
+00:01:53.500 --> 00:01:56.383
+Instrument once and swap backends freely.
+
+31
+00:01:56.383 --> 00:01:58.000
+Next up: Arize Phoenix.
