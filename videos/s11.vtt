@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.267
+The multi-agent system that loops forever.
+
+2
+00:00:03.567 --> 00:00:08.030
+Fifteen percent of tasks never finish, and the token bill is exploding.
+
+3
+00:00:08.030 --> 00:00:10.167
+Let's see why, and how to stop it.
+
+4
+00:00:11.367 --> 00:00:14.085
+You built a researcher, writer, reviewer crew.
+
+5
+00:00:14.085 --> 00:00:15.267
+It works in testing.
+
+6
+00:00:15.567 --> 00:00:18.967
+In production, about fifteen percent of tasks never finish.
+
+7
+00:00:19.267 --> 00:00:22.200
+And those runs cost twenty times the normal tokens.
+
+8
+00:00:23.400 --> 00:00:24.367
+Here's the loop.
+
+9
+00:00:24.667 --> 00:00:25.800
+The writer drafts.
+
+10
+00:00:26.100 --> 00:00:32.919
+The reviewer finds something to improve, because an LLM is a generator of critique, not a threshold function.
+
+11
+00:00:32.919 --> 00:00:34.733
+It can always find something.
+
+12
+00:00:35.033 --> 00:00:38.100
+The writer revises, and nothing ever says acceptable.
+
+13
+00:00:39.300 --> 00:00:41.867
+Now add controls, in order of importance.
+
+14
+00:00:42.167 --> 00:00:45.733
+A rubric with a pass threshold, so acceptable is computable.
+
+15
+00:00:46.033 --> 00:00:48.100
+A hard cap of two revision rounds.
+
+16
+00:00:48.400 --> 00:00:52.067
+A token budget that aborts instead of burning money silently.
+
+17
+00:00:52.367 --> 00:00:55.033
+A detector that stops when scores stop improving.
+
+18
+00:00:55.333 --> 00:00:59.108
+And specific critiques citing the criterion and passage.
+
+19
+00:00:59.108 --> 00:01:01.400
+Also alert on non completion rate.
+
+20
+00:01:02.600 --> 00:01:04.700
+Should this have been multi-agent at all?
+
+21
+00:01:05.000 --> 00:01:06.333
+Probably not at first.
+
+22
+00:01:06.633 --> 00:01:12.233
+One agent with a reflection step gets most of the quality, with no coordination failure.
+
+23
+00:01:12.533 --> 00:01:17.700
+Multi-agent earns its keep when roles need genuinely different tools or context.
+
+24
+00:01:18.900 --> 00:01:21.133
+The trap is polishing the reviewer's prompt.
+
+25
+00:01:21.433 --> 00:01:24.367
+Termination is control flow, so put it in code.
+
+26
+00:01:25.567 --> 00:01:26.290
+Let's recap.
+
+27
+00:01:26.290 --> 00:01:28.700
+Loops fail without a definition of done.
+
+28
+00:01:29.000 --> 00:01:32.000
+Add a rubric, an iteration cap, and a token budget.
+
+29
+00:01:32.300 --> 00:01:33.833
+Alert on non completion.
+
+30
+00:01:34.133 --> 00:01:37.029
+And consider a single agent with reflection.
+
+31
+00:01:37.029 --> 00:01:39.200
+Next up: the AI strategy meeting.

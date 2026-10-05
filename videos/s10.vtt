@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.967
+The eval everyone disagrees with.
+
+2
+00:00:03.267 --> 00:00:06.709
+Your judge and your users disagree, and Friday is coming.
+
+3
+00:00:06.709 --> 00:00:07.433
+Who's right?
+
+4
+00:00:08.633 --> 00:00:11.333
+Your LLM judge says version B is better.
+
+5
+00:00:11.633 --> 00:00:14.400
+The support team says version A is clearly better.
+
+6
+00:00:14.700 --> 00:00:16.900
+Product wants a decision by Friday.
+
+7
+00:00:18.100 --> 00:00:20.800
+Both can be right, because they measure different things.
+
+8
+00:00:21.100 --> 00:00:25.328
+The judge scores its rubric, probably correctness and completeness.
+
+9
+00:00:25.328 --> 00:00:27.600
+The team reacts to tone and brevity.
+
+10
+00:00:27.900 --> 00:00:34.667
+Judges also have verbosity bias, so a long correct answer wins the rubric and loses in real life.
+
+11
+00:00:34.967 --> 00:00:36.559
+It's not a factual dispute.
+
+12
+00:00:36.559 --> 00:00:38.033
+It's a missing dimension.
+
+13
+00:00:39.233 --> 00:00:41.600
+Resolve it with evidence, not authority.
+
+14
+00:00:41.900 --> 00:00:45.200
+Take fifty outputs where judge and team disagree most.
+
+15
+00:00:45.500 --> 00:00:49.800
+Have two or three support people rate them blind, with no version labels.
+
+16
+00:00:50.100 --> 00:00:52.612
+Measure how well the judge agrees with them.
+
+17
+00:00:52.612 --> 00:00:55.867
+If it correlates poorly, the judge is wrong for this use.
+
+18
+00:00:56.167 --> 00:00:59.467
+Then read each mismatch to find the missing criterion.
+
+19
+00:01:00.667 --> 00:01:01.933
+Now fix the rubric.
+
+20
+00:01:02.233 --> 00:01:06.100
+Add what the team values: length limits, tone, actionability.
+
+21
+00:01:06.400 --> 00:01:07.533
+Re-run the eval.
+
+22
+00:01:07.833 --> 00:01:10.165
+Re-check agreement with human labels.
+
+23
+00:01:10.165 --> 00:01:13.000
+Calibration is something you own and revisit.
+
+24
+00:01:14.200 --> 00:01:15.367
+What does this reveal?
+
+25
+00:01:15.667 --> 00:01:19.333
+Metrics are proxies, and your eval drifted from the real goal.
+
+26
+00:01:19.633 --> 00:01:20.767
+Proxies decay.
+
+27
+00:01:21.067 --> 00:01:25.400
+And the support team's disagreement is free labeled data, not an obstacle.
+
+28
+00:01:26.600 --> 00:01:28.767
+For Friday, don't pick by authority.
+
+29
+00:01:29.067 --> 00:01:36.567
+Ship A, fix the rubric, and validate it against fifty human ratings, so next week's decision is data everyone trusts.
+
+30
+00:01:37.767 --> 00:01:38.459
+Let's recap.
+
+31
+00:01:38.459 --> 00:01:40.767
+Judge and team measure different things.
+
+32
+00:01:41.067 --> 00:01:43.200
+Resolve it with blind human ratings.
+
+33
+00:01:43.500 --> 00:01:45.700
+Rewrite the rubric and re-check agreement.
+
+34
+00:01:46.000 --> 00:01:48.095
+Treat disagreement as free data.
+
+35
+00:01:48.095 --> 00:01:51.433
+Next up: the multi-agent system that loops forever.

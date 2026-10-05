@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.400
+The p99 that pages you at three a m.
+
+2
+00:00:03.700 --> 00:00:06.362
+The average looks fine, yet users time out.
+
+3
+00:00:06.362 --> 00:00:07.600
+Let's find the tail.
+
+4
+00:00:08.800 --> 00:00:13.800
+Your chat API has a comfortable median latency of nine hundred milliseconds.
+
+5
+00:00:14.100 --> 00:00:17.833
+But p ninety nine is forty seven seconds, in bursts at peak.
+
+6
+00:00:18.133 --> 00:00:19.933
+And adding replicas didn't help.
+
+7
+00:00:21.133 --> 00:00:22.000
+Here's why.
+
+8
+00:00:22.300 --> 00:00:24.567
+The bottleneck isn't your app's CPU.
+
+9
+00:00:24.567 --> 00:00:26.833
+More replicas just add more clients.
+
+10
+00:00:27.133 --> 00:00:31.433
+They all line up behind the same provider limit, connection pool, or batch queue.
+
+11
+00:00:31.733 --> 00:00:33.667
+Sometimes the waits get even longer.
+
+12
+00:00:34.867 --> 00:00:37.167
+A bimodal shape has several suspects.
+
+13
+00:00:37.467 --> 00:00:40.167
+Rate limit errors with synchronized retries.
+
+14
+00:00:40.467 --> 00:00:42.833
+One blocking call stalling the event loop.
+
+15
+00:00:43.133 --> 00:00:44.800
+Exhausted connection pools.
+
+16
+00:00:45.100 --> 00:00:47.400
+A few huge prompts hogging capacity.
+
+17
+00:00:47.700 --> 00:00:49.567
+Or autoscaling that's too slow.
+
+18
+00:00:50.767 --> 00:00:53.000
+To find which one, look at your traces.
+
+19
+00:00:53.300 --> 00:00:57.367
+Compare the spans of a median request with a p ninety nine request.
+
+20
+00:00:57.667 --> 00:00:59.833
+Whichever span explodes is your culprit.
+
+21
+00:01:00.133 --> 00:01:02.767
+It takes ten minutes, and beats hours of theory.
+
+22
+00:01:03.967 --> 00:01:05.633
+Then match the fix to the cause.
+
+23
+00:01:05.933 --> 00:01:08.367
+A semaphore keeps you under provider limits.
+
+24
+00:01:08.667 --> 00:01:10.567
+Exponential backoff with jitter.
+
+25
+00:01:10.867 --> 00:01:15.333
+A queue with a timeout, so a doomed request fails gracefully at five seconds.
+
+26
+00:01:15.633 --> 00:01:18.200
+And move non essential work off the hot path.
+
+27
+00:01:19.400 --> 00:01:21.300
+The trap is optimizing the mean.
+
+28
+00:01:21.600 --> 00:01:27.422
+Monitor percentiles separately, plus queue wait, rate limit errors, and time to first token.
+
+29
+00:01:27.422 --> 00:01:29.700
+Tail problems are queueing problems.
+
+30
+00:01:30.900 --> 00:01:31.692
+Let's recap.
+
+31
+00:01:31.692 --> 00:01:34.267
+Replicas can't fix a shared bottleneck.
+
+32
+00:01:34.567 --> 00:01:36.667
+Compare median and tail traces.
+
+33
+00:01:36.967 --> 00:01:39.133
+Use semaphores, jitter, and timeouts.
+
+34
+00:01:39.433 --> 00:01:41.696
+Watch percentiles, not averages.
+
+35
+00:01:41.696 --> 00:01:44.667
+Next up: the eval everyone disagrees with.
