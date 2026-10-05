@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.667
+Self healing UI automation.
+
+2
+00:00:02.967 --> 00:00:06.451
+A designer reorders a page, and your whole suite goes red.
+
+3
+00:00:06.451 --> 00:00:08.733
+The login button is still right there.
+
+4
+00:00:09.933 --> 00:00:12.233
+Compare two ways to click the login button.
+
+5
+00:00:12.533 --> 00:00:15.733
+The brittle way uses a CSS path with a position.
+
+6
+00:00:15.733 --> 00:00:18.400
+It breaks the moment the layout changes.
+
+7
+00:00:18.700 --> 00:00:23.467
+The resilient way uses the role and the visible name, so refactors don't matter.
+
+8
+00:00:23.767 --> 00:00:25.800
+That targets meaning, not structure.
+
+9
+00:00:27.000 --> 00:00:30.200
+Self healing tools go further and rank several signals.
+
+10
+00:00:30.500 --> 00:00:32.533
+Visible text, and the ARIA role.
+
+11
+00:00:32.833 --> 00:00:34.667
+Relative position on the page.
+
+12
+00:00:34.967 --> 00:00:37.100
+What the element looks like in a screenshot.
+
+13
+00:00:37.400 --> 00:00:39.463
+And which selector worked last time.
+
+14
+00:00:39.463 --> 00:00:42.100
+Many weak signals beat one brittle strong one.
+
+15
+00:00:43.300 --> 00:00:45.500
+Then the tool must decide how sure it is.
+
+16
+00:00:45.800 --> 00:00:48.533
+With high confidence, it heals and continues.
+
+17
+00:00:48.833 --> 00:00:53.227
+With low confidence, it fails loudly and flags the test for a human.
+
+18
+00:00:53.227 --> 00:00:56.200
+A confidence floor beats a silent wrong click.
+
+19
+00:00:57.400 --> 00:00:59.900
+In code, the resilient baseline is simple.
+
+20
+00:01:00.200 --> 00:01:04.800
+The first line depends on component classes and position, so it breaks easily.
+
+21
+00:01:05.100 --> 00:01:09.400
+The second asks for a button named Log in, exactly what a user would see.
+
+22
+00:01:10.600 --> 00:01:11.933
+Here is a real case.
+
+23
+00:01:12.233 --> 00:01:16.033
+A rebrand changes the component library behind every button.
+
+24
+00:01:16.333 --> 00:01:21.067
+The forty percent of the suite using structural CSS locators goes red.
+
+25
+00:01:21.367 --> 00:01:25.051
+The half already using role based locators passes untouched.
+
+26
+00:01:25.051 --> 00:01:27.200
+That's the poor man's self healing.
+
+27
+00:01:28.400 --> 00:01:29.173
+Let's recap.
+
+28
+00:01:29.173 --> 00:01:31.300
+Locate by meaning, not structure.
+
+29
+00:01:31.600 --> 00:01:33.533
+Rank several weak signals together.
+
+30
+00:01:33.833 --> 00:01:35.167
+Set a confidence floor.
+
+31
+00:01:35.467 --> 00:01:38.333
+And fail loud, never click silently wrong.
+
+32
+00:01:38.333 --> 00:01:41.267
+Next up: visual regression testing with AI.
