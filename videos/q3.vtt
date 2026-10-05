@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.400
+Noise, and error correction.
+
+2
+00:00:02.700 --> 00:00:05.235
+Why has nothing commercially useful run yet?
+
+3
+00:00:05.235 --> 00:00:07.367
+Because every gate is slightly wrong.
+
+4
+00:00:08.567 --> 00:00:12.300
+We are in the NISQ era: noisy, intermediate scale quantum.
+
+5
+00:00:12.600 --> 00:00:15.867
+Machines have tens to a few thousand physical qubits.
+
+6
+00:00:16.167 --> 00:00:19.633
+And an error rate near one in a thousand per two qubit gate.
+
+7
+00:00:20.833 --> 00:00:22.133
+Why does that kill us?
+
+8
+00:00:22.133 --> 00:00:24.200
+Errors multiply across the circuit.
+
+9
+00:00:24.500 --> 00:00:31.267
+With a zero point one percent error per gate, a circuit of a few thousand gates is almost guaranteed to be wrong.
+
+10
+00:00:32.467 --> 00:00:34.267
+Noise comes from three places.
+
+11
+00:00:34.567 --> 00:00:41.333
+Decoherence: qubits lose their state in microseconds to milliseconds, so everything must finish in that window.
+
+12
+00:00:41.633 --> 00:00:45.733
+Gate infidelity: each operation is a slightly wrong rotation.
+
+13
+00:00:46.033 --> 00:00:49.200
+And reading a qubit is wrong about one percent of the time.
+
+14
+00:00:50.400 --> 00:00:52.133
+The escape is error correction.
+
+15
+00:00:52.433 --> 00:00:55.967
+We spread one logical qubit across many physical qubits.
+
+16
+00:00:56.267 --> 00:01:00.967
+We detect errors without measuring, and so without destroying, the encoded state.
+
+17
+00:01:01.267 --> 00:01:03.367
+The surface code is the leading scheme.
+
+18
+00:01:03.667 --> 00:01:07.031
+Done well, the result is one stable logical qubit.
+
+19
+00:01:07.031 --> 00:01:10.800
+Hardware is now below the roughly one percent threshold.
+
+20
+00:01:12.000 --> 00:01:13.367
+But the cost is huge.
+
+21
+00:01:13.667 --> 00:01:17.194
+About a thousand physical qubits for every logical one.
+
+22
+00:01:17.194 --> 00:01:21.233
+The real roadmap is not more qubits, it is more logical qubits.
+
+23
+00:01:22.433 --> 00:01:26.633
+The one quantum skill that pays today is post quantum cryptography.
+
+24
+00:01:26.933 --> 00:01:29.533
+Adversaries record encrypted traffic now.
+
+25
+00:01:29.833 --> 00:01:36.000
+They decrypt it when a capable machine exists, which matters for data that must stay secret ten years or more.
+
+26
+00:01:36.300 --> 00:01:45.433
+NIST standardized ML-KEM and ML-DSA in 2024, so migration is ordinary engineering with scarce vocabulary.
+
+27
+00:01:46.633 --> 00:01:47.385
+Let's recap.
+
+28
+00:01:47.385 --> 00:01:51.267
+Today's machines have about zero point one percent gate error.
+
+29
+00:01:51.567 --> 00:01:53.067
+Errors compound with depth.
+
+30
+00:01:53.367 --> 00:01:57.833
+Error correction costs around a thousand physical qubits per logical one.
+
+31
+00:01:58.133 --> 00:02:01.508
+And post quantum migration is the skill in demand now.
+
+32
+00:02:01.508 --> 00:02:03.633
+Next up: quantum machine learning.
