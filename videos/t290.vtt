@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.333
+Hallucination measurement.
+
+2
+00:00:02.633 --> 00:00:06.933
+If you can't put a number on fabrication, you can't track it, and you can't fix it.
+
+3
+00:00:08.133 --> 00:00:09.800
+The pipeline has three steps.
+
+4
+00:00:10.100 --> 00:00:13.067
+First, extract the atomic claims from each output.
+
+5
+00:00:13.367 --> 00:00:22.567
+Second, verify every claim against trusted sources, using the retrieved context for RAG, with an LLM or an NLI model as the checker.
+
+6
+00:00:22.867 --> 00:00:23.660
+Third, count.
+
+7
+00:00:23.660 --> 00:00:26.833
+The unsupported fraction is your hallucination rate.
+
+8
+00:00:28.033 --> 00:00:30.067
+Two things make that number actionable.
+
+9
+00:00:30.367 --> 00:00:35.133
+Fix the denominator: always the same question set, so runs are comparable.
+
+10
+00:00:35.433 --> 00:00:36.817
+And keep the failures.
+
+11
+00:00:36.817 --> 00:00:41.533
+Every unsupported claim is a labeled example of how your system fabricates.
+
+12
+00:00:42.733 --> 00:00:44.400
+Now you can run experiments.
+
+13
+00:00:44.700 --> 00:00:51.133
+Change one thing, such as the reranker, the prompt, or k, rerun on the same questions, and compare the rate.
+
+14
+00:00:52.333 --> 00:00:53.633
+Here it is in Python.
+
+15
+00:00:53.933 --> 00:00:56.667
+We loop over the same fixed questions each time.
+
+16
+00:00:56.967 --> 00:00:59.533
+We split every answer into claims and count them.
+
+17
+00:00:59.833 --> 00:01:04.233
+If a claim isn't supported by the context, we count it and log the failure.
+
+18
+00:01:04.533 --> 00:01:06.233
+The final line prints the rate.
+
+19
+00:01:07.433 --> 00:01:08.833
+Here's how it plays out.
+
+20
+00:01:09.133 --> 00:01:13.333
+Baseline on Mission Control: eleven percent of claims are unsupported.
+
+21
+00:01:13.633 --> 00:01:20.067
+The failure log shows two patterns: invented launch dates, and causal conclusions imported from pretraining.
+
+22
+00:01:20.367 --> 00:01:28.633
+A prompt line saying state only what the context supports, plus a reranker, brings the rate to three percent on the identical questions.
+
+23
+00:01:29.833 --> 00:01:30.607
+Let's recap.
+
+24
+00:01:30.607 --> 00:01:34.733
+Extract claims, verify them, and count the unsupported fraction.
+
+25
+00:01:35.033 --> 00:01:37.667
+Fix the denominator so runs are comparable.
+
+26
+00:01:37.967 --> 00:01:40.433
+Keep every failure as a labeled example.
+
+27
+00:01:40.733 --> 00:01:47.146
+And being able to say you cut the rate from eleven to three percent is a strong sentence for any CV.
+
+28
+00:01:47.146 --> 00:01:48.300
+Next up: Langfuse.

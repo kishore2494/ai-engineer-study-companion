@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+Langfuse.
+
+2
+00:00:01.967 --> 00:00:07.500
+Open-source observability built for LLM apps, so you can see inside every request.
+
+3
+00:00:08.700 --> 00:00:10.500
+Every request becomes a trace.
+
+4
+00:00:10.800 --> 00:00:17.333
+Each pipeline stage inside it, like retrieval, rerank, generation, or a tool call, becomes a span.
+
+5
+00:00:17.633 --> 00:00:21.767
+Generation spans also record the model, token counts, and cost.
+
+6
+00:00:22.967 --> 00:00:24.933
+Here's a request laid out by stage.
+
+7
+00:00:25.233 --> 00:00:26.433
+Retrieval is quick.
+
+8
+00:00:26.733 --> 00:00:28.840
+Rerank is far wider than the rest.
+
+9
+00:00:28.840 --> 00:00:31.567
+The widest span is where your latency lives.
+
+10
+00:00:32.767 --> 00:00:35.967
+Langfuse adds LLM-specific layers on top.
+
+11
+00:00:36.267 --> 00:00:37.933
+It starts with the raw traces.
+
+12
+00:00:38.233 --> 00:00:40.833
+User feedback attaches to those traces.
+
+13
+00:00:41.133 --> 00:00:42.733
+Prompts are versioned and linked.
+
+14
+00:00:43.033 --> 00:00:45.308
+And eval scores are stored per trace.
+
+15
+00:00:45.308 --> 00:00:51.333
+Which prompt version caused the bad answers users flagged becomes a query, not an archaeology dig.
+
+16
+00:00:52.533 --> 00:00:54.467
+Instrumenting is a decorator.
+
+17
+00:00:54.767 --> 00:00:58.733
+Put observe on retrieve and rerank, and each call becomes a span.
+
+18
+00:00:59.033 --> 00:01:03.933
+Mark generate as a generation, so it records the model, tokens, and cost.
+
+19
+00:01:04.233 --> 00:01:07.033
+The outer rag function becomes the parent trace.
+
+20
+00:01:08.233 --> 00:01:11.376
+You self-host Langfuse and decorate four functions.
+
+21
+00:01:11.376 --> 00:01:13.533
+Within the hour, three discoveries.
+
+22
+00:01:13.833 --> 00:01:18.906
+First, the reranker is two point eight seconds of a three point nine second median.
+
+23
+00:01:18.906 --> 00:01:20.433
+You were blaming the LLM.
+
+24
+00:01:20.733 --> 00:01:27.055
+Second, sorting by cost reveals one agent loop asking the same question forty times a day.
+
+25
+00:01:27.055 --> 00:01:28.600
+Hello, semantic cache.
+
+26
+00:01:28.900 --> 00:01:35.533
+Third, nightly eval scores land on traces, so thumbs down plus low faithfulness becomes your triage queue.
+
+27
+00:01:36.733 --> 00:01:37.527
+Let's recap.
+
+28
+00:01:37.527 --> 00:01:40.633
+A request is a trace, and each stage is a span.
+
+29
+00:01:40.933 --> 00:01:44.200
+Generation spans record model, tokens, and cost.
+
+30
+00:01:44.500 --> 00:01:48.333
+Feedback, prompt versions, and eval scores hang off the traces.
+
+31
+00:01:48.633 --> 00:01:52.850
+And it is self-hostable, so regulated teams keep their data.
+
+32
+00:01:52.850 --> 00:01:54.467
+Next up: OpenTelemetry.

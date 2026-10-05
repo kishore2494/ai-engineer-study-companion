@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.967
+Stable Diffusion.
+
+2
+00:00:02.267 --> 00:00:06.667
+One architectural move makes diffusion cheap enough for consumer hardware.
+
+3
+00:00:07.867 --> 00:00:10.233
+Stable Diffusion is latent diffusion.
+
+4
+00:00:10.533 --> 00:00:13.653
+Denoising in pixel space is brutally expensive.
+
+5
+00:00:13.653 --> 00:00:18.167
+One small image has about seven hundred eighty six thousand numbers.
+
+6
+00:00:18.467 --> 00:00:20.967
+So instead, we denoise a compressed latent.
+
+7
+00:00:22.167 --> 00:00:23.367
+Here's the pipeline.
+
+8
+00:00:23.667 --> 00:00:26.200
+The prompt is encoded by a CLIP text encoder.
+
+9
+00:00:26.500 --> 00:00:34.000
+A pretrained VAE has compressed images into a sixty four by sixty four by four latent, about forty eight times smaller.
+
+10
+00:00:34.300 --> 00:00:40.567
+The U-Net does all its denoising steps in that small space, with the prompt attended to at every step.
+
+11
+00:00:40.867 --> 00:00:45.133
+Finally the VAE decoder inflates the clean latent back to pixels.
+
+12
+00:00:46.333 --> 00:00:49.100
+Text steers generation through cross-attention.
+
+13
+00:00:49.400 --> 00:00:51.233
+The prompt becomes text embeddings.
+
+14
+00:00:51.533 --> 00:00:54.333
+The U-Net's attention layers attend over them.
+
+15
+00:00:54.633 --> 00:00:57.043
+And this happens at every denoising step.
+
+16
+00:00:57.043 --> 00:01:00.333
+The prompt whispers into every step, not just the start.
+
+17
+00:01:01.533 --> 00:01:03.633
+The practical knob is guidance scale.
+
+18
+00:01:03.933 --> 00:01:06.526
+Each step extrapolates toward the prompt.
+
+19
+00:01:06.526 --> 00:01:08.867
+Low values are imaginative but loose.
+
+20
+00:01:09.167 --> 00:01:11.700
+Around seven point five is the sweet spot.
+
+21
+00:01:12.000 --> 00:01:18.567
+High values, twelve to fifteen, follow the prompt literally, but with fried, oversaturated artifacts.
+
+22
+00:01:19.767 --> 00:01:21.167
+Here's the sweep in code.
+
+23
+00:01:21.467 --> 00:01:25.200
+We load the pipeline in half precision on a consumer GPU.
+
+24
+00:01:25.500 --> 00:01:30.067
+Then we generate the same prompt at five guidance values and save each image.
+
+25
+00:01:31.267 --> 00:01:32.633
+A good way to keep this.
+
+26
+00:01:32.933 --> 00:01:36.833
+You generate concept art with the sweep and keep the five image strip.
+
+27
+00:01:37.133 --> 00:01:42.233
+When an interviewer asks how Stable Diffusion runs on a laptop, you answer in one breath.
+
+28
+00:01:42.533 --> 00:01:44.300
+It doesn't diffuse pixels.
+
+29
+00:01:44.300 --> 00:01:51.433
+A VAE compresses to a latent, the U-Net denoises there, and guidance is the literal versus creative dial.
+
+30
+00:01:52.633 --> 00:01:53.410
+Let's recap.
+
+31
+00:01:53.410 --> 00:01:56.000
+Denoise a compressed latent, not pixels.
+
+32
+00:01:56.300 --> 00:01:59.200
+A VAE encodes and decodes that small space.
+
+33
+00:01:59.500 --> 00:02:02.500
+The prompt enters through cross-attention at every step.
+
+34
+00:02:02.800 --> 00:02:06.333
+And guidance scale trades creativity for literalness.
+
+35
+00:02:06.333 --> 00:02:07.267
+Next up: GANs.
