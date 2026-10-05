@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.767
+What changed in 2026.
+
+2
+00:00:03.067 --> 00:00:06.736
+Companies stopped paying senior money for simple API wrappers.
+
+3
+00:00:06.736 --> 00:00:08.867
+Let's see what they pay for instead.
+
+4
+00:00:10.067 --> 00:00:11.053
+Here is the shift.
+
+5
+00:00:11.053 --> 00:00:13.300
+On the left, what used to impress people.
+
+6
+00:00:13.600 --> 00:00:17.167
+Wrapping an OpenAI API is now easy to find.
+
+7
+00:00:17.467 --> 00:00:19.800
+So are LangChain scripts living in a notebook.
+
+8
+00:00:20.100 --> 00:00:24.468
+The premium goes to engineers who build real systems around the model.
+
+9
+00:00:24.468 --> 00:00:27.400
+That old skill is abundant, this one gets paid.
+
+10
+00:00:28.600 --> 00:00:31.232
+So how do you define the job in one line?
+
+11
+00:00:31.232 --> 00:00:38.167
+A twenty five lakh a year AI engineer is a distributed systems engineer who works with probabilistic models.
+
+12
+00:00:38.467 --> 00:00:43.767
+They wrap predictable, deterministic control layers around unpredictable LLMs.
+
+13
+00:00:44.067 --> 00:00:48.100
+And they cut cost, prevent hallucination, and guarantee reliability.
+
+14
+00:00:49.300 --> 00:00:51.600
+Postings keep asking for four things.
+
+15
+00:00:51.900 --> 00:00:53.559
+First, stateful systems.
+
+16
+00:00:53.559 --> 00:01:00.400
+They name LangGraph for cyclic agent graphs, and MCP for connecting to company databases and tools.
+
+17
+00:01:00.700 --> 00:01:02.114
+Second, async Python.
+
+18
+00:01:02.114 --> 00:01:07.367
+LLM apps wait on the network, so you must handle hundreds of requests at once.
+
+19
+00:01:07.667 --> 00:01:08.978
+Third, evals first.
+
+20
+00:01:08.978 --> 00:01:14.500
+Automated tests for accuracy, hallucination rate and latency, before you deploy.
+
+21
+00:01:14.800 --> 00:01:17.033
+And fourth, you own cost and latency.
+
+22
+00:01:18.233 --> 00:01:19.967
+Here is the fourth skill in action.
+
+23
+00:01:20.267 --> 00:01:21.567
+A request comes in.
+
+24
+00:01:21.867 --> 00:01:23.800
+A router decides how hard it is.
+
+25
+00:01:24.100 --> 00:01:26.400
+Easy work goes to a small, cheap model.
+
+26
+00:01:26.700 --> 00:01:29.188
+Hard reasoning goes to a frontier model.
+
+27
+00:01:29.188 --> 00:01:32.733
+Prompt caching and semantic caching cut the bill further.
+
+28
+00:01:33.933 --> 00:01:35.767
+One rule ties it all together.
+
+29
+00:01:36.067 --> 00:01:38.396
+If you can't measure it, you can't ship it.
+
+30
+00:01:38.396 --> 00:01:39.967
+Evals come before deployment.
+
+31
+00:01:41.167 --> 00:01:42.012
+Let's recap.
+
+32
+00:01:42.012 --> 00:01:44.267
+Wrapping an API is abundant now.
+
+33
+00:01:44.567 --> 00:01:47.367
+The premium goes to distributed systems thinking.
+
+34
+00:01:47.667 --> 00:01:51.000
+That means stateful, async, evals first, and cost aware.
+
+35
+00:01:51.300 --> 00:01:53.862
+And you send each task to the right model.
+
+36
+00:01:53.862 --> 00:01:57.767
+Next up: Tier one, what every twenty five lakh posting asks for.

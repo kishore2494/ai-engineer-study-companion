@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.600
+Tier three.
+
+2
+00:00:01.900 --> 00:00:06.186
+These are the rare skills that get you hired over fifty other candidates.
+
+3
+00:00:06.186 --> 00:00:08.300
+Having just one makes you memorable.
+
+4
+00:00:09.500 --> 00:00:11.133
+Here is the rule for this tier.
+
+5
+00:00:11.433 --> 00:00:12.747
+Pick one, and go deep.
+
+6
+00:00:12.747 --> 00:00:14.957
+Spreading thin makes you forgettable.
+
+7
+00:00:14.957 --> 00:00:17.167
+This is your specialization decision.
+
+8
+00:00:18.367 --> 00:00:19.918
+Here are your six options.
+
+9
+00:00:19.918 --> 00:00:24.633
+Each one is rare enough to stand out when the hiring team sits down to debrief.
+
+10
+00:00:24.933 --> 00:00:28.321
+Evaluation pipelines built from scratch.
+
+11
+00:00:28.321 --> 00:00:30.099
+A multi-model router.
+
+12
+00:00:30.099 --> 00:00:31.793
+Agent observability.
+
+13
+00:00:31.793 --> 00:00:35.350
+Speculative decoding and custom inference.
+
+14
+00:00:35.350 --> 00:00:37.636
+RLHF or DPO implementation.
+
+15
+00:00:37.636 --> 00:00:40.600
+And on-device, edge LLM deployment.
+
+16
+00:00:41.800 --> 00:00:43.441
+Take evaluation pipelines.
+
+17
+00:00:43.441 --> 00:00:44.767
+Why are they so rare?
+
+18
+00:00:45.067 --> 00:00:47.500
+Most candidates copy the RAGAS defaults.
+
+19
+00:00:47.800 --> 00:00:51.300
+Very few design domain-specific metrics and defend them.
+
+20
+00:00:51.600 --> 00:00:55.133
+That is the signal that someone actually shipped LLM systems.
+
+21
+00:00:56.333 --> 00:00:58.500
+The others are rare for different reasons.
+
+22
+00:00:58.800 --> 00:01:04.800
+A router needs quality tradeoffs, cost math, and the eval discipline to prove routing did not hurt.
+
+23
+00:01:05.100 --> 00:01:07.271
+Agent observability is nascent.
+
+24
+00:01:07.271 --> 00:01:12.033
+You track trajectory accuracy, tool call accuracy and cost per task.
+
+25
+00:01:12.333 --> 00:01:19.167
+And on-device deployment, with llama cpp and quantization, has exploding demand and tiny supply.
+
+26
+00:01:20.367 --> 00:01:21.762
+You need exactly one.
+
+27
+00:01:21.762 --> 00:01:27.807
+Speculative decoding, the deep systems option, is the highest paid combination that exists.
+
+28
+00:01:27.807 --> 00:01:29.667
+But one done well is enough.
+
+29
+00:01:30.867 --> 00:01:32.214
+You need exactly one.
+
+30
+00:01:32.214 --> 00:01:39.592
+Speculative decoding and custom inference is the deep systems option, and the highest paid combination that exists.
+
+31
+00:01:39.592 --> 00:01:42.800
+But a single differentiator, done well, is enough.
+
+32
+00:01:43.100 --> 00:01:44.500
+Pick one and go deep.
+
+33
+00:01:44.800 --> 00:01:47.800
+Evals built from scratch signal that you really shipped.
+
+34
+00:01:48.100 --> 00:01:50.128
+And systems depth pays the most.
+
+35
+00:01:50.128 --> 00:01:53.867
+Next up: real job description language, and how to read it.
