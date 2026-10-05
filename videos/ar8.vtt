@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.767
+System-design interview drills.
+
+2
+00:00:03.067 --> 00:00:07.306
+Four prompts cover about ninety percent of AI system-design interviews.
+
+3
+00:00:07.306 --> 00:00:09.933
+Let's build the answers from the blueprints.
+
+4
+00:00:11.133 --> 00:00:13.033
+Every answer starts with questions.
+
+5
+00:00:13.333 --> 00:00:14.400
+Ask about scale.
+
+6
+00:00:14.700 --> 00:00:16.433
+Ask about the latency target.
+
+7
+00:00:16.733 --> 00:00:17.933
+Ask about freshness.
+
+8
+00:00:18.233 --> 00:00:19.582
+And ask about tenancy.
+
+9
+00:00:19.582 --> 00:00:22.033
+The clarifying questions are the signal.
+
+10
+00:00:23.233 --> 00:00:25.933
+Drill one: RAG over ten million documents.
+
+11
+00:00:26.233 --> 00:00:28.300
+Parsing workers are fed by a queue.
+
+12
+00:00:28.600 --> 00:00:31.033
+Embed in batches, and quote the cost math.
+
+13
+00:00:31.333 --> 00:00:37.600
+Use a sharded index, hybrid search and a reranker, because ID lookups are guaranteed at this size.
+
+14
+00:00:37.900 --> 00:00:41.233
+Keep it fresh with change detection feeding an upsert queue.
+
+15
+00:00:42.433 --> 00:00:44.267
+Drill two: a research agent.
+
+16
+00:00:44.567 --> 00:00:45.900
+Plan with a task list.
+
+17
+00:00:46.200 --> 00:00:49.100
+Act with search, fetch and a note-taking scratchpad.
+
+18
+00:00:49.400 --> 00:00:52.865
+Reflect before the final output, all under budget caps.
+
+19
+00:00:52.865 --> 00:00:55.133
+Human approval only at publish time.
+
+20
+00:00:56.333 --> 00:01:00.400
+Drill three: serve an open model at a thousand requests per second.
+
+21
+00:01:00.700 --> 00:01:02.596
+Do the arithmetic out loud.
+
+22
+00:01:02.596 --> 00:01:05.967
+Naively, that is on the order of a hundred GPUs.
+
+23
+00:01:06.267 --> 00:01:10.400
+Then cut it with AWQ quantization and continuous batching.
+
+24
+00:01:10.700 --> 00:01:14.200
+Route about sixty percent of easy traffic to a smaller model.
+
+25
+00:01:14.500 --> 00:01:17.064
+And cache the head of the distribution.
+
+26
+00:01:17.064 --> 00:01:19.300
+Autoscale on queue depth, not CPU.
+
+27
+00:01:20.500 --> 00:01:22.833
+Drill four: ship a prompt change safely.
+
+28
+00:01:23.133 --> 00:01:25.233
+Run the golden-set suite in CI.
+
+29
+00:01:25.533 --> 00:01:29.400
+Use a pairwise judge, swapping the order to kill position bias.
+
+30
+00:01:29.700 --> 00:01:34.033
+Canary at five percent, with auto-rollback on a hallucination regression.
+
+31
+00:01:34.333 --> 00:01:37.067
+Then roll out, with the prompt versioned and traced.
+
+32
+00:01:38.267 --> 00:01:38.844
+The traps.
+
+33
+00:01:38.844 --> 00:01:44.100
+Naming a framework first, or saying you would eyeball a few outputs, can end the interview.
+
+34
+00:01:44.400 --> 00:01:49.400
+Instead, lead with architecture and finish with the eval story and the cost per query.
+
+35
+00:01:50.600 --> 00:01:51.447
+Let's recap.
+
+36
+00:01:51.447 --> 00:01:53.633
+Ask clarifying questions first.
+
+37
+00:01:53.933 --> 00:01:55.733
+Build the answer from the blueprints.
+
+38
+00:01:56.033 --> 00:01:57.633
+Do the arithmetic out loud.
+
+39
+00:01:57.933 --> 00:02:00.933
+And always end with the eval story and the cost story.

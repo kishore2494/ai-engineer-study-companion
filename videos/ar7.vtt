@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.667
+The enterprise multi-tenant AI platform.
+
+2
+00:00:03.967 --> 00:00:05.292
+This is the capstone.
+
+3
+00:00:05.292 --> 00:00:09.900
+It composes everything before it, and adds what enterprises actually buy.
+
+4
+00:00:11.100 --> 00:00:14.600
+Beyond the earlier blueprints, enterprises buy three things.
+
+5
+00:00:14.900 --> 00:00:18.067
+Isolation, so tenants never see each other's data.
+
+6
+00:00:18.367 --> 00:00:20.700
+Governance, so every answer is traceable.
+
+7
+00:00:21.000 --> 00:00:23.967
+And cost attribution, so spend is tagged per tenant.
+
+8
+00:00:25.167 --> 00:00:27.567
+Here is the request path, layer by layer.
+
+9
+00:00:27.867 --> 00:00:30.533
+The gateway authenticates and tags the tenant.
+
+10
+00:00:30.833 --> 00:00:34.167
+Retrieval is limited to that tenant's namespace and roles.
+
+11
+00:00:34.467 --> 00:00:37.167
+Model routing picks the cheapest capable layer.
+
+12
+00:00:37.467 --> 00:00:41.267
+Generation produces a cited answer from a versioned prompt.
+
+13
+00:00:41.567 --> 00:00:44.333
+And an observability spine touches every layer.
+
+14
+00:00:45.533 --> 00:00:47.200
+Now isolation in detail.
+
+15
+00:00:47.500 --> 00:00:49.633
+A query arrives tagged with its tenant.
+
+16
+00:00:49.933 --> 00:00:54.200
+Retrieval can reach only that tenant's namespace, with RBAC enforced.
+
+17
+00:00:54.500 --> 00:00:57.762
+So the answer can only come from that tenant's documents.
+
+18
+00:00:57.762 --> 00:01:00.567
+The model is never trusted to keep tenants apart.
+
+19
+00:01:01.767 --> 00:01:03.400
+The spine feeds two payoffs.
+
+20
+00:01:03.700 --> 00:01:08.367
+Each trace records which documents, which model version and which prompt version.
+
+21
+00:01:08.667 --> 00:01:11.400
+That becomes the audit log regulators ask for.
+
+22
+00:01:11.700 --> 00:01:14.733
+Costs are tagged per tenant and feature at the gateway.
+
+23
+00:01:15.033 --> 00:01:18.333
+So pricing and optimization are data, not guesses.
+
+24
+00:01:19.533 --> 00:01:21.233
+Compare two interview answers.
+
+25
+00:01:21.533 --> 00:01:23.573
+Weak: ask the model to behave.
+
+26
+00:01:23.573 --> 00:01:26.633
+Winning: enforce isolation at the data layer.
+
+27
+00:01:26.933 --> 00:01:28.467
+Weak: log some outputs.
+
+28
+00:01:28.467 --> 00:01:31.867
+Winning: trace documents, model and prompt version.
+
+29
+00:01:32.167 --> 00:01:33.502
+Weak: watch the bill.
+
+30
+00:01:33.502 --> 00:01:35.600
+Winning: tag cost at the gateway.
+
+31
+00:01:35.900 --> 00:01:38.733
+Deliver those three sentences and you win the room.
+
+32
+00:01:39.933 --> 00:01:40.678
+Let's recap.
+
+33
+00:01:40.678 --> 00:01:43.533
+This platform composes the earlier blueprints.
+
+34
+00:01:43.833 --> 00:01:46.900
+Isolation lives in the data layer, not the prompt.
+
+35
+00:01:47.200 --> 00:01:48.767
+Every answer is traceable.
+
+36
+00:01:49.067 --> 00:01:51.961
+And cost is tagged per tenant at the gateway.
+
+37
+00:01:51.961 --> 00:01:54.533
+Next up: system-design interview drills.

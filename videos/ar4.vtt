@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.767
+The fine-tune to deploy pipeline.
+
+2
+00:00:03.067 --> 00:00:04.765
+Fine-tuning is not a notebook.
+
+3
+00:00:04.765 --> 00:00:07.200
+It is a pipeline with a gate in the middle.
+
+4
+00:00:08.400 --> 00:00:10.967
+Here is the sentence that signals seniority.
+
+5
+00:00:11.267 --> 00:00:14.000
+The eval gate decides, not the training loss.
+
+6
+00:00:14.300 --> 00:00:19.767
+Nothing merges, quantizes, or ships unless it beats the base model on the golden set.
+
+7
+00:00:20.967 --> 00:00:22.767
+Here is the pipeline end to end.
+
+8
+00:00:23.067 --> 00:00:24.286
+It starts with data.
+
+9
+00:00:24.286 --> 00:00:27.700
+The golden set is carved out first, before any training.
+
+10
+00:00:28.000 --> 00:00:30.567
+Then we train, usually with a LoRA adapter.
+
+11
+00:00:30.867 --> 00:00:31.628
+Now the gate.
+
+12
+00:00:31.628 --> 00:00:34.733
+Does the tuned model beat the base on the golden set?
+
+13
+00:00:35.033 --> 00:00:37.733
+Only if it passes do we merge and quantize.
+
+14
+00:00:38.033 --> 00:00:39.167
+And then we deploy.
+
+15
+00:00:40.367 --> 00:00:42.733
+Before building any of this, pick the right tool.
+
+16
+00:00:43.033 --> 00:00:44.833
+Try prompting first, always.
+
+17
+00:00:45.133 --> 00:00:46.900
+Facts that change belong in RAG.
+
+18
+00:00:47.200 --> 00:00:50.433
+Fine-tune for style, format and domain reflexes.
+
+19
+00:00:51.633 --> 00:00:53.867
+Another tradeoff is adapter strategy.
+
+20
+00:00:54.167 --> 00:00:56.433
+One merged model is simple to serve.
+
+21
+00:00:56.733 --> 00:01:00.611
+Or keep one adapter per tenant and hot-swap them at inference.
+
+22
+00:01:00.611 --> 00:01:02.800
+That wins for many small customers.
+
+23
+00:01:04.000 --> 00:01:05.376
+Two classic mistakes.
+
+24
+00:01:05.376 --> 00:01:13.567
+Catastrophic forgetting: a narrow fine-tune degrades general ability, and contamination, where test data leaks into training.
+
+25
+00:01:13.867 --> 00:01:19.633
+The fix: mix in general data, evaluate broadly, and never let the golden set touch training.
+
+26
+00:01:20.833 --> 00:01:22.300
+Picture this in practice.
+
+27
+00:01:22.600 --> 00:01:25.500
+The training loss keeps falling and everyone is happy.
+
+28
+00:01:25.800 --> 00:01:28.633
+But on the golden set, the model loses to the base.
+
+29
+00:01:28.933 --> 00:01:29.974
+So nothing ships.
+
+30
+00:01:29.974 --> 00:01:31.933
+We fix the data and train again.
+
+31
+00:01:33.133 --> 00:01:33.909
+Let's recap.
+
+32
+00:01:33.909 --> 00:01:36.367
+Fine-tuning is a pipeline with a gate.
+
+33
+00:01:36.667 --> 00:01:38.967
+The golden set decides, not the loss.
+
+34
+00:01:39.267 --> 00:01:41.900
+Prompt first, RAG for facts, tune for style.
+
+35
+00:01:42.200 --> 00:01:45.188
+And never let the golden set touch training.
+
+36
+00:01:45.188 --> 00:01:47.700
+Next up: the evals-first LLMOps loop.

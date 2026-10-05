@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.800
+The evals-first LLMOps loop.
+
+2
+00:00:03.100 --> 00:00:04.639
+Software has unit tests.
+
+3
+00:00:04.639 --> 00:00:09.000
+LLM systems have this loop, and it makes everything else changeable.
+
+4
+00:00:10.200 --> 00:00:13.267
+The phrase to own: if you can't measure it, you can't ship it.
+
+5
+00:00:13.567 --> 00:00:18.600
+Every prompt tweak, model upgrade and retrieval change flows through the same circle.
+
+6
+00:00:19.800 --> 00:00:20.800
+Here is the loop.
+
+7
+00:00:21.100 --> 00:00:23.767
+It starts with a golden set of trusted questions.
+
+8
+00:00:24.067 --> 00:00:26.667
+A CI gate runs it against every change.
+
+9
+00:00:26.967 --> 00:00:30.567
+Passing changes go to a canary, a small share of traffic.
+
+10
+00:00:30.867 --> 00:00:32.667
+Traces log every request.
+
+11
+00:00:32.967 --> 00:00:36.900
+A judge scores a sample of them, and the failures it finds are mined.
+
+12
+00:00:37.200 --> 00:00:41.200
+Those failures become new golden questions, so the set keeps growing.
+
+13
+00:00:42.400 --> 00:00:45.033
+Offline and online evals do different jobs.
+
+14
+00:00:45.333 --> 00:00:48.600
+The offline suite catches regressions before deploy.
+
+15
+00:00:48.900 --> 00:00:55.733
+Online judging catches what the golden set does not cover yet, on a sample of one to five percent of traffic.
+
+16
+00:00:56.033 --> 00:00:59.700
+Together they should cost single-digit percent of your inference spend.
+
+17
+00:01:00.900 --> 00:01:03.733
+An LLM judge is not automatically right.
+
+18
+00:01:04.033 --> 00:01:06.333
+First, collect human labels on a sample.
+
+19
+00:01:06.633 --> 00:01:09.233
+Then calibrate the judge against them every quarter.
+
+20
+00:01:09.533 --> 00:01:12.167
+And watch for position and verbosity bias.
+
+21
+00:01:13.367 --> 00:01:14.833
+Here is a change in flight.
+
+22
+00:01:15.133 --> 00:01:18.767
+A prompt is edited and the golden-set suite runs in CI.
+
+23
+00:01:19.067 --> 00:01:22.233
+It wins, so a canary sends five percent of traffic to it.
+
+24
+00:01:22.533 --> 00:01:26.533
+If the online judge sees quality drop, it rolls back automatically.
+
+25
+00:01:27.733 --> 00:01:28.359
+Let's recap.
+
+26
+00:01:28.359 --> 00:01:30.600
+If you can't measure it, you can't ship it.
+
+27
+00:01:30.900 --> 00:01:32.733
+One loop handles every change.
+
+28
+00:01:33.033 --> 00:01:35.267
+Offline and online evals both matter.
+
+29
+00:01:35.567 --> 00:01:38.023
+And calibrate your judge against humans.
+
+30
+00:01:38.023 --> 00:01:40.233
+Next up: the streaming chat backend.
