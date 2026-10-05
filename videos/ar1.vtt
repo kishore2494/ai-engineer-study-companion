@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.433
+The production RAG platform.
+
+2
+00:00:02.733 --> 00:00:06.042
+It is the most commonly built AI system in industry.
+
+3
+00:00:06.042 --> 00:00:09.033
+Drawn properly, it is two pipelines and a loop.
+
+4
+00:00:10.233 --> 00:00:11.633
+Here is the whole picture.
+
+5
+00:00:11.933 --> 00:00:14.500
+Ingestion runs offline and never stops.
+
+6
+00:00:14.800 --> 00:00:18.867
+The query pipeline runs on every request, under latency pressure.
+
+7
+00:00:19.167 --> 00:00:21.125
+And the eval loop watches both.
+
+8
+00:00:21.125 --> 00:00:25.167
+Most failures come from treating ingestion as a one-time script.
+
+9
+00:00:26.367 --> 00:00:27.833
+Let's start with ingestion.
+
+10
+00:00:28.133 --> 00:00:30.336
+The parser sets the quality ceiling.
+
+11
+00:00:30.336 --> 00:00:33.700
+Bad parsing cannot be rescued by a smarter model later.
+
+12
+00:00:34.000 --> 00:00:36.387
+The chunker is parent-child by default.
+
+13
+00:00:36.387 --> 00:00:40.733
+We retrieve small precise chunks, but prompt with their larger parents.
+
+14
+00:00:41.033 --> 00:00:46.567
+Then a dual index: vectors for meaning, BM25 for exact names and codes.
+
+15
+00:00:47.767 --> 00:00:49.900
+Now the query path, top to bottom.
+
+16
+00:00:50.200 --> 00:00:54.367
+We retrieve wide, about fifty candidates, merging both indexes.
+
+17
+00:00:54.667 --> 00:00:56.442
+The reranker cuts that to five.
+
+18
+00:00:56.442 --> 00:00:59.133
+It is the biggest quality win per line of code.
+
+19
+00:00:59.433 --> 00:01:05.500
+Prompt assembly adds citation markers and puts the stable prefix first, so provider caching works.
+
+20
+00:01:05.800 --> 00:01:07.800
+Then the model answers from those chunks.
+
+21
+00:01:09.000 --> 00:01:10.600
+The loop closes with evals.
+
+22
+00:01:10.900 --> 00:01:13.833
+Any change to chunking or the model is proposed.
+
+23
+00:01:14.133 --> 00:01:15.767
+It is scored on the golden set.
+
+24
+00:01:16.067 --> 00:01:18.400
+And it ships only if it beats the current score.
+
+25
+00:01:19.600 --> 00:01:21.300
+Interviewers probe the tradeoffs.
+
+26
+00:01:21.600 --> 00:01:23.918
+RAG suits a large, changing corpus.
+
+27
+00:01:23.918 --> 00:01:26.500
+If everything fits in context, skip it.
+
+28
+00:01:26.800 --> 00:01:29.619
+It suits pointed questions with sources.
+
+29
+00:01:29.619 --> 00:01:33.567
+For global summaries, consider long context or GraphRAG.
+
+30
+00:01:33.867 --> 00:01:37.700
+And always enforce tenant access at retrieval, never in the prompt.
+
+31
+00:01:38.900 --> 00:01:41.033
+Here is the classic freshness question.
+
+32
+00:01:41.333 --> 00:01:45.133
+A document changes, and full reindexing is too expensive.
+
+33
+00:01:45.433 --> 00:01:49.467
+A change-detection queue triggers upserts keyed by document id.
+
+34
+00:01:49.767 --> 00:01:53.067
+Only that one document is re-chunked and re-embedded.
+
+35
+00:01:54.267 --> 00:01:55.077
+Let's recap.
+
+36
+00:01:55.077 --> 00:01:56.900
+Two pipelines and one loop.
+
+37
+00:01:57.200 --> 00:01:59.033
+Parsing is the quality ceiling.
+
+38
+00:01:59.333 --> 00:02:02.033
+Retrieve wide with hybrid search, then rerank.
+
+39
+00:02:02.333 --> 00:02:05.555
+And nothing ships without beating the golden set.
+
+40
+00:02:05.555 --> 00:02:07.133
+Next up: Agent Platform.

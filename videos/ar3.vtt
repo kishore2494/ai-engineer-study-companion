@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.267
+The serving and cost stack.
+
+2
+00:00:02.567 --> 00:00:08.933
+This is where token cost and latency optimization lives, a line in every senior job description.
+
+3
+00:00:10.133 --> 00:00:11.700
+The mental model is simple.
+
+4
+00:00:12.000 --> 00:00:15.500
+A request should be answered by the cheapest layer that can answer it.
+
+5
+00:00:15.800 --> 00:00:19.033
+Cache first, small model second, frontier model last.
+
+6
+00:00:20.233 --> 00:00:21.733
+Here is the routing path.
+
+7
+00:00:22.033 --> 00:00:23.062
+First the cache.
+
+8
+00:00:23.062 --> 00:00:27.433
+An exact hit is nearly free, and a semantic hit costs one embedding.
+
+9
+00:00:27.733 --> 00:00:30.933
+On a miss, a small model handles the easy requests.
+
+10
+00:00:31.233 --> 00:00:36.867
+Only hard requests reach the frontier model, which costs ten to a hundred times more per call.
+
+11
+00:00:38.067 --> 00:00:39.900
+Caching economics are striking.
+
+12
+00:00:40.200 --> 00:00:45.800
+Even a twenty percent hit rate on support traffic pays for the Redis cluster many times over.
+
+13
+00:00:47.000 --> 00:00:48.067
+Who picks the tier?
+
+14
+00:00:48.367 --> 00:00:53.633
+A cheap classifier or heuristic, using length, keywords, or whether tools are needed.
+
+15
+00:00:53.933 --> 00:01:00.433
+Easy traffic goes to the small model, hard traffic to frontier, and bulk volume to the self-hosted lane.
+
+16
+00:01:00.733 --> 00:01:05.067
+Log every decision, and audit misroutes weekly against quality evals.
+
+17
+00:01:06.267 --> 00:01:07.233
+Now the risks.
+
+18
+00:01:07.533 --> 00:01:13.533
+A near-duplicate query with one changed entity, like March versus April, must not hit the cache.
+
+19
+00:01:13.833 --> 00:01:19.367
+So use high thresholds, entity checks, and never share personalized answers across users.
+
+20
+00:01:19.667 --> 00:01:24.433
+Self-hosting pays off only past the break-even of volume times tokens.
+
+21
+00:01:25.633 --> 00:01:27.333
+Finally, fallback design.
+
+22
+00:01:27.633 --> 00:01:29.600
+Say the main provider starts failing.
+
+23
+00:01:29.900 --> 00:01:33.667
+A gateway such as LiteLLM switches to another provider.
+
+24
+00:01:33.967 --> 00:01:38.133
+Responses keep the same shape, so failover is invisible to clients.
+
+25
+00:01:39.333 --> 00:01:40.115
+Let's recap.
+
+26
+00:01:40.115 --> 00:01:42.133
+Use the cheapest capable layer.
+
+27
+00:01:42.433 --> 00:01:45.733
+Cache, small model, frontier, and a self-hosted lane.
+
+28
+00:01:46.033 --> 00:01:48.900
+Route with a cheap classifier, and audit misroutes.
+
+29
+00:01:49.200 --> 00:01:51.442
+Guard the cache against false hits.
+
+30
+00:01:51.442 --> 00:01:54.133
+Next up: the fine-tune to deploy pipeline.

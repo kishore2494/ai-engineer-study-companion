@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+TensorRT.
+
+2
+00:00:02.167 --> 00:00:06.757
+What if you could make inference several times faster without changing the model?
+
+3
+00:00:06.757 --> 00:00:08.400
+That is what a compiler does.
+
+4
+00:00:09.600 --> 00:00:12.500
+TensorRT is NVIDIA's inference compiler.
+
+5
+00:00:12.800 --> 00:00:15.567
+It takes a trained model, usually through ONNX.
+
+6
+00:00:15.867 --> 00:00:19.933
+And it builds a highly optimized engine for one specific GPU.
+
+7
+00:00:21.133 --> 00:00:23.567
+Three optimizations do the heavy lifting.
+
+8
+00:00:23.867 --> 00:00:30.933
+Operator fusion merges steps like convolution, bias, and ReLU into one kernel, skipping memory round trips.
+
+9
+00:00:31.233 --> 00:00:36.533
+Kernel auto tuning benchmarks candidates on your actual GPU and keeps the fastest.
+
+10
+00:00:36.833 --> 00:00:44.600
+Precision calibration drops weights to FP sixteen or INT eight, using a calibration set to protect accuracy.
+
+11
+00:00:45.800 --> 00:00:47.067
+Here is the pipeline.
+
+12
+00:00:47.367 --> 00:00:48.833
+Start with the ONNX model.
+
+13
+00:00:49.133 --> 00:00:51.800
+The compiler fuses, tunes, and calibrates.
+
+14
+00:00:52.100 --> 00:00:55.433
+The result is an engine file for that exact GPU.
+
+15
+00:00:56.633 --> 00:00:59.600
+Now the payoff, measured on the exoplanet CNN.
+
+16
+00:00:59.900 --> 00:01:02.467
+PyTorch eager takes twenty three milliseconds.
+
+17
+00:01:02.767 --> 00:01:04.867
+The FP sixteen engine takes four.
+
+18
+00:01:05.167 --> 00:01:11.367
+And INT eight takes two and a half milliseconds, with about zero point two percent accuracy loss.
+
+19
+00:01:12.567 --> 00:01:13.933
+Here are the two commands.
+
+20
+00:01:14.233 --> 00:01:18.100
+The first compiles the ONNX file into an engine, in half precision.
+
+21
+00:01:18.400 --> 00:01:20.767
+We fix the input shape the engine will serve.
+
+22
+00:01:21.067 --> 00:01:25.867
+The second command times a thousand runs and reports latency percentiles.
+
+23
+00:01:27.067 --> 00:01:28.400
+There is one big trade.
+
+24
+00:01:28.700 --> 00:01:35.713
+Engines are compiled per GPU model and input shape, so an A100 engine will not run on a T4.
+
+25
+00:01:35.713 --> 00:01:38.333
+Build it in CI on the serving GPU.
+
+26
+00:01:39.533 --> 00:01:40.545
+Let's recap.
+
+27
+00:01:40.545 --> 00:01:44.000
+TensorRT is a compiler for one exact GPU.
+
+28
+00:01:44.300 --> 00:01:47.600
+Fusion, tuning, and lower precision deliver the speed.
+
+29
+00:01:47.900 --> 00:01:50.867
+Our example went from twenty three milliseconds to four.
+
+30
+00:01:51.167 --> 00:01:57.381
+Remember the chain: ONNX, then Triton for plumbing, then TensorRT for per GPU speed.
+
+31
+00:01:57.381 --> 00:01:59.600
+Next up: speculative decoding.

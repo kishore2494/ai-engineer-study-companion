@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.267
+Speculative decoding.
+
+2
+00:00:02.567 --> 00:00:07.533
+A rare free lunch in serving: faster text with exactly the same output quality.
+
+3
+00:00:08.733 --> 00:00:12.200
+Language models generate one token per forward pass.
+
+4
+00:00:12.500 --> 00:00:14.900
+And each pass is memory bandwidth bound.
+
+5
+00:00:15.200 --> 00:00:18.757
+The GPU spends its time streaming weights, not computing.
+
+6
+00:00:18.757 --> 00:00:20.567
+That leaves slack to exploit.
+
+7
+00:00:21.767 --> 00:00:22.833
+Here is the trick.
+
+8
+00:00:23.133 --> 00:00:26.900
+A small, fast draft model proposes the next k tokens.
+
+9
+00:00:27.200 --> 00:00:31.231
+Then the big target model checks all k in a single forward pass.
+
+10
+00:00:31.231 --> 00:00:35.767
+The bandwidth is already paid, so this costs barely more than one token.
+
+11
+00:00:36.067 --> 00:00:39.633
+We keep the longest prefix the target agrees with, and repeat.
+
+12
+00:00:40.833 --> 00:00:42.000
+Let's see one round.
+
+13
+00:00:42.300 --> 00:00:44.222
+The draft proposes four tokens.
+
+14
+00:00:44.222 --> 00:00:48.067
+The target agrees with the first three, so all three are kept.
+
+15
+00:00:48.367 --> 00:00:49.988
+At the fourth, they disagree.
+
+16
+00:00:49.988 --> 00:00:53.900
+We take the target's own token, and the draft starts again from there.
+
+17
+00:00:55.100 --> 00:00:56.633
+Two facts to hold onto.
+
+18
+00:00:56.933 --> 00:01:03.628
+A clever acceptance rule makes the output distribution provably identical to the target model alone.
+
+19
+00:01:03.628 --> 00:01:04.833
+Zero quality loss.
+
+20
+00:01:05.133 --> 00:01:07.989
+And the speedup rides on the acceptance rate.
+
+21
+00:01:07.989 --> 00:01:11.733
+Formulaic text accepts seventy to eighty percent of drafts.
+
+22
+00:01:12.933 --> 00:01:15.433
+In vLLM it is one extra option.
+
+23
+00:01:15.733 --> 00:01:19.600
+The serve command stays the same, with a speculative config added.
+
+24
+00:01:19.900 --> 00:01:24.167
+We name a one billion parameter draft model and five tokens per round.
+
+25
+00:01:24.467 --> 00:01:30.833
+The logs then report an acceptance rate of zero point seven four, around two point four times faster.
+
+26
+00:01:32.033 --> 00:01:33.367
+Here is a real case.
+
+27
+00:01:33.667 --> 00:01:38.833
+Mission log summaries are formulaic, exactly what a small draft model predicts well.
+
+28
+00:01:39.133 --> 00:01:44.233
+Add a one billion draft: time per token drops from twenty four to ten milliseconds.
+
+29
+00:01:44.533 --> 00:01:48.168
+And the regression suite shows every eval score identical.
+
+30
+00:01:48.168 --> 00:01:49.233
+Verify it anyway.
+
+31
+00:01:50.433 --> 00:01:51.220
+Let's recap.
+
+32
+00:01:51.220 --> 00:01:54.367
+A draft model proposes, and the target verifies.
+
+33
+00:01:54.667 --> 00:01:57.233
+Keep the agreed prefix, and fix the first miss.
+
+34
+00:01:57.533 --> 00:02:00.567
+The output distribution stays exactly the same.
+
+35
+00:02:00.867 --> 00:02:03.687
+And the speedup follows the acceptance rate.
+
+36
+00:02:03.687 --> 00:02:05.033
+Next up: CUDA basics.

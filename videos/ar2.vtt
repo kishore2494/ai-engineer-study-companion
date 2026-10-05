@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.067
+The agent platform.
+
+2
+00:00:02.367 --> 00:00:06.404
+This is the system that differentiates teams in twenty twenty six.
+
+3
+00:00:06.404 --> 00:00:07.933
+Here is the core insight.
+
+4
+00:00:09.133 --> 00:00:10.967
+Say this out loud in an interview.
+
+5
+00:00:11.267 --> 00:00:14.333
+Deterministic code decides what happens next.
+
+6
+00:00:14.633 --> 00:00:17.967
+The model only makes the judgment calls inside that structure.
+
+7
+00:00:19.167 --> 00:00:20.900
+The runtime is a state graph.
+
+8
+00:00:21.200 --> 00:00:23.900
+Plan, act and reflect are explicit nodes.
+
+9
+00:00:24.200 --> 00:00:27.233
+Conditional edges decide whether to loop or finish.
+
+10
+00:00:27.533 --> 00:00:32.300
+A checkpointer saves state, so runs survive restarts and can pause for a human.
+
+11
+00:00:33.500 --> 00:00:35.533
+Around that core sit four shells.
+
+12
+00:00:35.833 --> 00:00:36.798
+First, tools.
+
+13
+00:00:36.798 --> 00:00:43.033
+Every internal system is wrapped once as an MCP server, reusable and testable alone.
+
+14
+00:00:43.333 --> 00:00:44.667
+Memory carries state.
+
+15
+00:00:44.967 --> 00:00:47.833
+Human gates require approval for risky actions.
+
+16
+00:00:48.133 --> 00:00:49.867
+And tracing logs every step.
+
+17
+00:00:51.067 --> 00:00:53.067
+Three more controls make it deployable.
+
+18
+00:00:53.367 --> 00:00:57.300
+Code runs only in a sandbox, with no production credentials.
+
+19
+00:00:57.600 --> 00:01:00.516
+Budget caps limit iterations, tokens and cost.
+
+20
+00:01:00.516 --> 00:01:04.067
+That is the difference between an agent and an incident.
+
+21
+00:01:04.367 --> 00:01:07.667
+And trajectory evals measure logged runs, not vibes.
+
+22
+00:01:08.867 --> 00:01:10.567
+Here is what interviewers probe.
+
+23
+00:01:10.867 --> 00:01:12.433
+Start with a single agent.
+
+24
+00:01:12.733 --> 00:01:18.200
+Split only when one context measurably fails, because coordination overhead is real.
+
+25
+00:01:18.500 --> 00:01:22.567
+Also remember: everything a tool returns is untrusted input.
+
+26
+00:01:22.567 --> 00:01:24.600
+That is the injection surface.
+
+27
+00:01:25.800 --> 00:01:27.433
+Consider failure recovery.
+
+28
+00:01:27.733 --> 00:01:30.367
+Retries with error feedback beat silent failure.
+
+29
+00:01:30.667 --> 00:01:32.800
+After a set number of failures, stop.
+
+30
+00:01:33.100 --> 00:01:36.733
+Then escalate to a human, with the full trajectory attached.
+
+31
+00:01:37.933 --> 00:01:38.712
+Let's recap.
+
+32
+00:01:38.712 --> 00:01:41.567
+Code owns the flow, the model owns judgment.
+
+33
+00:01:41.867 --> 00:01:44.033
+The core is a checkpointed state graph.
+
+34
+00:01:44.333 --> 00:01:48.800
+Wrap tools in MCP, sandbox execution, and cap budgets.
+
+35
+00:01:49.100 --> 00:01:52.130
+Start with one agent and gate risky actions.
+
+36
+00:01:52.130 --> 00:01:54.333
+Next up: Serving and Cost Stack.
