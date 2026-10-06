@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.900
+Safety, security, and governance.
+
+2
+00:00:03.200 --> 00:00:07.669
+Regulated industries pay a premium for engineers who speak this fluently.
+
+3
+00:00:07.669 --> 00:00:09.567
+Here are the first seven terms.
+
+4
+00:00:10.767 --> 00:00:15.933
+Prompt injection is the number one unsolved security problem of LLM apps.
+
+5
+00:00:16.233 --> 00:00:20.467
+Direct injection is when the user's input overrides your instructions.
+
+6
+00:00:20.767 --> 00:00:30.667
+Indirect injection hides malicious instructions in content the system processes, like a retrieved document, a webpage, or an email your agent reads.
+
+7
+00:00:30.967 --> 00:00:33.367
+So assume all retrieved text is hostile.
+
+8
+00:00:34.567 --> 00:00:38.933
+Jailbreaking means crafting inputs that bypass a model's safety training.
+
+9
+00:00:39.233 --> 00:00:43.800
+Common tricks include roleplay framing, encoding tricks, and many-shot attacks.
+
+10
+00:00:44.100 --> 00:00:45.418
+The defense is depth.
+
+11
+00:00:45.418 --> 00:00:47.300
+Never rely on the model alone.
+
+12
+00:00:48.500 --> 00:00:52.267
+System-prompt hardening means writing prompts that survive attack.
+
+13
+00:00:52.567 --> 00:00:54.200
+Set clear precedence rules.
+
+14
+00:00:54.500 --> 00:00:56.300
+Include refusal instructions.
+
+15
+00:00:56.600 --> 00:00:59.067
+Put delimiters around untrusted content.
+
+16
+00:00:59.367 --> 00:01:02.467
+And never put secrets in the prompt, because it can be leaked.
+
+17
+00:01:03.667 --> 00:01:07.767
+Guardrails are programmatic input and output checks around the model.
+
+18
+00:01:08.067 --> 00:01:10.533
+At the center is the probabilistic model.
+
+19
+00:01:10.833 --> 00:01:18.233
+Around it sits a deterministic shell: topic filters, PII scrubbing, schema validation, and toxicity screens.
+
+20
+00:01:19.433 --> 00:01:21.167
+These are the guardrail toolkits.
+
+21
+00:01:21.467 --> 00:01:24.833
+NVIDIA NeMo uses dialog rails written in Colang.
+
+22
+00:01:25.133 --> 00:01:27.567
+Guardrails AI offers a validator hub.
+
+23
+00:01:27.867 --> 00:01:31.167
+LLM Guard provides input and output scanners.
+
+24
+00:01:31.467 --> 00:01:35.567
+And Lakera is managed injection detection, of Gandalf game fame.
+
+25
+00:01:36.767 --> 00:01:41.633
+Red teaming means systematically attacking your own system before adversaries do.
+
+26
+00:01:41.933 --> 00:01:45.733
+You try injections, jailbreaks, and data extraction attempts.
+
+27
+00:01:46.033 --> 00:01:51.100
+The deliverable is a findings report, plus a regression test for every hole you found.
+
+28
+00:01:52.300 --> 00:01:55.567
+PII detection finds and masks personal data.
+
+29
+00:01:55.867 --> 00:02:01.333
+That means names, phone numbers, and IDs like Aadhaar or social security numbers.
+
+30
+00:02:01.633 --> 00:02:05.169
+It happens before the data reaches the model or the logs.
+
+31
+00:02:05.169 --> 00:02:11.000
+Presidio is the standard open source tool, and it is a hard requirement in fintech and health.
+
+32
+00:02:12.200 --> 00:02:13.022
+Let's recap.
+
+33
+00:02:13.022 --> 00:02:18.300
+Prompt injection is the biggest unsolved problem, so trust no retrieved text.
+
+34
+00:02:18.600 --> 00:02:21.633
+Harden prompts, but layer guardrails around the model.
+
+35
+00:02:21.933 --> 00:02:24.667
+Red team your system and keep regression tests.
+
+36
+00:02:24.967 --> 00:02:28.733
+And mask personal data before it reaches the model or the logs.
