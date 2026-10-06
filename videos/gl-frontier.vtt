@@ -53,85 +53,85 @@ That's what makes real-time image generation possible.
 Voice AI is moving to speech-to-speech.
 
 14
-00:00:56.500 --> 00:01:07.533
+00:00:56.500 --> 00:01:06.833
 Native audio-in, audio-out models, like GPT-4o realtime and Gemini Live, replace the clunky speech to text, LLM, text to speech chain.
 
 15
-00:01:07.833 --> 00:01:14.800
+00:01:07.133 --> 00:01:14.100
 They enable real-time voice agents that handle interruptions, and they're exploding commercially in support and sales.
 
 16
-00:01:16.000 --> 00:01:20.533
+00:01:15.300 --> 00:01:19.833
 Video understanding means vision language models that take video directly.
 
 17
-00:01:20.833 --> 00:01:24.700
+00:01:20.133 --> 00:01:24.000
 Gemini-class models can hold hour-long video in context.
 
 18
-00:01:25.000 --> 00:01:29.200
+00:01:24.300 --> 00:01:28.500
 Use cases include surveillance, sports, and field-service inspection.
 
 19
-00:01:30.400 --> 00:01:33.500
+00:01:29.700 --> 00:01:32.800
 Edge AI runs small models on phones and laptops.
 
 20
-00:01:33.800 --> 00:01:41.170
+00:01:33.100 --> 00:01:40.470
 Think Phi, Gemma, or Qwen at half a billion to three billion parameters, via GGUF and llama.
 
 21
-00:01:41.170 --> 00:01:44.133
+00:01:40.470 --> 00:01:43.433
 cpp, or Apple and Android NPU stacks.
 
 22
-00:01:44.433 --> 00:01:46.767
+00:01:43.733 --> 00:01:46.067
 You gain privacy and lower latency.
 
 23
-00:01:47.067 --> 00:01:48.967
+00:01:46.367 --> 00:01:48.267
 And there's zero API cost.
 
 24
-00:01:50.167 --> 00:01:53.000
+00:01:49.467 --> 00:01:52.300
 World models learn how an environment behaves.
 
 25
-00:01:53.300 --> 00:01:55.067
+00:01:52.600 --> 00:01:54.367
 They predict what happens next.
 
 26
-00:01:55.367 --> 00:02:01.567
+00:01:54.667 --> 00:02:00.867
 It's the research bet, with Genie-class models and robotics, on how agents get real planning ability.
 
 27
-00:02:02.767 --> 00:02:07.700
+00:02:02.067 --> 00:02:07.000
 Small language models are the under ten billion parameter class, chosen on purpose.
 
 28
-00:02:08.000 --> 00:02:13.867
+00:02:07.300 --> 00:02:13.167
 Fine-tuned specialists beat giant generalists on narrow tasks, at about one percent of the cost.
 
 29
-00:02:14.167 --> 00:02:17.067
+00:02:13.467 --> 00:02:16.367
 That's the economic argument behind fine-tuning.
 
 30
-00:02:18.267 --> 00:02:19.075
+00:02:17.567 --> 00:02:18.375
 Let's recap.
 
 31
-00:02:19.075 --> 00:02:25.067
+00:02:18.375 --> 00:02:24.367
 Image and video generation is moving to transformers, flow matching, and few-step models.
 
 32
-00:02:25.367 --> 00:02:27.367
+00:02:24.667 --> 00:02:26.667
 Voice and video are going native.
 
 33
-00:02:27.667 --> 00:02:30.800
+00:02:26.967 --> 00:02:30.100
 Edge AI and small models cut cost and latency.
 
 34
-00:02:31.100 --> 00:02:33.800
+00:02:30.400 --> 00:02:33.100
 And world models are the research bet on planning.

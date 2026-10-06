@@ -101,41 +101,41 @@ ResNet-18 is a fraction of the size.
 Here's how this plays out in a real review.
 
 26
-00:01:29.567 --> 00:01:36.933
+00:01:29.567 --> 00:01:36.667
 A vendor proposes a VGG-16 classifier for your edge server, which has only two gigabytes of RAM.
 
 27
-00:01:37.233 --> 00:01:42.600
+00:01:36.967 --> 00:01:42.333
 You run the count: about five hundred twenty eight megabytes of weights, before activations.
 
 28
-00:01:42.900 --> 00:01:45.910
+00:01:42.633 --> 00:01:45.643
 You counter with ResNet-18 or EfficientNet.
 
 29
-00:01:45.910 --> 00:01:47.800
+00:01:45.643 --> 00:01:47.533
 The numbers end the debate.
 
 30
-00:01:49.000 --> 00:01:49.768
+00:01:48.733 --> 00:01:49.502
 Let's recap.
 
 31
-00:01:49.768 --> 00:01:54.633
+00:01:49.502 --> 00:01:54.367
 Stack uniform three by three convolutions, doubling channels as size halves.
 
 32
-00:01:54.933 --> 00:01:58.133
+00:01:54.667 --> 00:01:57.867
 Small stacks match big filters with fewer parameters.
 
 33
-00:01:58.433 --> 00:02:01.500
+00:01:58.167 --> 00:02:01.233
 But the dense head holds most of VGG's weight.
 
 34
-00:02:01.800 --> 00:02:05.282
+00:02:01.533 --> 00:02:05.015
 So it lives on as a baseline, not a deployment choice.
 
 35
-00:02:05.282 --> 00:02:06.700
+00:02:05.015 --> 00:02:06.433
 Next up: EfficientNet.

@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.900
+Complete coverage index, part one.
+
+2
+00:00:03.200 --> 00:00:08.567
+Here's the long tail of vocabulary, one line each, so no term catches you off guard.
+
+3
+00:00:09.767 --> 00:00:11.777
+Models come with type labels.
+
+4
+00:00:11.777 --> 00:00:16.353
+A foundation model is raw and pretrained, and just completes text.
+
+5
+00:00:16.353 --> 00:00:21.900
+Instruct models follow instructions, and chat models handle multi-turn dialogue.
+
+6
+00:00:22.200 --> 00:00:27.333
+Code models specialize in code, and reasoning models are trained to think before answering.
+
+7
+00:00:27.633 --> 00:00:32.233
+Embedding and reranker models output vectors and relevance scores, not text.
+
+8
+00:00:33.433 --> 00:00:40.838
+You'll see concrete releases in job descriptions, like GPT-4o and o3, Claude 3.
+
+9
+00:00:40.838 --> 00:00:42.619
+5 Sonnet, Gemini 1.
+
+10
+00:00:42.619 --> 00:00:46.181
+5 Pro, Llama 3 and 4, Mixtral, Qwen 2.
+
+11
+00:00:46.181 --> 00:00:47.400
+5, and Phi-4.
+
+12
+00:00:47.700 --> 00:00:51.533
+Version numbers move fast, so learn the families, not the numbers.
+
+13
+00:00:52.733 --> 00:00:57.933
+Layer normalization normalizes activations across features, within each token.
+
+14
+00:00:58.233 --> 00:01:04.267
+That keeps training stable, and modern transformers apply it before each attention and feed-forward block.
+
+15
+00:01:04.567 --> 00:01:08.500
+RMSNorm is the cheaper variant that LLMs now use.
+
+16
+00:01:09.700 --> 00:01:13.567
+Sparse attention restricts which positions can attend to each other.
+
+17
+00:01:13.867 --> 00:01:21.133
+Instead of all pairs, it uses a subset, with strided, local, or block patterns, which reduces the quadratic cost.
+
+18
+00:01:21.433 --> 00:01:24.567
+Sliding-window attention is the best-known example.
+
+19
+00:01:25.767 --> 00:01:30.867
+Speech to text is Whisper-class transcription, and text to speech is voice synthesis.
+
+20
+00:01:31.167 --> 00:01:38.400
+Flow-based models are invertible generative models with exact likelihoods, the ancestor of today's flow matching.
+
+21
+00:01:39.600 --> 00:01:42.033
+Five prompting techniques from the long tail.
+
+22
+00:01:42.333 --> 00:01:46.800
+Tree of Thoughts and Graph of Thoughts branch and evaluate several reasoning paths.
+
+23
+00:01:47.100 --> 00:01:50.233
+Plan-and-Solve plans first, then executes the plan.
+
+24
+00:01:50.533 --> 00:01:54.933
+Generated Knowledge has the model state relevant facts before answering.
+
+25
+00:01:55.233 --> 00:01:59.900
+APE uses an LLM to generate and select prompts automatically.
+
+26
+00:02:00.200 --> 00:02:04.200
+And Directional Stimulus injects hint keywords to steer generation.
+
+27
+00:02:05.400 --> 00:02:08.200
+These are sampling knobs that reduce repetition.
+
+28
+00:02:08.500 --> 00:02:16.567
+The frequency penalty scales tokens down by how often they've appeared, while the presence penalty penalizes any token that appeared at all.
+
+29
+00:02:16.867 --> 00:02:19.067
+They help on long generations that loop.
+
+30
+00:02:20.267 --> 00:02:22.267
+Three tools for reliable output.
+
+31
+00:02:22.567 --> 00:02:27.467
+Schema forcing constrains generation so output must match a JSON schema.
+
+32
+00:02:27.767 --> 00:02:33.733
+Output parsing converts the text into typed objects, like Pydantic, with retry on failure.
+
+33
+00:02:34.033 --> 00:02:39.100
+System-prompt hardening writes the prompt defensively, a mitigation, never a boundary.
+
+34
+00:02:40.300 --> 00:02:42.200
+And the long tail of RAG variants.
+
+35
+00:02:42.500 --> 00:02:42.953
+RAG 2.
+
+36
+00:02:42.953 --> 00:02:49.300
+0 optimizes retrieval and generation end to end, rather than bolting parts together.
+
+37
+00:02:49.600 --> 00:02:52.567
+Hybrid RAG combines dense and sparse retrieval.
+
+38
+00:02:52.867 --> 00:02:56.267
+Multi-modal RAG retrieves images and tables too.
+
+39
+00:02:56.567 --> 00:03:00.000
+Multi-vector RAG keeps several embeddings per document.
+
+40
+00:03:00.300 --> 00:03:04.767
+Long-context RAG retrieves, then feeds very large context windows.
+
+41
+00:03:05.967 --> 00:03:06.676
+Let's recap.
+
+42
+00:03:06.676 --> 00:03:10.933
+Know the model type labels, and learn the families, not version numbers.
+
+43
+00:03:11.233 --> 00:03:15.267
+Layer norm and sparse attention keep transformers stable and cheaper.
+
+44
+00:03:15.567 --> 00:03:19.033
+Sampling penalties and schema forcing control the output.
+
+45
+00:03:19.333 --> 00:03:22.967
+And RAG variants are combinations of the same building blocks.

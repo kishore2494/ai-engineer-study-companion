@@ -69,65 +69,65 @@ Low temperature makes the output nearly deterministic.
 High temperature makes it varied, even chaotic.
 
 18
-00:01:01.000 --> 00:01:03.633
+00:01:01.000 --> 00:01:03.433
 Here is that loop with GPT-2.
 
 19
-00:01:03.933 --> 00:01:07.133
+00:01:03.733 --> 00:01:06.933
 We run the model and keep the scores for the last position.
 
 20
-00:01:07.433 --> 00:01:10.100
+00:01:07.233 --> 00:01:09.900
 We divide by the temperature before softmax.
 
 21
-00:01:10.400 --> 00:01:13.833
+00:01:10.200 --> 00:01:13.633
 We sample a token rather than always taking the top one.
 
 22
-00:01:14.133 --> 00:01:16.133
+00:01:13.933 --> 00:01:15.933
 Then we append it and go around again.
 
 23
-00:01:17.333 --> 00:01:19.233
+00:01:17.133 --> 00:01:19.033
 These numbers matter in production.
 
 24
-00:01:19.533 --> 00:01:24.167
+00:01:19.333 --> 00:01:23.967
 A retrieval system uses temperature zero point one for factual answers.
 
 25
-00:01:24.467 --> 00:01:28.300
+00:01:24.267 --> 00:01:28.100
 A research agent uses zero point seven when brainstorming.
 
 26
-00:01:28.600 --> 00:01:31.232
+00:01:28.400 --> 00:01:31.032
 Both tune the sampling step you just wrote.
 
 27
-00:01:31.232 --> 00:01:34.967
+00:01:31.032 --> 00:01:34.767
 Temperature stops being folklore; it is a division on logits.
 
 28
-00:01:36.167 --> 00:01:37.057
+00:01:35.967 --> 00:01:36.857
 Let's recap.
 
 29
-00:01:37.057 --> 00:01:39.133
+00:01:36.857 --> 00:01:38.933
 GPT predicts the next token.
 
 30
-00:01:39.433 --> 00:01:41.433
+00:01:39.233 --> 00:01:41.233
 Scale makes capabilities emerge.
 
 31
-00:01:41.733 --> 00:01:44.533
+00:01:41.533 --> 00:01:44.333
 The loop is predict, sample, append, repeat.
 
 32
-00:01:44.833 --> 00:01:47.493
+00:01:44.633 --> 00:01:47.293
 And temperature lives in the sample step.
 
 33
-00:01:47.493 --> 00:01:48.467
+00:01:47.293 --> 00:01:48.267
 Next up: LLaMA.
