@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.367
+More agent world extras.
+
+2
+00:00:02.667 --> 00:00:06.833
+Eight terms about operating, remembering, building, and naming agents.
+
+3
+00:00:08.033 --> 00:00:12.984
+AgentOps is the emerging ops discipline for monitoring agents in production.
+
+4
+00:00:12.984 --> 00:00:15.133
+It is also the name of a product.
+
+5
+00:00:15.433 --> 00:00:19.467
+It tracks trajectories, tool failure rates, cost per task, and drift.
+
+6
+00:00:19.767 --> 00:00:22.767
+Think of it as your agent metrics, operationalized.
+
+7
+00:00:23.967 --> 00:00:29.500
+Working memory, or a scratchpad, holds the agent's temporary reasoning state within a task.
+
+8
+00:00:29.800 --> 00:00:32.600
+That means notes, intermediate results, and plans.
+
+9
+00:00:32.900 --> 00:00:39.233
+It is distinct from short and long-term memory, and is often literally a scratchpad file or a state field.
+
+10
+00:00:40.433 --> 00:00:44.200
+The swarm pattern is a decentralized multi-agent design.
+
+11
+00:00:44.500 --> 00:00:48.367
+Hierarchical designs have a supervisor directing the agents.
+
+12
+00:00:48.667 --> 00:00:50.809
+In a swarm there is no supervisor.
+
+13
+00:00:50.809 --> 00:00:53.267
+Agents hand off directly to each other.
+
+14
+00:00:54.467 --> 00:00:57.533
+Semantic memory is the facts I know memory type.
+
+15
+00:00:57.833 --> 00:01:03.800
+It holds stable knowledge about the user and the world, and it is the store behind long-term memory.
+
+16
+00:01:04.100 --> 00:01:07.067
+Episodic memory, by contrast, is what happened.
+
+17
+00:01:07.367 --> 00:01:12.333
+Together with working memory, this trio is the standard agent-memory vocabulary.
+
+18
+00:01:13.533 --> 00:01:17.600
+The Assistants API is OpenAI's hosted agent runtime.
+
+19
+00:01:17.900 --> 00:01:22.200
+Threads, file search, and the code interpreter are all managed server-side.
+
+20
+00:01:22.500 --> 00:01:30.067
+It is being superseded by the Responses API and the Agents SDK, but you will still find it in many codebases.
+
+21
+00:01:31.267 --> 00:01:38.633
+Langflow, Flowise, Dify, and n8n are low-code and visual builders for LLM workflows and automations.
+
+22
+00:01:38.933 --> 00:01:42.333
+They are great for fast proofs of concept and internal tools.
+
+23
+00:01:42.633 --> 00:01:47.200
+Engineers should know them, know their ceilings, and know when to graduate to code.
+
+24
+00:01:48.400 --> 00:01:53.500
+These are the 2022 and 2023 ancestors of today's agents.
+
+25
+00:01:53.800 --> 00:01:58.533
+AutoGPT and BabyAGI popularized autonomous loops.
+
+26
+00:01:58.833 --> 00:02:01.033
+Toolformer taught models to call tools.
+
+27
+00:02:01.333 --> 00:02:03.833
+And MRKL sketched a router over experts.
+
+28
+00:02:03.833 --> 00:02:06.833
+They coined the patterns you now build properly.
+
+29
+00:02:08.033 --> 00:02:12.400
+An AI gateway is the proxy layer all LLM traffic flows through.
+
+30
+00:02:12.700 --> 00:02:14.533
+Your apps send every request to it.
+
+31
+00:02:14.833 --> 00:02:21.433
+It handles routing, fallbacks, rate limits, budgets, and tracing in one place, before reaching the providers.
+
+32
+00:02:21.733 --> 00:02:26.033
+The names are LiteLLM proxy, Portkey, and Kong AI gateway.
+
+33
+00:02:27.233 --> 00:02:28.057
+Let's recap.
+
+34
+00:02:28.057 --> 00:02:30.733
+AgentOps monitors agents in production.
+
+35
+00:02:31.033 --> 00:02:34.533
+Know the memory types: semantic, episodic, and working.
+
+36
+00:02:34.833 --> 00:02:38.533
+Swarms have no supervisor, and low-code builders have ceilings.
+
+37
+00:02:38.833 --> 00:02:42.767
+And an AI gateway centralizes routing, budgets, and tracing.

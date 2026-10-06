@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Agent world extras.
+
+2
+00:00:02.500 --> 00:00:07.167
+Nine frameworks and capabilities you will keep running into around the agent stack.
+
+3
+00:00:08.367 --> 00:00:11.800
+LlamaIndex is the data framework counterpart to LangChain.
+
+4
+00:00:12.100 --> 00:00:19.633
+It is strongest at ingestion, indexing, and query engines over your documents, though it has agents and workflows too.
+
+5
+00:00:19.933 --> 00:00:23.300
+You will see it named very often in RAG job descriptions.
+
+6
+00:00:24.500 --> 00:00:29.633
+Haystack comes from deepset, a production-oriented pipeline framework for search and RAG.
+
+7
+00:00:29.933 --> 00:00:31.500
+You start with your documents.
+
+8
+00:00:31.800 --> 00:00:34.433
+They flow through explicit, typed pipelines.
+
+9
+00:00:34.733 --> 00:00:37.763
+And the result is search or RAG in production.
+
+10
+00:00:37.763 --> 00:00:40.267
+It is popular in European enterprises.
+
+11
+00:00:41.467 --> 00:00:45.833
+Semantic Kernel is Microsoft's agent and orchestration SDK.
+
+12
+00:00:46.133 --> 00:00:50.200
+It targets the dot net and enterprise world, with Python support too.
+
+13
+00:00:50.500 --> 00:00:54.100
+If the employer is a Microsoft shop, this is their LangChain.
+
+14
+00:00:55.300 --> 00:00:59.167
+DSPy is the Stanford framework for programming, not prompting.
+
+15
+00:00:59.467 --> 00:01:01.933
+You declare typed modules, plus metrics.
+
+16
+00:01:02.233 --> 00:01:06.467
+Its optimizers then compile the prompts and few-shot examples for you.
+
+17
+00:01:06.767 --> 00:01:09.900
+It is the strongest answer to hand-tweaked prompt spaghetti.
+
+18
+00:01:11.100 --> 00:01:12.800
+These are structured-output tools.
+
+19
+00:01:13.100 --> 00:01:20.500
+Instructor patches LLM clients so they return validated Pydantic models, retrying when validation fails.
+
+20
+00:01:20.800 --> 00:01:28.367
+Outlines and Guidance go deeper and constrain decoding itself, so the output simply cannot break the schema or grammar.
+
+21
+00:01:29.567 --> 00:01:34.467
+OpenAI Swarm is a minimal, educational multi-agent library.
+
+22
+00:01:34.767 --> 00:01:37.067
+It is built from just agents and handoffs.
+
+23
+00:01:37.367 --> 00:01:42.600
+It is the precursor that grew into the Agents SDK, and it appears in older tutorials.
+
+24
+00:01:43.800 --> 00:01:48.033
+Computer use means a model operating a real graphical interface.
+
+25
+00:01:48.333 --> 00:01:51.667
+It looks at a screenshot, moves the cursor, clicks, and types.
+
+26
+00:01:51.967 --> 00:01:56.767
+Anthropic shipped it first, and it is the frontier of an agent doing your actual work.
+
+27
+00:01:57.967 --> 00:02:00.099
+Browser agents drive a web browser.
+
+28
+00:02:00.099 --> 00:02:03.633
+They navigate, read the page structure, and fill in forms.
+
+29
+00:02:03.933 --> 00:02:09.167
+Examples include browser-use, Playwright-based stacks, and OpenAI Operator.
+
+30
+00:02:09.467 --> 00:02:12.667
+Think of them as the practical subset of computer use.
+
+31
+00:02:13.867 --> 00:02:17.033
+A code interpreter lets the agent write and run code.
+
+32
+00:02:17.333 --> 00:02:25.867
+That sits on top of an isolated sandbox, such as Docker, gVisor, or Firecracker, or a service like E2B or Modal.
+
+33
+00:02:26.167 --> 00:02:32.000
+It is the most powerful tool you can hand an agent, and that is why sandboxing is non-negotiable.
+
+34
+00:02:33.200 --> 00:02:33.972
+Let's recap.
+
+35
+00:02:33.972 --> 00:02:38.800
+LlamaIndex, Haystack, Semantic Kernel, and DSPy are the frameworks to know.
+
+36
+00:02:39.100 --> 00:02:42.767
+Instructor, Outlines, and Guidance give you structured output.
+
+37
+00:02:43.067 --> 00:02:47.000
+Computer use and browser agents act on real interfaces.
+
+38
+00:02:47.300 --> 00:02:49.933
+And whenever an agent runs code, sandbox it.

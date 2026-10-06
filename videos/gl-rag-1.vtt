@@ -1,0 +1,233 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.833
+Advanced RAG.
+
+2
+00:00:02.133 --> 00:00:08.200
+Here are eleven terms that separate someone who built a demo from someone who designed the retrieval system.
+
+3
+00:00:09.400 --> 00:00:15.100
+Agentic RAG puts an agent in charge, instead of one fixed retrieve then generate pass.
+
+4
+00:00:15.400 --> 00:00:16.733
+A question comes in.
+
+5
+00:00:17.033 --> 00:00:23.133
+The agent decides when to retrieve and what to look for, reformulating queries or choosing sources.
+
+6
+00:00:23.433 --> 00:00:27.200
+It can retrieve again and again, iteratively, until it has enough.
+
+7
+00:00:27.500 --> 00:00:28.462
+Then it answers.
+
+8
+00:00:28.462 --> 00:00:30.567
+This is where RAG and agents merge.
+
+9
+00:00:31.767 --> 00:00:36.633
+Self-RAG lets the model grade its own work, using special reflection tokens.
+
+10
+00:00:36.933 --> 00:00:42.600
+It asks itself whether a retrieved chunk was relevant, and whether its answer is actually supported.
+
+11
+00:00:42.900 --> 00:00:44.048
+If not, it retries.
+
+12
+00:00:44.048 --> 00:00:47.433
+That makes it a blueprint for self-correcting pipelines.
+
+13
+00:00:48.633 --> 00:00:51.967
+Corrective RAG adds a quality check before generation.
+
+14
+00:00:52.267 --> 00:00:53.767
+First we retrieve chunks.
+
+15
+00:00:54.067 --> 00:00:56.000
+A lightweight evaluator grades them.
+
+16
+00:00:56.300 --> 00:01:00.467
+If the retrieval is poor, we fall back to a web search or a query rewrite.
+
+17
+00:01:00.767 --> 00:01:01.773
+Then we generate.
+
+18
+00:01:01.773 --> 00:01:04.200
+It is cheap insurance against garbage in.
+
+19
+00:01:05.400 --> 00:01:07.900
+Adaptive RAG routes by query complexity.
+
+20
+00:01:08.200 --> 00:01:12.367
+Every question starts the same way, with a quick judgment of how hard it is.
+
+21
+00:01:12.667 --> 00:01:15.283
+Simple questions are answered directly.
+
+22
+00:01:15.283 --> 00:01:18.167
+Hard ones get full retrieval, or multi-hop.
+
+23
+00:01:18.467 --> 00:01:22.000
+That saves latency and tokens on the easy eighty percent.
+
+24
+00:01:23.200 --> 00:01:26.967
+RAG-Fusion, also called multi-query, works in three steps.
+
+25
+00:01:27.267 --> 00:01:30.667
+First, generate several reformulations of the user query.
+
+26
+00:01:30.967 --> 00:01:32.500
+Then retrieve for each one.
+
+27
+00:01:32.800 --> 00:01:36.377
+Finally, fuse the ranked lists with reciprocal rank fusion.
+
+28
+00:01:36.377 --> 00:01:39.833
+It catches documents that any single phrasing would miss.
+
+29
+00:01:41.033 --> 00:01:44.000
+Contextual compression filters after retrieval.
+
+30
+00:01:44.300 --> 00:01:48.067
+Normally, every whole chunk goes into the prompt, noise and all.
+
+31
+00:01:48.367 --> 00:01:54.400
+Here we trim each chunk down to only its relevant sentences, so there are fewer tokens and less noise.
+
+32
+00:01:54.700 --> 00:01:56.567
+The payoff is better faithfulness.
+
+33
+00:01:57.767 --> 00:02:03.167
+Contextual retrieval is Anthropic's technique for chunks that lose their meaning on their own.
+
+34
+00:02:03.467 --> 00:02:09.600
+Before embedding, an LLM writes a one-line note on where the chunk fits in the document, and we prepend it.
+
+35
+00:02:09.900 --> 00:02:14.833
+It costs one cheap pass at index time, and brings big retrieval accuracy gains.
+
+36
+00:02:16.033 --> 00:02:19.667
+A normal bi-encoder squeezes a whole text into one vector.
+
+37
+00:02:19.967 --> 00:02:25.194
+ColBERT embeds every token instead, and matches token to token at query time.
+
+38
+00:02:25.194 --> 00:02:27.367
+That is called late interaction.
+
+39
+00:02:27.667 --> 00:02:32.484
+The result is bi-encoder speed approaching cross-encoder quality.
+
+40
+00:02:32.484 --> 00:02:35.300
+ColBERTv2 and PLAID made it practical.
+
+41
+00:02:36.500 --> 00:02:40.333
+SPLADE produces learned sparse vectors over the vocabulary.
+
+42
+00:02:40.633 --> 00:02:45.733
+You get the exactness of BM25, keyword style, but with neural smarts.
+
+43
+00:02:46.033 --> 00:02:52.933
+BGE-M3 outputs dense and sparse together, which makes it a key ingredient of modern hybrid search.
+
+44
+00:02:54.133 --> 00:02:57.400
+Matryoshka embeddings are named after nesting dolls.
+
+45
+00:02:57.700 --> 00:03:01.000
+They are trained so the full vector still works for reranking.
+
+46
+00:03:01.300 --> 00:03:09.510
+And a truncated prefix, say the first two hundred fifty six dimensions, works too, so you can store short vectors cheaply.
+
+47
+00:03:09.510 --> 00:03:12.067
+OpenAI text-embedding-3 supports this.
+
+48
+00:03:13.267 --> 00:03:16.833
+Embedding model families are mostly names to recognize.
+
+49
+00:03:17.133 --> 00:03:19.067
+OpenAI text-embedding-3.
+
+50
+00:03:19.367 --> 00:03:20.867
+BAAI BGE.
+
+51
+00:03:21.167 --> 00:03:22.633
+E5 and GTE.
+
+52
+00:03:22.933 --> 00:03:25.988
+And Jina, Voyage, Cohere Embed, and Nomic.
+
+53
+00:03:25.988 --> 00:03:30.133
+Check the MTEB leaderboard, then verify on your own data.
+
+54
+00:03:31.333 --> 00:03:32.154
+Let's recap.
+
+55
+00:03:32.154 --> 00:03:36.733
+Agentic, Self, Corrective, and Adaptive RAG make retrieval smarter.
+
+56
+00:03:37.033 --> 00:03:41.967
+Fusion, compression, and contextual retrieval put better chunks in front of the model.
+
+57
+00:03:42.267 --> 00:03:45.133
+ColBERT and SPLADE give richer ways to match.
+
+58
+00:03:45.433 --> 00:03:50.833
+And Matryoshka embeddings and the model families help you choose and store embeddings wisely.

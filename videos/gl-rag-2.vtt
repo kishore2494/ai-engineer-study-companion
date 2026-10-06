@@ -1,0 +1,193 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.367
+Advanced RAG, part two.
+
+2
+00:00:02.667 --> 00:00:07.100
+Ten more terms, from parsing messy documents to the long-context debate.
+
+3
+00:00:08.300 --> 00:00:11.833
+Unstructured and LlamaParse are document parsing tools.
+
+4
+00:00:12.133 --> 00:00:15.700
+They take a messy PDF, with tables, columns, and scans,
+
+5
+00:00:16.000 --> 00:00:17.233
+run it through a parser,
+
+6
+00:00:17.533 --> 00:00:21.020
+and give you clean structured text, ready for chunking.
+
+7
+00:00:21.020 --> 00:00:27.233
+Parsing quality caps RAG quality, so legaltech and fintech job descriptions name these explicitly.
+
+8
+00:00:28.433 --> 00:00:34.433
+In agentic chunking, an LLM reads the document and decides where the chunks begin and end.
+
+9
+00:00:34.733 --> 00:00:38.867
+It groups by proposition or topic, rather than counting characters.
+
+10
+00:00:39.167 --> 00:00:43.400
+It is expensive, so use it where retrieval precision is worth the cost.
+
+11
+00:00:44.600 --> 00:00:45.933
+These two go together.
+
+12
+00:00:46.233 --> 00:00:50.720
+Groundedness means every claim can be traced back to the retrieved context.
+
+13
+00:00:50.720 --> 00:00:52.933
+It is the metric behind faithfulness.
+
+14
+00:00:53.233 --> 00:01:00.467
+Citations make the model attribute each statement to its source chunk, and enterprise RAG treats them as table stakes.
+
+15
+00:01:01.667 --> 00:01:04.133
+Three ranking metrics for retrieval evals.
+
+16
+00:01:04.433 --> 00:01:07.900
+Hit rate asks: did the right document appear in the top k?
+
+17
+00:01:08.200 --> 00:01:11.800
+MRR asks: how high did the first right document rank?
+
+18
+00:01:12.100 --> 00:01:15.967
+And NDCG scores graded relevance across the whole list.
+
+19
+00:01:17.167 --> 00:01:20.567
+LanceDB is an embedded, serverless vector database.
+
+20
+00:01:20.867 --> 00:01:28.100
+It sits on a columnar format, a bit like DuckDB for vectors, so you get fast local RAG without running a server.
+
+21
+00:01:28.400 --> 00:01:30.733
+It joins the vector stores you learned earlier.
+
+22
+00:01:31.933 --> 00:01:36.100
+Elasticsearch, OpenSearch, and Vespa are the classic search engines.
+
+23
+00:01:36.400 --> 00:01:38.133
+All of them support vectors now.
+
+24
+00:01:38.433 --> 00:01:45.933
+So if a company already runs Elastic, its hybrid search often lives there, instead of in a dedicated vector database.
+
+25
+00:01:47.133 --> 00:01:50.367
+This is the two-stage retrieval design in one line.
+
+26
+00:01:50.667 --> 00:01:54.206
+A bi-encoder embeds the query and document separately.
+
+27
+00:01:54.206 --> 00:01:56.500
+It is fast, so it powers retrieval.
+
+28
+00:01:56.800 --> 00:01:59.099
+A cross-encoder reads them together.
+
+29
+00:01:59.099 --> 00:02:02.100
+It is slow but precise, so it powers reranking.
+
+30
+00:02:03.300 --> 00:02:08.633
+Here is more approximate nearest neighbor machinery, beyond HNSW and IVF.
+
+31
+00:02:08.933 --> 00:02:13.567
+Product quantization compresses vectors into short codes, which saves memory.
+
+32
+00:02:13.867 --> 00:02:18.967
+Annoy, from Spotify, and ScaNN, from Google, are alternative libraries to FAISS.
+
+33
+00:02:20.167 --> 00:02:25.433
+Multimodal RAG retrieves over images, tables, and diagrams, not just text.
+
+34
+00:02:25.733 --> 00:02:27.867
+Start with the figures in your documents.
+
+35
+00:02:28.167 --> 00:02:30.533
+One route is CLIP-style shared embeddings.
+
+36
+00:02:30.833 --> 00:02:35.167
+The other is a vision language model that describes each visual as text.
+
+37
+00:02:35.467 --> 00:02:37.662
+Either way, it ends up in the index.
+
+38
+00:02:37.662 --> 00:02:40.833
+That is how you do RAG over manuals full of figures.
+
+39
+00:02:42.033 --> 00:02:45.600
+The perennial debate: do million-token windows kill retrieval?
+
+40
+00:02:45.900 --> 00:02:46.097
+No.
+
+41
+00:02:46.097 --> 00:02:50.367
+Cost, latency, and the lost in the middle problem keep RAG alive.
+
+42
+00:02:50.667 --> 00:02:55.467
+The practical answer is both: retrieve, then give the model generous context.
+
+43
+00:02:56.667 --> 00:02:57.476
+Let's recap.
+
+44
+00:02:57.476 --> 00:02:59.700
+Parsing quality caps RAG quality.
+
+45
+00:03:00.000 --> 00:03:05.100
+Measure retrieval with hit rate, MRR, and NDCG, and check groundedness.
+
+46
+00:03:05.400 --> 00:03:08.433
+Bi-encoders retrieve and cross-encoders rerank.
+
+47
+00:03:08.733 --> 00:03:13.200
+LanceDB, Elastic, and the ANN libraries are where it all lives.
+
+48
+00:03:13.500 --> 00:03:16.100
+And long context and RAG work best together.
