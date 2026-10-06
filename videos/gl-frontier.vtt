@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.167
+The frontier watchlist.
+
+2
+00:00:02.467 --> 00:00:07.167
+One idea each on what's cresting, enough to nod along and know what to look up.
+
+3
+00:00:08.367 --> 00:00:11.967
+Diffusion transformers swap the U-Net for a transformer.
+
+4
+00:00:12.267 --> 00:00:16.200
+The transformer becomes the denoising backbone inside diffusion.
+
+5
+00:00:16.500 --> 00:00:22.200
+It's the architecture behind Sora-class video and SD3 or Flux-class image models.
+
+6
+00:00:23.400 --> 00:00:27.767
+Flow matching is a cleaner generative objective than classic diffusion.
+
+7
+00:00:28.067 --> 00:00:33.700
+You learn a straight-line flow from noise to data, which means fewer sampling steps and simpler math.
+
+8
+00:00:34.000 --> 00:00:36.667
+It powers Flux and modern audio generators.
+
+9
+00:00:37.867 --> 00:00:41.667
+Latent consistency is about generating in very few steps.
+
+10
+00:00:41.967 --> 00:00:46.267
+You start with a diffusion model that needs thirty or more steps, and distill it.
+
+11
+00:00:46.567 --> 00:00:49.177
+The result generates in one to four steps.
+
+12
+00:00:49.177 --> 00:00:52.533
+That's what makes real-time image generation possible.
+
+13
+00:00:53.733 --> 00:00:56.200
+Voice AI is moving to speech-to-speech.
+
+14
+00:00:56.500 --> 00:01:07.533
+Native audio-in, audio-out models, like GPT-4o realtime and Gemini Live, replace the clunky speech to text, LLM, text to speech chain.
+
+15
+00:01:07.833 --> 00:01:14.800
+They enable real-time voice agents that handle interruptions, and they're exploding commercially in support and sales.
+
+16
+00:01:16.000 --> 00:01:20.533
+Video understanding means vision language models that take video directly.
+
+17
+00:01:20.833 --> 00:01:24.700
+Gemini-class models can hold hour-long video in context.
+
+18
+00:01:25.000 --> 00:01:29.200
+Use cases include surveillance, sports, and field-service inspection.
+
+19
+00:01:30.400 --> 00:01:33.500
+Edge AI runs small models on phones and laptops.
+
+20
+00:01:33.800 --> 00:01:41.170
+Think Phi, Gemma, or Qwen at half a billion to three billion parameters, via GGUF and llama.
+
+21
+00:01:41.170 --> 00:01:44.133
+cpp, or Apple and Android NPU stacks.
+
+22
+00:01:44.433 --> 00:01:46.767
+You gain privacy and lower latency.
+
+23
+00:01:47.067 --> 00:01:48.967
+And there's zero API cost.
+
+24
+00:01:50.167 --> 00:01:53.000
+World models learn how an environment behaves.
+
+25
+00:01:53.300 --> 00:01:55.067
+They predict what happens next.
+
+26
+00:01:55.367 --> 00:02:01.567
+It's the research bet, with Genie-class models and robotics, on how agents get real planning ability.
+
+27
+00:02:02.767 --> 00:02:07.700
+Small language models are the under ten billion parameter class, chosen on purpose.
+
+28
+00:02:08.000 --> 00:02:13.867
+Fine-tuned specialists beat giant generalists on narrow tasks, at about one percent of the cost.
+
+29
+00:02:14.167 --> 00:02:17.067
+That's the economic argument behind fine-tuning.
+
+30
+00:02:18.267 --> 00:02:19.075
+Let's recap.
+
+31
+00:02:19.075 --> 00:02:25.067
+Image and video generation is moving to transformers, flow matching, and few-step models.
+
+32
+00:02:25.367 --> 00:02:27.367
+Voice and video are going native.
+
+33
+00:02:27.667 --> 00:02:30.800
+Edge AI and small models cut cost and latency.
+
+34
+00:02:31.100 --> 00:02:33.800
+And world models are the research bet on planning.

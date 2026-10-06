@@ -1,0 +1,205 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Data stack extras.
+
+2
+00:00:02.500 --> 00:00:06.573
+These are the modern data stack names that orbit the pipelines you built.
+
+3
+00:00:06.573 --> 00:00:07.800
+Let's go through them.
+
+4
+00:00:09.000 --> 00:00:11.667
+Polars is a Rust-powered DataFrame library.
+
+5
+00:00:11.967 --> 00:00:16.567
+It's lazy and multicore, and often ten times faster than pandas or more.
+
+6
+00:00:16.867 --> 00:00:22.700
+It's increasingly the default for heavy tabular work, and pandas knowledge transfers in about a day.
+
+7
+00:00:23.900 --> 00:00:27.458
+DuckDB is an in-process analytical SQL engine.
+
+8
+00:00:27.458 --> 00:00:29.933
+Think SQLite, but for analytics.
+
+9
+00:00:30.233 --> 00:00:36.367
+You query parquet or CSV files with full SQL, no server at all, and it's absurdly fast.
+
+10
+00:00:36.667 --> 00:00:40.200
+That makes it a favorite for local data work and pipeline glue.
+
+11
+00:00:41.400 --> 00:00:44.300
+dbt is the transform layer in ELT.
+
+12
+00:00:44.600 --> 00:00:49.600
+You write SQL models with refs, tests, and docs, all version-controlled like code.
+
+13
+00:00:49.900 --> 00:00:54.300
+Analytics engineering exists as a job title because of dbt.
+
+14
+00:00:54.600 --> 00:00:57.667
+It all lives in the repo, reviewed like any other code.
+
+15
+00:00:58.867 --> 00:01:02.000
+Dagster and Prefect are the modern rivals to Airflow.
+
+16
+00:01:02.300 --> 00:01:05.700
+Dagster is asset-centric, with strong typing and testing.
+
+17
+00:01:06.000 --> 00:01:08.581
+Prefect is the lightweight, pythonic one.
+
+18
+00:01:08.581 --> 00:01:11.100
+Concepts from Airflow transfer directly.
+
+19
+00:01:12.300 --> 00:01:15.300
+A feature store is a central registry of features.
+
+20
+00:01:15.600 --> 00:01:20.567
+It serves the same feature values to training, offline, and to inference, online.
+
+21
+00:01:20.867 --> 00:01:22.921
+That kills training serving skew.
+
+22
+00:01:22.921 --> 00:01:26.967
+Feast is the open-source standard, and Tecton is the managed one.
+
+23
+00:01:27.267 --> 00:01:28.967
+Same values, both worlds.
+
+24
+00:01:30.167 --> 00:01:33.967
+Lakehouse table formats add database features to lake files.
+
+25
+00:01:34.267 --> 00:01:38.100
+They add ACID transactions and time travel on top of the files.
+
+26
+00:01:38.400 --> 00:01:41.967
+The result is warehouse reliability at lake economics.
+
+27
+00:01:42.267 --> 00:01:46.464
+Databricks backs Delta, and the open Iceberg ecosystem competes.
+
+28
+00:01:46.464 --> 00:01:48.300
+That's the current turf war.
+
+29
+00:01:49.500 --> 00:01:52.300
+Great Expectations is data-quality testing.
+
+30
+00:01:52.600 --> 00:01:57.700
+You declare expectations, like this column is never null, or values stay in range.
+
+31
+00:01:58.000 --> 00:02:00.984
+They run inside your pipelines and fail loudly.
+
+32
+00:02:00.984 --> 00:02:03.333
+Think of them as unit tests for data.
+
+33
+00:02:04.533 --> 00:02:09.600
+Shadow deployment runs the new model on live traffic, but throws its outputs away.
+
+34
+00:02:09.900 --> 00:02:13.667
+You compare it against the incumbent, risk-free, before an A B test.
+
+35
+00:02:13.967 --> 00:02:17.533
+Together with canary releases, it's the safe-rollout toolkit.
+
+36
+00:02:18.733 --> 00:02:21.333
+Helm is the package manager for Kubernetes.
+
+37
+00:02:21.633 --> 00:02:25.933
+Charts template your deployments and services, driven by values files.
+
+38
+00:02:26.233 --> 00:02:29.005
+So installing our whole stack is one command.
+
+39
+00:02:29.005 --> 00:02:33.500
+It's assumed knowledge wherever Kubernetes shows up in a job description.
+
+40
+00:02:34.700 --> 00:02:38.833
+Prometheus and Grafana are the standard open-source monitoring pair.
+
+41
+00:02:39.133 --> 00:02:41.695
+Prometheus scrapes and stores the metrics.
+
+42
+00:02:41.695 --> 00:02:44.500
+Grafana turns them into dashboards and alerts.
+
+43
+00:02:44.800 --> 00:02:47.767
+This is the concrete implementation of monitoring.
+
+44
+00:02:48.967 --> 00:02:52.533
+gRPC is Google's binary RPC protocol.
+
+45
+00:02:52.833 --> 00:03:00.833
+It runs over HTTP 2 with typed protobuf contracts, which makes it faster and stricter than REST for service calls.
+
+46
+00:03:01.133 --> 00:03:05.167
+Triton and most serving stacks expose it alongside HTTP.
+
+47
+00:03:06.367 --> 00:03:07.281
+Let's recap.
+
+48
+00:03:07.281 --> 00:03:10.633
+Polars and DuckDB make local data work fast.
+
+49
+00:03:10.933 --> 00:03:14.667
+dbt, Dagster, and Prefect transform and orchestrate.
+
+50
+00:03:14.967 --> 00:03:19.367
+Feature stores and Great Expectations keep data consistent and tested.
+
+51
+00:03:19.667 --> 00:03:24.533
+And Helm, Prometheus, Grafana, and gRPC deploy and monitor the stack.

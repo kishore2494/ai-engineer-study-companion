@@ -1,0 +1,209 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.367
+Serving and cost extras.
+
+2
+00:00:02.667 --> 00:00:07.733
+Eleven more names beyond vLLM and LiteLLM, from engines to routing.
+
+3
+00:00:08.933 --> 00:00:13.367
+SGLang is the serving engine challenging vLLM on throughput.
+
+4
+00:00:13.667 --> 00:00:16.467
+Its secret is RadixAttention, a prefix tree.
+
+5
+00:00:16.767 --> 00:00:19.700
+Requests with a common prefix share their KV cache.
+
+6
+00:00:20.000 --> 00:00:23.667
+That is excellent for agent workloads full of repeated prompts.
+
+7
+00:00:24.867 --> 00:00:28.833
+TGI is Hugging Face's Text Generation Inference server.
+
+8
+00:00:29.133 --> 00:00:33.500
+It is Rust-based, production-hardened, and powers Hugging Face endpoints.
+
+9
+00:00:33.800 --> 00:00:39.467
+It is the third name, with vLLM and SGLang, in every serving job description.
+
+10
+00:00:40.667 --> 00:00:45.633
+TensorRT-LLM is NVIDIA's LLM-specific compiler and runtime.
+
+11
+00:00:45.933 --> 00:00:52.867
+It uses fused kernels, FP8, and in-flight batching to reach peak performance on NVIDIA GPUs.
+
+12
+00:00:53.167 --> 00:00:57.258
+The cost is a build step for every model and GPU combination.
+
+13
+00:00:57.258 --> 00:00:58.667
+It pairs with Triton.
+
+14
+00:00:59.867 --> 00:01:03.300
+LMDeploy is the InternLM team's serving toolkit.
+
+15
+00:01:03.600 --> 00:01:07.533
+Its TurboMind engine delivers very fast quantized serving.
+
+16
+00:01:07.833 --> 00:01:10.900
+It is a name you will often see in benchmark tables.
+
+17
+00:01:12.100 --> 00:01:14.400
+These are cross-platform inference runtimes.
+
+18
+00:01:14.700 --> 00:01:16.167
+Start with your trained model.
+
+19
+00:01:16.467 --> 00:01:17.733
+Export it to ONNX.
+
+20
+00:01:18.033 --> 00:01:20.200
+ONNX Runtime then runs it anywhere.
+
+21
+00:01:20.500 --> 00:01:24.416
+And OpenVINO optimizes it for Intel CPUs and NPUs.
+
+22
+00:01:24.416 --> 00:01:28.567
+This is the classical model and edge deployment path.
+
+23
+00:01:29.767 --> 00:01:33.500
+These are model-serving frameworks, a level above raw engines.
+
+24
+00:01:33.800 --> 00:01:37.967
+BentoML packages any model as a container with APIs.
+
+25
+00:01:38.267 --> 00:01:41.667
+Ray Serve composes scalable inference graphs in Python.
+
+26
+00:01:42.867 --> 00:01:48.567
+Medusa and lookahead decoding are cousins of speculative decoding that skip the draft model.
+
+27
+00:01:48.867 --> 00:01:52.721
+Medusa adds extra decoding heads to guess several tokens.
+
+28
+00:01:52.721 --> 00:01:55.900
+Lookahead generates n-gram guesses in parallel.
+
+29
+00:01:56.200 --> 00:01:58.700
+Same goal: more tokens per forward pass.
+
+30
+00:01:59.900 --> 00:02:04.033
+Dynamic, or in-flight, batching changes how requests join a batch.
+
+31
+00:02:04.333 --> 00:02:06.700
+The old way waits for the whole batch to drain.
+
+32
+00:02:07.000 --> 00:02:10.933
+Here, new requests are admitted into a running batch as others finish.
+
+33
+00:02:11.233 --> 00:02:14.533
+It is the serving-layer sibling of continuous batching.
+
+34
+00:02:15.733 --> 00:02:20.100
+GPTCache is the open source library for semantic caching.
+
+35
+00:02:20.400 --> 00:02:21.567
+A query arrives.
+
+36
+00:02:21.867 --> 00:02:22.733
+We embed it.
+
+37
+00:02:23.033 --> 00:02:25.167
+We look for a near-duplicate in the cache.
+
+38
+00:02:25.467 --> 00:02:28.153
+If one is found, we serve the cached response.
+
+39
+00:02:28.153 --> 00:02:32.067
+You can roll your own with Redis and embeddings, but know the name.
+
+40
+00:02:33.267 --> 00:02:37.367
+Model routing sends each query to the cheapest model that can handle it.
+
+41
+00:02:37.667 --> 00:02:39.467
+Every query is judged first.
+
+42
+00:02:39.767 --> 00:02:45.533
+Simple ones go to a small model like Haiku or mini, and complex ones go to a frontier model.
+
+43
+00:02:45.833 --> 00:02:51.283
+You can implement it with LiteLLM, Portkey, OpenRouter, or your own classifier.
+
+44
+00:02:51.283 --> 00:02:53.767
+It is the single biggest cost lever.
+
+45
+00:02:54.967 --> 00:02:58.200
+Portkey and OpenRouter are managed AI gateways.
+
+46
+00:02:58.500 --> 00:03:04.867
+One API sits over all providers, with routing, fallbacks, caching, budgets, and observability.
+
+47
+00:03:05.167 --> 00:03:10.267
+Portkey targets enterprises, while OpenRouter aggregates models for developers.
+
+48
+00:03:11.467 --> 00:03:12.590
+Let's recap.
+
+49
+00:03:12.590 --> 00:03:19.333
+SGLang, TGI, TensorRT-LLM, and LMDeploy are the serving engines to know.
+
+50
+00:03:19.633 --> 00:03:25.100
+ONNX, OpenVINO, BentoML, and Ray Serve help you deploy beyond raw engines.
+
+51
+00:03:25.400 --> 00:03:28.700
+Medusa and in-flight batching squeeze out more throughput.
+
+52
+00:03:29.000 --> 00:03:32.533
+And caching, routing, and gateways are your biggest cost levers.
