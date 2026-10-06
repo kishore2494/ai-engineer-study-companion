@@ -1,0 +1,193 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.900
+Complete coverage index, part two.
+
+2
+00:00:03.200 --> 00:00:08.200
+More one-line vocabulary, from chunking all the way to RLHF.
+
+3
+00:00:09.400 --> 00:00:10.967
+Four chunking terms to know.
+
+4
+00:00:11.267 --> 00:00:13.567
+Semantic chunking splits where meaning shifts.
+
+5
+00:00:13.867 --> 00:00:20.233
+Recursive chunking splits by structure, headings, then paragraphs, then sentences, until the size fits.
+
+6
+00:00:20.533 --> 00:00:25.100
+Overlapping chunks repeat some tokens between neighbours, so ideas aren't cut.
+
+7
+00:00:25.400 --> 00:00:29.633
+And context stuffing is the anti-pattern of cramming too many chunks in.
+
+8
+00:00:30.833 --> 00:00:35.667
+Document processing is the unglamorous work that sets your RAG quality ceiling.
+
+9
+00:00:35.967 --> 00:00:40.437
+PDF layout analysis detects columns, reading order, and tables.
+
+10
+00:00:40.437 --> 00:00:45.333
+Table extraction pulls tables out as structured data, headers intact.
+
+11
+00:00:45.633 --> 00:00:51.467
+And HTML, Markdown, and XML parsing strips boilerplate while preserving structure.
+
+12
+00:00:52.667 --> 00:00:55.000
+Retrieval has its own vocabulary.
+
+13
+00:00:55.300 --> 00:01:00.367
+Dense retrieval uses embedding similarity, and sparse retrieval uses keywords.
+
+14
+00:01:00.667 --> 00:01:05.444
+Multi-stage retrieval does cheap wide recall, then precise reranking.
+
+15
+00:01:05.444 --> 00:01:11.467
+Query decomposition breaks a compound question into sub-queries and retrieves for each.
+
+16
+00:01:12.667 --> 00:01:15.033
+Three approximate nearest neighbour index types.
+
+17
+00:01:15.333 --> 00:01:20.567
+IVFFlat partitions vectors into clusters and searches only the nearest few.
+
+18
+00:01:20.867 --> 00:01:25.400
+IVF-PQ does the same, plus product quantization for compression.
+
+19
+00:01:25.700 --> 00:01:30.567
+And Redis Vector is vector search inside Redis, handy when it's already your cache.
+
+20
+00:01:31.767 --> 00:01:35.967
+Answer correctness means matching ground truth, not merely being grounded.
+
+21
+00:01:36.267 --> 00:01:41.067
+Recall at k and precision at k measure retrieval quality at a cutoff k.
+
+22
+00:01:41.367 --> 00:01:47.733
+And ARES is an automated RAG evaluation framework, alongside RAGAS, DeepEval, and TruLens.
+
+23
+00:01:48.933 --> 00:01:50.767
+Agent patterns from the long tail.
+
+24
+00:01:51.067 --> 00:01:54.467
+A router agent classifies a request, then dispatches it.
+
+25
+00:01:54.767 --> 00:01:58.400
+A supervisor assigns work and reviews the workers' output.
+
+26
+00:01:58.700 --> 00:02:03.944
+Multi-agent setups can be hierarchical, peer-to-peer, collaborative, or competitive.
+
+27
+00:02:03.944 --> 00:02:06.567
+That's who talks to whom, and who decides.
+
+28
+00:02:06.867 --> 00:02:12.400
+And Gorilla is a model fine-tuned for accurate API calling, in the Toolformer lineage.
+
+29
+00:02:13.600 --> 00:02:16.100
+Here are the infrastructure terms around agents.
+
+30
+00:02:16.400 --> 00:02:20.633
+An autonomous agent runs multi-step without per-step human input.
+
+31
+00:02:20.933 --> 00:02:24.167
+The agent workflow is the defined sequence it follows.
+
+32
+00:02:24.467 --> 00:02:29.067
+The runtime, or gateway, executes agents and brokers their tool traffic.
+
+33
+00:02:29.367 --> 00:02:33.567
+And graph state is LangGraph's typed state object, passed between nodes.
+
+34
+00:02:34.767 --> 00:02:37.064
+Full fine-tuning updates every weight.
+
+35
+00:02:37.064 --> 00:02:39.300
+It's expensive, and risks forgetting.
+
+36
+00:02:39.600 --> 00:02:47.915
+Transfer learning reuses a pretrained model for a new task, and continual pre-training adds more pretraining on domain text.
+
+37
+00:02:47.915 --> 00:02:51.067
+Domain adaptation is the goal behind all three.
+
+38
+00:02:51.367 --> 00:02:55.567
+Layer-wise learning rate decay uses smaller rates for earlier layers.
+
+39
+00:02:56.767 --> 00:02:59.967
+RLHF has four objects to keep straight.
+
+40
+00:03:00.267 --> 00:03:04.633
+A preference dataset holds pairs of chosen and rejected responses.
+
+41
+00:03:04.933 --> 00:03:08.633
+The reward model scores outputs by predicted human preference.
+
+42
+00:03:08.933 --> 00:03:11.400
+The policy model is the one being trained.
+
+43
+00:03:11.700 --> 00:03:16.933
+And the reference model is a frozen copy, which the KL penalty measures drift against.
+
+44
+00:03:18.133 --> 00:03:18.933
+Let's recap.
+
+45
+00:03:18.933 --> 00:03:22.733
+Chunking, parsing, and retrieval form the RAG vocabulary.
+
+46
+00:03:23.033 --> 00:03:26.733
+ANN indexes and eval metrics tune and measure search.
+
+47
+00:03:27.033 --> 00:03:29.200
+Agent patterns define who decides.
+
+48
+00:03:29.500 --> 00:03:34.033
+And fine-tuning and RLHF objects shape the model itself.
