@@ -47,6 +47,13 @@
   .vbtn { margin-left: 0; margin-top: 4px; }
   .vbar .vlabel { width: 100%; }
 }
+/* touch screens: tap targets of at least ~40px */
+@media (pointer: coarse) {
+  .vbar { gap: 8px; }
+  .vbar button { min-height: 40px; min-width: 44px; padding: 8px 12px; }
+  .vbtn { min-height: 40px; }
+  .gt-play { min-width: 40px; min-height: 40px; }
+}
 @media (prefers-reduced-motion: reduce) { .vpanel, .vbtn .vchev { transition: none; } }
 /* glossary */
 .gl-vrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }

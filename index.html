@@ -417,11 +417,26 @@
   ul.check { list-style:none; margin:10px 0; }
   ul.check li { padding-left:26px; position:relative; margin-bottom:9px; font-size:0.92rem; }
   ul.check li::before { content:'☐'; position:absolute; left:4px; color:var(--ok); font-size:1em; }
+
+  /* ---- phones: compact sticky nav, nothing wider than the screen ---- */
+  .vtabs { display: contents; }
+  :not(pre) > code { overflow-wrap: anywhere; }
+  @media (max-width: 700px) {
+    .volnav { flex-direction: column; flex-wrap: nowrap; gap: 6px; padding: 6px 10px 8px; }
+    .vtabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; margin: 0 -10px; padding: 0 10px; }
+    .vtabs::-webkit-scrollbar { display: none; }
+    .vtab { flex: 0 0 auto; white-space: nowrap; min-height: 36px; align-items: center; scroll-snap-align: start; }
+    .searchbox { margin: 0; width: 100%; }
+    .searchbox input { width: 100%; box-sizing: border-box; }
+    .volume table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .grid-cards > * { min-width: 0; overflow-wrap: anywhere; }
+  }
 </style>
 <link rel="stylesheet" href="videos/player.css">
 </head>
 <body>
 <nav class="volnav">
+<div class="vtabs">
 <button class="vtab" data-vol="TOC" onclick="showVol('TOC')"><span class="vt-n">☰</span><span class="vt-l">Contents</span></button>
 <button class="vtab" data-vol="01" onclick="showVol('01')"><span class="vt-n">01</span><span class="vt-l">Python</span></button>
 <button class="vtab" data-vol="02" onclick="showVol('02')"><span class="vt-n">02</span><span class="vt-l">Math</span></button>
@@ -441,6 +456,7 @@
 <button class="vtab" data-vol="FR" onclick="showVol('FR')"><span class="vt-n">⚛</span><span class="vt-l">Frontier</span></button>
 <button class="vtab" data-vol="MK" onclick="showVol('MK')"><span class="vt-n">₹</span><span class="vt-l">Market</span></button>
 <button class="vtab" data-vol="QA" onclick="showVol('QA')"><span class="vt-n">✓</span><span class="vt-l">AI Testing</span></button>
+</div>
 <div class="searchbox"><input id="q" type="search" placeholder="Search everything…  (Ctrl+K)" autocomplete="off" aria-label="Search all topics, terms and blueprints"><div id="results" class="results"></div></div>
 </nav>
 <div class="volume" id="volTOC">
@@ -21565,6 +21581,8 @@ function volForTopic(n) {
 function showVol(vn, scrollTop = true) {
   document.querySelectorAll('.volume').forEach(d => d.classList.toggle('active', d.id === 'vol' + vn));
   document.querySelectorAll('.vtab').forEach(t => t.classList.toggle('active', t.dataset.vol === vn));
+  const at = document.querySelector('.vtab.active'), row = at && at.parentElement;
+  if (row && row.scrollWidth > row.clientWidth) row.scrollLeft = at.getBoundingClientRect().left - row.getBoundingClientRect().left + row.scrollLeft - 10;
   if (scrollTop) window.scrollTo(0, 0);
   try { localStorage.setItem('sc-vol', vn); } catch (e) {}
   if (typeof updateSpy === 'function') requestAnimationFrame(updateSpy);
