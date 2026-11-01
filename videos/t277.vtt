@@ -41,85 +41,89 @@ Then it refills steadily.
 Burst allowed, but the average rate is enforced.
 
 11
-00:00:35.133 --> 00:00:37.600
-There is a stricter cousin, the sliding window.
+00:00:35.133 --> 00:00:37.433
+The other classic is the sliding window.
 
 12
-00:00:37.900 --> 00:00:40.833
-The bucket allows bursts, while the window allows none.
+00:00:37.733 --> 00:00:39.959
+The bucket has an explicit burst knob.
 
 13
-00:00:41.133 --> 00:00:45.800
-The bucket refills steadily, while the window counts requests in the last few seconds.
+00:00:39.959 --> 00:00:44.233
+The window has none, so a client can still spend its whole quota at once.
 
 14
-00:00:46.100 --> 00:00:49.133
-A Redis sorted set implements the window naturally.
+00:00:44.533 --> 00:00:52.800
+The bucket refills steadily, while the window counts exactly over every trailing stretch, so there is no double burst at fixed window edges.
 
 15
-00:00:49.433 --> 00:00:53.000
-So pick the bucket for flexibility, and the window for strictness.
+00:00:53.100 --> 00:00:56.133
+A Redis sorted set implements the window naturally.
 
 16
-00:00:54.200 --> 00:00:56.000
-Here is a bucket stored in Redis.
+00:00:56.433 --> 00:01:00.367
+So pick the bucket to tune bursts, and the window for an exact count.
 
 17
-00:00:56.300 --> 00:01:01.633
-We load the saved tokens, and add refill for the time that has passed, capped at the burst size.
+00:01:01.567 --> 00:01:03.367
+Here is a bucket stored in Redis.
 
 18
-00:01:01.933 --> 00:01:04.633
-If less than one token is left, we reject.
+00:01:03.667 --> 00:01:09.000
+We load the saved tokens, and add refill for the time that has passed, capped at the burst size.
 
 19
-00:01:04.933 --> 00:01:07.479
-Otherwise we spend one token and save.
+00:01:09.300 --> 00:01:12.000
+If less than one token is left, we reject.
 
 20
-00:01:07.479 --> 00:01:11.900
-In production, wrap this in a Lua script so it is one atomic step.
+00:01:12.300 --> 00:01:14.846
+Otherwise we spend one token and save.
 
 21
-00:01:13.100 --> 00:01:16.833
-The Orbital Research Agent needs limits in both directions.
+00:01:14.846 --> 00:01:19.267
+In production, wrap this in a Lua script so it is one atomic step.
 
 22
-00:01:17.133 --> 00:01:20.813
-Inbound, a teammate's script sends twenty requests.
+00:01:20.467 --> 00:01:24.200
+The Orbital Research Agent needs limits in both directions.
 
 23
-00:01:20.813 --> 00:01:27.233
-Ten drain the bucket, and request eleven gets a clean 429 instead of a forty dollar bill.
+00:01:24.500 --> 00:01:28.179
+Inbound, a teammate's script sends twenty requests.
 
 24
-00:01:27.533 --> 00:01:31.033
-Outbound, the DONKI API caps at thirty requests a minute.
+00:01:28.179 --> 00:01:34.600
+Ten drain the bucket, and request eleven gets a clean 429 instead of a forty dollar bill.
 
 25
-00:01:31.333 --> 00:01:38.167
-A shared bucket across all four workers holds the fleet at twenty eight per minute, and the provider errors disappear.
+00:01:34.900 --> 00:01:38.400
+Outbound, the DONKI API caps at thirty requests a minute.
 
 26
-00:01:39.367 --> 00:01:40.136
-Let's recap.
+00:01:38.700 --> 00:01:45.533
+A shared bucket across all four workers holds the fleet at twenty eight per minute, and the provider errors disappear.
 
 27
-00:01:40.136 --> 00:01:43.600
-A token bucket allows bursts at a steady average rate.
+00:01:46.733 --> 00:01:47.503
+Let's recap.
 
 28
-00:01:43.900 --> 00:01:46.533
-An empty bucket means a 429.
+00:01:47.503 --> 00:01:50.967
+A token bucket allows bursts at a steady average rate.
 
 29
-00:01:46.833 --> 00:01:48.500
-A sliding window is stricter.
+00:01:51.267 --> 00:01:53.900
+An empty bucket means a 429.
 
 30
-00:01:48.800 --> 00:01:51.280
-And limit both inbound and outbound.
+00:01:54.200 --> 00:01:57.667
+A sliding window counts exactly, but has no burst knob.
 
 31
-00:01:51.280 --> 00:01:52.933
+00:01:57.967 --> 00:02:00.447
+And limit both inbound and outbound.
+
+32
+00:02:00.447 --> 00:02:02.100
 Next up: load balancing.

@@ -49,105 +49,105 @@ Here we send a chart and ask for its data.
 And it answers with structured JSON.
 
 13
-00:00:43.500 --> 00:00:48.432
-GPT-4o, Claude, and open-source LLaVA all follow this recipe.
+00:00:43.500 --> 00:00:51.840
+Open models like LLaVA and Qwen-VL document this recipe, while GPT-4o and Claude keep their internals unpublished.
 
 14
-00:00:48.432 --> 00:00:51.667
+00:00:51.840 --> 00:00:54.767
 In production it shines in three places.
 
 15
-00:00:51.967 --> 00:00:54.900
+00:00:55.067 --> 00:00:58.000
 Screenshot parsing, for UI testing agents.
 
 16
-00:00:55.200 --> 00:00:59.600
+00:00:58.300 --> 00:01:02.700
 Document extraction, turning scanned PDFs into structured data.
 
 17
-00:00:59.900 --> 00:01:01.000
+00:01:03.000 --> 00:01:04.100
 And chart reading.
 
 18
-00:01:02.200 --> 00:01:05.267
+00:01:05.300 --> 00:01:08.367
 In code, an image is just another content part.
 
 19
-00:01:05.567 --> 00:01:07.467
+00:01:08.667 --> 00:01:10.567
 One part holds the instruction.
 
 20
-00:01:07.767 --> 00:01:11.167
+00:01:10.867 --> 00:01:14.267
 Another carries the image, encoded as a data URL.
 
 21
-00:01:11.467 --> 00:01:13.800
+00:01:14.567 --> 00:01:16.900
 And we request a JSON object back.
 
 22
-00:01:15.000 --> 00:01:16.233
+00:01:18.100 --> 00:01:19.333
 Here's a real use.
 
 23
-00:01:16.533 --> 00:01:23.033
+00:01:19.633 --> 00:01:26.133
 Your corpus has scanned nineteen seventies Apollo reports, and a text extractor mangles their tables.
 
 24
-00:01:23.333 --> 00:01:27.978
+00:01:26.433 --> 00:01:31.078
 You route those pages through a VLM and validate the JSON with Pydantic.
 
 25
-00:01:27.978 --> 00:01:30.300
+00:01:31.078 --> 00:01:33.400
 About ninety percent come out right.
 
 26
-00:01:30.600 --> 00:01:33.441
+00:01:33.700 --> 00:01:36.541
 For the rest you build a forty page eval set.
 
 27
-00:01:33.441 --> 00:01:38.933
+00:01:36.541 --> 00:01:42.033
 The failures are log-scale charts and merged cells, which get flagged for human review.
 
 28
-00:01:40.133 --> 00:01:41.662
+00:01:43.233 --> 00:01:44.762
 But there's a caveat.
 
 29
-00:01:41.662 --> 00:01:43.555
+00:01:44.762 --> 00:01:46.655
 VLMs interpolate visually.
 
 30
-00:01:43.555 --> 00:01:50.033
+00:01:46.655 --> 00:01:53.133
 They misread precise values on dense axes, hallucinate table cells, and miscount objects.
 
 31
-00:01:50.333 --> 00:01:53.851
+00:01:53.433 --> 00:01:56.951
 So go find the charts it gets wrong, and evaluate them.
 
 32
-00:01:53.851 --> 00:01:55.833
+00:01:56.951 --> 00:01:58.933
 The eval topics apply verbatim.
 
 33
-00:01:57.033 --> 00:01:57.875
+00:02:00.133 --> 00:02:00.975
 Let's recap.
 
 34
-00:01:57.875 --> 00:02:01.733
+00:02:00.975 --> 00:02:04.833
 A vision encoder and projector turn images into tokens.
 
 35
-00:02:02.033 --> 00:02:04.967
+00:02:05.133 --> 00:02:08.067
 The LLM attends over image and text together.
 
 36
-00:02:05.267 --> 00:02:08.000
+00:02:08.367 --> 00:02:11.100
 It's great at screenshots, documents, and charts.
 
 37
-00:02:08.300 --> 00:02:11.227
+00:02:11.400 --> 00:02:14.327
 But know the failure modes, and evaluate them.
 
 38
-00:02:11.227 --> 00:02:13.200
+00:02:14.327 --> 00:02:16.300
 Next up: graph neural networks.

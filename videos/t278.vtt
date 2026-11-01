@@ -81,45 +81,53 @@ We choose least connections, because LLM streams have wild durations.
 After two failures, a backend is ejected for ten seconds.
 
 21
-00:01:12.733 --> 00:01:17.133
-And if a backend errors mid request, Nginx replays it on the next one.
+00:01:12.733 --> 00:01:18.438
+And if a backend fails before anything reaches the client, Nginx retries on the next one.
 
 22
-00:01:18.333 --> 00:01:21.222
-Two replicas of the RAG API sit behind Nginx.
+00:01:18.438 --> 00:01:21.067
+A stream already mid answer still breaks.
 
 23
-00:01:21.222 --> 00:01:30.467
-Round robin starved one of them, because streamed answers hold connections for twenty seconds while health queries finish in fifty milliseconds.
+00:01:22.267 --> 00:01:25.156
+Two replicas of the RAG API sit behind Nginx.
 
 24
-00:01:30.767 --> 00:01:36.000
-To prove it works, run a five hundred request load test and kill api two halfway.
+00:01:25.156 --> 00:01:34.400
+Round robin starved one of them, because streamed answers hold connections for twenty seconds while health queries finish in fifty milliseconds.
 
 25
-00:01:36.300 --> 00:01:45.300
-The dead backend is ejected within a second, the in-flight failures are replayed on api one, and the test finishes with zero failed requests.
+00:01:34.700 --> 00:01:39.933
+To prove it works, run a five hundred request load test and kill api two halfway.
 
 26
-00:01:46.500 --> 00:01:47.257
-Let's recap.
+00:01:40.233 --> 00:01:47.021
+The dead backend is ejected within a second, and requests that failed before any reply move to api one.
 
 27
-00:01:47.257 --> 00:01:50.600
-A balancer spreads traffic across stateless replicas.
+00:01:47.021 --> 00:01:51.633
+The few streams already mid answer break, so the client retries those.
 
 28
-00:01:50.900 --> 00:01:54.333
-Pick round robin, least connections, or consistent hashing.
+00:01:52.833 --> 00:01:53.590
+Let's recap.
 
 29
-00:01:54.633 --> 00:01:56.600
-Health checks remove dead backends.
+00:01:53.590 --> 00:01:56.933
+A balancer spreads traffic across stateless replicas.
 
 30
-00:01:56.900 --> 00:01:58.885
-And prove it with a kill test.
+00:01:57.233 --> 00:02:00.667
+Pick round robin, least connections, or consistent hashing.
 
 31
-00:01:58.885 --> 00:02:01.267
+00:02:00.967 --> 00:02:02.933
+Health checks remove dead backends.
+
+32
+00:02:03.233 --> 00:02:05.218
+And prove it with a kill test.
+
+33
+00:02:05.218 --> 00:02:07.600
 Next up: distributed systems basics.
