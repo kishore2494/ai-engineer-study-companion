@@ -93,57 +93,61 @@ The first hit after idle takes about one point eight seconds.
 Warm hits take about forty milliseconds.
 
 24
-00:01:21.367 --> 00:01:24.400
+00:01:21.367 --> 00:01:24.768
 And BigQuery runs a query with no cluster at all.
 
 25
-00:01:24.400 --> 00:01:26.567
-You pay per amount of data scanned.
+00:01:24.768 --> 00:01:28.170
+The flag switches bq from legacy to standard SQL.
 
 26
-00:01:27.767 --> 00:01:29.000
-Here's a real use.
+00:01:28.170 --> 00:01:30.600
+You pay per amount of data scanned.
 
 27
-00:01:29.300 --> 00:01:32.447
-Your public exoplanet demo runs on Cloud Run.
+00:01:31.800 --> 00:01:33.033
+Here's a real use.
 
 28
-00:01:32.447 --> 00:01:35.733
-Weeks of almost no traffic cost almost nothing.
+00:01:33.333 --> 00:01:36.480
+Your public exoplanet demo runs on Cloud Run.
 
 29
-00:01:36.033 --> 00:01:39.500
-Then a Hacker News spike arrives, and the service scales itself.
+00:01:36.480 --> 00:01:39.767
+Weeks of almost no traffic cost almost nothing.
 
 30
-00:01:39.800 --> 00:01:45.920
-Meanwhile you load the full archive into BigQuery and run analytics with no warehouse to look after.
+00:01:40.067 --> 00:01:43.533
+Then a Hacker News spike arrives, and the service scales itself.
 
 31
-00:01:45.920 --> 00:01:51.367
-And measure the cold start yourself, so you can say two seconds, then forty milliseconds.
+00:01:43.833 --> 00:01:49.953
+Meanwhile you load the full archive into BigQuery and run analytics with no warehouse to look after.
 
 32
-00:01:52.567 --> 00:01:53.767
-Let's recap.
+00:01:49.953 --> 00:01:55.400
+And measure the cold start yourself, so you can say two seconds, then forty milliseconds.
 
 33
-00:01:53.767 --> 00:01:56.567
-Map GCP by analogy from AWS.
+00:01:56.600 --> 00:01:57.800
+Let's recap.
 
 34
-00:01:56.867 --> 00:02:00.200
-Cloud Run scales to zero, and costs nothing while idle.
+00:01:57.800 --> 00:02:00.600
+Map GCP by analogy from AWS.
 
 35
-00:02:00.500 --> 00:02:03.267
-GKE is top-tier managed Kubernetes.
+00:02:00.900 --> 00:02:04.233
+Cloud Run scales to zero, and costs nothing while idle.
 
 36
-00:02:03.567 --> 00:02:06.849
-And BigQuery is serverless, paying per scan.
+00:02:04.533 --> 00:02:07.300
+GKE is top-tier managed Kubernetes.
 
 37
-00:02:06.849 --> 00:02:08.267
+00:02:07.600 --> 00:02:10.883
+And BigQuery is serverless, paying per scan.
+
+38
+00:02:10.883 --> 00:02:12.300
 Next up: Vertex AI.
