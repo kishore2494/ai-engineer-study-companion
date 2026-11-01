@@ -17,113 +17,117 @@ Every layer multiplies the signal's variance by some factor.
 If the factor is below one, signals shrink toward zero across layers, and early layers never get a gradient.
 
 5
-00:00:18.067 --> 00:00:22.967
-Above one, activations saturate, gradients explode, and the loss goes NaN.
+00:00:18.067 --> 00:00:22.767
+Above one, activations blow up layer after layer and gradients explode.
 
 6
-00:00:24.167 --> 00:00:26.667
-Here's the picture, with illustrative numbers.
+00:00:22.767 --> 00:00:27.600
+With tanh or sigmoid they saturate instead, which makes gradients vanish.
 
 7
-00:00:26.967 --> 00:00:30.867
-Too small, and the gradient dies before it reaches the early layers.
+00:00:28.800 --> 00:00:31.300
+Here's the picture, with illustrative numbers.
 
 8
-00:00:31.167 --> 00:00:32.720
-Too large, and it blows up.
+00:00:31.600 --> 00:00:35.500
+Too small, and the gradient dies before it reaches the early layers.
 
 9
-00:00:32.720 --> 00:00:36.000
-Matched variance keeps the signal steady from end to end.
+00:00:35.800 --> 00:00:37.354
+Too large, and it blows up.
 
 10
-00:00:37.200 --> 00:00:41.333
-The fix is to choose the initial variance so the factor is about one.
+00:00:37.354 --> 00:00:40.633
+Matched variance keeps the signal steady from end to end.
 
 11
-00:00:41.633 --> 00:00:46.000
-Xavier or Glorot init balances the signal for tanh and sigmoid.
+00:00:41.833 --> 00:00:45.967
+The fix is to choose the initial variance so the factor is about one.
 
 12
-00:00:46.300 --> 00:00:51.333
-He or Kaiming init doubles it, to compensate for ReLU killing half its inputs.
+00:00:46.267 --> 00:00:50.633
+Xavier or Glorot init balances the signal for tanh and sigmoid.
 
 13
-00:00:52.533 --> 00:00:54.433
-Let's apply it to a deep network.
+00:00:50.933 --> 00:00:55.967
+He or Kaiming init doubles it, to compensate for ReLU killing half its inputs.
 
 14
-00:00:54.733 --> 00:00:56.900
-Ten stacked linear and ReLU blocks.
+00:00:57.167 --> 00:00:59.067
+Let's apply it to a deep network.
 
 15
-00:00:57.200 --> 00:01:00.933
-Each linear layer gets Kaiming normal init, designed for ReLU.
+00:00:59.367 --> 00:01:01.533
+Ten stacked linear and ReLU blocks.
 
 16
-00:01:01.233 --> 00:01:03.469
-And apply runs it over every layer.
+00:01:01.833 --> 00:01:05.567
+Each linear layer gets Kaiming normal init, designed for ReLU.
 
 17
-00:01:03.469 --> 00:01:06.600
-Gradient norms now stay the same size throughout.
+00:01:05.867 --> 00:01:08.103
+And apply runs it over every layer.
 
 18
-00:01:07.800 --> 00:01:08.967
-Here's where it bites.
+00:01:08.103 --> 00:01:11.233
+Gradient norms now stay the same size throughout.
 
 19
-00:01:09.267 --> 00:01:13.433
-You port a twelve layer encoder from a paper, swapping tanh for ReLU.
+00:01:12.433 --> 00:01:13.600
+Here's where it bites.
 
 20
-00:01:13.733 --> 00:01:15.021
-Training flatlines.
+00:01:13.900 --> 00:01:18.067
+You port a twelve layer encoder from a paper, swapping tanh for ReLU.
 
 21
-00:01:15.021 --> 00:01:23.767
-The paper's Xavier init was matched to tanh, and under ReLU the signal decays until layer one's gradients reach one e minus nine.
+00:01:18.367 --> 00:01:19.655
+Training flatlines.
 
 22
-00:01:24.067 --> 00:01:26.633
-Switching to He init fixes it on the first try.
+00:01:19.655 --> 00:01:28.400
+The paper's Xavier init was matched to tanh, and under ReLU the signal decays until layer one's gradients reach one e minus nine.
 
 23
-00:01:27.833 --> 00:01:28.749
-One more trap.
+00:01:28.700 --> 00:01:31.267
+Switching to He init fixes it on the first try.
 
 24
-00:01:28.749 --> 00:01:34.635
-All zeros is even worse: every neuron in a layer is identical and can never differentiate.
+00:01:32.467 --> 00:01:33.382
+One more trap.
 
 25
-00:01:34.635 --> 00:01:36.467
-That's the symmetry problem.
+00:01:33.382 --> 00:01:39.269
+All zeros is even worse: every neuron in a layer is identical and can never differentiate.
 
 26
-00:01:36.767 --> 00:01:40.233
-Use random weights, with variance matched to your activation.
+00:01:39.269 --> 00:01:41.100
+That's the symmetry problem.
 
 27
-00:01:41.433 --> 00:01:42.203
-Let's recap.
+00:01:41.400 --> 00:01:44.867
+Use random weights, with variance matched to your activation.
 
 28
-00:01:42.203 --> 00:01:45.667
-Initialization sets the signal factor for every layer.
+00:01:46.067 --> 00:01:46.836
+Let's recap.
 
 29
-00:01:45.967 --> 00:01:48.400
-Too small vanishes, too large explodes.
+00:01:46.836 --> 00:01:50.300
+Initialization sets the signal factor for every layer.
 
 30
-00:01:48.700 --> 00:01:50.800
-Xavier for tanh, He for ReLU.
+00:01:50.600 --> 00:01:53.033
+Too small vanishes, too large explodes.
 
 31
-00:01:51.100 --> 00:01:53.781
-Watch for it in custom or ported code.
+00:01:53.333 --> 00:01:55.433
+Xavier for tanh, He for ReLU.
 
 32
-00:01:53.781 --> 00:01:56.533
+00:01:55.733 --> 00:01:58.415
+Watch for it in custom or ported code.
+
+33
+00:01:58.415 --> 00:02:01.167
 Next up: convolutional neural networks.
