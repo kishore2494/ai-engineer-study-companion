@@ -49,57 +49,57 @@ With a pyproject in your repo, you run pip install dash e dot.
 That's an editable install.
 
 13
-00:00:47.400 --> 00:00:52.767
-Your package is now importable from anywhere on the machine, and edits take effect immediately.
+00:00:47.400 --> 00:00:54.367
+Your package is now importable from any directory, in that virtual environment, and edits take effect immediately.
 
 14
-00:00:53.967 --> 00:00:55.167
+00:00:55.567 --> 00:00:56.767
 Two more habits help.
 
 15
-00:00:55.467 --> 00:00:58.867
+00:00:57.067 --> 00:01:00.467
 Install the dev group on demand with the extras syntax.
 
 16
-00:00:59.167 --> 00:01:04.233
+00:01:00.767 --> 00:01:05.833
 And use a src layout, so you can't import your code by accident without installing it.
 
 17
-00:01:05.433 --> 00:01:06.733
+00:01:07.033 --> 00:01:08.333
 Here's a real story.
 
 18
-00:01:07.033 --> 00:01:13.533
+00:01:08.633 --> 00:01:15.133
 The same API client code was copy-pasted into the agent repo and the FastAPI repo.
 
 19
-00:01:13.833 --> 00:01:16.633
+00:01:15.433 --> 00:01:18.233
 Until a pagination bug had to be fixed twice.
 
 20
-00:01:16.933 --> 00:01:24.100
+00:01:18.533 --> 00:01:25.700
 Extracted as orbital tools, one fix reaches both, and the editable install keeps iteration friction at zero.
 
 21
-00:01:25.300 --> 00:01:26.130
+00:01:26.900 --> 00:01:27.730
 Let's recap.
 
 22
-00:01:26.130 --> 00:01:28.967
+00:01:27.730 --> 00:01:30.567
 Pyproject dot toml declares your package.
 
 23
-00:01:29.267 --> 00:01:32.300
-An editable install makes it importable everywhere.
+00:01:30.867 --> 00:01:36.233
+An editable install makes it importable from any directory, in that virtual environment.
 
 24
-00:01:32.600 --> 00:01:35.133
+00:01:36.533 --> 00:01:39.067
 Optional groups keep dev tools out of production.
 
 25
-00:01:35.433 --> 00:01:38.805
+00:01:39.367 --> 00:01:42.738
 And one package means one fix for every consumer.
 
 26
-00:01:38.805 --> 00:01:40.800
+00:01:42.738 --> 00:01:44.733
 Next up: unit testing basics.

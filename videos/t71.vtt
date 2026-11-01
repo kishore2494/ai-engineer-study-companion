@@ -93,57 +93,57 @@ We generate the moons with some noise.
 Each model scales the features first, because SVMs are distance based, then fits an SVC.
 
 24
-00:01:15.233 --> 00:01:18.679
-The linear kernel scores about zero point eight eight.
+00:01:15.233 --> 00:01:18.694
+The linear kernel scores about zero point eight seven.
 
 25
-00:01:18.679 --> 00:01:21.933
-The RBF kernel reaches about zero point nine seven.
+00:01:18.694 --> 00:01:21.833
+The RBF kernel reaches about zero point nine two.
 
 26
-00:01:23.133 --> 00:01:24.533
+00:01:23.033 --> 00:01:24.433
 Now a real scenario.
 
 27
-00:01:24.833 --> 00:01:33.971
+00:01:24.733 --> 00:01:33.871
 Plot exoplanets by log period and radius, and hot Jupiters and rocky planets form two curved lobes that no straight line separates.
 
 28
-00:01:33.971 --> 00:01:36.900
+00:01:33.871 --> 00:01:36.800
 A linear SVC scores zero point eight four.
 
 29
-00:01:37.200 --> 00:01:43.222
+00:01:37.100 --> 00:01:43.122
 The RBF kernel wraps a smooth boundary around each lobe and hits zero point nine five.
 
 30
-00:01:43.222 --> 00:01:45.532
+00:01:43.122 --> 00:01:45.432
 Same margin maximizing machinery.
 
 31
-00:01:45.532 --> 00:01:48.333
+00:01:45.432 --> 00:01:48.233
 The kernel just changed what line means.
 
 32
-00:01:49.533 --> 00:01:50.454
+00:01:49.433 --> 00:01:50.354
 Let's recap.
 
 33
-00:01:50.454 --> 00:01:53.600
+00:01:50.354 --> 00:01:53.500
 An SVM finds the maximum margin boundary.
 
 34
-00:01:53.900 --> 00:01:55.867
+00:01:53.800 --> 00:01:55.767
 Support vectors alone define it.
 
 35
-00:01:56.167 --> 00:01:58.100
+00:01:56.067 --> 00:01:58.000
 The kernel trick bends the boundary.
 
 36
-00:01:58.400 --> 00:02:00.941
+00:01:58.300 --> 00:02:00.841
 And always scale your features first.
 
 37
-00:02:00.941 --> 00:02:01.833
+00:02:00.841 --> 00:02:01.733
 Next up: KNN.

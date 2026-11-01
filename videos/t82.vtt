@@ -77,49 +77,53 @@ In an experiment tracker, F1 gives the leaderboard one honest column.
 The forest has precision point eight eight but recall only point six one, so F1 is point seven two.
 
 20
-00:01:08.033 --> 00:01:10.933
+00:01:08.033 --> 00:01:11.126
 XGBoost is balanced, and scores point eight.
 
 21
-00:01:10.933 --> 00:01:13.833
-Simple averaging would call it nearly a tie.
+00:01:11.126 --> 00:01:16.818
+The plain average, point seven four five versus point eight, understates the gap.
 
 22
-00:01:15.033 --> 00:01:16.433
-A few variants exist.
+00:01:16.818 --> 00:01:19.700
+F1 punishes the forest's lopsided recall.
 
 23
-00:01:16.733 --> 00:01:20.700
-Use F1 to compare models with one number on imbalanced data.
+00:01:20.900 --> 00:01:22.300
+A few variants exist.
 
 24
-00:01:21.000 --> 00:01:23.400
-F zero point five weights precision more.
+00:01:22.600 --> 00:01:26.567
+Use F1 to compare models with one number on imbalanced data.
 
 25
-00:01:23.700 --> 00:01:25.362
-And F2 weights recall more.
+00:01:26.867 --> 00:01:29.267
+F zero point five weights precision more.
 
 26
-00:01:25.362 --> 00:01:28.500
-If error costs differ a lot, read the pair instead.
+00:01:29.567 --> 00:01:31.228
+And F2 weights recall more.
 
 27
-00:01:29.700 --> 00:01:30.513
-Let's recap.
+00:01:31.228 --> 00:01:34.367
+If error costs differ a lot, read the pair instead.
 
 28
-00:01:30.513 --> 00:01:33.767
-F1 is the harmonic mean of precision and recall.
+00:01:35.567 --> 00:01:36.380
+Let's recap.
 
 29
-00:01:34.067 --> 00:01:35.933
-It sinks toward the weaker of the two.
+00:01:36.380 --> 00:01:39.633
+F1 is the harmonic mean of precision and recall.
 
 30
-00:01:36.233 --> 00:01:38.933
-So imbalance is punished, not averaged away.
+00:01:39.933 --> 00:01:41.800
+It sinks toward the weaker of the two.
 
 31
-00:01:39.233 --> 00:01:41.300
+00:01:42.100 --> 00:01:44.800
+So imbalance is punished, not averaged away.
+
+32
+00:01:45.100 --> 00:01:47.167
 Next up: ROC AUC.

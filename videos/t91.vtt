@@ -93,57 +93,57 @@ Then we start at the loss and apply local derivatives, right to left.
 That gives the gradient for the second weight.
 
 24
-00:01:18.867 --> 00:01:21.436
+00:01:18.867 --> 00:01:21.603
 The signal keeps flowing down to the first.
 
 25
-00:01:21.436 --> 00:01:23.767
-These match PyTorch's backward exactly.
+00:01:21.603 --> 00:01:30.767
+These agree with PyTorch's backward to about seven significant digits, since PyTorch defaults to float thirty two and NumPy to float sixty four.
 
 26
-00:01:24.967 --> 00:01:26.633
+00:01:31.967 --> 00:01:33.633
 Here's backprop paying rent.
 
 27
-00:01:26.933 --> 00:01:29.867
+00:01:33.933 --> 00:01:36.867
 Your custom focal loss turns to NaN at step forty.
 
 28
-00:01:30.167 --> 00:01:31.678
+00:01:37.167 --> 00:01:38.678
 You know where to look.
 
 29
-00:01:31.678 --> 00:01:37.000
+00:01:38.678 --> 00:01:44.000
 The log of p has a derivative of one over p, which explodes as p approaches zero.
 
 30
-00:01:37.300 --> 00:01:40.819
+00:01:44.300 --> 00:01:47.819
 An infinite signal gets multiplied through every layer.
 
 31
-00:01:40.819 --> 00:01:44.467
+00:01:47.819 --> 00:01:51.467
 One clamp fixes it, instead of re-architecting the model.
 
 32
-00:01:45.667 --> 00:01:46.398
+00:01:52.667 --> 00:01:53.398
 Let's recap.
 
 33
-00:01:46.398 --> 00:01:49.567
+00:01:53.398 --> 00:01:56.567
 A gradient says how much each weight moves the loss.
 
 34
-00:01:49.867 --> 00:01:52.200
+00:01:56.867 --> 00:01:59.200
 Backprop gets all of them in a single sweep.
 
 35
-00:01:52.500 --> 00:01:54.633
+00:01:59.500 --> 00:02:01.633
 Forward caches, backward consumes.
 
 36
-00:01:54.933 --> 00:01:57.646
+00:02:01.933 --> 00:02:04.646
 It's just the chain rule, well organized.
 
 37
-00:01:57.646 --> 00:01:59.367
+00:02:04.646 --> 00:02:06.367
 Next up: gradient descent.
