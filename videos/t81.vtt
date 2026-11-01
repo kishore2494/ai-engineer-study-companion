@@ -97,33 +97,33 @@ As the threshold drops, recall rises.
 Here is a two stage pipeline.
 
 25
-00:01:12.333 --> 00:01:19.700
-First, a cheap screen over two hundred thousand candidates, tuned for recall point nine nine at a threshold of point two.
+00:01:12.333 --> 00:01:21.200
+First, a cheap screen over all two hundred thousand or so Kepler target stars, tuned for recall point nine nine at a threshold of point two.
 
 26
-00:01:20.000 --> 00:01:25.467
+00:01:21.500 --> 00:01:26.967
 A missed Earth twin is gone forever, while false alarms only cost the next stage some compute.
 
 27
-00:01:25.767 --> 00:01:30.200
+00:01:27.267 --> 00:01:31.700
 Same model family, opposite threshold, because the cost of a miss differs.
 
 28
-00:01:31.400 --> 00:01:32.257
+00:01:32.900 --> 00:01:33.757
 Let's recap.
 
 29
-00:01:32.257 --> 00:01:35.900
+00:01:33.757 --> 00:01:37.400
 Recall is true positives over all actual positives.
 
 30
-00:01:36.200 --> 00:01:37.867
+00:01:37.700 --> 00:01:39.367
 It is the metric of miss cost.
 
 31
-00:01:38.167 --> 00:01:41.767
+00:01:39.667 --> 00:01:43.267
 Lower the threshold, and recall rises while precision falls.
 
 32
-00:01:42.067 --> 00:01:43.867
+00:01:43.567 --> 00:01:45.367
 Next up: the F1 score.
