@@ -23,7 +23,8 @@
 
 .vpanel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease, margin .3s ease; margin: 0; }
 .vpanel.open { grid-template-rows: 1fr; margin: -6px 0 22px; }
-.vpanel > .vinner { overflow: hidden; min-height: 0; }
+.vpanel > .vinner { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s .3s; }
+.vpanel.open > .vinner { visibility: visible; transition-delay: 0s; }
 .vframe {
   background: var(--deep); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
   box-shadow: 0 14px 40px rgba(0,0,0,0.35);

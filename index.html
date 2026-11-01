@@ -23,7 +23,7 @@
     --ion: #5ed3f4;
     --ion-dim: #3a8fb0;
     --plasma: #ff7a59;
-    --plasma-dim: #b5543c;
+    --plasma-dim: #d4643f;
     --star: #ffd97a;
     --text: #dfe6f5;
     --text-dim: #8b97b8;
@@ -32,7 +32,7 @@
     --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--navh, 76px) + 8px); }
   body {
     background: var(--void);
     color: var(--text);
@@ -99,7 +99,7 @@
 
   .topic {
     margin: 46px 0;
-    scroll-margin-top: 20px;
+    scroll-margin-top: 0;
   }
   .topic-head {
     display: flex; align-items: baseline; gap: 14px;
@@ -144,7 +144,7 @@
     font-family: var(--mono); font-size: 0.82rem; line-height: 1.6;
     margin: 10px 0;
   }
-  pre .c { color: #5a6a92; font-style: italic; }
+  pre .c { color: #7886ae; font-style: italic; }
   pre .k { color: var(--plasma); }
   pre .s { color: var(--star); }
   pre .f { color: var(--ion); }
@@ -259,8 +259,8 @@
   .toc-row a { color: var(--text-dim); text-decoration: none; font-size: 0.88rem; transition: color .12s; }
   .toc-row a:hover { color: var(--ion); }
   .toc-row .tn { font-family: var(--mono); color: var(--plasma-dim); font-size: 0.74rem; margin-right: 7px; font-variant-numeric: tabular-nums; }
-  .toc-row.done a { color: #59627e; text-decoration: line-through; text-decoration-thickness: 1px; }
-  .toc-row.done .tn { color: #59627e; }
+  .toc-row.done a { color: #7a84a3; text-decoration: line-through; text-decoration-thickness: 1px; }
+  .toc-row.done .tn { color: #7a84a3; }
 
   /* ---- global search ---- */
   .searchbox { position: relative; margin-left: 8px; }
@@ -301,7 +301,7 @@
   @media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
 
   /* ---- glossary ---- */
-  .gcat { margin: 46px 0; scroll-margin-top: 60px; }
+  .gcat { margin: 46px 0; }
   .gcat h2 { font-size: 1.35rem; font-weight: 700; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 4px; }
   .gc-n { font-family: var(--mono); color: var(--plasma); font-size: 0.78rem; margin-right: 10px; letter-spacing: 0.12em; }
   .gcat-note { color: var(--text-dim); font-size: 0.9rem; margin: 8px 0 10px; }
@@ -318,7 +318,7 @@
   /* ---- volume sidebar ---- */
   .sidebar {
     display: none;
-    position: fixed; top: 46px; left: 0; bottom: 0; width: 248px;
+    position: fixed; top: var(--navh, 46px); left: 0; bottom: 0; width: 248px;
     overflow-y: auto; padding: 16px 10px 40px 14px;
     border-right: 1px solid var(--line);
     background: rgba(13,18,32,0.88); backdrop-filter: blur(6px);
@@ -340,7 +340,7 @@
   .side-link:hover { color: var(--ion); background: var(--panel); }
   .side-link.on { color: #fff; background: var(--panel-hi); border-left-color: var(--ion); }
   .side-link.on .sl-n { color: var(--ion); }
-  .side-link.done { color: #4c5570; }
+  .side-link.done { color: #7a84a3; }
   .side-link.done .sl-t { text-decoration: line-through; text-decoration-thickness: 1px; }
   .sl-n { font-family: var(--mono); font-size: 0.68rem; color: var(--plasma-dim); flex-shrink: 0; font-variant-numeric: tabular-nums; }
   @media (min-width: 1270px) {
@@ -440,13 +440,19 @@
     .volume table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .grid-cards > * { min-width: 0; overflow-wrap: anywhere; }
   }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .g-fill { transition: none; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 8px; top: -48px; z-index: 100; background: var(--ion); color: var(--void); padding: 8px 12px; border-radius: 6px; font-weight: 700; }
+  .skip:focus { top: 8px; }
+  .wrap:focus, [tabindex="-1"]:focus { outline: none; }
 </style>
 <link rel="stylesheet" href="videos/player.css">
 </head>
 <body>
-<nav class="volnav">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="volnav" aria-label="Volumes">
 <div class="vtabs">
-<button class="vtab" data-vol="TOC" onclick="showVol('TOC')"><span class="vt-n">☰</span><span class="vt-l">Contents</span></button>
+<button class="vtab" data-vol="TOC" onclick="showVol('TOC')"><span class="vt-n" aria-hidden="true">☰</span><span class="vt-l">Contents</span></button>
 <button class="vtab" data-vol="01" onclick="showVol('01')"><span class="vt-n">01</span><span class="vt-l">Python</span></button>
 <button class="vtab" data-vol="02" onclick="showVol('02')"><span class="vt-n">02</span><span class="vt-l">Math</span></button>
 <button class="vtab" data-vol="03" onclick="showVol('03')"><span class="vt-n">03</span><span class="vt-l">ML</span></button>
@@ -458,16 +464,17 @@
 <button class="vtab" data-vol="09" onclick="showVol('09')"><span class="vt-n">09</span><span class="vt-l">Data · Cloud</span></button>
 <button class="vtab" data-vol="10" onclick="showVol('10')"><span class="vt-n">10</span><span class="vt-l">Backend · DevOps</span></button>
 <button class="vtab" data-vol="11" onclick="showVol('11')"><span class="vt-n">11</span><span class="vt-l">SysD · Evals</span></button>
-<button class="vtab" data-vol="AR" onclick="showVol('AR')"><span class="vt-n">◈</span><span class="vt-l">Architectures</span></button>
-<button class="vtab" data-vol="SC" onclick="showVol('SC')"><span class="vt-n">▶</span><span class="vt-l">Scenarios</span></button>
-<button class="vtab" data-vol="MA" onclick="showVol('MA')"><span class="vt-n">▲</span><span class="vt-l">Mastery</span></button>
-<button class="vtab" data-vol="GL" onclick="showVol('GL')"><span class="vt-n">✦</span><span class="vt-l">Glossary</span></button>
-<button class="vtab" data-vol="FR" onclick="showVol('FR')"><span class="vt-n">⚛</span><span class="vt-l">Frontier</span></button>
-<button class="vtab" data-vol="MK" onclick="showVol('MK')"><span class="vt-n">₹</span><span class="vt-l">Market</span></button>
-<button class="vtab" data-vol="QA" onclick="showVol('QA')"><span class="vt-n">✓</span><span class="vt-l">AI Testing</span></button>
+<button class="vtab" data-vol="AR" onclick="showVol('AR')"><span class="vt-n" aria-hidden="true">◈</span><span class="vt-l">Architectures</span></button>
+<button class="vtab" data-vol="SC" onclick="showVol('SC')"><span class="vt-n" aria-hidden="true">▶</span><span class="vt-l">Scenarios</span></button>
+<button class="vtab" data-vol="MA" onclick="showVol('MA')"><span class="vt-n" aria-hidden="true">▲</span><span class="vt-l">Mastery</span></button>
+<button class="vtab" data-vol="GL" onclick="showVol('GL')"><span class="vt-n" aria-hidden="true">✦</span><span class="vt-l">Glossary</span></button>
+<button class="vtab" data-vol="FR" onclick="showVol('FR')"><span class="vt-n" aria-hidden="true">⚛</span><span class="vt-l">Frontier</span></button>
+<button class="vtab" data-vol="MK" onclick="showVol('MK')"><span class="vt-n" aria-hidden="true">₹</span><span class="vt-l">Market</span></button>
+<button class="vtab" data-vol="QA" onclick="showVol('QA')"><span class="vt-n" aria-hidden="true">✓</span><span class="vt-l">AI Testing</span></button>
 </div>
-<div class="searchbox"><input id="q" type="search" placeholder="Search everything…  (Ctrl+K)" autocomplete="off" aria-label="Search all topics, terms and blueprints"><div id="results" class="results"></div></div>
+<div class="searchbox"><input id="q" type="search" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list" placeholder="Search everything…  (Ctrl+K)" autocomplete="off" aria-label="Search all topics, terms and blueprints"><div id="results" class="results" role="listbox" aria-label="Search results" tabindex="-1"></div><div id="qstatus" class="sr-only" aria-live="polite"></div></div>
 </nav>
+<main id="main">
 <div class="volume" id="volTOC">
 <div class="wrap">
 <header class="hero">
@@ -21603,15 +21610,20 @@ clusters = cluster(embeddings, method=<span class="s">"agglomerative"</span>, th
 <div class="pn-row"><button class="pn" onclick="showVol('MK')">&larr; ₹ Market</button><button class="pn" onclick="showVol('TOC')">☰ Contents</button><span></span></div>
 </div>
 </div>
+</main>
 <script>
 const VOL_RANGES = [["01",1,30],["02",31,56],["03",57,84],["04",85,110],["05",111,137],["06",138,172],["07",173,198],["08",199,226],["09",227,247],["10",248,271],["11",272,308]];
 function volForTopic(n) {
   for (const [v, lo, hi] of VOL_RANGES) if (n >= lo && n <= hi) return v;
   return null;
 }
+const navEl = document.querySelector('.volnav');
+function setNavH() { document.documentElement.style.setProperty('--navh', navEl.offsetHeight + 'px'); }
+setNavH(); addEventListener('resize', setNavH);
+function focusTarget(el) { const h = el.querySelector('h2, .gt-name') || el; h.tabIndex = -1; h.focus({ preventScroll: true }); }
 function showVol(vn, scrollTop = true) {
   document.querySelectorAll('.volume').forEach(d => d.classList.toggle('active', d.id === 'vol' + vn));
-  document.querySelectorAll('.vtab').forEach(t => t.classList.toggle('active', t.dataset.vol === vn));
+  document.querySelectorAll('.vtab').forEach(t => { const on = t.dataset.vol === vn; t.classList.toggle('active', on); if (on) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current'); });
   const at = document.querySelector('.vtab.active'), row = at && at.parentElement;
   if (row && row.scrollWidth > row.clientWidth) row.scrollLeft = at.getBoundingClientRect().left - row.getBoundingClientRect().left + row.scrollLeft - 10;
   if (scrollTop) window.scrollTo(0, 0);
@@ -21624,6 +21636,7 @@ function jumpToHash() {
   const vn = volForTopic(parseInt(m[1], 10));
   if (!vn) return false;
   showVol(vn, false);
+  focusTarget(document.getElementById('t' + m[1]));
   scrollToTopic('t' + m[1]);
   return true;
 }
@@ -21633,11 +21646,15 @@ function scrollToTopic(id, tries = 8) {
   el.scrollIntoView();
   setTimeout(() => {
     const top = el.getBoundingClientRect().top;
-    if (Math.abs(top - 20) > 6 && tries > 0) scrollToTopic(id, tries - 1);
+    if (Math.abs(top - (navEl.offsetHeight + 8)) > 6 && tries > 0) scrollToTopic(id, tries - 1);
     else if (typeof updateSpy === 'function') updateSpy();
   }, 140);
 }
 window.addEventListener('hashchange', jumpToHash);
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="#t"]'); if (a && a.hash === location.hash) { e.preventDefault(); jumpToHash(); } });
+document.querySelector('.skip').addEventListener('click', e => { e.preventDefault(); const w = document.querySelector('.volume.active .wrap'); w.tabIndex = -1; w.focus(); });
+document.querySelectorAll('.toc-vol-head, .sb-head').forEach(d => { d.tabIndex = 0; d.setAttribute('role', 'button'); d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); d.click(); } }); });
+document.querySelectorAll('.viz').forEach((v, i) => { const svg = v.querySelector('svg'), cap = v.querySelector('.viz-cap'); if (!svg || !cap) return; cap.id = cap.id || 'vcap' + i; svg.setAttribute('role', 'img'); svg.setAttribute('aria-labelledby', cap.id); });
 
 /* ---- progress checkboxes ---- */
 let done = new Set();
@@ -21737,6 +21754,8 @@ document.querySelectorAll('.volume').forEach(v => {
 
 const qEl = document.getElementById('q'), resEl = document.getElementById('results');
 let hits = [], sel = 0;
+const qStatus = document.getElementById('qstatus');
+function setOpen(on) { resEl.classList.toggle('on', on); qEl.setAttribute('aria-expanded', on); if (!on) qEl.removeAttribute('aria-activedescendant'); }
 function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 function hl(text, q) {
   const i = text.toLowerCase().indexOf(q);
@@ -21745,7 +21764,7 @@ function hl(text, q) {
 }
 function runSearch() {
   const q = qEl.value.trim().toLowerCase();
-  if (q.length < 2) { resEl.classList.remove('on'); hits = []; return; }
+  if (q.length < 2) { setOpen(false); hits = []; qStatus.textContent = ''; return; }
   hits = IDX.map(e => {
     const t = e.title.toLowerCase();
     let score = -1;
@@ -21756,25 +21775,26 @@ function runSearch() {
   }).filter(Boolean).sort((a, b) => a.score - b.score || a.e.title.length - b.e.title.length)
     .slice(0, 30).map(x => x.e);
   sel = 0;
-  if (!hits.length) { resEl.innerHTML = '<div class="rempty">No match for &ldquo;' + esc(qEl.value) + '&rdquo;</div>'; resEl.classList.add('on'); return; }
+  if (!hits.length) { resEl.innerHTML = '<div class="rempty">No match for &ldquo;' + esc(qEl.value) + '&rdquo;</div>'; setOpen(true); qStatus.textContent = 'No results'; return; }
   resEl.innerHTML = hits.map((e, i) =>
-    '<button class="rhit' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '">' +
+    '<button tabindex="-1" role="option" id="rh' + i + '" aria-selected="' + (i === 0) + '" class="rhit' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '">' +
       '<span class="rk ' + e.kind + '">' + (e.kind === 'topic' ? 'topic ' + e.num : e.kind === 'arch' ? 'blueprint' : 'term') + '</span>' +
       '<span class="rt">' + hl(e.title, q) + '</span>' +
       '<span class="rw">' + (VOL_TITLES[e.vol] || e.vol) + '</span>' +
       (e.desc ? '<span class="rd">' + hl(e.desc, q) + '…</span>' : '') +
     '</button>').join('');
-  resEl.classList.add('on');
-  resEl.querySelectorAll('.rhit').forEach(b => b.addEventListener('mousedown', ev => { ev.preventDefault(); go(+b.dataset.i); }));
+  setOpen(true); qEl.setAttribute('aria-activedescendant', 'rh0');
+  qStatus.textContent = hits.length + ' results. Use up and down arrows, Enter to open.';
+  resEl.querySelectorAll('.rhit').forEach(b => { b.addEventListener('mousedown', ev => ev.preventDefault()); b.addEventListener('click', () => go(+b.dataset.i)); });
 }
 function go(i) {
   const e = hits[i];
   if (!e) return;
-  resEl.classList.remove('on');
-  qEl.blur();
+  setOpen(false);
   showVol(e.vol, false);
   const el = document.getElementById(e.id);
   if (el) {
+    focusTarget(el);
     scrollToTopic(e.id);
     el.classList.remove('flash');
     void el.offsetWidth;
@@ -21783,15 +21803,16 @@ function go(i) {
 }
 if (qEl) {
   qEl.addEventListener('input', runSearch);
-  qEl.addEventListener('focus', () => { if (hits.length) resEl.classList.add('on'); });
-  qEl.addEventListener('blur', () => setTimeout(() => resEl.classList.remove('on'), 150));
+  qEl.addEventListener('focus', () => { if (hits.length) setOpen(true); });
+  qEl.addEventListener('blur', () => setTimeout(() => setOpen(false), 150));
   qEl.addEventListener('keydown', ev => {
-    if (ev.key === 'Escape') { qEl.value = ''; resEl.classList.remove('on'); qEl.blur(); return; }
+    if (ev.key === 'Escape') { qEl.value = ''; setOpen(false); return; }
     if (!hits.length) return;
     if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
       ev.preventDefault();
       sel = (sel + (ev.key === 'ArrowDown' ? 1 : hits.length - 1)) % hits.length;
-      resEl.querySelectorAll('.rhit').forEach((b, i) => b.classList.toggle('sel', i === sel));
+      resEl.querySelectorAll('.rhit').forEach((b, i) => { b.classList.toggle('sel', i === sel); b.setAttribute('aria-selected', i === sel); });
+      qEl.setAttribute('aria-activedescendant', 'rh' + sel);
       const s = resEl.querySelector('.rhit.sel');
       if (s) s.scrollIntoView({ block: 'nearest' });
     } else if (ev.key === 'Enter') { ev.preventDefault(); go(sel); }
