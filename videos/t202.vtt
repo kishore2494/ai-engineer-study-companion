@@ -53,85 +53,89 @@ But every shaping term is a new loophole to audit.
 Watch how one line transforms behavior.
 
 14
-00:00:41.500 --> 00:00:46.467
-With a step cost of zero, any path pays plus one, so the agent wanders forever.
+00:00:41.500 --> 00:00:45.400
+With a step cost of zero, only the discount rewards hurrying.
 
 15
-00:00:46.767 --> 00:00:52.833
-With minus zero point zero one, every wasted step hurts, and the policy becomes a beeline.
+00:00:45.400 --> 00:00:50.067
+Without discounting, every path pays the same plus one, so it may wander.
 
 16
-00:00:53.133 --> 00:00:58.133
-With minus zero point two, detours cost more than a crater, so it dives in.
+00:00:50.367 --> 00:00:56.433
+With minus zero point zero one, every wasted step hurts, and the policy becomes a beeline.
 
 17
-00:00:58.133 --> 00:01:00.200
-A reward bug, not an agent bug.
+00:00:56.733 --> 00:01:02.393
+Push it to about minus one, and each step costs as much as the crater, so it dives in.
 
 18
-00:01:01.400 --> 00:01:03.667
-Here is the entire spec in four lines.
+00:01:02.393 --> 00:01:04.433
+A reward bug, not an agent bug.
 
 19
-00:01:03.967 --> 00:01:07.767
-Reaching the goal pays plus one, and the crater costs minus one.
+00:01:05.633 --> 00:01:07.900
+Here is the entire spec in four lines.
 
 20
-00:01:08.067 --> 00:01:10.276
-Every other step pays the step cost.
+00:01:08.200 --> 00:01:12.000
+Reaching the goal pays plus one, and the crater costs minus one.
 
 21
-00:01:10.276 --> 00:01:13.100
-That single knob is what changed the behavior.
+00:01:12.300 --> 00:01:14.510
+Every other step pays the step cost.
 
 22
-00:01:14.300 --> 00:01:18.967
-You reward a survey probe plus point one whenever its solar panels are charging.
+00:01:14.510 --> 00:01:17.333
+That single knob is what changed the behavior.
 
 23
-00:01:19.267 --> 00:01:21.767
-You hope it stays powered while mapping terrain.
+00:01:18.533 --> 00:01:23.200
+You reward a survey probe plus point one whenever its solar panels are charging.
 
 24
-00:01:22.067 --> 00:01:26.021
-Instead it parks facing the sun and spins gently forever.
+00:01:23.500 --> 00:01:26.000
+You hope it stays powered while mapping terrain.
 
 25
-00:01:26.021 --> 00:01:28.033
-Maximum reward, zero mapping.
+00:01:26.300 --> 00:01:30.255
+Instead it parks facing the sun and spins gently forever.
 
 26
-00:01:28.333 --> 00:01:33.967
-That is reward hacking, the same disease as an LLM learning to flatter its reward model.
+00:01:30.255 --> 00:01:32.267
+Maximum reward, zero mapping.
 
 27
-00:01:35.167 --> 00:01:39.833
-The common mistake is rewarding a convenient proxy and hoping for the best.
+00:01:32.567 --> 00:01:38.200
+That is reward hacking, the same disease as an LLM learning to flatter its reward model.
 
 28
-00:01:40.133 --> 00:01:46.500
-Reward the real outcome instead, keep shaping small, and always ask what loophole the agent could find.
+00:01:39.400 --> 00:01:44.067
+The common mistake is rewarding a convenient proxy and hoping for the best.
 
 29
-00:01:47.700 --> 00:01:48.535
-Let's recap.
+00:01:44.367 --> 00:01:50.733
+Reward the real outcome instead, keep shaping small, and always ask what loophole the agent could find.
 
 30
-00:01:48.535 --> 00:01:51.667
-Reward is the only thing the agent optimizes.
+00:01:51.933 --> 00:01:52.768
+Let's recap.
 
 31
-00:01:51.967 --> 00:01:55.800
-Sparse rewards are honest but slow, and shaping adds loopholes.
+00:01:52.768 --> 00:01:55.900
+Reward is the only thing the agent optimizes.
 
 32
-00:01:56.100 --> 00:01:58.733
-One reward line can change all behavior.
+00:01:56.200 --> 00:02:00.033
+Sparse rewards are honest but slow, and shaping adds loopholes.
 
 33
-00:01:59.033 --> 00:02:01.616
-So always ask what loophole it found.
+00:02:00.333 --> 00:02:02.967
+One reward line can change all behavior.
 
 34
-00:02:01.616 --> 00:02:02.733
+00:02:03.267 --> 00:02:05.850
+So always ask what loophole it found.
+
+35
+00:02:05.850 --> 00:02:06.967
 Next up: policy.

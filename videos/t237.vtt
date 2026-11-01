@@ -69,61 +69,65 @@ MapReduce is durable, but brutally slow for anything iterative.
 Spark's in-memory model displaced it for exactly that reason.
 
 18
-00:00:57.100 --> 00:01:01.467
-Same map, shuffle, reduce shape, minus the disk writes between stages.
+00:00:57.100 --> 00:01:06.097
+Same map, shuffle, reduce shape, but intermediates stay in memory instead of round-tripping through replicated HDFS after every job.
 
 19
-00:01:02.667 --> 00:01:04.333
-You may still meet these commands.
+00:01:06.097 --> 00:01:09.300
+Spark still writes shuffle files to local disk.
 
 20
-00:01:04.633 --> 00:01:07.467
-Put copies a local file into HDFS.
+00:01:10.500 --> 00:01:12.167
+You may still meet these commands.
 
 21
-00:01:07.767 --> 00:01:13.467
-The listing shows it stored as one hundred twenty eight megabyte blocks, each replicated three times.
+00:01:12.467 --> 00:01:15.300
+Put copies a local file into HDFS.
 
 22
-00:01:13.767 --> 00:01:17.433
-And hadoop jar runs a MapReduce job over the whole folder.
+00:01:15.600 --> 00:01:21.300
+The listing shows it stored as one hundred twenty eight megabyte blocks, each replicated three times.
 
 23
-00:01:18.633 --> 00:01:20.133
-Here is where you will meet it.
+00:01:21.600 --> 00:01:25.267
+And hadoop jar runs a MapReduce job over the whole folder.
 
 24
-00:01:20.433 --> 00:01:26.900
-A partner keeps a decade of mission logs on an on-prem Hadoop cluster that your RAG system must ingest.
+00:01:26.467 --> 00:01:27.967
+Here is where you will meet it.
 
 25
-00:01:27.200 --> 00:01:34.200
-You will never write MapReduce, but you must read HDFS paths and reason about block sizes and replication.
+00:01:28.267 --> 00:01:34.733
+A partner keeps a decade of mission logs on an on-prem Hadoop cluster that your RAG system must ingest.
 
 26
-00:01:34.500 --> 00:01:37.767
-And you should answer why Spark replaced Hadoop in one sentence.
+00:01:35.033 --> 00:01:42.033
+You will never write MapReduce, but you must read HDFS paths and reason about block sizes and replication.
 
 27
-00:01:38.967 --> 00:01:39.852
-Let's recap.
+00:01:42.333 --> 00:01:45.600
+And you should answer why Spark replaced Hadoop in one sentence.
 
 28
-00:01:39.852 --> 00:01:43.467
-HDFS stores replicated blocks across cheap nodes.
+00:01:46.800 --> 00:01:47.685
+Let's recap.
 
 29
-00:01:43.767 --> 00:01:46.133
-MapReduce is map, shuffle, reduce.
+00:01:47.685 --> 00:01:51.300
+HDFS stores replicated blocks across cheap nodes.
 
 30
-00:01:46.433 --> 00:01:48.733
-Disk writes between stages made it slow.
+00:01:51.600 --> 00:01:53.967
+MapReduce is map, shuffle, reduce.
 
 31
-00:01:49.033 --> 00:01:51.826
-But its vocabulary lives on everywhere.
+00:01:54.267 --> 00:01:57.733
+Round trips through HDFS between jobs made it slow.
 
 32
-00:01:51.826 --> 00:01:52.900
+00:01:58.033 --> 00:02:00.826
+But its vocabulary lives on everywhere.
+
+33
+00:02:00.826 --> 00:02:01.900
 Next up: Kafka.
