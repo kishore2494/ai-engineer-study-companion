@@ -5,121 +5,125 @@ WEBVTT
 Qwen.
 
 2
-00:00:02.000 --> 00:00:06.348
-Alibaba's open family, and the most fine-tuned lineage after Llama.
+00:00:02.000 --> 00:00:03.495
+Alibaba's open family.
 
 3
-00:00:06.348 --> 00:00:08.100
-Here is what sets it apart.
+00:00:03.495 --> 00:00:10.832
+It's now the most fine-tuned open lineage on Hugging Face, having overtaken Llama during twenty twenty five.
 
 4
-00:00:09.300 --> 00:00:11.200
-Three things distinguish Qwen.
+00:00:10.832 --> 00:00:12.667
+Here is what sets it apart.
 
 5
-00:00:11.500 --> 00:00:13.345
-First, multilingual strength.
+00:00:13.867 --> 00:00:15.767
+Three things distinguish Qwen.
 
 6
-00:00:13.345 --> 00:00:18.500
-It was trained heavily beyond English, especially Indic and East Asian languages.
+00:00:16.067 --> 00:00:17.912
+First, multilingual strength.
 
 7
-00:00:18.800 --> 00:00:21.700
-Second, it is consistently strong at coding and math.
+00:00:17.912 --> 00:00:23.067
+It was trained heavily beyond English, especially Indic and East Asian languages.
 
 8
-00:00:22.000 --> 00:00:27.467
-Third, most sizes are Apache licensed, which matters when your fine-tune ships in a product.
+00:00:23.367 --> 00:00:26.267
+Second, it is consistently strong at coding and math.
 
 9
-00:00:28.667 --> 00:00:31.800
-The second advantage is a complete ladder of sizes.
+00:00:26.567 --> 00:00:32.033
+Third, most sizes are Apache licensed, which matters when your fine-tune ships in a product.
 
 10
-00:00:32.100 --> 00:00:37.800
-Half a billion to three billion parameters runs on edge devices, even a Raspberry Pi.
+00:00:33.233 --> 00:00:36.367
+The second advantage is a complete ladder of sizes.
 
 11
-00:00:38.100 --> 00:00:42.600
-Seven to fourteen billion are the fine-tuning workhorses, on one GPU.
+00:00:36.667 --> 00:00:42.367
+Half a billion to three billion parameters runs on edge devices, even a Raspberry Pi.
 
 12
-00:00:42.900 --> 00:00:46.000
-Thirty-two billion and up are near-frontier flagships.
+00:00:42.667 --> 00:00:47.167
+Seven to fourteen billion are the fine-tuning workhorses, on one GPU.
 
 13
-00:00:46.300 --> 00:00:50.300
-And variants for code, vision, and embeddings fill every other slot.
+00:00:47.467 --> 00:00:50.567
+Thirty-two billion and up are near-frontier flagships.
 
 14
-00:00:51.500 --> 00:00:53.333
-Let's test the multilingual claim.
+00:00:50.867 --> 00:00:54.867
+And variants for code, vision, and embeddings fill every other slot.
 
 15
-00:00:53.633 --> 00:00:56.900
-We load a small one and a half billion parameter Qwen.
+00:00:56.067 --> 00:00:57.900
+Let's test the multilingual claim.
 
 16
-00:00:57.200 --> 00:01:01.833
-Then ask a question in Hindi, about the difference between a satellite and a meteor.
+00:00:58.200 --> 00:01:01.467
+We load a small one and a half billion parameter Qwen.
 
 17
-00:01:02.133 --> 00:01:05.300
-Run the same prompt through Llama, and the gap is the point.
+00:01:01.767 --> 00:01:06.400
+Then ask a question in Hindi, about the difference between a satellite and a meteor.
 
 18
-00:01:06.500 --> 00:01:08.262
-Here is a real scenario.
+00:01:06.700 --> 00:01:09.867
+Run the same prompt through Llama, and the gap is the point.
 
 19
-00:01:08.262 --> 00:01:13.767
-A telemetry operation ingests reports in Hindi and Tamil alongside English.
+00:01:11.067 --> 00:01:12.828
+Here is a real scenario.
 
 20
-00:01:14.067 --> 00:01:17.400
-The Llama-based triage model mangles the Indic scripts.
+00:01:12.828 --> 00:01:18.333
+A telemetry operation ingests reports in Hindi and Tamil alongside English.
 
 21
-00:01:17.700 --> 00:01:23.300
-The same LoRA recipe on Qwen handles them natively, with no translation layer.
+00:01:18.633 --> 00:01:21.967
+The Llama-based triage model mangles the Indic scripts.
 
 22
-00:01:23.600 --> 00:01:25.288
-No extra latency either.
+00:01:22.267 --> 00:01:27.867
+The same LoRA recipe on Qwen handles them natively, with no translation layer.
 
 23
-00:01:25.288 --> 00:01:30.633
-One afternoon of side-by-side prompting saved a whole preprocessing service.
+00:01:28.167 --> 00:01:29.855
+No extra latency either.
 
 24
-00:01:31.833 --> 00:01:33.733
-The practical takeaway is simple.
+00:01:29.855 --> 00:01:35.200
+One afternoon of side-by-side prompting saved a whole preprocessing service.
 
 25
-00:01:34.033 --> 00:01:42.800
-If your task involves non-English text, or needs one family across many sizes, Qwen is usually the first checkpoint to benchmark.
+00:01:36.400 --> 00:01:38.300
+The practical takeaway is simple.
 
 26
-00:01:44.000 --> 00:01:44.819
-Let's recap.
+00:01:38.600 --> 00:01:47.367
+If your task involves non-English text, or needs one family across many sizes, Qwen is usually the first checkpoint to benchmark.
 
 27
-00:01:44.819 --> 00:01:48.367
-Qwen is strong at multilingual work, code, and math.
+00:01:48.567 --> 00:01:49.385
+Let's recap.
 
 28
-00:01:48.667 --> 00:01:50.133
-It has a full size ladder.
+00:01:49.385 --> 00:01:52.933
+Qwen is strong at multilingual work, code, and math.
 
 29
-00:01:50.433 --> 00:01:52.433
-Most sizes are Apache licensed.
+00:01:53.233 --> 00:01:54.700
+It has a full size ladder.
 
 30
-00:01:52.733 --> 00:01:55.400
-Benchmark it first for non-English work.
+00:01:55.000 --> 00:01:57.000
+Most sizes are Apache licensed.
 
 31
-00:01:55.400 --> 00:01:56.400
+00:01:57.300 --> 00:01:59.967
+Benchmark it first for non-English work.
+
+32
+00:01:59.967 --> 00:02:00.967
 Next up: Gemma.

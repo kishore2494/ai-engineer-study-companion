@@ -73,57 +73,65 @@ Each executor works on its own slice of the data.
 Here it is in code.
 
 19
-00:00:56.000 --> 00:00:59.460
-These three lines filter, group, and count hot readings.
+00:00:56.000 --> 00:00:57.727
+We pass an explicit schema.
 
 20
-00:00:59.460 --> 00:01:01.067
-All lazy, so nothing runs.
+00:00:57.727 --> 00:01:03.933
+Without one, the read already runs a small job, and inferring the schema means a full extra pass.
 
 21
-00:01:01.367 --> 00:01:03.339
-The line with collect is the one.
+00:01:04.233 --> 00:01:07.693
+These three lines filter, group, and count hot readings.
 
 22
-00:01:03.339 --> 00:01:06.267
-Execution happens there, and not a moment before.
+00:01:07.693 --> 00:01:09.300
+All lazy, so nothing runs.
 
 23
-00:01:07.467 --> 00:01:08.800
-Here is a real use.
+00:01:09.600 --> 00:01:11.649
+The line with collect is the action.
 
 24
-00:01:09.100 --> 00:01:15.733
-An exoplanet classifier needs features recomputed over three years of raw files, four hundred gigabytes.
+00:01:11.649 --> 00:01:14.267
+That's where the heavy pipeline actually runs.
 
 25
-00:01:16.033 --> 00:01:19.467
-A local PySpark session proves the logic on one month.
+00:01:15.467 --> 00:01:16.800
+Here is a real use.
 
 26
-00:01:19.767 --> 00:01:26.000
-Then the identical script runs on a cluster, because the plan does not care how many executors exist.
+00:01:17.100 --> 00:01:23.733
+An exoplanet classifier needs features recomputed over three years of raw files, four hundred gigabytes.
 
 27
-00:01:27.200 --> 00:01:28.082
-Let's recap.
+00:01:24.033 --> 00:01:27.467
+A local PySpark session proves the logic on one month.
 
 28
-00:01:28.082 --> 00:01:30.433
-Spark is distributed dataframes.
+00:01:27.767 --> 00:01:34.000
+Then the identical script runs on a cluster, because the plan does not care how many executors exist.
 
 29
-00:01:30.733 --> 00:01:33.467
-Transformations are lazy and build a plan.
+00:01:35.200 --> 00:01:36.082
+Let's recap.
 
 30
-00:01:33.767 --> 00:01:35.567
-An action triggers the whole thing.
+00:01:36.082 --> 00:01:38.433
+Spark is distributed dataframes.
 
 31
-00:01:35.867 --> 00:01:39.192
-And laziness lets Spark optimize before it runs.
+00:01:38.733 --> 00:01:41.467
+Transformations are lazy and build a plan.
 
 32
-00:01:39.192 --> 00:01:40.300
+00:01:41.767 --> 00:01:43.567
+An action triggers the whole thing.
+
+33
+00:01:43.867 --> 00:01:47.192
+And laziness lets Spark optimize before it runs.
+
+34
+00:01:47.192 --> 00:01:48.300
 Next up: Hadoop.

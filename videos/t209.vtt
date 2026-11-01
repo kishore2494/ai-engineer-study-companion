@@ -69,65 +69,65 @@ Run both on the same environment, same budget, same seed.
 A2C typically reaches about three eighty, with wobble, because a bad batch can knock the policy over.
 
 18
-00:01:00.300 --> 00:01:02.224
+00:01:00.300 --> 00:01:02.329
 PPO sits at five hundred, flat.
 
 19
-00:01:02.224 --> 00:01:03.900
-The difference is the clip.
+00:01:02.329 --> 00:01:09.267
+The gap comes from clipping plus multi-epoch minibatch updates and different defaults, not the clip alone.
 
 20
-00:01:05.100 --> 00:01:06.833
+00:01:10.467 --> 00:01:12.200
 Here's the comparison as code.
 
 21
-00:01:07.133 --> 00:01:08.867
+00:01:12.500 --> 00:01:14.233
 We loop over both algorithms.
 
 22
-00:01:09.167 --> 00:01:10.800
+00:01:14.533 --> 00:01:16.167
 Same seed, same budget.
 
 23
-00:01:11.100 --> 00:01:14.933
+00:01:16.467 --> 00:01:20.300
 And we evaluate each over twenty episodes, printing mean and spread.
 
 24
-00:01:16.133 --> 00:01:18.733
+00:01:21.500 --> 00:01:24.067
 Say you propose PPO for the cubesat sim.
 
 25
-00:01:19.033 --> 00:01:21.433
+00:01:24.367 --> 00:01:26.767
 A good reviewer asks: compared to what?
 
 26
-00:01:21.733 --> 00:01:26.616
+00:01:27.067 --> 00:01:31.950
 The A2C run is your answer, same budget and seeds, logged side by side.
 
 27
-00:01:26.616 --> 00:01:32.600
+00:01:31.950 --> 00:01:37.933
 It protects you from a fancy algorithm winning only because nobody ran the simpler one.
 
 28
-00:01:33.800 --> 00:01:34.641
+00:01:39.133 --> 00:01:39.974
 Let's recap.
 
 29
-00:01:34.641 --> 00:01:37.933
+00:01:39.974 --> 00:01:43.267
 A2C is actor-critic with parallel environments.
 
 30
-00:01:38.233 --> 00:01:40.333
+00:01:43.567 --> 00:01:45.667
 It takes one unclipped step per batch.
 
 31
-00:01:40.633 --> 00:01:44.300
+00:01:45.967 --> 00:01:49.633
 PPO is A2C plus clipping and multiple epochs.
 
 32
-00:01:44.600 --> 00:01:47.225
+00:01:49.933 --> 00:01:52.558
 And always run the simple baseline.
 
 33
-00:01:47.225 --> 00:01:48.200
+00:01:52.558 --> 00:01:53.533
 Next up: A3C.
