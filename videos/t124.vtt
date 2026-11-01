@@ -105,37 +105,37 @@ An encoder has no notion of next word.
 Your embedding model is an encoder.
 
 27
-00:01:20.900 --> 00:01:26.100
-Every chunk goes in, and mean pooling produces one seven sixty eight dimensional vector.
+00:01:20.900 --> 00:01:25.967
+Every chunk goes in, and mean pooling produces one three eighty four dimensional vector.
 
 28
-00:01:26.400 --> 00:01:28.533
+00:01:26.267 --> 00:01:28.400
 That vector sits in your vector database.
 
 29
-00:01:28.833 --> 00:01:34.167
+00:01:28.700 --> 00:01:34.033
 So when retrieval confuses docking port with port thruster, you know which component to swap.
 
 30
-00:01:35.367 --> 00:01:36.110
+00:01:35.233 --> 00:01:35.977
 Let's recap.
 
 31
-00:01:36.110 --> 00:01:39.333
+00:01:35.977 --> 00:01:39.200
 An encoder stacks attention and feed-forward layers.
 
 32
-00:01:39.633 --> 00:01:42.867
+00:01:39.500 --> 00:01:42.733
 It's bidirectional: every token sees every token.
 
 33
-00:01:43.167 --> 00:01:45.900
+00:01:43.033 --> 00:01:45.767
 It outputs one contextual vector per token.
 
 34
-00:01:46.200 --> 00:01:48.757
+00:01:46.067 --> 00:01:48.623
 It's for understanding, not generating.
 
 35
-00:01:48.757 --> 00:01:50.133
+00:01:48.623 --> 00:01:50.000
 Next up: the decoder.

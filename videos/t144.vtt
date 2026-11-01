@@ -121,17 +121,17 @@ Let's recap.
 LoRA freezes W and trains thin matrices A and B.
 
 31
-00:01:38.933 --> 00:01:42.433
-About one percent of the parameters gives most of the benefit.
+00:01:38.933 --> 00:01:42.567
+Well under one percent of the parameters gives most of the benefit.
 
 32
-00:01:42.733 --> 00:01:44.633
+00:01:42.867 --> 00:01:44.767
 Adapters are tiny and swappable.
 
 33
-00:01:44.933 --> 00:01:47.721
+00:01:45.067 --> 00:01:47.855
 And you can merge them for zero latency.
 
 34
-00:01:47.721 --> 00:01:48.767
+00:01:47.855 --> 00:01:48.900
 Next up: QLoRA.
