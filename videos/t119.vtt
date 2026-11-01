@@ -49,89 +49,97 @@ And takes a weighted average, with weights the model learns to compute on the fl
 The mechanism is three steps.
 
 13
-00:00:45.000 --> 00:00:49.633
-First, score the current query against every stored input with a dot product.
+00:00:45.000 --> 00:00:48.376
+First, score the query against every stored input.
 
 14
-00:00:49.933 --> 00:00:53.267
-Then softmax turns those scores into weights that sum to one.
+00:00:48.376 --> 00:00:51.752
+Luong and transformer attention use a dot product.
 
 15
-00:00:53.567 --> 00:00:56.514
-And the weighted sum of the inputs is the context.
+00:00:51.752 --> 00:00:55.600
+Bahdanau's original used a small learned additive scorer.
 
 16
-00:00:56.514 --> 00:01:01.700
-It's a differentiable soft lookup, so the model learns where to look by backpropagation.
+00:00:55.900 --> 00:00:59.233
+Then softmax turns those scores into weights that sum to one.
 
 17
-00:01:02.900 --> 00:01:05.567
-Here is a tiny example with three stored states.
+00:00:59.533 --> 00:01:02.480
+And the weighted sum of the inputs is the context.
 
 18
-00:01:05.867 --> 00:01:10.235
-The scores turn into weights: sixty four, ten, and twenty six percent.
+00:01:02.480 --> 00:01:07.667
+It's a differentiable soft lookup, so the model learns where to look by backpropagation.
 
 19
-00:01:10.235 --> 00:01:11.733
-They sum to one hundred.
+00:01:08.867 --> 00:01:11.533
+Here is a tiny example with three stored states.
 
 20
-00:01:12.033 --> 00:01:16.267
-Most of the weight lands on state zero, the one that best matches the query.
+00:01:11.833 --> 00:01:16.202
+The scores turn into weights: sixty four, ten, and twenty six percent.
 
 21
-00:01:17.467 --> 00:01:19.067
-Here's the same thing in code.
+00:01:16.202 --> 00:01:17.700
+They sum to one hundred.
 
 22
-00:01:19.367 --> 00:01:21.867
-Three stored encoder states, four numbers each.
+00:01:18.000 --> 00:01:22.233
+Most of the weight lands on state zero, the one that best matches the query.
 
 23
-00:01:22.167 --> 00:01:24.767
-One query, what the decoder needs right now.
+00:01:23.433 --> 00:01:25.033
+Here's the same thing in code.
 
 24
-00:01:25.067 --> 00:01:30.535
-We score with a matrix product, softmax the scores, and blend the states with those weights.
+00:01:25.333 --> 00:01:27.833
+Three stored encoder states, four numbers each.
 
 25
-00:01:30.535 --> 00:01:31.367
-No bottleneck.
+00:01:28.133 --> 00:01:30.733
+One query, what the decoder needs right now.
 
 26
-00:01:32.567 --> 00:01:34.333
-Here's why this matters for RAG.
+00:01:31.033 --> 00:01:36.501
+We score with a matrix product, softmax the scores, and blend the states with those weights.
 
 27
-00:01:34.633 --> 00:01:37.167
-You stuff eight reranked chunks into the prompt.
+00:01:36.501 --> 00:01:37.333
+No bottleneck.
 
 28
-00:01:37.467 --> 00:01:44.967
-When the model writes the anomaly began at a timestamp, it attends to the two chunks containing it, nearly ignoring the other six.
+00:01:38.533 --> 00:01:40.300
+Here's why this matters for RAG.
 
 29
-00:01:45.267 --> 00:01:47.900
-It looks up the right one for every output token.
+00:01:40.600 --> 00:01:43.267
+You stuff five reranked chunks into the prompt.
 
 30
-00:01:49.100 --> 00:01:49.879
-Let's recap.
+00:01:43.567 --> 00:01:51.000
+When the model writes the anomaly began at a timestamp, it attends to the two chunks containing it, nearly ignoring the other three.
 
 31
-00:01:49.879 --> 00:01:52.733
-Attention removes the one-vector bottleneck.
+00:01:51.300 --> 00:01:53.933
+It looks up the right one for every output token.
 
 32
-00:01:53.033 --> 00:01:54.933
-Score, softmax, weighted sum.
+00:01:55.133 --> 00:01:55.912
+Let's recap.
 
 33
-00:01:55.233 --> 00:02:00.184
-It's a differentiable soft lookup, and the weights are learned by backpropagation.
+00:01:55.912 --> 00:01:58.767
+Attention removes the one-vector bottleneck.
 
 34
-00:02:00.184 --> 00:02:01.633
+00:01:59.067 --> 00:02:00.967
+Score, softmax, weighted sum.
+
+35
+00:02:01.267 --> 00:02:06.218
+It's a differentiable soft lookup, and the weights are learned by backpropagation.
+
+36
+00:02:06.218 --> 00:02:07.667
 Next up: self-attention.

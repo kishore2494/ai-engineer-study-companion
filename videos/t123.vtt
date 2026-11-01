@@ -17,141 +17,133 @@ Here's how to think about it.
 Hugging Face is two things fused together.
 
 5
-00:00:10.433 --> 00:00:18.167
-At the bottom, the Hub: hundreds of thousands of pretrained models, datasets, and model cards behind a git-like API.
+00:00:10.433 --> 00:00:18.233
+At the bottom, the Hub: well over a million pretrained models, plus datasets and model cards, behind a git-like API.
 
 6
-00:00:18.467 --> 00:00:22.067
+00:00:18.533 --> 00:00:22.133
 On top, the transformers library, which loads and runs them.
 
 7
-00:00:22.367 --> 00:00:24.900
+00:00:22.433 --> 00:00:24.967
 And your code picks one of two levels to call it.
 
 8
-00:00:26.100 --> 00:00:27.520
+00:00:26.167 --> 00:00:27.586
 Level one is pipeline.
 
 9
-00:00:27.520 --> 00:00:33.133
+00:00:27.586 --> 00:00:33.200
 It wraps preprocessing, model, and postprocessing in one line, perfect for prototyping.
 
 10
-00:00:33.433 --> 00:00:39.933
+00:00:33.500 --> 00:00:40.000
 Level two is the Auto classes, where you tokenize, run the forward pass, and handle the logits yourself.
 
 11
-00:00:40.233 --> 00:00:42.967
+00:00:40.300 --> 00:00:43.033
 You need that for batching, custom heads, and serving.
 
 12
-00:00:43.267 --> 00:00:44.900
+00:00:43.333 --> 00:00:44.967
 It's the same math underneath.
 
 13
-00:00:46.100 --> 00:00:47.933
+00:00:46.167 --> 00:00:48.000
 Here's the chain pipeline hides.
 
 14
-00:00:48.233 --> 00:00:49.467
+00:00:48.300 --> 00:00:49.533
 Raw text goes in.
 
 15
-00:00:49.767 --> 00:00:51.900
+00:00:49.833 --> 00:00:51.967
 The tokenizer turns it into tensors.
 
 16
-00:00:52.200 --> 00:00:55.367
+00:00:52.267 --> 00:00:55.433
 The model runs the forward pass and returns logits.
 
 17
-00:00:55.667 --> 00:00:58.229
+00:00:55.733 --> 00:00:58.296
 Softmax converts them into probabilities.
 
 18
-00:00:58.229 --> 00:01:00.167
+00:00:58.296 --> 00:01:00.233
 Now you can inspect every step.
 
 19
-00:01:01.367 --> 00:01:02.633
+00:01:01.433 --> 00:01:02.700
 Here are both levels.
 
 20
-00:01:02.933 --> 00:01:06.142
+00:01:03.000 --> 00:01:06.209
 First an alias for the classification head class.
 
 21
-00:01:06.142 --> 00:01:08.500
+00:01:06.209 --> 00:01:08.567
 Level one is a single pipeline call.
 
 22
-00:01:08.800 --> 00:01:12.260
+00:01:08.867 --> 00:01:12.327
 Level two loads tokenizer and model from the same name.
 
 23
-00:01:12.260 --> 00:01:13.267
+00:01:12.327 --> 00:01:13.333
 They must match.
 
 24
-00:01:13.567 --> 00:01:17.100
+00:01:13.633 --> 00:01:17.167
 Then we tokenize, run the model, and softmax the logits.
 
 25
-00:01:18.300 --> 00:01:19.567
-Here are both levels.
+00:01:18.367 --> 00:01:19.800
+Three rules to remember.
 
 26
-00:01:19.867 --> 00:01:22.783
-First, the alias picks a classification head.
+00:01:20.100 --> 00:01:27.833
+First, load the tokenizer and the checkpoint from the same model name, or the token IDs won't mean what the model expects.
 
 27
-00:01:22.783 --> 00:01:25.700
-Level one is a single line: build a pipeline.
+00:01:28.133 --> 00:01:34.400
+Second, pick the right head class: for sequence classification, for causal language modeling, and so on.
 
 28
-00:01:26.000 --> 00:01:29.460
-Level two loads tokenizer and model from the same name.
+00:01:34.700 --> 00:01:39.733
+Third, read the model card: its training data, its evaluations, and its license.
 
 29
-00:01:29.460 --> 00:01:30.467
-They must match.
-
-30
-00:01:30.767 --> 00:01:34.300
-Then we tokenize, run the model, and softmax the logits.
-
-31
-00:01:35.500 --> 00:01:36.900
+00:01:40.933 --> 00:01:42.333
 Here's how it plays out.
 
-32
-00:01:37.200 --> 00:01:40.433
+30
+00:01:42.633 --> 00:01:45.867
 You prototype note triage with pipeline in an afternoon.
 
-33
-00:01:40.733 --> 00:01:45.667
+31
+00:01:46.167 --> 00:01:51.100
 In the service, you use the Auto level: load once, batch thirty two notes per pass.
 
-34
-00:01:45.967 --> 00:01:51.733
+32
+00:01:51.400 --> 00:01:57.167
 You keep the raw logits, and send anything below zero point seven confidence to human review.
 
-35
-00:01:52.933 --> 00:01:53.703
+33
+00:01:58.367 --> 00:01:59.136
 Let's recap.
 
-36
-00:01:53.703 --> 00:01:57.167
+34
+00:01:59.136 --> 00:02:02.600
 Hugging Face is the Hub plus the transformers library.
 
-37
-00:01:57.467 --> 00:02:01.100
+35
+00:02:02.900 --> 00:02:06.533
 Use pipeline to prototype, and Auto classes for control.
 
-38
-00:02:01.400 --> 00:02:03.998
+36
+00:02:06.833 --> 00:02:09.431
 Always match tokenizer and checkpoint.
 
-39
-00:02:03.998 --> 00:02:05.433
+37
+00:02:09.431 --> 00:02:10.867
 Next up: the encoder.

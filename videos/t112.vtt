@@ -77,85 +77,85 @@ The query says telemetry.
 The stemmer chops it down.
 
 20
-00:00:46.133 --> 00:00:49.633
-The document says telemetric, and it gets stemmed the same way.
+00:00:46.133 --> 00:00:49.567
+The document says telemetries, and it gets stemmed the same way.
 
 21
-00:00:49.933 --> 00:00:53.741
+00:00:49.867 --> 00:00:53.674
 Both land on the same string, telemetri, and now they match.
 
 22
-00:00:53.741 --> 00:00:55.200
+00:00:53.674 --> 00:00:55.133
 That's recall going up.
 
 23
-00:00:56.400 --> 00:00:58.291
+00:00:56.333 --> 00:00:58.224
 The danger is over-stemming.
 
 24
-00:00:58.291 --> 00:01:03.423
+00:00:58.224 --> 00:01:03.356
 Universal and university both become univers, so unrelated words get merged.
 
 25
-00:01:03.423 --> 00:01:06.867
+00:01:03.356 --> 00:01:06.800
 Under-stemming misses forms in the other direction.
 
 26
-00:01:07.167 --> 00:01:12.033
+00:01:07.100 --> 00:01:11.967
 The fix is to keep stems hidden inside the index, and never show them to users.
 
 27
-00:01:13.233 --> 00:01:14.800
+00:01:13.167 --> 00:01:14.733
 Here it is with NLTK.
 
 28
-00:01:15.100 --> 00:01:18.238
+00:01:15.033 --> 00:01:18.171
 We create a Porter stemmer and grab its stem function.
 
 29
-00:01:18.238 --> 00:01:19.400
+00:01:18.171 --> 00:01:19.333
 Nothing to download.
 
 30
-00:01:19.700 --> 00:01:23.067
+00:01:19.633 --> 00:01:23.000
 Then we loop over the words and print each one beside its stem.
 
 31
-00:01:24.267 --> 00:01:25.433
+00:01:24.200 --> 00:01:25.367
 Where does this show up?
 
 32
-00:01:25.733 --> 00:01:29.967
+00:01:25.667 --> 00:01:29.900
 Your Mission Control RAG has a keyword search leg next to the vector leg.
 
 33
-00:01:30.267 --> 00:01:36.567
+00:01:30.200 --> 00:01:36.500
 Stem its index, and a query for pressurization failures matches pressurized, pressurizing, and failure.
 
 34
-00:01:36.867 --> 00:01:41.200
+00:01:36.800 --> 00:01:41.133
 Recall jumps with zero model cost, and the stems never reach the user.
 
 35
-00:01:42.400 --> 00:01:43.185
+00:01:42.333 --> 00:01:43.119
 Let's recap.
 
 36
-00:01:43.185 --> 00:01:46.000
+00:01:43.119 --> 00:01:45.933
 Stemming chops suffixes using simple rules.
 
 37
-00:01:46.300 --> 00:01:49.900
+00:01:46.233 --> 00:01:49.833
 Its output only needs to be consistent, not a real word.
 
 38
-00:01:50.200 --> 00:01:54.200
+00:01:50.133 --> 00:01:54.133
 It's great inside search indexes and bad anywhere a user reads it.
 
 39
-00:01:54.500 --> 00:01:56.495
+00:01:54.433 --> 00:01:56.428
 And watch for over-stemming.
 
 40
-00:01:56.495 --> 00:01:58.133
+00:01:56.428 --> 00:01:58.067
 Next up: lemmatization.
