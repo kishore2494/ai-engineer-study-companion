@@ -6007,7 +6007,7 @@ opt = torch.optim.<span class="f">Adam</span>(model.parameters(), lr=<span class
   <div class="block">
     <span class="label concept">Concept</span>
     <p><b>Forward propagation</b> is the network actually computing: data enters, and each layer performs one matrix multiply, one bias add, one activation — <code>a = activation(W·x + b)</code> — then hands the result to the next layer. That's it. Inference is one forward pass; training is a forward pass <i>plus</i> a backward pass (#91). Every intimidating architecture diagram you'll ever see — ResNet, Transformer, diffusion U-Net — is just a fancier routing of this same per-layer computation.</p>
-    <p>Hand-computing one full forward pass, once, with real numbers, is the highest-value exercise in this volume. It makes tensor <b>shapes</b> concrete (a <code>(2,3)</code> weight matrix turns a 2-vector into a 3-vector), and shape errors are the single most common deep-learning bug you'll debug.</p>
+    <p>Hand-computing one full forward pass, once, with real numbers, is the highest-value exercise in this volume. It makes tensor <b>shapes</b> concrete (a <code>(3,2)</code> weight matrix turns a 2-vector into a 3-vector), and shape errors are the single most common deep-learning bug you'll debug.</p>
   </div>
   <div class="viz">
     <svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg">
@@ -6107,8 +6107,8 @@ y  = <span class="n">1</span> / (<span class="n">1</span> + np.exp(-z2))
       <text x="116" y="128" fill="#ff7a59" text-anchor="middle">∂L/∂x</text>
       <line x1="370" y1="162" x2="370" y2="196" stroke="#ffd97a" stroke-width="2" marker-end="url(#v04_m91g)"/>
       <line x1="200" y1="162" x2="200" y2="196" stroke="#ffd97a" stroke-width="2" marker-end="url(#v04_m91h)"/>
-      <text x="370" y="214" fill="#ffd97a" text-anchor="middle">∂L/∂W₂ = ∂L/∂ŷ · h</text>
-      <text x="200" y="214" fill="#ffd97a" text-anchor="middle">∂L/∂W₁ = ∂L/∂h · x</text>
+      <text x="370" y="214" fill="#ffd97a" text-anchor="middle">∂L/∂W₂ = ∂L/∂ŷ · g′ · h</text>
+      <text x="200" y="214" fill="#ffd97a" text-anchor="middle">∂L/∂W₁ = ∂L/∂h · f′ · x</text>
       <text x="280" y="246" fill="#6ee7a0" text-anchor="middle">one sweep → every weight's gradient, at ~2× the cost of a forward pass</text>
       <defs>
         <marker id="v04_m91a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5ed3f4"/></marker>
@@ -6602,7 +6602,7 @@ out = net(torch.randn(<span class="n">32</span>, <span class="n">256</span>)); o
         <line x1="330" y1="70" x2="330" y2="160"/><line x1="360" y1="70" x2="360" y2="160"/>
         <line x1="300" y1="100" x2="390" y2="100"/><line x1="300" y1="130" x2="390" y2="130"/>
       </g>
-      <rect x="300" y="70" width="30" height="30" fill="rgba(255,217,122,0.35)"/>
+      <rect x="330" y="100" width="30" height="30" fill="rgba(255,217,122,0.35)"/>
       <text x="345" y="55" fill="#8b97b8" text-anchor="middle">feature map (3×3)</text>
       <text x="345" y="182" fill="#ffd97a" text-anchor="middle" font-size="10">lights up where the</text>
       <text x="345" y="196" fill="#ffd97a" text-anchor="middle" font-size="10">pattern appears</text>
@@ -6826,7 +6826,7 @@ count = <span class="k">lambda</span> m: <span class="f">sum</span>(p.numel() <s
         <rect x="272" y="78" width="30" height="30" rx="4" fill="#1a2138" stroke="#5ed3f4"/>
         <rect x="308" y="78" width="30" height="30" rx="4" fill="#1a2138" stroke="#ff7a59"/>
         <rect x="344" y="78" width="30" height="30" rx="4" fill="#1a2138" stroke="#5ed3f4"/>
-        <text x="390" y="98" fill="#8b97b8">…+4 more</text>
+        <text x="390" y="98" fill="#8b97b8">…+5 more</text>
       </g>
       <text x="300" y="130" fill="#8b97b8" text-anchor="middle" font-size="10">+ position embeddings 0…9</text>
       <line x1="300" y1="140" x2="300" y2="160" stroke="#6ee7a0" stroke-width="2" marker-end="url(#v04_m103b)"/>
@@ -7893,7 +7893,7 @@ context = weights @ mem              <span class="c"># weighted blend, not a bot
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — why long mission logs stopped being a problem</span>
-    <p style="margin:0">When Mission Control RAG's generator writes "the anomaly began at GET 055:54" it is attending — at that exact decoding step — to the two retrieved chunks containing the timestamp, nearly ignoring the other six in context. Attention is why stuffing eight reranked chunks into the prompt works at all: the model doesn't average them into mush, it looks up the right one per output token.</p>
+    <p style="margin:0">When Mission Control RAG's generator writes "the anomaly began at GET 055:54" it is attending — at that exact decoding step — to the two retrieved chunks containing the timestamp, nearly ignoring the other three in context. Attention is why stuffing five reranked chunks into the prompt works at all: the model doesn't average them into mush, it looks up the right one per output token.</p>
   </div>
 </section>
 
@@ -8199,7 +8199,7 @@ b = vec(<span class="s">"the crew walked along the dock at the harbor"</span>, <
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — the embedder inside Mission Control RAG</span>
-    <p style="margin:0">Your embedding model (a sentence-transformers checkpoint) is a transformer encoder with mean-pooling on top: every mission-log chunk goes in, one 768-dim vector comes out, and that vector is what sits in your vector DB. When retrieval confuses "docking port" with "port thruster", you now know exactly which component to swap — the encoder — and why a domain-fine-tuned one might separate those senses better.</p>
+    <p style="margin:0">Your embedding model (a sentence-transformers checkpoint) is a transformer encoder with mean-pooling on top: every mission-log chunk goes in, one 384-dim vector comes out, and that vector is what sits in your vector DB. When retrieval confuses "docking port" with "port thruster", you now know exactly which component to swap — the encoder — and why a domain-fine-tuned one might separate those senses better.</p>
   </div>
 </section>
 
@@ -8362,7 +8362,7 @@ out = (A @ V).transpose(<span class="n">1</span>, <span class="n">0</span>, <spa
       <text x="470" y="103" fill="#ffd97a" font-size="10">dim 64 — slower</text>
       <text x="470" y="160" fill="#ff7a59" font-size="10">dim 511 — glacial</text>
       <line x1="200" y1="34" x2="200" y2="188" stroke="#8b97b8" stroke-dasharray="4 4"/>
-      <text x="206" y="196" fill="#6ee7a0" font-size="10">position 17: (0.87, −0.42, 0.99, …)</text>
+      <text x="206" y="196" fill="#6ee7a0" font-size="10">position 17: (−0.96, −0.79, 1.00, …)</text>
       <line x1="40" y1="188" x2="460" y2="188" stroke="#2f3a5c"/>
       <text x="40" y="204" fill="#8b97b8" font-size="9.5">position →</text>
       </g>
@@ -9436,7 +9436,7 @@ trainer.<span class="f">train</span>()   <span class="c"># then eyeball outputs 
   </div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>LoRA</b> freezes every original weight and trains only tiny <b>low-rank matrices</b> injected beside the attention projections. Instead of updating the full <code>d×d</code> matrix <b>W</b>, it learns two thin matrices — <b>A</b> (<code>r×d</code>) and <b>B</b> (<code>d×r</code>) with rank <code>r</code> around 8–64 — so the layer computes <code>h = Wx + (α/r)·BAx</code>. That's roughly <b>1% of the parameters for most of the benefit</b>: less VRAM, faster training, and no catastrophic forgetting of the frozen base.</p>
+    <p><b>LoRA</b> freezes every original weight and trains only tiny <b>low-rank matrices</b> injected beside the attention projections. Instead of updating the full <code>d×d</code> matrix <b>W</b>, it learns two thin matrices — <b>A</b> (<code>r×d</code>) and <b>B</b> (<code>d×r</code>) with rank <code>r</code> around 8–64 — so the layer computes <code>h = Wx + (α/r)·BAx</code>. That's typically <b>well under 1% of the parameters (~0.2% in the example below) for most of the benefit</b>: less VRAM, faster training, and no catastrophic forgetting of the frozen base.</p>
     <p>The operational superpower is the artifact it produces: the trained adapter is a <b>few-megabyte file</b>. One base model, many adapters — per customer, per task, per mission — swapped at load time. And at inference you can <b>merge</b> the adapter into W (<code>W + BA</code>) for exactly zero added latency. This is the fine-tuning workhorse of the industry: give it extra days, build it twice.</p>
   </div>
   <div class="viz">
@@ -9556,7 +9556,7 @@ model = <span class="f">get_peft_model</span>(model, <span class="f">LoraConfig<
   </div>
   <div class="grid-cards">
     <div class="mini"><h5>LoRA</h5><p>Low-rank bypass matrices in attention. ~0.2% trainable. Best quality on most tasks — the default.</p></div>
-    <div class="mini"><h5>Prompt tuning</h5><p>Learn ~20 virtual input tokens. ~0.001% trainable. Weaker, absurdly cheap, per-task "soft prompts".</p></div>
+    <div class="mini"><h5>Prompt tuning</h5><p>Learn ~20 virtual input tokens. ~0.003% trainable. Weaker, absurdly cheap, per-task "soft prompts".</p></div>
     <div class="mini"><h5>Prefix tuning</h5><p>Virtual K/V vectors inside every attention layer. Stronger than prompt tuning, fiddlier than LoRA.</p></div>
     <div class="mini"><h5>IA3</h5><p>Per-channel scaling vectors on K, V, and FFN. Far fewer parameters than LoRA (~0.01%) — surprisingly competitive.</p></div>
   </div>
@@ -9887,8 +9887,8 @@ model = AutoModelForCausalLM.<span class="f">from_pretrained</span>(
 <span class="c"># version this string in git; change it only against a scored eval</span></pre>
   </div>
   <div class="real-box">
-    <span class="tag">Real scenario — prompt v3 beats v1 by 22 points, provably</span>
-    <p style="margin:0">Mission Control RAG's answer prompt lives in <code>prompts/answer_v3.txt</code> with a changelog. When you added the few-shot example and the escape hatch, you reran the same 20 flight-ops questions through v1, v2, v3 and logged scores in Langfuse: 61% → 74% → 83% acceptable answers. That table is what "prompt engineering" means on a senior team.</p>
+    <span class="tag">Real scenario — prompt v3 beats v1 by 25 points, provably</span>
+    <p style="margin:0">Mission Control RAG's answer prompt lives in <code>prompts/answer_v3.txt</code> with a changelog. When you added the few-shot example and the escape hatch, you reran the same 20 flight-ops questions through v1, v2, v3 and logged scores in Langfuse: 60% → 75% → 85% acceptable answers. That table is what "prompt engineering" means on a senior team.</p>
   </div>
 </section>
 
@@ -10443,7 +10443,7 @@ scores = bm25.<span class="f">get_scores</span>(<span class="s">"imu-04b calibra
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — humbled by a 1994 algorithm</span>
-    <p style="margin:0">Benchmarking Mission Control RAG's retrieval on 20 test questions, BM25 alone scores 65% hit-rate@5 and your dense retriever 72% — but on the 6 questions containing error codes or unit IDs, BM25 wins 6/6. That split is why your production config is hybrid (#161), and why "did you compare against BM25?" is a question senior interviewers use to filter people who've actually built retrieval.</p>
+    <p style="margin:0">Benchmarking Mission Control RAG's retrieval on 20 test questions, BM25 alone scores 55% hit-rate@5 and your dense retriever 60% — but on the 6 questions containing error codes or unit IDs, BM25 wins 6/6. That split is why your production config is hybrid (#161), and why "did you compare against BM25?" is a question senior interviewers use to filter people who've actually built retrieval.</p>
   </div>
 </section>
 
@@ -10570,7 +10570,7 @@ prompt = <span class="f">assemble</span>(top, standalone)</pre>
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — the follow-up question that broke retrieval</span>
-    <p style="margin:0">A user asks Mission Control RAG "what caused the Artemis-3 comms dropout?" then follows with "and how long did it last?" — a query that retrieves nothing, because no chunk resembles "and how long did it last". Query rewriting turns it into "duration of the Artemis-3 comms dropout" and retrieval works again. On your 20-question eval (a third of them follow-ups), rewriting alone lifts hit-rate 14 points. Diagram this whole pipeline from memory — it's the RAG interview question.</p>
+    <p style="margin:0">A user asks Mission Control RAG "what caused the Artemis-3 comms dropout?" then follows with "and how long did it last?" — a query that retrieves nothing, because no chunk resembles "and how long did it last". Query rewriting turns it into "duration of the Artemis-3 comms dropout" and retrieval works again. On your 20-question eval (a third of them follow-ups), rewriting alone lifts hit-rate 15 points. Diagram this whole pipeline from memory — it's the RAG interview question.</p>
   </div>
 </section>
 
@@ -11676,7 +11676,7 @@ agent = {<span class="s">"asteroid"</span>: neo_agent,          <span class="c">
       <line x1="280" y1="68" x2="280" y2="146" stroke="#8b97b8" stroke-width="1.5" marker-end="url(#v07_m184a)"/>
       <line x1="335" y1="68" x2="440" y2="146" stroke="#8b97b8" stroke-width="1.5" marker-end="url(#v07_m184a)"/>
       <text x="150" y="105" fill="#8b97b8" font-size="9">assign ↓ / draft ↑</text>
-      <path d="M 300 148 Q 330 100 305 70" stroke="#ff7a59" stroke-dasharray="4 3" fill="none" stroke-width="1.5" marker-end="url(#v07_m184b)"/>
+      <path d="M 305 70 Q 330 100 300 148" stroke="#ff7a59" stroke-dasharray="4 3" fill="none" stroke-width="1.5" marker-end="url(#v07_m184b)"/>
       <text x="330" y="122" fill="#ff7a59" font-size="9">critique: "check 2 failed —</text>
       <text x="330" y="135" fill="#ff7a59" font-size="9">no lunar distances" → retry</text>
       <text x="40" y="230" fill="#6ee7a0" font-size="10">extra tokens bought reliability: nothing ships unreviewed</text>
@@ -12044,7 +12044,7 @@ params = <span class="f">StdioServerParameters</span>(command=<span class="s">"u
       <rect x="30" y="30" width="190" height="70" rx="8" fill="#1a2138" stroke="#5ed3f4"/>
       <text x="125" y="55" fill="#5ed3f4" text-anchor="middle">orbital-research-agent</text>
       <text x="125" y="73" fill="#8b97b8" text-anchor="middle" font-size="9">yours · NASA data skills</text>
-      <text x="125" y="88" fill="#ffd97a" text-anchor="middle" font-size="9">/.well-known/agent.json</text>
+      <text x="125" y="88" fill="#ffd97a" text-anchor="middle" font-size="9">/.well-known/agent-card.json</text>
       <rect x="340" y="30" width="190" height="70" rx="8" fill="#1a2138" stroke="#ff7a59"/>
       <text x="435" y="55" fill="#ff7a59" text-anchor="middle">launch-planning-agent</text>
       <text x="435" y="73" fill="#8b97b8" text-anchor="middle" font-size="9">partner's · different vendor</text>
@@ -12699,7 +12699,7 @@ s_good = {<span class="s">"x"</span>: <span class="n">4.0</span>, <span class="s
           <line x1="60" y1="50" x2="60" y2="170"/><line x1="90" y1="50" x2="90" y2="170"/><line x1="120" y1="50" x2="120" y2="170"/><line x1="150" y1="50" x2="150" y2="170"/><line x1="180" y1="50" x2="180" y2="170"/>
         </g>
         <rect x="151" y="141" width="28" height="28" fill="rgba(110,231,160,0.25)" stroke="#6ee7a0"/>
-        <polyline points="75,65 105,65 105,95 75,95 75,125 135,125 135,95 165,95 165,155" fill="none" stroke="#ff7a59" stroke-width="2" marker-end="url(#v08_m202a)"/>
+        <polyline points="75,65 105,65 105,95 75,95 75,155 105,155 105,125 165,125 165,155" fill="none" stroke="#ff7a59" stroke-width="2" marker-end="url(#v08_m202a)"/>
         <circle cx="75" cy="65" r="4" fill="#dfe6f5"/>
         <text x="120" y="192" fill="#8b97b8" text-anchor="middle">10 steps, no hurry</text>
         <text x="390" y="38" fill="#6ee7a0" text-anchor="middle">step reward = −0.01 → beeline</text>
@@ -12708,7 +12708,7 @@ s_good = {<span class="s">"x"</span>: <span class="n">4.0</span>, <span class="s
           <line x1="330" y1="50" x2="330" y2="170"/><line x1="360" y1="50" x2="360" y2="170"/><line x1="390" y1="50" x2="390" y2="170"/><line x1="420" y1="50" x2="420" y2="170"/><line x1="450" y1="50" x2="450" y2="170"/>
         </g>
         <rect x="421" y="141" width="28" height="28" fill="rgba(110,231,160,0.25)" stroke="#6ee7a0"/>
-        <polyline points="345,65 375,65 375,95 405,95 405,125 435,125 435,155" fill="none" stroke="#6ee7a0" stroke-width="2" marker-end="url(#v08_m202b)"/>
+        <polyline points="345,65 375,65 375,125 435,125 435,155" fill="none" stroke="#6ee7a0" stroke-width="2" marker-end="url(#v08_m202b)"/>
         <circle cx="345" cy="65" r="4" fill="#dfe6f5"/>
         <text x="390" y="192" fill="#8b97b8" text-anchor="middle">6 steps, shortest path</text>
       </g>
@@ -12751,8 +12751,8 @@ s_good = {<span class="s">"x"</span>: <span class="n">4.0</span>, <span class="s
         <rect x="217" y="41" width="30" height="30" fill="none" stroke="#ffd97a" stroke-width="2"/>
         <rect x="313" y="137" width="30" height="30" fill="rgba(110,231,160,0.3)" stroke="#6ee7a0"/>
         <g fill="#5ed3f4" text-anchor="middle">
-          <text x="232" y="61">→</text><text x="264" y="61">→</text><text x="296" y="61">↓</text><text x="328" y="61">↓</text>
-          <text x="232" y="93">→</text><text x="264" y="93">→</text><text x="296" y="93">→</text><text x="328" y="93">↓</text>
+          <text x="232" y="61">→</text><text x="264" y="61">→</text><text x="296" y="61">→</text><text x="328" y="61">↓</text>
+          <text x="232" y="93">→</text><text x="264" y="93">↓</text><text x="296" y="93">→</text><text x="328" y="93">↓</text>
           <text x="232" y="125">→</text><text x="264" y="125">↓</text><text x="296" y="125">→</text><text x="328" y="125">↓</text>
           <text x="232" y="157">→</text><text x="264" y="157">→</text><text x="296" y="157">→</text>
         </g>
@@ -12877,7 +12877,7 @@ V[(<span class="n">3</span>, <span class="n">0</span>)] = <span class="n">0.0</s
           <text x="228" y="88">0.31</text><text x="308" y="88">0.45</text><text x="388" y="88">0.59</text><text x="468" y="88">0.28</text>
           <text x="228" y="122">0.35</text><text x="308" y="122">0.52</text><text x="388" y="122">0.66</text><text x="468" y="122">0.30</text>
           <text x="228" y="156">0.40</text><text x="308" y="156">0.61</text><text x="388" y="156">0.73</text><text x="468" y="156">0.33</text>
-          <text x="228" y="190">−0.99</text><text x="308" y="190">0.81</text><text x="388" y="190">0.73</text><text x="468" y="190">0.41</text>
+          <text x="228" y="190">−0.99</text><text x="308" y="190">0.89</text><text x="388" y="190">0.73</text><text x="468" y="190">0.41</text>
           <text x="228" y="224">0.44</text><text x="308" y="224">0.52</text><text x="388" y="224">1.00</text><text x="468" y="224">0.38</text>
         </g>
         <text x="280" y="248" fill="#6ee7a0" text-anchor="middle">green outline = greedy action per state (the learned policy)</text>
@@ -13450,7 +13450,7 @@ algo = config.build()
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — when the sim farm outgrows your laptop</span>
-    <p style="margin:0">Your cubesat detumbling env from topic 214 runs at 300 steps/second — PPO needs 50M steps for the hard config, which is two days on one machine. Point RLlib at your existing EKS cluster with <code>num_env_runners=200</code> and the same training finishes over lunch. That's the whole pitch: not better math, just the rollout loop spread across the Kubernetes cluster you already operate.</p>
+    <p style="margin:0">Your cubesat detumbling env from topic 201 runs at 300 steps/second — PPO needs 50M steps for the hard config, which is two days on one machine. Point RLlib at your existing EKS cluster with <code>num_env_runners=200</code> and the same training finishes over lunch. That's the whole pitch: not better math, just the rollout loop spread across the Kubernetes cluster you already operate.</p>
   </div>
 </section>
 
@@ -13882,7 +13882,7 @@ _, p = stats.ttest_ind(a, b)
 <span class="f">print</span>(<span class="f">f</span><span class="s">"p = {p:.3f}"</span>)                       <span class="c"># ≈ 0.72 → NOT significant: 2,400/arm has only ~27% power for +1.3 pts</span>
 
 <span class="c"># BEFORE running: power analysis for a +1% absolute lift at 80% power</span>
-<span class="c"># → ~14,000 sessions per arm. most "quick A/B tests" are underpowered.</span></pre>
+<span class="c"># → ~17,000 sessions per arm. most "quick A/B tests" are underpowered.</span></pre>
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — two rerankers, one honest verdict</span>
@@ -14714,7 +14714,7 @@ clean = [(o[<span class="s">"id"</span>], o[<span class="s">"name"</span>], <spa
     <svg viewBox="0 0 560 205" xmlns="http://www.w3.org/2000/svg">
       <g font-family="monospace" font-size="11">
       <rect x="10" y="18" width="340" height="82" rx="8" fill="#1a2138" stroke="#5ed3f4"/>
-      <text x="180" y="38" fill="#5ed3f4" text-anchor="middle">driver — builds the DAG, runs NOTHING yet</text>
+      <text x="180" y="38" fill="#5ed3f4" text-anchor="middle">driver — lazy DAG; with schema= runs nothing</text>
       <rect x="30" y="52" width="85" height="30" rx="6" fill="#232c47" stroke="#2f3a5c"/>
       <text x="72" y="71" fill="#dfe6f5" text-anchor="middle">read.csv</text>
       <rect x="145" y="52" width="75" height="30" rx="6" fill="#232c47" stroke="#2f3a5c"/>
@@ -14793,7 +14793,7 @@ top = hot.<span class="f">orderBy</span>(F.<span class="f">desc</span>(<span cla
       <rect x="190" y="90" width="22" height="18" rx="3" fill="#232c47" stroke="#ffd97a"/><text x="201" y="103" fill="#ffd97a" text-anchor="middle">b3</text>
       <rect x="218" y="90" width="22" height="18" rx="3" fill="#232c47" stroke="#ffd97a"/><text x="229" y="103" fill="#ffd97a" text-anchor="middle">b1</text>
       <text x="215" y="132" fill="#8b97b8" text-anchor="middle">node 3</text>
-      <text x="135" y="160" fill="#8b97b8" text-anchor="middle">blocks replicated across nodes</text>
+      <text x="135" y="160" fill="#8b97b8" text-anchor="middle">replicas: 2 shown here, HDFS default 3</text>
       <text x="430" y="22" fill="#ff7a59" text-anchor="middle">MapReduce — compute at the data</text>
       <rect x="370" y="34" width="120" height="26" rx="6" fill="#232c47" stroke="#2f3a5c"/>
       <text x="430" y="51" fill="#dfe6f5" text-anchor="middle">map</text>
