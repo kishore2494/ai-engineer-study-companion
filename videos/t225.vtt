@@ -21,105 +21,109 @@ You run dvc add on a big file.
 DVC hashes it.
 
 6
-00:00:15.333 --> 00:00:17.967
-The bytes move to a remote store, like S3.
+00:00:15.333 --> 00:00:18.327
+The bytes move into DVC's local cache.
 
 7
-00:00:18.267 --> 00:00:21.376
-And a tiny pointer file with the hash stays behind.
+00:00:18.327 --> 00:00:22.267
+Later, dvc push uploads them to a remote, like S3.
 
 8
-00:00:21.376 --> 00:00:22.900
-That is what git commits.
+00:00:22.567 --> 00:00:25.676
+And a tiny pointer file with the hash stays behind.
 
 9
-00:00:24.100 --> 00:00:25.267
-Now watch history.
+00:00:25.676 --> 00:00:27.200
+That is what git commits.
 
 10
-00:00:25.567 --> 00:00:28.367
-Two commits with unchanged data share one blob.
+00:00:28.400 --> 00:00:29.567
+Now watch history.
 
 11
-00:00:28.667 --> 00:00:32.659
-The third commit changes the data, so it points at a new hash.
+00:00:29.867 --> 00:00:32.667
+Two commits with unchanged data share one blob.
 
 12
-00:00:32.659 --> 00:00:36.200
-Check out any commit, and DVC restores its exact bytes.
+00:00:32.967 --> 00:00:36.959
+The third commit changes the data, so it points at a new hash.
 
 13
-00:00:37.400 --> 00:00:38.833
-Here it is in a terminal.
+00:00:36.959 --> 00:00:40.500
+Check out any commit, and DVC restores its exact bytes.
 
 14
-00:00:39.133 --> 00:00:42.033
-We add the dataset, and the bytes go to the remote.
+00:00:41.700 --> 00:00:43.133
+Here it is in a terminal.
 
 15
-00:00:42.333 --> 00:00:44.200
-Git commits only the pointer file.
+00:00:43.433 --> 00:00:47.767
+We add the dataset, and DVC moves the bytes into its local cache.
 
 16
-00:00:44.500 --> 00:00:50.300
-Later, we check out the older pointer, run dvc checkout, and the version one bytes are back.
+00:00:48.067 --> 00:00:53.133
+Git commits only the pointer file, and dvc push uploads the bytes to the remote.
 
 17
-00:00:51.500 --> 00:00:54.233
-DVC has a second act: pipelines.
+00:00:53.433 --> 00:00:59.233
+Later, we check out the older pointer, run dvc checkout, and the version one bytes are back.
 
 18
-00:00:54.533 --> 00:00:59.533
-A dvc yaml file declares stages with their dependencies and outputs.
+00:01:00.433 --> 00:01:03.167
+DVC has a second act: pipelines.
 
 19
-00:00:59.833 --> 00:01:04.906
-Then dvc repro re-runs only the stages whose inputs actually changed.
+00:01:03.467 --> 00:01:08.467
+A dvc yaml file declares stages with their dependencies and outputs.
 
 20
-00:01:04.906 --> 00:01:08.067
-It is make for ML, with data-aware caching.
+00:01:08.767 --> 00:01:13.839
+Then dvc repro re-runs only the stages whose inputs actually changed.
 
 21
-00:01:09.267 --> 00:01:11.167
-Remember the registry postmortem?
+00:01:13.839 --> 00:01:17.000
+It is make for ML, with data-aware caching.
 
 22
-00:01:11.467 --> 00:01:13.667
-It asked which dataset trained production.
+00:01:18.200 --> 00:01:20.100
+Remember the registry postmortem?
 
 23
-00:01:13.967 --> 00:01:17.733
-The tagged release commit holds a pointer with one specific hash.
+00:01:20.400 --> 00:01:22.600
+It asked which dataset trained production.
 
 24
-00:01:18.033 --> 00:01:24.151
-Check it out, run dvc checkout, and you hold byte-identical training data from months ago.
+00:01:22.900 --> 00:01:26.667
+The tagged release commit holds a pointer with one specific hash.
 
 25
-00:01:24.151 --> 00:01:26.667
-Reproducibility becomes two commands.
+00:01:26.967 --> 00:01:33.085
+Check it out, run dvc checkout, and you hold byte-identical training data from months ago.
 
 26
-00:01:27.867 --> 00:01:28.736
-Let's recap.
+00:01:33.085 --> 00:01:35.600
+Reproducibility becomes two commands.
 
 27
-00:01:28.736 --> 00:01:31.200
-DVC versions what git cannot hold.
+00:01:36.800 --> 00:01:37.670
+Let's recap.
 
 28
-00:01:31.500 --> 00:01:34.867
-Git commits a tiny pointer, and the bytes live in a remote.
+00:01:37.670 --> 00:01:40.133
+DVC versions what git cannot hold.
 
 29
-00:01:35.167 --> 00:01:37.800
-Code and data travel together through history.
+00:01:40.433 --> 00:01:43.800
+Git commits a tiny pointer, and the bytes live in a remote.
 
 30
-00:01:38.100 --> 00:01:41.410
-And dvc repro re-runs only what changed.
+00:01:44.100 --> 00:01:46.733
+Code and data travel together through history.
 
 31
-00:01:41.410 --> 00:01:42.900
+00:01:47.033 --> 00:01:50.344
+And dvc repro re-runs only what changed.
+
+32
+00:01:50.344 --> 00:01:51.833
 Next up: Kubeflow.

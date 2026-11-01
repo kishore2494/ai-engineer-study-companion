@@ -29,81 +29,89 @@ Fetch pulls data from the API.
 Clean fixes the rows, but only after fetch succeeds.
 
 8
-00:00:30.067 --> 00:00:33.026
+00:00:30.067 --> 00:00:33.084
 And load writes to Postgres once clean is done.
 
 9
-00:00:33.026 --> 00:00:36.867
+00:00:33.084 --> 00:00:37.000
 Those arrows are dependencies, not a chain of function calls.
 
 10
-00:00:38.067 --> 00:00:40.400
+00:00:38.200 --> 00:00:40.533
 The UI is a grid of runs by tasks.
 
 11
-00:00:40.700 --> 00:00:44.833
+00:00:40.833 --> 00:00:44.967
 Each run is tied to a logical date, so every day has its own row.
 
 12
-00:00:45.133 --> 00:00:47.015
+00:00:45.267 --> 00:00:47.148
 That means a backfill is simple.
 
 13
-00:00:47.015 --> 00:00:51.367
+00:00:47.148 --> 00:00:51.500
 Clear a task for those dates, and Airflow re-runs it day by day, in order.
 
 14
-00:00:52.567 --> 00:00:54.300
+00:00:52.700 --> 00:00:54.433
 Here is the DAG in code.
 
 15
-00:00:54.600 --> 00:01:00.433
-We set a daily schedule, turn on catchup for backfills, and declare two retries as a config line.
+00:00:54.733 --> 00:00:56.204
+We set a daily schedule.
 
 16
-00:01:00.733 --> 00:01:02.067
-Each step is a task.
+00:00:56.204 --> 00:01:01.905
+Catchup auto-runs every missed day since the start date, which is not the same as a backfill.
 
 17
-00:01:02.367 --> 00:01:05.300
-And the double arrow operator wires the dependencies.
+00:01:01.905 --> 00:01:03.867
+And two retries are just config.
 
 18
-00:01:06.500 --> 00:01:07.667
-Here is the payoff.
+00:01:04.167 --> 00:01:05.500
+Each step is a task.
 
 19
-00:01:07.967 --> 00:01:11.832
-A nightly RAG pipeline fetches, chunks, embeds, and upserts.
+00:01:05.800 --> 00:01:08.733
+And the double arrow operator wires the dependencies.
 
 20
-00:01:11.832 --> 00:01:16.600
-You upgrade the embedding model, which invalidates three weeks of vectors.
+00:01:09.933 --> 00:01:11.100
+Here is the payoff.
 
 21
-00:01:16.900 --> 00:01:19.700
-You clear the embed task for those twenty one dates.
+00:01:11.400 --> 00:01:15.266
+A nightly RAG pipeline fetches, chunks, embeds, and upserts.
 
 22
-00:01:20.000 --> 00:01:25.500
-Airflow re-runs embed and upsert in order, with retries, while fetch and chunk stay untouched.
+00:01:15.266 --> 00:01:20.033
+You upgrade the embedding model, which invalidates three weeks of vectors.
 
 23
-00:01:26.700 --> 00:01:27.663
-Let's recap.
+00:01:20.333 --> 00:01:23.133
+You clear the embed task for those twenty one dates.
 
 24
-00:01:27.663 --> 00:01:30.633
-A DAG is tasks plus dependency edges.
+00:01:23.433 --> 00:01:28.933
+Airflow re-runs embed and upsert in order, with retries, while fetch and chunk stay untouched.
 
 25
-00:01:30.933 --> 00:01:33.733
-Scheduling, retries, and alerts are config.
+00:01:30.133 --> 00:01:31.097
+Let's recap.
 
 26
-00:01:34.033 --> 00:01:38.600
-Runs are tied to logical dates, so backfills re-run past data cleanly.
+00:01:31.097 --> 00:01:34.067
+A DAG is tasks plus dependency edges.
 
 27
-00:01:38.900 --> 00:01:41.500
+00:01:34.367 --> 00:01:37.167
+Scheduling, retries, and alerts are config.
+
+28
+00:01:37.467 --> 00:01:42.033
+Runs are tied to logical dates, so backfills re-run past data cleanly.
+
+29
+00:01:42.333 --> 00:01:44.933
 Next up: AWS core services.

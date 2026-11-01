@@ -65,69 +65,73 @@ Here is the cost argument.
 At ten requests a day, Lambda is nearly free, while an idle EC2 box costs real money.
 
 17
-00:01:06.300 --> 00:01:11.733
-At a hundred requests a second, Lambda cost climbs, and cold starts hurt tail latency.
+00:01:06.300 --> 00:01:11.740
+At a steady hundred requests a second, Lambda stays warm, so cold starts barely matter.
 
 18
-00:01:12.033 --> 00:01:13.733
-Containers win at steady scale.
+00:01:11.740 --> 00:01:14.867
+The problem is cost, which climbs with every call.
 
 19
-00:01:14.933 --> 00:01:16.867
-Here are the three shapes as commands.
+00:01:15.167 --> 00:01:16.867
+Containers win at steady scale.
 
 20
-00:01:17.167 --> 00:01:19.633
-Lambda is a function invoke, paid per call.
+00:01:18.067 --> 00:01:20.000
+Here are the three shapes as commands.
 
 21
-00:01:19.933 --> 00:01:23.433
-ECS scales by raising the desired container count.
+00:01:20.300 --> 00:01:22.767
+Lambda is a function invoke, paid per call.
 
 22
-00:01:23.733 --> 00:01:29.000
-And with EC2, you simply log in to a computer that is yours, including the patching.
+00:01:23.067 --> 00:01:26.567
+ECS scales by raising the desired container count.
 
 23
-00:01:30.200 --> 00:01:32.367
-Here is the story to tell in an interview.
+00:01:26.867 --> 00:01:32.133
+And with EC2, you simply log in to a computer that is yours, including the patching.
 
 24
-00:01:32.667 --> 00:01:39.600
-The FastAPI backend starts with about fifty requests a day, on Lambda behind API Gateway.
+00:01:33.333 --> 00:01:35.500
+Here is the story to tell in an interview.
 
 25
-00:01:39.900 --> 00:01:42.877
-Launch week brings forty requests a second.
+00:01:35.800 --> 00:01:42.733
+The FastAPI backend starts with about fifty requests a day, on Lambda behind API Gateway.
 
 26
-00:01:42.877 --> 00:01:47.100
-Cold starts push p99 past three seconds, and the bill climbs.
+00:01:43.033 --> 00:01:47.881
+Launch week brings bursty traffic, peaking at forty requests a second.
 
 27
-00:01:47.400 --> 00:01:51.133
-So it moves to ECS Fargate with two always-warm tasks.
+00:01:47.881 --> 00:01:54.667
+Each surge triggers a wave of cold starts that pushes p99 past three seconds, and the bill climbs.
 
 28
-00:01:52.333 --> 00:01:53.192
-Let's recap.
+00:01:54.967 --> 00:01:58.700
+So it moves to ECS Fargate with two always-warm tasks.
 
 29
-00:01:53.192 --> 00:01:56.267
-EC2 is a virtual machine you own and patch.
+00:01:59.900 --> 00:02:00.758
+Let's recap.
 
 30
-00:01:56.567 --> 00:01:59.400
-Lambda scales to zero, but has cold starts.
+00:02:00.758 --> 00:02:03.833
+EC2 is a virtual machine you own and patch.
 
 31
-00:01:59.700 --> 00:02:02.067
-ECS runs managed containers.
+00:02:04.133 --> 00:02:06.967
+Lambda scales to zero, but has cold starts.
 
 32
-00:02:02.367 --> 00:02:04.443
-Match the shape to the load.
+00:02:07.267 --> 00:02:09.633
+ECS runs managed containers.
 
 33
-00:02:04.443 --> 00:02:05.333
+00:02:09.933 --> 00:02:12.010
+Match the shape to the load.
+
+34
+00:02:12.010 --> 00:02:12.900
 Next up: S3.

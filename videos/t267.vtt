@@ -37,109 +37,109 @@ Controllers run one loop, forever.
 First, observe reality.
 
 10
-00:00:27.267 --> 00:00:29.304
+00:00:27.267 --> 00:00:29.322
 Second, diff it against your spec.
 
 11
-00:00:29.304 --> 00:00:33.200
-A pod crashed at two in the morning, so two does not equal three.
+00:00:29.322 --> 00:00:33.433
+Say a node died and took a pod with it, so two does not equal three.
 
 12
-00:00:33.500 --> 00:00:35.367
+00:00:33.733 --> 00:00:35.600
 Third, act to close the gap.
 
 13
-00:00:35.367 --> 00:00:37.367
+00:00:35.600 --> 00:00:37.600
 Self-healing is not a feature.
 
 14
-00:00:37.367 --> 00:00:39.633
+00:00:37.600 --> 00:00:39.867
 It is the loop's normal operation.
 
 15
-00:00:40.833 --> 00:00:42.967
+00:00:41.067 --> 00:00:43.200
 Now the three objects you will use daily.
 
 16
-00:00:43.267 --> 00:00:48.160
+00:00:43.500 --> 00:00:48.394
 A pod is the smallest unit, one or more containers sharing network and storage.
 
 17
-00:00:48.160 --> 00:00:50.700
+00:00:48.394 --> 00:00:50.933
 It is ephemeral, so never point at a pod.
 
 18
-00:00:51.000 --> 00:00:56.967
+00:00:51.233 --> 00:00:57.200
 A deployment manages a set of identical pods, handling scaling, rolling updates and healing.
 
 19
-00:00:57.267 --> 00:01:03.233
+00:00:57.500 --> 00:01:03.467
 A service gives a stable name that load-balances across whichever pods currently match its labels.
 
 20
-00:01:04.433 --> 00:01:07.200
+00:01:04.667 --> 00:01:07.433
 Here is a deployment, trimmed to the important lines.
 
 21
-00:01:07.500 --> 00:01:09.900
+00:01:07.733 --> 00:01:10.133
 Replicas three is the desired state.
 
 22
-00:01:10.200 --> 00:01:14.833
+00:01:10.433 --> 00:01:15.067
 The labels connect the pods to this deployment, and to any service that selects them.
 
 23
-00:01:15.133 --> 00:01:18.035
+00:01:15.367 --> 00:01:18.268
 And this is the container image each pod runs.
 
 24
-00:01:18.035 --> 00:01:21.567
+00:01:18.268 --> 00:01:21.800
 Delete a pod on purpose, and watch a replacement appear.
 
 25
-00:01:22.767 --> 00:01:23.933
+00:01:23.000 --> 00:01:24.167
 Here is the payoff.
 
 26
-00:01:24.233 --> 00:01:27.833
-A memory leak kills one pod most nights around two in the morning.
+00:01:24.467 --> 00:01:29.867
+A memory leak gets one pod's container OOM-killed most nights around two in the morning.
 
 27
-00:01:28.133 --> 00:01:30.758
+00:01:30.167 --> 00:01:32.752
 Before Kubernetes, that was a pager alert.
 
 28
-00:01:30.758 --> 00:01:35.633
-Now the controller sees two is not three, and starts a replacement in seconds.
+00:01:32.752 --> 00:01:38.600
+Now the kubelet restarts the container in place within seconds, and its restart count ticks up.
 
 29
-00:01:35.933 --> 00:01:38.840
-The service stops sending traffic to the dead pod.
+00:01:38.900 --> 00:01:42.537
+The service stops sending traffic to the pod while it restarts.
 
 30
-00:01:38.840 --> 00:01:43.200
+00:01:42.537 --> 00:01:46.867
 You find out from the restart counter, and fix the leak calmly over coffee.
 
 31
-00:01:44.400 --> 00:01:45.175
+00:01:48.067 --> 00:01:48.842
 Let's recap.
 
 32
-00:01:45.175 --> 00:01:48.600
+00:01:48.842 --> 00:01:52.267
 You declare desired state, and controllers reconcile.
 
 33
-00:01:48.900 --> 00:01:50.167
+00:01:52.567 --> 00:01:53.833
 A pod is ephemeral.
 
 34
-00:01:50.467 --> 00:01:53.400
+00:01:54.133 --> 00:01:57.067
 A deployment keeps the right number of replicas healthy.
 
 35
-00:01:53.700 --> 00:01:57.111
+00:01:57.367 --> 00:02:00.778
 And a service is a stable name over those pods.
 
 36
-00:01:57.111 --> 00:01:58.200
+00:02:00.778 --> 00:02:01.867
 Next up: Nginx.
