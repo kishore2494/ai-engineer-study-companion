@@ -81,57 +81,57 @@ First, a pydantic gate validates the arguments before the tool runs.
 If validation or the API fails, we build a clear message that says how to fix it.
 
 21
-00:01:12.600 --> 00:01:15.556
-Either way, the text goes back into the messages.
+00:01:12.600 --> 00:01:17.188
+Either way, the text goes back into the messages, tagged with the call's ID.
 
 22
-00:01:15.556 --> 00:01:16.400
+00:01:17.188 --> 00:01:18.033
 Never a crash.
 
 23
-00:01:17.600 --> 00:01:19.100
+00:01:19.233 --> 00:01:20.733
 Here is a real example.
 
 24
-00:01:19.400 --> 00:01:23.867
+00:01:21.033 --> 00:01:25.500
 Asked for close approaches this month, the agent requests a thirty day span.
 
 25
-00:01:24.167 --> 00:01:27.996
+00:01:25.800 --> 00:01:29.630
 NASA's API rejects it, because the feed caps at seven days.
 
 26
-00:01:27.996 --> 00:01:30.333
+00:01:29.630 --> 00:01:31.967
 Your error string states that limit.
 
 27
-00:01:30.633 --> 00:01:35.556
+00:01:32.267 --> 00:01:37.190
 So the next turn splits the month into four weekly calls and merges the results.
 
 28
-00:01:35.556 --> 00:01:38.633
+00:01:37.190 --> 00:01:40.267
 One good message turned a crash into a capability.
 
 29
-00:01:39.833 --> 00:01:40.672
+00:01:41.467 --> 00:01:42.306
 Let's recap.
 
 30
-00:01:40.672 --> 00:01:44.867
+00:01:42.306 --> 00:01:46.500
 Handle parallel calls, and return results with matching IDs.
 
 31
-00:01:45.167 --> 00:01:47.967
+00:01:46.800 --> 00:01:49.600
 Expect malformed arguments, and validate them.
 
 32
-00:01:48.267 --> 00:01:51.267
+00:01:49.900 --> 00:01:52.900
 Return errors as observations, never crashes.
 
 33
-00:01:51.567 --> 00:01:53.851
+00:01:53.200 --> 00:01:55.485
 And write errors the model can act on.
 
 34
-00:01:53.851 --> 00:01:54.933
+00:01:55.485 --> 00:01:56.567
 Next up: planning.
