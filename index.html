@@ -3206,7 +3206,7 @@ db = (<span class="f">loss</span>(<span class="n">3</span>, <span class="n">1</s
   <div class="topic-head"><span class="topic-num">40</span><h2>Chain rule</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p>The derivative of nested functions <b>multiplies through the layers</b>: <code>d/dx f(g(x)) = f′(g(x)) · g′(x)</code>. Rates of change compose by multiplication — if u changes 2× as fast as x, and y changes 3× as fast as u, then y changes 6× as fast as x. A neural network is nothing but deeply nested functions: <code>loss(softmax(W₃·relu(W₂·relu(W₁·x))))</code>. This one rule, <b>applied backward through the network layer by layer, IS backpropagation</b>.</p>
+    <p>The derivative of nested functions <b>multiplies through the layers</b>: <code>d/dx f(g(x)) = f′(g(x)) · g′(x)</code>. Rates of change compose by multiplication — if u changes 2× as fast as x, and y changes 3× as fast as u, then y changes 6× as fast as x. A neural network is nothing but deeply nested functions: <code>loss(softmax(W₃·relu(W₂·relu(W₁·x))))</code> (relu and softmax are just the squashing functions you will meet in <a href="#t89">#89</a>). This one rule, <b>applied backward through the network layer by layer, IS backpropagation</b>.</p>
     <ul class="pts">
       <li>Each layer contributes one local derivative factor; the gradient at any depth is the product of everything above it.</li>
       <li>Long chains of small factors → <b>vanishing gradients</b>; of large factors → <b>exploding gradients</b>. Both are chain-rule arithmetic.</li>
@@ -6810,7 +6810,7 @@ count = <span class="k">lambda</span> m: <span class="f">sum</span>(p.numel() <s
   <div class="topic-head"><span class="topic-num">103</span><h2>Vision Transformer (ViT)</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p>The <b>Vision Transformer</b> asks a heretical question: what if we skip convolution entirely and treat an image like a sentence? Chop the image into <b>16×16 patches</b> (a 224×224 image → 196 patches), flatten each patch and project it through one linear layer into an embedding — now you have 196 <b>tokens</b>. Add learned <b>position embeddings</b> (so the model knows patch order — otherwise it's a bag of patches), prepend a learnable <b>[CLS] token</b> to collect the global summary, and feed the sequence to a bone-standard transformer encoder. Classification head reads the [CLS] output. Done.</p>
+    <p>The <b>Vision Transformer</b> asks a heretical question: what if we skip convolution entirely and treat an image like a sentence? Chop the image into <b>16×16 patches</b> (a 224×224 image → 196 patches), flatten each patch and project it through one linear layer into an embedding — now you have 196 <b>tokens</b>. Add learned <b>position embeddings</b> (so the model knows patch order — otherwise it's a bag of patches), prepend a learnable <b>[CLS] token</b> to collect the global summary, and feed the sequence to a bone-standard transformer encoder (encoder <a href="#t124">#124</a>, self-attention <a href="#t128">#128</a>, tokens <a href="#t111">#111</a>). Classification head reads the [CLS] output. Done.</p>
     <p>The tradeoff is data hunger: ViT lacks convolution's built-in locality and translation bias, so it must <i>learn</i> those from scratch — on ImageNet-1k alone it loses to ResNet, but pretrained on hundreds of millions of images it wins, because self-attention can relate any patch to any other in one hop. The strategic reason this tops your vision ladder: <b>ViT is the vision half of every multimodal LLM</b> — when a GPT, Gemini or Claude model "sees" an image, a ViT-style encoder is turning it into tokens that sit in the same sequence as the words. Learn this and Volume 05's transformer will already feel familiar.</p>
   </div>
   <div class="viz">
@@ -9303,7 +9303,7 @@ prompt = (<span class="s">"### Instruction:\n"</span> + ex[<span class="s">"inst
         </defs>
       </g>
     </svg>
-    <div class="viz-cap">The four models of RLHF-PPO: policy generates, reward scores, value estimates, reference anchors.</div>
+    <div class="viz-cap">The four models of RLHF-PPO (the RL update rule from <a href="#t208">#208</a>; policy, value and reward are defined in <a href="#t202">#202</a>–<a href="#t204">#204</a>): policy generates, reward scores, value estimates, reference anchors.</div>
   </div>
   <div class="block">
     <span class="label example">Example</span>
@@ -9506,7 +9506,7 @@ merged = model.<span class="f">merge_and_unload</span>()</pre>
   <div class="topic-head"><span class="topic-num">145</span><h2>QLoRA</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>QLoRA</b> = LoRA stacked on a <b>4-bit-quantized frozen base</b>. The frozen weights don't need gradients, so they don't need precision either: store them in <b>NF4</b> (a 4-bit format shaped for normally-distributed weights), dequantize on the fly for each matmul, and let gradients flow <i>through</i> them into small bf16 LoRA adapters — the only thing being trained. Add <b>double quantization</b> (quantize the quantization scales) and <b>paged optimizers</b> (spill optimizer state to CPU on memory spikes), and a 7B fine-tune fits on a single consumer GPU or a free Colab T4.</p>
+    <p><b>QLoRA</b> = LoRA stacked on a <b>4-bit-quantized frozen base</b> (quantization itself is <a href="#t147">#147</a>). The frozen weights don't need gradients, so they don't need precision either: store them in <b>NF4</b> (a 4-bit format shaped for normally-distributed weights), dequantize on the fly for each matmul, and let gradients flow <i>through</i> them into small bf16 LoRA adapters — the only thing being trained. Add <b>double quantization</b> (quantize the quantization scales) and <b>paged optimizers</b> (spill optimizer state to CPU on memory spikes), and a 7B fine-tune fits on a single consumer GPU or a free Colab T4.</p>
     <p>This is the technique that democratized fine-tuning: before QLoRA, adapting a 7B model meant a multi-GPU rig; after it, a laptop-class budget. Paired with #144, it's the highest-leverage practical skill in this volume.</p>
   </div>
   <div class="viz">
@@ -13089,7 +13089,7 @@ model.learn(total_timesteps=<span class="n">300_000</span>)
   <div class="block">
     <span class="label concept">Concept</span>
     <p><b>A2C — Advantage Actor-Critic, synchronous</b> — is the clean baseline PPO improved on. N environment copies step in lockstep; their experience is pooled into one batch; the actor updates along the <b>advantage</b> (topic 211) with a <i>single, unclipped</i> gradient step; repeat. Nothing protects against an oversized step — that protection is precisely what PPO added.</p>
-    <p>Why keep A2C in your vocabulary? Because it isolates the ingredients: A2C = actor-critic + parallel envs; <b>PPO = A2C + clipped updates + multiple epochs per batch</b>. Run both on the same environment for the same timesteps and the learning curves teach you exactly what clipping buys: PPO's curve is smoother, A2C's has cliffs where a bad batch knocked the policy over. One comparison run, permanent intuition.</p>
+    <p>Why keep A2C in your vocabulary? Because it isolates the ingredients: A2C = actor-critic (<a href="#t211">#211</a>) + parallel envs; <b>PPO = A2C + clipped updates + multiple epochs per batch</b>. Run both on the same environment for the same timesteps and the learning curves teach you exactly what clipping buys: PPO's curve is smoother, A2C's has cliffs where a bad batch knocked the policy over. One comparison run, permanent intuition.</p>
   </div>
   <div class="block">
     <span class="label example">Example</span>
@@ -14053,7 +14053,7 @@ $ dvc checkout                                <span class="c"># bytes restored t
   <div class="topic-head"><span class="topic-num">226</span><h2>Kubeflow</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>Kubeflow</b> is ML pipelines as <b>Kubernetes-native workflows</b>: every pipeline step is a container, the pipeline is a DAG, and K8s schedules the whole thing — GPU steps on GPU nodes, parallel branches fanned out, retries and artifacts handled by the platform. Around the pipeline engine sits a platform suite: <b>Katib</b> (hyperparameter tuning), <b>KServe</b> (model serving), notebook servers, and multi-tenant namespaces.</p>
+    <p><b>Kubeflow</b> is ML pipelines as <b>Kubernetes-native workflows</b> (K8s itself: <a href="#t267">#267</a>): every pipeline step is a container, the pipeline is a DAG, and K8s schedules the whole thing — GPU steps on GPU nodes, parallel branches fanned out, retries and artifacts handled by the platform. Around the pipeline engine sits a platform suite: <b>Katib</b> (hyperparameter tuning), <b>KServe</b> (model serving), notebook servers, and multi-tenant namespaces.</p>
     <p>It is deliberately <b>heavyweight, enterprise-scale machinery</b>, and knowing <i>when it's justified</i> is the actual skill: a good fit when your organization already runs Kubernetes seriously and many teams need shared, governed ML infrastructure with per-step GPU scheduling. Overkill for a small team with a handful of models — a simpler orchestrator (Airflow, Prefect) plus MLflow covers that at a tenth of the operational cost. Airflow orchestrates <i>any</i> tasks; Kubeflow is opinionated about ML on K8s — that contrast is a favorite interview question.</p>
   </div>
   <div class="viz">
@@ -14114,7 +14114,7 @@ $ dvc checkout                                <span class="c"># bytes restored t
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — knowing when to say no</span>
-    <p style="margin:0">Your solo exoplanet project does <i>not</i> need Kubeflow: a GitHub Action (topic 219) plus MLflow covers its whole loop. But when you interview at an org running 40 models across six teams on EKS — retrains needing GPU scheduling, per-team quotas, audited pipelines — you can explain exactly why Kubeflow earns its overhead there and where the Airflow-vs-Kubeflow line sits. Knowing when a tool is <i>too much</i> is what "architect" means on your title.</p>
+    <p style="margin:0">Your solo exoplanet project does <i>not</i> need Kubeflow: a GitHub Action (topic 270) plus MLflow covers its whole loop. But when you interview at an org running 40 models across six teams on EKS — retrains needing GPU scheduling, per-team quotas, audited pipelines — you can explain exactly why Kubeflow earns its overhead there and where the Airflow-vs-Kubeflow line sits. Knowing when a tool is <i>too much</i> is what "architect" means on your title.</p>
   </div>
 </section>
 
@@ -16378,7 +16378,7 @@ jwt.<span class="f">decode</span>(tampered, <span class="s">"SECRET_KEY"</span>,
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — the portfolio a recruiter actually opens</span>
-    <p style="margin:0">A hiring manager spends 90 seconds on your Mission Control repo before the interview. What they see: a protected <code>main</code> where every change arrived as a small PR — "Add reranker (#31)", "Stream /chat over SSE (#38)" — each with a crisp description and green checks. That reads as <i>has worked on a real team</i> even for a solo project, and it's a habit that costs you five extra minutes per change.</p>
+    <p style="margin:0">A hiring manager spends 90 seconds on your Mission Control repo before the interview. What they see: a protected <code>main</code> where every change arrived as a small PR — "Add reranker (PR #31)", "Stream /chat over SSE (PR #38)" — each with a crisp description and green checks. That reads as <i>has worked on a real team</i> even for a solo project, and it's a habit that costs you five extra minutes per change.</p>
   </div>
 </section>
 
@@ -18861,7 +18861,7 @@ vectors = ray.get(futures)              <span class="c"># blocks until all done<
   <div class="topic-head"><span class="topic-num">305</span><h2>Triton Inference Server</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>Triton Inference Server</b> is NVIDIA's production serving layer for <i>any</i> model framework: point it at a <b>model repository</b> (a directory tree of models, each with numbered <b>versions</b> and a <code>config.pbtxt</code>) and it serves them all — ONNX, TensorRT, PyTorch, TensorFlow, even Python scripts — behind one HTTP/gRPC endpoint with shared GPU scheduling. Don't confuse it with OpenAI's Triton <i>language</i> (a kernel DSL, see topic 308) — same name, different thing.</p>
+    <p><b>Triton Inference Server</b> is NVIDIA's production serving layer for <i>any</i> model framework: point it at a <b>model repository</b> (a directory tree of models, each with numbered <b>versions</b> and a <code>config.pbtxt</code>) and it serves them all — ONNX, TensorRT, PyTorch, TensorFlow, even Python scripts — behind one HTTP/gRPC endpoint with shared GPU scheduling. Don't confuse it with OpenAI's Triton <i>language</i> (a kernel DSL, unrelated to the CUDA basics in topic 308) — same name, different thing.</p>
     <p>Its two killer features for classic-ML serving: <b>dynamic batching</b> — hold individual requests for a few milliseconds and merge them into one GPU batch, trading a hair of latency for multiples of throughput — and <b>ensembles</b> — chain preprocessing → model → postprocessing inside the server, so clients send raw inputs and network hops disappear. Where vLLM is specialized for LLM text generation, Triton is the general-purpose workhorse for everything else in your zoo.</p>
   </div>
   <div class="viz">
