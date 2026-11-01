@@ -37,109 +37,113 @@ We subtract the mean.
 And divide by the standard deviation.
 
 10
-00:00:28.633 --> 00:00:34.367
-Unlike min-max, the result is unbounded, but one outlier no longer owns the whole range.
+00:00:28.633 --> 00:00:32.963
+Unlike min-max, the result is unbounded, but not outlier-proof.
 
 11
-00:00:35.567 --> 00:00:36.236
-Why bother?
+00:00:32.963 --> 00:00:39.767
+One extreme value still inflates the mean and spread, so for outliers use a robust scaler or a log.
 
 12
-00:00:36.236 --> 00:00:39.033
-Think about K nearest neighbors on exoplanets.
+00:00:40.967 --> 00:00:41.636
+Why bother?
 
 13
-00:00:39.333 --> 00:00:43.834
-Temperature is in the thousands, while radius is a single digit number.
+00:00:41.636 --> 00:00:44.433
+Think about K nearest neighbors on exoplanets.
 
 14
-00:00:43.834 --> 00:00:49.667
-About ninety nine percent of the distance is temperature, so radius might as well not exist.
+00:00:44.733 --> 00:00:49.234
+Temperature is in the thousands, while radius is a single digit number.
 
 15
-00:00:50.867 --> 00:00:53.967
-Now the rule that separates professionals from tutorials.
+00:00:49.234 --> 00:00:55.067
+About ninety nine percent of the distance is temperature, so radius might as well not exist.
 
 16
-00:00:54.267 --> 00:00:55.567
-Take the training data.
+00:00:56.267 --> 00:00:59.367
+Now the rule that separates professionals from tutorials.
 
 17
-00:00:55.867 --> 00:00:59.900
-Fit the scaler on it alone, learning its mean and standard deviation.
+00:00:59.667 --> 00:01:00.967
+Take the training data.
 
 18
-00:01:00.200 --> 00:01:02.233
-Apply those numbers to the training set.
+00:01:01.267 --> 00:01:05.300
+Fit the scaler on it alone, learning its mean and standard deviation.
 
 19
-00:01:02.533 --> 00:01:05.569
-And reuse the very same numbers on the test set.
+00:01:05.600 --> 00:01:07.633
+Apply those numbers to the training set.
 
 20
-00:01:05.569 --> 00:01:06.833
-Never refit on test.
+00:01:07.933 --> 00:01:10.969
+And reuse the very same numbers on the test set.
 
 21
-00:01:08.033 --> 00:01:09.367
-Here is the safe way.
+00:01:10.969 --> 00:01:12.233
+Never refit on test.
 
 22
-00:01:09.667 --> 00:01:12.933
-We put the scaler and the model together in one pipeline.
+00:01:13.433 --> 00:01:14.767
+Here is the safe way.
 
 23
-00:01:13.233 --> 00:01:19.633
-Cross validation then refits the scaler on each training fold only, so the test folds never leak in.
+00:01:15.067 --> 00:01:18.333
+We put the scaler and the model together in one pipeline.
 
 24
-00:01:20.833 --> 00:01:22.300
-Back to our exoplanets.
+00:01:18.633 --> 00:01:25.033
+Cross validation then refits the scaler on each training fold only, so the test folds never leak in.
 
 25
-00:01:22.600 --> 00:01:27.200
-Temperature runs in the thousands, radius mostly from half an Earth to fifteen.
+00:01:26.233 --> 00:01:27.700
+Back to our exoplanets.
 
 26
-00:01:27.500 --> 00:01:29.733
-Wrap a standard scaler into the pipeline.
+00:01:28.000 --> 00:01:32.600
+Temperature runs in the thousands, radius mostly from half an Earth to fifteen.
 
 27
-00:01:30.033 --> 00:01:35.833
-K nearest neighbors goes from coin flip to competitive, because every feature now votes equally.
+00:01:32.900 --> 00:01:35.133
+Wrap a standard scaler into the pipeline.
 
 28
-00:01:37.033 --> 00:01:40.699
-The classic mistake is scaling everything before you split.
+00:01:35.433 --> 00:01:41.233
+K nearest neighbors goes from coin flip to competitive, because every feature now votes equally.
 
 29
-00:01:40.699 --> 00:01:46.167
-The test set's statistics leak into training, and your evaluation is quietly optimistic.
+00:01:42.433 --> 00:01:46.099
+The classic mistake is scaling everything before you split.
 
 30
-00:01:46.467 --> 00:01:51.000
-The fix is a pipeline, which enforces fit on train only, automatically.
+00:01:46.099 --> 00:01:51.567
+The test set's statistics leak into training, and your evaluation is quietly optimistic.
 
 31
-00:01:52.200 --> 00:01:53.006
-Let's recap.
+00:01:51.867 --> 00:01:56.400
+The fix is a pipeline, which enforces fit on train only, automatically.
 
 32
-00:01:53.006 --> 00:01:56.367
-Standardization gives zero mean and unit variance.
+00:01:57.600 --> 00:01:58.406
+Let's recap.
 
 33
-00:01:56.667 --> 00:01:59.533
-Distance based and gradient based models need it.
+00:01:58.406 --> 00:02:01.767
+Standardization gives zero mean and unit variance.
 
 34
-00:01:59.833 --> 00:02:01.533
-Fit on the training data only.
+00:02:02.067 --> 00:02:04.933
+Distance based and gradient based models need it.
 
 35
-00:02:01.833 --> 00:02:04.128
-And use a pipeline to guarantee it.
+00:02:05.233 --> 00:02:06.933
+Fit on the training data only.
 
 36
-00:02:04.128 --> 00:02:05.833
+00:02:07.233 --> 00:02:09.528
+And use a pipeline to guarantee it.
+
+37
+00:02:09.528 --> 00:02:11.233
 Next up: one-hot encoding.

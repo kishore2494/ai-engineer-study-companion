@@ -61,73 +61,73 @@ The decorator on top turns the whole function into a graph.
 Unlike PyTorch, we open a gradient tape, and everything inside it gets recorded.
 
 16
-00:00:57.867 --> 00:01:01.440
+00:00:57.867 --> 00:01:01.454
 We ask the tape for gradients, then apply them to the weights.
 
 17
-00:01:01.440 --> 00:01:04.033
-After two hundred steps, the line is learned.
+00:01:01.454 --> 00:01:04.000
+After a thousand steps, the line is learned.
 
 18
-00:01:05.233 --> 00:01:07.563
+00:01:05.200 --> 00:01:07.530
 So why learn it if you write PyTorch?
 
 19
-00:01:07.563 --> 00:01:10.333
+00:01:07.530 --> 00:01:10.300
 Because so much production ML is TensorFlow.
 
 20
-00:01:10.633 --> 00:01:14.933
+00:01:10.600 --> 00:01:14.900
 The SavedModel format bundles the graph and weights into one directory.
 
 21
-00:01:15.233 --> 00:01:19.133
+00:01:15.200 --> 00:01:19.100
 TF Serving loads that directory to serve models at scale.
 
 22
-00:01:19.433 --> 00:01:23.000
+00:01:19.400 --> 00:01:22.967
 And TF Lite carries models onto mobile devices.
 
 23
-00:01:24.200 --> 00:01:25.433
+00:01:24.167 --> 00:01:25.400
 Picture this handoff.
 
 24
-00:01:25.733 --> 00:01:29.533
+00:01:25.700 --> 00:01:29.500
 A satellite team gives you their cloud detector as a SavedModel.
 
 25
-00:01:29.833 --> 00:01:31.210
+00:01:29.800 --> 00:01:31.177
 You don't rewrite it.
 
 26
-00:01:31.210 --> 00:01:37.767
+00:01:31.177 --> 00:01:37.733
 You load it, inspect its signature, and wrap it in the same FastAPI endpoint as your PyTorch models.
 
 27
-00:01:38.067 --> 00:01:41.733
+00:01:38.033 --> 00:01:41.700
 Reading TensorFlow fluently turns a sprint into an afternoon.
 
 28
-00:01:42.933 --> 00:01:43.507
+00:01:42.900 --> 00:01:43.473
 To recap.
 
 29
-00:01:43.507 --> 00:01:46.500
+00:01:43.473 --> 00:01:46.467
 TensorFlow can compile your model into a graph.
 
 30
-00:01:46.800 --> 00:01:50.100
+00:01:46.767 --> 00:01:50.067
 Tf function traces once, then reruns that graph.
 
 31
-00:01:50.400 --> 00:01:53.400
+00:01:50.367 --> 00:01:53.367
 SavedModel is the deployment format for serving.
 
 32
-00:01:53.700 --> 00:01:57.244
+00:01:53.667 --> 00:01:57.211
 You may write PyTorch, but read TensorFlow fluently.
 
 33
-00:01:57.244 --> 00:01:58.267
+00:01:57.211 --> 00:01:58.233
 Next up: Keras.
