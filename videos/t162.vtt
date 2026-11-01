@@ -97,41 +97,41 @@ And print the best match, the one containing that exact part number.
 A real benchmark from Mission Control RAG.
 
 25
-00:01:25.100 --> 00:01:32.100
-On twenty test questions, BM25 scores sixty five percent hit-rate at five, and dense scores seventy two.
+00:01:25.100 --> 00:01:31.800
+On twenty test questions, BM25 scores fifty five percent hit-rate at five, and dense scores sixty.
 
 26
-00:01:32.400 --> 00:01:38.567
+00:01:32.100 --> 00:01:38.267
 But on the six questions with error codes or unit IDs, BM25 wins six of six.
 
 27
-00:01:38.867 --> 00:01:41.691
+00:01:38.567 --> 00:01:41.391
 That split is why production runs hybrid.
 
 28
-00:01:41.691 --> 00:01:46.100
+00:01:41.391 --> 00:01:45.800
 And did you compare against BM25 is a favorite interview filter.
 
 29
-00:01:47.300 --> 00:01:48.230
+00:01:47.000 --> 00:01:47.930
 Let's recap.
 
 30
-00:01:48.230 --> 00:01:53.500
+00:01:47.930 --> 00:01:53.200
 BM25 combines saturated term frequency, rarity, and length fairness.
 
 31
-00:01:53.800 --> 00:01:56.933
+00:01:53.500 --> 00:01:56.633
 No training, no GPU, and a brutal baseline.
 
 32
-00:01:57.233 --> 00:02:00.467
+00:01:56.933 --> 00:02:00.167
 It wins on identifiers, and loses on synonyms.
 
 33
-00:02:00.767 --> 00:02:02.607
+00:02:00.467 --> 00:02:02.307
 If you can't beat it, ship it.
 
 34
-00:02:02.607 --> 00:02:05.000
+00:02:02.307 --> 00:02:04.700
 Next up: reranking with cross-encoders.

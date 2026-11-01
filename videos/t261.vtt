@@ -117,37 +117,37 @@ Here's a typical day.
 The staging deploy fails with address already in use.
 
 30
-00:01:23.067 --> 00:01:31.367
-You ssh in, lsof shows a zombie uvicorn from last week, kill clears it, and journalctl confirms a clean start.
+00:01:23.067 --> 00:01:31.300
+You ssh in, lsof shows a stray uvicorn from last week, kill clears it, and journalctl confirms a clean start.
 
 31
-00:01:31.667 --> 00:01:37.020
+00:01:31.600 --> 00:01:36.953
 Then one pipeline answers what's erroring, instead of downloading two gigabytes of logs.
 
 32
-00:01:37.020 --> 00:01:38.967
+00:01:36.953 --> 00:01:38.900
 Four minutes, all muscle memory.
 
 33
-00:01:40.167 --> 00:01:40.933
+00:01:40.100 --> 00:01:40.867
 Let's recap.
 
 34
-00:01:40.933 --> 00:01:44.000
+00:01:40.867 --> 00:01:43.933
 One filesystem tree, where everything is a file.
 
 35
-00:01:44.300 --> 00:01:48.133
+00:01:44.233 --> 00:01:48.067
 Permissions are read, write and execute for owner, group and other.
 
 36
-00:01:48.433 --> 00:01:50.833
+00:01:48.367 --> 00:01:50.767
 Pipes chain small tools into big answers.
 
 37
-00:01:51.133 --> 00:01:56.559
+00:01:51.067 --> 00:01:56.492
 Prefer the polite kill, and use systemctl and journalctl for services.
 
 38
-00:01:56.559 --> 00:01:57.567
+00:01:56.492 --> 00:01:57.500
 Next up: Git.
