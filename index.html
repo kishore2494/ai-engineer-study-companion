@@ -6811,7 +6811,7 @@ count = <span class="k">lambda</span> m: <span class="f">sum</span>(p.numel() <s
   <div class="block">
     <span class="label concept">Concept</span>
     <p>The <b>Vision Transformer</b> asks a heretical question: what if we skip convolution entirely and treat an image like a sentence? Chop the image into <b>16×16 patches</b> (a 224×224 image → 196 patches), flatten each patch and project it through one linear layer into an embedding — now you have 196 <b>tokens</b>. Add learned <b>position embeddings</b> (so the model knows patch order — otherwise it's a bag of patches), prepend a learnable <b>[CLS] token</b> to collect the global summary, and feed the sequence to a bone-standard transformer encoder. Classification head reads the [CLS] output. Done.</p>
-    <p>The tradeoff is data hunger: ViT lacks convolution's built-in locality and translation bias, so it must <i>learn</i> those from scratch — on ImageNet-1k alone it loses to ResNet, but pretrained on hundreds of millions of images it wins, because self-attention can relate any patch to any other in one hop. The strategic reason this tops your vision ladder: <b>ViT is the vision half of every multimodal LLM</b> — when GPT-4V or Claude "sees" an image, a ViT-style encoder is turning it into tokens that sit in the same sequence as the words. Learn this and Volume 05's transformer will already feel familiar.</p>
+    <p>The tradeoff is data hunger: ViT lacks convolution's built-in locality and translation bias, so it must <i>learn</i> those from scratch — on ImageNet-1k alone it loses to ResNet, but pretrained on hundreds of millions of images it wins, because self-attention can relate any patch to any other in one hop. The strategic reason this tops your vision ladder: <b>ViT is the vision half of every multimodal LLM</b> — when a GPT, Gemini or Claude model "sees" an image, a ViT-style encoder is turning it into tokens that sit in the same sequence as the words. Learn this and Volume 05's transformer will already feel familiar.</p>
   </div>
   <div class="viz">
     <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
@@ -8765,7 +8765,7 @@ ids   = tok(<span class="s">"Flight, we see a pressure"</span>, return_tensors=<
   <div class="topic-head"><span class="topic-num">134</span><h2>LLaMA</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>LLaMA</b> is Meta's open-weight family and the foundation of most industry fine-tuning work: when a company adapts a model on private data, the base is more often a Llama than anything else. Its architectural refinements over GPT-2 are now <b>the standard recipe</b> that nearly every open model copies: <b>RMSNorm</b> applied before each sublayer (simpler and cheaper than LayerNorm), <b>RoPE</b> rotary positions (#127), <b>SwiGLU</b> gated activations in the FFN (instead of GELU), <b>no bias terms</b>, and in later versions <b>grouped-query attention</b> to shrink the KV cache.</p>
+    <p><b>LLaMA</b> is Meta's open-weight family and long the default base for industry fine-tuning; by 2025 Qwen overtook it in Hugging Face derivatives (<a href="#t136">#136</a>), but Llama's recipe is still the one every open model copies. Its architectural refinements over GPT-2 are now <b>the standard recipe</b> that nearly every open model copies: <b>RMSNorm</b> applied before each sublayer (simpler and cheaper than LayerNorm), <b>RoPE</b> rotary positions (#127), <b>SwiGLU</b> gated activations in the FFN (instead of GELU), <b>no bias terms</b>, and in later versions <b>grouped-query attention</b> to shrink the KV cache.</p>
     <p>Learn to read these choices in a <code>config.json</code> — it's how you identify any open model's true anatomy in ten seconds, and it's the vocabulary of every fine-tuning conversation.</p>
   </div>
   <div class="viz">
@@ -9097,7 +9097,7 @@ MODELS  = [<span class="s">"gemma3:4b"</span>, <span class="s">"qwen2.5:3b"</spa
 </div>
 
 <div class="callout">
-  <b>Pacing note for this volume:</b> LoRA / QLoRA (144–145) and structured output (156) are the highest-frequency keywords in senior job posts right now — treat each as a <b>multi-day rung</b>, not a one-evening skim. The six vector databases (165–170) are the opposite: one concept behind six APIs. Learn one deeply, tour the rest.
+  <b>Pacing note for this volume:</b> LoRA / QLoRA (144–145) and structured output (156) were among the highest-frequency keywords in senior job posts in 2025–26 — treat each as a <b>multi-day rung</b>, not a one-evening skim. The six vector databases (165–170) are the opposite: one concept behind six APIs. Learn one deeply, tour the rest.
 </div>
 
 <div class="section-tab">— Shaping the Model —</div>
@@ -9329,7 +9329,7 @@ trainer = <span class="f">PPOTrainer</span>(args=<span class="f">PPOConfig</span
   <div class="block">
     <span class="label concept">Concept</span>
     <p><b>DPO</b> gets RLHF's result while skipping its machinery. The insight: if you have preference pairs (same prompt, one <b>chosen</b> response, one <b>rejected</b>), you don't need to train a separate reward model and run RL against it — a cleverly derived loss lets you optimize the policy <i>directly</i> on the pairs. Raise the log-probability of chosen responses, lower it for rejected ones, both measured relative to a frozen reference, with <code>beta</code> controlling how hard you push.</p>
-    <p>Two models instead of four, ordinary supervised-style training instead of PPO's instability — cheaper, more stable, and the current default for preference alignment in open-weight work. RLHF is the concept you explain; DPO is the trainer you actually run.</p>
+    <p>Two models instead of four, ordinary supervised-style training instead of PPO's instability — cheaper, more stable, and (as of 2026) still the default for preference alignment in open-weight work — reasoning training has moved to GRPO-style RL (glossary C). RLHF is the concept you explain; DPO is the trainer you actually run.</p>
   </div>
   <div class="viz">
     <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
@@ -11890,7 +11890,7 @@ last_err = <span class="s">""</span>
   <div class="topic-head"><span class="topic-num">188</span><h2>MCP (Model Context Protocol)</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>MCP</b> is Anthropic's open standard for connecting AI to tools and data. An <b>MCP server</b> exposes three kinds of things — <b>tools</b> (functions the model can call), <b>resources</b> (data it can read), and <b>prompts</b> (reusable templates) — over a uniform JSON-RPC protocol (stdio for local servers, HTTP for remote). Any <b>MCP client</b> — Claude Desktop, Claude Code, an IDE, your own app — plugs into any server with zero custom glue.</p>
+    <p><b>MCP</b> is the open standard (created by Anthropic in 2024, now governed by the Linux Foundation's Agentic AI Foundation) for connecting AI to tools and data. An <b>MCP server</b> exposes three kinds of things — <b>tools</b> (functions the model can call), <b>resources</b> (data it can read), and <b>prompts</b> (reusable templates) — over a uniform JSON-RPC protocol (stdio for local servers, HTTP for remote). Any <b>MCP client</b> — Claude Desktop, Claude Code, an IDE, your own app — plugs into any server with zero custom glue.</p>
     <p>The <b>USB-C analogy is earned</b>, and here's the math behind it: without a standard, M applications × N data sources means M×N bespoke integrations. With MCP, each app implements the client once and each source implements the server once: <b>M+N</b>. That economics is why the ecosystem snowballed — and why MCP experience is flagged as the scarcest, highest-demand skill in this entire volume. The session starts with an <code>initialize</code> handshake (version + capability negotiation), then the client discovers what's on offer via <code>tools/list</code> and calls via <code>tools/call</code>.</p>
   </div>
   <div class="viz">
@@ -11929,7 +11929,7 @@ last_err = <span class="s">""</span>
     <span class="label example">Example</span>
 <pre><span class="c"># what actually happens when a client connects (JSON-RPC, simplified)</span>
 <span class="k">→</span> {<span class="s">"method"</span>: <span class="s">"initialize"</span>,
-   <span class="s">"params"</span>: {<span class="s">"protocolVersion"</span>: <span class="s">"2025-06-18"</span>, <span class="s">"capabilities"</span>: {...}}}
+   <span class="s">"params"</span>: {<span class="s">"protocolVersion"</span>: <span class="s">"2025-06-18"</span>  <span class="c"># = spec revision date; copy the current one from modelcontextprotocol.io</span>, <span class="s">"capabilities"</span>: {...}}}
 <span class="k">←</span> {<span class="s">"result"</span>: {<span class="s">"capabilities"</span>: {<span class="s">"tools"</span>: {}, <span class="s">"resources"</span>: {}}}}
 
 <span class="k">→</span> {<span class="s">"method"</span>: <span class="s">"tools/list"</span>}
@@ -12125,7 +12125,7 @@ chain.invoke(<span class="s">"What damped the lander's oscillation during descen
   <div class="topic-head"><span class="topic-num">193</span><h2>LangGraph</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>LangGraph</b> models an agent as an explicit <b>state graph</b>: <b>nodes</b> do work (call the model, run tools), <b>edges</b> route between them — including <b>conditional edges</b> (branch on state) and <b>cycles</b> (the agent loop itself) — over a shared, typed <b>state</b> that each node reads and updates. Two features make it the current production standard for stateful agents: <b>checkpointers</b> persist the full state after every step (crash recovery, time-travel debugging, resumable runs), and <b>interrupts</b> pause the graph at a node for human-in-the-loop approval — exactly the persistence requirement from topic 187, solved natively.</p>
+    <p><b>LangGraph</b> models an agent as an explicit <b>state graph</b>: <b>nodes</b> do work (call the model, run tools), <b>edges</b> route between them — including <b>conditional edges</b> (branch on state) and <b>cycles</b> (the agent loop itself) — over a shared, typed <b>state</b> that each node reads and updates. Two features made it, as of 2026, the most common production choice for stateful agents: <b>checkpointers</b> persist the full state after every step (crash recovery, time-travel debugging, resumable runs), and <b>interrupts</b> pause the graph at a node for human-in-the-loop approval — exactly the persistence requirement from topic 187, solved natively.</p>
     <p>Look at the diagram and you'll recognize topic 173: the conditional edge is "answer or act?", the cycle is the loop. LangGraph didn't invent anything — it made your reference implementation explicit, persistent, and inspectable.</p>
   </div>
   <div class="viz">
@@ -12233,7 +12233,7 @@ result = crew.kickoff()</pre>
   </div>
   <div class="block">
     <span class="label example">Example</span>
-<pre><span class="c"># classic v0.2-style API (today: the AG2 fork, pip install ag2); Microsoft's AutoGen 0.4+ uses autogen_agentchat</span>
+<pre><span class="c"># classic v0.2-style API lives on in the AG2 fork (pip install ag2); Microsoft folded its own AutoGen into the Microsoft Agent Framework in late 2025</span>
 <span class="k">from</span> autogen <span class="k">import</span> AssistantAgent, GroupChat, GroupChatManager
 
 analyst = <span class="f">AssistantAgent</span>(<span class="s">"analyst"</span>, llm_config=cfg,
@@ -15316,7 +15316,7 @@ $ az functionapp create -n neo-fetcher -g mission-rg ...      <span class="c"># 
   <div class="topic-head"><span class="topic-num">247</span><h2>Azure AI</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>Azure OpenAI Service</b> is OpenAI models wrapped in enterprise controls — and it's the reason many banks' "GPT" is actually Azure. The controls are the product: <b>regional data residency</b> (prompts and completions processed in the region you choose), configurable <b>content filters</b>, private networking, and Microsoft-grade compliance paperwork that procurement departments already trust.</p>
+    <p><b>Azure OpenAI</b> (sold inside Microsoft Foundry, formerly Azure AI Foundry) is OpenAI models wrapped in enterprise controls — and it's the reason many banks' "GPT" is actually Azure. The controls are the product: <b>regional data residency</b> (prompts and completions processed in the region you choose), configurable <b>content filters</b>, private networking, and Microsoft-grade compliance paperwork that procurement departments already trust.</p>
     <p>The API's telling difference: you don't call a model name, you call <b>your deployment name</b>. You first <i>deploy</i> a specific model version into your Azure resource — choosing region, capacity, and filter policy — and give that deployment a name. Your code targets the name; the enterprise controls ride along with it. One sentence for the ladder's exercise: <i>the deployment name points at your pinned, governed instance of the model, not at the vendor's moving target.</i></p>
   </div>
   <div class="viz">
@@ -15361,7 +15361,7 @@ resp = client.chat.completions.<span class="f">create</span>(
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — the residency clause</span>
-    <p style="margin:0">A banking client loves your ticket-triage demo but their compliance team has one non-negotiable line: customer data must not leave India. Public OpenAI API — no. Azure OpenAI with a GPT-4o deployment in Central India — yes, with the content-filter policy attached to the deployment and the audit trail procurement expects. Nothing about your prompt engineering changes; the <i>deployment</i>, not the model, is what made the deal signable. That's Azure AI's entire value proposition in one meeting.</p>
+    <p style="margin:0">A banking client loves your ticket-triage demo but their compliance team has one non-negotiable line: customer data must not leave India. Public OpenAI API — no. Azure OpenAI with a current GPT deployment in Central India — yes, with the content-filter policy attached to the deployment and the audit trail procurement expects. Nothing about your prompt engineering changes; the <i>deployment</i>, not the model, is what made the deal signable. That's Azure AI's entire value proposition in one meeting.</p>
   </div>
 </section>
 
@@ -15408,7 +15408,7 @@ resp = client.chat.completions.<span class="f">create</span>(
 <header class="hero">
   <div class="eyebrow">Study Companion · Volume 10 of 11</div>
   <h1>The Service Layer <span class="accent">&amp;</span><br>the <span class="accent">Delivery Machine</span></h1>
-  <p class="lede">Items 248–271 of your 308-topic path — where your models finally meet users. The opening five topics — FastAPI, Pydantic, async endpoints, dependency injection, SSE streaming — are, almost verbatim, the stack of every LLM product API being hired for right now. The remaining nineteen are the machinery that packages that service, ships it, and keeps it alive: Linux, Git, Docker, Kubernetes, Nginx, CI/CD, Terraform.</p>
+  <p class="lede">Items 248–271 of your 308-topic path — where your models finally meet users. The opening five topics — FastAPI, Pydantic, async endpoints, dependency injection, SSE streaming — are, almost verbatim, the stack of every LLM product API being hired for in 2026. The remaining nineteen are the machinery that packages that service, ships it, and keeps it alive: Linux, Git, Docker, Kubernetes, Nginx, CI/CD, Terraform.</p>
   <div class="meta-row">
     <span><b>24</b> topics</span>
     <span><b>Concept</b> + Example + Scenario + Visual</span>
@@ -16777,7 +16777,7 @@ jwt.<span class="f">decode</span>(tampered, <span class="s">"SECRET_KEY"</span>,
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — the eval gate</span>
-    <p style="margin:0">Your Mission Control workflow grows a third job: after unit tests pass, it runs RAGAS (#281) over the 25-question golden set using the fake-LLM overrides from #251 for routing and a small real model for judging. If faithfulness drops below 0.85, the job fails and the PR can't merge — a retrieval regression is now caught by CI like any other bug. "Evals as a merge gate" is precisely the habit the market calls senior right now.</p>
+    <p style="margin:0">Your Mission Control workflow grows a third job: after unit tests pass, it runs RAGAS (#281) over the 25-question golden set using the fake-LLM overrides from #251 for routing and a small real model for judging. If faithfulness drops below 0.85, the job fails and the PR can't merge — a retrieval regression is now caught by CI like any other bug. "Evals as a merge gate" is precisely the habit the market calls senior as of 2026.</p>
   </div>
 </section>
 
@@ -20111,7 +20111,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <div class="paper"><div class="pp-name">Speculative Decoding (2022–23)</div><p class="pp-why">Draft-and-verify for free speedups. Short paper, big idea, immediately practical (<a href="#t307">#307</a>).</p></div>
   <div class="paper"><div class="pp-name">DSPy (2023)</div><p class="pp-why">Compiling prompts instead of writing them. Read it as a challenge to how you currently work (glossary E).</p></div>
   <div class="paper"><div class="pp-name">GraphRAG (2024)</div><p class="pp-why">Community summaries answering global questions retrieval can't. The clearest statement of RAG's structural limits (<a href="#t171">#171</a>).</p></div>
-  <div class="paper"><div class="pp-name">Anthropic MCP spec + Building Effective Agents</div><p class="pp-why">Not papers but the two most-cited practical documents in agent engineering — the second is the best "don't over-engineer agents" writeup that exists (<a href="#t188">#188</a>).</p></div>
+  <div class="paper"><div class="pp-name">the MCP spec (Anthropic-originated) + Building Effective Agents</div><p class="pp-why">Not papers but the two most-cited practical documents in agent engineering — the second is the best "don't over-engineer agents" writeup that exists (<a href="#t188">#188</a>).</p></div>
   <div class="real-box">
     <span class="tag">How top minds actually read a paper</span>
     <p><b>Pass 1 (5 min):</b> title, abstract, figures, conclusion — what's the claim? <b>Pass 2 (20 min):</b> method section — could I implement this? <b>Pass 3 (only if it matters to you):</b> reproduce the core idea in 50 lines, check the baselines they compared against, and ask "what would make this NOT work?" Most people stop at pass 1 and quote it as if they did pass 3. Doing pass 3 on even ten papers puts you in rare company.</p>
@@ -20458,7 +20458,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
 <div class="gcat" id="g-train">
   <h2><span class="gc-n">C</span>Training &amp; Alignment Extras</h2>
   <p class="gcat-note">Beyond the SFT → RLHF/DPO pipeline you learned in <a href="#t141">#141–143</a> — the newer methods and the tooling that runs them.</p>
-  <div class="gterm"><div class="gt-name">GRPO <span class="hot">★</span></div><p class="gt-def">Group Relative Policy Optimization — the RL method behind DeepSeek-R1: score a <b>group</b> of sampled answers against each other, no separate value model needed. The current favorite for training reasoning ability.</p></div>
+  <div class="gterm"><div class="gt-name">GRPO <span class="hot">★</span></div><p class="gt-def">Group Relative Policy Optimization — the RL method behind DeepSeek-R1: score a <b>group</b> of sampled answers against each other, no separate value model needed. The dominant reasoning-RL method since DeepSeek-R1 (2025), with variants such as DAPO and GSPO.</p></div>
   <div class="gterm"><div class="gt-name">ORPO / KTO / IPO</div><p class="gt-def">The DPO family tree: <b>ORPO</b> folds preference optimization into SFT (one stage), <b>KTO</b> needs only thumbs-up/down instead of pairs, <b>IPO</b> fixes a DPO overfitting issue. Know they're preference-alignment variants; details on demand.</p></div>
   <div class="gterm"><div class="gt-name">Constitutional AI</div><p class="gt-def">Anthropic's method: the model critiques and revises its own outputs against a written list of principles — AI feedback (RLAIF) replacing much of the human labeling in RLHF.</p></div>
   <div class="gterm"><div class="gt-name">Reward model &amp; KL penalty</div><p class="gt-def">In RLHF (<a href="#t141">#141</a>): the <b>reward model</b> scores outputs by predicted human preference; the <b>KL penalty</b> stops the policy drifting too far from the reference model — the leash against reward hacking.</p></div>
@@ -20507,12 +20507,12 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <p class="gcat-note">Frameworks and capabilities around the agent stack you built in <a href="#t173">173–198</a>.</p>
   <div class="gterm"><div class="gt-name">LlamaIndex</div><p class="gt-def">The data-framework counterpart to LangChain — strongest at ingestion, indexing, and query engines over your documents; also has agents/workflows. Very frequently named in RAG JDs.</p></div>
   <div class="gterm"><div class="gt-name">Haystack</div><p class="gt-def">deepset's production-oriented pipeline framework for search and RAG — explicit, typed pipelines; popular in European enterprises.</p></div>
-  <div class="gterm"><div class="gt-name">Semantic Kernel</div><p class="gt-def">Microsoft's agent/orchestration SDK for the .NET/enterprise world (Python too). If the employer is a Microsoft shop, this is their LangChain.</p></div>
+  <div class="gterm"><div class="gt-name">Semantic Kernel</div><p class="gt-def">Microsoft's agent/orchestration SDK (.NET + Python), merged with AutoGen into the Microsoft Agent Framework in late 2025. If the employer is a Microsoft shop, this is their LangChain.</p></div>
   <div class="gterm"><div class="gt-name">DSPy <span class="hot">★</span></div><p class="gt-def">Stanford's "programming, not prompting" framework: declare typed modules and metrics, and its optimizers <b>compile</b> the prompts/few-shots for you. The strongest answer to hand-tweaked prompt spaghetti.</p></div>
   <div class="gterm"><div class="gt-name">Instructor / Outlines / Guidance</div><p class="gt-def">Structured-output tooling: <b>Instructor</b> patches LLM clients to return validated Pydantic models with retries; <b>Outlines</b> and <b>Guidance</b> constrain decoding itself so output can't violate the schema/grammar. Extends <a href="#t156">#156</a>.</p></div>
   <div class="gterm"><div class="gt-name">OpenAI Swarm</div><p class="gt-def">OpenAI's minimal educational multi-agent library (agents + handoffs) — the precursor that grew into the Agents SDK (<a href="#t196">#196</a>). Appears in older tutorials.</p></div>
   <div class="gterm"><div class="gt-name">Computer use <span class="hot">★</span></div><p class="gt-def">Models operating a real GUI — looking at screenshots, moving the cursor, clicking, typing. Anthropic shipped it first; the frontier of "agent does your actual work."</p></div>
-  <div class="gterm"><div class="gt-name">Browser agents</div><p class="gt-def">Agents driving a web browser (navigate, read DOM, fill forms) — browser-use, Playwright-based stacks, OpenAI Operator. The practical subset of computer use.</p></div>
+  <div class="gterm"><div class="gt-name">Browser agents</div><p class="gt-def">Agents driving a web browser (navigate, read DOM, fill forms) — browser-use, Playwright-based stacks, OpenAI's ChatGPT agent (formerly Operator), Claude in Chrome. The practical subset of computer use.</p></div>
   <div class="gterm"><div class="gt-name">Code interpreter / sandbox</div><p class="gt-def">Letting the agent write and <b>run</b> code in an isolated environment (Docker, gVisor, Firecracker; E2B/Modal as services). The most powerful tool you can hand an agent — and why sandboxing is non-negotiable.</p></div>
   <div class="gterm"><div class="gt-name">AgentOps</div><p class="gt-def">The emerging ops discipline (and a product by that name) for monitoring agents in production: trajectories, tool-failure rates, cost per task, drift. Your <a href="#t198">#198</a> metrics, operationalized.</p></div>
   <div class="gterm"><div class="gt-name">Working memory / scratchpad</div><p class="gt-def">The agent's temporary reasoning state within a task — notes, intermediate results, plans — distinct from short/long-term memory (<a href="#t179">#179–181</a>). Often literally a scratchpad file or state field.</p></div>
@@ -20562,12 +20562,12 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
 <div class="gcat" id="g-models">
   <h2><span class="gc-n">H</span>Model Families to Know</h2>
   <p class="gcat-note">Beyond the open-weight families in <a href="#t134">#134–137</a> — the names that anchor "which model would you use?" conversations.</p>
-  <div class="gterm"><div class="gt-name">GPT-4o / o-series</div><p class="gt-def">OpenAI's line: GPT-4o class for fast multimodal chat, o-series (o1, o3…) for deliberate reasoning. "Route simple to 4o-mini, hard to o-series" is the canonical routing example.</p></div>
-  <div class="gterm"><div class="gt-name">Claude family</div><p class="gt-def">Anthropic's models (Haiku fast/cheap → Sonnet balanced → the top tier), known for long context, agentic tool use, and computer use — plus MCP (<a href="#t188">#188</a>) stewardship.</p></div>
+  <div class="gterm"><div class="gt-name">GPT family</div><p class="gt-def">OpenAI's line: since GPT-5 (Aug 2025) one family with mini/nano tiers and a reasoning-effort setting, replacing the earlier GPT-4o (chat) vs o-series (o1/o3 reasoning) split. "Route simple to the mini tier, hard to the full model at high effort" is the canonical routing example.</p></div>
+  <div class="gterm"><div class="gt-name">Claude family</div><p class="gt-def">Anthropic's models (Haiku fast/cheap → Sonnet balanced → the top tier), known for long context, agentic tool use, and computer use — Anthropic originated MCP (<a href="#t188">#188</a>), now under the Linux Foundation.</p></div>
   <div class="gterm"><div class="gt-name">Gemini</div><p class="gt-def">Google's multimodal family with the longest mainstream context windows (1M+ tokens) and native video understanding; served via <a href="#t245">Vertex AI (#245)</a>.</p></div>
   <div class="gterm"><div class="gt-name">DeepSeek <span class="hot">★</span></div><p class="gt-def">The Chinese lab that shook 2025: V3 (efficient MoE) and R1 (open reasoning model trained with GRPO) at a fraction of assumed cost, weights open. Proof that frontier-adjacent capability can be cheap and open.</p></div>
   <div class="gterm"><div class="gt-name">Phi</div><p class="gt-def">Microsoft's small-model family — the "textbook-quality data beats size" thesis. Phi-4-class models are strong on-device/edge candidates.</p></div>
-  <div class="gterm"><div class="gt-name">Command R</div><p class="gt-def">Cohere's enterprise line, purpose-tuned for RAG with built-in citation grounding and strong multilingual embeddings/rerankers around it.</p></div>
+  <div class="gterm"><div class="gt-name">Command R / Command A</div><p class="gt-def">Cohere's enterprise line, purpose-tuned for RAG with built-in citation grounding and strong multilingual embeddings/rerankers around it.</p></div>
   <div class="gterm"><div class="gt-name">Jamba</div><p class="gt-def">AI21's hybrid Mamba-transformer — the flagship proof that SSM/attention hybrids ship in production, with huge context at lower memory.</p></div>
   <div class="gterm"><div class="gt-name">Falcon / Grok</div><p class="gt-def"><b>Falcon</b>: TII's open-weight line (early open-LLM leader). <b>Grok</b>: xAI's models with open-weight releases of older versions. Recognition-level.</p></div>
 </div>
@@ -20580,7 +20580,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <div class="gterm"><div class="gt-name">dbt</div><p class="gt-def">The ELT transform layer (<a href="#t235">#235</a>): SQL models with refs, tests, and docs, version-controlled like code. "Analytics engineering" as a job title exists because of dbt.</p></div>
   <div class="gterm"><div class="gt-name">Dagster / Prefect</div><p class="gt-def">The modern Airflow (<a href="#t239">#239</a>) rivals: <b>Dagster</b> is asset-centric with strong typing and testing; <b>Prefect</b> is the lightweight pythonic one. Concepts transfer directly from Airflow.</p></div>
   <div class="gterm"><div class="gt-name">Feature store (Feast)</div><p class="gt-def">Central registry serving the same feature values to training (offline) and inference (online) — kills training/serving skew. Feast is the OSS standard; Tecton the managed one.</p></div>
-  <div class="gterm"><div class="gt-name">Lakehouse / Delta Lake / Iceberg</div><p class="gt-def">Table formats adding ACID transactions and time travel to data-lake files — warehouse reliability on lake economics. Databricks (Delta) vs the open Iceberg ecosystem is the current turf war.</p></div>
+  <div class="gterm"><div class="gt-name">Lakehouse / Delta Lake / Iceberg</div><p class="gt-def">Table formats adding ACID transactions and time travel to data-lake files — warehouse reliability on lake economics. Delta vs Iceberg was the 2023–25 turf war; since Databricks bought Tabular the two are converging (UniForm, Iceberg v3) — expect both in one shop.</p></div>
   <div class="gterm"><div class="gt-name">Great Expectations</div><p class="gt-def">Data-quality testing: declare expectations ("this column is never null, values in range") that run in pipelines and fail loudly. Unit tests for data.</p></div>
   <div class="gterm"><div class="gt-name">Shadow deployment</div><p class="gt-def">Run the new model on live traffic but discard its outputs — compare against the incumbent risk-free before an <a href="#t222">A/B test (#222)</a>. With <b>canary</b> releases, the safe-rollout toolkit.</p></div>
   <div class="gterm"><div class="gt-name">Helm</div><p class="gt-def">The Kubernetes package manager — charts template your deployments/services with values files, so "install our whole stack" is one command. Assumed knowledge wherever K8s (<a href="#t267">#267</a>) appears in a JD.</p></div>
@@ -20594,7 +20594,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <div class="gterm"><div class="gt-name">Diffusion Transformers (DiT)</div><p class="gt-def">Transformers replacing U-Nets as the denoising backbone in diffusion (<a href="#t294">#294</a>) — the architecture behind Sora-class video and SD3/Flux-class image models.</p></div>
   <div class="gterm"><div class="gt-name">Flow matching</div><p class="gt-def">A cleaner generative objective than classic diffusion — learn a straight-line flow from noise to data; fewer sampling steps, simpler math. Powers Flux and modern audio generators.</p></div>
   <div class="gterm"><div class="gt-name">Latent consistency / few-step generation</div><p class="gt-def">Distilling diffusion models to generate in 1–4 steps instead of 30+ — what makes real-time image generation possible.</p></div>
-  <div class="gterm"><div class="gt-name">Voice AI / speech-to-speech <span class="hot">★</span></div><p class="gt-def">Native audio-in→audio-out models (GPT-4o realtime, Gemini Live) replacing the clunky STT→LLM→TTS chain — real-time interruption-capable voice agents. Exploding commercially in support/sales.</p></div>
+  <div class="gterm"><div class="gt-name">Voice AI / speech-to-speech <span class="hot">★</span></div><p class="gt-def">Native audio-in→audio-out models (OpenAI's Realtime API / gpt-realtime, Gemini Live) replacing the clunky STT→LLM→TTS chain — real-time interruption-capable voice agents. Exploding commercially in support/sales.</p></div>
   <div class="gterm"><div class="gt-name">Video understanding</div><p class="gt-def">VLMs (<a href="#t298">#298</a>) consuming video natively — hour-long context in Gemini-class models; surveillance, sports, and field-service inspection use cases.</p></div>
   <div class="gterm"><div class="gt-name">On-device / edge AI</div><p class="gt-def">Small models (Phi, Gemma, Qwen 0.5–3B) running on phones and laptops via <a href="#t150">GGUF (#150)</a>/llama.cpp, Apple/Android NPU stacks — privacy, latency, and zero API cost.</p></div>
   <div class="gterm"><div class="gt-name">World models</div><p class="gt-def">Models that learn environment dynamics to predict "what happens next" — the research bet (Genie-class, robotics) on how agents get real planning ability.</p></div>
@@ -20618,7 +20618,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <p class="gcat-note">Every remaining term from the market research docs, defined in one line each — the long tail that makes the vocabulary exhaustive. Grouped by where it belongs.</p>
 
   <div class="gterm"><div class="gt-name">Model type labels</div><p class="gt-def"><b>Foundation/base model</b> — raw pretrained, completes text. <b>Instruct model</b> — tuned to follow instructions. <b>Chat model</b> — tuned for multi-turn dialogue with roles. <b>Code model</b> — specialized on code. <b>Reasoning model</b> — trained to think before answering. <b>Embedding</b> and <b>reranker</b> models output vectors and relevance scores, not text. Picking the right label is half of model selection.</p></div>
-  <div class="gterm"><div class="gt-name">Named model versions</div><p class="gt-def">Concrete releases you'll see in JDs: <b>GPT-4o / 4.5 / o1 / o3</b>, <b>Claude 3.5 Sonnet / 3 Opus</b>, <b>Gemini 1.5 Pro / Flash</b>, <b>Llama 3.1 / 3.2 / 4</b>, <b>Mistral Large</b>, <b>Mixtral 8x22B</b>, <b>Qwen 2.5</b>, <b>Phi-4</b>. Version numbers move fast — the families (<a href="#t134">#134–137</a>) are what to actually learn.</p></div>
+  <div class="gterm"><div class="gt-name">Named model versions</div><p class="gt-def">Concrete releases you'll see in 2025–26 JDs: <b>GPT-5 family / o3</b>, <b>Claude 4.x (Opus / Sonnet / Haiku)</b>, <b>Gemini 2.5 / 3</b>, <b>Llama 3.x / 4</b>, <b>Mistral Large</b>, <b>Mixtral 8x22B</b>, <b>Qwen 2.5</b>, <b>Phi-4</b>. Version numbers move fast — the families (<a href="#t134">#134–137</a>) are what to actually learn.</p></div>
   <div class="gterm"><div class="gt-name">Layer normalization</div><p class="gt-def">Normalizing activations across features within each token so training stays stable; applied before each attention/FFN block in modern transformers. RMSNorm is the cheaper variant LLMs now use.</p></div>
   <div class="gterm"><div class="gt-name">Sparse attention</div><p class="gt-def">Attention restricted to a subset of positions (strided, local, block patterns) instead of all pairs — reduces the quadratic cost. Sliding-window attention is the best-known instance.</p></div>
   <div class="gterm"><div class="gt-name">Speech &amp; flow models</div><p class="gt-def"><b>Speech-to-text</b> (Whisper-class transcription), <b>text-to-speech</b> (voice synthesis), and <b>flow-based models</b> (invertible generative models with exact likelihoods — the ancestor of today's flow matching).</p></div>
@@ -20995,7 +20995,7 @@ opt = qml.AdamOptimizer(<span class="n">0.1</span>)                     <span cl
 
 <section class="topic" id="f2">
   <div class="topic-head"><span class="topic-num">F2</span><h2>Embodied AI &amp; world models</h2></div>
-  <p>The move from models that <i>talk</i> to models that <i>act in physical space</i> — currently the most heavily funded frontier in AI, and the one most likely to become a mainstream engineering discipline within your career horizon.</p>
+  <p>The move from models that <i>talk</i> to models that <i>act in physical space</i> — as of 2026 among the most heavily funded frontiers in AI, and the one most likely to become a mainstream engineering discipline within your career horizon.</p>
   <ul class="pts">
     <li><b>Vision-Language-Action models (VLAs)</b> <span class="heat soon">SOON</span> — a single transformer takes camera frames plus an instruction and outputs robot joint commands (RT-2, OpenVLA, π0 lineage). Conceptually it is a VLM (<a href="#t298">#298</a>) whose output vocabulary is motor tokens instead of words — which means your transformer knowledge transfers directly.</li>
     <li><b>World models</b> <span class="heat soon">SOON</span> — models that learn environment dynamics and can predict "what happens if I do X," enabling planning by imagination rather than trial. The bridge between the RL you learned in volume 08 and generative modeling.</li>
