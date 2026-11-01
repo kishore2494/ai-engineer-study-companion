@@ -117,93 +117,101 @@ Lookahead generates n-gram guesses in parallel.
 Same goal: more tokens per forward pass.
 
 30
-00:01:59.900 --> 00:02:04.033
-Dynamic, or in-flight, batching changes how requests join a batch.
+00:01:59.900 --> 00:02:03.967
+Dynamic and in-flight batching sound alike, but they are different schemes.
 
 31
-00:02:04.333 --> 00:02:06.700
-The old way waits for the whole batch to drain.
+00:02:04.267 --> 00:02:08.623
+Dynamic batching is Triton's older, request-level scheme.
 
 32
-00:02:07.000 --> 00:02:10.933
-Here, new requests are admitted into a running batch as others finish.
+00:02:08.623 --> 00:02:11.833
+In-flight batching is TensorRT-LLM's term.
 
 33
-00:02:11.233 --> 00:02:14.533
-It is the serving-layer sibling of continuous batching.
+00:02:12.133 --> 00:02:16.352
+Dynamic batching groups requests that arrive within a short window.
 
 34
-00:02:15.733 --> 00:02:20.100
-GPTCache is the open source library for semantic caching.
+00:02:16.352 --> 00:02:21.200
+In-flight batching admits new requests at each decode step, as others finish.
 
 35
-00:02:20.400 --> 00:02:21.567
-A query arrives.
+00:02:21.500 --> 00:02:28.567
+So in-flight batching is TensorRT-LLM's name for continuous batching, which you met in vLLM.
 
 36
-00:02:21.867 --> 00:02:22.733
-We embed it.
+00:02:29.767 --> 00:02:34.133
+GPTCache is the open source library for semantic caching.
 
 37
-00:02:23.033 --> 00:02:25.167
-We look for a near-duplicate in the cache.
+00:02:34.433 --> 00:02:35.600
+A query arrives.
 
 38
-00:02:25.467 --> 00:02:28.153
-If one is found, we serve the cached response.
+00:02:35.900 --> 00:02:36.767
+We embed it.
 
 39
-00:02:28.153 --> 00:02:32.067
-You can roll your own with Redis and embeddings, but know the name.
+00:02:37.067 --> 00:02:39.200
+We look for a near-duplicate in the cache.
 
 40
-00:02:33.267 --> 00:02:37.367
-Model routing sends each query to the cheapest model that can handle it.
+00:02:39.500 --> 00:02:42.187
+If one is found, we serve the cached response.
 
 41
-00:02:37.667 --> 00:02:39.467
-Every query is judged first.
+00:02:42.187 --> 00:02:46.100
+You can roll your own with Redis and embeddings, but know the name.
 
 42
-00:02:39.767 --> 00:02:45.533
-Simple ones go to a small model like Haiku or mini, and complex ones go to a frontier model.
+00:02:47.300 --> 00:02:51.400
+Model routing sends each query to the cheapest model that can handle it.
 
 43
-00:02:45.833 --> 00:02:51.283
-You can implement it with LiteLLM, Portkey, OpenRouter, or your own classifier.
+00:02:51.700 --> 00:02:53.500
+Every query is judged first.
 
 44
-00:02:51.283 --> 00:02:53.767
-It is the single biggest cost lever.
+00:02:53.800 --> 00:02:59.567
+Simple ones go to a small model like Haiku or mini, and complex ones go to a frontier model.
 
 45
-00:02:54.967 --> 00:02:58.200
-Portkey and OpenRouter are managed AI gateways.
+00:02:59.867 --> 00:03:05.317
+You can implement it with LiteLLM, Portkey, OpenRouter, or your own classifier.
 
 46
-00:02:58.500 --> 00:03:04.867
-One API sits over all providers, with routing, fallbacks, caching, budgets, and observability.
+00:03:05.317 --> 00:03:07.800
+It is the single biggest cost lever.
 
 47
-00:03:05.167 --> 00:03:10.267
-Portkey targets enterprises, while OpenRouter aggregates models for developers.
+00:03:09.000 --> 00:03:12.233
+Portkey and OpenRouter are managed AI gateways.
 
 48
-00:03:11.467 --> 00:03:12.590
-Let's recap.
+00:03:12.533 --> 00:03:18.900
+One API sits over all providers, with routing, fallbacks, caching, budgets, and observability.
 
 49
-00:03:12.590 --> 00:03:19.333
-SGLang, TGI, TensorRT-LLM, and LMDeploy are the serving engines to know.
+00:03:19.200 --> 00:03:24.300
+Portkey targets enterprises, while OpenRouter aggregates models for developers.
 
 50
-00:03:19.633 --> 00:03:25.100
-ONNX, OpenVINO, BentoML, and Ray Serve help you deploy beyond raw engines.
+00:03:25.500 --> 00:03:26.624
+Let's recap.
 
 51
-00:03:25.400 --> 00:03:28.700
-Medusa and in-flight batching squeeze out more throughput.
+00:03:26.624 --> 00:03:33.367
+SGLang, TGI, TensorRT-LLM, and LMDeploy are the serving engines to know.
 
 52
-00:03:29.000 --> 00:03:32.533
+00:03:33.667 --> 00:03:39.133
+ONNX, OpenVINO, BentoML, and Ray Serve help you deploy beyond raw engines.
+
+53
+00:03:39.433 --> 00:03:42.733
+Medusa and in-flight batching squeeze out more throughput.
+
+54
+00:03:43.033 --> 00:03:46.567
 And caching, routing, and gateways are your biggest cost levers.
