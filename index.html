@@ -950,7 +950,7 @@
 <header class="hero">
   <div class="eyebrow">Study Companion · Volume 01 of 11</div>
   <h1>Python <span class="accent">Foundations</span><br>for the AI Engineer</h1>
-  <p class="lede">Items 1–30 of your 308-topic path. Each topic: the concept in plain terms, a runnable example on space data, a real scenario from the Mission Control RAG and Orbital Research Agent projects, and a visual to lock it in memory.</p>
+  <p class="lede">Items 1–30 of your 308-topic path. Each topic: the concept in plain terms, a runnable example on space data, a real scenario from the Mission Control RAG and Orbital Research Agent projects, and (for most topics) a visual to lock it in memory.</p>
   <div class="meta-row">
     <span><b>30</b> topics</span>
     <span><b>Concept</b> + Example + Scenario + Visual</span>
@@ -1680,7 +1680,7 @@ fetch_neo_feed()                       <span class="c"># fetch_neo_feed: 0.40s</
   </div>
   <div class="real-box">
     <span class="tag">Real scenario — one retry policy for every NASA tool</span>
-    <p style="margin:0">Instead of pasting retry logic into each of the agent's four API tools, you write <code>@retry(times=3, backoff=2)</code> once and stack it on every tool function. When DONKI has a bad day, the policy is identical everywhere — and your FastAPI routes are the same mechanism from the other side: <code>@app.get("/neo")</code> is a decorator registering your function with the framework.</p>
+    <p style="margin:0">Instead of pasting retry logic into each of the agent's three API tools, you write <code>@retry(times=3, backoff=2)</code> once and stack it on every tool function. When DONKI has a bad day, the policy is identical everywhere — and your FastAPI routes are the same mechanism from the other side: <code>@app.get("/neo")</code> is a decorator registering your function with the framework.</p>
   </div>
 </section>
 
@@ -2430,9 +2430,9 @@ row = np.arange(<span class="n">4</span>).reshape(<span class="n">1</span>, <spa
       <line x1="365" y1="61" x2="415" y2="61" stroke="#ffd97a" stroke-width="2" marker-end="url(#v01_m26b)"/>
       <line x1="365" y1="156" x2="415" y2="156" stroke="#ffd97a" stroke-width="2" marker-end="url(#v01_m26b)"/>
       <rect x="420" y="44" width="110" height="34" rx="6" fill="#1a2138" stroke="#ffd97a"/>
-      <text x="475" y="66" text-anchor="middle" fill="#ffd97a" font-size="10">max_d = 16.8</text>
+      <text x="475" y="66" text-anchor="middle" fill="#ffd97a" font-size="10">max_d = 0.90</text>
       <rect x="420" y="139" width="110" height="34" rx="6" fill="#1a2138" stroke="#ffd97a"/>
-      <text x="475" y="161" text-anchor="middle" fill="#ffd97a" font-size="10">max_d = 0.49</text>
+      <text x="475" y="161" text-anchor="middle" fill="#ffd97a" font-size="10">max_d = 16.8</text>
       <line x1="475" y1="78" x2="445" y2="196" stroke="#6ee7a0" stroke-width="2" marker-end="url(#v01_m26c)"/>
       <line x1="475" y1="173" x2="440" y2="196" stroke="#6ee7a0" stroke-width="2" marker-end="url(#v01_m26c)"/>
       <rect x="290" y="196" width="150" height="36" rx="8" fill="#232c47" stroke="#6ee7a0"/>
@@ -2482,10 +2482,10 @@ full[<span class="s">"flare_class"</span>] = full[<span class="s">"flare_class"<
       <text x="260" y="196" text-anchor="middle" fill="#8b97b8" font-size="10">ax.set_xlabel(…)</text>
       <rect x="330" y="80" width="72" height="26" rx="4" fill="#232c47" stroke="#2f3a5c"/>
       <text x="366" y="97" text-anchor="middle" fill="#8b97b8" font-size="9">ax.legend()</text>
-      <polyline points="122,168 160,138 200,122 240,112 280,106 320,103 360,101 400,100" fill="none" stroke="#5ed3f4" stroke-width="2"/>
-      <polyline points="122,172 160,148 200,134 240,127 280,125 320,129 360,137 400,147" fill="none" stroke="#ff7a59" stroke-width="2" stroke-dasharray="5 4"/>
-      <text x="430" y="104" fill="#5ed3f4" font-size="9">train</text>
-      <text x="430" y="150" fill="#ff7a59" font-size="9">val</text>
+      <polyline points="122,104 160,134 200,150 240,160 280,166 320,169 360,171 400,172" fill="none" stroke="#5ed3f4" stroke-width="2"/>
+      <polyline points="122,100 160,124 200,138 240,145 280,147 320,143 360,135 400,125" fill="none" stroke="#ff7a59" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="430" y="175" fill="#5ed3f4" font-size="9">train</text>
+      <text x="430" y="128" fill="#ff7a59" font-size="9">val</text>
       <text x="280" y="232" text-anchor="middle" fill="#8b97b8">fig owns the axes · each ax owns its lines, labels, and legend</text>
       </g>
     </svg>
@@ -2792,7 +2792,7 @@ cos = flare @ cme / (np.linalg.norm(flare) * np.linalg.norm(cme))
       <line x1="390" y1="150" x2="362" y2="100" stroke="#ff7a59" stroke-width="2.5" marker-end="url(#v02_m32b)"/>
       <text x="448" y="128" fill="#5ed3f4">A·e1</text>
       <text x="318" y="96" fill="#ff7a59">A·e2</text>
-      <text x="352" y="186" fill="#8b97b8">after: rotated + stretched</text>
+      <text x="352" y="186" fill="#8b97b8">after: rotated 30°</text>
       <text x="378" y="48" fill="#6ee7a0">columns of A = where e1, e2 land</text>
       <defs>
         <marker id="v02_m32a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5ed3f4"/></marker>
@@ -3728,8 +3728,8 @@ trials = rng.random(<span class="n">10_000</span>) &lt; p      <span class="c">#
       <circle cx="480" cy="112" r="7" fill="#ff7a59"/>
       <text x="446" y="96" fill="#ff7a59">one giant</text>
       <text x="64" y="84" fill="#5ed3f4">rocky planets ~1 M⊕</text>
-      <polygon points="300,124 288,146 312,146" fill="#ffd97a"/>
-      <text x="254" y="166" fill="#ffd97a">mean — dragged here</text>
+      <polygon points="158,124 146,146 170,146" fill="#ffd97a"/>
+      <text x="176" y="166" fill="#ffd97a">mean — dragged here</text>
       <polygon points="111,124 101,142 121,142" fill="#3a8fb0"/>
       <text x="60" y="158" fill="#8b97b8">mean without it</text>
       <text x="120" y="40" fill="#6ee7a0">every point pulls with force ∝ distance — outliers pull hardest</text>
@@ -4399,7 +4399,7 @@ df[<span class="s">"telescope"</span>] = df[<span class="s">"telescope"</span>].
       <circle cx="54" cy="160" r="6" fill="#ff7a59"/><circle cx="59" cy="160" r="6" fill="#ff7a59"/>
       <circle cx="504" cy="160" r="7" fill="#ffd97a"/>
       <text x="430" y="142" fill="#ffd97a">outlier = 1.0</text>
-      <text x="76" y="142" fill="#ff7a59">signal crushed into 4% of the range</text>
+      <text x="76" y="142" fill="#ff7a59">signal crushed into 0.4% of the range</text>
       </g>
     </svg>
     <div class="viz-cap">Min-max scaling before and after one extreme value: the outlier owns the range.</div>
@@ -4482,7 +4482,7 @@ scores = cross_val_score(pipe, X, y, cv=<span class="n">5</span>)
   <div class="block">
     <span class="label concept">Concept</span>
     <p>Models can't do math on strings, so categorical columns must become numbers. The naive fix — <code>kepler=1, tess=2, jwst=3</code> — invents a fake ordering (is JWST "three times" Kepler?). <b>One-hot encoding</b> avoids that: each category becomes its <b>own 0/1 column</b>, and exactly one is hot per row. No false ordering, and linear models get a separate learnable weight per category.</p>
-    <p>The breakdown point is <b>high cardinality</b>: 1,000 distinct cities means 1,000 nearly-empty columns — a sparse, memory-hungry matrix where each column carries almost no examples. That's when you reach for <b>target encoding</b> (replace category with its historical target mean) or <b>learned embeddings</b> (Volume 04's territory).</p>
+    <p>The breakdown point is <b>high cardinality</b>: 1,000 distinct cities means 1,000 nearly-empty columns — a sparse, memory-hungry matrix where each column carries almost no examples. That's when you reach for <b>target encoding</b> (replace category with its historical target mean) or <b>learned embeddings</b> (Volume 05's territory).</p>
   </div>
   <div class="viz">
     <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg">
@@ -4945,7 +4945,7 @@ clf.fit(X_train, y_train,
       <circle cx="380" cy="150" r="7" fill="#6ee7a0"/>
       <circle cx="450" cy="110" r="7" fill="#6ee7a0"/>
       <circle cx="430" cy="180" r="7" fill="#6ee7a0"/>
-      <circle cx="305" cy="122" r="7" fill="#6ee7a0" stroke="#ffd97a" stroke-width="2.5"/>
+      <circle cx="255" cy="115" r="7" fill="#6ee7a0" stroke="#ffd97a" stroke-width="2.5"/>
       <line x1="176" y1="115" x2="280" y2="140" stroke="#ffd97a" stroke-width="1.5" marker-end="url(#v03_m71a)"/>
       <text x="120" y="196" fill="#ffd97a">support vectors define the boundary</text>
       <path d="M 208 88 L 232 122" stroke="#8b97b8" stroke-width="1.5" marker-end="url(#v03_m71b)"/>
@@ -5063,8 +5063,8 @@ skl  = KNeighborsClassifier(n_neighbors=<span class="n">3</span>).fit(X_tr, y_tr
       <line x1="380" y1="185" x2="380" y2="35" stroke="#2f3a5c"/>
       <text x="470" y="203" fill="#8b97b8">k</text>
       <text x="352" y="42" fill="#8b97b8">inertia</text>
-      <path d="M 385 45 L 415 90 L 445 130 L 475 150 L 505 158 L 535 163" stroke="#6ee7a0" stroke-width="2.5" fill="none"/>
-      <circle cx="445" cy="130" r="6" fill="none" stroke="#ffd97a" stroke-width="2"/>
+      <path d="M 385 45 L 415 85 L 445 120 L 475 150 L 505 156 L 535 160" stroke="#6ee7a0" stroke-width="2.5" fill="none"/>
+      <circle cx="475" cy="150" r="6" fill="none" stroke="#ffd97a" stroke-width="2"/>
       <text x="428" y="118" fill="#ffd97a">elbow → pick this k</text>
       <defs>
         <marker id="v03_m73a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ffd97a"/></marker>
@@ -5212,7 +5212,7 @@ fine   = fcluster(Z, t=<span class="n">6</span>, criterion=<span class="s">"maxc
       <line x1="410" y1="180 " x2="545" y2="180" stroke="#2f3a5c" stroke-width="2"/>
       <circle cx="425" cy="180" r="4" fill="#6ee7a0"/><circle cx="452" cy="180" r="4" fill="#6ee7a0"/>
       <circle cx="472" cy="180" r="4" fill="#6ee7a0"/><circle cx="497" cy="180" r="4" fill="#6ee7a0"/>
-      <circle cx="530" cy="180" r="4" fill="#6ee7a0"/>
+      <circle cx="530" cy="180" r="4" fill="#6ee7a0"/><circle cx="438" cy="180" r="4" fill="#6ee7a0"/><circle cx="484" cy="180" r="4" fill="#6ee7a0"/><circle cx="513" cy="180" r="4" fill="#6ee7a0"/>
       <text x="398" y="140" fill="#6ee7a0">project onto PC1 →</text>
       <text x="398" y="158" fill="#6ee7a0">1D, variance kept</text>
       <defs>
@@ -5416,7 +5416,7 @@ pred = lazy.predict(X_test)
         <circle cx="195" cy="105" r="7"/><circle cx="228" cy="105" r="7"/>
         <circle cx="195" cy="135" r="7"/>
       </g>
-      <text x="52" y="178" fill="#6ee7a0">TP = 14 true hits</text>
+      <g fill="#6ee7a0"><circle cx="167" cy="75" r="7"/><circle cx="167" cy="105" r="7"/><circle cx="167" cy="135" r="7"/><circle cx="70" cy="52" r="7"/><circle cx="105" cy="52" r="7"/></g><circle cx="228" cy="135" r="7" fill="#ff7a59"/><text x="52" y="178" fill="#6ee7a0">TP = 14 true hits</text>
       <text x="188" y="178" fill="#ff7a59">FP = 6 false alarms</text>
       <text x="300" y="72" fill="#dfe6f5">precision = TP / (TP + FP)</text>
       <text x="300" y="100" fill="#ffd97a">here: 14 / (14 + 6) = 0.70</text>
@@ -5467,7 +5467,7 @@ tp, fp = <span class="n">40</span>, <span class="n">5</span>
         <circle cx="195" cy="105" r="7"/><circle cx="228" cy="105" r="7"/>
         <circle cx="195" cy="135" r="7"/><circle cx="228" cy="135" r="7"/>
       </g>
-      <text x="46" y="178" fill="#6ee7a0">TP = 14 caught</text>
+      <g fill="#6ee7a0"><circle cx="140" cy="135" r="7"/><circle cx="167" cy="75" r="7"/><circle cx="167" cy="105" r="7"/><circle cx="167" cy="135" r="7"/><circle cx="70" cy="52" r="7"/><circle cx="105" cy="52" r="7"/></g><text x="46" y="178" fill="#6ee7a0">TP = 14 caught</text>
       <text x="180" y="178" fill="#ff7a59">FN = 6 missed</text>
       <text x="300" y="72" fill="#dfe6f5">recall = TP / (TP + FN)</text>
       <text x="300" y="100" fill="#ffd97a">here: 14 / (14 + 6) = 0.70</text>
