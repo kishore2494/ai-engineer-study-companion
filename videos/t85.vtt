@@ -89,57 +89,57 @@ Inside the loop, we compute predictions and the squared error.
 Backward fills in the gradients for both.
 
 23
-00:01:09.767 --> 00:01:12.864
+00:01:09.767 --> 00:01:12.913
 Then step moves the weights, and zero grad resets.
 
 24
-00:01:12.864 --> 00:01:15.900
-After two hundred rounds, we recover two and one.
+00:01:12.913 --> 00:01:15.933
+After a thousand rounds, we recover two and one.
 
 25
-00:01:17.100 --> 00:01:20.600
+00:01:17.133 --> 00:01:20.633
 Your exoplanet classifier stops improving at epoch three.
 
 26
-00:01:20.900 --> 00:01:25.467
+00:01:20.933 --> 00:01:25.500
 Because the loop is plain Python, you just print the gradient norm of the first layer.
 
 27
-00:01:25.767 --> 00:01:28.843
+00:01:25.800 --> 00:01:28.876
 In thirty seconds, you know if gradients are flowing.
 
 28
-00:01:28.843 --> 00:01:30.700
+00:01:28.876 --> 00:01:30.733
 That debuggability is the point.
 
 29
-00:01:31.900 --> 00:01:37.233
+00:01:31.933 --> 00:01:37.267
 The classic first bug: forgetting zero grad, so gradients pile up from step to step.
 
 30
-00:01:37.533 --> 00:01:41.667
+00:01:37.567 --> 00:01:41.700
 Clear them every step, and keep your model and data on the same device.
 
 31
-00:01:42.867 --> 00:01:43.691
+00:01:42.900 --> 00:01:43.724
 Let's recap.
 
 32
-00:01:43.691 --> 00:01:46.233
+00:01:43.724 --> 00:01:46.267
 Tensors are arrays that run on a GPU.
 
 33
-00:01:46.533 --> 00:01:49.200
+00:01:46.567 --> 00:01:49.233
 Autograd records a graph and walks it backward.
 
 34
-00:01:49.500 --> 00:01:53.167
+00:01:49.533 --> 00:01:53.200
 The loop order is forward, loss, backward, step, zero grad.
 
 35
-00:01:53.467 --> 00:01:56.419
+00:01:53.500 --> 00:01:56.452
 And it's all your own Python, so you can debug it.
 
 36
-00:01:56.419 --> 00:01:57.600
+00:01:56.452 --> 00:01:57.633
 Next up: TensorFlow.
