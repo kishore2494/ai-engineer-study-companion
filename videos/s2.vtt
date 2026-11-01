@@ -37,109 +37,109 @@ First, attribute the cost.
 Estimate before optimizing.
 
 10
-00:00:27.933 --> 00:00:36.167
-Three hundred thousand calls a day, each carrying prompt and context, adds up to about one point two billion input tokens a month.
+00:00:27.933 --> 00:00:38.700
+Three hundred thousand calls a day, each carrying prompt and context, adds up to about one point two billion input tokens every day, roughly thirty six billion a month.
 
 11
-00:00:36.467 --> 00:00:38.879
-Output is only around ninety million.
+00:00:39.000 --> 00:00:41.847
+Output is only around ninety million a day.
 
 12
-00:00:38.879 --> 00:00:40.900
+00:00:41.847 --> 00:00:43.900
 This is an input-token problem.
 
 13
-00:00:42.100 --> 00:00:44.900
+00:00:45.100 --> 00:00:47.900
 Now four levers, ordered by savings per effort.
 
 14
-00:00:45.200 --> 00:00:49.881
+00:00:48.200 --> 00:00:52.881
 Prompt caching: put the stable prompt first, and repeats bill at a fraction.
 
 15
-00:00:49.881 --> 00:00:50.867
+00:00:52.881 --> 00:00:53.867
 No quality risk.
 
 16
-00:00:51.167 --> 00:00:53.733
+00:00:54.167 --> 00:00:56.733
 Model routing, the biggest structural saving.
 
 17
-00:00:54.033 --> 00:00:57.667
+00:00:57.033 --> 00:01:00.667
 Cache answers, but never anything personalized across users.
 
 18
-00:00:57.967 --> 00:00:58.973
+00:01:00.967 --> 00:01:01.973
 And trim context.
 
 19
-00:00:58.973 --> 00:01:02.700
+00:01:01.973 --> 00:01:05.700
 Do you really need five chunks, or the full history every turn?
 
 20
-00:01:03.900 --> 00:01:05.267
+00:01:06.900 --> 00:01:08.267
 Here's how routing works.
 
 21
-00:01:05.567 --> 00:01:08.500
+00:01:08.567 --> 00:01:11.500
 Most support turns are simple, like where's my order.
 
 22
-00:01:08.800 --> 00:01:12.800
+00:01:11.800 --> 00:01:15.800
 A cheap classifier sends them to a model roughly ten times cheaper.
 
 23
-00:01:13.100 --> 00:01:16.300
+00:01:16.100 --> 00:01:19.300
 Only hard reasoning turns reach the frontier model.
 
 24
-00:01:17.500 --> 00:01:19.267
+00:01:20.500 --> 00:01:22.267
 Now prove quality didn't drop.
 
 25
-00:01:19.567 --> 00:01:27.733
+00:01:22.567 --> 00:01:30.733
 Run your golden set before and after each lever, and A/B the router on live traffic, with an LLM judge sampling two percent.
 
 26
-00:01:28.033 --> 00:01:31.076
+00:01:31.033 --> 00:01:34.076
 Report one table: cost, latency, and quality.
 
 27
-00:01:31.076 --> 00:01:35.133
+00:01:34.076 --> 00:01:38.133
 That table is the deliverable, not the savings number alone.
 
 28
-00:01:36.333 --> 00:01:39.129
+00:01:39.333 --> 00:01:42.129
 The trap is jumping to self-hosting a model.
 
 29
-00:01:39.129 --> 00:01:41.733
+00:01:42.129 --> 00:01:44.733
 It's weeks of work and operations burden.
 
 30
-00:01:42.033 --> 00:01:44.967
+00:01:45.033 --> 00:01:47.967
 Caching and routing get most of the way in days.
 
 31
-00:01:46.167 --> 00:01:46.999
+00:01:49.167 --> 00:01:49.999
 Let's recap.
 
 32
-00:01:46.999 --> 00:01:48.733
+00:01:49.999 --> 00:01:51.733
 Attribute the cost first.
 
 33
-00:01:49.033 --> 00:01:52.067
+00:01:52.033 --> 00:01:55.067
 Then cache, route, cache answers, and trim context.
 
 34
-00:01:52.367 --> 00:01:54.400
+00:01:55.367 --> 00:01:57.400
 Prove it with a before and after table.
 
 35
-00:01:54.700 --> 00:01:57.065
+00:01:57.700 --> 00:02:00.065
 And always the cheapest effort first.
 
 36
-00:01:57.065 --> 00:02:00.133
+00:02:00.065 --> 00:02:03.133
 Next up: the agent that deleted production data.

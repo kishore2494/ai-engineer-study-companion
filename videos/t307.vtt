@@ -113,33 +113,33 @@ Mission log summaries are formulaic, exactly what a small draft model predicts w
 Add a one billion draft: time per token drops from twenty four to ten milliseconds.
 
 29
-00:01:44.533 --> 00:01:48.168
-And the regression suite shows every eval score identical.
+00:01:44.533 --> 00:01:49.706
+And the regression suite shows eval scores unchanged, within run to run noise.
 
 30
-00:01:48.168 --> 00:01:49.233
+00:01:49.706 --> 00:01:50.833
 Verify it anyway.
 
 31
-00:01:50.433 --> 00:01:51.220
+00:01:52.033 --> 00:01:52.820
 Let's recap.
 
 32
-00:01:51.220 --> 00:01:54.367
+00:01:52.820 --> 00:01:55.967
 A draft model proposes, and the target verifies.
 
 33
-00:01:54.667 --> 00:01:57.233
+00:01:56.267 --> 00:01:58.833
 Keep the agreed prefix, and fix the first miss.
 
 34
-00:01:57.533 --> 00:02:00.567
+00:01:59.133 --> 00:02:02.167
 The output distribution stays exactly the same.
 
 35
-00:02:00.867 --> 00:02:03.687
+00:02:02.467 --> 00:02:05.287
 And the speedup follows the acceptance rate.
 
 36
-00:02:03.687 --> 00:02:05.033
+00:02:05.287 --> 00:02:06.633
 Next up: CUDA basics.
