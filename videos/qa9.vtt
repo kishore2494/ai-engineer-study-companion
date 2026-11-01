@@ -97,33 +97,33 @@ A rebrand changes the component library behind every button.
 The forty percent of the suite using structural CSS locators goes red.
 
 25
-00:01:21.367 --> 00:01:25.051
-The half already using role based locators passes untouched.
+00:01:21.367 --> 00:01:25.635
+The sixty percent already using role based locators passes untouched.
 
 26
-00:01:25.051 --> 00:01:27.200
+00:01:25.635 --> 00:01:27.800
 That's the poor man's self healing.
 
 27
-00:01:28.400 --> 00:01:29.173
+00:01:29.000 --> 00:01:29.773
 Let's recap.
 
 28
-00:01:29.173 --> 00:01:31.300
+00:01:29.773 --> 00:01:31.900
 Locate by meaning, not structure.
 
 29
-00:01:31.600 --> 00:01:33.533
+00:01:32.200 --> 00:01:34.133
 Rank several weak signals together.
 
 30
-00:01:33.833 --> 00:01:35.167
+00:01:34.433 --> 00:01:35.767
 Set a confidence floor.
 
 31
-00:01:35.467 --> 00:01:38.333
+00:01:36.067 --> 00:01:38.933
 And fail loud, never click silently wrong.
 
 32
-00:01:38.333 --> 00:01:41.267
+00:01:38.933 --> 00:01:41.867
 Next up: visual regression testing with AI.
