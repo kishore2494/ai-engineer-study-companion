@@ -25,125 +25,133 @@ A qubit is a unit vector in a two dimensional complex space.
 Its state is a specific pair of numbers, called amplitudes.
 
 7
-00:00:19.000 --> 00:00:21.381
+00:00:19.000 --> 00:00:21.320
 Two amplitudes instead of one switch.
 
 8
-00:00:21.381 --> 00:00:24.533
-That continuum is where the extra capacity lives.
+00:00:21.320 --> 00:00:26.085
+But the continuum alone isn't the power: a measurement still yields one bit.
 
 9
-00:00:25.733 --> 00:00:27.467
-Here is the state of a qubit.
+00:00:26.085 --> 00:00:29.533
+The advantage comes from interference and entanglement.
 
 10
-00:00:27.767 --> 00:00:30.267
-Alpha is the amplitude for the zero state.
+00:00:30.733 --> 00:00:32.467
+Here is the state of a qubit.
 
 11
-00:00:30.567 --> 00:00:32.933
-Beta is the amplitude for the one state.
+00:00:32.767 --> 00:00:35.267
+Alpha is the amplitude for the zero state.
 
 12
-00:00:33.233 --> 00:00:35.290
-Squared sizes must add up to one.
+00:00:35.567 --> 00:00:37.933
+Beta is the amplitude for the one state.
 
 13
-00:00:35.290 --> 00:00:37.533
-That is what makes it a unit vector.
+00:00:38.233 --> 00:00:40.290
+Squared sizes must add up to one.
 
 14
-00:00:38.733 --> 00:00:39.639
-Let's draw it.
+00:00:40.290 --> 00:00:42.533
+That is what makes it a unit vector.
 
 15
-00:00:39.639 --> 00:00:42.033
-The zero state points along one axis.
+00:00:43.733 --> 00:00:44.639
+Let's draw it.
 
 16
-00:00:42.333 --> 00:00:44.133
-The one state points along the other.
+00:00:44.639 --> 00:00:47.033
+The zero state points along one axis.
 
 17
-00:00:44.433 --> 00:00:48.400
-A superposition is an arrow in between, with length exactly one.
+00:00:47.333 --> 00:00:49.133
+The one state points along the other.
 
 18
-00:00:48.700 --> 00:00:51.400
-A gate like Hadamard just rotates the arrow.
+00:00:49.433 --> 00:00:53.400
+A superposition is an arrow in between, with length exactly one.
 
 19
-00:00:52.600 --> 00:00:54.800
-Measuring only gives you samples.
+00:00:53.700 --> 00:00:57.533
+A gate like Hadamard reflects the arrow, and its length stays one.
 
 20
-00:00:54.800 --> 00:00:58.333
-After one Hadamard, you get zero or one, fifty fifty.
+00:00:58.733 --> 00:01:00.933
+Measuring only gives you samples.
 
 21
-00:00:58.633 --> 00:01:02.267
-That is the Born rule: probability is the amplitude squared.
+00:01:00.933 --> 00:01:04.467
+After one Hadamard, you get zero or one, fifty fifty.
 
 22
-00:01:02.567 --> 00:01:04.249
-Now apply Hadamard twice.
+00:01:04.767 --> 00:01:08.400
+That is the Born rule: probability is the amplitude squared.
 
 23
-00:01:04.249 --> 00:01:08.220
-The amplitudes for one cancel, and you get zero every time.
+00:01:08.700 --> 00:01:10.383
+Now apply Hadamard twice.
 
 24
-00:01:08.220 --> 00:01:09.633
-That is interference.
+00:01:10.383 --> 00:01:14.353
+The amplitudes for one cancel, and you get zero every time.
 
 25
-00:01:10.833 --> 00:01:12.300
-The same thing in NumPy.
+00:01:14.353 --> 00:01:15.767
+That is interference.
 
 26
-00:01:12.600 --> 00:01:16.633
-The state is a two number vector, and the Hadamard gate is a matrix.
+00:01:16.967 --> 00:01:18.433
+The same thing in NumPy.
 
 27
-00:01:16.933 --> 00:01:20.467
-Multiply, then square the amplitudes to get fifty fifty.
+00:01:18.733 --> 00:01:22.767
+The state is a two number vector, and the Hadamard gate is a matrix.
 
 28
-00:01:20.767 --> 00:01:23.800
-Apply it again and we are back to zero with certainty.
+00:01:23.067 --> 00:01:26.600
+Multiply, then square the amplitudes to get fifty fifty.
 
 29
-00:01:25.000 --> 00:01:31.833
-A common mistake: fifty qubits hold two to the fifty amplitudes, so everything must be exponentially faster.
+00:01:26.900 --> 00:01:29.933
+Apply it again and we are back to zero with certainty.
 
 30
-00:01:32.133 --> 00:01:33.587
-But you cannot read them.
+00:01:31.133 --> 00:01:35.221
+A common mistake: fifty qubits hold two to the fifty amplitudes,
 
 31
-00:01:33.587 --> 00:01:39.167
-A measurement gives only fifty bits, so advantage needs interference to favour the right answer.
+00:01:35.221 --> 00:01:37.967
+so everything must be exponentially faster.
 
 32
-00:01:40.367 --> 00:01:41.196
-Let's recap.
+00:01:38.267 --> 00:01:39.720
+But you cannot read them.
 
 33
-00:01:41.196 --> 00:01:44.167
-A qubit is a unit vector of two amplitudes.
+00:01:39.720 --> 00:01:45.300
+A measurement gives only fifty bits, so advantage needs interference to favour the right answer.
 
 34
-00:01:44.467 --> 00:01:47.733
-Measurement samples one outcome and collapses the state.
+00:01:46.500 --> 00:01:47.329
+Let's recap.
 
 35
-00:01:48.033 --> 00:01:51.433
-Interference, where wrong answers cancel, is the real power.
+00:01:47.329 --> 00:01:50.300
+A qubit is a unit vector of two amplitudes.
 
 36
-00:01:51.733 --> 00:01:54.849
-And more amplitudes never means automatic speedup.
+00:01:50.600 --> 00:01:53.867
+Measurement samples one outcome and collapses the state.
 
 37
-00:01:54.849 --> 00:01:58.400
+00:01:54.167 --> 00:01:57.567
+Interference, where wrong answers cancel, is the real power.
+
+38
+00:01:57.867 --> 00:02:00.982
+And more amplitudes never means automatic speedup.
+
+39
+00:02:00.982 --> 00:02:04.533
 Next up: gates, circuits, and the algorithms that matter.

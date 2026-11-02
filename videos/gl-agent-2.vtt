@@ -33,117 +33,133 @@ Working memory, or a scratchpad, holds the agent's temporary reasoning state wit
 That means notes, intermediate results, and plans.
 
 9
-00:00:32.900 --> 00:00:39.233
-It is distinct from short and long-term memory, and is often literally a scratchpad file or a state field.
+00:00:32.900 --> 00:00:35.735
+It is distinct from short and long-term memory,
 
 10
+00:00:35.735 --> 00:00:39.233
+and is often literally a scratchpad file or a state field.
+
+11
 00:00:40.433 --> 00:00:44.200
 The swarm pattern is a decentralized multi-agent design.
 
-11
+12
 00:00:44.500 --> 00:00:48.367
 Hierarchical designs have a supervisor directing the agents.
 
-12
+13
 00:00:48.667 --> 00:00:50.809
 In a swarm there is no supervisor.
 
-13
+14
 00:00:50.809 --> 00:00:53.267
 Agents hand off directly to each other.
 
-14
+15
 00:00:54.467 --> 00:00:57.533
 Semantic memory is the facts I know memory type.
 
-15
+16
 00:00:57.833 --> 00:01:03.800
 It holds stable knowledge about the user and the world, and it is the store behind long-term memory.
 
-16
+17
 00:01:04.100 --> 00:01:07.067
 Episodic memory, by contrast, is what happened.
 
-17
+18
 00:01:07.367 --> 00:01:12.333
 Together with working memory, this trio is the standard agent-memory vocabulary.
 
-18
-00:01:13.533 --> 00:01:17.600
-The Assistants API is OpenAI's hosted agent runtime.
-
 19
-00:01:17.900 --> 00:01:22.200
-Threads, file search, and the code interpreter are all managed server-side.
+00:01:13.533 --> 00:01:17.600
+The Assistants API was OpenAI's hosted agent runtime.
 
 20
-00:01:22.500 --> 00:01:30.067
-It is being superseded by the Responses API and the Agents SDK, but you will still find it in many codebases.
+00:01:17.900 --> 00:01:22.233
+Threads, file search, and the code interpreter were all managed server-side.
 
 21
-00:01:31.267 --> 00:01:38.633
-Langflow, Flowise, Dify, and n8n are low-code and visual builders for LLM workflows and automations.
+00:01:22.533 --> 00:01:24.864
+Deprecated in twenty twenty five,
 
 22
-00:01:38.933 --> 00:01:42.333
-They are great for fast proofs of concept and internal tools.
+00:01:24.864 --> 00:01:31.007
+it shut down in August twenty twenty six in favour of the Responses API and Agents SDK.
 
 23
-00:01:42.633 --> 00:01:47.200
-Engineers should know them, know their ceilings, and know when to graduate to code.
+00:01:31.007 --> 00:01:34.467
+You'll still meet it in older code and tutorials.
 
 24
-00:01:48.400 --> 00:01:53.500
-These are the 2022 and 2023 ancestors of today's agents.
+00:01:35.667 --> 00:01:43.033
+Langflow, Flowise, Dify, and n8n are low-code and visual builders for LLM workflows and automations.
 
 25
-00:01:53.800 --> 00:01:58.533
-AutoGPT and BabyAGI popularized autonomous loops.
+00:01:43.333 --> 00:01:46.733
+They are great for fast proofs of concept and internal tools.
 
 26
-00:01:58.833 --> 00:02:01.033
-Toolformer taught models to call tools.
+00:01:47.033 --> 00:01:51.600
+Engineers should know them, know their ceilings, and know when to graduate to code.
 
 27
-00:02:01.333 --> 00:02:03.833
-And MRKL sketched a router over experts.
+00:01:52.800 --> 00:01:57.900
+These are the 2022 and 2023 ancestors of today's agents.
 
 28
-00:02:03.833 --> 00:02:06.833
-They coined the patterns you now build properly.
+00:01:58.200 --> 00:02:02.933
+AutoGPT and BabyAGI popularized autonomous loops.
 
 29
-00:02:08.033 --> 00:02:12.400
-An AI gateway is the proxy layer all LLM traffic flows through.
+00:02:03.233 --> 00:02:05.433
+Toolformer taught models to call tools.
 
 30
-00:02:12.700 --> 00:02:14.533
-Your apps send every request to it.
+00:02:05.733 --> 00:02:08.233
+And MRKL sketched a router over experts.
 
 31
-00:02:14.833 --> 00:02:21.433
-It handles routing, fallbacks, rate limits, budgets, and tracing in one place, before reaching the providers.
+00:02:08.233 --> 00:02:11.233
+They coined the patterns you now build properly.
 
 32
-00:02:21.733 --> 00:02:26.033
-The names are LiteLLM proxy, Portkey, and Kong AI gateway.
+00:02:12.433 --> 00:02:16.800
+An AI gateway is the proxy layer all LLM traffic flows through.
 
 33
-00:02:27.233 --> 00:02:28.057
-Let's recap.
+00:02:17.100 --> 00:02:18.933
+Your apps send every request to it.
 
 34
-00:02:28.057 --> 00:02:30.733
-AgentOps monitors agents in production.
+00:02:19.233 --> 00:02:22.411
+It handles routing, fallbacks, rate limits, budgets,
 
 35
-00:02:31.033 --> 00:02:34.533
-Know the memory types: semantic, episodic, and working.
+00:02:22.411 --> 00:02:25.833
+and tracing in one place, before reaching the providers.
 
 36
-00:02:34.833 --> 00:02:38.533
-Swarms have no supervisor, and low-code builders have ceilings.
+00:02:26.133 --> 00:02:30.433
+The names are LiteLLM proxy, Portkey, and Kong AI gateway.
 
 37
-00:02:38.833 --> 00:02:42.767
+00:02:31.633 --> 00:02:32.457
+Let's recap.
+
+38
+00:02:32.457 --> 00:02:35.133
+AgentOps monitors agents in production.
+
+39
+00:02:35.433 --> 00:02:38.933
+Know the memory types: semantic, episodic, and working.
+
+40
+00:02:39.233 --> 00:02:42.933
+Swarms have no supervisor, and low-code builders have ceilings.
+
+41
+00:02:43.233 --> 00:02:47.167
 And an AI gateway centralizes routing, budgets, and tracing.
