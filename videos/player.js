@@ -71,7 +71,8 @@
     });
     initGlossary(M);
     ids.forEach(function (id) {
-      var a = document.querySelector('.toc-row a[href="#' + id + '"]');
+      // numbered topics sit in .toc-row; the bonus volumes (AR/SC/MA/MK/QA/FR) list theirs in a plain nav.toc
+      var a = document.querySelector('.toc-row a[href="#' + id + '"], nav.toc a[href="#' + id + '"]');
       if (a && !a.querySelector('.vdot')) a.insertAdjacentHTML('beforeend', '<span class="vdot" aria-hidden="true" title="Video available">▶</span>');
     });
     // only one video plays at a time

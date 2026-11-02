@@ -21631,13 +21631,19 @@ function showVol(vn, scrollTop = true) {
   if (typeof updateSpy === 'function') requestAnimationFrame(updateSpy);
 }
 function jumpToHash() {
-  const m = (location.hash || '').match(/^#t(\d+)$/);
-  if (!m) return false;
-  const vn = volForTopic(parseInt(m[1], 10));
-  if (!vn) return false;
+  const h = (location.hash || '').slice(1);
+  if (!h) return false;
+  const m = h.match(/^t(\d+)$/);
+  let vn = m ? volForTopic(parseInt(m[1], 10)) : null;
+  if (!vn) {
+    // bonus topics (ar*, s*, k*, m*, q*, qa*, f*, plan) and glossary boxes (g-*) live inside a volume too
+    const el = document.getElementById(h), vol = el && el.closest('.volume');
+    if (!vol) return false;
+    vn = vol.id.slice(3);
+  }
   showVol(vn, false);
-  focusTarget(document.getElementById('t' + m[1]));
-  scrollToTopic('t' + m[1]);
+  focusTarget(document.getElementById(h));
+  scrollToTopic(h);
   return true;
 }
 function scrollToTopic(id, tries = 8) {
@@ -21651,7 +21657,7 @@ function scrollToTopic(id, tries = 8) {
   }, 140);
 }
 window.addEventListener('hashchange', jumpToHash);
-document.addEventListener('click', e => { const a = e.target.closest('a[href^="#t"]'); if (a && a.hash === location.hash) { e.preventDefault(); jumpToHash(); } });
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (a && a.hash && a.hash === location.hash && document.getElementById(a.hash.slice(1))) { e.preventDefault(); jumpToHash(); } });
 document.querySelector('.skip').addEventListener('click', e => { e.preventDefault(); const w = document.querySelector('.volume.active .wrap'); w.tabIndex = -1; w.focus(); });
 document.querySelectorAll('.toc-vol-head, .sb-head').forEach(d => { d.tabIndex = 0; d.setAttribute('role', 'button'); d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); d.click(); } }); });
 document.querySelectorAll('.viz').forEach((v, i) => { const svg = v.querySelector('svg'), cap = v.querySelector('.viz-cap'); if (!svg || !cap) return; cap.id = cap.id || 'vcap' + i; svg.setAttribute('role', 'img'); svg.setAttribute('aria-labelledby', cap.id); });
