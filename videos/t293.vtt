@@ -69,65 +69,69 @@ One call launches a local UI.
 No docker, and no account.
 
 18
-00:00:58.733 --> 00:01:01.833
-One line instruments your framework, so traces flow in.
+00:00:58.733 --> 00:01:03.177
+Then we instrument LangChain with the tracer provider that register returns,
 
 19
-00:01:02.133 --> 00:01:06.467
-Run some queries, then open the traces, retrieval, and embeddings views.
+00:01:03.177 --> 00:01:05.867
+which points it at Phoenix, so traces flow in.
 
 20
-00:01:07.667 --> 00:01:08.667
-Here's a story.
+00:01:06.167 --> 00:01:10.500
+Run some queries, then open the traces, retrieval, and embeddings views.
 
 21
-00:01:08.967 --> 00:01:14.533
-Mission Control's retrieval quality quietly degrades, and RAGAS says so, but not why.
+00:01:11.700 --> 00:01:12.700
+Here's a story.
 
 22
-00:01:14.833 --> 00:01:17.772
-You load two thousand traced queries into Phoenix.
+00:01:13.000 --> 00:01:18.567
+Mission Control's retrieval quality quietly degrades, and RAGAS says so, but not why.
 
 23
-00:01:17.772 --> 00:01:22.767
-The corpus cluster hasn't moved, but a new lobe of queries has grown off to the side.
+00:01:18.867 --> 00:01:21.805
+You load two thousand traced queries into Phoenix.
 
 24
-00:01:23.067 --> 00:01:27.652
-Users started asking about the Artemis logs, which were never ingested.
+00:01:21.805 --> 00:01:26.800
+The corpus cluster hasn't moved, but a new lobe of queries has grown off to the side.
 
 25
-00:01:27.652 --> 00:01:29.202
-Retrieval wasn't broken.
+00:01:27.100 --> 00:01:31.685
+Users started asking about the Artemis logs, which were never ingested.
 
 26
-00:01:29.202 --> 00:01:30.558
-The corpus was stale.
+00:01:31.685 --> 00:01:33.235
+Retrieval wasn't broken.
 
 27
-00:01:30.558 --> 00:01:33.400
-One picture ended a week of prompt tweaking.
+00:01:33.235 --> 00:01:34.592
+The corpus was stale.
 
 28
-00:01:34.600 --> 00:01:35.421
-Let's recap.
+00:01:34.592 --> 00:01:37.433
+One picture ended a week of prompt tweaking.
 
 29
-00:01:35.421 --> 00:01:38.567
-Phoenix is OTel-native tracing and evaluation.
+00:01:38.633 --> 00:01:39.454
+Let's recap.
 
 30
-00:01:38.867 --> 00:01:42.167
-It adds retrieval analysis and embedding drift views.
+00:01:39.454 --> 00:01:42.600
+Phoenix is OTel-native tracing and evaluation.
 
 31
-00:01:42.467 --> 00:01:44.833
-It launches in a notebook with a single call.
+00:01:42.900 --> 00:01:46.200
+It adds retrieval analysis and embedding drift views.
 
 32
-00:01:45.133 --> 00:01:48.577
-Use it as your debugger, and Langfuse for production.
+00:01:46.500 --> 00:01:48.867
+It launches in a notebook with a single call.
 
 33
-00:01:48.577 --> 00:01:50.267
+00:01:49.167 --> 00:01:52.611
+Use it as your debugger, and Langfuse for production.
+
+34
+00:01:52.611 --> 00:01:54.300
 Next up: diffusion models.

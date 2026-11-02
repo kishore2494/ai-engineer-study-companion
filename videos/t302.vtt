@@ -105,53 +105,57 @@ Throughput is total tokens per second, what you provision by.
 Here it is in code.
 
 27
-00:01:30.600 --> 00:01:35.367
+00:01:30.600 --> 00:01:35.162
 One vllm serve command starts an OpenAI compatible endpoint.
 
 28
-00:01:35.667 --> 00:01:39.367
-The ordinary OpenAI client just points at your own machine.
+00:01:35.162 --> 00:01:39.800
+The served model name flag sets the name the client asks for.
 
 29
-00:01:39.667 --> 00:01:45.133
-One user gets forty two tokens a second; thirty two users get about eleven hundred fifty.
+00:01:40.100 --> 00:01:43.800
+The ordinary OpenAI client just points at your own machine.
 
 30
-00:01:46.333 --> 00:01:47.800
-Here is where it pays off.
+00:01:44.100 --> 00:01:49.567
+One user gets forty two tokens a second; thirty two users get about eleven hundred fifty.
 
 31
-00:01:48.100 --> 00:01:51.233
-Your fine-tuned summarizer must serve real users.
+00:01:50.767 --> 00:01:52.233
+Here is where it pays off.
 
 32
-00:01:51.533 --> 00:01:56.267
-One command on an A10G, and the backend only swaps the base URL.
+00:01:52.533 --> 00:01:55.667
+Your fine-tuned summarizer must serve real users.
 
 33
-00:01:56.567 --> 00:01:59.767
-Time to first token stays under four hundred milliseconds.
+00:01:55.967 --> 00:02:00.700
+One command on an A10G, and the backend only swaps the base URL.
 
 34
-00:02:00.967 --> 00:02:01.817
-Let's recap.
+00:02:01.000 --> 00:02:04.200
+Time to first token stays under four hundred milliseconds.
 
 35
-00:02:01.817 --> 00:02:05.500
-PagedAttention pages the KV cache into small blocks.
+00:02:05.400 --> 00:02:06.250
+Let's recap.
 
 36
-00:02:05.800 --> 00:02:08.567
-Continuous batching keeps the GPU busy.
+00:02:06.250 --> 00:02:09.933
+PagedAttention pages the KV cache into small blocks.
 
 37
-00:02:08.867 --> 00:02:11.433
-Know TTFT, TPOT, and throughput.
+00:02:10.233 --> 00:02:13.000
+Continuous batching keeps the GPU busy.
 
 38
-00:02:11.733 --> 00:02:15.583
-And one command gives you an OpenAI style endpoint.
+00:02:13.300 --> 00:02:15.867
+Know TTFT, TPOT, and throughput.
 
 39
-00:02:15.583 --> 00:02:16.867
+00:02:16.167 --> 00:02:20.017
+And one command gives you an OpenAI style endpoint.
+
+40
+00:02:20.017 --> 00:02:21.300
 Next up: LiteLLM.
