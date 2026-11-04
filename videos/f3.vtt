@@ -57,69 +57,73 @@ Here is the full map.
 Confidential computing and differential privacy are ready now.
 
 15
-00:00:46.800 --> 00:00:54.767
-Federated learning trains across devices or hospitals without centralizing data, and pairs naturally with differential privacy.
+00:00:46.800 --> 00:00:51.858
+Federated learning trains across devices or hospitals without centralizing data,
 
 16
+00:00:51.858 --> 00:00:54.767
+and pairs naturally with differential privacy.
+
+17
 00:00:55.067 --> 00:01:01.033
 Homomorphic encryption computes on encrypted data, but is a thousand to a million times slower.
 
-17
+18
 00:01:02.233 --> 00:01:04.433
 Federated learning deserves a picture.
 
-18
+19
 00:01:04.733 --> 00:01:06.800
 Each hospital trains on its own data.
 
-19
+20
 00:01:07.100 --> 00:01:08.867
 Another hospital does the same.
 
-20
+21
 00:01:09.167 --> 00:01:12.588
 Only model updates are combined into a shared model.
 
-21
+22
 00:01:12.588 --> 00:01:14.233
 The raw data never moves.
 
-22
+23
 00:01:15.433 --> 00:01:19.911
 That slowdown is why it only suits small, targeted operations today.
 
-23
+24
 00:01:19.911 --> 00:01:23.467
 Beautiful mathematics, but not yet practical at scale.
 
-24
+25
 00:01:24.667 --> 00:01:29.733
 One last item: machine unlearning, removing a person's data from a trained model.
 
-25
+26
 00:01:30.033 --> 00:01:36.867
 GDPR style rights demand it, but for large models retraining is still the only reliable answer.
 
-26
+27
 00:01:38.067 --> 00:01:38.850
 Let's recap.
 
-27
+28
 00:01:38.850 --> 00:01:41.133
 Confidential computing ships today.
 
-28
+29
 00:01:41.433 --> 00:01:44.600
 Differential privacy bounds any one record's effect.
 
-29
+30
 00:01:44.900 --> 00:01:47.100
 Federated learning keeps data local.
 
-30
+31
 00:01:47.400 --> 00:01:51.036
 Homomorphic encryption and unlearning are ones to watch.
 
-31
+32
 00:01:51.036 --> 00:01:53.633
 Next up: interpretability and alignment.
