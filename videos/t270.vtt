@@ -85,45 +85,45 @@ The image job needs the test job, and runs only when the ref is a version tag.
 Here is a senior-level habit.
 
 22
-00:01:21.067 --> 00:01:22.116
+00:01:21.067 --> 00:01:22.095
 Add a third job.
 
 23
-00:01:22.116 --> 00:01:26.967
-After the unit tests pass, it runs RAGAS over a forty question golden set.
+00:01:22.095 --> 00:01:27.367
+After the unit tests pass, it runs RAGAS over the twenty five question golden set.
 
 24
-00:01:27.267 --> 00:01:31.367
+00:01:27.667 --> 00:01:31.767
 If faithfulness drops below zero point eight five, the job fails.
 
 25
-00:01:31.667 --> 00:01:33.549
+00:01:32.067 --> 00:01:33.998
 The pull request cannot merge.
 
 26
-00:01:33.549 --> 00:01:38.067
-Evals as a merge gate is exactly what the market calls senior right now.
+00:01:33.998 --> 00:01:39.533
+Evals as a merge gate is exactly what the market calls senior as of twenty twenty-six.
 
 27
-00:01:39.267 --> 00:01:40.048
+00:01:40.733 --> 00:01:41.515
 Let's recap.
 
 28
-00:01:40.048 --> 00:01:42.133
+00:01:41.515 --> 00:01:43.600
 Workflows are YAML in your repo.
 
 29
-00:01:42.433 --> 00:01:44.733
+00:01:43.900 --> 00:01:46.200
 They are made of triggers, jobs and steps.
 
 30
-00:01:45.033 --> 00:01:47.167
+00:01:46.500 --> 00:01:48.633
 Needs makes each job gate the next.
 
 31
-00:01:47.467 --> 00:01:50.540
+00:01:48.933 --> 00:01:52.006
 And evals as a merge gate is a senior habit.
 
 32
-00:01:50.540 --> 00:01:51.867
+00:01:52.006 --> 00:01:53.333
 Next up: Terraform.
