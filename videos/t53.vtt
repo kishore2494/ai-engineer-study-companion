@@ -81,49 +81,57 @@ A reading arrives on the telemetry stream.
 We compute its z-score against a rolling mean and sigma.
 
 21
-00:01:16.067 --> 00:01:22.467
-Beyond three sigma happens by chance only about point three percent of the time, so it's probably not chance.
+00:01:16.067 --> 00:01:20.807
+Beyond three sigma happens by chance only about point three percent of the time,
 
 22
+00:01:20.807 --> 00:01:22.467
+so it's probably not chance.
+
+23
 00:01:22.767 --> 00:01:26.400
 To limit false alarms, we page only after two in a row.
 
-23
+24
 00:01:27.600 --> 00:01:29.533
 Here's the lesson from that pipeline.
 
-24
+25
 00:01:29.833 --> 00:01:32.300
 Each channel keeps a rolling mean and sigma.
 
-25
+26
 00:01:32.600 --> 00:01:37.467
 On battery temperature, chance alone fires about three alerts per thousand readings.
 
-26
+27
 00:01:37.767 --> 00:01:41.233
 So choosing the threshold is choosing your false alarm budget.
 
-27
+28
 00:01:42.433 --> 00:01:43.178
 Let's recap.
 
-28
+29
 00:01:43.178 --> 00:01:46.900
 Sigma is the square root of variance, in the original units.
 
-29
-00:01:47.200 --> 00:01:54.500
-For Gaussian data, sixty eight, ninety five, and ninety nine point seven percent fall within one, two, and three sigma.
-
 30
+00:01:47.200 --> 00:01:49.922
+For Gaussian data, sixty eight, ninety five,
+
+31
+00:01:49.922 --> 00:01:54.500
+and ninety nine point seven percent fall within one, two, and three sigma.
+
+32
 00:01:54.800 --> 00:01:56.500
 A z-score counts the sigmas.
 
-31
+33
 00:01:56.800 --> 00:01:59.958
 And your threshold sets your false alarm budget.
 
-32
+34
 00:01:59.958 --> 00:02:01.800
 Next up: Hypothesis testing.
