@@ -77,49 +77,57 @@ Here it is both ways.
 We add a column of ones for the bias, and solve the normal equation directly.
 
 20
-00:01:04.967 --> 00:01:12.267
-Scikit-learn's linear regression lands on the same numbers: about one eighty for the intercept, and ninety five for the slope.
+00:01:04.967 --> 00:01:08.412
+Scikit-learn's linear regression lands on the same numbers:
 
 21
+00:01:08.412 --> 00:01:12.267
+about one eighty for the intercept, and ninety four for the slope.
+
+22
 00:01:13.467 --> 00:01:16.200
 Before getting fancy, fit the simple baseline.
 
-22
+23
 00:01:16.500 --> 00:01:19.700
 Regress temperature on stellar flux and orbital period.
 
-23
-00:01:20.000 --> 00:01:27.433
-The flux coefficient is about ninety five kelvin per Earth flux, a number an astronomer can sanity check against physics.
-
 24
+00:01:20.000 --> 00:01:23.964
+The flux coefficient is about ninety five kelvin per Earth flux,
+
+25
+00:01:23.964 --> 00:01:27.433
+a number an astronomer can sanity check against physics.
+
+26
 00:01:27.733 --> 00:01:34.100
 Later, when XGBoost beats it by eight percent, you know exactly what the extra complexity bought.
 
-25
+27
 00:01:35.300 --> 00:01:36.033
 Let's recap.
 
-26
+28
 00:01:36.033 --> 00:01:38.600
 Linear regression minimizes squared error.
 
-27
+29
 00:01:38.900 --> 00:01:40.600
 Its coefficients are readable.
 
-28
+30
 00:01:40.900 --> 00:01:43.367
 It has a closed form, the normal equation.
 
-29
+31
 00:01:43.667 --> 00:01:45.660
 And it is the baseline to beat.
 
-30
+32
 00:01:45.660 --> 00:01:49.002
 If a plain line ties your deep model, ship the line.
 
-31
+33
 00:01:49.002 --> 00:01:50.867
 Next up: logistic regression.
