@@ -17,117 +17,137 @@ Eight terms.
 GRPO, group relative policy optimization, is the RL method behind DeepSeek-R1.
 
 5
-00:00:16.733 --> 00:00:22.633
-It samples a group of answers and scores them against each other, so no separate value model is needed.
+00:00:16.733 --> 00:00:20.493
+It samples a group of answers and scores them against each other,
 
 6
-00:00:22.933 --> 00:00:25.667
-It's the current favorite for training reasoning ability.
+00:00:20.493 --> 00:00:22.633
+so no separate value model is needed.
 
 7
-00:00:26.867 --> 00:00:28.867
-These are the DPO family tree.
+00:00:22.933 --> 00:00:28.744
+It has been the dominant reasoning-RL method since DeepSeek-R1 in twenty twenty-five,
 
 8
-00:00:29.167 --> 00:00:33.667
-ORPO folds preference optimization into SFT, so it's one stage.
+00:00:28.744 --> 00:00:31.000
+with variants like DAPO and GSPO.
 
 9
-00:00:33.967 --> 00:00:37.867
-KTO needs only thumbs up or thumbs down, instead of pairs.
+00:00:32.200 --> 00:00:34.200
+These are the DPO family tree.
 
 10
-00:00:38.167 --> 00:00:41.107
-And IPO fixes an overfitting issue in DPO.
+00:00:34.500 --> 00:00:39.000
+ORPO folds preference optimization into SFT, so it's one stage.
 
 11
-00:00:41.107 --> 00:00:44.467
-Just know they're preference-alignment variants.
+00:00:39.300 --> 00:00:43.200
+KTO needs only thumbs up or thumbs down, instead of pairs.
 
 12
-00:00:45.667 --> 00:00:48.433
-Constitutional AI is Anthropic's method.
+00:00:43.500 --> 00:00:46.440
+And IPO fixes an overfitting issue in DPO.
 
 13
-00:00:48.733 --> 00:00:53.933
-The model critiques and revises its own outputs against a written list of principles.
+00:00:46.440 --> 00:00:49.800
+Just know they're preference-alignment variants.
 
 14
-00:00:54.233 --> 00:01:00.533
-That's AI feedback, RLAIF, replacing much of the human labeling in RLHF.
+00:00:51.000 --> 00:00:53.767
+Constitutional AI is Anthropic's method.
 
 15
-00:01:01.733 --> 00:01:03.933
-Both appear in RLHF.
+00:00:54.067 --> 00:00:59.267
+The model critiques and revises its own outputs against a written list of principles.
 
 16
-00:01:04.233 --> 00:01:07.933
-The reward model scores outputs by predicted human preference.
+00:00:59.567 --> 00:01:05.867
+That's AI feedback, RLAIF, replacing much of the human labeling in RLHF.
 
 17
-00:01:08.233 --> 00:01:12.924
-The KL penalty stops the policy drifting too far from the reference model.
+00:01:07.067 --> 00:01:09.267
+Both appear in RLHF.
 
 18
-00:01:12.924 --> 00:01:15.333
-It's the leash against reward hacking.
+00:01:09.567 --> 00:01:13.267
+The reward model scores outputs by predicted human preference.
 
 19
-00:01:16.533 --> 00:01:23.033
-DoRA, weight-decomposed LoRA, splits weights into magnitude and direction, and adapts each separately.
+00:01:13.567 --> 00:01:18.258
+The KL penalty stops the policy drifting too far from the reference model.
 
 20
-00:01:23.333 --> 00:01:28.600
-It usually beats plain LoRA at the same parameter budget, and it's a drop-in flag in peft.
+00:01:18.258 --> 00:01:20.667
+It's the leash against reward hacking.
 
 21
-00:01:29.800 --> 00:01:36.833
-Unsloth uses hand-optimized kernels to make LoRA and QLoRA fine-tuning about twice as fast and lighter.
+00:01:21.867 --> 00:01:23.733
+DoRA, weight-decomposed LoRA,
 
 22
-00:01:37.133 --> 00:01:41.822
-It's the default choice for solo-GPU fine-tuning in twenty twenty-six.
+00:01:23.733 --> 00:01:28.367
+splits weights into magnitude and direction, and adapts each separately.
 
 23
-00:01:41.822 --> 00:01:44.300
-Use it for your fine-tuning exercise.
+00:01:28.667 --> 00:01:34.533
+It usually beats plain LoRA at the same parameter budget, and it's a drop-in flag in peft.
 
 24
-00:01:45.500 --> 00:01:48.100
-These are config-driven fine-tuning frameworks.
+00:01:35.733 --> 00:01:39.043
+Unsloth uses hand-optimized kernels to make LoRA
 
 25
-00:01:48.400 --> 00:01:52.833
-You describe dataset, model, and method in YAML, and they run the whole job.
+00:01:39.043 --> 00:01:42.767
+and QLoRA fine-tuning about twice as fast and lighter.
 
 26
-00:01:53.133 --> 00:01:58.367
-Axolotl is the open-source community's workhorse, and Llama-Factory adds a web UI.
+00:01:43.067 --> 00:01:47.755
+It's the default choice for solo-GPU fine-tuning in twenty twenty-six.
 
 27
-00:01:59.567 --> 00:02:01.567
-This is Hugging Face's training stack.
+00:01:47.755 --> 00:01:50.233
+Use it for your fine-tuning exercise.
 
 28
-00:02:01.867 --> 00:02:07.633
-TRL implements the SFT, DPO, PPO, and GRPO trainers.
+00:01:51.433 --> 00:01:54.033
+These are config-driven fine-tuning frameworks.
 
 29
-00:02:07.933 --> 00:02:14.300
-Accelerate sits underneath and handles device placement, so one script runs on a laptop or a cluster.
+00:01:54.333 --> 00:01:58.767
+You describe dataset, model, and method in YAML, and they run the whole job.
 
 30
-00:02:15.500 --> 00:02:16.467
-Let's recap.
+00:01:59.067 --> 00:02:04.300
+Axolotl is the open-source community's workhorse, and Llama-Factory adds a web UI.
 
 31
-00:02:16.767 --> 00:02:20.300
-GRPO trains reasoning by scoring groups of answers.
+00:02:05.500 --> 00:02:07.500
+This is Hugging Face's training stack.
 
 32
-00:02:20.600 --> 00:02:26.733
-The DPO variants and Constitutional AI handle alignment, and DoRA improves LoRA.
+00:02:07.800 --> 00:02:13.567
+TRL implements the SFT, DPO, PPO, and GRPO trainers.
 
 33
-00:02:27.033 --> 00:02:31.267
+00:02:13.867 --> 00:02:17.432
+Accelerate sits underneath and handles device placement,
+
+34
+00:02:17.432 --> 00:02:20.233
+so one script runs on a laptop or a cluster.
+
+35
+00:02:21.433 --> 00:02:22.400
+Let's recap.
+
+36
+00:02:22.700 --> 00:02:26.233
+GRPO trains reasoning by scoring groups of answers.
+
+37
+00:02:26.533 --> 00:02:32.667
+The DPO variants and Constitutional AI handle alignment, and DoRA improves LoRA.
+
+38
+00:02:32.967 --> 00:02:37.200
 Unsloth, Axolotl, and TRL are the tools that run the jobs.
