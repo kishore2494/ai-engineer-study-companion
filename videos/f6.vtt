@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.161
+AI safety research.
+
+2
+00:00:02.161 --> 00:00:04.167
+The Anthropic Residency map.
+
+3
+00:00:04.467 --> 00:00:06.460
+In November twenty twenty six,
+
+4
+00:00:06.460 --> 00:00:12.442
+Anthropic opened a paid research residency for professors, founders, and senior engineers.
+
+5
+00:00:12.442 --> 00:00:15.100
+No machine learning background required.
+
+6
+00:00:16.300 --> 00:00:18.800
+Why does a job post matter for a study plan?
+
+7
+00:00:19.100 --> 00:00:25.033
+Because it names exactly which research areas a frontier lab wants a non-AI person to grow into.
+
+8
+00:00:25.333 --> 00:00:28.567
+Most of them sit one step past interpretability.
+
+9
+00:00:29.767 --> 00:00:33.525
+Scalable oversight keeps a model honest when it outdoes you.
+
+10
+00:00:33.525 --> 00:00:37.533
+Debate, weak to strong generalization, and catching sandbagging.
+
+11
+00:00:37.833 --> 00:00:43.204
+AI control assumes the model may try to cause harm, and makes deployment safe anyway.
+
+12
+00:00:43.204 --> 00:00:46.300
+A trusted smaller model watches the stronger one.
+
+13
+00:00:46.600 --> 00:00:49.825
+Model organisms are small models built to misbehave,
+
+14
+00:00:49.825 --> 00:00:54.167
+so alignment faking and subliminal learning can be studied in the lab.
+
+15
+00:00:54.467 --> 00:00:57.912
+Model internals means probes on activations, steering,
+
+16
+00:00:57.912 --> 00:01:01.167
+persona vectors, and chain of thought faithfulness.
+
+17
+00:01:01.467 --> 00:01:06.610
+Safeguards research covers constitutional classifiers and auditing agents.
+
+18
+00:01:06.610 --> 00:01:12.100
+ML systems covers how frontier models are trained, down to the RL environments.
+
+19
+00:01:13.300 --> 00:01:16.100
+Four concepts were missing from this site until now.
+
+20
+00:01:16.400 --> 00:01:21.497
+AI control, model organisms, chain of thought faithfulness, and AI welfare.
+
+21
+00:01:21.497 --> 00:01:26.867
+Frontier red teaming for cyber, robotics, and cryptography rounds out the list.
+
+22
+00:01:28.067 --> 00:01:31.667
+The good news: every area builds on something you already studied.
+
+23
+00:01:31.967 --> 00:01:34.722
+RLHF and DPO lead to oversight.
+
+24
+00:01:34.722 --> 00:01:37.300
+Red teaming leads to control.
+
+25
+00:01:37.600 --> 00:01:40.129
+Fine tuning leads to model organisms.
+
+26
+00:01:40.129 --> 00:01:44.367
+Attention and sparse autoencoders lead to probes and steering.
+
+27
+00:01:45.567 --> 00:01:48.667
+Three weekend builds cover most of the vocabulary.
+
+28
+00:01:48.967 --> 00:01:52.918
+Train a linear probe on a small open model and steer with it.
+
+29
+00:01:52.918 --> 00:01:56.610
+Build a trusted monitor that flags an agent's tool calls.
+
+30
+00:01:56.610 --> 00:02:01.533
+Fine tune a model organism, then try to find the habit with an audit script.
+
+31
+00:02:02.733 --> 00:02:03.567
+To recap.
+
+32
+00:02:03.867 --> 00:02:09.474
+The residency is paid, needs no ML background, and closes November twenty second.
+
+33
+00:02:09.474 --> 00:02:12.867
+Eight areas, most one step past interpretability.
+
+34
+00:02:13.167 --> 00:02:16.820
+Learn control, model organisms, faithfulness, and welfare.
+
+35
+00:02:16.820 --> 00:02:21.167
+Then do the three builds and read Anthropic's recommended directions.
