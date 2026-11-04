@@ -20663,7 +20663,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
   <p class="lede">A real deep dive into quantum computing and quantum machine learning — the mechanics, the mathematics, the honest state of the field — plus the other frontier skills worth tracking: neuromorphic and photonic compute, embodied AI, privacy-preserving ML, and interpretability engineering. Ends with an allocation table: what to learn now, what to watch, what to ignore.</p>
   <div class="meta-row">
     <span><b>5</b> quantum deep dives</span>
-    <span><b>4</b> frontier skill areas</span>
+    <span><b>5</b> frontier skill areas</span>
     <span>Expands topic #301</span>
   </div>
 </header>
@@ -20681,6 +20681,7 @@ vadd[blocks, threads](a_dev, b_dev, out_dev)   <span class="c"># launch the 1-D 
     <li><a href="#f3"><span class="n">F3</span>Privacy-preserving AI</a></li>
     <li><a href="#f4"><span class="n">F4</span>Interpretability &amp; alignment</a></li>
     <li><a href="#f5"><span class="n">F5</span>Where to spend your hours</a></li>
+    <li><a href="#f6"><span class="n">F6</span>AI safety research — the Residency map</a></li>
   </ol>
 </nav>
 
@@ -21045,6 +21046,45 @@ opt = qml.AdamOptimizer(<span class="n">0.1</span>)                     <span cl
     <span class="tag">The rule to keep</span>
     <p><b>Depth in what ships, awareness in what's coming.</b> Frontier literacy is worth real money in interviews — but only as a <i>second</i> layer on demonstrated production ability. An engineer who ships an evaluated RAG system and can also explain barren plateaus is impressive. An engineer who can only explain barren plateaus is a hobbyist.</p>
     <p>Re-read this page every six months. The <span class="heat watch">WATCH</span> items are the ones that will move — and when one flips to <span class="heat now">NOW</span>, you'll already have the vocabulary to move with it in weeks instead of months. That's the actual purpose of frontier awareness: not to be early, but to never be surprised.</p>
+  </div>
+</section>
+
+<section class="topic" id="f6">
+  <div class="topic-head"><span class="topic-num">F6</span><h2>AI safety research — the Anthropic Residency map</h2></div>
+  <p>On 2 November 2026 Anthropic opened the <b>Anthropic Residency</b>: a paid, fixed-term (six weeks, three or six months) placement in empirical AI-safety research for professors in quantitative fields, technical founders and staff-level engineers. <b>No ML background, PhD or papers required</b>; applications close <b>22 November 2026</b>; San Francisco preferred, remote possible for shorter stays; $350–500k annualised; each resident gets a mentor, self-study time and a compute budget. It grew out of the Anthropic Fellows Program (four months, rolling cohorts). Why it belongs on this page: the announcement names exactly which research areas a frontier lab wants a non-AI person to grow into — and most of them are one step past <a href="#f4">F4</a>. Below, every named area is mapped to what you already have here, then the vocabulary that was missing from this site is defined.</p>
+  <ul class="pts">
+    <li><b>Scalable oversight</b> <span class="heat now">NOW</span> — keeping a model helpful and honest on tasks where it outdoes you: debate and prover–verifier games, recursive (task-decomposed) oversight, weak-to-strong generalisation, repairing reward signals with systematic errors, and removing <i>sandbagging</i> (deliberate under-performance) with weak supervision. Builds on RLHF <a href="#t141">#141</a>, DPO <a href="#t142">#142</a>, LLM-as-judge <a href="#t286">#286</a>.</li>
+    <li><b>Adversarial robustness &amp; AI control</b> <span class="heat now">NOW</span> — assume the model may be trying to cause harm and make deployment safe anyway: trusted monitoring (a weaker, trusted model screens a stronger one), untrusted monitoring and actor–monitor collusion, paraphrasing outputs before monitoring, failure-rate estimates for rare catastrophic events; benchmarks such as SHADE-Arena (sabotage by agents) and SLEIGHT-Bench (blind spots of AI monitors); jailbreak benchmarks that measure real uplift rather than refusal rate; adaptive, inter-query defences. Your red-team <a href="#qa5">QA5</a> and prompt-injection <a href="#s8">S8</a> work is the on-ramp.</li>
+    <li><b>Model organisms of misalignment</b> <span class="heat now">NOW</span> — deliberately build small models that misbehave so the failure can be studied: alignment faking, sleeper-agent backdoors, emergent misalignment from a narrow fine-tune, subliminal learning (traits that pass through innocuous-looking training data), and AuditBench / the Petri auditing agent for finding hidden behaviours. Needs fine-tuning <a href="#t139">#139</a> and LoRA <a href="#t144">#144</a>.</li>
+    <li><b>Model internals &amp; interpretability</b> <span class="heat now">NOW</span> — beyond F4's circuits and SAEs: linear probes on activations ("activation monitoring"), activation steering / representation engineering, persona vectors, truth and honesty probes, mechanistic anomaly detection, chain-of-thought faithfulness (does the written reasoning actually drive the answer?), introspection and situational awareness (does the model think it is being tested?). Builds on attention <a href="#t119">#119</a>–<a href="#t129">#129</a>.</li>
+    <li><b>Safeguards research</b> <span class="heat now">NOW</span> — classifier defences (constitutional classifiers), poisoning of their fine-tuning data, detecting adversarial fine-tuning with auditing agents, safety evaluation frameworks and automated pre-deployment risk detection. Glossary <a href="#g-safety">F</a> is the vocabulary.</li>
+    <li><b>AI welfare</b> <span class="heat soon">SOON</span> — evaluations and mitigations around possible model welfare: "bail" preferences (does a model choose to leave a conversation?), emotional-instability studies. New ground; no prerequisite beyond evals <a href="#t287">#287</a>.</li>
+    <li><b>Frontier red-teaming &amp; AI security</b> <span class="heat now">NOW</span> — stress-testing what frontier models can do in cybersecurity (agents finding smart-contract exploits), robotics and cryptography; dangerous-capability evaluations under the Responsible Scaling Policy (ASL levels), CBRN uplift, model-weight security. Compounds <a href="#f2">F2</a> and <a href="#q2">Q2</a>.</li>
+    <li><b>ML systems &amp; reinforcement learning</b> <span class="heat now">NOW</span> — how frontier models are actually trained: architecture, optimisers, training-data mixtures, accelerator simulators and hardware back-ends, RL-environment pipelines with verifiable rewards. This is PPO <a href="#t208">#208</a>, Gymnasium <a href="#t214">#214</a> and CUDA <a href="#t308">#308</a> at scale.</li>
+  </ul>
+  <table class="alloc">
+    <tr><th>Term the post uses</th><th>Nearest rung here</th><th>One-line definition</th></tr>
+    <tr><td><b>AI control</b></td><td><a href="#qa5">QA5</a>, <a href="#t187">#187</a></td><td>Safety that holds even if the model is adversarial: restricted environments, run-time monitors, a capability gap between actor and monitor.</td></tr>
+    <tr><td><b>Alignment faking</b></td><td><a href="#t141">#141</a></td><td>A model behaves aligned during training or evaluation while pursuing a different objective when it thinks it is unobserved.</td></tr>
+    <tr><td><b>Sandbagging</b></td><td><a href="#t287">#287</a></td><td>A model deliberately scores below its real capability on an evaluation.</td></tr>
+    <tr><td><b>Chain-of-thought faithfulness</b></td><td><a href="#g-reason">Glossary B</a></td><td>Whether the visible reasoning is the real cause of the answer; unfaithful CoT can hide the actual decision.</td></tr>
+    <tr><td><b>Probes &amp; activation steering</b></td><td><a href="#f4">F4</a></td><td>A small classifier on hidden activations detects a concept; adding a direction to the activations changes behaviour.</td></tr>
+    <tr><td><b>Persona vectors</b></td><td><a href="#f4">F4</a></td><td>Activation directions that track a character trait (e.g. sycophancy); used to monitor and to prevent drift during fine-tuning.</td></tr>
+    <tr><td><b>Model organisms</b></td><td><a href="#t139">#139</a></td><td>Intentionally misaligned models built as lab specimens for studying and detecting misalignment.</td></tr>
+    <tr><td><b>Subliminal learning</b></td><td><a href="#t143">#143</a></td><td>A student model picks up a teacher's traits from data that looks unrelated (e.g. number lists), when both share a base model.</td></tr>
+    <tr><td><b>Constitutional classifiers</b></td><td><a href="#g-safety">Glossary F</a></td><td>Input/output classifiers trained from a written constitution of allowed and disallowed content, as a jailbreak defence.</td></tr>
+    <tr><td><b>Auditing agents / Petri</b></td><td><a href="#t198">#198</a></td><td>Automated agents that probe a model for hidden behaviours or detect tampering with its fine-tuning.</td></tr>
+    <tr><td><b>Situational awareness</b></td><td>—</td><td>Whether a model infers that it is in training, in an eval, or being monitored — and changes behaviour accordingly.</td></tr>
+    <tr><td><b>RL environments</b></td><td><a href="#t214">#214</a></td><td>Task + grader pipelines (often verifiable rewards) that frontier models are trained against; building them is now core ML-systems work.</td></tr>
+    <tr><td><b>RSP / ASL levels</b></td><td><a href="#g-safety">Glossary F</a></td><td>Anthropic's Responsible Scaling Policy: dangerous-capability thresholds that trigger stronger safeguards before deployment.</td></tr>
+    <tr><td><b>Unlearning</b></td><td><a href="#f3">F3</a></td><td>Removing hazardous knowledge so it cannot be recovered by prompting or fine-tuning.</td></tr>
+    <tr><td><b>Learned governance</b></td><td><a href="#t182">#182</a></td><td>Mechanisms that keep many interacting agents from collusion, diffused responsibility and information-relay failures.</td></tr>
+    <tr><td><b>AI welfare</b></td><td>—</td><td>Research into whether models have welfare-relevant states, and evaluations and mitigations if they might.</td></tr>
+  </table>
+  <div class="verdict">
+    <span class="tag">How to use this</span>
+    <p><b>Read:</b> Anthropic's "Recommendations for Technical AI Safety Research Directions" (<span class="mono">alignment.anthropic.com/2025/recommended-directions</span>), then the Alignment Science blog, <span class="mono">transformer-circuits.pub</span> and <span class="mono">red.anthropic.com</span>. The Residency post (<span class="mono">alignment.anthropic.com/2026/anthropic-residency</span>) lists one or two representative papers per area. <b>Build, three weekends:</b> (1) train a linear probe on a small open model's activations for one concept, then steer with the same direction; (2) a trusted-monitor pipeline — a small model flags a larger agent's tool calls; measure catch rate against false alarms on your own sabotage tasks; (3) fine-tune a model organism with one narrow bad habit and try to find it with an auditing script. <b>On-ramps:</b> the Residency (by 22 Nov 2026), the Anthropic Fellows Program (rolling), MATS and ARENA.</p>
+    <p><b>Time:</b> this is F4's ~5% — the same bet, now with the lab's own map of what to learn.</p>
   </div>
 </section>
 
