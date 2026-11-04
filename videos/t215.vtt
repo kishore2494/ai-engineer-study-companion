@@ -101,45 +101,45 @@ Knowing that line is the interview answer.
 Here is the classic situation.
 
 26
-00:01:28.367 --> 00:01:34.482
+00:01:28.367 --> 00:01:34.407
 Your cubesat environment runs at three hundred steps a second, and PPO needs fifty million steps.
 
 27
-00:01:34.482 --> 00:01:36.500
+00:01:34.407 --> 00:01:36.400
 That is two days on one machine.
 
 28
-00:01:36.800 --> 00:01:42.333
+00:01:36.700 --> 00:01:42.233
 So you point RLlib at your existing Kubernetes cluster, with two hundred environment runners.
 
 29
-00:01:42.633 --> 00:01:44.936
+00:01:42.533 --> 00:01:44.836
 The same training finishes over lunch.
 
 30
-00:01:44.936 --> 00:01:47.967
+00:01:44.836 --> 00:01:47.867
 Not better math, just the rollout loop spread out.
 
 31
-00:01:49.167 --> 00:01:50.024
+00:01:49.067 --> 00:01:49.924
 Let's recap.
 
 32
-00:01:50.024 --> 00:01:53.667
+00:01:49.924 --> 00:01:53.567
 RLlib is distributed reinforcement learning on Ray.
 
 33
-00:01:53.967 --> 00:01:56.033
+00:01:53.867 --> 00:01:55.933
 One learner, many rollout workers.
 
 34
-00:01:56.333 --> 00:02:00.767
+00:01:56.233 --> 00:02:00.667
 The price is a bigger configuration and the weight of a distributed system.
 
 35
-00:02:01.067 --> 00:02:06.086
+00:02:00.967 --> 00:02:05.986
 So start with SB3, and move to RLlib when one machine is the limit.
 
 36
-00:02:06.086 --> 00:02:08.033
+00:02:05.986 --> 00:02:07.933
 Next up: the ML lifecycle.
