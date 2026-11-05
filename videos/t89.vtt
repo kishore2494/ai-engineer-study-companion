@@ -117,29 +117,33 @@ In exoplanet vetting, the label depends on how period and depth interact.
 Logistic regression, one linear boundary, tops out at seventy one percent.
 
 30
-00:01:25.600 --> 00:01:31.867
-One hidden layer with ReLU jumps to eighty eight, because its units learn the folds where the interaction lives.
+00:01:25.600 --> 00:01:28.366
+One hidden layer with ReLU jumps to eighty eight,
 
 31
+00:01:28.366 --> 00:01:31.867
+because its units learn the folds where the interaction lives.
+
+32
 00:01:33.067 --> 00:01:33.797
 Let's recap.
 
-32
+33
 00:01:33.797 --> 00:01:36.233
 Stacked linear layers collapse into one.
 
-33
+34
 00:01:36.533 --> 00:01:39.467
 Activations break that collapse by bending the space.
 
-34
+35
 00:01:39.767 --> 00:01:44.067
 With enough units, one hidden layer can approximate any continuous function.
 
-35
+36
 00:01:44.367 --> 00:01:47.556
 Width gives capacity, depth gives composition.
 
-36
+37
 00:01:47.556 --> 00:01:49.567
 Next up: forward propagation.
