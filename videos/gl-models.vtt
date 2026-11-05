@@ -13,133 +13,157 @@ These are the names that anchor the which model would you use conversation.
 Let's meet them.
 
 4
-00:00:08.300 --> 00:00:11.667
-This is OpenAI's line, and it comes in two flavors.
+00:00:08.300 --> 00:00:09.767
+This is OpenAI's line.
 
 5
-00:00:11.967 --> 00:00:15.825
-GPT-4o class models handle fast multimodal chat.
+00:00:09.767 --> 00:00:11.833
+It used to come in two flavors.
 
 6
-00:00:15.825 --> 00:00:20.567
-The o-series, like o1 and o3, deliberates before answering.
+00:00:12.133 --> 00:00:15.936
+Since GPT-5 in twenty twenty-five it is one family
 
 7
-00:00:20.867 --> 00:00:27.100
-The canonical routing example: send simple requests to 4o mini, and hard ones to the o-series.
+00:00:15.936 --> 00:00:20.195
+with mini and nano tiers and a reasoning-effort setting,
 
 8
-00:00:28.300 --> 00:00:30.700
-Anthropic's Claude family comes in tiers.
+00:00:20.195 --> 00:00:25.367
+replacing the old split between GPT-4o chat models and the o-series.
 
 9
-00:00:31.000 --> 00:00:32.496
-Haiku is fast and cheap.
+00:00:25.667 --> 00:00:29.870
+The canonical routing example: send simple requests to the mini tier,
 
 10
-00:00:32.496 --> 00:00:34.367
-Sonnet is the balanced middle.
+00:00:29.870 --> 00:00:32.733
+and hard ones to the full model at high effort.
 
 11
-00:00:34.667 --> 00:00:35.917
-Then the top tier.
+00:00:33.933 --> 00:00:36.333
+Anthropic's Claude family comes in tiers.
 
 12
-00:00:35.917 --> 00:00:42.100
-Claude is known for long context, agentic tool use, computer use, and for stewarding MCP.
+00:00:36.633 --> 00:00:38.130
+Haiku is fast and cheap.
 
 13
-00:00:43.300 --> 00:00:45.933
-Gemini is Google's multimodal family.
+00:00:38.130 --> 00:00:40.000
+Sonnet is the balanced middle.
 
 14
-00:00:46.233 --> 00:00:53.933
-Its calling card is the longest mainstream context windows, a million tokens and more, plus native video understanding.
+00:00:40.300 --> 00:00:41.550
+Then the top tier.
 
 15
-00:00:54.233 --> 00:00:56.867
-On Google Cloud you reach it through Vertex AI.
+00:00:41.550 --> 00:00:47.733
+Claude is known for long context, agentic tool use, computer use, and for stewarding MCP.
 
 16
-00:00:58.067 --> 00:01:01.433
-DeepSeek is the Chinese lab that shook 2025.
+00:00:48.933 --> 00:00:51.567
+Gemini is Google's multimodal family.
 
 17
-00:01:01.733 --> 00:01:11.000
-V3 is an efficient mixture of experts, and R1 is an open reasoning model trained with GRPO, at a fraction of the assumed cost.
+00:00:51.867 --> 00:00:55.717
+Its calling card is the longest mainstream context windows,
 
 18
-00:01:11.300 --> 00:01:15.300
-The lesson: frontier-adjacent capability can be cheap, and open.
+00:00:55.717 --> 00:00:59.567
+a million tokens and more, plus native video understanding.
 
 19
-00:01:16.500 --> 00:01:18.933
-Phi is Microsoft's small-model family.
+00:00:59.867 --> 00:01:02.500
+On Google Cloud you reach it through Vertex AI.
 
 20
-00:01:19.233 --> 00:01:22.933
-Its thesis is that textbook-quality training data beats sheer size.
+00:01:03.700 --> 00:01:07.067
+DeepSeek is the Chinese lab that shook 2025.
 
 21
-00:01:23.233 --> 00:01:28.033
-That makes Phi-4-class models strong candidates for on-device and edge use.
+00:01:07.367 --> 00:01:10.184
+V3 is an efficient mixture of experts,
 
 22
-00:01:29.233 --> 00:01:31.667
-Command R is Cohere's enterprise line.
+00:01:10.184 --> 00:01:16.633
+and R1 is an open reasoning model trained with GRPO, at a fraction of the assumed cost.
 
 23
-00:01:31.967 --> 00:01:38.167
-It is purpose-tuned for RAG, with built-in citation grounding, so answers point back to their sources.
+00:01:16.933 --> 00:01:20.933
+The lesson: frontier-adjacent capability can be cheap, and open.
 
 24
-00:01:38.467 --> 00:01:41.867
-Around it sit strong multilingual embeddings and rerankers.
+00:01:22.133 --> 00:01:24.567
+Phi is Microsoft's small-model family.
 
 25
-00:01:43.067 --> 00:01:46.467
-Jamba is AI21's hybrid Mamba-transformer.
+00:01:24.867 --> 00:01:28.567
+Its thesis is that textbook-quality training data beats sheer size.
 
 26
-00:01:46.767 --> 00:01:51.833
-It mixes state space layers with attention, so you get huge context at lower memory.
+00:01:28.867 --> 00:01:33.667
+That makes Phi-4-class models strong candidates for on-device and edge use.
 
 27
-00:01:52.133 --> 00:01:55.300
-It's the flagship proof that these hybrids ship in production.
+00:01:34.867 --> 00:01:37.300
+Command R is Cohere's enterprise line.
 
 28
-00:01:56.500 --> 00:01:59.067
-Two names to recognize, and no more than that.
+00:01:37.600 --> 00:01:41.406
+It is purpose-tuned for RAG, with built-in citation grounding,
 
 29
-00:01:59.367 --> 00:02:04.540
-Falcon is the open-weight line from TII, an early open LLM leader.
+00:01:41.406 --> 00:01:43.800
+so answers point back to their sources.
 
 30
-00:02:04.540 --> 00:02:09.400
-Grok is from xAI, with open-weight releases of older versions.
+00:01:44.100 --> 00:01:47.500
+Around it sit strong multilingual embeddings and rerankers.
 
 31
-00:02:09.700 --> 00:02:11.133
-Just know the maker of each.
+00:01:48.700 --> 00:01:52.100
+Jamba is AI21's hybrid Mamba-transformer.
 
 32
-00:02:12.333 --> 00:02:13.168
-Let's recap.
+00:01:52.400 --> 00:01:57.467
+It mixes state space layers with attention, so you get huge context at lower memory.
 
 33
-00:02:13.168 --> 00:02:15.533
-OpenAI splits chat from reasoning.
+00:01:57.767 --> 00:02:00.933
+It's the flagship proof that these hybrids ship in production.
 
 34
-00:02:15.833 --> 00:02:19.467
-Claude comes in tiers, and Gemini has the long context.
+00:02:02.133 --> 00:02:04.700
+Two names to recognize, and no more than that.
 
 35
-00:02:19.767 --> 00:02:22.967
-DeepSeek proved capability can be cheap and open.
+00:02:05.000 --> 00:02:10.173
+Falcon is the open-weight line from TII, an early open LLM leader.
 
 36
-00:02:23.267 --> 00:02:27.100
+00:02:10.173 --> 00:02:15.033
+Grok is from xAI, with open-weight releases of older versions.
+
+37
+00:02:15.333 --> 00:02:16.767
+Just know the maker of each.
+
+38
+00:02:17.967 --> 00:02:18.868
+Let's recap.
+
+39
+00:02:18.868 --> 00:02:23.900
+OpenAI is one GPT family with tiers and a reasoning-effort setting.
+
+40
+00:02:24.200 --> 00:02:27.833
+Claude comes in tiers, and Gemini has the long context.
+
+41
+00:02:28.133 --> 00:02:31.333
+DeepSeek proved capability can be cheap and open.
+
+42
+00:02:31.633 --> 00:02:35.467
 Phi, Jamba, Command R, Falcon and Grok each fill a niche.
