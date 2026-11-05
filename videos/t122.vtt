@@ -81,57 +81,61 @@ NASA, SpaceX and the FAA are organizations, and September twenty eighth is a dat
 So when do you pick which?
 
 21
-00:00:53.500 --> 00:01:00.733
-Extracting entities from a million documents costs pennies on CPU with spaCy, versus real money with an LLM.
+00:00:53.500 --> 00:00:58.705
+Extracting entities from a million documents costs pennies on CPU with spaCy,
 
 22
+00:00:58.705 --> 00:01:00.733
+versus real money with an LLM.
+
+23
 00:01:01.033 --> 00:01:02.866
 spaCy is fast and local.
 
-23
+24
 00:01:02.866 --> 00:01:05.767
 An LLM brings latency and rate limits.
 
-24
+25
 00:01:06.067 --> 00:01:11.667
 Use spaCy for shallow, well-defined extraction, and save the LLM for what needs reasoning.
 
-25
+26
 00:01:12.867 --> 00:01:14.767
 Here's the economics in practice.
 
-26
+27
 00:01:15.067 --> 00:01:21.033
 Retrieval improves sharply when you can filter by metadata, like only chunks mentioning JPL.
 
-27
+28
 00:01:21.333 --> 00:01:27.267
 Running spaCy over forty thousand chunks takes about twenty minutes on one CPU and costs nothing.
 
-28
+29
 00:01:27.567 --> 00:01:32.700
 The same job through an LLM is tens of dollars and hours of rate-limited calls.
 
-29
+30
 00:01:33.900 --> 00:01:34.788
 Let's recap.
 
-30
+31
 00:01:34.788 --> 00:01:37.600
 spaCy is a fast, opinionated pipeline.
 
-31
+32
 00:01:37.900 --> 00:01:41.800
 One call gives tokens, tags, parses, lemmas, and entities.
 
-32
+33
 00:01:42.100 --> 00:01:45.133
 It wins on cost and speed for shallow extraction.
 
-33
+34
 00:01:45.433 --> 00:01:48.551
 Use the LLM only where reasoning is needed.
 
-34
+35
 00:01:48.551 --> 00:01:51.233
 Next up: Hugging Face library basics.
