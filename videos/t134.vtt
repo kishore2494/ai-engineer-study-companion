@@ -5,125 +5,133 @@ WEBVTT
 The Llama family.
 
 2
-00:00:02.200 --> 00:00:08.600
-Meta's open-weight family is the base for most industry fine-tuning, and its design became the standard.
+00:00:02.200 --> 00:00:06.425
+Meta's open-weight family is the base for most industry fine-tuning,
 
 3
+00:00:06.425 --> 00:00:08.600
+and its design became the standard.
+
+4
 00:00:09.800 --> 00:00:12.000
 LLaMA is Meta's open-weight family.
 
-4
-00:00:12.300 --> 00:00:17.867
-When a company adapts a model on private data, the base is more often a Llama than anything else.
-
 5
-00:00:18.167 --> 00:00:24.967
-Its design is GPT-2's skeleton, with a few upgrades that nearly every open model now copies.
+00:00:12.300 --> 00:00:15.920
+It was long the default base for industry fine-tuning.
 
 6
-00:00:26.167 --> 00:00:27.267
-Here is the block.
+00:00:15.920 --> 00:00:20.411
+By twenty twenty-five Qwen overtook it in Hugging Face derivatives,
 
 7
-00:00:27.567 --> 00:00:29.460
-Tokens come in as embeddings.
+00:00:20.411 --> 00:00:24.433
+but Llama's recipe is still the one every open model copies.
 
 8
-00:00:29.460 --> 00:00:32.333
-Positions are added later, inside attention.
+00:00:24.733 --> 00:00:31.533
+Its design is GPT-2's skeleton, with a few upgrades that nearly every open model now copies.
 
 9
-00:00:32.633 --> 00:00:35.247
-Each sublayer is preceded by RMSNorm.
+00:00:32.733 --> 00:00:33.833
+Here is the block.
 
 10
-00:00:35.247 --> 00:00:41.533
-Attention uses RoPE, and later versions share key and value heads to shrink the KV cache.
+00:00:34.133 --> 00:00:36.027
+Tokens come in as embeddings.
 
 11
-00:00:41.833 --> 00:00:45.867
-The feed-forward network uses SwiGLU, and there are no bias terms.
+00:00:36.027 --> 00:00:38.900
+Positions are added later, inside attention.
 
 12
-00:00:47.067 --> 00:00:50.067
-Side by side, the four upgrades are easy to see.
+00:00:39.200 --> 00:00:41.813
+Each sublayer is preceded by RMSNorm.
 
 13
-00:00:50.367 --> 00:00:52.667
-RMSNorm replaces LayerNorm.
+00:00:41.813 --> 00:00:48.100
+Attention uses RoPE, and later versions share key and value heads to shrink the KV cache.
 
 14
-00:00:52.967 --> 00:00:54.800
-RoPE replaces learned positions.
+00:00:48.400 --> 00:00:52.433
+The feed-forward network uses SwiGLU, and there are no bias terms.
 
 15
-00:00:55.100 --> 00:00:56.733
-SwiGLU replaces GELU.
+00:00:53.633 --> 00:00:56.633
+Side by side, the four upgrades are easy to see.
 
 16
-00:00:57.033 --> 00:00:58.733
-And the bias terms disappear.
+00:00:56.933 --> 00:00:59.233
+RMSNorm replaces LayerNorm.
 
 17
-00:00:59.933 --> 00:01:02.100
-You can read all this from a config file.
+00:00:59.533 --> 00:01:01.367
+RoPE replaces learned positions.
 
 18
-00:01:02.400 --> 00:01:04.954
-We download the config for Llama 3.
+00:01:01.667 --> 00:01:03.300
+SwiGLU replaces GELU.
 
 19
-00:01:04.954 --> 00:01:05.100
-2.
+00:01:03.600 --> 00:01:05.300
+And the bias terms disappear.
 
 20
-00:01:05.400 --> 00:01:07.075
-Then print four fields.
+00:01:06.500 --> 00:01:08.667
+You can read all this from a config file.
 
 21
-00:01:07.075 --> 00:01:10.207
-The activation is silu, the gate in SwiGLU.
+00:01:08.967 --> 00:01:11.667
+We download the config for Llama 3.2.
 
 22
-00:01:10.207 --> 00:01:15.233
-There is an RMSNorm epsilon, a RoPE theta, and eight key value heads.
+00:01:11.967 --> 00:01:13.642
+Then print four fields.
 
 23
-00:01:16.433 --> 00:01:18.733
-Here is why this vocabulary matters.
+00:01:13.642 --> 00:01:16.774
+The activation is silu, the gate in SwiGLU.
 
 24
-00:01:19.033 --> 00:01:24.633
-Mission notes cannot leave your network, so the assistant is a LoRA fine-tune of a Llama base.
+00:01:16.774 --> 00:01:21.800
+There is an RMSNorm epsilon, a RoPE theta, and eight key value heads.
 
 25
-00:01:24.933 --> 00:01:26.833
-It is served on your own GPU.
+00:01:23.000 --> 00:01:25.300
+Here is why this vocabulary matters.
 
 26
-00:01:27.133 --> 00:01:32.933
-Quantization, KV cache growth and context stretching are all read straight from the config.
+00:01:25.600 --> 00:01:31.200
+Mission notes cannot leave your network, so the assistant is a LoRA fine-tune of a Llama base.
 
 27
-00:01:34.133 --> 00:01:34.872
-Let's recap.
+00:01:31.500 --> 00:01:33.400
+It is served on your own GPU.
 
 28
-00:01:34.872 --> 00:01:38.133
-LLaMA's open weights are the base of most fine-tunes.
+00:01:33.700 --> 00:01:39.500
+Quantization, KV cache growth and context stretching are all read straight from the config.
 
 29
-00:01:38.433 --> 00:01:40.500
-It uses RMSNorm and RoPE.
+00:01:40.700 --> 00:01:41.464
+Let's recap.
 
 30
-00:01:40.800 --> 00:01:42.467
-SwiGLU and no biases.
+00:01:41.464 --> 00:01:47.067
+LLaMA's open weights were long the default base for fine-tunes, and its recipe still is.
 
 31
-00:01:42.767 --> 00:01:46.464
-And the config file shows any model's anatomy in seconds.
+00:01:47.367 --> 00:01:49.433
+It uses RMSNorm and RoPE.
 
 32
-00:01:46.464 --> 00:01:47.567
+00:01:49.733 --> 00:01:51.400
+SwiGLU and no biases.
+
+33
+00:01:51.700 --> 00:01:55.397
+And the config file shows any model's anatomy in seconds.
+
+34
+00:01:55.397 --> 00:01:56.500
 Next up: Mistral.
