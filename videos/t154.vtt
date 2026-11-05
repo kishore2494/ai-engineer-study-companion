@@ -141,41 +141,45 @@ Third, an exact sentence to use when the sources don't answer.
 Here's how it played out in Mission Control RAG.
 
 36
-00:01:31.233 --> 00:01:40.033
-A tester asked about a mission that isn't in the corpus, and got three paragraphs citing a beautifully plausible, entirely invented log id.
+00:01:31.233 --> 00:01:34.804
+A tester asked about a mission that isn't in the corpus,
 
 37
+00:01:34.804 --> 00:01:40.033
+and got three paragraphs citing a beautifully plausible, entirely invented log id.
+
+38
 00:01:40.333 --> 00:01:46.967
 The team required citations, added an abstain path, and rejected ids not in the retrieval set.
 
-38
+39
 00:01:47.267 --> 00:01:51.200
 Now the same query says: not found in the retrieved mission logs.
 
-39
+40
 00:01:52.400 --> 00:01:53.178
 Let's recap.
 
-40
+41
 00:01:53.178 --> 00:01:54.863
 Models continue plausibly.
 
-41
+42
 00:01:54.863 --> 00:01:55.900
 They don't know.
 
-42
+43
 00:01:56.200 --> 00:01:58.233
 Ground answers in retrieved facts.
 
-43
+44
 00:01:58.533 --> 00:02:01.800
 Require citations, and allow the model to abstain.
 
-44
+45
 00:02:02.100 --> 00:02:03.767
 Then measure faithfulness.
 
-45
+46
 00:02:03.767 --> 00:02:05.433
 Next up: function calling.
