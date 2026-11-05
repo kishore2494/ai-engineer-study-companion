@@ -85,49 +85,49 @@ And write honest docstrings, because the model relies on them.
 Here is the portfolio moment.
 
 22
-00:01:12.800 --> 00:01:16.553
+00:01:12.800 --> 00:01:16.653
 The Orbital Research Agent already stores data in Postgres.
 
 23
-00:01:16.553 --> 00:01:19.033
+00:01:16.653 --> 00:01:19.200
 You wrap it with three read-only tools.
 
 24
-00:01:19.333 --> 00:01:22.100
+00:01:19.500 --> 00:01:22.267
 Register the server in Claude Desktop's config.
 
 25
-00:01:22.400 --> 00:01:25.960
+00:01:22.567 --> 00:01:26.127
 Ask which asteroid had the closest approach this quarter.
 
 26
-00:01:25.960 --> 00:01:30.457
+00:01:26.127 --> 00:01:30.623
 Claude calls your server, your SQL runs, and the answer cites your rows.
 
 27
-00:01:30.457 --> 00:01:33.767
+00:01:30.623 --> 00:01:33.933
 Almost nobody interviewing next to you has done this.
 
 28
-00:01:34.967 --> 00:01:35.889
+00:01:35.133 --> 00:01:36.056
 Let's recap.
 
 29
-00:01:35.889 --> 00:01:38.733
+00:01:36.056 --> 00:01:38.900
 FastMCP turns a function into a tool.
 
 30
-00:01:39.033 --> 00:01:42.300
+00:01:39.200 --> 00:01:42.467
 Hints make the schema, and the docstring makes the description.
 
 31
-00:01:42.600 --> 00:01:45.267
+00:01:42.767 --> 00:01:45.433
 Start read-only, with parameterized SQL.
 
 32
-00:01:45.567 --> 00:01:49.174
+00:01:45.733 --> 00:01:49.341
 Wrap a real system, and you have a standout project.
 
 33
-00:01:49.174 --> 00:01:51.533
+00:01:49.341 --> 00:01:51.700
 Next up: connecting an MCP client.
