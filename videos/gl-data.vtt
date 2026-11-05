@@ -105,101 +105,105 @@ They add ACID transactions and time travel on top of the files.
 The result is warehouse reliability at lake economics.
 
 27
-00:01:42.267 --> 00:01:46.464
-Databricks backs Delta, and the open Iceberg ecosystem competes.
+00:01:42.267 --> 00:01:47.191
+Delta versus Iceberg was the twenty twenty-three to twenty twenty-five turf war.
 
 28
-00:01:46.464 --> 00:01:48.300
-That's the current turf war.
+00:01:47.191 --> 00:01:52.300
+Since Databricks bought Tabular the two are converging, so expect both in one shop.
 
 29
-00:01:49.500 --> 00:01:52.300
+00:01:53.500 --> 00:01:56.300
 Great Expectations is data-quality testing.
 
 30
-00:01:52.600 --> 00:01:57.700
+00:01:56.600 --> 00:02:01.700
 You declare expectations, like this column is never null, or values stay in range.
 
 31
-00:01:58.000 --> 00:02:00.984
+00:02:02.000 --> 00:02:04.984
 They run inside your pipelines and fail loudly.
 
 32
-00:02:00.984 --> 00:02:03.333
+00:02:04.984 --> 00:02:07.333
 Think of them as unit tests for data.
 
 33
-00:02:04.533 --> 00:02:09.600
+00:02:08.533 --> 00:02:13.600
 Shadow deployment runs the new model on live traffic, but throws its outputs away.
 
 34
-00:02:09.900 --> 00:02:13.667
+00:02:13.900 --> 00:02:17.667
 You compare it against the incumbent, risk-free, before an A B test.
 
 35
-00:02:13.967 --> 00:02:17.533
+00:02:17.967 --> 00:02:21.533
 Together with canary releases, it's the safe-rollout toolkit.
 
 36
-00:02:18.733 --> 00:02:21.333
+00:02:22.733 --> 00:02:25.333
 Helm is the package manager for Kubernetes.
 
 37
-00:02:21.633 --> 00:02:25.933
+00:02:25.633 --> 00:02:29.933
 Charts template your deployments and services, driven by values files.
 
 38
-00:02:26.233 --> 00:02:29.005
+00:02:30.233 --> 00:02:33.005
 So installing our whole stack is one command.
 
 39
-00:02:29.005 --> 00:02:33.500
+00:02:33.005 --> 00:02:37.500
 It's assumed knowledge wherever Kubernetes shows up in a job description.
 
 40
-00:02:34.700 --> 00:02:38.833
+00:02:38.700 --> 00:02:42.833
 Prometheus and Grafana are the standard open-source monitoring pair.
 
 41
-00:02:39.133 --> 00:02:41.695
+00:02:43.133 --> 00:02:45.695
 Prometheus scrapes and stores the metrics.
 
 42
-00:02:41.695 --> 00:02:44.500
+00:02:45.695 --> 00:02:48.500
 Grafana turns them into dashboards and alerts.
 
 43
-00:02:44.800 --> 00:02:47.767
+00:02:48.800 --> 00:02:51.767
 This is the concrete implementation of monitoring.
 
 44
-00:02:48.967 --> 00:02:52.533
+00:02:52.967 --> 00:02:56.533
 gRPC is Google's binary RPC protocol.
 
 45
-00:02:52.833 --> 00:03:00.833
-It runs over HTTP 2 with typed protobuf contracts, which makes it faster and stricter than REST for service calls.
+00:02:56.833 --> 00:03:00.373
+It runs over HTTP 2 with typed protobuf contracts,
 
 46
-00:03:01.133 --> 00:03:05.167
-Triton and most serving stacks expose it alongside HTTP.
+00:03:00.373 --> 00:03:04.833
+which makes it faster and stricter than REST for service calls.
 
 47
-00:03:06.367 --> 00:03:07.281
-Let's recap.
+00:03:05.133 --> 00:03:09.167
+Triton and most serving stacks expose it alongside HTTP.
 
 48
-00:03:07.281 --> 00:03:10.633
-Polars and DuckDB make local data work fast.
+00:03:10.367 --> 00:03:11.281
+Let's recap.
 
 49
-00:03:10.933 --> 00:03:14.667
-dbt, Dagster, and Prefect transform and orchestrate.
+00:03:11.281 --> 00:03:14.633
+Polars and DuckDB make local data work fast.
 
 50
-00:03:14.967 --> 00:03:19.367
-Feature stores and Great Expectations keep data consistent and tested.
+00:03:14.933 --> 00:03:18.667
+dbt, Dagster, and Prefect transform and orchestrate.
 
 51
-00:03:19.667 --> 00:03:24.533
+00:03:18.967 --> 00:03:23.367
+Feature stores and Great Expectations keep data consistent and tested.
+
+52
+00:03:23.667 --> 00:03:28.533
 And Helm, Prometheus, Grafana, and gRPC deploy and monitor the stack.
