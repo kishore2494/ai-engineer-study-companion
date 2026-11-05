@@ -25,113 +25,129 @@ It's the architecture behind Sora-class video and SD3 or Flux-class image models
 Flow matching is a cleaner generative objective than classic diffusion.
 
 7
-00:00:28.067 --> 00:00:33.700
-You learn a straight-line flow from noise to data, which means fewer sampling steps and simpler math.
+00:00:28.067 --> 00:00:30.883
+You learn a straight-line flow from noise to data,
 
 8
+00:00:30.883 --> 00:00:33.700
+which means fewer sampling steps and simpler math.
+
+9
 00:00:34.000 --> 00:00:36.667
 It powers Flux and modern audio generators.
 
-9
+10
 00:00:37.867 --> 00:00:41.667
 Latent consistency is about generating in very few steps.
 
-10
+11
 00:00:41.967 --> 00:00:46.267
 You start with a diffusion model that needs thirty or more steps, and distill it.
 
-11
+12
 00:00:46.567 --> 00:00:49.177
 The result generates in one to four steps.
 
-12
+13
 00:00:49.177 --> 00:00:52.533
 That's what makes real-time image generation possible.
 
-13
+14
 00:00:53.733 --> 00:00:56.200
 Voice AI is moving to speech-to-speech.
 
-14
-00:00:56.500 --> 00:01:06.833
-Native audio-in, audio-out models, like GPT-4o realtime and Gemini Live, replace the clunky speech to text, LLM, text to speech chain.
-
 15
-00:01:07.133 --> 00:01:14.100
-They enable real-time voice agents that handle interruptions, and they're exploding commercially in support and sales.
+00:00:56.500 --> 00:01:02.635
+Native audio-in, audio-out models, like OpenAI's Realtime API and Gemini Live,
 
 16
-00:01:15.300 --> 00:01:19.833
-Video understanding means vision language models that take video directly.
+00:01:02.635 --> 00:01:07.433
+replace the clunky speech to text, LLM, text to speech chain.
 
 17
-00:01:20.133 --> 00:01:24.000
-Gemini-class models can hold hour-long video in context.
+00:01:07.733 --> 00:01:11.366
+They enable real-time voice agents that handle interruptions,
 
 18
-00:01:24.300 --> 00:01:28.500
-Use cases include surveillance, sports, and field-service inspection.
+00:01:11.366 --> 00:01:14.700
+and they're exploding commercially in support and sales.
 
 19
-00:01:29.700 --> 00:01:32.800
-Edge AI runs small models on phones and laptops.
+00:01:15.900 --> 00:01:20.433
+Video understanding means vision language models that take video directly.
 
 20
-00:01:33.100 --> 00:01:40.470
-Think Phi, Gemma, or Qwen at half a billion to three billion parameters, via GGUF and llama.
+00:01:20.733 --> 00:01:24.600
+Gemini-class models can hold hour-long video in context.
 
 21
-00:01:40.470 --> 00:01:43.433
-cpp, or Apple and Android NPU stacks.
+00:01:24.900 --> 00:01:29.100
+Use cases include surveillance, sports, and field-service inspection.
 
 22
-00:01:43.733 --> 00:01:46.067
-You gain privacy and lower latency.
+00:01:30.300 --> 00:01:33.400
+Edge AI runs small models on phones and laptops.
 
 23
-00:01:46.367 --> 00:01:48.267
-And there's zero API cost.
+00:01:33.700 --> 00:01:39.513
+Think Phi, Gemma, or Qwen at half a billion to three billion parameters,
 
 24
-00:01:49.467 --> 00:01:52.300
-World models learn how an environment behaves.
+00:01:39.513 --> 00:01:44.033
+via GGUF and llama.cpp, or Apple and Android NPU stacks.
 
 25
-00:01:52.600 --> 00:01:54.367
-They predict what happens next.
+00:01:44.333 --> 00:01:46.667
+You gain privacy and lower latency.
 
 26
-00:01:54.667 --> 00:02:00.867
-It's the research bet, with Genie-class models and robotics, on how agents get real planning ability.
+00:01:46.967 --> 00:01:48.867
+And there's zero API cost.
 
 27
-00:02:02.067 --> 00:02:07.000
-Small language models are the under ten billion parameter class, chosen on purpose.
+00:01:50.067 --> 00:01:52.900
+World models learn how an environment behaves.
 
 28
-00:02:07.300 --> 00:02:13.167
-Fine-tuned specialists beat giant generalists on narrow tasks, at about one percent of the cost.
+00:01:53.200 --> 00:01:54.967
+They predict what happens next.
 
 29
-00:02:13.467 --> 00:02:16.367
-That's the economic argument behind fine-tuning.
+00:01:55.267 --> 00:01:58.987
+It's the research bet, with Genie-class models and robotics,
 
 30
-00:02:17.567 --> 00:02:18.375
-Let's recap.
+00:01:58.987 --> 00:02:01.467
+on how agents get real planning ability.
 
 31
-00:02:18.375 --> 00:02:24.367
-Image and video generation is moving to transformers, flow matching, and few-step models.
+00:02:02.667 --> 00:02:07.600
+Small language models are the under ten billion parameter class, chosen on purpose.
 
 32
-00:02:24.667 --> 00:02:26.667
-Voice and video are going native.
+00:02:07.900 --> 00:02:13.767
+Fine-tuned specialists beat giant generalists on narrow tasks, at about one percent of the cost.
 
 33
-00:02:26.967 --> 00:02:30.100
-Edge AI and small models cut cost and latency.
+00:02:14.067 --> 00:02:16.967
+That's the economic argument behind fine-tuning.
 
 34
-00:02:30.400 --> 00:02:33.100
+00:02:18.167 --> 00:02:18.975
+Let's recap.
+
+35
+00:02:18.975 --> 00:02:24.967
+Image and video generation is moving to transformers, flow matching, and few-step models.
+
+36
+00:02:25.267 --> 00:02:27.267
+Voice and video are going native.
+
+37
+00:02:27.567 --> 00:02:30.700
+Edge AI and small models cut cost and latency.
+
+38
+00:02:31.000 --> 00:02:33.700
 And world models are the research bet on planning.
