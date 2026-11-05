@@ -101,45 +101,49 @@ Otherwise we pay for the tokens once, and store the answer for twenty four hours
 Users ask about the Apollo 13 failure forty different ways every day.
 
 26
-00:01:23.200 --> 00:01:30.767
-A Redis semantic cache sits in front, and returns a stored answer when a past query scores at least zero point nine five.
+00:01:23.200 --> 00:01:25.533
+A Redis semantic cache sits in front,
 
 27
+00:01:25.533 --> 00:01:30.767
+and returns a stored answer when a past query scores at least zero point nine five.
+
+28
 00:01:31.067 --> 00:01:36.300
 Hit rate settles at thirty one percent, and hits drop from three seconds to forty milliseconds.
 
-28
+29
 00:01:37.500 --> 00:01:40.073
 One incident taught the threshold lesson.
 
-29
+30
 00:01:40.073 --> 00:01:44.967
 At zero point nine, the cache served a tank two answer to a tank one question.
 
-30
+31
 00:01:45.267 --> 00:01:48.433
 So tune the threshold high, and test near-miss queries.
 
-31
+32
 00:01:49.633 --> 00:01:50.389
 Let's recap.
 
-32
+33
 00:01:50.389 --> 00:01:54.800
 Cache-aside means check, compute on a miss, and write back with a TTL.
 
-33
+34
 00:01:55.100 --> 00:01:57.633
 Watch out for invalidation and stampedes.
 
-34
+35
 00:01:57.933 --> 00:02:02.233
 Exact, prompt prefix, and semantic caches all cut token cost.
 
-35
+36
 00:02:02.533 --> 00:02:04.802
 And tune that semantic threshold.
 
-36
+37
 00:02:04.802 --> 00:02:05.833
 Next up: Redis.
