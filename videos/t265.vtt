@@ -85,33 +85,45 @@ Here is where it matters.
 Traffic spikes when a NASA announcement trends, and the Kubernetes autoscaler adds pods.
 
 22
-00:01:22.367 --> 00:01:28.700
-But every new node pulled a one point four gigabyte image first, so capacity arrived ninety seconds late.
+00:01:22.367 --> 00:01:26.264
+But every new node pulled a one point four gigabyte image first,
 
 23
-00:01:29.000 --> 00:01:39.033
-After the rewrite the image is two hundred thirty eight megabytes, and the security scan flags sixty percent fewer vulnerabilities, since no compiler ships to production.
+00:01:26.264 --> 00:01:28.700
+so capacity arrived ninety seconds late.
 
 24
+00:01:29.000 --> 00:01:32.942
+After the rewrite the image is two hundred thirty eight megabytes,
+
+25
+00:01:32.942 --> 00:01:36.764
+and the security scan flags sixty percent fewer vulnerabilities,
+
+26
+00:01:36.764 --> 00:01:39.033
+since no compiler ships to production.
+
+27
 00:01:40.233 --> 00:01:41.020
 Let's recap.
 
-25
+28
 00:01:41.020 --> 00:01:44.100
 Use a fat build stage and a slim runtime stage.
 
-26
+29
 00:01:44.400 --> 00:01:47.333
 Copy from build carries over only the artifacts.
 
-27
+30
 00:01:47.633 --> 00:01:49.400
 Smaller images pull faster.
 
-28
+31
 00:01:49.700 --> 00:01:53.383
 And no toolchain in production means less attack surface.
 
-29
+32
 00:01:53.383 --> 00:01:54.933
 Next up: Docker Compose.
