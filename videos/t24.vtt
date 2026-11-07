@@ -45,11 +45,11 @@ You declare the setup once, in a function marked as a fixture.
 Any test that names it as a parameter...
 
 12
-00:00:32.167 --> 00:00:34.356
-receives the value automatically.
+00:00:32.167 --> 00:00:34.487
+...receives the value automatically.
 
 13
-00:00:34.356 --> 00:00:39.000
+00:00:34.487 --> 00:00:39.000
 Fixtures can be composed and scoped to a function, module, or session.
 
 14
