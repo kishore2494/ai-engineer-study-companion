@@ -97,20 +97,20 @@ And training on your own labeled data is a single call with a config file.
 Here's where speed is the requirement.
 
 25
-00:01:16.633 --> 00:01:20.319
-A satellite service must post ship counts before the nine a.
+00:01:16.633 --> 00:01:20.442
+A satellite service must post ship counts before the nine a.m.
 
 26
-00:01:20.319 --> 00:01:20.442
-m.
-
-27
 00:01:20.442 --> 00:01:20.933
 standup.
 
+27
+00:01:21.233 --> 00:01:24.587
+A YOLO model fine-tuned on fifteen hundred annotated
+
 28
-00:01:21.233 --> 00:01:28.133
-A YOLO model fine-tuned on fifteen hundred annotated tiles handles the forty thousand tile scene in minutes.
+00:01:24.587 --> 00:01:28.133
+tiles handles the forty thousand tile scene in minutes.
 
 29
 00:01:28.433 --> 00:01:33.667
