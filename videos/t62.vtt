@@ -133,17 +133,17 @@ Let's recap.
 Standardization gives zero mean and unit variance.
 
 34
-00:02:02.067 --> 00:02:04.933
-Distance based and gradient based models need it.
+00:02:02.067 --> 00:02:06.267
+It is the usual default for distance based and gradient based models.
 
 35
-00:02:05.233 --> 00:02:06.933
+00:02:06.567 --> 00:02:08.267
 Fit on the training data only.
 
 36
-00:02:07.233 --> 00:02:09.528
+00:02:08.567 --> 00:02:10.862
 And use a pipeline to guarantee it.
 
 37
-00:02:09.528 --> 00:02:11.233
+00:02:10.862 --> 00:02:12.567
 Next up: one-hot encoding.
