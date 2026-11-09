@@ -4387,7 +4387,7 @@ df[<span class="s">"telescope"</span>] = df[<span class="s">"telescope"</span>].
   <div class="topic-head"><span class="topic-num">61</span><h2>Normalization</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>Normalization</b> (min-max scaling) squeezes a feature into <b>[0, 1]</b> with <code>(x − min) / (max − min)</code>. The smallest value becomes 0, the largest becomes 1, everything else lands proportionally in between. Simple, interpretable, and exactly what you want when features must share a bounded range — pixel intensities, neural-net inputs, anything fed to a distance metric.</p>
+    <p><b>Normalization</b> (min-max scaling) squeezes a feature into <b>[0, 1]</b> with <code>(x − min) / (max − min)</code>. The smallest value becomes 0, the largest becomes 1, everything else lands proportionally in between. Simple, interpretable, and exactly what you want when a feature must stay inside a fixed range — pixel intensities (0–255 → 0–1), or inputs that must be non-negative (chi-squared feature selection, multinomial Naive Bayes, NMF). For ordinary tabular features going into a distance metric or a gradient-trained model (neural nets included), standardization (next item) is the usual default; with no outliers either works.</p>
     <p>Its Achilles heel: <b>one extreme outlier compresses everyone else into a corner</b>. If orbital periods run 1–400 days and one rogue planet clocks 100,000, then after scaling the rogue sits at 1.0 and every normal planet is crushed into [0, 0.004] — the feature is effectively destroyed. Know your min and max before you trust min-max.</p>
   </div>
   <div class="viz">
@@ -4437,7 +4437,7 @@ rogue = np.vstack([period, [[<span class="n">100_000</span>]]])
   <div class="topic-head"><span class="topic-num">62</span><h2>Standardization</h2></div>
   <div class="block">
     <span class="label concept">Concept</span>
-    <p><b>Standardization</b> rescales a feature to <b>zero mean and unit variance</b>: <code>z = (x − mean) / std</code>. Unlike min-max it's unbounded, though it is <i>not</i> outlier-proof — one extreme value still inflates the mean and std (reach for <code>RobustScaler</code> or a log transform there) — and it's what <b>distance-based</b> models (KNN, K-Means, SVM) and <b>gradient-based</b> models want — otherwise a feature measured in thousands (temp_k) drowns out one measured in single digits (radius_earths).</p>
+    <p><b>Standardization</b> rescales a feature to <b>zero mean and unit variance</b>: <code>z = (x − mean) / std</code>. Unlike min-max it's unbounded, though it is <i>not</i> outlier-proof — one extreme value still inflates the mean and std (reach for <code>RobustScaler</code> or a log transform there) — and it's the usual default for <b>distance-based</b> models (KNN, K-Means, SVM) and <b>gradient-trained</b> models (regularized linear models, neural nets on tabular features) — these need <i>some</i> scaling, otherwise a feature measured in thousands (temp_k) drowns out one measured in single digits (radius_earths).</p>
     <p>The rule that separates professionals from tutorials: <b>fit the scaler on training data only</b>, then apply those same train-derived mean and std to the test set. Fit it on all data and the test set's statistics have leaked into training — your evaluation is quietly optimistic. An sklearn <code>Pipeline</code> enforces this automatically inside cross-validation.</p>
   </div>
   <div class="viz">
@@ -21034,7 +21034,7 @@ opt = qml.AdamOptimizer(<span class="n">0.1</span>)                     <span cl
   <p>The honest allocation. The failure mode with frontier topics is not ignorance — it's <b>spending your scarce study hours on the most exciting thing rather than the most valuable thing</b>. Quantum is the most seductive item on this page and deserves the least time on it.</p>
   <table class="alloc">
     <tr><th>Area</th><th>Status</th><th>Why</th><th>Your time</th></tr>
-    <tr><td><b>Interpretability &amp; evals for safety</b></td><td><span class="heat now">NOW</span></td><td>Hiring today, compounds with volumes 05 and 11, no exotic prerequisites.</td><td class="pct">~5%</td></tr>
+    <tr><td><b>Interpretability, evals &amp; safety research</b> (F4, <a href="#f6">F6</a>)</td><td><span class="heat now">NOW</span></td><td>Hiring today (Anthropic's Residency takes people without an ML background), compounds with volumes 05 and 11, no exotic prerequisites.</td><td class="pct">~5%</td></tr>
     <tr><td><b>Confidential computing / DP</b></td><td><span class="heat now">NOW</span></td><td>Unlocks enterprise deals; the answer to "we can't send this data anywhere."</td><td class="pct">~3%</td></tr>
     <tr><td><b>Post-quantum crypto migration</b></td><td><span class="heat now">NOW</span></td><td>The only quantum-adjacent work with real job demand; ordinary engineering.</td><td class="pct">~2%</td></tr>
     <tr><td><b>Embodied AI / VLAs / world models</b></td><td><span class="heat soon">SOON</span></td><td>Big funding, real trajectory; your transformer knowledge transfers.</td><td class="pct">~3%</td></tr>
