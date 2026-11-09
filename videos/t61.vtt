@@ -77,37 +77,45 @@ This really happens.
 One directly imaged planet in the exoplanet table has an orbit of a hundred thousand days.
 
 20
-00:01:18.667 --> 00:01:25.867
-After min-max scaling, orbital period looks constant for nearly every row, and a nearest neighbor baseline ignores it.
+00:01:18.667 --> 00:01:23.221
+After min-max scaling, orbital period looks constant for nearly every row,
 
 21
-00:01:26.167 --> 00:01:32.696
-The fix is to take the log first, or use a robust scaler built on the median and interquartile range.
+00:01:23.221 --> 00:01:25.867
+and a nearest neighbor baseline ignores it.
 
 22
-00:01:32.696 --> 00:01:36.833
-Plain standardization still lets the outlier inflate the spread.
+00:01:26.167 --> 00:01:28.313
+The fix is to take the log first,
 
 23
+00:01:28.313 --> 00:01:32.671
+or use a robust scaler built on the median and interquartile range.
+
+24
+00:01:32.671 --> 00:01:36.833
+Plain standardization still lets the outlier inflate the spread.
+
+25
 00:01:38.033 --> 00:01:38.849
 Let's recap.
 
-24
+26
 00:01:38.849 --> 00:01:41.567
 Min-max maps a feature into zero to one.
 
-25
-00:01:41.867 --> 00:01:44.567
-It suits bounded inputs and distance metrics.
-
-26
-00:01:44.867 --> 00:01:47.000
-But one outlier crushes everyone else.
-
 27
-00:01:47.300 --> 00:01:49.961
-So know your minimum and maximum first.
+00:01:41.867 --> 00:01:45.533
+It suits features that must stay in a fixed range, like pixels.
 
 28
-00:01:49.961 --> 00:01:51.667
+00:01:45.833 --> 00:01:47.967
+But one outlier crushes everyone else.
+
+29
+00:01:48.267 --> 00:01:50.928
+So know your minimum and maximum first.
+
+30
+00:01:50.928 --> 00:01:52.633
 Next up: standardization.
