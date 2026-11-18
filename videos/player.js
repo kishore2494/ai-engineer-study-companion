@@ -1,8 +1,12 @@
 /* Explainer videos: reads videos/manifest.json ({id: {d: seconds, v: version, o?: {d, v}}}) and adds a dropdown
    player to every topic that has a video. New videos appear automatically when the manifest updates.
-   o = an original version kept at videos/orig/<id>.*: the player shows the new one and offers a New / Original switch. */
+   o = an original version kept on the originals site (kishore2494.github.io/study-videos-originals/videos/<id>.*):
+   the player shows the new one and offers a New / Original switch. That site reuses this player (SV_BASE, SV_ORIG,
+   SV_START = 'orig' to open on the original). */
 (function () {
-  var BASE = 'videos/';
+  var BASE = window.SV_BASE || 'videos/';
+  var ORIG = window.SV_ORIG || 'https://kishore2494.github.io/study-videos-originals/videos/';
+  var START_ORIG = window.SV_START === 'orig';
   var PLAY = '<svg aria-hidden="true" viewBox="0 0 10 10"><path d="M1 0.5 L9.5 5 L1 9.5 Z"/></svg>';
   var CHEV = '<svg aria-hidden="true" class="vchev" viewBox="0 0 12 12"><path d="M2.5 4.5 L6 8 L9.5 4.5"/></svg>';
   function fmt(s) { s = Math.round(s || 0); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
@@ -45,7 +49,7 @@
       b.addEventListener('click', function () {
         var orig = b.dataset.ver === 'orig';
         if (b.classList.contains('on')) return;
-        var m = orig ? meta.o : meta, base = BASE + (orig ? 'orig/' : '') + id, vq = '?v=' + (m.v || 1);
+        var m = orig ? meta.o : meta, base = (orig ? ORIG : BASE) + id, vq = '?v=' + (m.v || 1);
         var playing = !video.paused;
         video.poster = base + '.jpg' + vq;
         video.querySelector('source').src = base + '.mp4' + vq;
@@ -75,12 +79,16 @@
       btn.type = 'button';
       btn.className = 'vbtn';
       btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Watch video: ' + head.querySelector('h2').textContent + ', ' + fmt(meta.d));
-      btn.innerHTML = '<span class="vplay">' + PLAY + '</span><span>Watch video</span><span class="vdur">' + fmt(meta.d) + '</span>' + CHEV;
+      var d0 = START_ORIG && meta.o ? meta.o.d : meta.d;
+      btn.setAttribute('aria-label', 'Watch video: ' + head.querySelector('h2').textContent + ', ' + fmt(d0));
+      btn.innerHTML = '<span class="vplay">' + PLAY + '</span><span>Watch video</span><span class="vdur">' + fmt(d0) + '</span>' + CHEV;
       head.appendChild(btn);
       var panel = null;
       btn.addEventListener('click', function () {
-        if (!panel) { panel = buildPanel(sec.id, meta, head); btn.setAttribute('aria-controls', panel.id); }
+        if (!panel) {
+          panel = buildPanel(sec.id, meta, head); btn.setAttribute('aria-controls', panel.id);
+          if (START_ORIG && meta.o) panel.querySelector('[data-ver="orig"]').click();
+        }
         var open = !panel.classList.contains('open');
         panel.classList.toggle('open', open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
