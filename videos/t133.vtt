@@ -9,125 +9,125 @@ GPT.
 A model trained on one deceptively simple objective, and capabilities nobody trained for appeared.
 
 3
-00:00:09.500 --> 00:00:12.133
+00:00:09.500 --> 00:00:12.167
 GPT is the decoder-only lineage.
 
 4
-00:00:12.433 --> 00:00:13.703
+00:00:12.467 --> 00:00:13.737
 No labels, no tasks.
 
 5
-00:00:13.703 --> 00:00:17.767
+00:00:13.737 --> 00:00:17.800
 Just trillions of tokens and the pressure to continue them well.
 
 6
-00:00:18.067 --> 00:00:24.200
+00:00:18.100 --> 00:00:24.233
 Scale it up, and translation, code and reasoning-like behavior emerge, none of it trained directly.
 
 7
-00:00:25.400 --> 00:00:27.633
+00:00:25.433 --> 00:00:27.667
 At inference, one loop does everything.
 
 8
-00:00:27.933 --> 00:00:29.667
+00:00:27.967 --> 00:00:29.700
 A forward pass runs the model.
 
 9
-00:00:29.967 --> 00:00:33.433
+00:00:30.000 --> 00:00:33.467
 It gives a probability for every token in the vocabulary.
 
 10
-00:00:33.733 --> 00:00:36.233
+00:00:33.767 --> 00:00:36.267
 We sample one token from that distribution.
 
 11
-00:00:36.533 --> 00:00:38.000
+00:00:36.567 --> 00:00:38.033
 We append it, and repeat.
 
 12
-00:00:39.200 --> 00:00:43.133
+00:00:39.233 --> 00:00:43.167
 After flight, we see a pressure, the model might spread its odds like this.
 
 13
-00:00:43.433 --> 00:00:46.788
+00:00:43.467 --> 00:00:46.822
 Drop is likely, but spike and increase still have a chance.
 
 14
-00:00:46.788 --> 00:00:48.267
+00:00:46.822 --> 00:00:48.300
 Sampling picks among them.
 
 15
-00:00:49.467 --> 00:00:53.067
+00:00:49.500 --> 00:00:53.100
 Temperature, top-k and top-p all act at the sample step.
 
 16
-00:00:53.367 --> 00:00:56.667
+00:00:53.400 --> 00:00:56.700
 Low temperature makes the output nearly deterministic.
 
 17
-00:00:56.967 --> 00:00:59.800
+00:00:57.000 --> 00:00:59.833
 High temperature makes it varied, even chaotic.
 
 18
-00:01:01.000 --> 00:01:03.433
+00:01:01.033 --> 00:01:03.467
 Here is that loop with GPT-2.
 
 19
-00:01:03.733 --> 00:01:06.933
+00:01:03.767 --> 00:01:06.967
 We run the model and keep the scores for the last position.
 
 20
-00:01:07.233 --> 00:01:09.900
+00:01:07.267 --> 00:01:09.933
 We divide by the temperature before softmax.
 
 21
-00:01:10.200 --> 00:01:13.633
+00:01:10.233 --> 00:01:13.667
 We sample a token rather than always taking the top one.
 
 22
-00:01:13.933 --> 00:01:15.933
+00:01:13.967 --> 00:01:15.967
 Then we append it and go around again.
 
 23
-00:01:17.133 --> 00:01:19.033
+00:01:17.167 --> 00:01:19.067
 These numbers matter in production.
 
 24
-00:01:19.333 --> 00:01:23.967
+00:01:19.367 --> 00:01:24.000
 A retrieval system uses temperature zero point one for factual answers.
 
 25
-00:01:24.267 --> 00:01:28.100
+00:01:24.300 --> 00:01:28.133
 A research agent uses zero point seven when brainstorming.
 
 26
-00:01:28.400 --> 00:01:31.032
+00:01:28.433 --> 00:01:31.066
 Both tune the sampling step you just wrote.
 
 27
-00:01:31.032 --> 00:01:34.767
+00:01:31.066 --> 00:01:34.800
 Temperature stops being folklore; it is a division on logits.
 
 28
-00:01:35.967 --> 00:01:36.857
+00:01:36.000 --> 00:01:36.890
 Let's recap.
 
 29
-00:01:36.857 --> 00:01:38.933
+00:01:36.890 --> 00:01:38.967
 GPT predicts the next token.
 
 30
-00:01:39.233 --> 00:01:41.233
+00:01:39.267 --> 00:01:41.267
 Scale makes capabilities emerge.
 
 31
-00:01:41.533 --> 00:01:44.333
+00:01:41.567 --> 00:01:44.367
 The loop is predict, sample, append, repeat.
 
 32
-00:01:44.633 --> 00:01:47.293
+00:01:44.667 --> 00:01:47.327
 And temperature lives in the sample step.
 
 33
-00:01:47.293 --> 00:01:48.267
+00:01:47.327 --> 00:01:48.300
 Next up: LLaMA.
