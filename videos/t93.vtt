@@ -65,61 +65,69 @@ Take a step, and draw the next batch.
 Let's count the steps.
 
 17
-00:01:00.467 --> 00:01:06.527
-With ninety thousand samples and batch size thirty two, that's about twenty eight hundred steps per epoch.
+00:01:00.467 --> 00:01:03.635
+With ninety thousand samples and batch size thirty two,
 
 18
-00:01:06.527 --> 00:01:08.300
-Full batch would take just one.
+00:01:03.635 --> 00:01:06.514
+that's about twenty eight hundred steps per epoch.
 
 19
+00:01:06.514 --> 00:01:08.300
+Full batch would take just one.
+
+20
 00:01:09.500 --> 00:01:12.800
 In PyTorch, the data loader provides the randomness.
 
-20
+21
 00:01:13.100 --> 00:01:15.600
 We set the batch size and turn shuffle on.
 
-21
+22
 00:01:15.900 --> 00:01:20.333
 Then each pass through the inner loop is one noisy step from thirty two samples.
 
-22
+23
 00:01:21.533 --> 00:01:23.000
 Now a real constraint.
 
-23
-00:01:23.300 --> 00:01:31.933
-Ninety thousand light curves can't train as one batch on a sixteen gigabyte GPU, because the cached activations blow past the memory.
-
 24
+00:01:23.300 --> 00:01:28.532
+Ninety thousand light curves can't train as one batch on a sixteen gigabyte GPU,
+
+25
+00:01:28.532 --> 00:01:31.933
+because the cached activations blow past the memory.
+
+26
 00:01:32.233 --> 00:01:35.033
 Minibatches of sixty four keep memory constant.
 
-25
+27
 00:01:35.333 --> 00:01:39.500
 And the jitter in your loss curve is the healthy signature of stochasticity.
 
-26
+28
 00:01:40.700 --> 00:01:41.596
 Let's recap.
 
-27
+29
 00:01:41.596 --> 00:01:44.733
 SGD uses a random minibatch for each step.
 
-28
+30
 00:01:45.033 --> 00:01:47.000
 Cheap, noisy steps win at scale.
 
-29
+31
 00:01:47.300 --> 00:01:49.667
 The noise even helps you find flat minima.
 
-30
+32
 00:01:49.967 --> 00:01:52.138
 And always shuffle every epoch.
 
-31
+33
 00:01:52.138 --> 00:01:54.100
 Next up: the Adam optimizer.

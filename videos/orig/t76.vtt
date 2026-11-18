@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.667
+PCA.
+
+2
+00:00:01.967 --> 00:00:04.730
+Dozens of features are impossible to look at.
+
+3
+00:00:04.730 --> 00:00:07.800
+PCA squeezes them down while keeping what matters.
+
+4
+00:00:09.000 --> 00:00:13.067
+PCA looks for the directions along which your data varies the most.
+
+5
+00:00:13.367 --> 00:00:17.013
+The first principal component captures the maximum variance.
+
+6
+00:00:17.013 --> 00:00:20.233
+The second is the best direction perpendicular to it.
+
+7
+00:00:20.533 --> 00:00:24.267
+Mathematically, they are eigenvectors of the covariance matrix.
+
+8
+00:00:25.467 --> 00:00:26.933
+Here is a cloud of points.
+
+9
+00:00:27.233 --> 00:00:30.333
+PC1 points along the longest stretch of the cloud.
+
+10
+00:00:30.633 --> 00:00:32.454
+PC2 is perpendicular to it.
+
+11
+00:00:32.454 --> 00:00:36.500
+Keep the top ones, drop the rest, and you have a projection.
+
+12
+00:00:37.700 --> 00:00:39.433
+How much information survives?
+
+13
+00:00:39.733 --> 00:00:42.171
+The explained variance ratio tells you.
+
+14
+00:00:42.171 --> 00:00:49.233
+In this example, the first two components keep forty six and twenty one percent, so sixty seven percent in total.
+
+15
+00:00:50.433 --> 00:00:52.667
+In scikit-learn it takes a few lines.
+
+16
+00:00:52.967 --> 00:00:56.367
+We standardize first, so features have comparable scales.
+
+17
+00:00:56.667 --> 00:00:59.533
+Then we keep two components and transform the data.
+
+18
+00:00:59.833 --> 00:01:03.133
+The ratio tells us how much of the story the plot shows.
+
+19
+00:01:04.333 --> 00:01:06.833
+A limit to remember: PCA is linear.
+
+20
+00:01:07.133 --> 00:01:09.273
+It can only rotate and project.
+
+21
+00:01:09.273 --> 00:01:13.000
+Curved structure needs t-SNE or UMAP, which come next.
+
+22
+00:01:14.200 --> 00:01:15.533
+Here is a real use.
+
+23
+00:01:15.833 --> 00:01:19.567
+Each light curve in the exoplanet pipeline has forty features.
+
+24
+00:01:19.867 --> 00:01:22.715
+Reduce to two dimensions and color by label.
+
+25
+00:01:22.715 --> 00:01:26.600
+Confirmed planets form a ridge, while false positives smear.
+
+26
+00:01:26.900 --> 00:01:34.033
+The ratios, zero point three eight and zero point one nine, mean the picture shows fifty seven percent of the story.
+
+27
+00:01:35.233 --> 00:01:36.096
+Let's recap.
+
+28
+00:01:36.096 --> 00:01:39.333
+PCA finds the directions of maximum variance.
+
+29
+00:01:39.633 --> 00:01:42.500
+Keep the top few for the best low dimensional shadow.
+
+30
+00:01:42.800 --> 00:01:45.767
+Standardize first, and remember it is linear only.
+
+31
+00:01:46.067 --> 00:01:47.433
+Next up: t-SNE.

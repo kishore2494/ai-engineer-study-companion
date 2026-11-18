@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.667
+Convolutional neural networks.
+
+2
+00:00:02.967 --> 00:00:05.233
+The idea that made deep learning famous.
+
+3
+00:00:05.233 --> 00:00:06.367
+Let's see the trick.
+
+4
+00:00:07.567 --> 00:00:13.933
+A dense layer on a two hundred twenty four pixel image needs about a hundred fifty thousand weights per neuron.
+
+5
+00:00:14.233 --> 00:00:18.903
+It also has to relearn the same bright edge separately at every position.
+
+6
+00:00:18.903 --> 00:00:21.333
+A convolution needs just nine weights.
+
+7
+00:00:22.533 --> 00:00:27.467
+A convolutional layer learns one small filter, and slides it across the whole input.
+
+8
+00:00:27.767 --> 00:00:34.033
+Each stop produces one number, and together they form a feature map that lights up wherever the pattern occurs.
+
+9
+00:00:34.333 --> 00:00:35.672
+Same weights everywhere.
+
+10
+00:00:35.672 --> 00:00:36.900
+That's weight sharing.
+
+11
+00:00:38.100 --> 00:00:39.500
+Here's a tiny example.
+
+12
+00:00:39.500 --> 00:00:43.000
+A five by five input with a bright region on the right.
+
+13
+00:00:43.300 --> 00:00:46.267
+The three by three filter sits on the top-left patch.
+
+14
+00:00:46.567 --> 00:00:50.400
+It multiplies and sums, and writes one value into the feature map.
+
+15
+00:00:50.700 --> 00:00:53.667
+Slide on, and the map is large where the edge sits.
+
+16
+00:00:54.867 --> 00:00:56.567
+Now stack many of these layers.
+
+17
+00:00:56.867 --> 00:00:59.033
+Early layers learn edges and blobs.
+
+18
+00:00:59.333 --> 00:01:02.300
+Middle layers combine them into textures and parts.
+
+19
+00:01:02.600 --> 00:01:04.541
+Deep layers see whole objects.
+
+20
+00:01:04.541 --> 00:01:10.300
+Pooling between stages shrinks the data, so deeper filters cover a wider receptive field.
+
+21
+00:01:11.500 --> 00:01:13.949
+The grid needn't be two dimensional.
+
+22
+00:01:13.949 --> 00:01:16.533
+Here, a Conv1d reads raw light curves.
+
+23
+00:01:16.833 --> 00:01:21.000
+The first layer learns sixteen filters that slide along the flux readings.
+
+24
+00:01:21.300 --> 00:01:25.267
+Pooling and a second layer shrink the length while seeing wider stretches.
+
+25
+00:01:25.567 --> 00:01:29.200
+A final linear layer decides: transit, or no transit.
+
+26
+00:01:30.400 --> 00:01:32.000
+Here's a real comparison.
+
+27
+00:01:32.300 --> 00:01:36.433
+A baseline with two hundred hand-built features reached eighty nine percent.
+
+28
+00:01:36.733 --> 00:01:40.733
+The Conv1d model reads the raw curve and reaches ninety five.
+
+29
+00:01:40.733 --> 00:01:46.700
+A transit dip looks the same wherever it occurs, which is exactly what convolution assumes.
+
+30
+00:01:47.000 --> 00:01:51.100
+And its first-layer filters learned dip detectors without being told.
+
+31
+00:01:52.300 --> 00:01:53.100
+Let's recap.
+
+32
+00:01:53.100 --> 00:01:55.700
+A small filter slides across the input.
+
+33
+00:01:56.000 --> 00:01:58.100
+Weight sharing finds a pattern anywhere.
+
+34
+00:01:58.400 --> 00:02:00.767
+Layers build from edges up to objects.
+
+35
+00:02:01.067 --> 00:02:04.112
+And Conv1d does the same for time series.
+
+36
+00:02:04.112 --> 00:02:05.300
+Next up: ResNet.

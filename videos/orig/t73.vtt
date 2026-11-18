@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.633
+K-Means.
+
+2
+00:00:01.933 --> 00:00:04.429
+Sometimes nobody has labeled your data.
+
+3
+00:00:04.429 --> 00:00:06.733
+K-Means finds the groups on its own.
+
+4
+00:00:07.933 --> 00:00:09.767
+The recipe is wonderfully short.
+
+5
+00:00:10.067 --> 00:00:12.867
+Pick k centroids, the centers of your clusters.
+
+6
+00:00:13.167 --> 00:00:16.833
+Then alternate two steps: assign points, and move centroids.
+
+7
+00:00:17.133 --> 00:00:18.900
+Stop when nothing moves any more.
+
+8
+00:00:20.100 --> 00:00:21.100
+Here is the loop.
+
+9
+00:00:21.400 --> 00:00:23.667
+Assign every point to its nearest centroid.
+
+10
+00:00:23.967 --> 00:00:27.367
+Then move each centroid to the mean of the points assigned to it.
+
+11
+00:00:27.667 --> 00:00:29.744
+Repeat until nothing changes.
+
+12
+00:00:29.744 --> 00:00:31.033
+It converges fast.
+
+13
+00:00:32.233 --> 00:00:33.867
+But you must choose k yourself.
+
+14
+00:00:34.167 --> 00:00:39.133
+For each k we measure inertia, the total squared distance from points to their centroids.
+
+15
+00:00:39.433 --> 00:00:42.765
+Look for the elbow, where the curve stops dropping steeply.
+
+16
+00:00:42.765 --> 00:00:44.233
+Here, that is around four.
+
+17
+00:00:45.433 --> 00:00:47.000
+Here it is in scikit-learn.
+
+18
+00:00:47.300 --> 00:00:49.267
+First we standardize the features.
+
+19
+00:00:49.567 --> 00:00:52.967
+Then we try every k from one to ten and print the inertia.
+
+20
+00:00:53.267 --> 00:00:56.433
+After spotting the elbow, we refit with four clusters.
+
+21
+00:00:57.633 --> 00:01:01.900
+One classic mistake: feeding raw features with wildly different units.
+
+22
+00:01:02.200 --> 00:01:05.537
+Standardize first, because K-Means is pure distance.
+
+23
+00:01:05.537 --> 00:01:09.900
+And remember, it only finds round clusters, not crescents or chains.
+
+24
+00:01:11.100 --> 00:01:12.400
+Now a real example.
+
+25
+00:01:12.700 --> 00:01:18.400
+Cluster the exoplanet table on period, radius, and temperature, with k equal to four.
+
+26
+00:01:18.700 --> 00:01:25.900
+Out come the families astronomers already name: hot Jupiters, warm Neptunes, super-Earths, and long-period giants.
+
+27
+00:01:26.200 --> 00:01:29.333
+Nobody told the algorithm those categories exist.
+
+28
+00:01:30.533 --> 00:01:31.327
+Let's recap.
+
+29
+00:01:31.327 --> 00:01:35.033
+K-Means assigns points and moves centroids until stable.
+
+30
+00:01:35.333 --> 00:01:37.333
+You choose k, and the elbow helps.
+
+31
+00:01:37.633 --> 00:01:40.367
+Standardize first, and expect round clusters.
+
+32
+00:01:40.667 --> 00:01:42.333
+Next up: DBSCAN.

@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.867
+Self-attention.
+
+2
+00:00:02.167 --> 00:00:06.800
+The mechanism that replaced recurrence, and powers every modern language model.
+
+3
+00:00:08.000 --> 00:00:10.363
+Self-attention turns attention inward.
+
+4
+00:00:10.363 --> 00:00:12.167
+The sequence looks at itself.
+
+5
+00:00:12.467 --> 00:00:20.200
+Every token computes weights over every other token, itself included, and rebuilds its representation as a weighted blend.
+
+6
+00:00:21.400 --> 00:00:22.600
+Take this sentence.
+
+7
+00:00:22.900 --> 00:00:24.572
+The word it is ambiguous.
+
+8
+00:00:24.572 --> 00:00:30.390
+Its attention weights fall mostly on tank, so its new vector is mostly built from tank.
+
+9
+00:00:30.390 --> 00:00:33.600
+Every other token does the same, simultaneously.
+
+10
+00:00:34.800 --> 00:00:35.933
+Why did this win?
+
+11
+00:00:35.933 --> 00:00:37.467
+Compare it with an RNN.
+
+12
+00:00:37.767 --> 00:00:42.633
+An RNN passes information along step by step, and it degrades on the way.
+
+13
+00:00:42.933 --> 00:00:46.300
+Self-attention connects every pair of tokens directly.
+
+14
+00:00:46.600 --> 00:00:51.133
+And it is just matrix multiplication, exactly what GPUs love.
+
+15
+00:00:51.433 --> 00:00:54.767
+The catch is that cost grows as n squared with sequence length.
+
+16
+00:00:55.967 --> 00:00:57.600
+Here's the whole thing in NumPy.
+
+17
+00:00:57.900 --> 00:01:00.733
+Six tokens, each a sixty four number embedding.
+
+18
+00:01:01.033 --> 00:01:06.133
+Multiplying X by its own transpose scores every token against every token.
+
+19
+00:01:06.433 --> 00:01:11.133
+Softmax turns scores into weights, and one more multiply blends the tokens.
+
+20
+00:01:11.433 --> 00:01:13.367
+Same shape in, same shape out.
+
+21
+00:01:14.567 --> 00:01:16.600
+Now the price of all-to-all attention.
+
+22
+00:01:16.900 --> 00:01:23.033
+An eight thousand token mission log needs sixty four million pairwise scores in every attention layer.
+
+23
+00:01:23.333 --> 00:01:27.167
+Double it to sixteen thousand, and the bill is four times, not two.
+
+24
+00:01:28.367 --> 00:01:29.767
+This shapes real design.
+
+25
+00:01:30.067 --> 00:01:32.433
+Embedding a long log whole is expensive.
+
+26
+00:01:32.733 --> 00:01:35.300
+That's why a RAG system chunks its documents.
+
+27
+00:01:35.600 --> 00:01:42.733
+And why just increasing the context window is never free when your GPU latency budget is three hundred milliseconds.
+
+28
+00:01:43.933 --> 00:01:44.763
+Let's recap.
+
+29
+00:01:44.763 --> 00:01:47.667
+Each token blends all tokens, in parallel.
+
+30
+00:01:47.967 --> 00:01:49.867
+Direct links replaced recurrence.
+
+31
+00:01:50.167 --> 00:01:52.167
+It's just matrix multiplication.
+
+32
+00:01:52.467 --> 00:01:54.889
+But cost grows as n squared.
+
+33
+00:01:54.889 --> 00:01:56.100
+Next up: NLTK.

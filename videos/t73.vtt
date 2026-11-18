@@ -101,29 +101,33 @@ Now a real example.
 Cluster the exoplanet table on period, radius, and temperature, with k equal to four.
 
 26
-00:01:18.700 --> 00:01:25.900
-Out come the families astronomers already name: hot Jupiters, warm Neptunes, super-Earths, and long-period giants.
+00:01:18.700 --> 00:01:22.587
+Out come the families astronomers already name: hot Jupiters,
 
 27
+00:01:22.587 --> 00:01:25.900
+warm Neptunes, super-Earths, and long-period giants.
+
+28
 00:01:26.200 --> 00:01:29.333
 Nobody told the algorithm those categories exist.
 
-28
+29
 00:01:30.533 --> 00:01:31.327
 Let's recap.
 
-29
+30
 00:01:31.327 --> 00:01:35.033
 K-Means assigns points and moves centroids until stable.
 
-30
+31
 00:01:35.333 --> 00:01:37.333
 You choose k, and the elbow helps.
 
-31
+32
 00:01:37.633 --> 00:01:40.367
 Standardize first, and expect round clusters.
 
-32
+33
 00:01:40.667 --> 00:01:42.333
 Next up: DBSCAN.

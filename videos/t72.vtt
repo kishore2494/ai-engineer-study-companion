@@ -17,129 +17,129 @@ The idea is as simple as asking your neighbors.
 To classify a new point, find the k closest training points and let them vote.
 
 5
-00:00:16.933 --> 00:00:18.356
+00:00:16.933 --> 00:00:18.369
 There is no training step.
 
 6
-00:00:18.356 --> 00:00:20.600
+00:00:18.369 --> 00:00:20.633
 The model is literally the training data.
 
 7
-00:00:21.800 --> 00:00:24.000
+00:00:21.833 --> 00:00:24.033
 Picture two classes of points on a plane.
 
 8
-00:00:24.300 --> 00:00:26.667
+00:00:24.333 --> 00:00:26.700
 Now a new point arrives, marked in yellow.
 
 9
-00:00:26.967 --> 00:00:30.225
+00:00:27.000 --> 00:00:30.258
 Its three nearest neighbors are one blue and two orange.
 
 10
-00:00:30.225 --> 00:00:33.367
+00:00:30.258 --> 00:00:33.400
 The majority wins, so the new point is called a flare.
 
 11
-00:00:34.567 --> 00:00:36.733
+00:00:34.600 --> 00:00:36.767
 Here is the work behind each prediction.
 
 12
-00:00:37.033 --> 00:00:38.467
+00:00:37.067 --> 00:00:38.500
 We take the query point.
 
 13
-00:00:38.767 --> 00:00:41.467
+00:00:38.800 --> 00:00:41.500
 Measure the distance to every single training row.
 
 14
-00:00:41.767 --> 00:00:43.067
+00:00:41.800 --> 00:00:43.100
 Keep the k closest.
 
 15
-00:00:43.367 --> 00:00:44.400
+00:00:43.400 --> 00:00:44.433
 And take a vote.
 
 16
-00:00:45.600 --> 00:00:46.833
+00:00:45.633 --> 00:00:46.867
 So what is the catch?
 
 17
-00:00:47.133 --> 00:00:51.167
+00:00:47.167 --> 00:00:51.200
 There is no training, but every prediction has to scan the whole dataset.
 
 18
-00:00:51.467 --> 00:00:56.133
+00:00:51.500 --> 00:00:56.167
 And in many dimensions, everything is roughly the same distance from everything else.
 
 19
-00:00:56.433 --> 00:01:00.133
+00:00:56.467 --> 00:01:00.167
 That is the curse of dimensionality: nearest stops meaning anything.
 
 20
-00:01:01.333 --> 00:01:02.533
+00:01:01.367 --> 00:01:02.567
 Here it is in code.
 
 21
-00:01:02.833 --> 00:01:05.667
+00:01:02.867 --> 00:01:05.700
 First, the distance from the query to every row.
 
 22
-00:01:05.967 --> 00:01:08.933
+00:01:06.000 --> 00:01:08.967
 Then we sort, and keep the indices of the three nearest.
 
 23
-00:01:09.233 --> 00:01:12.913
+00:01:09.267 --> 00:01:12.946
 Finally we count the labels and return the most common one.
 
 24
-00:01:12.913 --> 00:01:15.033
+00:01:12.946 --> 00:01:15.067
 That matches scikit-learn exactly.
 
 25
-00:01:16.233 --> 00:01:17.233
+00:01:16.267 --> 00:01:17.267
 Now the payoff.
 
 26
-00:01:17.533 --> 00:01:21.233
+00:01:17.567 --> 00:01:21.267
 When your RAG system gets a question, it turns it into an embedding.
 
 27
-00:01:21.533 --> 00:01:25.168
+00:01:21.567 --> 00:01:25.201
 The vector database then fetches the k nearest mission logs.
 
 28
-00:01:25.168 --> 00:01:27.833
+00:01:25.201 --> 00:01:27.867
 That is literally a nearest neighbor search.
 
 29
-00:01:28.133 --> 00:01:33.467
+00:01:28.167 --> 00:01:33.500
 At scale, exact search gives way to approximate indexes like HNSW.
 
 30
-00:01:34.667 --> 00:01:35.555
+00:01:34.700 --> 00:01:35.588
 Let's recap.
 
 31
-00:01:35.555 --> 00:01:37.405
+00:01:35.588 --> 00:01:37.438
 KNN has no training step.
 
 32
-00:01:37.405 --> 00:01:39.033
+00:01:37.438 --> 00:01:39.067
 The data is the model.
 
 33
-00:01:39.333 --> 00:01:42.500
+00:01:39.367 --> 00:01:42.533
 It predicts by a majority vote of the k nearest points.
 
 34
-00:01:42.800 --> 00:01:46.200
+00:01:42.833 --> 00:01:46.233
 It is costly at inference, and cursed by high dimensions.
 
 35
-00:01:46.500 --> 00:01:49.190
+00:01:46.533 --> 00:01:49.223
 And it is the ancestor of vector search.
 
 36
-00:01:49.190 --> 00:01:50.333
+00:01:49.223 --> 00:01:50.367
 Next up: K-Means.

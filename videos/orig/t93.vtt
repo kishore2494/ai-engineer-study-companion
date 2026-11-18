@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.500
+Stochastic gradient descent.
+
+2
+00:00:02.800 --> 00:00:06.400
+Why a slightly wrong gradient, computed fast, wins at scale.
+
+3
+00:00:07.600 --> 00:00:12.196
+True gradient descent uses the entire dataset for every single step.
+
+4
+00:00:12.196 --> 00:00:14.900
+That's accurate, but absurdly expensive.
+
+5
+00:00:15.200 --> 00:00:19.767
+SGD instead estimates the gradient from a small random minibatch.
+
+6
+00:00:20.067 --> 00:00:25.500
+So you take thousands of cheap, noisy steps instead of a few expensive perfect ones.
+
+7
+00:00:26.700 --> 00:00:27.700
+Here's the trade.
+
+8
+00:00:28.000 --> 00:00:32.667
+Full batch gives an exact gradient but only one step per pass over the data.
+
+9
+00:00:32.967 --> 00:00:35.517
+Minibatches give thousands of cheap steps.
+
+10
+00:00:35.517 --> 00:00:41.467
+And the noise jitters you out of sharp, narrow minima into wide, flat ones that generalize better.
+
+11
+00:00:42.667 --> 00:00:45.900
+Here's one epoch, which is one full pass over the data.
+
+12
+00:00:46.200 --> 00:00:51.067
+We shuffle every epoch, otherwise the batches repeat and the noise gains a pattern.
+
+13
+00:00:51.367 --> 00:00:52.800
+Then we draw a minibatch.
+
+14
+00:00:53.100 --> 00:00:55.400
+Compute the gradient from just those samples.
+
+15
+00:00:55.700 --> 00:00:57.700
+Take a step, and draw the next batch.
+
+16
+00:00:58.900 --> 00:01:00.167
+Let's count the steps.
+
+17
+00:01:00.467 --> 00:01:06.527
+With ninety thousand samples and batch size thirty two, that's about twenty eight hundred steps per epoch.
+
+18
+00:01:06.527 --> 00:01:08.300
+Full batch would take just one.
+
+19
+00:01:09.500 --> 00:01:12.800
+In PyTorch, the data loader provides the randomness.
+
+20
+00:01:13.100 --> 00:01:15.600
+We set the batch size and turn shuffle on.
+
+21
+00:01:15.900 --> 00:01:20.333
+Then each pass through the inner loop is one noisy step from thirty two samples.
+
+22
+00:01:21.533 --> 00:01:23.000
+Now a real constraint.
+
+23
+00:01:23.300 --> 00:01:31.933
+Ninety thousand light curves can't train as one batch on a sixteen gigabyte GPU, because the cached activations blow past the memory.
+
+24
+00:01:32.233 --> 00:01:35.033
+Minibatches of sixty four keep memory constant.
+
+25
+00:01:35.333 --> 00:01:39.500
+And the jitter in your loss curve is the healthy signature of stochasticity.
+
+26
+00:01:40.700 --> 00:01:41.596
+Let's recap.
+
+27
+00:01:41.596 --> 00:01:44.733
+SGD uses a random minibatch for each step.
+
+28
+00:01:45.033 --> 00:01:47.000
+Cheap, noisy steps win at scale.
+
+29
+00:01:47.300 --> 00:01:49.667
+The noise even helps you find flat minima.
+
+30
+00:01:49.967 --> 00:01:52.138
+And always shuffle every epoch.
+
+31
+00:01:52.138 --> 00:01:54.100
+Next up: the Adam optimizer.

@@ -49,77 +49,85 @@ Keep the top ones, drop the rest, and you have a projection.
 How much information survives?
 
 13
-00:00:39.733 --> 00:00:42.171
+00:00:39.733 --> 00:00:42.187
 The explained variance ratio tells you.
 
 14
-00:00:42.171 --> 00:00:49.233
-In this example, the first two components keep forty six and twenty one percent, so sixty seven percent in total.
+00:00:42.187 --> 00:00:47.220
+In this example, the first two components keep forty six and twenty one percent,
 
 15
+00:00:47.220 --> 00:00:49.233
+so sixty seven percent in total.
+
+16
 00:00:50.433 --> 00:00:52.667
 In scikit-learn it takes a few lines.
 
-16
+17
 00:00:52.967 --> 00:00:56.367
 We standardize first, so features have comparable scales.
 
-17
+18
 00:00:56.667 --> 00:00:59.533
 Then we keep two components and transform the data.
 
-18
+19
 00:00:59.833 --> 00:01:03.133
 The ratio tells us how much of the story the plot shows.
 
-19
+20
 00:01:04.333 --> 00:01:06.833
 A limit to remember: PCA is linear.
 
-20
+21
 00:01:07.133 --> 00:01:09.273
 It can only rotate and project.
 
-21
+22
 00:01:09.273 --> 00:01:13.000
 Curved structure needs t-SNE or UMAP, which come next.
 
-22
+23
 00:01:14.200 --> 00:01:15.533
 Here is a real use.
 
-23
+24
 00:01:15.833 --> 00:01:19.567
 Each light curve in the exoplanet pipeline has forty features.
 
-24
+25
 00:01:19.867 --> 00:01:22.715
 Reduce to two dimensions and color by label.
 
-25
+26
 00:01:22.715 --> 00:01:26.600
 Confirmed planets form a ridge, while false positives smear.
 
-26
-00:01:26.900 --> 00:01:34.033
-The ratios, zero point three eight and zero point one nine, mean the picture shows fifty seven percent of the story.
-
 27
+00:01:26.900 --> 00:01:30.560
+The ratios, zero point three eight and zero point one nine,
+
+28
+00:01:30.560 --> 00:01:34.033
+mean the picture shows fifty seven percent of the story.
+
+29
 00:01:35.233 --> 00:01:36.096
 Let's recap.
 
-28
+30
 00:01:36.096 --> 00:01:39.333
 PCA finds the directions of maximum variance.
 
-29
+31
 00:01:39.633 --> 00:01:42.500
 Keep the top few for the best low dimensional shadow.
 
-30
+32
 00:01:42.800 --> 00:01:45.767
 Standardize first, and remember it is linear only.
 
-31
+33
 00:01:46.067 --> 00:01:47.433
 Next up: t-SNE.
