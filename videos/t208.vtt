@@ -41,101 +41,109 @@ Then we clip that ratio to a narrow band.
 Epsilon is about zero point two.
 
 11
-00:00:39.567 --> 00:00:41.067
-Here is the clip as a curve.
+00:00:39.567 --> 00:00:43.200
+Here is the clip as curves, for a good action and for a bad one.
 
 12
-00:00:41.367 --> 00:00:44.733
-The dashed line is the raw ratio, growing without limit.
+00:00:43.500 --> 00:00:45.300
+On the left, a good action.
 
 13
-00:00:45.033 --> 00:00:49.000
-The clipped version goes flat beyond zero point eight and one point two.
+00:00:45.300 --> 00:00:50.567
+The dashed line is the raw objective, growing without limit as the ratio rises.
 
 14
-00:00:49.300 --> 00:00:52.730
-Past the band's edge, a sample simply stops pulling.
+00:00:50.867 --> 00:00:56.182
+The clipped version goes flat beyond one point two, so pushing further earns nothing.
 
 15
-00:00:52.730 --> 00:00:58.600
-It's a soft brake, not a wall: across epochs and minibatches, ratios can still overshoot.
+00:00:56.182 --> 00:00:59.933
+On the right, a bad action goes flat below zero point eight.
 
 16
-00:00:59.800 --> 00:01:03.000
-Two reasons this is the most important algorithm here.
+00:01:00.233 --> 00:01:03.663
+Past the band's edge, a sample simply stops pulling.
 
 17
-00:01:03.300 --> 00:01:06.733
-It is the default for continuous control and robotics.
+00:01:03.663 --> 00:01:09.533
+It's a soft brake, not a wall: across epochs and minibatches, ratios can still overshoot.
 
 18
-00:01:07.033 --> 00:01:09.310
-And it is the engine of RLHF.
+00:01:10.733 --> 00:01:13.933
+Two reasons this is the most important algorithm here.
 
 19
-00:01:09.310 --> 00:01:16.533
-The LLM is the policy, tokens are actions, and a reward model stands in for the environment.
+00:01:14.233 --> 00:01:17.667
+It is the default for continuous control and robotics.
 
 20
-00:01:17.733 --> 00:01:20.700
-In Stable Baselines3 it's a single parameter.
+00:01:17.967 --> 00:01:20.244
+And it is the engine of RLHF.
 
 21
-00:01:21.000 --> 00:01:22.900
-Clip range of zero point two.
+00:01:20.244 --> 00:01:27.467
+The LLM is the policy, tokens are actions, and a reward model stands in for the environment.
 
 22
-00:01:23.200 --> 00:01:28.736
-In the logs, watch clip fraction: the share of samples where the clip actually engaged.
+00:01:28.667 --> 00:01:31.633
+In Stable Baselines3 it's a single parameter.
 
 23
-00:01:28.736 --> 00:01:33.000
-Healthy runs sit between about zero point one and zero point three.
+00:01:31.933 --> 00:01:33.833
+Clip range of zero point two.
 
 24
-00:01:34.200 --> 00:01:37.200
-Remember the four models of RLHF?
+00:01:34.133 --> 00:01:39.670
+In the logs, watch clip fraction: the share of samples where the clip actually engaged.
 
 25
-00:01:37.500 --> 00:01:40.156
-Policy, reference, reward, and value.
+00:01:39.670 --> 00:01:43.933
+Healthy runs sit between about zero point one and zero point three.
 
 26
-00:01:40.156 --> 00:01:43.100
-The optimizer holding it together is PPO.
+00:01:45.133 --> 00:01:48.133
+Remember the four models of RLHF?
 
 27
-00:01:43.400 --> 00:01:47.657
-The clip keeps each update close to the policy that sampled the batch.
+00:01:48.433 --> 00:01:51.090
+Policy, reference, reward, and value.
 
 28
-00:01:47.657 --> 00:01:52.400
-A KL penalty against the frozen reference model stops reward-hacked gibberish.
+00:01:51.090 --> 00:01:54.033
+The optimizer holding it together is PPO.
 
 29
-00:01:52.700 --> 00:01:54.933
-Build intuition on LunarLander first.
+00:01:54.333 --> 00:01:58.590
+The clip keeps each update close to the policy that sampled the batch.
 
 30
-00:01:56.133 --> 00:01:56.893
-Let's recap.
+00:01:58.590 --> 00:02:03.333
+A KL penalty against the frozen reference model stops reward-hacked gibberish.
 
 31
-00:01:56.893 --> 00:01:59.300
-Big policy updates can wreck learning.
+00:02:03.633 --> 00:02:05.867
+Build intuition on LunarLander first.
 
 32
-00:01:59.600 --> 00:02:02.833
-PPO clips the probability ratio to a trust band.
+00:02:07.067 --> 00:02:07.827
+Let's recap.
 
 33
-00:02:03.133 --> 00:02:07.333
-It's the default for control, and the engine of RLHF.
+00:02:07.827 --> 00:02:10.233
+Big policy updates can wreck learning.
 
 34
-00:02:07.633 --> 00:02:10.347
-Watch the clip fraction in your logs.
+00:02:10.533 --> 00:02:13.767
+PPO clips the probability ratio to a trust band.
 
 35
-00:02:10.347 --> 00:02:11.300
+00:02:14.067 --> 00:02:18.267
+It's the default for control, and the engine of RLHF.
+
+36
+00:02:18.567 --> 00:02:21.280
+Watch the clip fraction in your logs.
+
+37
+00:02:21.280 --> 00:02:22.233
 Next up: A2C.
