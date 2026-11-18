@@ -69,77 +69,85 @@ Here, XGBoost beats the forest.
 AUC has a lovely meaning.
 
 18
-00:00:48.267 --> 00:00:55.000
-It is the probability that a randomly chosen positive gets a higher score than a randomly chosen negative.
+00:00:48.267 --> 00:00:51.665
+It is the probability that a randomly chosen positive
 
 19
+00:00:51.665 --> 00:00:55.000
+gets a higher score than a randomly chosen negative.
+
+20
 00:00:55.300 --> 00:00:58.467
 Point five is a coin flip, and one is perfect ranking.
 
-20
+21
 00:00:59.667 --> 00:01:01.567
 In code, we loop over the models.
 
-21
+22
 00:01:01.867 --> 00:01:04.900
 We use predicted probabilities, not hard labels.
 
-22
+23
 00:01:05.200 --> 00:01:08.067
 Then we get the curve and the area, and plot each model.
 
-23
+24
 00:01:09.267 --> 00:01:10.200
 One caution.
 
-24
-00:01:10.500 --> 00:01:18.583
-When negatives hugely outnumber positives, the false positive rate barely moves, so ROC AUC can look rosy.
-
 25
-00:01:18.583 --> 00:01:22.167
-Precision recall AUC is often more informative.
+00:01:10.500 --> 00:01:13.724
+When negatives hugely outnumber positives,
 
 26
+00:01:13.724 --> 00:01:18.559
+the false positive rate barely moves, so ROC AUC can look rosy.
+
+27
+00:01:18.559 --> 00:01:22.167
+Precision recall AUC is often more informative.
+
+28
 00:01:23.367 --> 00:01:24.800
 Here is the real use.
 
-27
+29
 00:01:25.100 --> 00:01:28.533
 Your screen and your ranker will run at very different thresholds.
 
-28
+30
 00:01:28.833 --> 00:01:32.833
 So you pick the model with AUC, which ignores thresholds.
 
-29
+31
 00:01:32.833 --> 00:01:37.533
 XGBoost scores point nine three, against point nine for the forest.
 
-30
+32
 00:01:37.833 --> 00:01:41.680
 Higher AUC means better ranking on average across thresholds.
 
-31
+33
 00:01:41.680 --> 00:01:47.167
 But curves can cross, so check the curve in the false positive range you'll operate in.
 
-32
+34
 00:01:48.367 --> 00:01:49.279
 Let's recap.
 
-33
+35
 00:01:49.279 --> 00:01:51.333
 ROC sweeps every threshold.
 
-34
+36
 00:01:51.633 --> 00:01:55.033
 AUC is the chance a positive outranks a negative.
 
-35
+37
 00:01:55.333 --> 00:01:58.667
 On extreme imbalance, try precision recall AUC.
 
-36
+38
 00:01:58.967 --> 00:02:01.000
 Next up: the confusion matrix.
