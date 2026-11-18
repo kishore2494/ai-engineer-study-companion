@@ -97,49 +97,53 @@ The serve command stays the same, with a speculative config added.
 We name a one billion parameter draft model and five tokens per round.
 
 25
-00:01:24.467 --> 00:01:30.833
-The logs then report an acceptance rate of zero point seven four, around two point four times faster.
+00:01:24.467 --> 00:01:28.605
+The logs then report an acceptance rate of zero point seven four,
 
 26
+00:01:28.605 --> 00:01:30.833
+around two point four times faster.
+
+27
 00:01:32.033 --> 00:01:33.367
 Here is a real case.
 
-27
+28
 00:01:33.667 --> 00:01:38.833
 Mission log summaries are formulaic, exactly what a small draft model predicts well.
 
-28
+29
 00:01:39.133 --> 00:01:44.233
 Add a one billion draft: time per token drops from twenty four to ten milliseconds.
 
-29
+30
 00:01:44.533 --> 00:01:49.706
 And the regression suite shows eval scores unchanged, within run to run noise.
 
-30
+31
 00:01:49.706 --> 00:01:50.833
 Verify it anyway.
 
-31
+32
 00:01:52.033 --> 00:01:52.820
 Let's recap.
 
-32
+33
 00:01:52.820 --> 00:01:55.967
 A draft model proposes, and the target verifies.
 
-33
+34
 00:01:56.267 --> 00:01:58.833
 Keep the agreed prefix, and fix the first miss.
 
-34
+35
 00:01:59.133 --> 00:02:02.167
 The output distribution stays exactly the same.
 
-35
+36
 00:02:02.467 --> 00:02:05.287
 And the speedup follows the acceptance rate.
 
-36
+37
 00:02:05.287 --> 00:02:06.633
 Next up: CUDA basics.
