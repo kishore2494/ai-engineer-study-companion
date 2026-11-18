@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.000
+Batch normalization.
+
+2
+00:00:02.300 --> 00:00:06.709
+As every layer updates at once, the inputs to each layer keep shifting.
+
+3
+00:00:06.709 --> 00:00:08.200
+BatchNorm steadies them.
+
+4
+00:00:09.400 --> 00:00:14.800
+For each feature, we normalize across the current minibatch to mean zero and variance one.
+
+5
+00:00:15.100 --> 00:00:18.900
+Then two learned parameters let the network undo that wherever it helps.
+
+6
+00:00:20.100 --> 00:00:22.500
+Here's one feature across a batch of four.
+
+7
+00:00:22.800 --> 00:00:25.534
+The raw values are two, four, six, and eight.
+
+8
+00:00:25.534 --> 00:00:26.567
+The mean is five.
+
+9
+00:00:26.867 --> 00:00:30.467
+After normalizing, they're centered on zero with a spread of one.
+
+10
+00:00:31.667 --> 00:00:34.933
+After standardizing, we apply a learned scale and shift.
+
+11
+00:00:35.233 --> 00:00:36.400
+Gamma rescales.
+
+12
+00:00:36.700 --> 00:00:37.630
+And beta shifts.
+
+13
+00:00:37.630 --> 00:00:41.933
+Layers train against a steady input, so you can use higher learning rates.
+
+14
+00:00:43.133 --> 00:00:43.972
+Now the trap.
+
+15
+00:00:43.972 --> 00:00:46.167
+BatchNorm is really two functions.
+
+16
+00:00:46.467 --> 00:00:52.067
+In training, it uses the current batch's statistics, while quietly keeping running averages.
+
+17
+00:00:52.367 --> 00:00:56.211
+At inference, it must use those frozen running statistics.
+
+18
+00:00:56.211 --> 00:00:58.067
+A single image has no batch.
+
+19
+00:00:58.367 --> 00:01:00.419
+Model dot eval flips the switch.
+
+20
+00:01:00.419 --> 00:01:02.600
+Forget it, and predictions wobble.
+
+21
+00:01:03.800 --> 00:01:05.767
+Let's reproduce the bug on purpose.
+
+22
+00:01:06.067 --> 00:01:08.367
+BatchNorm sits right after the linear layer.
+
+23
+00:01:08.667 --> 00:01:10.000
+We stay in train mode.
+
+24
+00:01:10.300 --> 00:01:14.033
+The same curve gives different answers depending on its batch neighbours.
+
+25
+00:01:14.333 --> 00:01:16.267
+After eval, the results match.
+
+26
+00:01:17.467 --> 00:01:19.400
+Here's how this shows up in production.
+
+27
+00:01:19.700 --> 00:01:24.833
+Your classify endpoint returns zero point nine one for a light curve on its own.
+
+28
+00:01:25.133 --> 00:01:29.200
+The same curve in a batch of requests scores zero point seven eight.
+
+29
+00:01:29.500 --> 00:01:30.859
+Nothing random is on.
+
+30
+00:01:30.859 --> 00:01:35.002
+A missing eval call after loading the checkpoint is the culprit.
+
+31
+00:01:35.002 --> 00:01:36.167
+One line fixes it.
+
+32
+00:01:37.367 --> 00:01:38.154
+Let's recap.
+
+33
+00:01:38.154 --> 00:01:41.500
+BatchNorm normalizes each feature across the batch.
+
+34
+00:01:41.800 --> 00:01:44.133
+Gamma and beta restore flexibility.
+
+35
+00:01:44.433 --> 00:01:47.133
+Training and inference use different statistics.
+
+36
+00:01:47.433 --> 00:01:50.105
+So always call eval before predicting.
+
+37
+00:01:50.105 --> 00:01:51.300
+Next up: dropout.

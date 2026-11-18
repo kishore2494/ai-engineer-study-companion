@@ -21,129 +21,129 @@ For each feature, we normalize across the current minibatch to mean zero and var
 Then two learned parameters let the network undo that wherever it helps.
 
 6
-00:00:20.100 --> 00:00:22.500
-Here's one feature across a batch of four.
+00:00:20.100 --> 00:00:23.457
+Here are two neurons in one layer across a batch of eight.
 
 7
-00:00:22.800 --> 00:00:25.534
-The raw values are two, four, six, and eight.
+00:00:23.457 --> 00:00:27.567
+Their values sit off to one side and are stretched at different scales.
 
 8
-00:00:25.534 --> 00:00:26.567
-The mean is five.
+00:00:27.867 --> 00:00:32.467
+Normalizing subtracts each neuron's batch mean and divides by its spread.
 
 9
-00:00:26.867 --> 00:00:30.467
-After normalizing, they're centered on zero with a spread of one.
+00:00:32.767 --> 00:00:35.700
+Now both are centered on zero with a spread of one.
 
 10
-00:00:31.667 --> 00:00:34.933
+00:00:36.900 --> 00:00:40.167
 After standardizing, we apply a learned scale and shift.
 
 11
-00:00:35.233 --> 00:00:36.400
+00:00:40.467 --> 00:00:41.633
 Gamma rescales.
 
 12
-00:00:36.700 --> 00:00:37.630
+00:00:41.933 --> 00:00:42.864
 And beta shifts.
 
 13
-00:00:37.630 --> 00:00:41.933
+00:00:42.864 --> 00:00:47.167
 Layers train against a steady input, so you can use higher learning rates.
 
 14
-00:00:43.133 --> 00:00:43.972
+00:00:48.367 --> 00:00:49.206
 Now the trap.
 
 15
-00:00:43.972 --> 00:00:46.167
+00:00:49.206 --> 00:00:51.400
 BatchNorm is really two functions.
 
 16
-00:00:46.467 --> 00:00:52.067
+00:00:51.700 --> 00:00:57.300
 In training, it uses the current batch's statistics, while quietly keeping running averages.
 
 17
-00:00:52.367 --> 00:00:56.211
+00:00:57.600 --> 00:01:01.444
 At inference, it must use those frozen running statistics.
 
 18
-00:00:56.211 --> 00:00:58.067
+00:01:01.444 --> 00:01:03.300
 A single image has no batch.
 
 19
-00:00:58.367 --> 00:01:00.419
+00:01:03.600 --> 00:01:05.653
 Model dot eval flips the switch.
 
 20
-00:01:00.419 --> 00:01:02.600
+00:01:05.653 --> 00:01:07.833
 Forget it, and predictions wobble.
 
 21
-00:01:03.800 --> 00:01:05.767
+00:01:09.033 --> 00:01:11.000
 Let's reproduce the bug on purpose.
 
 22
-00:01:06.067 --> 00:01:08.367
+00:01:11.300 --> 00:01:13.600
 BatchNorm sits right after the linear layer.
 
 23
-00:01:08.667 --> 00:01:10.000
+00:01:13.900 --> 00:01:15.233
 We stay in train mode.
 
 24
-00:01:10.300 --> 00:01:14.033
+00:01:15.533 --> 00:01:19.267
 The same curve gives different answers depending on its batch neighbours.
 
 25
-00:01:14.333 --> 00:01:16.267
+00:01:19.567 --> 00:01:21.500
 After eval, the results match.
 
 26
-00:01:17.467 --> 00:01:19.400
+00:01:22.700 --> 00:01:24.633
 Here's how this shows up in production.
 
 27
-00:01:19.700 --> 00:01:24.833
+00:01:24.933 --> 00:01:30.067
 Your classify endpoint returns zero point nine one for a light curve on its own.
 
 28
-00:01:25.133 --> 00:01:29.200
+00:01:30.367 --> 00:01:34.433
 The same curve in a batch of requests scores zero point seven eight.
 
 29
-00:01:29.500 --> 00:01:30.859
+00:01:34.733 --> 00:01:36.093
 Nothing random is on.
 
 30
-00:01:30.859 --> 00:01:35.002
+00:01:36.093 --> 00:01:40.235
 A missing eval call after loading the checkpoint is the culprit.
 
 31
-00:01:35.002 --> 00:01:36.167
+00:01:40.235 --> 00:01:41.400
 One line fixes it.
 
 32
-00:01:37.367 --> 00:01:38.154
+00:01:42.600 --> 00:01:43.387
 Let's recap.
 
 33
-00:01:38.154 --> 00:01:41.500
+00:01:43.387 --> 00:01:46.733
 BatchNorm normalizes each feature across the batch.
 
 34
-00:01:41.800 --> 00:01:44.133
+00:01:47.033 --> 00:01:49.367
 Gamma and beta restore flexibility.
 
 35
-00:01:44.433 --> 00:01:47.133
+00:01:49.667 --> 00:01:52.367
 Training and inference use different statistics.
 
 36
-00:01:47.433 --> 00:01:50.105
+00:01:52.667 --> 00:01:55.338
 So always call eval before predicting.
 
 37
-00:01:50.105 --> 00:01:51.300
+00:01:55.338 --> 00:01:56.533
 Next up: dropout.
