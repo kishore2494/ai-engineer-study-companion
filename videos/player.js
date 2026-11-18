@@ -1,5 +1,6 @@
-/* Explainer videos: reads videos/manifest.json ({id: {d: seconds, v: version}}) and adds a dropdown
-   player to every topic that has a video. New videos appear automatically when the manifest updates. */
+/* Explainer videos: reads videos/manifest.json ({id: {d: seconds, v: version, o?: {d, v}}}) and adds a dropdown
+   player to every topic that has a video. New videos appear automatically when the manifest updates.
+   o = an original version kept at videos/orig/<id>.*: the player shows the new one and offers a New / Original switch. */
 (function () {
   var BASE = 'videos/';
   var PLAY = '<svg aria-hidden="true" viewBox="0 0 10 10"><path d="M1 0.5 L9.5 5 L1 9.5 Z"/></svg>';
@@ -19,6 +20,9 @@
       '<track kind="captions" srclang="en" label="English" src="' + BASE + id + '.vtt' + q + '">' +
       '</video>' +
       '<div class="vbar"><span class="vlabel">Narrated explainer · ' + fmt(meta.d) + '</span>' +
+      (meta.o ? '<span class="vver" role="group" aria-label="Video version">' +
+        '<button type="button" data-ver="new" class="on" aria-pressed="true" title="New version, with the animated scene">New</button>' +
+        '<button type="button" data-ver="orig" aria-pressed="false" title="Original version">Original</button></span>' : '') +
       '<button type="button" data-cc aria-pressed="false" aria-label="CC (captions)">CC</button>' +
       '<button type="button" data-s="1">1×</button><button type="button" data-s="1.25">1.25×</button>' +
       '<button type="button" data-s="1.5">1.5×</button><button type="button" data-s="1.75">1.75×</button>' +
@@ -37,6 +41,21 @@
       try { localStorage.setItem('sc-vcc', on ? '1' : '0'); } catch (e) {}
     }
     panel.querySelectorAll('[data-s]').forEach(function (b) { b.addEventListener('click', function () { setSpeed(parseFloat(b.dataset.s)); }); });
+    panel.querySelectorAll('[data-ver]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var orig = b.dataset.ver === 'orig';
+        if (b.classList.contains('on')) return;
+        var m = orig ? meta.o : meta, base = BASE + (orig ? 'orig/' : '') + id, vq = '?v=' + (m.v || 1);
+        var playing = !video.paused;
+        video.poster = base + '.jpg' + vq;
+        video.querySelector('source').src = base + '.mp4' + vq;
+        video.querySelector('track').src = base + '.vtt' + vq;
+        video.load();
+        panel.querySelector('.vlabel').textContent = (orig ? 'Original explainer · ' : 'Narrated explainer · ') + fmt(m.d);
+        panel.querySelectorAll('[data-ver]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+        if (playing) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+      });
+    });
     ccBtn.addEventListener('click', function () { setCC(!ccBtn.classList.contains('on')); });
     video.addEventListener('loadedmetadata', function () { setCC(ccPref()); if (startAt) video.currentTime = startAt; });
     video.addEventListener('play', function () { if (video.playbackRate !== speedPref()) setSpeed(speedPref()); });

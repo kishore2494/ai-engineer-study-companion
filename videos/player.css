@@ -67,3 +67,6 @@
 }
 .gt-play svg { width: 8px; height: 8px; fill: var(--ion); }
 .gt-play:hover { background: rgba(94,211,244,0.18); }
+
+/* New / Original version switch (topics whose video was updated) */
+.vbar .vver { display: inline-flex; gap: 4px; padding-right: 8px; margin-right: 2px; border-right: 1px solid var(--line); }
