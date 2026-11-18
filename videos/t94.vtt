@@ -85,49 +85,61 @@ We use AdamW, which decouples weight decay from the adaptive scaling.
 It's the default for transformers and LLMs.
 
 22
-00:01:07.867 --> 00:01:15.067
-A good start is three e minus four, or around one e minus five to five e minus five when fine-tuning.
+00:01:07.867 --> 00:01:10.387
+A good start is three e minus four,
 
 23
+00:01:10.387 --> 00:01:15.067
+or around one e minus five to five e minus five when fine-tuning.
+
+24
 00:01:15.367 --> 00:01:16.967
 The loop itself doesn't change.
 
-24
+25
 00:01:18.167 --> 00:01:19.433
 Here's how you'd use it.
 
-25
+26
 00:01:19.733 --> 00:01:24.167
 You fine-tune a pretrained ResNet on satellite tiles for ship detection.
 
-26
-00:01:24.467 --> 00:01:33.833
-You reach for AdamW at one e minus four, because its per-weight scaling handles very different gradient sizes between early layers and the new head.
-
 27
+00:01:24.467 --> 00:01:27.033
+You reach for AdamW at one e minus four,
+
+28
+00:01:27.033 --> 00:01:30.433
+because its per-weight scaling handles very different
+
+29
+00:01:30.433 --> 00:01:33.833
+gradient sizes between early layers and the new head.
+
+30
 00:01:34.133 --> 00:01:37.700
 You get a strong baseline by lunch, without a learning-rate search.
 
-28
+31
 00:01:38.900 --> 00:01:39.648
 Let's recap.
 
-29
+32
 00:01:39.648 --> 00:01:42.700
 Adam tracks direction and scale for every weight.
 
-30
+33
 00:01:43.000 --> 00:01:45.133
 So each parameter tunes its own step.
 
-31
+34
 00:01:45.433 --> 00:01:49.833
 AdamW decouples weight decay, and it's the default for transformers.
 
-32
+35
 00:01:50.133 --> 00:01:52.702
 Start around three e minus four.
 
-33
+36
 00:01:52.702 --> 00:01:54.067
 Next up: RMSProp.

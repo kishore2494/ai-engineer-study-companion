@@ -73,65 +73,65 @@ The rule holds.
 A neural network is nothing but deeply nested functions.
 
 19
-00:00:55.267 --> 00:00:56.800
-The loss wraps a softmax.
+00:00:55.267 --> 00:00:56.733
+The loss wraps a sigmoid.
 
 20
-00:00:57.100 --> 00:00:58.533
+00:00:57.033 --> 00:00:58.467
 Which wraps the last layer.
 
 21
-00:00:58.833 --> 00:01:00.699
+00:00:58.767 --> 00:01:00.632
 Which wraps the one before it.
 
 22
-00:01:00.699 --> 00:01:05.300
+00:01:00.632 --> 00:01:05.233
 Backprop multiplies local derivatives from the outside in, layer by layer.
 
 23
-00:01:06.500 --> 00:01:08.339
+00:01:06.433 --> 00:01:08.272
 Now a real debugging story.
 
 24
-00:01:08.339 --> 00:01:12.833
+00:01:08.272 --> 00:01:12.767
 A twelve layer CNN with sigmoids stopped learning after epoch two.
 
 25
-00:01:13.133 --> 00:01:16.048
+00:01:13.067 --> 00:01:15.981
 Sigmoid's slope is at most zero point two five.
 
 26
-00:01:16.048 --> 00:01:21.567
+00:01:15.981 --> 00:01:21.500
 Multiply that through twelve layers and you get roughly six times ten to the minus eight.
 
 27
-00:01:21.867 --> 00:01:24.334
+00:01:21.800 --> 00:01:24.268
 The early layers' gradients had vanished.
 
 28
-00:01:24.334 --> 00:01:28.367
+00:01:24.268 --> 00:01:28.300
 ReLU has slope one for active units, and skip connections fixed it.
 
 29
-00:01:28.667 --> 00:01:30.733
+00:01:28.600 --> 00:01:30.667
 All of that was chain rule arithmetic.
 
 30
-00:01:31.933 --> 00:01:32.695
+00:01:31.867 --> 00:01:32.628
 Let's recap.
 
 31
-00:01:32.695 --> 00:01:35.233
+00:01:32.628 --> 00:01:35.167
 Rates of change multiply through layers.
 
 32
-00:01:35.533 --> 00:01:38.533
+00:01:35.467 --> 00:01:38.467
 Backpropagation is the chain rule applied backward.
 
 33
-00:01:38.833 --> 00:01:42.533
+00:01:38.767 --> 00:01:42.467
 Long chains of small factors vanish, and large ones explode.
 
 34
-00:01:42.833 --> 00:01:44.333
+00:01:42.767 --> 00:01:44.267
 Next up: gradients.
