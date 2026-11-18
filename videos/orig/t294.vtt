@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.033
+Diffusion models.
+
+2
+00:00:02.333 --> 00:00:08.967
+The recipe behind modern image, video, and audio generation starts with a surprisingly simple task.
+
+3
+00:00:10.167 --> 00:00:13.200
+A diffusion model is trained on one simple task.
+
+4
+00:00:13.500 --> 00:00:16.467
+Give it a slightly noised image, plus the noise level.
+
+5
+00:00:16.767 --> 00:00:19.653
+Its job is to predict the noise that was added.
+
+6
+00:00:19.653 --> 00:00:20.267
+That's it.
+
+7
+00:00:21.467 --> 00:00:22.867
+There are two processes.
+
+8
+00:00:23.167 --> 00:00:24.600
+Start with a clean image.
+
+9
+00:00:24.900 --> 00:00:28.597
+The forward process adds a little scheduled noise at each step.
+
+10
+00:00:28.597 --> 00:00:30.533
+It's fixed and needs no learning.
+
+11
+00:00:30.833 --> 00:00:33.333
+Until the image dissolves into pure static.
+
+12
+00:00:33.633 --> 00:00:36.300
+The reverse process is the learned part.
+
+13
+00:00:36.300 --> 00:00:41.967
+The denoiser removes a little predicted noise each pass, until an image crystallizes.
+
+14
+00:00:41.967 --> 00:00:43.567
+That walk is generation.
+
+15
+00:00:44.767 --> 00:00:46.833
+Here's the forward process as a mix.
+
+16
+00:00:47.133 --> 00:00:51.714
+As the noise level rises, the image signal fades and noise takes over.
+
+17
+00:00:51.714 --> 00:00:56.033
+Training means learning to reverse one small step of exactly this.
+
+18
+00:00:57.233 --> 00:00:59.133
+So why did diffusion beat GANs?
+
+19
+00:00:59.433 --> 00:01:03.500
+Its training is a stable regression loss, not an adversarial game.
+
+20
+00:01:03.800 --> 00:01:07.633
+It covers the whole data distribution, so there's no mode collapse.
+
+21
+00:01:07.933 --> 00:01:13.967
+And step-by-step generation gives natural control hooks, which is where text conditioning plugs in.
+
+22
+00:01:15.167 --> 00:01:16.367
+Here it is in code.
+
+23
+00:01:16.667 --> 00:01:21.467
+With a pretrained pipeline, fifty denoising steps turn pure noise into an image.
+
+24
+00:01:21.767 --> 00:01:27.833
+And the forward process by hand is just a blend between the image and noise, at five noise levels.
+
+25
+00:01:29.033 --> 00:01:30.500
+Here's a practical use.
+
+26
+00:01:30.800 --> 00:01:37.300
+Your exoplanet classifier starves on multi-planet transits, with only a few hundred real examples.
+
+27
+00:01:37.600 --> 00:01:42.500
+You train a small one-dimensional diffusion model and sample synthetic light curves.
+
+28
+00:01:42.800 --> 00:01:50.800
+Rare-class recall lifts from zero point six one to zero point seven four, and your eval discipline proves the data helped.
+
+29
+00:01:52.000 --> 00:01:52.791
+Let's recap.
+
+30
+00:01:52.791 --> 00:01:54.833
+Train a model to predict noise.
+
+31
+00:01:55.133 --> 00:01:58.167
+Forward noising is fixed, and the reverse is learned.
+
+32
+00:01:58.467 --> 00:02:02.000
+Stable loss, full coverage, and control hooks beat GANs.
+
+33
+00:02:02.300 --> 00:02:05.605
+The same recipe drives image, video, and audio.
+
+34
+00:02:05.605 --> 00:02:07.433
+Next up: Stable Diffusion.
