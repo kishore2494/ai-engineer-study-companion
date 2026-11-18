@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:02.200
+Forward propagation.
+
+2
+00:00:02.500 --> 00:00:04.852
+This is the network actually computing.
+
+3
+00:00:04.852 --> 00:00:07.867
+Do it by hand once, and every diagram gets simple.
+
+4
+00:00:09.067 --> 00:00:14.067
+In a forward pass, data enters the network and each layer does the same three things.
+
+5
+00:00:14.367 --> 00:00:17.633
+A matrix multiply, a bias add, and an activation.
+
+6
+00:00:17.633 --> 00:00:20.500
+Then it hands the result to the next layer.
+
+7
+00:00:20.800 --> 00:00:22.933
+Inference is a single forward pass.
+
+8
+00:00:24.133 --> 00:00:26.233
+Let's trace a small network by hand.
+
+9
+00:00:26.533 --> 00:00:29.426
+Two inputs, two hidden units, and one output.
+
+10
+00:00:29.426 --> 00:00:31.033
+Data flows left to right.
+
+11
+00:00:32.233 --> 00:00:33.267
+Here's layer one.
+
+12
+00:00:33.267 --> 00:00:37.100
+The weight matrix is two by two, and the input is one and zero.
+
+13
+00:00:37.400 --> 00:00:40.667
+The first row times the input gives zero point five.
+
+14
+00:00:40.967 --> 00:00:42.400
+The second row gives one.
+
+15
+00:00:43.600 --> 00:00:45.767
+Now follow the numbers all the way through.
+
+16
+00:00:46.067 --> 00:00:47.633
+The input is one and zero.
+
+17
+00:00:47.933 --> 00:00:51.000
+The first linear step gives zero point five and one.
+
+18
+00:00:51.300 --> 00:00:55.700
+Tanh bends them to zero point four six and zero point seven six.
+
+19
+00:00:56.000 --> 00:00:58.900
+The second linear step gives zero point one two.
+
+20
+00:00:59.200 --> 00:01:03.567
+And sigmoid turns that into a probability of about zero point five three.
+
+21
+00:01:04.767 --> 00:01:06.133
+Here it is in NumPy.
+
+22
+00:01:06.433 --> 00:01:09.967
+The at sign does the matrix multiply and we add the bias.
+
+23
+00:01:10.267 --> 00:01:11.900
+Then tanh bends the result.
+
+24
+00:01:12.200 --> 00:01:14.367
+One more linear step and a sigmoid.
+
+25
+00:01:14.367 --> 00:01:16.967
+The printout matches our hand calculation.
+
+26
+00:01:18.167 --> 00:01:20.067
+Here's why the hand trace pays off.
+
+27
+00:01:20.367 --> 00:01:22.691
+Your model crashes with a shape error.
+
+28
+00:01:22.691 --> 00:01:26.667
+Thirty two by two hundred one, against two hundred by sixty four.
+
+29
+00:01:26.967 --> 00:01:30.638
+Because you've traced shapes by hand, you read it instantly.
+
+30
+00:01:30.638 --> 00:01:35.533
+The data has two hundred one flux bins, but the first layer expects two hundred.
+
+31
+00:01:35.833 --> 00:01:37.952
+Someone changed the binning upstream.
+
+32
+00:01:37.952 --> 00:01:40.300
+You fix the preprocessing, not the model.
+
+33
+00:01:41.500 --> 00:01:42.313
+Let's recap.
+
+34
+00:01:42.313 --> 00:01:45.700
+Each layer multiplies, adds a bias, and activates.
+
+35
+00:01:46.000 --> 00:01:47.900
+Inference is one forward pass.
+
+36
+00:01:48.200 --> 00:01:51.567
+Shapes must chain, and shape errors are the most common bug.
+
+37
+00:01:51.867 --> 00:01:54.187
+So trace one pass by hand, once.
+
+38
+00:01:54.187 --> 00:01:56.000
+Next up: backpropagation.

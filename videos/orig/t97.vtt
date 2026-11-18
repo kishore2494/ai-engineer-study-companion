@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.567
+Dropout.
+
+2
+00:00:01.867 --> 00:00:06.367
+To stop a network memorizing, we randomly switch parts of it off while it trains.
+
+3
+00:00:07.567 --> 00:00:14.733
+During training, each neuron's output is zeroed with probability p, commonly between point one and point five.
+
+4
+00:00:15.033 --> 00:00:17.500
+And the random mask is fresh for every batch.
+
+5
+00:00:18.700 --> 00:00:20.333
+Here's a network mid-training.
+
+6
+00:00:20.633 --> 00:00:22.167
+Some hidden units vanish.
+
+7
+00:00:22.167 --> 00:00:29.833
+Because no neuron can count on any other, knowledge spreads across redundant pathways instead of brittle co-adapted circuits.
+
+8
+00:00:31.033 --> 00:00:32.667
+There are two ways to think about it.
+
+9
+00:00:32.967 --> 00:00:37.300
+In training, every mask is a different sub-network, and they all share weights.
+
+10
+00:00:37.600 --> 00:00:42.267
+PyTorch scales the survivors up, so the expected magnitude matches inference.
+
+11
+00:00:42.567 --> 00:00:46.300
+At inference, dropout turns off, giving you their implicit average.
+
+12
+00:00:46.600 --> 00:00:49.033
+Forget eval, and predictions turn noisy.
+
+13
+00:00:50.233 --> 00:00:51.333
+And what it buys you.
+
+14
+00:00:51.633 --> 00:00:57.469
+Before dropout, training accuracy is ninety nine percent but validation is only eighty two.
+
+15
+00:00:57.469 --> 00:00:58.624
+That's memorizing.
+
+16
+00:00:58.624 --> 00:01:02.600
+After, they sit at ninety three and ninety, so it generalizes.
+
+17
+00:01:03.800 --> 00:01:05.467
+It's one layer in PyTorch.
+
+18
+00:01:05.767 --> 00:01:09.133
+Dropout with point five, right after the first hidden layer.
+
+19
+00:01:09.433 --> 00:01:11.233
+And a lighter point three deeper in.
+
+20
+00:01:11.533 --> 00:01:13.317
+Then eval before predicting.
+
+21
+00:01:13.317 --> 00:01:15.100
+Never predict in train mode.
+
+22
+00:01:16.300 --> 00:01:17.533
+Here's a real case.
+
+23
+00:01:17.833 --> 00:01:23.000
+You have only a few hundred confirmed transits, and your dense head can memorize all of them.
+
+24
+00:01:23.300 --> 00:01:26.767
+It does: ninety nine percent train, eighty two validation.
+
+25
+00:01:27.067 --> 00:01:29.504
+Dropout at point five closes the gap.
+
+26
+00:01:29.504 --> 00:01:35.500
+A bonus: keep it on at inference and predict thirty times for a cheap uncertainty estimate.
+
+27
+00:01:36.700 --> 00:01:37.500
+Let's recap.
+
+28
+00:01:37.500 --> 00:01:40.567
+Dropout zeroes random neurons during training.
+
+29
+00:01:40.867 --> 00:01:42.733
+That forces redundant pathways.
+
+30
+00:01:43.033 --> 00:01:45.500
+Think of it as an ensemble of sub-networks.
+
+31
+00:01:45.800 --> 00:01:47.427
+And turn it off with eval.
+
+32
+00:01:47.427 --> 00:01:49.367
+Next up: weight initialization.

@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:01.933
+RMSProp.
+
+2
+00:00:02.233 --> 00:00:06.867
+It's Adam's direct ancestor, and the simplest way to see what adaptive means.
+
+3
+00:00:08.067 --> 00:00:09.867
+The idea fits in two lines.
+
+4
+00:00:10.167 --> 00:00:13.767
+Weights whose gradients have been large get small, careful steps.
+
+5
+00:00:14.067 --> 00:00:16.533
+Weights with faint gradients get boosted ones.
+
+6
+00:00:17.733 --> 00:00:18.867
+Here's the update.
+
+7
+00:00:19.167 --> 00:00:20.767
+We take the current gradient.
+
+8
+00:00:21.067 --> 00:00:24.643
+And divide by the root mean square of recent gradients.
+
+9
+00:00:24.643 --> 00:00:27.633
+That's the only running average RMSProp keeps.
+
+10
+00:00:28.833 --> 00:00:30.067
+Why does it exist?
+
+11
+00:00:30.367 --> 00:00:33.167
+AdaGrad accumulated squared gradients forever.
+
+12
+00:00:33.467 --> 00:00:35.733
+Eventually, learning ground to a halt.
+
+13
+00:00:36.033 --> 00:00:39.890
+RMSProp keeps a moving average instead, so it never stalls.
+
+14
+00:00:39.890 --> 00:00:42.700
+Hinton introduced it in a Coursera lecture.
+
+15
+00:00:43.900 --> 00:00:45.767
+Now hold the family tree in your head.
+
+16
+00:00:46.067 --> 00:00:47.700
+SGD is the baseline.
+
+17
+00:00:48.000 --> 00:00:50.500
+Add a velocity term, and you get momentum.
+
+18
+00:00:50.800 --> 00:00:54.667
+Divide by the gradient RMS, and you get RMSProp.
+
+19
+00:00:54.967 --> 00:00:57.967
+Do both, plus a bias correction, and you get Adam.
+
+20
+00:00:59.167 --> 00:01:00.867
+Here's a fair test of all three.
+
+21
+00:01:01.167 --> 00:01:05.967
+We register SGD, RMSProp, and Adam with the same learning rate.
+
+22
+00:01:06.267 --> 00:01:09.063
+Each gets a fresh model and the identical loop.
+
+23
+00:01:09.063 --> 00:01:10.967
+Then you plot them on one chart.
+
+24
+00:01:12.167 --> 00:01:14.533
+You'll still meet RMSProp in the wild.
+
+25
+00:01:14.833 --> 00:01:22.300
+You inherit a 2019 reinforcement-learning repo for satellite station keeping, configured with RMSProp.
+
+26
+00:01:22.600 --> 00:01:26.025
+Instead of asking why not Adam, you see the choice.
+
+27
+00:01:26.025 --> 00:01:31.667
+Classic DQN avoided momentum, because stale velocity is poison when the data shifts.
+
+28
+00:01:31.967 --> 00:01:35.967
+You keep RMSProp for the replication, and write down the reasoning.
+
+29
+00:01:37.167 --> 00:01:38.064
+Let's recap.
+
+30
+00:01:38.064 --> 00:01:42.100
+RMSProp divides each step by the recent gradient size.
+
+31
+00:01:42.400 --> 00:01:44.333
+It fixed AdaGrad's fading learning.
+
+32
+00:01:44.633 --> 00:01:46.700
+Think of it as Adam minus momentum.
+
+33
+00:01:47.000 --> 00:01:50.361
+You'll meet it in classic reinforcement learning code.
+
+34
+00:01:50.361 --> 00:01:52.167
+Next up: batch normalization.

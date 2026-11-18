@@ -53,81 +53,109 @@ Apply the nudge, and repeat.
 It is off-policy: it bootstraps from the best next action even while exploring.
 
 14
-00:00:45.733 --> 00:00:48.567
-After training, the Q-table looks like a heat grid.
+00:00:45.733 --> 00:00:47.763
+Let's watch the table fill in.
 
 15
-00:00:48.867 --> 00:00:53.033
-Rows are states, columns are actions, and brightness is learned value.
+00:00:47.763 --> 00:00:51.215
+A rover walks a small grid: the goal pays plus one,
 
 16
-00:00:53.333 --> 00:00:56.500
-Read a row's brightest cell, and you are reading the policy.
+00:00:51.215 --> 00:00:54.733
+a crater costs minus one, and a wall blocks the way.
 
 17
-00:00:57.700 --> 00:00:58.900
-Here it is in code.
+00:00:55.033 --> 00:00:55.669
+Each step,
 
 18
-00:00:59.200 --> 00:01:01.400
-We choose an action epsilon greedily.
+00:00:55.669 --> 00:01:01.586
+it nudges the value of the move it just made toward the reward plus the best value next door.
 
 19
-00:01:01.700 --> 00:01:05.867
-Then we compute the best next value, and nudge the table toward the target.
+00:01:01.586 --> 00:01:04.067
+Early on, nearly everything stays zero.
 
 20
-00:01:07.067 --> 00:01:08.667
-Run this on the Mars grid.
+00:01:04.367 --> 00:01:07.565
+Only reaching the goal changes anything at first.
 
 21
-00:01:08.967 --> 00:01:12.031
-Two thousand episodes finish in under a second.
+00:01:07.565 --> 00:01:11.612
+Then, episode by episode, value flows backward along the path,
 
 22
-00:01:12.031 --> 00:01:19.267
-The reward climbs from minus one, falling into the crater, to about plus zero point nine four: a clean beeline.
+00:01:11.612 --> 00:01:15.267
+and the brightest wedge in each cell becomes the policy.
 
 23
-00:01:20.467 --> 00:01:21.633
-Now make it visible.
+00:01:16.467 --> 00:01:17.667
+Here it is in code.
 
 24
-00:01:21.933 --> 00:01:23.300
-Log the reward curve.
+00:01:17.967 --> 00:01:20.167
+We choose an action epsilon greedily.
 
 25
-00:01:23.600 --> 00:01:28.700
-Plot the Q-table as a heat grid at episodes zero, one hundred, and five hundred.
+00:01:20.467 --> 00:01:24.633
+Then we compute the best next value, and nudge the table toward the target.
 
 26
-00:01:29.000 --> 00:01:32.565
-You literally watch value flow backward from the lander.
+00:01:25.833 --> 00:01:27.433
+Run this on the Mars grid.
 
 27
-00:01:32.565 --> 00:01:35.367
-That is the best RL intuition you can build.
+00:01:27.733 --> 00:01:30.817
+Two thousand episodes finish in under a second.
 
 28
-00:01:36.567 --> 00:01:37.360
-Let's recap.
+00:01:30.817 --> 00:01:34.622
+The reward climbs from minus one, falling into the crater,
 
 29
-00:01:37.360 --> 00:01:40.733
-Nudge Q toward the reward plus the best next value.
+00:01:34.622 --> 00:01:38.033
+to about plus zero point nine four: a clean beeline.
 
 30
-00:01:41.033 --> 00:01:42.567
-The gap is the TD error.
+00:01:39.233 --> 00:01:40.400
+Now make it visible.
 
 31
-00:01:42.867 --> 00:01:45.867
-It is off-policy, behaving epsilon greedily.
+00:01:40.700 --> 00:01:42.067
+Log the reward curve.
 
 32
-00:01:46.167 --> 00:01:49.367
-Swap the table for a network and you get DQN.
+00:01:42.367 --> 00:01:47.467
+Plot the Q-table as a heat grid at episodes zero, one hundred, and five hundred.
 
 33
-00:01:49.367 --> 00:01:50.433
+00:01:47.767 --> 00:01:51.332
+You literally watch value flow backward from the lander.
+
+34
+00:01:51.332 --> 00:01:54.133
+That is the best RL intuition you can build.
+
+35
+00:01:55.333 --> 00:01:56.127
+Let's recap.
+
+36
+00:01:56.127 --> 00:01:59.500
+Nudge Q toward the reward plus the best next value.
+
+37
+00:01:59.800 --> 00:02:01.333
+The gap is the TD error.
+
+38
+00:02:01.633 --> 00:02:04.633
+It is off-policy, behaving epsilon greedily.
+
+39
+00:02:04.933 --> 00:02:08.133
+Swap the table for a network and you get DQN.
+
+40
+00:02:08.133 --> 00:02:09.200
 Next up: SARSA.
