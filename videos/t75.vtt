@@ -97,33 +97,37 @@ Here is a real use.
 You cluster embeddings of two thousand mission log chunks.
 
 25
-00:01:16.433 --> 00:01:23.433
-Cut high for propulsion versus avionics, or lower for fuel systems, thruster burns, and pressure anomalies.
+00:01:16.433 --> 00:01:19.075
+Cut high for propulsion versus avionics,
 
 26
+00:01:19.075 --> 00:01:23.433
+or lower for fuel systems, thruster burns, and pressure anomalies.
+
+27
 00:01:23.733 --> 00:01:28.667
 The dendrogram becomes your browsing taxonomy, and you never guessed the number of topics.
 
-27
+28
 00:01:29.867 --> 00:01:30.627
 Let's recap.
 
-28
+29
 00:01:30.627 --> 00:01:33.033
 Keep merging the closest two clusters.
 
-29
+30
 00:01:33.333 --> 00:01:35.700
 The dendrogram shows structure at every scale.
 
-30
+31
 00:01:36.000 --> 00:01:38.295
 Cut at any height, no refit needed.
 
-31
+32
 00:01:38.295 --> 00:01:40.000
 Ward is the usual linkage.
 
-32
+33
 00:01:40.300 --> 00:01:41.833
 Next up: PCA.

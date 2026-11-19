@@ -105,45 +105,49 @@ The RBF kernel reaches about zero point nine two.
 Now a real scenario.
 
 27
-00:01:24.733 --> 00:01:33.871
-Plot exoplanets by log period and radius, and hot Jupiters and rocky planets form two curved lobes that no straight line separates.
+00:01:24.733 --> 00:01:27.610
+Plot exoplanets by log period and radius,
 
 28
-00:01:33.871 --> 00:01:36.800
-A linear SVC scores zero point eight four.
+00:01:27.610 --> 00:01:33.853
+and hot Jupiters and rocky planets form two curved lobes that no straight line separates.
 
 29
+00:01:33.853 --> 00:01:36.800
+A linear SVC scores zero point eight four.
+
+30
 00:01:37.100 --> 00:01:43.122
 The RBF kernel wraps a smooth boundary around each lobe and hits zero point nine five.
 
-30
+31
 00:01:43.122 --> 00:01:45.432
 Same margin maximizing machinery.
 
-31
+32
 00:01:45.432 --> 00:01:48.233
 The kernel just changed what line means.
 
-32
+33
 00:01:49.433 --> 00:01:50.354
 Let's recap.
 
-33
+34
 00:01:50.354 --> 00:01:53.500
 An SVM finds the maximum margin boundary.
 
-34
+35
 00:01:53.800 --> 00:01:55.767
 Support vectors alone define it.
 
-35
+36
 00:01:56.067 --> 00:01:58.000
 The kernel trick bends the boundary.
 
-36
+37
 00:01:58.300 --> 00:02:00.841
 And always scale your features first.
 
-37
+38
 00:02:00.841 --> 00:02:01.733
 Next up: KNN.
