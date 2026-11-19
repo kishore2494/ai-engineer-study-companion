@@ -57,81 +57,101 @@ The skip carries the input through untouched.
 So learning change nothing is easy, and extra depth can no longer hurt.
 
 15
-00:00:44.167 --> 00:00:46.133
+00:00:44.167 --> 00:00:46.258
 The deeper reason is the gradient.
 
 16
-00:00:46.433 --> 00:00:48.900
-At the addition, backprop's signal splits.
+00:00:46.258 --> 00:00:51.733
+In a plain stack, backprop multiplies the signal by every layer's factor on the way back.
 
 17
-00:00:49.200 --> 00:00:55.467
-One copy flows straight through the skip, unmodified, bypassing every multiplication that could shrink it.
+00:00:52.033 --> 00:00:53.957
+Say each factor is one half.
 
 18
-00:00:55.767 --> 00:01:01.400
-That took depth from twenty layers to over a hundred and fifty, and reappears in every transformer.
+00:00:53.957 --> 00:00:56.500
+By layer one, almost nothing is left.
 
 19
-00:01:02.600 --> 00:01:05.433
-In practice, you fine-tune a pretrained ResNet.
+00:00:56.800 --> 00:00:59.864
+In a ResNet, the signal splits at each addition.
 
 20
-00:01:05.733 --> 00:01:08.667
-Load ResNet eighteen with its ImageNet weights.
+00:00:59.864 --> 00:01:03.247
+One copy flows straight through the skip, unmodified,
 
 21
-00:01:08.967 --> 00:01:10.900
-Freeze every pretrained parameter.
+00:01:03.247 --> 00:01:06.567
+bypassing every multiplication that could shrink it.
 
 22
-00:01:11.200 --> 00:01:14.000
-Replace only the final layer with a two-class head.
+00:01:06.867 --> 00:01:12.500
+That took depth from twenty layers to over a hundred and fifty, and reappears in every transformer.
 
 23
-00:01:14.300 --> 00:01:15.633
-And train just that head.
+00:01:13.700 --> 00:01:16.533
+In practice, you fine-tune a pretrained ResNet.
 
 24
-00:01:16.833 --> 00:01:17.900
-Here's the payoff.
+00:01:16.833 --> 00:01:19.767
+Load ResNet eighteen with its ImageNet weights.
 
 25
-00:01:18.200 --> 00:01:23.700
-You have two thousand labeled satellite tiles, hopeless for training a deep CNN from scratch.
+00:01:20.067 --> 00:01:22.000
+Freeze every pretrained parameter.
 
 26
-00:01:24.000 --> 00:01:28.033
-But the pretrained backbone already knows edges, textures, and shapes.
+00:01:22.300 --> 00:01:25.100
+Replace only the final layer with a two-class head.
 
 27
-00:01:28.333 --> 00:01:35.257
-Freeze, replace the head, train five epochs: about ninety four percent, versus seventy eight from scratch.
+00:01:25.400 --> 00:01:26.733
+And train just that head.
 
 28
-00:01:35.257 --> 00:01:38.000
-It's the template for LLM fine-tuning too.
+00:01:27.933 --> 00:01:29.000
+Here's the payoff.
 
 29
-00:01:39.200 --> 00:01:40.008
-Let's recap.
+00:01:29.300 --> 00:01:34.800
+You have two thousand labeled satellite tiles, hopeless for training a deep CNN from scratch.
 
 30
-00:01:40.008 --> 00:01:42.633
-Plain deep stacks are hard to optimize.
+00:01:35.100 --> 00:01:39.133
+But the pretrained backbone already knows edges, textures, and shapes.
 
 31
-00:01:42.933 --> 00:01:45.700
-Skip connections compute F of x plus x.
+00:01:39.433 --> 00:01:42.327
+Freeze, replace the head, train five epochs:
 
 32
-00:01:46.000 --> 00:01:48.667
-They give gradients a highway back to the first layer.
+00:01:42.327 --> 00:01:46.338
+about ninety four percent, versus seventy eight from scratch.
 
 33
-00:01:48.967 --> 00:01:53.228
-And pretrained ResNets are the default for custom vision.
+00:01:46.338 --> 00:01:49.100
+It's the template for LLM fine-tuning too.
 
 34
-00:01:53.228 --> 00:01:54.200
+00:01:50.300 --> 00:01:51.108
+Let's recap.
+
+35
+00:01:51.108 --> 00:01:53.733
+Plain deep stacks are hard to optimize.
+
+36
+00:01:54.033 --> 00:01:56.800
+Skip connections compute F of x plus x.
+
+37
+00:01:57.100 --> 00:01:59.767
+They give gradients a highway back to the first layer.
+
+38
+00:02:00.067 --> 00:02:04.328
+And pretrained ResNets are the default for custom vision.
+
+39
+00:02:04.328 --> 00:02:05.300
 Next up: VGG.

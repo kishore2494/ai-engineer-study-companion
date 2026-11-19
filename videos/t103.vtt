@@ -137,9 +137,9 @@ Add position embeddings and a CLS token, then a plain transformer.
 It is data hungry, but wins with big pretraining.
 
 35
-00:01:57.333 --> 00:02:00.867
+00:01:57.333 --> 00:02:00.893
 And it is the vision half of multimodal LLMs.
 
 36
-00:02:00.867 --> 00:02:01.967
+00:02:00.893 --> 00:02:02.000
 Next up: YOLO.

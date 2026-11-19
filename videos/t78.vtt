@@ -13,117 +13,141 @@ Like t-SNE, but faster, and the best tool for looking inside an embedding space.
 UMAP plays the same game as t-SNE.
 
 4
-00:00:10.200 --> 00:00:16.300
-It projects non-linearly, keeping local neighborhoods, but it also preserves more of the global structure.
+00:00:10.200 --> 00:00:13.337
+It projects non-linearly, keeping local neighborhoods,
 
 5
+00:00:13.337 --> 00:00:16.300
+but it also preserves more of the global structure.
+
+6
 00:00:16.600 --> 00:00:20.333
 And it can transform new points, which t-SNE classically cannot.
 
-6
-00:00:21.533 --> 00:00:22.667
-How does it compare?
-
 7
-00:00:22.967 --> 00:00:27.067
-UMAP is much faster, and scales to hundreds of thousands of points.
+00:00:21.533 --> 00:00:23.733
+Here is how UMAP works, in two moves.
 
 8
-00:00:27.367 --> 00:00:32.600
-The relative placement of islands is somewhat more meaningful, though still not literal distance.
+00:00:24.033 --> 00:00:29.445
+First it links every point to its nearest neighbours in the original high dimensional space,
 
 9
-00:00:32.900 --> 00:00:34.400
-Better, but not perfect.
+00:00:29.445 --> 00:00:30.445
+building a graph.
 
 10
-00:00:35.600 --> 00:00:37.900
-Here is the killer app for an AI engineer.
+00:00:30.445 --> 00:00:33.033
+The colors mark which points are neighbours.
 
 11
-00:00:38.200 --> 00:00:40.967
-Take your text, headlines or document chunks.
+00:00:33.333 --> 00:00:37.992
+Second, it lays the points out in two dimensions, starting from a random scatter.
 
 12
-00:00:41.267 --> 00:00:43.733
-Embed them into high dimensional vectors.
+00:00:37.992 --> 00:00:42.133
+Linked points are pulled together, and unlinked points are pushed apart.
 
 13
-00:00:44.033 --> 00:00:46.600
-Project them to two dimensions with UMAP.
+00:00:42.433 --> 00:00:45.589
+Repeat that, and neighbourhoods settle into islands.
 
 14
-00:00:46.900 --> 00:00:47.552
-Then look.
+00:00:45.589 --> 00:00:50.200
+It is much faster than t-SNE, and scales to hundreds of thousands of points.
 
 15
-00:00:47.552 --> 00:00:49.442
-Do topics form clean islands?
+00:00:50.500 --> 00:00:55.067
+The placement of islands is somewhat more meaningful, though still not literal distance.
 
 16
-00:00:49.442 --> 00:00:51.267
-Where do duplicates pile up?
+00:00:56.267 --> 00:00:58.567
+Here is the killer app for an AI engineer.
 
 17
-00:00:52.467 --> 00:00:53.800
-Two knobs matter most.
+00:00:58.867 --> 00:01:01.633
+Take your text, headlines or document chunks.
 
 18
-00:00:54.100 --> 00:00:59.433
-N neighbors: small values show local detail, large values show the global shape.
+00:01:01.933 --> 00:01:04.400
+Embed them into high dimensional vectors.
 
 19
-00:00:59.733 --> 00:01:02.300
-And min dist controls how tightly points pack.
+00:01:04.700 --> 00:01:07.267
+Project them to two dimensions with UMAP.
 
 20
-00:01:03.500 --> 00:01:05.033
-In code, we embed first.
+00:01:07.567 --> 00:01:08.218
+Then look.
 
 21
-00:01:05.333 --> 00:01:10.433
-Two hundred space news headlines become three hundred eighty four dimensional embeddings.
+00:01:08.218 --> 00:01:10.108
+Do topics form clean islands?
 
 22
-00:01:10.733 --> 00:01:14.600
-Then UMAP projects them to two dimensions, and we scatter the result.
+00:01:10.108 --> 00:01:11.933
+Where do duplicates pile up?
 
 23
-00:01:15.800 --> 00:01:17.400
-Here is a debugging story.
+00:01:13.133 --> 00:01:14.467
+Two knobs matter most.
 
 24
-00:01:17.700 --> 00:01:22.233
-Mission Control RAG keeps retrieving irrelevant chunks for propulsion queries.
+00:01:14.767 --> 00:01:20.100
+N neighbors: small values show local detail, large values show the global shape.
 
 25
-00:01:22.533 --> 00:01:28.000
-You UMAP the vector store, and propulsion and electrical power are fused into one island.
+00:01:20.400 --> 00:01:22.967
+And min dist controls how tightly points pack.
 
 26
-00:01:28.300 --> 00:01:31.001
-The chunking split documents mid section.
+00:01:24.167 --> 00:01:25.700
+In code, we embed first.
 
 27
-00:01:31.001 --> 00:01:33.833
-Re-chunk, re-embed, and retrieval improves.
+00:01:26.000 --> 00:01:31.100
+Two hundred space news headlines become three hundred eighty four dimensional embeddings.
 
 28
-00:01:35.033 --> 00:01:35.839
-Let's recap.
+00:01:31.400 --> 00:01:35.267
+Then UMAP projects them to two dimensions, and we scatter the result.
 
 29
-00:01:35.839 --> 00:01:39.600
-UMAP is faster than t-SNE, with better global structure.
+00:01:36.467 --> 00:01:38.067
+Here is a debugging story.
 
 30
-00:01:39.900 --> 00:01:41.467
-It can transform new points.
+00:01:38.367 --> 00:01:42.900
+Mission Control RAG keeps retrieving irrelevant chunks for propulsion queries.
 
 31
-00:01:41.767 --> 00:01:43.533
-Use it to eyeball your embeddings.
+00:01:43.200 --> 00:01:48.667
+You UMAP the vector store, and propulsion and electrical power are fused into one island.
 
 32
-00:01:43.833 --> 00:01:45.333
+00:01:48.967 --> 00:01:51.667
+The chunking split documents mid section.
+
+33
+00:01:51.667 --> 00:01:54.500
+Re-chunk, re-embed, and retrieval improves.
+
+34
+00:01:55.700 --> 00:01:56.506
+Let's recap.
+
+35
+00:01:56.506 --> 00:02:00.267
+UMAP is faster than t-SNE, with better global structure.
+
+36
+00:02:00.567 --> 00:02:02.133
+It can transform new points.
+
+37
+00:02:02.433 --> 00:02:04.167
+Use it to eyeball your embeddings.
+
+38
+00:02:04.467 --> 00:02:05.967
 Next up: accuracy.
