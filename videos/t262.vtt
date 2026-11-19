@@ -101,53 +101,53 @@ The reflog finds it, and we reset right back.
 And always look at the graph, not just the list.
 
 26
-00:01:20.033 --> 00:01:21.100
+00:01:20.033 --> 00:01:21.067
 Here's the story.
 
 27
-00:01:21.400 --> 00:01:22.462
+00:01:21.367 --> 00:01:22.429
 Friday, six p.m.
 
 28
-00:01:22.462 --> 00:01:26.446
+00:01:22.429 --> 00:01:26.413
 You hard reset the classifier repo to test a clean baseline,
 
 29
-00:01:26.446 --> 00:01:29.500
+00:01:26.413 --> 00:01:29.467
 and the unpushed light curve fix goes with it.
 
 30
-00:01:29.800 --> 00:01:32.100
+00:01:29.767 --> 00:01:32.067
 Old you would re-derive it over the weekend.
 
 31
-00:01:32.400 --> 00:01:38.232
+00:01:32.367 --> 00:01:38.199
 New you runs reflog, spots the commit, cherry picks it back, and is at dinner by six fifteen.
 
 32
-00:01:38.232 --> 00:01:39.800
+00:01:38.199 --> 00:01:39.767
 Snapshots are never gone.
 
 33
-00:01:41.000 --> 00:01:41.734
+00:01:40.967 --> 00:01:41.701
 Let's recap.
 
 34
-00:01:41.734 --> 00:01:44.733
+00:01:41.701 --> 00:01:44.700
 Commits are snapshots, and branches are pointers.
 
 35
-00:01:45.033 --> 00:01:47.967
+00:01:45.000 --> 00:01:47.933
 Merge preserves history, while rebase rewrites it.
 
 36
-00:01:48.267 --> 00:01:49.933
+00:01:48.233 --> 00:01:49.900
 Never rebase shared history.
 
 37
-00:01:50.233 --> 00:01:53.129
+00:01:50.200 --> 00:01:53.096
 And the reflog can recover almost anything.
 
 38
-00:01:53.129 --> 00:01:56.833
+00:01:53.096 --> 00:01:56.800
 Next up: GitHub, branching, pull requests and rebasing.

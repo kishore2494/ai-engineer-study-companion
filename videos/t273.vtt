@@ -33,117 +33,121 @@ On a hit, we return instantly.
 On a miss, we compute the real answer.
 
 9
-00:00:19.100 --> 00:00:23.100
+00:00:19.100 --> 00:00:23.134
 Then write it back with a TTL, a time to live, so it expires.
 
 10
-00:00:24.300 --> 00:00:26.767
-Simple, but haunted by two hard problems.
+00:00:23.134 --> 00:00:27.433
+When the cache is full, the least recently used entry is evicted.
 
 11
-00:00:27.067 --> 00:00:33.667
-Invalidation: when the data changes, cached copies are silently wrong until the TTL expires.
+00:00:28.633 --> 00:00:31.100
+Simple, but haunted by two hard problems.
 
 12
-00:00:33.967 --> 00:00:40.133
-And stampedes: when a popular key expires, a thousand requests miss at once and hammer your backend.
+00:00:31.400 --> 00:00:38.000
+Invalidation: when the data changes, cached copies are silently wrong until the TTL expires.
 
 13
-00:00:41.333 --> 00:00:44.500
-LLM systems add three cache layers of their own.
+00:00:38.300 --> 00:00:44.467
+And stampedes: when a popular key expires, a thousand requests miss at once and hammer your backend.
 
 14
-00:00:44.800 --> 00:00:46.321
-An exact-match cache.
+00:00:45.667 --> 00:00:48.833
+LLM systems add three cache layers of their own.
 
 15
-00:00:46.321 --> 00:00:49.000
-Identical request, zero tokens spent.
+00:00:49.133 --> 00:00:50.654
+An exact-match cache.
 
 16
-00:00:49.300 --> 00:00:50.847
-Provider prompt caching.
+00:00:50.654 --> 00:00:53.333
+Identical request, zero tokens spent.
 
 17
-00:00:50.847 --> 00:00:55.100
-Keep the prompt prefix identical, and cached tokens cost far less.
+00:00:53.633 --> 00:00:55.180
+Provider prompt caching.
 
 18
-00:00:55.400 --> 00:00:59.857
-And a semantic cache, which catches paraphrases by comparing embeddings.
+00:00:55.180 --> 00:00:59.433
+Keep the prompt prefix identical, and cached tokens cost far less.
 
 19
-00:00:59.857 --> 00:01:01.900
-But tune its threshold carefully.
+00:00:59.733 --> 00:01:04.190
+And a semantic cache, which catches paraphrases by comparing embeddings.
 
 20
-00:01:03.100 --> 00:01:05.567
-Here is the exact-match cache in a few lines.
+00:01:04.190 --> 00:01:06.233
+But tune its threshold carefully.
 
 21
-00:01:05.867 --> 00:01:08.233
-The key is a hash of the model and the prompt.
+00:01:07.433 --> 00:01:09.900
+Here is the exact-match cache in a few lines.
 
 22
-00:01:08.533 --> 00:01:11.340
-If the key is in Redis, we return the answer.
+00:01:10.200 --> 00:01:12.567
+The key is a hash of the model and the prompt.
 
 23
-00:01:11.340 --> 00:01:12.400
-Free and instant.
+00:01:12.867 --> 00:01:15.673
+If the key is in Redis, we return the answer.
 
 24
-00:01:12.700 --> 00:01:17.233
-Otherwise we pay for the tokens once, and store the answer for twenty four hours.
+00:01:15.673 --> 00:01:16.733
+Free and instant.
 
 25
-00:01:18.433 --> 00:01:22.900
-Users ask about the Apollo 13 failure forty different ways every day.
+00:01:17.033 --> 00:01:21.567
+Otherwise we pay for the tokens once, and store the answer for twenty four hours.
 
 26
-00:01:23.200 --> 00:01:25.533
-A Redis semantic cache sits in front,
+00:01:22.767 --> 00:01:27.233
+Users ask about the Apollo 13 failure forty different ways every day.
 
 27
-00:01:25.533 --> 00:01:30.767
-and returns a stored answer when a past query scores at least zero point nine five.
+00:01:27.533 --> 00:01:29.866
+A Redis semantic cache sits in front,
 
 28
-00:01:31.067 --> 00:01:36.300
-Hit rate settles at thirty one percent, and hits drop from three seconds to forty milliseconds.
+00:01:29.866 --> 00:01:35.100
+and returns a stored answer when a past query scores at least zero point nine five.
 
 29
-00:01:37.500 --> 00:01:40.073
-One incident taught the threshold lesson.
+00:01:35.400 --> 00:01:40.633
+Hit rate settles at thirty one percent, and hits drop from three seconds to forty milliseconds.
 
 30
-00:01:40.073 --> 00:01:44.967
-At zero point nine, the cache served a tank two answer to a tank one question.
+00:01:41.833 --> 00:01:44.406
+One incident taught the threshold lesson.
 
 31
-00:01:45.267 --> 00:01:48.433
-So tune the threshold high, and test near-miss queries.
+00:01:44.406 --> 00:01:49.300
+At zero point nine, the cache served a tank two answer to a tank one question.
 
 32
-00:01:49.633 --> 00:01:50.389
-Let's recap.
+00:01:49.600 --> 00:01:52.767
+So tune the threshold high, and test near-miss queries.
 
 33
-00:01:50.389 --> 00:01:54.800
-Cache-aside means check, compute on a miss, and write back with a TTL.
+00:01:53.967 --> 00:01:54.723
+Let's recap.
 
 34
-00:01:55.100 --> 00:01:57.633
-Watch out for invalidation and stampedes.
+00:01:54.723 --> 00:01:59.133
+Cache-aside means check, compute on a miss, and write back with a TTL.
 
 35
-00:01:57.933 --> 00:02:02.233
-Exact, prompt prefix, and semantic caches all cut token cost.
+00:01:59.433 --> 00:02:01.967
+Watch out for invalidation and stampedes.
 
 36
-00:02:02.533 --> 00:02:04.802
-And tune that semantic threshold.
+00:02:02.267 --> 00:02:06.567
+Exact, prompt prefix, and semantic caches all cut token cost.
 
 37
-00:02:04.802 --> 00:02:05.833
+00:02:06.867 --> 00:02:09.135
+And tune that semantic threshold.
+
+38
+00:02:09.135 --> 00:02:10.167
 Next up: Redis.

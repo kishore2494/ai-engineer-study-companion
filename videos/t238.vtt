@@ -97,33 +97,37 @@ The detector crashes on Friday night.
 The loader carries on, untouched.
 
 25
-00:01:26.700 --> 00:01:33.154
-On Monday, the detector restarts at its committed offset and works through the weekend backlog in order.
+00:01:26.700 --> 00:01:27.326
+On Monday,
 
 26
-00:01:33.154 --> 00:01:34.333
-Zero messages lost.
+00:01:27.326 --> 00:01:33.145
+the detector restarts at its committed offset and works through the weekend backlog in order.
 
 27
+00:01:33.145 --> 00:01:34.333
+Zero messages lost.
+
+28
 00:01:35.533 --> 00:01:36.380
 Let's recap.
 
-28
+29
 00:01:36.380 --> 00:01:39.133
 Kafka is a distributed append-only log.
 
-29
+30
 00:01:39.433 --> 00:01:42.367
 Partitions give parallelism, with per-key order.
 
-30
+31
 00:01:42.667 --> 00:01:44.333
 Consumers track their own offset.
 
-31
+32
 00:01:44.633 --> 00:01:47.101
 Restart to resume, rewind to replay.
 
-32
+33
 00:01:47.101 --> 00:01:48.267
 Next up: Airflow.
