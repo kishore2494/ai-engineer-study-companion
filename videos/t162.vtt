@@ -37,101 +37,113 @@ Inverse document frequency.
 A rare term like IMU zero four B weighs far more than the word the.
 
 10
-00:00:31.667 --> 00:00:38.067
-And length normalization, tuned by the b knob, so long documents don't win just by having more words.
+00:00:31.667 --> 00:00:34.611
+And length normalization, tuned by the b knob,
 
 11
-00:00:39.267 --> 00:00:40.533
-Here's saturation.
+00:00:34.611 --> 00:00:38.067
+so long documents don't win just by having more words.
 
 12
-00:00:40.833 --> 00:00:43.367
-The first occurrence of a word adds a lot.
+00:00:38.367 --> 00:00:42.673
+Put together, twenty mentions score only about a third higher than three,
 
 13
-00:00:43.367 --> 00:00:44.633
-The second adds less.
+00:00:42.673 --> 00:00:45.800
+and a long document with three mentions falls behind.
 
 14
-00:00:44.933 --> 00:00:47.446
-By the twentieth, the curve is nearly flat.
+00:00:47.000 --> 00:00:48.267
+Here's saturation.
 
 15
-00:00:47.446 --> 00:00:49.667
-Repeating a word can't game the score.
+00:00:48.567 --> 00:00:51.100
+The first occurrence of a word adds a lot.
 
 16
-00:00:50.867 --> 00:00:52.667
-Know its strengths and weaknesses.
+00:00:51.100 --> 00:00:52.367
+The second adds less.
 
 17
-00:00:52.967 --> 00:00:55.733
-It wins on part numbers, error codes, and names.
+00:00:52.667 --> 00:00:55.179
+By the twentieth, the curve is nearly flat.
 
 18
-00:00:56.033 --> 00:01:01.500
-It loses when there are no shared words, like password reset against credential recovery.
+00:00:55.179 --> 00:00:57.400
+Repeating a word can't game the score.
 
 19
-00:01:01.800 --> 00:01:08.033
-The professional rule: if your fancy retriever can't beat BM25, ship BM25.
+00:00:58.600 --> 00:01:00.400
+Know its strengths and weaknesses.
 
 20
-00:01:09.233 --> 00:01:11.333
-Here it is with rank BM25.
+00:01:00.700 --> 00:01:03.467
+It wins on part numbers, error codes, and names.
 
 21
-00:01:11.633 --> 00:01:14.400
-We tokenize the documents and build the index.
+00:01:03.767 --> 00:01:09.233
+It loses when there are no shared words, like password reset against credential recovery.
 
 22
-00:01:14.700 --> 00:01:17.033
-We score every document against the query.
+00:01:09.533 --> 00:01:15.767
+The professional rule: if your fancy retriever can't beat BM25, ship BM25.
 
 23
-00:01:17.333 --> 00:01:21.067
-And print the best match, the one containing that exact part number.
+00:01:16.967 --> 00:01:19.067
+Here it is with rank BM25.
 
 24
-00:01:22.267 --> 00:01:24.800
-A real benchmark from Mission Control RAG.
+00:01:19.367 --> 00:01:22.133
+We tokenize the documents and build the index.
 
 25
-00:01:25.100 --> 00:01:31.800
-On twenty test questions, BM25 scores fifty five percent hit-rate at five, and dense scores sixty.
+00:01:22.433 --> 00:01:24.767
+We score every document against the query.
 
 26
-00:01:32.100 --> 00:01:38.267
-But on the six questions with error codes or unit IDs, BM25 wins six of six.
+00:01:25.067 --> 00:01:28.800
+And print the best match, the one containing that exact part number.
 
 27
-00:01:38.567 --> 00:01:41.391
-That split is why production runs hybrid.
+00:01:30.000 --> 00:01:32.533
+A real benchmark from Mission Control RAG.
 
 28
-00:01:41.391 --> 00:01:45.800
-And did you compare against BM25 is a favorite interview filter.
+00:01:32.833 --> 00:01:39.533
+On twenty test questions, BM25 scores fifty five percent hit-rate at five, and dense scores sixty.
 
 29
-00:01:47.000 --> 00:01:47.930
-Let's recap.
+00:01:39.833 --> 00:01:46.000
+But on the six questions with error codes or unit IDs, BM25 wins six of six.
 
 30
-00:01:47.930 --> 00:01:53.200
-BM25 combines saturated term frequency, rarity, and length fairness.
+00:01:46.300 --> 00:01:49.124
+That split is why production runs hybrid.
 
 31
-00:01:53.500 --> 00:01:56.633
-No training, no GPU, and a brutal baseline.
+00:01:49.124 --> 00:01:53.533
+And did you compare against BM25 is a favorite interview filter.
 
 32
-00:01:56.933 --> 00:02:00.167
-It wins on identifiers, and loses on synonyms.
+00:01:54.733 --> 00:01:55.663
+Let's recap.
 
 33
-00:02:00.467 --> 00:02:02.307
-If you can't beat it, ship it.
+00:01:55.663 --> 00:02:00.933
+BM25 combines saturated term frequency, rarity, and length fairness.
 
 34
-00:02:02.307 --> 00:02:04.700
+00:02:01.233 --> 00:02:04.367
+No training, no GPU, and a brutal baseline.
+
+35
+00:02:04.667 --> 00:02:07.900
+It wins on identifiers, and loses on synonyms.
+
+36
+00:02:08.200 --> 00:02:10.041
+If you can't beat it, ship it.
+
+37
+00:02:10.041 --> 00:02:12.433
 Next up: reranking with cross-encoders.
