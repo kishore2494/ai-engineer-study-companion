@@ -33,101 +33,117 @@ In practice it is one network with two heads.
 The observation goes into a shared trunk that extracts features.
 
 9
-00:00:24.267 --> 00:00:26.367
-The actor head outputs the policy.
+00:00:24.267 --> 00:00:28.633
+The actor head outputs the policy, and the agent samples an action from it.
 
 10
-00:00:26.667 --> 00:00:29.333
+00:00:28.933 --> 00:00:31.600
 And the critic head outputs the value of the state.
 
 11
-00:00:30.533 --> 00:00:31.933
-Why bother with a critic?
+00:00:31.900 --> 00:00:35.886
+The action earns a reward, and the critic values the next state.
 
 12
-00:00:32.233 --> 00:00:34.613
-Raw returns are astronomically noisy.
+00:00:35.886 --> 00:00:39.000
+The advantage asks whether that beat expectations.
 
 13
-00:00:34.613 --> 00:00:37.700
-A good action in a doomed episode gets punished.
+00:00:39.300 --> 00:00:42.586
+A positive advantage pushes the actor toward that action,
 
 14
-00:00:38.000 --> 00:00:43.067
-So we compare what we got, the reward plus the next value, to what we expected from here.
+00:00:42.586 --> 00:00:46.333
+and pulls the critic's estimate up toward what actually happened.
 
 15
-00:00:43.367 --> 00:00:45.475
-That difference is the advantage.
+00:00:47.533 --> 00:00:48.933
+Why bother with a critic?
 
 16
-00:00:45.475 --> 00:00:48.733
-Subtracting expectations cancels most of the noise.
+00:00:49.233 --> 00:00:51.613
+Raw returns are astronomically noisy.
 
 17
-00:00:49.933 --> 00:00:51.867
-Here is that network in PyTorch.
+00:00:51.613 --> 00:00:54.700
+A good action in a doomed episode gets punished.
 
 18
-00:00:52.167 --> 00:00:53.300
-One shared body.
+00:00:55.000 --> 00:01:00.067
+So we compare what we got, the reward plus the next value, to what we expected from here.
 
 19
-00:00:53.600 --> 00:00:56.733
-The actor is a linear layer producing action logits.
+00:01:00.367 --> 00:01:02.475
+That difference is the advantage.
 
 20
-00:00:57.033 --> 00:00:59.600
-The critic produces just one number, the value.
+00:01:02.475 --> 00:01:05.733
+Subtracting expectations cancels most of the noise.
 
 21
-00:01:00.800 --> 00:01:06.033
-Open Stable Baselines3 and find the actor and critic heads in the policies file.
+00:01:06.933 --> 00:01:08.867
+Here is that network in PyTorch.
 
 22
-00:01:06.333 --> 00:01:10.067
-Then find where the advantage is computed in the PPO file.
+00:01:09.167 --> 00:01:10.300
+One shared body.
 
 23
-00:01:10.367 --> 00:01:15.043
-In RLHF, the value head bolted onto the LLM is the critic.
+00:01:10.600 --> 00:01:13.733
+The actor is a linear layer producing action logits.
 
 24
-00:01:15.043 --> 00:01:18.833
-Same template, seventy billion parameter actor.
+00:01:14.033 --> 00:01:16.600
+The critic produces just one number, the value.
 
 25
-00:01:20.033 --> 00:01:23.267
-The mistake is learning from raw episode returns alone.
+00:01:17.800 --> 00:01:23.033
+Open Stable Baselines3 and find the actor and critic heads in the policies file.
 
 26
-00:01:23.567 --> 00:01:25.648
-Add a critic baseline instead.
+00:01:23.333 --> 00:01:27.067
+Then find where the advantage is computed in the PPO file.
 
 27
-00:01:25.648 --> 00:01:29.533
-Actions with positive advantage go up, negative go down.
+00:01:27.367 --> 00:01:32.043
+In RLHF, the value head bolted onto the LLM is the critic.
 
 28
-00:01:30.733 --> 00:01:31.509
-Let's recap.
+00:01:32.043 --> 00:01:35.833
+Same template, seventy billion parameter actor.
 
 29
-00:01:31.509 --> 00:01:34.933
-The actor is the policy, the critic estimates values.
+00:01:37.033 --> 00:01:40.267
+The mistake is learning from raw episode returns alone.
 
 30
-00:01:35.233 --> 00:01:38.100
-The advantage asks: was that better than expected?
+00:01:40.567 --> 00:01:42.648
+Add a critic baseline instead.
 
 31
-00:01:38.400 --> 00:01:40.467
-It cancels noise and speeds learning.
+00:01:42.648 --> 00:01:46.533
+Actions with positive advantage go up, negative go down.
 
 32
-00:01:40.767 --> 00:01:44.013
-This template sits under PPO and its cousins.
+00:01:47.733 --> 00:01:48.509
+Let's recap.
 
 33
-00:01:44.013 --> 00:01:46.033
+00:01:48.509 --> 00:01:51.933
+The actor is the policy, the critic estimates values.
+
+34
+00:01:52.233 --> 00:01:55.100
+The advantage asks: was that better than expected?
+
+35
+00:01:55.400 --> 00:01:57.467
+It cancels noise and speeds learning.
+
+36
+00:01:57.767 --> 00:02:01.013
+This template sits under PPO and its cousins.
+
+37
+00:02:01.013 --> 00:02:03.033
 Next up: deep RL in general.

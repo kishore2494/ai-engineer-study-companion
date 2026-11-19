@@ -85,57 +85,65 @@ Load that average, and you have the new global model.
 Here's a real story.
 
 22
-00:01:08.833 --> 00:01:15.067
-Three ground station partners hold telemetry they can't share, but all want a better anomaly detector.
+00:01:08.833 --> 00:01:12.660
+Three ground station partners hold telemetry they can't share,
 
 23
-00:01:15.367 --> 00:01:23.033
-You simulate it first: split your data three ways, each seeing different orbital regimes, and run five FedAvg rounds.
+00:01:12.660 --> 00:01:15.067
+but all want a better anomaly detector.
 
 24
+00:01:15.367 --> 00:01:18.671
+You simulate it first: split your data three ways,
+
+25
+00:01:18.671 --> 00:01:23.033
+each seeing different orbital regimes, and run five FedAvg rounds.
+
+26
 00:01:23.333 --> 00:01:29.463
 Federated lands within two points of centralized, and eleven above any single station's own model.
 
-25
+27
 00:01:29.463 --> 00:01:33.467
 That notebook turns a compliance stalemate into a collaboration.
 
-26
+28
 00:01:34.667 --> 00:01:36.133
 There are honest caveats.
 
-27
+29
 00:01:36.433 --> 00:01:39.919
 Each client's data differs, so naive averaging drifts.
 
-28
+30
 00:01:39.919 --> 00:01:44.567
 Communication is the bottleneck, and updates can still leak information.
 
-29
+31
 00:01:44.867 --> 00:01:49.667
 Real deployments add differential privacy or secure aggregation on top.
 
-30
+32
 00:01:50.867 --> 00:01:51.570
 Let's recap.
 
-31
+33
 00:01:51.570 --> 00:01:54.033
 Train a shared model without pooling data.
 
-32
+34
 00:01:54.333 --> 00:01:58.667
 FedAvg broadcasts, trains locally, sends updates, and averages.
 
-33
+35
 00:01:58.967 --> 00:02:02.300
 Watch for non-IID drift and communication cost.
 
-34
+36
 00:02:02.600 --> 00:02:04.832
 And add privacy protections on top.
 
-35
+37
 00:02:04.832 --> 00:02:07.000
 Next up: quantum machine learning.

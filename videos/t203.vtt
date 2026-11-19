@@ -29,109 +29,121 @@ A stochastic policy gives a probability distribution over actions.
 Here is a policy for a small grid.
 
 8
-00:00:23.633 --> 00:00:26.867
-Each cell simply holds an arrow: the action to take there.
+00:00:23.633 --> 00:00:28.246
+A deterministic policy holds one arrow per cell: the action to take there.
 
 9
-00:00:27.167 --> 00:00:29.425
-One cell keeps a little randomness.
+00:00:28.246 --> 00:00:31.300
+Follow the arrows and the agent reaches the goal.
 
 10
-00:00:29.425 --> 00:00:32.200
-Exploration lives inside the policy itself.
+00:00:31.600 --> 00:00:35.782
+A stochastic policy keeps a probability for every action instead.
 
 11
-00:00:33.400 --> 00:00:36.533
-Stochastic policies matter more than they first appear.
+00:00:35.782 --> 00:00:38.033
+One cell keeps a little randomness.
 
 12
-00:00:36.833 --> 00:00:41.267
-Deterministic ones give one action and have no built-in exploration.
+00:00:38.333 --> 00:00:41.903
+Each visit, the agent draws from those probabilities.
 
 13
-00:00:41.567 --> 00:00:43.567
-Stochastic ones explore naturally.
+00:00:41.903 --> 00:00:44.800
+Exploration lives inside the policy itself.
 
 14
-00:00:43.867 --> 00:00:48.300
-And they are differentiable, which policy-gradient methods like PPO need.
+00:00:46.000 --> 00:00:49.133
+Stochastic policies matter more than they first appear.
 
 15
-00:00:48.600 --> 00:00:54.200
-An LLM generating tokens is exactly this: a distribution over next actions.
+00:00:49.433 --> 00:00:53.867
+Deterministic ones give one action and have no built-in exploration.
 
 16
-00:00:55.400 --> 00:00:57.200
-Policies are easy to compare.
+00:00:54.167 --> 00:00:56.167
+Stochastic ones explore naturally.
 
 17
-00:00:57.500 --> 00:01:01.133
-A random policy averages about minus zero point eight.
+00:00:56.467 --> 00:01:00.900
+And they are differentiable, which policy-gradient methods like PPO need.
 
 18
-00:01:01.433 --> 00:01:06.833
-A greedy policy, picking the best known action, averages plus zero point nine five.
+00:01:01.200 --> 00:01:06.800
+An LLM generating tokens is exactly this: a distribution over next actions.
 
 19
-00:01:08.033 --> 00:01:09.967
-Here are those two policies in code.
+00:01:08.000 --> 00:01:09.800
+Policies are easy to compare.
 
 20
-00:01:10.267 --> 00:01:12.333
-The random policy picks any action.
+00:01:10.100 --> 00:01:13.733
+A random policy averages about minus zero point eight.
 
 21
-00:01:12.633 --> 00:01:16.967
-The greedy policy picks the action with the highest value in the Q-table.
+00:01:14.033 --> 00:01:19.433
+A greedy policy, picking the best known action, averages plus zero point nine five.
 
 22
-00:01:17.267 --> 00:01:20.300
-Averaged over episodes, that gap is the whole point.
+00:01:20.633 --> 00:01:22.567
+Here are those two policies in code.
 
 23
-00:01:21.500 --> 00:01:23.900
-Ask of any RL system: what ships?
+00:01:22.867 --> 00:01:24.933
+The random policy picks any action.
 
 24
-00:01:24.200 --> 00:01:28.267
-The training rig stays home: buffer, optimizer, reward function.
+00:01:25.233 --> 00:01:29.567
+The greedy policy picks the action with the highest value in the Q-table.
 
 25
-00:01:28.567 --> 00:01:33.333
-Only the policy goes up: a sixteen row table, or a twenty kilobyte network.
+00:01:29.867 --> 00:01:32.900
+Averaged over episodes, that gap is the whole point.
 
 26
-00:01:33.633 --> 00:01:34.741
-Same as an LLM.
+00:01:34.100 --> 00:01:36.500
+Ask of any RL system: what ships?
 
 27
-00:01:34.741 --> 00:01:37.400
-The served model is a frozen policy.
+00:01:36.800 --> 00:01:40.867
+The training rig stays home: buffer, optimizer, reward function.
 
 28
-00:01:38.600 --> 00:01:39.400
-Let's recap.
+00:01:41.167 --> 00:01:45.933
+Only the policy goes up: a sixteen row table, or a twenty kilobyte network.
 
 29
-00:01:39.400 --> 00:01:41.533
-The policy maps state to action.
+00:01:46.233 --> 00:01:47.341
+Same as an LLM.
 
 30
-00:01:41.533 --> 00:01:42.600
-It is the agent.
+00:01:47.341 --> 00:01:50.000
+The served model is a frozen policy.
 
 31
-00:01:42.900 --> 00:01:45.367
-It can be deterministic or stochastic.
+00:01:51.200 --> 00:01:52.000
+Let's recap.
 
 32
-00:01:45.667 --> 00:01:48.767
-Stochastic policies explore and are differentiable.
+00:01:52.000 --> 00:01:54.133
+The policy maps state to action.
 
 33
-00:01:49.067 --> 00:01:50.816
-And only the policy ships.
+00:01:54.133 --> 00:01:55.200
+It is the agent.
 
 34
-00:01:50.816 --> 00:01:52.700
+00:01:55.500 --> 00:01:57.967
+It can be deterministic or stochastic.
+
+35
+00:01:58.267 --> 00:02:01.367
+Stochastic policies explore and are differentiable.
+
+36
+00:02:01.667 --> 00:02:03.416
+And only the policy ships.
+
+37
+00:02:03.416 --> 00:02:05.300
 Next up: the value function.

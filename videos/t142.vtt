@@ -33,105 +33,113 @@ And you don't need to run reinforcement learning.
 If you have preference pairs, you can optimize the policy directly on them.
 
 9
-00:00:22.933 --> 00:00:25.676
+00:00:22.933 --> 00:00:25.691
 Each training row has three parts: a prompt,
 
 10
-00:00:25.676 --> 00:00:29.167
+00:00:25.691 --> 00:00:29.200
 a chosen response that people liked, and a rejected one.
 
 11
-00:00:29.467 --> 00:00:32.967
+00:00:29.500 --> 00:00:33.000
 DPO raises the probability of the chosen response.
 
 12
-00:00:33.267 --> 00:00:38.633
+00:00:33.300 --> 00:00:38.667
 And lowers the probability of the rejected one, both measured against a frozen reference.
 
 13
-00:00:39.833 --> 00:00:41.300
-Compare the two approaches.
+00:00:38.967 --> 00:00:40.598
+No reward model is needed.
 
 14
-00:00:41.600 --> 00:00:43.900
-RLHF needs four models.
+00:00:40.598 --> 00:00:45.367
+The gap between the two shifts is the whole training signal, scaled by beta.
 
 15
-00:00:43.900 --> 00:00:45.300
-DPO needs two.
+00:00:46.567 --> 00:00:48.033
+Compare the two approaches.
 
 16
-00:00:45.600 --> 00:00:49.269
-RLHF uses unstable reinforcement learning.
+00:00:48.333 --> 00:00:50.633
+RLHF needs four models.
 
 17
-00:00:49.269 --> 00:00:53.200
-DPO trains like ordinary supervised learning.
+00:00:50.633 --> 00:00:52.033
+DPO needs two.
 
 18
-00:00:53.500 --> 00:00:56.633
-RLHF builds a reward model first.
+00:00:52.333 --> 00:00:56.002
+RLHF uses unstable reinforcement learning.
 
 19
-00:00:56.633 --> 00:00:57.867
-DPO skips it.
+00:00:56.002 --> 00:00:59.933
+DPO trains like ordinary supervised learning.
 
 20
-00:00:58.167 --> 00:01:01.667
-So DPO is cheaper, more stable, and the current default.
+00:01:00.233 --> 00:01:03.366
+RLHF builds a reward model first.
 
 21
-00:01:02.867 --> 00:01:04.067
-Here it is in code.
+00:01:03.366 --> 00:01:04.600
+DPO skips it.
 
 22
-00:01:04.367 --> 00:01:08.267
-The dataset holds a prompt, a chosen and a rejected reply.
+00:01:04.900 --> 00:01:08.400
+So DPO is cheaper, more stable, and the current default.
 
 23
-00:01:08.567 --> 00:01:10.609
-No reward model, no value head.
+00:01:09.600 --> 00:01:10.800
+Here it is in code.
 
 24
-00:01:10.609 --> 00:01:14.233
-Beta controls how hard we push away from the reference.
+00:01:11.100 --> 00:01:15.000
+The dataset holds a prompt, a chosen and a rejected reply.
 
 25
-00:01:15.433 --> 00:01:19.567
-Imagine Mission Control logs a thumbs up or down on every answer.
+00:01:15.300 --> 00:01:17.343
+No reward model, no value head.
 
 26
-00:01:19.867 --> 00:01:22.583
-Six months in, you have thousands of pairs:
+00:01:17.343 --> 00:01:20.967
+Beta controls how hard we push away from the reference.
 
 27
-00:01:22.583 --> 00:01:26.500
-the answer users accepted, and the regeneration they rejected.
+00:01:22.167 --> 00:01:26.300
+Imagine Mission Control logs a thumbs up or down on every answer.
 
 28
-00:01:26.800 --> 00:01:32.933
-With DPOTrainer, that becomes a weekend project that tunes the model toward what your users prefer.
+00:01:26.600 --> 00:01:29.317
+Six months in, you have thousands of pairs:
 
 29
-00:01:34.133 --> 00:01:34.948
-Let's recap.
+00:01:29.317 --> 00:01:33.233
+the answer users accepted, and the regeneration they rejected.
 
 30
-00:01:34.948 --> 00:01:37.800
-DPO learns directly from preference pairs.
+00:01:33.533 --> 00:01:39.667
+With DPOTrainer, that becomes a weekend project that tunes the model toward what your users prefer.
 
 31
-00:01:38.100 --> 00:01:40.400
-No reward model and no PPO.
+00:01:40.867 --> 00:01:41.681
+Let's recap.
 
 32
-00:01:40.700 --> 00:01:42.600
-Two models and stable training.
+00:01:41.681 --> 00:01:44.533
+DPO learns directly from preference pairs.
 
 33
-00:01:42.900 --> 00:01:44.776
-And beta controls the push.
+00:01:44.833 --> 00:01:47.133
+No reward model and no PPO.
 
 34
-00:01:44.776 --> 00:01:47.000
+00:01:47.433 --> 00:01:49.333
+Two models and stable training.
+
+35
+00:01:49.633 --> 00:01:51.510
+And beta controls the push.
+
+36
+00:01:51.510 --> 00:01:53.733
 Next up: supervised fine-tuning.
