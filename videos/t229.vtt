@@ -53,65 +53,73 @@ Three patterns cover most interview questions.
 Top-N per group: number the rows within each group, then filter in an outer query.
 
 14
-00:00:54.967 --> 00:01:01.733
-Deltas over time: LAG brings the previous row's value onto this row, and subtraction gives the change.
+00:00:54.967 --> 00:00:59.522
+Deltas over time: LAG brings the previous row's value onto this row,
 
 15
+00:00:59.522 --> 00:01:01.733
+and subtraction gives the change.
+
+16
 00:01:02.033 --> 00:01:06.667
 Running totals: SUM over an ordering accumulates as it walks along.
 
-16
+17
 00:01:07.867 --> 00:01:09.600
 Here is both patterns at once.
 
-17
+18
 00:01:09.900 --> 00:01:14.433
 LAG subtracts the previous voltage, giving a delta for every reading.
 
-18
+19
 00:01:14.733 --> 00:01:19.633
 ROW_NUMBER, partitioned by satellite, numbers each reading from newest to oldest.
 
-19
+20
 00:01:19.933 --> 00:01:23.033
 The outer query keeps only the first two per satellite.
 
-20
+21
 00:01:24.233 --> 00:01:25.667
 Here is where this shows up.
 
-21
+22
 00:01:25.967 --> 00:01:31.400
 On a telemetry stream, LAG per satellite gives the discharge step for every reading.
 
-22
+23
 00:01:31.700 --> 00:01:34.333
 A rolling three-reading average smooths the noise.
 
-23
-00:01:34.633 --> 00:01:41.400
-Any satellite dropping faster than point two volts per orbit is flagged before the observation window opens.
-
 24
+00:01:34.633 --> 00:01:38.048
+Any satellite dropping faster than point two volts per
+
+25
+00:01:38.048 --> 00:01:41.400
+orbit is flagged before the observation window opens.
+
+26
 00:01:42.600 --> 00:01:43.350
 Let's recap.
 
-25
+27
 00:01:43.350 --> 00:01:46.600
 Window functions are aggregates that keep every row.
 
-26
+28
 00:01:46.900 --> 00:01:50.200
 The OVER clause sets the partition, the order, and the frame.
 
-27
+29
 00:01:50.500 --> 00:01:53.867
 Remember top-N, LAG deltas, and running totals.
 
-28
+30
 00:01:54.167 --> 00:01:57.900
 And when a question says compared to, reach for a window.
 
-29
+31
 00:01:57.900 --> 00:01:59.733
 Next up: query optimization.
