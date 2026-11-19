@@ -33,113 +33,129 @@ Sigma is the standard deviation, how spread out it is.
 The standard normal is the simplest case: mean zero, spread one.
 
 9
-00:00:24.667 --> 00:00:26.533
-Here are two bells with the same mean.
+00:00:24.667 --> 00:00:29.342
+Watch satellite temperature readings drop in, each one landing in its bin.
 
 10
-00:00:26.833 --> 00:00:28.567
-Mu decides where the bell sits.
+00:00:29.342 --> 00:00:31.300
+The pile fills out into a bell.
 
 11
-00:00:28.867 --> 00:00:30.911
-Sigma decides how wide it is.
+00:00:31.600 --> 00:00:34.167
+Mu decides where the bell sits: its center.
 
 12
-00:00:30.911 --> 00:00:33.166
-Bigger sigma, flatter and wider.
+00:00:34.467 --> 00:00:36.247
+Sigma decides how wide it is.
 
 13
-00:00:33.166 --> 00:00:35.633
-That's the entire parameterization.
+00:00:36.247 --> 00:00:40.667
+About sixty eight percent of readings fall within one sigma of the mean.
 
 14
-00:00:36.833 --> 00:00:38.548
-So why is the bell everywhere?
+00:00:40.967 --> 00:00:44.197
+And about ninety five percent fall within two sigma.
 
 15
-00:00:38.548 --> 00:00:40.033
-The Central Limit Theorem.
+00:00:44.197 --> 00:00:46.433
+That is the entire parameterization.
 
 16
-00:00:40.333 --> 00:00:44.533
-Take many small, independent effects, whatever their individual shapes.
+00:00:47.633 --> 00:00:49.348
+So why is the bell everywhere?
 
 17
-00:00:44.833 --> 00:00:46.500
-Add them up, or average them.
+00:00:49.348 --> 00:00:50.833
+The Central Limit Theorem.
 
 18
-00:00:46.800 --> 00:00:48.778
-The result tends toward a Gaussian.
+00:00:51.133 --> 00:00:55.333
+Take many small, independent effects, whatever their individual shapes.
 
 19
-00:00:48.778 --> 00:00:52.000
-That's why averaging many measurements is so trustworthy.
+00:00:55.633 --> 00:00:57.300
+Add them up, or average them.
 
 20
-00:00:53.200 --> 00:00:54.567
-Let's prove it in Python.
+00:00:57.600 --> 00:00:59.578
+The result tends toward a Gaussian.
 
 21
-00:00:54.867 --> 00:00:59.867
-We average one thousand uniform noise readings, and repeat that ten thousand times.
+00:00:59.578 --> 00:01:02.800
+That's why averaging many measurements is so trustworthy.
 
 22
-00:01:00.167 --> 00:01:03.932
-The averages center on zero point five, with a tiny spread.
+00:01:04.000 --> 00:01:05.367
+Let's prove it in Python.
 
 23
-00:01:03.932 --> 00:01:07.633
-Plot them and a bell curve appears, from flat ingredients.
+00:01:05.667 --> 00:01:10.667
+We average one thousand uniform noise readings, and repeat that ten thousand times.
 
 24
-00:01:08.833 --> 00:01:11.167
-You'll meet Gaussians in three big places.
+00:01:10.967 --> 00:01:14.732
+The averages center on zero point five, with a tiny spread.
 
 25
-00:01:11.467 --> 00:01:15.600
-Sensor noise, because each reading blends many small physical effects.
+00:01:14.732 --> 00:01:18.433
+Plot them and a bell curve appears, from flat ingredients.
 
 26
-00:01:15.900 --> 00:01:19.200
-Aggregated returns, which are sums of many small moves.
+00:01:19.633 --> 00:01:21.967
+You'll meet Gaussians in three big places.
 
 27
-00:01:19.500 --> 00:01:24.200
-And weight initialization, where deep learning starts from a scaled Gaussian by default.
+00:01:22.267 --> 00:01:26.400
+Sensor noise, because each reading blends many small physical effects.
 
 28
-00:01:25.400 --> 00:01:28.100
-Here's how it plays out in a telemetry pipeline.
+00:01:26.700 --> 00:01:30.000
+Aggregated returns, which are sums of many small moves.
 
 29
-00:01:28.400 --> 00:01:34.467
-Each satellite temperature reading blends thousands of tiny effects, so its noise is nearly Gaussian.
+00:01:30.300 --> 00:01:35.000
+And weight initialization, where deep learning starts from a scaled Gaussian by default.
 
 30
-00:01:34.767 --> 00:01:40.500
-So the anomaly detector models each channel as a Gaussian and flags anything beyond three sigma.
+00:01:36.200 --> 00:01:38.900
+Here's how it plays out in a telemetry pipeline.
 
 31
-00:01:40.800 --> 00:01:48.800
-The same distribution helps training: initial weights are drawn from a scaled Gaussian, so activations neither vanish nor explode.
+00:01:39.200 --> 00:01:43.325
+Each satellite temperature reading blends thousands of tiny effects,
 
 32
-00:01:50.000 --> 00:01:50.788
-Let's recap.
+00:01:43.325 --> 00:01:45.267
+so its noise is nearly Gaussian.
 
 33
-00:01:50.788 --> 00:01:54.533
-A Gaussian is defined by its mean and standard deviation.
+00:01:45.567 --> 00:01:51.300
+So the anomaly detector models each channel as a Gaussian and flags anything beyond three sigma.
 
 34
-00:01:54.833 --> 00:01:58.800
-The Central Limit Theorem says sums of many small effects become a bell.
+00:01:51.600 --> 00:01:56.995
+The same distribution helps training: initial weights are drawn from a scaled Gaussian,
 
 35
-00:01:59.100 --> 00:02:03.078
-That's why noise models and weight initialization default to it.
+00:01:56.995 --> 00:01:59.600
+so activations neither vanish nor explode.
 
 36
-00:02:03.078 --> 00:02:05.067
+00:02:00.800 --> 00:02:01.588
+Let's recap.
+
+37
+00:02:01.588 --> 00:02:05.333
+A Gaussian is defined by its mean and standard deviation.
+
+38
+00:02:05.633 --> 00:02:09.600
+The Central Limit Theorem says sums of many small effects become a bell.
+
+39
+00:02:09.900 --> 00:02:13.878
+That's why noise models and weight initialization default to it.
+
+40
+00:02:13.878 --> 00:02:15.867
 Next up: Bernoulli distribution.

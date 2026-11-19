@@ -13,113 +13,137 @@ One slope is not enough when a function takes a vector in and gives a vector out
 If a function maps n inputs to m outputs, no single number describes its slope.
 
 4
-00:00:12.967 --> 00:00:20.333
-The Jacobian is an m by n matrix holding every partial derivative of every output with respect to every input.
+00:00:12.967 --> 00:00:16.616
+The Jacobian is an m by n matrix holding every partial
 
 5
+00:00:16.616 --> 00:00:20.333
+derivative of every output with respect to every input.
+
+6
 00:00:20.633 --> 00:00:24.333
 Row i answers: how does output i respond to each input?
 
-6
+7
 00:00:25.533 --> 00:00:28.767
 Take a layer that maps sixty four features to thirty two.
 
-7
+8
 00:00:29.067 --> 00:00:30.733
 Sixty four numbers go in.
 
-8
+9
 00:00:31.033 --> 00:00:32.288
 Thirty two come out.
 
-9
+10
 00:00:32.288 --> 00:00:35.800
 Its Jacobian has thirty two rows and sixty four columns.
 
-10
+11
 00:00:37.000 --> 00:00:41.833
 Here is a real example, turning an orbit's radius and angle into x and y.
 
-11
-00:00:42.133 --> 00:00:45.500
-Two inputs, two outputs, so a two by two Jacobian.
-
 12
-00:00:45.800 --> 00:00:50.067
-The first column says how x and y respond to a change in radius.
+00:00:42.133 --> 00:00:44.522
+Take a small box in radius and angle.
 
 13
-00:00:50.367 --> 00:00:53.633
-The second says how they respond to a change in angle.
+00:00:44.522 --> 00:00:47.233
+The function bends it into a curved patch.
 
 14
-00:00:54.833 --> 00:00:56.367
-We can build it by nudging.
+00:00:47.533 --> 00:00:52.533
+The first Jacobian column, how x and y respond to radius, is one edge.
 
 15
-00:00:56.667 --> 00:01:00.233
-This function turns polar orbit coordinates into x and y.
+00:00:52.833 --> 00:00:56.669
+The second column, how they respond to angle, is the other edge.
 
 16
-00:01:00.533 --> 00:01:05.033
-Nudge the radius, and the change in both outputs becomes the first column.
+00:00:56.669 --> 00:00:58.767
+Together they form a parallelogram.
 
 17
-00:01:05.333 --> 00:01:08.059
-Nudge the angle, and we get the second column.
+00:00:59.067 --> 00:01:01.151
+Shrink the box and the two match.
 
 18
-00:01:08.059 --> 00:01:10.133
-It matches the formula from before.
+00:01:01.151 --> 00:01:05.067
+The determinant is the area scale: seven thousand, the radius.
 
 19
-00:01:11.333 --> 00:01:16.500
-The Jacobian is also the best linear approximation of a function near a point.
+00:01:06.267 --> 00:01:07.800
+We can build it by nudging.
 
 20
-00:01:16.800 --> 00:01:19.733
-So you can push uncertainty through a coordinate change.
+00:01:08.100 --> 00:01:11.667
+This function turns polar orbit coordinates into x and y.
 
 21
-00:01:20.033 --> 00:01:26.367
-Sandwich the old uncertainty between J and its transpose, and you get the uncertainty in x and y.
+00:01:11.967 --> 00:01:16.467
+Nudge the radius, and the change in both outputs becomes the first column.
 
 22
-00:01:27.567 --> 00:01:29.000
-Here is where it shows up.
+00:01:16.767 --> 00:01:19.493
+Nudge the angle, and we get the second column.
 
 23
-00:01:29.300 --> 00:01:33.633
-An asteroid's position arrives as range and angle, with measurement error.
+00:01:19.493 --> 00:01:21.567
+It matches the formula from before.
 
 24
-00:01:33.933 --> 00:01:37.933
-To report error bars on a map, propagate them through the Jacobian.
+00:01:22.767 --> 00:01:27.933
+The Jacobian is also the best linear approximation of a function near a point.
 
 25
-00:01:38.233 --> 00:01:46.267
-And inside PyTorch, every layer's backward pass is a vector-Jacobian product: the upstream gradient times the Jacobian.
+00:01:28.233 --> 00:01:31.167
+So you can push uncertainty through a coordinate change.
 
 26
-00:01:47.467 --> 00:01:48.260
-Let's recap.
+00:01:31.467 --> 00:01:37.800
+Sandwich the old uncertainty between J and its transpose, and you get the uncertainty in x and y.
 
 27
-00:01:48.260 --> 00:01:51.367
-Vector in, vector out needs a matrix of slopes.
+00:01:39.000 --> 00:01:40.433
+Here is where it shows up.
 
 28
-00:01:51.667 --> 00:01:53.600
-Its shape is outputs by inputs.
+00:01:40.733 --> 00:01:45.067
+An asteroid's position arrives as range and angle, with measurement error.
 
 29
-00:01:53.900 --> 00:01:56.400
-It is the best local linear approximation.
+00:01:45.367 --> 00:01:49.367
+To report error bars on a map, propagate them through the Jacobian.
 
 30
-00:01:56.700 --> 00:01:59.278
-And backprop chains Jacobians together.
+00:01:49.667 --> 00:01:54.909
+And inside PyTorch, every layer's backward pass is a vector-Jacobian product:
 
 31
-00:01:59.278 --> 00:02:00.667
+00:01:54.909 --> 00:01:57.700
+the upstream gradient times the Jacobian.
+
+32
+00:01:58.900 --> 00:01:59.693
+Let's recap.
+
+33
+00:01:59.693 --> 00:02:02.800
+Vector in, vector out needs a matrix of slopes.
+
+34
+00:02:03.100 --> 00:02:05.033
+Its shape is outputs by inputs.
+
+35
+00:02:05.333 --> 00:02:07.833
+It is the best local linear approximation.
+
+36
+00:02:08.133 --> 00:02:10.712
+And backprop chains Jacobians together.
+
+37
+00:02:10.712 --> 00:02:12.100
 Next up: the Hessian.

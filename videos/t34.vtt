@@ -113,37 +113,41 @@ The at sign gives the dot product: twenty two point five for the thrust along th
 Here is why this matters.
 
 29
-00:01:30.800 --> 00:01:39.233
-When Mission Control RAG retrieves its top fifty chunks, the vector database dots your query against millions of stored embeddings and sorts.
+00:01:30.800 --> 00:01:34.173
+When Mission Control RAG retrieves its top fifty chunks,
 
 30
+00:01:34.173 --> 00:01:39.233
+the vector database dots your query against millions of stored embeddings and sorts.
+
+31
 00:01:39.533 --> 00:01:45.815
 And inside the language model, attention computes a query key dot product for every token pair.
 
-31
+32
 00:01:45.815 --> 00:01:47.600
 Same operation, two layers.
 
-32
+33
 00:01:48.800 --> 00:01:49.566
 Let's recap.
 
-33
+34
 00:01:49.566 --> 00:01:52.500
 Multiply entries, then sum, to get one number.
 
-34
+35
 00:01:52.800 --> 00:01:56.867
 Its sign tells you whether vectors agree, are unrelated, or oppose.
 
-35
+36
 00:01:57.167 --> 00:02:00.100
 Cosine is the same thing on normalized vectors.
 
-36
+37
 00:02:00.400 --> 00:02:03.178
 And it powers attention and vector search.
 
-37
+38
 00:02:03.178 --> 00:02:04.567
 Next up: eigenvalues.
